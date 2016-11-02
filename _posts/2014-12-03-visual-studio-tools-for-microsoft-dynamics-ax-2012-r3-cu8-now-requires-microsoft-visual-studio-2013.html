@@ -1,0 +1,55 @@
+---
+layout: post
+title: Visual Studio Tools for Microsoft Dynamics AX 2012 R3 CU8 now requires Microsoft
+  Visual Studio 2013
+date: 2014-12-03 11:06:00.000000000 +07:00
+type: post
+published: true
+status: publish
+categories: []
+tags:
+- '2013'
+- AX 2012
+- CU8
+- R3
+- visual studio
+meta:
+  _publicize_pending: '1'
+author:
+  login: luannx
+  email: luan52@outlook.com
+  display_name: luannx
+  first_name: ''
+  last_name: ''
+---
+<p><span style="line-height:1.42857143;">It is important to note what this means.&nbsp; Development work (ex. Enterprise Portal, SSRS) done in Visual Studio will now be with Microsoft Visual Studio 2013</span></p>
+<p style="margin-top:12px;">Note when going to CU8</p>
+<blockquote><p>•&nbsp;Report Viewer 2012 runtime component is required<br />•&nbsp;Visual Studio Tools (for 2010) will have to be uninstalled via AX setup.exe &gt; Install Microsoft Dynamics AX components &gt; Remove components &gt; under Developer tools mark Visual Studio Tools<br />•&nbsp;Install Visual Studio 2013 (Professional or higher)&nbsp;<br />•&nbsp;When going through CU8 installer note the Visual Studio 2013 Dev Tools selection</p></blockquote>
+<p>With the recently announced release of&nbsp;<a style="cursor:pointer;outline:none;" title="Cumulative Update 8" href="http://blogs.technet.com/b/dynamicsaxse/archive/2014/11/19/announcing-cumulative-update-8-for-microsoft-dynamics-ax-2012-r3.aspx">Cumulative Update&nbsp;8</a>&nbsp;for Microsoft Dynamics AX 2012 R3 (6.3.1000.309) with<a style="cursor:pointer;outline:none;" title="KB2998197" href="https://mbs2.microsoft.com/Knowledgebase/KBDisplay.aspx?scid=kb;EN-US;2998197" target="_blank">KB2998197</a>, there are several key changes in how the CU package is delivered and installed on local environments.&nbsp;The&nbsp;most notable&nbsp;difference is that the&nbsp;update installer is downloaded first and does not actually contain any Dynamics AX product changes.&nbsp; The fixes and enhancements are downloaded as part of running the update installer. Some of the common questions you might have as a result of this change are: [ad]</p>
+<p>[more]</p>
+<ol>
+<li>My environment does not allow me to download the package from Lifecycle Services (LCS) website. Where is the "offline package"?
+<p>A) The full package can be applied with a new AX 2012 R3 install when using the slipstream process.&nbsp;You&nbsp;will need to log in to LCS and download&nbsp;the&nbsp;CU8 package one time and save it as a custom update package locally.&nbsp; This update package can be copied to any location for use in "offline" mode.&nbsp;This is listed in the&nbsp;<a style="cursor:pointer;outline:none;" title="Installation Guide" href="http://go.microsoft.com/fwlink/?LinkId=519005">Installation Guide</a>(step 7 on page&nbsp;7):&nbsp;</p>
+<p>"Optional: On the Save updates page, click Save custom update package. You can then reuse the installation package that you have created on another computer in your environment.<br />After the custom update package has been created, you can open the location where it is stored."</p>
+</li>
+<li>Why are there two version numbers for CU8?
+<p>A) When installing CU8 on an existing install, the granular models are installed individually. The specific package that indicates all application fixes included in CU8 is from a specific build: 6.3.1000.473.</p>
+</li>
+<li>Why are there over 1500 new models installed on my system when I view installed models from the Help &gt; About screen?
+<p>A) CU8 is a collection of all previously released fixes, regulatory updates, and feature enhancements. Each one of these changes is captured in its own individual model with the goal of having lighter dependencies between fixes, as compared to the AX 2012 R2 product today.</p>
+</li>
+<li>What is “slipstreaming” and why should I use it?
+<p>A) Slipstreaming is well-defined in the&nbsp;<a style="cursor:pointer;outline:none;" title="Installation Guide" href="http://go.microsoft.com/fwlink/?LinkId=519005">Installation Guide</a>&nbsp;on page 4:</p>
+<p>"If you are installing Microsoft Dynamics AX 2012 R3 for the first time, you can use the Setup wizard and the slipstreaming process to install CU 8 together with the rest of the product. When updates are slipstreamed, Setup automatically detects and applies them.</p>
+</li>
+<li>Is Visual Studio 2013 required with CU8?
+<p>A) Yes. If you need to open a Visual Studio project such as a report design or other C# project, Visual Studio 2013 is required.</p>
+</li>
+</ol>
+<div>
+<p style="border:0;margin-bottom:1.313em;outline:0;padding:0;vertical-align:baseline;" align="justify">Most of you must be already aware that the first Cumulative Update for Microsoft Dynamics AX 2012 R3 is now available and is referred as the ‘Cumulative Update 8’.</p>
+<p style="border:0;margin-bottom:1.313em;outline:0;padding:0;vertical-align:baseline;" align="justify">Read more details on the Microsoft TechNet Blog&nbsp;<a style="border:0;margin:0;outline:0;padding:0;vertical-align:baseline;-webkit-transition:color .2s linear;transition:color .2s linear;" href="http://blogs.technet.com/b/dynamicsaxse/archive/2014/11/19/announcing-cumulative-update-8-for-microsoft-dynamics-ax-2012-r3.aspx" target="_blank">Here</a>.</p>
+<p style="border:0;margin-bottom:1.313em;outline:0;padding:0;vertical-align:baseline;" align="justify">You can review the&nbsp;<a style="border:0;margin:0;outline:0;padding:0;vertical-align:baseline;-webkit-transition:color .2s linear;transition:color .2s linear;" href="http://www.microsoft.com/en-us/download/details.aspx?id=44953" target="_blank">CU 8 Upgrade</a>&nbsp;guide before upgrading.</p>
+<p style="border:0;margin-bottom:1.313em;outline:0;padding:0;vertical-align:baseline;" align="justify">If you are already using LCS, CU8 details can be found on the Updates page&nbsp;<a style="border:0;margin:0;outline:0;padding:0;vertical-align:baseline;-webkit-transition:color .2s linear;transition:color .2s linear;" href="https://update.lcs.dynamics.com/Logon/Index?redirectUrl=https%3a%2f%2fupdate.lcs.dynamics.com%2fDownload%2fIndex%2f" target="_blank">Here</a>.</p>
+<p style="border:0;margin-bottom:1.313em;outline:0;padding:0;vertical-align:baseline;" align="justify">Keep exploring the new functionalities and good luck with your upgrade.</p>
+</div>

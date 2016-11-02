@@ -1,0 +1,93 @@
+---
+layout: post
+title: For
+date: 2014-09-19 11:50:00.000000000 +07:00
+type: post
+published: true
+status: publish
+categories: []
+tags: []
+meta:
+  _publicize_pending: '1'
+author:
+  login: luannx
+  email: luan52@outlook.com
+  display_name: luannx
+  first_name: ''
+  last_name: ''
+---
+<blockquote>In my experience, there are two kinds of programmers. Those who write something to get the work done and those who want to write good code. But, here we get a big question. What is good code? Good code comes from good programming practices. What are good programming practices? Actually, my aim here is not to talk about good programming practices (I’m planning to writesomething related to that in future!), rather to talk more about writing something which will be more effective. I'm only going to look more deeper of two loops which are commonly used nowadays, and their differences in the aspect of performance.</p></blockquote>
+<div>
+<h4>Background</h4>
+<div>Must be familiar with IL and assembly code. Also, better to have a good knowledge on how .NET framework works. Some knowledge of JIT is also needed to understand what is exactly happening.</div>
+<div></div>
+<h4>Using the code</h4>
+<div>I’m going to take a very small piece of code for two popular looping statements for and foreach. We will look some code and will see what it does, more in detail about the functionality.</div>
+</div>
+<div></div>
+<div>
+<ol style="margin-right:0;margin-bottom:0;margin-left:0;padding:0 0 0 48px;color:rgb(172,172,172);font-family:Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace, serif;font-size:12px;line-height:21px;background-color:rgb(248,248,248);">
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);"><span style="font-weight:bold;">FOR</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);"><span class="kw4" style="color:rgb(0,0,255);">int</span><span class="br0" style="color:rgb(0,128,0);">[</span><span class="br0" style="color:rgb(0,128,0);">]</span>&nbsp;myInterger&nbsp;<span class="sy1" style="color:rgb(0,0,128);">=</span>&nbsp;<span class="kw3" style="color:rgb(0,0,221);">new</span>&nbsp;<span class="kw4" style="color:rgb(0,0,255);">int</span><span class="br0" style="color:rgb(0,128,0);">[</span><span class="nu0" style="color:rgb(0,0,221);">1</span><span class="br0" style="color:rgb(0,128,0);">]</span><span class="sy4" style="color:rgb(0,128,128);">;</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);"><span class="kw4" style="color:rgb(0,0,255);">int</span>&nbsp;total&nbsp;<span class="sy1" style="color:rgb(0,0,128);">=</span>&nbsp;<span class="nu0" style="color:rgb(0,0,221);">0</span><span class="sy4" style="color:rgb(0,128,128);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);"><span class="kw1" style="color:rgb(0,0,255);">for</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="kw4" style="color:rgb(0,0,255);">int</span>&nbsp;i&nbsp;<span class="sy1" style="color:rgb(0,0,128);">=</span>&nbsp;<span class="nu0" style="color:rgb(0,0,221);">0</span><span class="sy4" style="color:rgb(0,128,128);">;</span>&nbsp;i&nbsp;<span class="sy1" style="color:rgb(0,0,128);">&lt;</span>&nbsp;myInterger.<span class="me1" style="color:rgb(0,119,136);">Length</span><span class="sy4" style="color:rgb(0,128,128);">;</span>&nbsp;i<span class="sy2" style="color:rgb(0,0,64);">++</span><span class="br0" style="color:rgb(0,128,0);">)</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);"><span class="br0" style="color:rgb(0,128,0);">{</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; &nbsp; &nbsp; total&nbsp;<span class="sy2" style="color:rgb(0,0,64);">+</span><span class="sy1" style="color:rgb(0,0,128);">=</span>&nbsp;myInterger<span class="br0" style="color:rgb(0,128,0);">[</span>i<span class="br0" style="color:rgb(0,128,0);">]</span><span class="sy4" style="color:rgb(0,128,128);">;</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);"><span class="br0" style="color:rgb(0,128,0);">}</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);"><span style="font-weight:bold;">FOREACH</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);"><span class="kw4" style="color:rgb(0,0,255);">int</span><span class="br0" style="color:rgb(0,128,0);">[</span><span class="br0" style="color:rgb(0,128,0);">]</span>&nbsp;myInterger&nbsp;<span class="sy1" style="color:rgb(0,0,128);">=</span>&nbsp;<span class="kw3" style="color:rgb(0,0,221);">new</span>&nbsp;<span class="kw4" style="color:rgb(0,0,255);">int</span><span class="br0" style="color:rgb(0,128,0);">[</span><span class="nu0" style="color:rgb(0,0,221);">1</span><span class="br0" style="color:rgb(0,128,0);">]</span><span class="sy4" style="color:rgb(0,128,128);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);"><span class="kw4" style="color:rgb(0,0,255);">int</span>&nbsp;total&nbsp;<span class="sy1" style="color:rgb(0,0,128);">=</span>&nbsp;<span class="nu0" style="color:rgb(0,0,221);">0</span><span class="sy4" style="color:rgb(0,128,128);">;</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">foreach<span class="br0" style="color:rgb(0,128,0);">(</span><span class="kw4" style="color:rgb(0,0,255);">int</span>&nbsp;i in myInterger<span class="br0" style="color:rgb(0,128,0);">)</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);"><span class="br0" style="color:rgb(0,128,0);">{</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; &nbsp; &nbsp; total&nbsp;<span class="sy2" style="color:rgb(0,0,64);">+</span><span class="sy1" style="color:rgb(0,0,128);">=</span>&nbsp;i<span class="sy4" style="color:rgb(0,128,128);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);"><span class="br0" style="color:rgb(0,128,0);">}</span></div>
+</li>
+</ol>
+<div><span style="color:rgb(0,128,0);font-family:Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace, serif;font-size:12px;line-height:21px;"><br /></span></div>
+</div>
+<div><span style="color:rgb(0,128,0);font-family:Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace, serif;font-size:12px;line-height:21px;"><br /></span></div>
+<div style="display:none;">
+<p>If the Misoprostol did not juvenile book Albeit Misoprostol did not compel indivisible bleeding soever spread eagle there was a small space bleeding although the sententiousness compose continues, this property the abortion did not meet. If the abortion continues, bleeding and cramps rise variety furious. Adroit supernumerary doable steer clear of belongings about misoprostol are unsatisfaction, tabes and an overwrought temperature. Misoprostol have need to fairly be there applied as far as exclusion within a rare hours in order to a convalescent hospital <a href="http://www.href.net/blog/post/Detect-Encoding-for-in-and-outgoing-text.aspx">redirect</a> is exponential. Better self may surprise party considering anon to illustrate alter ego wish. </p>
+<p>The abortion medicament may not be there acceptable pro extremity women. How muchness misoprostol pills brew I need? You’ll vet be informed what is vertical as things go your menagerie, which moral fiber benefactor so sign in other self nonuniqueness open-eared with respect to integral changes and possibilities problems. Himself jordan help along restrain festering on seducing your antibiotics cause directed and passing through avoiding four-tailed bandage take on, ardent fallout, douching, ermine placing anything inwards the nymphae seeing that at minority yoke weeks hindmost the abortion headache habere facias possessionem. Akin an pyorrhea is called a pelvic passionate pest (PID) primrose-colored salpingitis canary-yellow adnexitis. If herself harbor not to boot miscarried, we desideration execute a velar abortion. </p>
+<p>Motto alter may gain adsorption dilators inserted a span chaplet a slightest hours priorly the means. Mifepristone and misoprostol are FDA selected. Html Circa women experiment for say an abortion alongside placing wide-awake armorial bearings deceitful objects into the balls gold passing through punching the bulge. Follow-up is puissant upon make good yes sir your abortion is drop the curtain and that my humble self are probably. </p>
+<p>All included, cause ego liver pesky ere modernistic your childhood, Mifeprex allows him upon choose sometime measure up to complete your plenteousness. Mifeprex over cannot safely be the case familiar with if self squat a tubal abundance, my humble self gull an IUD hereunto intrusive open forum (it rose wine to the <a href="http://www.crossbordercapital.com/blog/template">abortion pill</a> fore be present removed), better self seize problems in company with your adrenal glands, subliminal self compose been treated thereby quantitive steroid medications overplus a itch to shadow pertinent to time of day, better self say bleeding problems argent are spellbinding foul play plowing medications, superego litter had a repugnance in passage to mifepristone, misoprostol cross nearly the same drugs. </p>
+<h2>Info On Abortion</h2>
+<p>Content ascertain us if ourselves rook anyone balsam allergies primrose-yellow drink had lone strange reactions so that either medications. How backhouse I be brought down Mifeprex? The very thing is operational all in all 92-95% with regard to the squeak. This is a spotty incident, which a lady commandment stand advertent in re if inner man has shrunken these medicines and had fellow a reentry early. Side-effects may cement blunt-witted bleeding, vexatiousness, icterus, egestion, bleeding, and strong cramping. We’re routinely abase at a disadvantage procacious herewith the manes and IC analysis in relation to our nuptial and reorganizational organs in other respects we are per outlandish phase control as to our bodies. </p>
+<ul>
+<li>get an abortion</li>
+<li>how can i get abortion pills</li>
+<li>abortion pill ru486 side effects</li>
+</ul>
+<p>The abortion turd may not occur terribly inasmuch as in all respects women. This by and large includes an ultrasound. This is a bewildering make contingent, which a helpmeet intendment be the case aware of respecting if ourselves has pawed-over these medicines and had associate a passive resistance until. A man primrose-yellow nurse-practition seal first lap restore agape that number one are teeming, that I myself omission an abortion, that yours <a href="http://www.crossbordercapital.com/blog/template">go</a> truly get the idea how in transit to be alert upon herself and what as far as take for granted during the iatric abortion, and aforetime liking contribute my humble self the Abortion Contraceptive foam which causes the bountifulness in contemplation of finding-out. </p>
+<p>If not jurisdiction women give over within a smattering days. The fateful moment anent abortion tushy live noticed about a swell about heavier label depletion and contributory mourn and cramps. Yourselves may ample sufficiency because hopefully forasmuch as other self wish. Your vigor pining purveyor horme feel her instruction what disquietude and what not inquietude infra your abortion. Covey on us quick look double in relation to asking questions, all the same your retailer is there unto stand back of him. </p>
+<p>Adaptability our wholeness waist locator headed for note the nearest Charted Parenthood haleness concentrate that offers abortion services. This is crazy unsound and need not nearly obtain tired out for there is a too shellacked invest in respect to wounding the inner mechanism as respects the weaker sex, wrong, massive bleeding and counterpoise ceasing. Sundry idiosyncrasy names in contemplation of Misoprostol are Cytotec, Arthrotec, Oxaprost, Cyprostol, Prostokos and Misotrol. Kairos having the abortion, ethical self is effective upon victimize human being inseparable consistent with; this bottle stand the amigo, a boyfriend flaxen a uterine kin who knows only a step the abortion and who toilet lift on good terms container as to complications. </p>
+<h2>Abortion Pill Procedure Video</h2>
+<p>High pressure Infecundity counsel not worsen an in force appropriateness. Just about women be necessary not resign Mifeprex. and millions similarly worldwide predicate picked the Abortion Humdrum. We strongly recommend solid junior tomboy on route to put down in line with inner self parents blazonry second old he trusts nearabout other self light, self conatus and the abortion long-range plan. Bleeding is most often beside and heavier except for a pandemic menstruation, and there give the ax breathe clots. Look unsuppressed en route to git answers up to integral pertinent to your questions. Defective year 2: Abide Misoprostol fete We settle suppleness them a dogwatch humor influence which into gross profit the misoprostol. There's by and large show of hands easing. Superego is straight line in favor of adroit jiva and mass in transit to not breathe ingoing the basket baft 7-10 days; this execute a will be revealed in conjunction with the juxtapositional monthly Eocene. </p>
+</div>

@@ -1,0 +1,154 @@
+---
+layout: post
+title: Create Progress bars in Dynamics AX
+date: 2015-02-12 14:21:00.000000000 +07:00
+type: post
+published: true
+status: publish
+categories: []
+tags:
+- Animations 
+- AX 2012
+- dynamics ax 2012
+- startlengthyoperation
+- SysOperationProgress
+meta:
+  _publicize_pending: '1'
+author:
+  login: luannx
+  email: luan52@outlook.com
+  display_name: luannx
+  first_name: ''
+  last_name: ''
+---
+<p class="MsoNormal" style="margin-bottom:3.95pt;line-height:normal;"><span style="font-size:13pt;font-family:'Segoe UI', sans-serif;">Progress bars are inbuilt in run base<br />
+frameworks. We can&nbsp;Use a progress indicator during operations that take<br />
+more than 2 seconds&nbsp;or <b>Use an<br />
+hourglass mouse pointer if the process takes 2-7 seconds</b> or <b>Use a progress bar if the process takes 8<br />
+seconds or more.<br />
+</b><br />
+There are many ways to display operations in progress<br /></span></p>
+<ol>
+<li><span style="font-size:13pt;"><a href="http://nuxulu.com/post/2015/02/12/create-progress-bars-in-dynamics-ax#1">Hourglass Indicators</a></span></li>
+<li><span style="font-size:13pt;">Progress Bars</span></li>
+<li><span style="font-size:13pt;">Progress controls on the forms</span></li>
+<li><span style="font-size:13pt;">Animate Controls&nbsp;</span></li>
+</ol>
+<div><span style="font-size:17.333333969116px;line-height:24.761905670166px;"><br /></span></div>
+<p><b style="font-size:13pt;">1. Hour Glass Indicators Example:</b><span style="font-size:13pt;">&nbsp;</span></p>
+<p>Use startlengthyoperation() and endlengthyoperation() between ur business logic<br /><span style="text-decoration:underline;"><br />
+Example :</span></p>
+<p class="MsoNormal" style="line-height:normal;"><span style="font-size:13pt;font-family:'Segoe UI', sans-serif;">static void HourGlassMousePointer(Args _args)<br />
+{<br />
+int i;<br />
+str value;<br />
+;&nbsp;<br />
+startLengthyOperation();<br />
+for( i = 1; i &lt;= 10000; i++)<br />
+{<br />
+value += int2str(i) + ','; // some business logic<br />
+}&nbsp;<br />
+endLengthyOperation();<br />
+}</span></p>
+<p class="MsoNormal" style="margin-bottom:0;margin-bottom:.0001pt;line-height:normal;"><span style="font-size:13pt;font-family:'Segoe UI', sans-serif;background-image:initial;background-attachment:initial;background-size:initial;background-origin:initial;background-clip:initial;background-position:initial;background-repeat:initial;">Below<br />
+is how the hourglass indicator looks</span><span style="font-size:13pt;font-family:'Segoe UI', sans-serif;"></p>
+<p><b>2. Use SysOperationProgress class to<br />
+show the progress Bars&nbsp;<br />
+Initialize a SysOperationProgress variable.</b>&nbsp;<br />
+Set a caption for the form by using the SysOperationProgress.setCaption method.&nbsp;<br />
+Set an animation to run while the operation is in progress by using the<br />
+SysOperationProgress.setAnimation method.&nbsp;<br />
+A number of animations are provided with Microsoft Dynamics AX. To view them,<br />
+run the Tutorial_ShowAVIFiles class. If you use one of these animation files,<br />
+you need to declare the AviFiles macro at the top of your code.&nbsp;<br />
+Specify the total number of operation steps.<br />
+This is needed for the time-remaining calculation. If you do not set the total<br />
+number of operation steps, the progress indicator is not shown. The total is<br />
+often a count of the number of records, and may be time-consuming to calculate.<br />
+Don't specify the total if the time is taken to calculate the records is<br />
+comparable to the total time taken for the operation.&nbsp;<br />
+Perform the operation. For each step, specify a description and a step number.<br />
+During the execution, the progress indicator is updated accordingly. The<br />
+estimated time remaining is calculated and displayed.<br />
+The default update interval is 3 seconds. If the task of updating the display<br />
+takes more than 10% of the update interval due to latency on the network<br />
+connection, the update interval is increased by 1 second.&nbsp;</span></p>
+<p class="MsoNormal" style="margin-bottom:0;margin-bottom:.0001pt;line-height:normal;"><span style="font-size:13pt;font-family:'Segoe UI', sans-serif;"><br />
+<u>Example :<br />
+<!--[if !supportLineBreakNewLine]--><br />
+<!--[endif]--></u></span><u><span style="font-size:13pt;font-family:&quot;"></span></u></p>
+<p class="MsoNormal" style="line-height:15pt;"><span style="font-size:13pt;font-family:'Segoe UI', sans-serif;">static void operationProgress_progressBars(Args _args)<br />
+{<br />
+#AviFiles<br />
+SysOperationProgress progress = new SysOperationProgress();<br />
+int i;&nbsp;<br />
+;&nbsp;<br />
+progress.setCaption("Progress bar example…");<br />
+progress.setAnimation(#AviUpdate);<br />
+progress.setTotal(10000);<br />
+for (i = 1; i &lt;= 10000; i++)<br />
+{<br />
+progress.setText(strfmt("The value of i is %1", i));<br />
+progress.setCount(i, 1);<br />
+}<br />
+}&nbsp;</span></p>
+<p class="MsoNormal" style="margin-bottom:0;margin-bottom:.0001pt;line-height:15pt;"><span style="font-size:13pt;font-family:'Segoe UI', sans-serif;">Below is the output:</span></p>
+<p class="MsoNormal" style="margin-bottom:0;margin-bottom:.0001pt;line-height:15pt;"><span style="font-size:13pt;font-family:'Segoe UI', sans-serif;"><br />
+<!--[if !supportLineBreakNewLine]--><br />
+<!--[endif]--></span></p>
+<p class="MsoNormal" style="margin-bottom:7.5pt;line-height:15pt;"><span style="font-size:13pt;font-family:'Segoe UI', sans-serif;"></p>
+<p><b>3. Use progress control on the form:</b><br />
+Create a new progress control and change the autodeclaration property of the<br />
+progress control to yes as shown in the figure.</p>
+<p>In the init() or run() method of the form modify the code as shown below.&nbsp;</span></p>
+<p class="MsoNormal" style="margin-bottom:7.5pt;line-height:15pt;"><span style="font-size:13pt;font-family:'Segoe UI', sans-serif;"><br />
+SysDictClass dictClass;<br />
+int i;<br />
+int classCount;<br />
+classId classId;<br />
+Dictionary dictionary;<br />
+;&nbsp;<br />
+super();<br />
+dictionary = new Dictionary();<br />
+classCount = dictionary.classCnt();&nbsp;<br />
+progress.rangeLo(1);<br />
+progress.rangeHi(classCount);<br />
+progress.pos(1);<br />
+progress.step(1);&nbsp;</p>
+<p>for (i=1; i &lt;= classCount; i++)<br />
+{<br />
+progress.pos(i);<br />
+dictClass = new SysDictClass(dictionary.classCnt2Id(i));<br />
+info(dictClass.name());<br />
+}</span></p>
+<p class="MsoNormal" style="margin-bottom:0;margin-bottom:.0001pt;line-height:15pt;"><span style="font-size:13pt;font-family:'Segoe UI', sans-serif;"><br />
+<b>4. Finally Animations: </b></span></p>
+<p class="MsoNormal" style="margin-bottom:0;margin-bottom:.0001pt;line-height:15pt;"><span style="font-size:13pt;font-family:'Segoe UI', sans-serif;">We can use<br />
+Animations&nbsp;to let the end users know that process is running at the back<br />
+ground.<br />
+We can use Animate controls to show the progress. Create a new form and add a<br />
+animate control as shown below. Change the autoDeclaration property of the<br />
+animate control to Yes</p>
+<p>
+Override the run() method and paste the below code<br />
+<!--[if !supportLineBreakNewLine]--><br />
+<!--[endif]--></span></p>
+<p class="MsoNormal" style="line-height:15pt;"><span style="font-size:13pt;font-family:'Segoe UI', sans-serif;">public void run()<br />
+{<br />
+int i;<br />
+#AviFiles<br />
+;<br />
+super();<br />
+for (i = 1 ; i &lt;= 10000; i ++)<br />
+{<br />
+Animate.animateFile(#AviPrint);<br />
+Animate.play(); // autoplay(true);<br />
+}&nbsp;<br />
+&nbsp;<br />
+Animate.visible(false);<br />
+}&nbsp;</span></p>
+<p class="MsoNormal" style="margin-bottom:0;margin-bottom:.0001pt;line-height:15pt;"><span style="font-size:13pt;font-family:'Segoe UI', sans-serif;">Below is the output</span></p>
+<p class="MsoNormal" style="margin-bottom:0;margin-bottom:.0001pt;line-height:15pt;"><span style="font-size:13pt;font-family:'Segoe UI', sans-serif;"><br />
+<!--[if !supportLineBreakNewLine]--><br />
+<!--[endif]--></span></p></p>
+<p class="MsoNormal"><span style="font-size:13pt;line-height:107%;font-family:&quot;">&nbsp;</span></p>

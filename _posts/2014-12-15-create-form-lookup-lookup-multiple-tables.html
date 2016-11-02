@@ -1,0 +1,113 @@
+---
+layout: post
+title: Create Form lookup / Lookup multiple tables
+date: 2014-12-15 10:36:00.000000000 +07:00
+type: post
+published: true
+status: publish
+categories: []
+tags: []
+meta:
+  _publicize_pending: '1'
+author:
+  login: luannx
+  email: luan52@outlook.com
+  display_name: luannx
+  first_name: ''
+  last_name: ''
+---
+<p><span style="font-size:14px;">[ad]</span></p>
+<p style="margin-bottom:.5em;"><span style="font-size:14px;">For the most complex scenarios, Dynamics AX offers the possibility to create and use a form as a lookup.<br />For example, I had to create a custom lookup with two tables, since the class SysTableLookup only supports one DataSource I had to find<br />alternative ways to do it, and after many tries I have found out that a Form Lookup using a View as DataSource was the simplest way.</span></p>
+<p style="margin-bottom:.5em;"><span style="font-size:14px;">On this example I will create a lookup using&nbsp;<span style="font-weight:bold;">InventTable&nbsp;</span>for&nbsp;<span style="font-weight:bold;">ItemId&nbsp;</span>and&nbsp;<span style="font-weight:bold;">NameAlias&nbsp;andEcoResProductTranslation&nbsp;</span>for&nbsp;Product Name.</span></p>
+<p style="margin-bottom:.5em;"><span style="font-weight:bold;font-size:14px;">&nbsp;</span></p>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="font-size:14px;">1. In the&nbsp;<strong>AOT</strong>, create a&nbsp;<strong>query</strong>.</span></p>
+<p style="text-align:center;margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="color:rgb(0,84,166);font-size:14px;"><img class="alignnone size-full wp-image-232" style="width:206.5px;" src="{{ site.baseurl }}/assets/image.png?w=705" alt="Image" /></span></p>
+<p style="text-align:left;margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="color:rgb(0,84,166);font-size:14px;">[more]</span></p>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="font-size:14px;">2. Drag and drop&nbsp;<strong>InventTable</strong>&nbsp;into&nbsp;<strong>Data Sources</strong>. Set the&nbsp;<strong>Fields</strong>&nbsp;properties&nbsp;<strong>Dynamic</strong>&nbsp;to<strong>No</strong>.<br />Now, drag and drop the fields&nbsp;<strong>ItemId</strong>&nbsp;and&nbsp;<strong>NameAlias</strong>&nbsp;to&nbsp;<strong>Fields</strong>.</span></p>
+<p style="text-align:center;margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="color:rgb(0,84,166);height:auto;font-size:14px;"><img class="alignnone size-full wp-image-233" style="width:206.5px;" src="{{ site.baseurl }}/assets/image1.png?w=705" alt="Image" /></span></p>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="font-size:14px;">3. Now, it’s time to create the relationship between InventTable and EcoResProductTranslation, after a bit of research&nbsp;I have found that<strong>&nbsp;InventTable.Product == EcoResProduct.RecId</strong>&nbsp;and&nbsp;<strong>EcoResProductTranslation.Product == EcoResProduct.RecId</strong>.<br />Which means that I will have to do an InnerJoin using the table&nbsp;<strong>EcoResProduct</strong>. Drag and drop&nbsp;<strong>EcoResProduct</strong>&nbsp;into&nbsp;<strong>InventTable</strong>&nbsp;Data Sources.</span></p>
+<p style="text-align:center;margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="color:rgb(0,84,166);height:auto;font-size:14px;"><img class="alignnone size-full wp-image-234" style="width:413px;" src="{{ site.baseurl }}/assets/image2.png?w=705" alt="Image" /></span></p>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="font-size:14px;">4. Set the&nbsp;<strong>EcoResProduct_1</strong>&nbsp;properties folowing the image below.</span></p>
+<p style="text-align:center;margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="color:rgb(0,84,166);font-size:14px;"><img class="alignnone size-full wp-image-235" style="width:413px;" src="{{ site.baseurl }}/assets/image3.png?w=705" alt="Image" /></span></p>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="font-size:14px;">5. Drag and drop&nbsp;<strong>EcoResProductTranslation</strong>&nbsp;into&nbsp;<strong>EcoResProduct</strong>&nbsp;Data Sources.<br />Set the properties as I did in the&nbsp;<strong>STEP 4</strong>&nbsp;and then drag and drop the field&nbsp;<strong>Name</strong>&nbsp;to&nbsp;<strong>Fields</strong>. Set the&nbsp;<strong>Dynamic</strong>&nbsp;propertie to&nbsp;<strong>No</strong>.</span></p>
+<p style="text-align:center;margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="color:rgb(0,84,166);font-size:14px;"><img class="alignnone size-full wp-image-236" style="width:413px;" src="{{ site.baseurl }}/assets/image4.png?w=705" alt="Image" /></span></p>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="font-size:14px;">6. Query done, now it’s time to create our View. In the&nbsp;<strong>AOT</strong>, create a new&nbsp;<strong>View</strong>.<br />Drag and drop our&nbsp;<strong>Query</strong>&nbsp;into&nbsp;<strong>Metadata</strong>.</span></p>
+<p style="text-align:center;margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="color:rgb(0,84,166);font-size:14px;"><img class="alignnone size-full wp-image-237" style="width:413px;" src="{{ site.baseurl }}/assets/image5.png?w=705" alt="Image" /></span></p>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="font-size:14px;">7. Now, you will have to create the fields manually. On Fields,&nbsp;<strong>right-click</strong>&nbsp;it and then choose&nbsp;<strong>New &gt; Field</strong>.<br />Set the following properties:</span></p>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="font-size:14px;">ItemId:</span></p>
+<ul style="margin-bottom:.5em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;line-height:19.200000762939px;">
+<li style="line-height:1.75em;margin-bottom:.5em;"><span style="font-size:14px;">Name: ItemId</span></li>
+<li style="line-height:1.75em;margin-bottom:.5em;"><span style="font-size:14px;">DataSource: InventTable_1</span></li>
+<li style="line-height:1.75em;margin-bottom:.5em;"><span style="font-size:14px;">DataField: ItemID</span></li>
+</ul>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="font-size:14px;">NameAlias:</span></p>
+<ul style="margin-bottom:.5em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;line-height:19.200000762939px;">
+<li style="line-height:1.75em;margin-bottom:.5em;"><span style="font-size:14px;">Name: NameAlias</span></li>
+<li style="line-height:1.75em;margin-bottom:.5em;"><span style="font-size:14px;">DataSource: InventTable_1</span></li>
+<li style="line-height:1.75em;margin-bottom:.5em;"><span style="font-size:14px;">DataField: NameAlias</span></li>
+</ul>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="font-size:14px;">Name:</span></p>
+<ul style="margin-bottom:.5em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;line-height:19.200000762939px;">
+<li style="line-height:1.75em;margin-bottom:.5em;"><span style="font-size:14px;">Name: Name</span></li>
+<li style="line-height:1.75em;margin-bottom:.5em;"><span style="font-size:14px;">DataSource: EcoResProductTranslation_1</span></li>
+<li style="line-height:1.75em;margin-bottom:.5em;"><span style="font-size:14px;">DataField: Name</span></li>
+</ul>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="font-size:14px;">8. At the end, your View should look like this:</span></p>
+<p style="text-align:center;margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="color:rgb(0,84,166);height:auto;font-size:14px;"><img class="alignnone size-full wp-image-238" style="height:auto;" src="{{ site.baseurl }}/assets/image6.png?w=705" alt="Image" /></span></p>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="font-size:14px;">9. In the&nbsp;<strong>AOT</strong>, create a&nbsp;<strong>Form</strong>.</span></p>
+<p style="text-align:center;margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="color:rgb(0,84,166);height:auto;font-size:14px;"><img class="alignnone size-full wp-image-239" style="height:auto;" src="{{ site.baseurl }}/assets/image7.png?w=705" alt="Image" /></span></p>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="font-size:14px;">10. Drag and drop the&nbsp;<strong>View</strong>&nbsp;you have just created into&nbsp;<strong>Data Sources</strong>&nbsp;and set with the following properties:</span></p>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="font-size:14px;">* AllowCheck:&nbsp;<strong>No</strong><br />* OnlyFetchActive:&nbsp;<strong>Yes</strong></span></p>
+<p style="text-align:center;margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="color:rgb(0,84,166);height:auto;font-size:14px;"><img class="alignnone size-full wp-image-240" style="height:auto;" src="{{ site.baseurl }}/assets/image8.png?w=705" alt="Image" /></span></p>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="font-size:14px;">11. Change the properties of the form’s design as follows:</span></p>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="font-size:14px;">* Frame:&nbsp;<strong>Border</strong><br />* WindowType:&nbsp;<strong>Popup</strong></span></p>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="font-size:14px;">12. Add a new Grid control to the form’s design, with the following properties:</span></p>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="font-size:14px;">* ShowRowLabels:&nbsp;<strong>No</strong><br />* DataSource:&nbsp;<strong>&lt;Your View&gt;</strong></span></p>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="font-size:14px;">13. Add three new StringEdit controls to the grid. Set your lookup primary key with the following properties:</span></p>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="font-size:14px;">* AutoDeclaration:&nbsp;<strong>Yes</strong></span></p>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="font-size:14px;">14. Override the form’s&nbsp;<strong>init()</strong>&nbsp;method with the following code:</span></p>
+<pre class="brush: csharp; title: ; notranslate" style="font-family:monospace, serif;font-size:12px;color:rgb(48,49,49);white-space:pre-wrap;background-color:rgb(255,255,255);">public void init()
+{
+    super();
+    element.selectMode(ComercialItemsView_ItemId); // StringEdit Name
+}</pre>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="font-size:14px;"><span style="line-height:1.625em;">15. Override the form’s&nbsp;</span><strong style="line-height:1.625em;">run()</strong><span style="line-height:1.625em;">&nbsp;method with the following code:</span></span></p>
+<pre class="brush: csharp; title: ; notranslate" style="font-family:monospace, serif;white-space:pre-wrap;color:rgb(48,49,49);background-color:rgb(255,255,255);"><span style="font-size:14px;">public void run()
+{
+    FormRun callerForm;
+    ;
+
+    if (element.args() &amp;&amp; element.args().caller())
+    {
+        // Make sure this was via a form.
+        if (SysDictClass::is(element.args().caller(), classnum(FormRun)))
+        {
+            // Cast the caller and make sure it is the right form.
+            callerForm = element.args().caller();
+        }
+    }
+    super();
+}
+</span></pre>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="font-size:14px;">16. The form in the AOT should look similar to the following screenshot:</span></p>
+<p style="text-align:center;margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="color:rgb(0,84,166);height:auto;font-size:14px;"><img class="alignnone size-full wp-image-241" style="height:auto;" src="{{ site.baseurl }}/assets/image9.png?w=705" alt="Image" /></span></p>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="font-size:14px;">17. For test purpose, I have created a form which consists of&nbsp;<strong>InventTable</strong>&nbsp;as&nbsp;<strong>DataSource</strong><br />and the field&nbsp;<strong>ItemId</strong>&nbsp;on the<strong>&nbsp;form’s Design</strong>.</span></p>
+<p style="text-align:center;margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="color:rgb(0,84,166);height:auto;font-size:14px;"><img class="alignnone size-full wp-image-242" style="height:auto;" src="{{ site.baseurl }}/assets/image10.png?w=705" alt="Image" /></span></p>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="font-size:14px;">18. Now, let’s override the<strong>&nbsp;StringEdit Lookup</strong>&nbsp;method with the following code:</span></p>
+<div id="file-gistfile1-cs-LC1" class="line"><span style="font-size:14px;"><span class="pl-s" style="color:#a71d5d;">public</span> <span class="pl-st" style="color:#a71d5d;">void</span> lookup()</span></div>
+<div id="file-gistfile1-cs-LC2" class="line"><span style="font-size:14px;">{</span></div>
+<div id="file-gistfile1-cs-LC3" class="line"><span style="font-size:14px;">Args args = <span class="pl-s" style="color:#a71d5d;">new</span> Args();</span></div>
+<div id="file-gistfile1-cs-LC4" class="line"><span style="font-size:14px;">FormRun itemLookUp;</span></div>
+<div id="file-gistfile1-cs-LC5" class="line"><span style="font-size:14px;">;</span></div>
+<div id="file-gistfile1-cs-LC6" class="line"><span class="pl-c" style="color:rgb(150,152,150);font-size:14px;">//Call the Form Lookup</span></div>
+<div id="file-gistfile1-cs-LC7" class="line"><span style="font-size:14px;">args.name( formstr (GSW_ProdutoComercial_Lookup));</span></div>
+<div id="file-gistfile1-cs-LC8" class="line"><span style="font-size:14px;">args.parm(InventTable.ItemId);</span></div>
+<div id="file-gistfile1-cs-LC9" class="line"><span style="font-size:14px;">itemLookUp = <span class="pl-s" style="color:#a71d5d;">new</span> FormRun(args);</span></div>
+<div id="file-gistfile1-cs-LC10" class="line"><span style="font-size:14px;">itemLookUp.init();</span></div>
+<div id="file-gistfile1-cs-LC11" class="line"><span style="font-size:14px;"><span class="pl-c1" style="color:#0086b3;">this</span>.performFormLookup(itemLookUp);</span></div>
+<div id="file-gistfile1-cs-LC12" class="line"><span style="font-size:14px;">}</span></div>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="font-size:14px;">19. In the AOT, your form should look like the image below:</span></p>
+<p style="text-align:center;margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="color:rgb(0,84,166);height:auto;font-size:14px;"><img class="alignnone size-full wp-image-243" style="height:auto;" src="{{ site.baseurl }}/assets/image11.png?w=705" alt="Image" /></span></p>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="font-size:14px;">20. To test the results, open the form and expand the StringEdit.<br />You will notice that the default lookup from InventTable has been replaced and is shown<br />only three columns from InventTable and EcoResProductTranslation.</span></p>
+<p style="text-align:center;margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;"><span style="color:rgb(0,129,255);height:auto;font-size:14px;"><img class="alignnone size-full wp-image-244" style="height:auto;" src="{{ site.baseurl }}/assets/image12.png?w=705" alt="Image" /></span></p>
+<p><span style="font-size:14px;">[ad]</span></p>

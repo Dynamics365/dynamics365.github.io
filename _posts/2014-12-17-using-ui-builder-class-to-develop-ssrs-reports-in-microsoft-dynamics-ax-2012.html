@@ -1,0 +1,158 @@
+---
+layout: post
+title: Using UI Builder Class to Develop SSRS Reports in Microsoft Dynamics AX 2012
+date: 2014-12-17 17:26:00.000000000 +07:00
+type: post
+published: true
+status: publish
+categories: []
+tags: []
+meta:
+  _publicize_pending: '1'
+author:
+  login: luannx
+  email: luan52@outlook.com
+  display_name: luannx
+  first_name: ''
+  last_name: ''
+---
+<h2 style="font-family:'Segoe UI Light', 'Segoe UI', Segoe, Tahoma, Arial;line-height:1.2em;margin-top:0;margin-bottom:.33em;font-size:1.875em;color:rgb(48,49,49);">UI Builder Class Overview</h2>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;">User Interface (UI) Builder Class is used to define the layout of the parameter dialog box that opens before a report is run in Microsoft Dynamics AX. It is used to add the customizations as well as additional fields in the dialog.</p>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;">Following are the scenarios where UI Builder Class can be used:</p>
+<ol style="margin-bottom:1.25em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;line-height:17.4545px;">
+<li style="line-height:1.75em;">Grouping dialog fields</li>
+<li style="line-height:1.75em;">Overriding dialog field events</li>
+<li style="line-height:1.75em;">Adding a customized lookup to a dialog field</li>
+<li style="line-height:1.75em;">Binding dialog fields with Report contract parameters</li>
+<li style="line-height:1.75em;">Changing the layout of the dialog</li>
+<li style="line-height:1.75em;">Adding custom controls to the dialog</li>
+</ol>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;">To create a UI builder class, extend it with&nbsp;<b>SrsReportDataContractUIBuilder</b>.</p>
+<h1 style="font-size:3em;margin-top:.625em;margin-bottom:.416667em;font-family:'Segoe UI Light', 'Segoe UI', Segoe, Tahoma, Arial;line-height:1.08333em;color:rgb(48,49,49);">Pre-requisites</h1>
+<ol style="margin-bottom:1.25em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;line-height:17.4545px;">
+<li style="line-height:1.75em;">Microsoft Dynamics AX 2012</li>
+<li style="line-height:1.75em;">Reporting services extensions must be installed in Dynamics AX</li>
+<li style="line-height:1.75em;">Report contract class</li>
+</ol>
+<h2 style="font-family:'Segoe UI Light', 'Segoe UI', Segoe, Tahoma, Arial;line-height:1.2em;margin-top:0;margin-bottom:.33em;font-size:1.875em;color:rgb(48,49,49);">Sample UI Builder Class</h2>
+<ol style="margin-bottom:1.25em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;line-height:17.4545px;">
+<li style="line-height:1.75em;">Create a new class. Open AOT à Classes</li>
+<li style="line-height:1.75em;">Right Click on&nbsp;<b>Classes</b>&nbsp;and select&nbsp;<b>New Class</b>. Name it as&nbsp;<b>SSRSDemoUIBuilder</b></li>
+</ol>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;"><a href="http://www.dynamics101.com/wp-content/uploads/2014/04/UI-builder-class-ax2012-1.png?73b776" style="color:rgb(0,84,166);"><img class="alignnone size-full wp-image-2295" alt="UI builder class example in microsoft dynamics ax 2012" src="{{ site.baseurl }}/assets/UI-builder-class-ax2012-1.png?73b776" width="499" height="358" style="height:auto;" /></a></p>
+<ul style="margin-bottom:.5em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;line-height:17.4545px;">
+<li style="line-height:1.75em;margin-bottom:.5em;">Open the Class declaration by right clicking on it and selecting&nbsp;<b>View code</b></li>
+</ul>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;"><a href="http://www.dynamics101.com/wp-content/uploads/2014/04/ui-builder-class-ax2012-2.png?73b776" style="color:rgb(0,84,166);"><img class="alignnone size-full wp-image-2297" alt="UI builder class example in microsoft dynamics ax 2012" src="{{ site.baseurl }}/assets/ui-builder-class-ax2012-2.png?73b776" width="569" height="625" style="height:auto;" /></a></p>
+<ul style="margin-bottom:.5em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;line-height:17.4545px;">
+<li style="line-height:1.75em;margin-bottom:.5em;">Write the following code</li>
+</ul>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;">
+<pre class="crayon-plain-tag" style="font-family:monospace, serif;font-size:12px;white-space:pre-wrap;color:rgb(48,49,49);background-color:rgb(255,255,255);">public class SSRSDemoUIBuilder extends SrsReportDataContractUIBuilder
+{
+
+}</pre>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;">
+<ul style="margin-bottom:.5em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;line-height:17.4545px;">
+<li style="line-height:1.75em;margin-bottom:.5em;">Now open the contract class and add the following line to the header of the class. It will tell the contract class to build the parameter dialog. In other words, it will link the UI Builder Class with the contract class.</li>
+</ul>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;">
+<pre class="crayon-plain-tag" style="font-family:monospace, serif;font-size:12px;white-space:pre-wrap;color:rgb(48,49,49);background-color:rgb(255,255,255);">SysOperationContractProcessingAttribute(classStr(SSRSDemoUIBuilder))</pre>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;">
+<h2 style="font-family:'Segoe UI Light', 'Segoe UI', Segoe, Tahoma, Arial;line-height:1.2em;margin-top:0;margin-bottom:.33em;font-size:1.875em;color:rgb(48,49,49);">Examples of UI Builder Class Usage</h2>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;">Based on different scenarios, different methods are overridden as shown in the following examples:</p>
+<ol style="margin-bottom:1.25em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;line-height:17.4545px;">
+<li style="line-height:1.75em;">Grouping the dialog fields/Changing the layout of the dialog/Adding custom controls to the dialog</li>
+</ol>
+<ul style="margin-bottom:.5em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;line-height:17.4545px;">
+<li style="line-height:1.75em;margin-bottom:.5em;">To customize the layout and add custom fields, override the build as shown below:</li>
+</ul>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;">
+<pre class="crayon-plain-tag" style="font-family:monospace, serif;font-size:12px;white-space:pre-wrap;color:rgb(48,49,49);background-color:rgb(255,255,255);">public void build()
+{
+    DialogGroup dlgGrp;    
+
+    //get the current dialog
+    Dialog      dlg = this.dialog();       
+
+    //make required modifications to the dialog
+    dlgGrp = dlg.addGroup('Dates');  
+    dlgGrp.columns(2);   
+    dlg.addField(identifierStr(FromDate));
+    dlg.addField(identifierStr(ToDate));    
+        
+    dlgGrp = dlg.addGroup('Customer');  
+    dlg.addField(identifierStr(CustAccount));    
+}</pre>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;">
+<ul style="margin-bottom:.5em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;line-height:17.4545px;">
+<li style="line-height:1.75em;margin-bottom:.5em;">ThIS build method is called by the report framework to generate the layout of the dialog.</li>
+</ul>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;"></p>
+<ul style="margin-bottom:.5em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;line-height:17.4545px;">
+<li style="line-height:1.75em;margin-bottom:.5em;">Binding dialog fields with Report contract parameters</li>
+</ul>
+<ul style="margin-bottom:.5em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;line-height:17.4545px;">
+<li style="line-height:1.75em;margin-bottom:.5em;">Write the following code in the build method:</li>
+</ul>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;">
+<pre class="crayon-plain-tag" style="font-family:monospace, serif;font-size:12px;white-space:pre-wrap;color:rgb(48,49,49);background-color:rgb(255,255,255);">//get the report data contract object
+contract = this.dataContractObject();
+    
+//associate dialog field with data contract method
+this.addDialogField(methodStr(SSRSDemoContract,parmCustGroupId), contract);</pre>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;">
+<ul style="margin-bottom:.5em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;line-height:17.4545px;">
+<li style="line-height:1.75em;margin-bottom:.5em;">Overriding dialog field events/Adding a customized lookup to a dialog field</li>
+</ul>
+<ul style="margin-bottom:.5em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;line-height:17.4545px;">
+<li style="line-height:1.75em;margin-bottom:.5em;">To add a customized lookup or to override a control method, create a new method containing the business logic. The new method must have the same signature as the method you want to override.</li>
+<li style="line-height:1.75em;margin-bottom:.5em;">Then, override the postBuild method and register the method to override with the new method created.</li>
+<li style="line-height:1.75em;margin-bottom:.5em;">In the following example, the lookup method of a field is to be overridden. To do this, create a new method&nbsp;<b>lookupCustGroup</b>&nbsp;and add the following code:</li>
+</ul>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;">
+<pre class="crayon-plain-tag" style="font-family:monospace, serif;font-size:12px;white-space:pre-wrap;color:rgb(48,49,49);background-color:rgb(255,255,255);">public void lookupCustGroup(FormStringControl _formStringControl)
+{    
+    Query query = new Query();
+    QueryBuildDataSource DS;    
+    SysTableLookup sysTablelookup;
+
+    //create a table lookup    
+    sysTablelookup = SysTableLookup::newParameters(tableNum(CustGroup),_formStringControl);
+    sysTablelookup.addLookupfield(fieldNum(CustGroup,CustGroup));
+    sysTablelookup.addLookupfield(fieldNum(CustGroup,Name));
+
+    //create a query
+    DS = query.addDataSource(tableNum(CustGroup));
+    DS.addRange(fieldNum(CustGroup,PaymTermId)).value('N030');
+
+    //assign the query and call lookup
+    sysTablelookup.parmQuery(query);
+    sysTablelookup.performFormLookup();
+}</pre>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;">
+<ul style="margin-bottom:.5em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;line-height:17.4545px;">
+<li style="line-height:1.75em;margin-bottom:.5em;">Now, override the postBuild method and write the following code:</li>
+</ul>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;">
+<pre class="crayon-plain-tag" style="font-family:monospace, serif;font-size:12px;white-space:pre-wrap;color:rgb(48,49,49);background-color:rgb(255,255,255);">public void postBuild()
+{
+    DialogField dlgCustGroup;
+    
+    super();
+    
+    //get the field to override by providing the data contract object and the associated attribute/method
+    dlgCustGroup = this.bindInfo().getDialogField(this.dataContractObject(),
+                methodStr(SSRSDemoContract,parmCustGroupId));
+
+    //register the method we want to override
+    dlgCustGroup.registerOverrideMethod(
+          methodStr(FormStringControl, lookup),
+          methodStr(SSRSDemoUIBuilder,lookupCustGroup),
+          this);    
+}</pre>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;">
+<ul style="margin-bottom:.5em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;line-height:17.4545px;">
+<li style="line-height:1.75em;margin-bottom:.5em;"><b>bindInfo</b>&nbsp;returns an object of type&nbsp;<b>SysOperationUIBindInfo</b>. It contains information about the dialog controls bounded to a report contract.</li>
+<li style="line-height:1.75em;margin-bottom:.5em;"><b>postBuild method</b>&nbsp;is called when dialog is created.</li>
+</ul>

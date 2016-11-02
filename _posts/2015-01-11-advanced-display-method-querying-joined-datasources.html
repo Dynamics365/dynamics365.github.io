@@ -1,0 +1,92 @@
+---
+layout: post
+title: Advanced Display Method Querying Joined Datasources
+date: 2015-01-11 23:28:00.000000000 +07:00
+type: post
+published: true
+status: publish
+categories: []
+tags:
+- Display Methods
+- dynamics ax 2009
+- dynamics ax 2012
+- forum
+- grid
+- inventdim
+- inventsum
+- joinchild
+meta:
+  _publicize_pending: '1'
+author:
+  login: luannx
+  email: luan52@outlook.com
+  display_name: luannx
+  first_name: ''
+  last_name: ''
+---
+<p>[ad]</p></p>
+<ul>
+<li>The question was on the <span style="font-weight:bold;">InventOnHandItem </span>form. The requirement asks to add a display method on the grid showing values from a table that relates to the <span style="font-weight:bold;">ItemID </span>and the inventory dimensions displayed on the form.</li>
+</ul>
+<ul>
+<li>The trick here is that the <span style="font-weight:bold;">InventSum </span>is grouped by <span style="font-weight:bold;">InventDim </span>fields. So, your display method will not get an <span style="font-weight:bold;">inventdim </span>or <span style="font-weight:bold;">inventsum </span>record per se, but a grouped version of those, based on the display settings (the button Dimensions Display which you can find on a lot of forms in AX under the inventory buttons).</li>
+</ul>
+<p>
+<ul>
+<li>To open the screen for testing, go to an item with inventory (Inventory Management - Item Details) and click the "on hand" button. This is the screen we're talking about. The grid shows mostly fields of the <span style="font-weight:bold;">InventSum </span>table, although the dimensions are showing from the <span style="font-weight:bold;">InventDim </span>table. So we'll add a display method on the <span style="font-weight:bold;">InventSum </span>datasource and we'll perform a new query in the display method, querying <span style="font-weight:bold;">InventSum </span>so that we can compare the result with a field already on the form.</li>
+</ul>
+<p>[more]</p>
+<p>So first, since this is to be added as a form datasource display method, and used on a grid, we need the <span style="font-weight:bold;">InventSum </span>record passed in as a parameter to the display method. Next, we need to get the dimension field values from the inventdim record to be used in a new join. Since this display method is on the <span style="font-weight:bold;">InventSum</span>, we need to get the joined inventDim record, which we can get by calling "<span style="font-weight:bold;">joinChild</span>" on the <span style="font-weight:bold;">inventSum </span>buffer.</p>
+<ol style="margin-right:0;margin-bottom:0;margin-left:0;padding:0 0 0 48px;color:rgb(172,172,172);font-family:Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace, serif;font-size:12px;line-height:21px;background-color:rgb(248,248,248);">
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">display Qty AvailPhysical<span class="br0" style="color:rgb(0,128,0);">(</span>InventSum _inventSum<span class="br0" style="color:rgb(0,128,0);">)</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);"><span class="br0" style="color:rgb(0,128,0);">{</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; InventDim &nbsp; &nbsp; &nbsp; joinDim, dimValues<span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; InventDimParm &nbsp; dimParm<span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; InventSum &nbsp; &nbsp; &nbsp; localSum<span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; dimValues<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">data</span><span class="br0" style="color:rgb(0,128,0);">(</span>_inventSum<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">joinChild</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; dimParm<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">initFromInventDim</span><span class="br0" style="color:rgb(0,128,0);">(</span>dimValues<span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp;</div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp;&nbsp;<span class="kw1" style="color:rgb(6,0,255);font-weight:bold;">select</span>&nbsp;sum<span class="br0" style="color:rgb(0,128,0);">(</span>AvailPhysical<span class="br0" style="color:rgb(0,128,0);">)</span>&nbsp;<span class="kw1" style="color:rgb(6,0,255);font-weight:bold;">from</span>&nbsp;localSum&nbsp;<span class="kw1" style="color:rgb(6,0,255);font-weight:bold;">where</span>&nbsp;localSum<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">ItemId</span>&nbsp;<span class="sy0" style="color:rgb(0,128,0);">==</span>&nbsp;_inventSum<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">ItemId</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<span class="co2" style="color:rgb(0,128,128);">#InventDimExistsJoin(localSum.InventDimId, joinDim, dimValues, dimParm);</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp;&nbsp;<span class="kw1" style="color:rgb(6,0,255);font-weight:bold;">return</span>&nbsp;localSum<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">AvailPhysical</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);"><span class="br0" style="color:rgb(0,128,0);">}</span></div>
+</li>
+</ol>
+<p>As you can see when I test this, with all dimensions enabled I see my new columns matches the existing column:</p>
+<div class="separator" style="text-align:center;clear:both;"><span style="margin-left:1em;margin-right:1em;-webkit-box-shadow:rgba(0,0,0,0.0980392) 1px 1px 5px;box-shadow:rgba(0,0,0,0.0980392) 1px 1px 5px;background-image:initial;background-attachment:initial;background-size:initial;background-origin:initial;background-clip:initial;background-position:initial;background-repeat:initial;"><img border="0" width="400" src="{{ site.baseurl }}/assets/InventDimDisplay01.png" style="border:1px solid rgb(140,2,9);position:relative;padding:1px;-webkit-box-shadow:rgba(0,0,0,0.0980392) 1px 1px 5px;box-shadow:rgba(0,0,0,0.0980392) 1px 1px 5px;background-image:initial;background-attachment:initial;background-size:initial;background-origin:initial;background-clip:initial;background-position:initial;background-repeat:initial;" /></span></div>
+<p>And when I turn off all dimension display except for site and warehouse, the display method is still correct:</p>
+<div class="separator" style="text-align:center;clear:both;"><span style="margin-left:1em;margin-right:1em;-webkit-box-shadow:rgba(0,0,0,0.0980392) 1px 1px 5px;box-shadow:rgba(0,0,0,0.0980392) 1px 1px 5px;background-image:initial;background-attachment:initial;background-size:initial;background-origin:initial;background-clip:initial;background-position:initial;background-repeat:initial;"><img border="0" width="400" src="{{ site.baseurl }}/assets/InventDimDisplay02.png" style="border:1px solid rgb(140,2,9);position:relative;padding:1px;-webkit-box-shadow:rgba(0,0,0,0.0980392) 1px 1px 5px;box-shadow:rgba(0,0,0,0.0980392) 1px 1px 5px;background-image:initial;background-attachment:initial;background-size:initial;background-origin:initial;background-clip:initial;background-position:initial;background-repeat:initial;" /></span></div>
+<p>So the gotcha and somewhat undocumented feature here is really that we need to get the InventDim out of the _inventSum passed in (using joinChild), since we need the exactly related record, not the currently select grid record we can get from the InventDim datasource on the form.</p>
+<p>Two more comments:</p>
+<blockquote><p><span style="font-size:12px;">Methods such as these could turn out to be performance problems, so make sure to cache display methods where possible.<br />Best practice check will tell you this as well, but you could have some security issues here, make sure to check security for any tables you are selecting on, and document the BP deviation!</span></p></blockquote>
+<p><span style="color:rgb(97,97,97);font-family:Georgia, Utopia, 'Palatino Linotype', Palatino, serif;font-size:13px;line-height:18.479999542236px;font-style:italic;">I have coppied this post from&nbsp;http://daxmusings.codecrib.com/</span></p>
+<p>[ad]</p>

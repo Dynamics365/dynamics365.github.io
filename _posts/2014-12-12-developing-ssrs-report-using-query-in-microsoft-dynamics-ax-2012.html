@@ -1,0 +1,176 @@
+---
+layout: post
+title: Developing SSRS report using Query in Microsoft Dynamics AX 2012
+date: 2014-12-12 10:30:00.000000000 +07:00
+type: post
+published: true
+status: publish
+categories: []
+tags:
+- query
+- SQL Server
+- SSRS
+- Visual studio 2012
+meta:
+  _publicize_pending: '1'
+author:
+  login: luannx
+  email: luan52@outlook.com
+  display_name: luannx
+  first_name: ''
+  last_name: ''
+---
+<h1 style="font-size:3em;margin-top:.625em;margin-bottom:.41666666666em;font-family:'Segoe UI Light', 'Segoe UI', Segoe, Tahoma, Arial;line-height:1.083333em;color:rgb(48,49,49);">Overview</h1>
+<p style="margin-bottom:.5em;line-height:1.625em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;">There are a multiple of methods to develop SSRS reports in Dynamics AX. This tutorial will guide you through the process of developing SSRS reports using an AOT query.</p>
+<h1 style="font-size:3em;margin-top:.625em;margin-bottom:.41666666666em;font-family:'Segoe UI Light', 'Segoe UI', Segoe, Tahoma, Arial;line-height:1.083333em;color:rgb(48,49,49);">Pre-requisites</h1>
+<ol style="margin-bottom:1.25em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;line-height:17.454545974731px;">
+<li style="line-height:1.75em;">Microsoft Dynamics AX 2012</li>
+<li style="line-height:1.75em;">Visual studio 2012</li>
+<li style="line-height:1.75em;">SQL Server report server must be configured</li>
+<li style="line-height:1.75em;">Reporting services extensions must be installed in Dynamics AX</li>
+</ol>
+<h1 style="font-size:3em;margin-top:.625em;margin-bottom:.41666666666em;font-family:'Segoe UI Light', 'Segoe UI', Segoe, Tahoma, Arial;line-height:1.083333em;color:rgb(48,49,49);">Steps</h1>
+<ol style="margin-bottom:1.25em;color:rgb(48,49,49);font-family:'Segoe UI', Tahoma, Arial, sans-serif;font-size:16px;line-height:17.454545974731px;">
+<ol>
+<li style="line-height:1.75em;">First of all we need an AOT query which will fetch data from AX and display it in a report. For this tutorial, I am using an existing query in AX which displays a list of customers.</li>
+<li style="line-height:1.75em;">CustTableListPage query will be used in this tutorial. To find this query, open AOT&nbsp;<span style="font-family:Wingdings;">à</span>Queries&nbsp;<span style="font-family:Wingdings;">à</span>CustTableListPage.</li>
+<li style="line-height:1.75em;">The development of the SSRS report is done in Visual studio. So a new project needs to be created in Visual studio.</li>
+<li style="line-height:1.75em;">Open Visual studio.&nbsp;<strong>Go to File</strong>&nbsp;<span style="font-family:Wingdings;">à</span>&nbsp;<strong>New</strong>&nbsp;<span style="font-family:Wingdings;">à</span>&nbsp;<strong>Project</strong>.</li>
+<li style="line-height:1.75em;">
+<div>In the section&nbsp;<strong>Installed templates</strong>&nbsp;select&nbsp;<strong>Microsoft Dynamics AX</strong>&nbsp;and then select&nbsp;<strong>Report Model</strong>&nbsp;in the right pane. Name the project “<strong>QueryBasedDemo</strong>“. Press OK.</div>
+<p style="margin-bottom:.5em;line-height:1.625em;">&nbsp;</p>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;"><img alt=" " src="{{ site.baseurl }}/assets/070813_2026_Temp11.png?3cf43c" style="height:auto;" /></p>
+<p style="margin-bottom:.5em;line-height:1.625em;">&nbsp;</p>
+</li>
+<li style="line-height:1.75em;">
+<div>A new project will be created as shown below:</div>
+<p style="margin-bottom:.5em;line-height:1.625em;">&nbsp;</p>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;"><img alt=" " src="{{ site.baseurl }}/assets/070813_2026_Temp12.png?3cf43c" style="height:auto;" /></p>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;">
+</li>
+<li style="line-height:1.75em;">
+<div>Now add a new report in the project by right clicking on the project<strong>QueryBaseDemo</strong>&nbsp;<span style="font-family:Wingdings;">à</span>&nbsp;<strong>Add</strong>&nbsp;<span style="font-family:Wingdings;">à</span>&nbsp;<strong>Report</strong>.</div>
+<p style="margin-bottom:.5em;line-height:1.625em;">&nbsp;</p>
+<p style="margin-bottom:.5em;line-height:1.625em;"><img alt=" " src="{{ site.baseurl }}/assets/070813_2026_Temp13.png?3cf43c" style="height:auto;" /></p>
+<p style="margin-bottom:.5em;line-height:1.625em;">&nbsp;</p>
+<ol>
+<li style="line-height:1.75em;">A report will be added to the project with the name “Report1″. Rename the report to&nbsp;<strong>QueryBasedDemo</strong>.</li>
+<li style="line-height:1.75em;">Now double click the report to open it.<span style="font-size:12pt;"><br /></span></li>
+</ol>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;"><img alt=" " src="{{ site.baseurl }}/assets/070813_2026_Temp14.png?3cf43c" style="height:auto;" /><span style="font-size:12pt;"><br /></span></p>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;">
+</li>
+<li style="line-height:1.75em;">
+<div>The description of the individual node is given below:</div>
+<ol>
+<li style="line-height:1.75em;"><strong>Datasets:&nbsp;</strong>Datasets retrieve data from the AOT query. It acts as a bridge between AX and the SSRS report. Only the fields added in the datasets can be used in a report.</li>
+<li style="line-height:1.75em;"><strong>Designs:&nbsp;</strong>It defines the layout of the report.</li>
+<li style="line-height:1.75em;"><strong>Images:</strong>&nbsp;It contains the images that you want to display in the SSRS report.</li>
+<li style="line-height:1.75em;"><strong>Data Methods:</strong>&nbsp;It contains the business logic which can then be used in the report.</li>
+<li style="line-height:1.75em;"><strong>Parameters:&nbsp;</strong>It is used to apply filtering to the data in a report.</li>
+</ol>
+</li>
+<li style="line-height:1.75em;">
+<div>First of all, we will create a dataset. Right click&nbsp;<strong>Datasets</strong>&nbsp;<span style="font-family:Wingdings;">à</span><strong>Add Dataset</strong>&nbsp;to create a new Dataset. Name it “CustTable”.</div>
+<p style="margin-bottom:.5em;line-height:1.625em;">&nbsp;</p>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;"><img alt=" " src="{{ site.baseurl }}/assets/070813_2026_Temp15.png?3cf43c" style="height:auto;" /></p>
+<p style="margin-bottom:.5em;line-height:1.625em;">&nbsp;</p>
+</li>
+<li style="line-height:1.75em;">
+<div>Select the data source and open the properties window. Make sure the<strong>Data Source Type</strong>&nbsp;is set to&nbsp;<strong>Query</strong>. Then select the&nbsp;<strong>Query</strong>&nbsp;field. An ellipse button appears. Click it to open a dialog.</div>
+<p style="margin-bottom:.5em;line-height:1.625em;">&nbsp;</p>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;"><img alt=" " src="{{ site.baseurl }}/assets/070813_2026_Temp16.png?3cf43c" style="height:auto;" /></p>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;">
+</li>
+<li style="line-height:1.75em;">
+<div>This dialog lists all the queries present in the AOT. Select<strong>CustTableListPage</strong>&nbsp;and press Next.</div>
+<p style="margin-bottom:.5em;line-height:1.625em;">&nbsp;</p>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;"><img alt=" " src="{{ site.baseurl }}/assets/070813_2026_Temp17.png?3cf43c" style="height:auto;" /></p>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;">
+</li>
+<li style="line-height:1.75em;">
+<div>Select the fields you want to display in the report and press OK. Only the selected fields in this dialog can be shown in the report.</div>
+<p style="margin-bottom:.5em;line-height:1.625em;">&nbsp;</p>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;"><img alt=" " src="{{ site.baseurl }}/assets/070813_2026_Temp18.png?3cf43c" style="height:auto;" /></p>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;">
+</li>
+<li style="line-height:1.75em;">
+<div>There are two types of designs that can be created in a SSRS report:</div>
+<ol>
+<li style="line-height:1.75em;"><strong>Auto Design</strong>: Visual studio automatically creates a design based on the dataset provided. Auto design is the preferred method because it is easy and usually fulfills the requirements for the majority of scenarios.</li>
+<li style="line-height:1.75em;"><strong>Precision Design</strong>: It is used when you need custom placement of fields or the layout of the report is too complex.</li>
+</ol>
+</li>
+<li style="line-height:1.75em;">
+<div>In this demo we will use Auto Design. Now right click the&nbsp;<strong>Designs node</strong><span style="font-family:Wingdings;">à</span><strong>Add</strong>&nbsp;<span style="font-family:Wingdings;">à</span><strong>Auto Design</strong>. A new design is added. Rename it to Design. It is recommended that you set the name of the Design to either ‘Design’ or ‘Report’</div>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;"><img alt=" " src="{{ site.baseurl }}/assets/070813_2026_Temp19.png?3cf43c" style="height:auto;" /></p>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;">
+</li>
+<li style="line-height:1.75em;">Now drag CustTable form the Datasets node and drop it on the Design node. A table will be created which contain all the fields present in the data set. These fields will appear in the same order in the report. So if you want to arrange the fields, right click the field and select either move up or move down.</li>
+<li style="line-height:1.75em;">
+<div>The final design will look as shown below</div>
+<p style="margin-bottom:.5em;line-height:1.625em;">&nbsp;</p>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;"><img alt=" " src="{{ site.baseurl }}/assets/070813_2026_Temp110.png?3cf43c" style="height:auto;" /></p>
+<p style="margin-bottom:.5em;line-height:1.625em;">&nbsp;</p>
+</li>
+<li style="line-height:1.75em;">
+<div>Now we have to define the layout of the report. Visual studio provides built in templates. Select the Design and open the properties window. Select&nbsp;<strong>ReportLayoutStyleTemplate</strong>&nbsp;in the&nbsp;<strong>LayoutTemplate</strong>&nbsp;field. Give a suitable title to the report.</div>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;"><img alt=" " src="{{ site.baseurl }}/assets/070813_2026_Temp111.png?3cf43c" style="height:auto;" /></p>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;">
+</li>
+<li style="line-height:1.75em;">
+<div>Select the CustTableTable under the Design node and open the properties window. Select&nbsp;<strong>TableStyleAlternatingRowsTemplate</strong>&nbsp;in the<strong>Style Template</strong>&nbsp;field.</div>
+<p style="margin-bottom:.5em;line-height:1.625em;">&nbsp;</p>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;"><img alt=" " src="{{ site.baseurl }}/assets/070813_2026_Temp112.png?3cf43c" style="height:auto;" /></p>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;">
+</li>
+<li style="line-height:1.75em;">
+<div>Report is now completed can be viewed. To preview the report, select the Design node, right click it and select preview. A preview window opens.</div>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;"><img alt=" " src="{{ site.baseurl }}/assets/070813_2026_Temp113.png?3cf43c" style="height:auto;" /></p>
+<p style="margin-bottom:.5em;line-height:1.625em;">&nbsp;</p>
+</li>
+<li style="line-height:1.75em;">
+<div>Select Report tab. The report appears as shown below:</div>
+<p style="margin-bottom:.5em;line-height:1.625em;">&nbsp;</p>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;"><img alt=" " src="{{ site.baseurl }}/assets/070813_2026_Temp114.png?3cf43c" style="height:auto;" /></p>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;">
+</li>
+<li style="line-height:1.75em;">To view this report from AX, it needs to be added in the AOT and deployed at the report server.</li>
+<li style="line-height:1.75em;">
+<div>Open the solution explorer and right click the project. Select Add QueryBasedDemo to AOT. This will add the report to the AOT. It will also add the project in the AOT with same name so if you want to modify the report in future, you can use that project.</div>
+<p style="margin-bottom:.5em;line-height:1.625em;">&nbsp;</p>
+<p style="margin-bottom:.5em;margin-left:36pt;line-height:1.625em;text-align:center;"><img alt=" " src="{{ site.baseurl }}/assets/070813_2026_Temp115.png?3cf43c" style="height:auto;" /></p>
+<p style="margin-bottom:.5em;margin-left:36pt;line-height:1.625em;text-align:center;">
+</li>
+<li style="line-height:1.75em;">
+<div>Now open AOT in AX. Go to SSRS reports&nbsp;<span style="font-family:Wingdings;">à</span>&nbsp;Reports&nbsp;<span style="font-family:Wingdings;">à</span>QueryBasedDemo. Right click the QueryBasedDemo Report and select Deploy Element</div>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;"><img alt=" " src="{{ site.baseurl }}/assets/070813_2026_Temp116.png?3cf43c" style="height:auto;" /></p>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;">
+</li>
+<li style="line-height:1.75em;">A success message will appear if the report is successfully deployed.</li>
+<li style="line-height:1.75em;">To open the report in AX, a menu item is required. Create a menu item that will open the report from AX.</li>
+<li style="line-height:1.75em;">
+<div>Go to Menu items&nbsp;<span style="font-family:Wingdings;">à</span>&nbsp;Output. Right click Output and select New Menu Item</div>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;"><img alt=" " src="{{ site.baseurl }}/assets/070813_2026_Temp117.png?3cf43c" style="height:auto;" /></p>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;">
+</li>
+<li style="line-height:1.75em;">
+<div>Set the following properties on the menu item as shown below.</div>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;"><img alt=" " src="{{ site.baseurl }}/assets/070813_2026_Temp118.png?3cf43c" style="height:auto;" /></p>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;">
+</li>
+<li style="line-height:1.75em;">
+<div>Right click the newly created menu item and select Open to view the report</div>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;"><img alt=" " src="{{ site.baseurl }}/assets/070813_2026_Temp119.png?3cf43c" style="height:auto;" /></p>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;">
+</li>
+<li style="line-height:1.75em;">
+<div>A parameter form will open. If you want to add parameters to report, you can add it by clicking Select. Press Ok to continue.</div>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;"><img alt=" " src="{{ site.baseurl }}/assets/070813_2026_Temp120.png?3cf43c" style="height:auto;" /></p>
+</li>
+<li style="line-height:1.75em;">
+<div>The report is displayed as shown below.</div>
+<p style="margin-bottom:.5em;line-height:1.625em;text-align:center;"><img alt=" " src="{{ site.baseurl }}/assets/070813_2026_Temp121.png?3cf43c" style="height:auto;" /></p>
+</li>
+</ol>
+</ol>

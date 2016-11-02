@@ -1,0 +1,100 @@
+---
+layout: post
+title: AIF Configuration MS Dynamics AX 4.0
+date: 2015-02-04 14:43:00.000000000 +07:00
+type: post
+published: true
+status: publish
+categories: []
+tags:
+- AIF Configuration
+- Application Integration Framework
+- " aif dynamics ax"
+- BizTalk
+- MSMQ 
+- Windows Active Directory integration
+meta:
+  _publicize_pending: '1'
+author:
+  login: luannx
+  email: luan52@outlook.com
+  display_name: luannx
+  first_name: ''
+  last_name: ''
+---
+<blockquote><span style="font-size:14px;">There has been little documentation, if any, either on MSDN or CustomerSource regarding the implementation of AIF Services with the File System Adapter. I have worked over the past month in an effort to figure out how to implement and use both outbound and inbound services and I hope you find this information useful.</span></p></blockquote>
+<p style="text-align:center;"><span style="font-weight:bold;font-size:18px;background-color:yellow;">An overview of AIF</span></p>
+<p style="text-align:center;"><span style="font-weight:bold;background-color:yellow;">--------------------</span></p>
+<p>AIF (Application Integration Framework) was implemented to allow for you to <span style="font-weight:bold;">receive or send XML files based upon predefined or user-defined XML Schemas</span> tied to actions that can be triggered in order to <span style="font-weight:bold;">insert record(s) or extract record(s) to/from AX</span>. Microsoft provides three different transport adapters that can be bound to multiple channels for processing the inbound/outbound flow of these documents. The three transport adapters are <span style="font-weight:bold;">Web Services, Microsoft Messaging Queue, or File System.&nbsp;</span></p>
+<p></p>
+<p>Web Services provide exactly what you would expect: it offers an interface for you to provide to your vendors, partners, subsidiaries, etc for them to build an application that accesses data you have allowed them to access.</p>
+<p></p>
+<p>Microsoft Messaging Queue allows for you to implement XML document passing via applications which support the MSMQ technology. Entities that are allowed access to sending/receiving data from AX can submit XML documents and recieve XML documents through MSMQ and consume or post data from/to AX. MSMQ can be utilized in conjunction with a Message Brokering service such as BizTalk.</p>
+<p></p>
+<p>Finally, the topic I will be covering is the <span style="font-weight:bold;">File System transport adapter</span>, which is a method of passing XML documents except it does so via the Windows/Linux/Unix/other OS file system environments for those companies (like mine) who either have no message brokering software such as BizTalk 200x or have a message broker which does not utilize MSMQ.&nbsp;</p>
+<p>[more]</p>
+<p>I will explain the steps of how to implement AIF using the file system adapter but before we get started, a bit of planning must first take place. You must ask yourself that following questions:</p>
+<p></p></p>
+<ul>
+<li><span style="line-height:1.42857143;">1.) What data do you want to pass/receive?</span></li>
+<li><span style="line-height:1.42857143;">2.) Who do you want to allow to receive/send data?</span></li>
+<li><span style="line-height:1.42857143;">3.) Do you want to filter which data can be sent/received?</span></li>
+<li><span style="line-height:1.42857143;">4.) Do you need to setup provisions for validating/translating that data?</span></li>
+</ul>
+<p></p>
+<p>Data that you pass to entities or receive from them are grouped into 'Actions'. Actions are grouped into sending groups of data or receiving groups of data. You can find a list of available actions in AX under Basic -&gt; Setup -&gt; Application Integration Framework -&gt; Actions. If the list is blank, you must click the 'Scan and Register' button and the form will search through the AOT and find all applicable AIF Actions and provide them in the list.&nbsp;</p>
+<p></p>
+<p>As you well know, AX provides authentication directly from Windows Active Directory integration and as a result AIF utilizes that same authentication. An entity who consumes/provides data to you must be a member of your AD, be it a stripped account with access only to the file system folders needed to receive/submit XML documents. The first step to setting up AIF is implementing the necessary accounts to provide access to the respective folders that will act as a medium for XML document passing.&nbsp;</p>
+<p></p>
+<p>If you want to lock down for a particular entity what data they can send or receive, you may do so by putting constraints on the data. These constraints can limit record insertion/retrieval by Customer ID, Vendor ID, Warehouse ID, or a combination of the three.&nbsp;</p>
+<p></p>
+<p>If you need to translate data or validate data, you will need to setup a middleware message brokering system to have a maximum affect across all of your documents, however if you only need to validate a small amount of documents you may be able to achieve your goal through custom X++ coding tied to the AIF process. For translations of fields in an XML document, AX provides a basic field translator useful for translating data that maybe different for an external partner than for your internal company, i.e. external part numbers versus internal part numbers.&nbsp;</p>
+<p></p>
+<p>Now that you are thinking in terms of AIF, we can move forward with setting up the AIF processes. Each step will be universal to both inbound and outbound services unless I specify otherwise.</p>
+<p></p>
+<p style="text-align:center;"><span style="font-size:18px;background-color:yellow;">Configuring AIF</span></p>
+<p style="text-align:center;"><span style="font-size:18px;background-color:yellow;">--------------------</span></p>
+<p style="text-align:center;"><span style="line-height:1.42857143;"><br /></span></p>
+<p style="text-align:left;"><span style="line-height:1.42857143;">1.) Create the appropriate folders to output/receive data from your XML document trading partners. You can come up with multiple strategies for deploying these folders based upon your security concerns and your need for segregating data among multiple consumers/providers. You could create a parent folder with subfolders containing the individual entities name and then subfolders below that are dedicated to inbound/outbound services. Under each inbound/outbound services, you could have subfolders named for each individual action.&nbsp;</span></p>
+<p style="text-align:left;"><span style="line-height:1.42857143;">You could even break down the hierarchy even further and have multiple subfolders under each action that are broken down by Customer/Vendor/Warehouse constraints so that only certain data can be outputted/received under those folders. You could also simplify the folder hierarchy to whatever you deem necessary for your AIF implementation, however the suggestion above works well for those who want to compartmentalize their data flows. Once you have created your folders, you must provide the ‘Network Service’ with full control to those folders.&nbsp;</span></p>
+<p></p>
+<p>2.) Next, you must setup the local endpoint for your organization. Local endpoints are created from your companies in AX. If you are only wanting to exchange documents with one of your companies within AX then you only need to create a local endpoint from that company. The local endpoint can be created by going into the Basic -&gt; Setup -&gt; Application Integration Framework -&gt; Local Endpoints menu. Add a new record and select the company and create a name for that local endpoint.&nbsp;</p>
+<p></p>
+<p>3.) If you have not setup the File System Adapter, you will need to next enter the Basic -&gt; Setup -&gt; Application Integration Framework -&gt; Transport adapters menu. If you do not have a record already existing in the list that has ‘AifFileSystemAdapter’ under the Adapter Class column, then create a new record and select ‘AifFileSystemAdapter’ from the Adapter Class column. Set the Adapter as ‘Active’.</p>
+<p></p>
+<p>4.) Next we will create the channels that you will be using. Channels link the File System Adapter to which direction documents will be flowing and from/to which folder the documents will go/arrive. Open the Basic -&gt; Setup -&gt; Application Integration Framework -&gt; Channels menu. Create a new record and set the Channel ID and Channel Name. The Channel ID will be the referenced name when you select a channel linking the Endpoints to the channel. More on Endpoints to come soon... Set the adapter for the new record, which should be ‘File System Adapter’ and also set the direction.&nbsp;</p>
+<p></p>
+<p>The direction can be either ‘inbound’ or ‘outbound’ but it cannot be ‘both’ for the File System Adapter. After you have selected the direction, you can select the Address which will be the physical folder location on the machine where the XML documents will be sent from/received to.&nbsp;</p>
+<p></p>
+<p>5.) The next stop on our agenda will be the Actions menu again (if you went to it previously from our discussion in this article). Actions is located in Basic -&gt; Setup -&gt; Application Integration Framework -&gt; Actions. If you did not do so previously (or it may be a good idea to do so again), click the ‘Scan and Register’ button on the Actions form. This will go through the entire AOT and register any Axd Document classes that are designed to work with the AIF module. For each Action that you would like to use, check the ‘Active’ field after all Actions have been registered.&nbsp;</p>
+<p></p>
+<p>6.) The final step in our setting up AIF within AX is to create Endpoints. Endpoints are the entities (or Trading Partners) with which you will exchange documents. You can reach the Endpoints menu by going to Basic -&gt; Setup -&gt; Application Integration Framework -&gt; Endpoints. Create a new record and enter an Endpoint ID. This should be descriptive as to who the entity/Trading Partneris since it will be what you select for some of the forms that require you to manually select an endpoint. Next, you will create a name for the endpoint and also choose the local endpoint that will be communicating with the entity/trading partner. If you have multiple companies in AX and each company will be exchanging documents with this particular Endpoint, then you will need to have one Local Endpoint for each company and AX, plus multiple Endpoints setup for the same entity/Trading Partner to join to each individual Local Endpoint.&nbsp;</p>
+<p></p>
+<p>The Endpoint to Local Endpoint relation is one-to-one. The next step to configuring the Endpoint is to go to the Constraints tab and either select ‘No Constraints’ or add as many Constraint records as you wish. As I alluded to earlier, constraints may be created for customers, vendors, or warehouses. So far the only Action that requires constraints is the ‘readPickingList’ action.&nbsp;</p>
+<p>(I will go into more detail about this action earlier as I share with you the current experience I am having with setting up this action. ) The next step is to configure the ‘Users’ tab. In the Users tab, you can set up one or multiple users (AD logins) or one or more groups (AX security groups). This is the security that is built into AX so that not just anyone can send/receive XML documents into/out of your system. You can also setup ‘Trusted Intermediaries’ which would be like another AD with which you would setup a ‘trust’ relationship.&nbsp;</p>
+<p></p>
+<p>Finally the last major step in setting up the Endpoints is setting up the Action Policies associated with the Endpoints. This piece ties the Endpoint to the Actions that we viewed earlier. Click the ‘Action Policies’ button on the Endpoints form. Here we will create a new record and select an Action to tie to the Endpoint. (Note: only actions that you have activated will appear in the list. If you want to see all actions appear, then you will need to go back to the Actions menu and Activate all Actions.) After selecting an Action, set the status to ‘Enabled’ and set the logging mode to your preference. I use the ‘Log All’ mode in order to get all information about problems with AIF transactions.&nbsp;</p>
+<p></p>
+<p>Once you have filled out the record, click the ‘Save’ button on the toolbar to save the record and you will see the ‘Data Policies’ button highlight on the Action Policies form. Click the ‘Data Policies’ button and you will see all of the XPath elements that will be included in the XML document for this particular action. In order to allow all elements to be displayed, click the ‘Set’ button and select ‘Enable All’. The final step will be to exit out of the Data Policies Form, and then out of the Action Policies form, and when you are back in the Endpoints form, select the ‘Active’ checkbox on the General tab in order to activate the Endpoint.&nbsp;</p>
+<p></p>
+<p>7.) If you are receiving XML documents inbound into AIF, there are a couple of things that must happen to the documents before AIF will accept them. First, at least one of the person(s) or members of group(s) that are listed under the User tab in the Endpoint menu must be the owner of the inbound XML document. You can check this by right-clicking the document, selecting Properties, selecting the Security tab, clicking the Advanced button, and choosing the Owner tab. Below you will see a list of users who are owners of the document. Whichever one that is in the list that also is listed in the Users tab of the Endpoints, you must highlight this user and select Apply. You should see that the owner of the document changes to that user.&nbsp;</p>
+<p></p>
+<p>AIF will not process a document if the owner of the document is not affiliated with the ‘Users’ tab in Endpoints. Within the XML document being sent inbound, there is an area in the XML header that allows you to set the MessageID, SourceEndpointUser, SourceEndpoint, and DestinationEndpoint. The MessageID must be a unique GUID, the SourceEndpointUser must be set to same user that is the owner of the inbound XML document in the format of ‘DOMAINUSERNAME’, the SourceEndpoint must be the Endpoint ID from the Endpoint menu who sent you the XML document, and the DestinationEndpoint must be set to the Local Endpoint ID which will be the company in AX that should be receiving the XML file that you defined earlier in the article in Local Endpoints.&nbsp;</p>
+<p></p>
+<p>8.) Now that you have setup AIF, you must setup the batch processes to execute the AIF processes. I will not go through the batch process setup as there is plenty of resources out on MSDN that defines this, plus batches are not new to AX 4.0. I will let you know that in your Batch Journal Types, for AIF File System adapter processes to be batched, you must select the ‘AifInboundProcessingService’ and the ‘AifOutboundProcessingService’ for the inbound and outbound AIF processes to be batched. You can also view errors and the Queue Manager that has the documents waiting to be processed in the Basic -&gt; Periodic -&gt; Application Integration Framework menu.</p>
+<p></p>
+<p style="text-align:center;"><span style="font-size:18px;background-color:yellow;">Additional Thoughts on AIF</span></p>
+<p style="text-align:center;"><span style="font-size:18px;background-color:yellow;">---------------------------------</span></p>
+<p></p>
+<p>A couple of additional words regarding AIF. I have so far tested the inbound AIF and not had any problems posting XML documents to AX as long as all steps are followed correctly. The only problems I ran into were related to not correctly setting the owner of the document and the SourceEndpointUser. I have however ran into a problem utilizing the outbound ‘readPickingList’ action. For some reason I cannot execute that action and even after debugging the code I cannot tell what the reason is.&nbsp;</p>
+<p></p>
+<p>It specifically looks for a constraint to be set for the warehouse, which I have but because the InventDim record is not being set into the code that exports the XML document, it will not execute properly. The problem is that there is no code for setting the InventDim record, nor does the function pass in a pointer to the InventDim record associated with the picking list. I currently am working with Microsoft to come up with a solution and will post back on here what their/my findings are once there is resolution.</p>
+<p></p>
+<p>Also, I have yet to figure out where the ‘Send Electronically’ buttons are located for the ‘readListInventoryOnHand’, ‘readListInventoryTransactions’, and ‘readListSalesOrder’. If I am able to find where these buttons are, I will post an update to the blog detailing their location.&nbsp;</p>
+<p></p>
+<p>As a quick reference for you also, I am including the list of all of the outbound actions and the location of the button that triggers them:</p>
+<p></p>
+<pre><span style="font-style:italic;">Action IDDescription: findListChartofAccounts - sends Chart of Accounts<br />Button Location: GLChart of AccountsSend Electronically<br />Action IDDescription: findListExchangeRates - sends Exchange Rates<br />Button Location: GLSetupExchange RatesSend Electronically<br />Action IDDescription: readASN (Packing List) - sends Packing Slip<br />Button Location: ARSales OrderInquiriesPacking SlipSend Electronically<br />Action IDDescription: readSalesInvoice - sends Sales Invoice<br />Button Location: ARSales OrderInquiriesInvoiceSend Electronically<br />Action IDDescription: readListPriceList - sends Price List<br />Button Location: ARCustomersTrade AgreementSend Electronically<br />Action IDDescription: findListDimensions - sends GL Dimensions List<br />Button Location: GLDimensionsSend Electronically<br />Action IDDescription: readPickingList - sends Picking List<br />Button Location: ARSales OrderInquiriesPicking ListSend Electronically<br />Action IDDescription: readListPurchaseRequisition - sends PO<br />Button Location: APPOInquiriesPOSend Electronically</span></pre>
+<p></p>
+<p>If you happen to find something that I have missed or would like to comment further on any of my findings above, please do so.</p>
+<p style="text-align:center;"><span style="font-size:18px;font-weight:bold;font-style:italic;">This post from&nbsp;http://daxdave.blogspot.in/ (fixed)</span></p>

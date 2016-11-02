@@ -1,0 +1,256 @@
+---
+layout: post
+title: Retail Replenishment in Microsoft Dynamics AX 2012 R3 | Microsoft Dynamics
+  AX & CRM | AXPulse
+date: 
+type: post
+published: false
+status: draft
+categories:
+- Life style
+tags: []
+meta:
+  _edit_last: '60509763'
+  original_post_id: '379'
+  _wp_old_slug: '379'
+author:
+  login: luannx
+  email: luan52@outlook.com
+  display_name: luannx
+  first_name: ''
+  last_name: ''
+---
+<blockquote>Inventory Replenishment is the key to Retail business. Retailers often struggle to automate fulfilling the future need of customers and with the nature of retail business, this often gets more complex. In this article, we will not be talking about how to get to that future need because this is where Demand Forecasting in Microsoft Dynamics AX 2012 R3 comes into play. Our focus would be to see how Microsoft Dynamics AX 2012 helps retailers to adopt different replenishment techniques to acquire products and support anticipated need.</p>
+<p>In Microsoft Dynamics AX 2012 R3, inventory for a store can be replenished via Cross Docking, Buyer’s Push or normal Purchase Order processing. Cross Docking is a warehouse management process where shipments arrive at inbound dock, get unloaded and then taken to the outbound dock to deliver out. This saves the storage and cost associated. Buyer’s Push is used where a centralized purchasing department gets the shipments and then the inventory is distributed (pushed) to individual warehouses or stores. The major different between cross docking and buyer’s push is that cross docking works with the purchasing quantity that comes from the originated purchase order, however buyer’s push works with the available or on hand quantity of product(s). Let us take a look at each process and how it works in Microsoft Dynamics AX 2012 R3.</p>
+<p>First we need to create a Replenishment Hierarchy for stores. Go to Organization administration&gt;Setup&gt;Organization&gt;Organization hierarchies. Create a new hierarchy and assign “Retail replenishment” purpose to it.</p>
+<p><img src="{{ site.baseurl }}/assets/R1.png" alt="R1" /></p>
+<p><a href="http://www.axpulse.com/wp-content/uploads/2014/11/R2.png"><img src="{{ site.baseurl }}/assets/R2.png" alt="R2" /></a></p>
+<p>Next is to specify a default weight for the warehouse that is associated with store. We can do this on the Retail tab of Inventory management&gt;Setup&gt;Inventory breakdown&gt;Warehouses form&gt;Retail tab. This is not really default product weight. It’s just a weight figure for calculating the replenishment quantity and we will see its usage later in this article.</p>
+<p><a href="http://www.axpulse.com/wp-content/uploads/2014/11/R3.png"><img src="{{ site.baseurl }}/assets/R3.png" alt="R3" /></a></p>
+<p>Whether we are using cross docking or buyer’s push, there are three inventory distribution methods namely Replenishment rules, Location weight and Fixed quantity for all.</p>
+<p>Replenishment Rules</p>
+<p>Using this distribution method, we can create rules to override the default weight (on warehouse) for a retail replenishment hierarchy or individual stores in a hierarchy. In earlier step, we have already created the replenishment hierarchy. Selecting a replenishment hierarchy on a rule will bring the total weight for all stores (from associated warehouses) in the hierarchy as shown below:</p>
+<p><a href="http://www.axpulse.com/wp-content/uploads/2014/11/R4.png"><img src="{{ site.baseurl }}/assets/R4.png" alt="R4" /></a></p>
+<p>However, for this post, we will use individual store on the rule.</p>
+<p><a href="http://www.axpulse.com/wp-content/uploads/2014/11/R5.png"><img src="{{ site.baseurl }}/assets/R5.png" alt="R5" /></a></p>
+<p>Cross Docking</p>
+<p>Now let’s create a purchase order and select a warehouse other than docking warehouse on PO line.</p>
+<p><a href="http://www.axpulse.com/wp-content/uploads/2014/11/R6.png"><img src="{{ site.baseurl }}/assets/R6.png" alt="R6" /></a></p>
+<p>On the Retail action pane tab, click Cross docking button in Functions action pane group. The Planned cross docking form will be opened.</p>
+<p><a href="http://www.axpulse.com/wp-content/uploads/2014/11/R7.png"><img src="{{ site.baseurl }}/assets/R7.png" alt="R7" /></a></p>
+<p>You can either enter the full quantity i.e. 3 or less than that since only 3 quantity is available on the PO line.</p>
+<p>Replenishment rules</p>
+<p>On the Warehouse fasttab, select Replenishment rules as the Distribution method and then click Calculate quantities button in the action pane strip of the form.</p>
+<p>The application first checks if the service category associated with the PO has replenishment rule specified in Retail&gt;Setup&gt;Replenishment&gt;Service categories form. If it is, the rule is picked from service category record.  Please note that the service category is associated with the vendor master for which the PO is created (Vendor details form&gt;Retail fasttab). If the replenishment rule is not found on service category, the application then looks for the rule specified on retail category of the PO line product in Retail product hierarchy. If the rule is also not specified on the Retail category, we will get this warning message.</p>
+<p><a href="http://www.axpulse.com/wp-content/uploads/2014/11/R8.png"><img src="{{ site.baseurl }}/assets/R8.png" alt="R8" /></a></p>
+<p>In our case, we have already specified the rule on Service category level.</p>
+<p><a href="http://www.axpulse.com/wp-content/uploads/2014/11/R9.png"><img src="{{ site.baseurl }}/assets/R9.png" alt="R9" /></a></p>
+<p>Now after calculating the quantities on Planned cross docking form, the quantity on PO line has been distributed as shown:</p>
+<p><a href="http://www.axpulse.com/wp-content/uploads/2014/11/R10.png"><img src="{{ site.baseurl }}/assets/R10.png" alt="R10" /></a></p>
+<p>&nbsp;</p>
+<p>This is how the application has done the calculation and distributed the quantities:</p>
+<table width="100%">
+<tbody>
+<tr>
+<td width="18%">Type</td>
+<td width="8%">Hierarchy name</td>
+<td width="19%">Name</td>
+<td width="10%">Description</td>
+<td width="8%">Weight</td>
+<td width="8%">Percent</td>
+<td width="12%">Default weight</td>
+<td width="13%">Default percent</td>
+</tr>
+<tr>
+<td width="18%">Channel</td>
+<td width="8%"></td>
+<td width="19%">Anarkali-3</td>
+<td width="10%">Anarkali-3</td>
+<td width="8%">4</td>
+<td width="8%">40</td>
+<td width="12%">10</td>
+<td width="13%">41.67</td>
+</tr>
+<tr>
+<td width="18%">Channel</td>
+<td width="8%"></td>
+<td width="19%">Shahdara-2</td>
+<td width="10%">Shahdara-2</td>
+<td width="8%">2</td>
+<td width="8%">20</td>
+<td width="12%">4</td>
+<td width="13%">16.67</td>
+</tr>
+<tr>
+<td width="18%">Channel</td>
+<td width="8%"></td>
+<td width="19%">Anarkali-2</td>
+<td width="10%">Anarkali-2</td>
+<td width="8%">4</td>
+<td width="8%">40</td>
+<td width="12%">10</td>
+<td width="13%">41.67</td>
+</tr>
+</tbody>
+</table>
+<p>Replenishment rule created (E_Stores)</p>
+<p>This is how system has calculated the quantity in the code for above cross docking data. Formula used is:</p>
+<p>Cross docking quantity = Cross docking quantity on line *  Default weight from rule/Default weight from rule * Percent from rule/100</p>
+<table width="245">
+<tbody>
+<tr>
+<td width="64"></td>
+<td colspan="2" width="181">Calculations</td>
+</tr>
+<tr>
+<td width="64"> WH</td>
+<td width="91">Cross docking quantity</td>
+<td width="90">Rounded</td>
+</tr>
+<tr>
+<td width="64">LHR East</td>
+<td width="91">1.2</td>
+<td width="90">1</td>
+</tr>
+<tr>
+<td width="64">LHR West</td>
+<td width="91">0.6</td>
+<td width="90">0</td>
+</tr>
+<tr>
+<td width="64">LHT East</td>
+<td width="91">1.2</td>
+<td width="90">1</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>And finally the application assigns the following to each individual warehouse:</p>
+<table width="196">
+<tbody>
+<tr>
+<td colspan="3" width="196">Assignment</td>
+</tr>
+<tr>
+<td width="58">WH</td>
+<td colspan="2" width="138">Cross docking quantity</td>
+</tr>
+<tr>
+<td colspan="2" width="65">LHR East</td>
+<td width="131">3</td>
+</tr>
+<tr>
+<td colspan="2" width="65">LHR West</td>
+<td width="131">0</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>The application checks the remaining Cross docking quantity i.e. 1 and then allocate the remaining quantity to the same Cross docking line i.e. for WH = LHR East. So the WH LHR East gets 3 as cross docking quantity in total rather than 2.</p>
+<p>Location weight</p>
+<p>On the same Planned cross docking form, clear the calculations from previous steps using the Clear quantities button on the action pane strip. Now select Location weight as the distribution method and calculate the quantities. Use this method when you want to allocate the quantity to stores based on warehouse default weight.</p>
+<p><a href="http://www.axpulse.com/wp-content/uploads/2014/11/R111.png"><img src="{{ site.baseurl }}/assets/R111.png" alt="R11" /></a></p>
+<p>&nbsp;</p>
+<p>This is how the application has done the calculation and distributed the quantities:</p>
+<p>&nbsp;</p>
+<table width="596">
+<tbody>
+<tr>
+<td width="151">Warehouse</td>
+<td width="119">Weight</td>
+<td width="148">Name</td>
+<td width="79">Description</td>
+<td width="100">Default weight</td>
+</tr>
+<tr>
+<td width="151">LHR East</td>
+<td width="119">10</td>
+<td width="148">Anarkali-3</td>
+<td width="79">Anarkali-3</td>
+<td width="100">10</td>
+</tr>
+<tr>
+<td width="151">LHR West</td>
+<td width="119">4</td>
+<td width="148">Shahdara-2</td>
+<td width="79">Shahdara-2</td>
+<td width="100">4</td>
+</tr>
+<tr>
+<td width="151"></td>
+<td width="119"></td>
+<td width="148">Anarkali-2</td>
+<td width="79">Anarkali-2</td>
+<td width="100">10</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>This is how system has calculated the quantity in the code for above cross docking data. Formula used is:</p>
+<p>Cross docking quantity = Cross docking quantity on line * Default weight from warehouse/Total weight of all warehouses for stores in the hierarchy</p>
+<table width="282">
+<tbody>
+<tr>
+<td width="108"></td>
+<td colspan="2" width="174">Calculations</td>
+</tr>
+<tr>
+<td width="108"> WH</td>
+<td width="108">Cross docking quantity</td>
+<td width="66">Rounded</td>
+</tr>
+<tr>
+<td width="108">LHR East</td>
+<td width="108">1.25</td>
+<td width="66">1</td>
+</tr>
+<tr>
+<td width="108">LHR West</td>
+<td width="108">0.5</td>
+<td width="66">0</td>
+</tr>
+<tr>
+<td width="108">LHR East</td>
+<td width="108">1.25</td>
+<td width="66">1</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>And finally the application assigns the following to each individual warehouse:</p>
+<table width="341">
+<tbody>
+<tr>
+<td colspan="3" width="341">Assignment</td>
+</tr>
+<tr>
+<td width="78">WH</td>
+<td width="114">Cross docking quantity</td>
+<td width="149">Details</td>
+</tr>
+<tr>
+<td width="78">LHR East</td>
+<td width="114">2</td>
+</tr>
+<tr>
+<td width="78">LHR West</td>
+<td width="114">1</td>
+<td width="149">allocated through adjustment</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>Fixed quantity for all</p>
+<p>Now select the third distribution method on Planned cross docking form. Use this method when you need to allocate fixed quantity of inventory to warehouses. In this case, the calculation formula becomes:</p>
+<p>Cross docking quantity = Cross docking quantity on line * 1 (fixed weight for WH) / 3 (total of fixed weight for all WHs)</p>
+<p><a href="http://www.axpulse.com/wp-content/uploads/2014/11/R12.png"><img src="{{ site.baseurl }}/assets/R12.png" alt="R12" /></a></p>
+<p>Let’s proceed and create transfer orders from Planned cross docking form. Click ‘Create order’ button and it will create the transfer orders as shown below.</p>
+<p><img src="{{ site.baseurl }}/assets/R13.png" alt="R13" /></p>
+<p>We can look at each of the transfer order from Inventory management&gt;Periodic&gt;Transfer orders form. Process the transfer order as you normally do.</p>
+<p><a href="http://www.axpulse.com/wp-content/uploads/2014/11/R14.png"><img src="{{ site.baseurl }}/assets/R14.png" alt="R14" /></a></p>
+<p>&nbsp;</p>
+<p>Buyer’s Push</p>
+<p>This process of replenishment is pretty much similar to Cross Docking, except that it works on item on-hand quantity rather than purchase order quantity as the process does not initiate from a purchase order. The idea is to push the on-hand quantity available in a warehouse to other warehouses (retail channels) using distribution methods. The three distribution methods i.e. Replenishment rules, Location weight and Fixed quantity for all work also with Buyer’s Push, however in order to find the replenishment rule for the distribution, buyer’s push does not look for the service category associated with the vendor, rather it looks at the retail product category to get the replenishment rule. Rest of the quantity calculation an formulas are similar to what we have seen for cross docking.</p>
+<p>&nbsp;</p>
+<p><a href="http://www.axpulse.com/wp-content/uploads/2014/11/R15.png"><img src="{{ site.baseurl }}/assets/R15.png" alt="R15" /></a></p>
+<p><img src="{{ site.baseurl }}/assets/R161.png" alt="R16" /></p></blockquote>

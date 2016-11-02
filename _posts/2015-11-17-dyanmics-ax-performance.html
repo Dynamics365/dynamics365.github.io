@@ -1,0 +1,60 @@
+---
+layout: post
+title: Dyanmics AX Performance
+date: 2015-11-17 03:13:45.000000000 +07:00
+type: post
+published: true
+status: publish
+categories:
+- Tip and Trick
+tags:
+- aos
+- Dyanmics AX Performance
+meta:
+  _publicize_pending: '1'
+  _edit_last: '60509763'
+  original_post_id: '350'
+  _wp_old_slug: '350'
+author:
+  login: luannx
+  email: luan52@outlook.com
+  display_name: luannx
+  first_name: ''
+  last_name: ''
+---
+<p>Thông thường khi ta chạy một form trong Dynamics AX 2012 lần đầu tiên, ta sẽ thấy thời gian nạp khá lâu do các thủ tục biên dịch và đưa vào phần đệm của AOS.</p>
+<p>và nếu chúng ta có nhu cầu khởi động lại AOS thường xuyên ví dụ như mỗi cuối ngày, hay một môi trường demo chỉ start lên khi có nhu cầu, thì chúng ta phải làm thế nào để những form thường dùng vẫn đảm bảo tốc độ.</p>
+<p>Giải pháp ở đây là sau khi start AOS chúng ta sẽ cho hệ thống chạy một đoạn script mở những trang thường dùng lên, cache vào AOS, sau đó đóng chúng đi, làm như vậy thì người dùng sẽ cảm thấy hệ thống trơn tru hơn :)</p>
+<pre class="lang:c# decode:true">static void WarmupRF(Args _args)
+
+{
+    UtilElements e;
+    TreeNode treeNode;
+    FormRun formRun;
+
+    Args args = new Args();
+
+    while select e
+        where e.utilLevel  == UtilEntryLevel::var    //&lt;-- specify layer here
+        &amp;&amp;    e.recordType == UtilElementType::Form  //&lt;-- and only forms
+        &amp;&amp;    e.name like "nameofformPrefix"
+
+        {
+            try
+            {
+                treeNode = xUtilElements::getNodeInTree(xUtilElements::parentElement(e));
+                args.name(treeNode.AOTname());
+                formRun = ClassFactory.formRunClass(args);
+                formRun.init();
+                //formRun.run();   //&lt;-- No need to run the form, but sometimes it can load the data
+                formRun.close();
+            }
+            catch
+            {
+                Infolog.clear();
+                continue;
+            }
+        }
+}</pre>
+<p style="text-align:right;"><em>Credit by Tâm Ngô</em></p>
+<p>&nbsp;</p>

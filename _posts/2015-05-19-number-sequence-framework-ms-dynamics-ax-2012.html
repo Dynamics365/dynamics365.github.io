@@ -1,0 +1,65 @@
+---
+layout: post
+title: Number sequence framework MS Dynamics AX 2012
+date: 2015-05-19 15:14:00.000000000 +07:00
+type: post
+published: true
+status: publish
+categories: []
+tags: []
+meta:
+  _publicize_pending: '1'
+  _edit_last: '60509763'
+  original_post_id: '22'
+  _wp_old_slug: '22'
+author:
+  login: luannx
+  email: luan52@outlook.com
+  display_name: luannx
+  first_name: ''
+  last_name: ''
+---
+<p>This lab explain how to use the Number Sequence Framework in Microsoft Dynamics AX 2012. It gives a step by step guide to do common tasks when handling number sequences :</p>
+<p>- Describe how to create a new number sequence</p>
+<p>- Describe how to use number sequence in Form</p>
+<p>- Describe how to use number sequence in X++</p>
+<h4><span style="font-weight:bold;">How to create a new number sequence?</span></h4>
+<p><a href="http://luannx.files.wordpress.com/2015/05/untitled.png"><img class="alignnone size-full wp-image-320" src="{{ site.baseurl }}/assets/untitled.png" alt="Untitled" width="933" height="610" /></a></p>
+<p><!--more--></p>
+<p><span style="text-decoration:underline;">Create Parameter table </span></p>
+<p>The parameter table will be used to store global parameters of the module. And will be used to hold the accessing method to the number sequence.</p>
+<p><span style="font-weight:bold;">Step by step:</span></p>
+<p><span style="line-height:1.42857143;">1. Create a now Table : <span style="font-weight:bold;">&lt;Module&gt;Parameters </span></span><br />
+<span style="line-height:1.42857143;">2. Add field key </span></p>
+<ul>
+<li><span style="line-height:1.42857143;">Extends from <strong>ParametersKey </strong></span></li>
+<li><span style="line-height:1.42857143;">Visible = false, AllowEdit = false, AllowEditOnCreate = false </span></li>
+</ul>
+<p><span style="line-height:1.42857143;">3. Create index name Key with <span style="font-weight:bold;">AllowDuplicate = No </span></span><br />
+<span style="line-height:1.42857143;">4. Set table <em>properties</em></span></p>
+<ul>
+<li><span style="line-height:1.42857143;">TableContent = Default data </span></li>
+<li><span style="line-height:1.42857143;">ConfigurationKey </span></li>
+<li><span style="line-height:1.42857143;">CacheLookup = Found </span></li>
+<li><span style="line-height:1.42857143;">TableGroup = Parameter </span></li>
+<li><span style="line-height:1.42857143;">PrimaryKey = Key </span></li>
+<li><span style="line-height:1.42857143;">ClusterKey = Key</span></li>
+</ul>
+<p>5.Create <em>find()</em> method : find or create a record</p>
+<p><a href="http://nuxulu.com/wp-content/uploads/2015/05/Picture1.png"><img class="alignnone size-full wp-image-322" src="{{ site.baseurl }}/assets/Picture1.png" alt="Picture1" width="480" height="257" /></a></p>
+<p>6.Override <em>delete()</em> method : delete not allowed</p>
+<p><a href="http://luannx.files.wordpress.com/2015/05/picture2.png"><img class="alignnone size-full wp-image-323" src="{{ site.baseurl }}/assets/picture2.png" alt="Picture2" width="422" height="64" /></a></p>
+<p>7.Override <em>update()</em> method : in order to flush the cache.</p>
+<p><a href="http://luannx.files.wordpress.com/2015/05/picture3.png"><img class="alignnone size-full wp-image-324" src="{{ site.baseurl }}/assets/picture3.png" alt="Picture3" width="334" height="77" /></a></p>
+<p><u>Add value to </u><em><u>NumberSeqModule</u></em><u> Enumeration</u></p>
+<p>For each new module that handle the number sequence framework, you should add an Enum value to <b>NumberSeqModule </b>This value will be used to link number sequence to the module and to restrict displayed number sequence by module in Form.</p>
+<p>Set <b>ConfigurationKey</b> on the new value : if the CK is disabled the linked numberSequence will not be Displayed in form.</p>
+<p><a href="http://luannx.files.wordpress.com/2015/05/picture4.png"><img class="alignnone size-full wp-image-325" src="{{ site.baseurl }}/assets/picture4.png" alt="Picture4" width="256" height="476" /></a></p>
+<p><u>Create </u><u>NumberSeqApplicationModule</u><u> class</u></p>
+<p>This class allow to group and organize number sequence reference and sets default properties of a Sequence (continuous, max, manual…)</p>
+<p><i>Steps</i></p>
+<p>1.Create class <em>NumberSeqModule&lt;Module&gt;</em></p>
+<p>2.Extends from <em>NumberSeqApplicationModule</em></p>
+<p>3.Override Method  <em>numberSeqModule()</em></p>
+<p><a href="http://luannx.files.wordpress.com/2015/05/picture5.png"><img class="alignnone size-full wp-image-326" src="{{ site.baseurl }}/assets/picture5.png" alt="Picture5" width="549" height="154" /></a></p>
+<p>4.Override method <em>loadModule()</em></p>

@@ -1,0 +1,53 @@
+---
+layout: post
+title: How to install 2 instances SSRS on 1 server
+date: 2015-12-16 09:01:11.000000000 +07:00
+type: post
+published: true
+status: publish
+categories:
+- Global knowlegde
+- Tip and Trick
+tags:
+- aos
+- business connector
+- instance SSRS
+- same AOS
+- vietnamese
+meta:
+  _publicize_pending: '1'
+  _edit_last: '60509763'
+  original_post_id: '394'
+  _wp_old_slug: '394'
+author:
+  login: luannx
+  email: luan52@outlook.com
+  display_name: luannx
+  first_name: ''
+  last_name: ''
+---
+<p>Trong thực tế chúng ta thường hay gặp phải vấn đề là chúng ta có hai AOS (có thể nằm trên cùng một server hay khác server), nhưng chỉ có một server làm reporting servers, nhu cầu đặt ra là làm sao để cài đặt <strong>hai instances SSRS</strong> <strong>trên cùng một server</strong> phục vụ cho hai AOS khác nhau.</p>
+<p><a href="http://nuxulu.com/wp-content/uploads/2015/12/1.jpg" rel="attachment wp-att-395"><img class="alignnone size-full wp-image-395" src="{{ site.baseurl }}/assets/1.jpg" alt="1" width="800" height="324" /></a><a href="http://nuxulu.com/wp-content/uploads/2015/12/1.jpg" rel="attachment wp-att-395"><img class="alignnone size-full wp-image-395" src="{{ site.baseurl }}/assets/1.jpg" alt="1" width="800" height="324" /></a></p>
+<p>Figure 1: Two SSRS instance are running same server.</p>
+<p>Đầu tiên chúng ta sẽ cài một SSRS instance cho một AOS, việc này tương đối <strong>đơn giản</strong>, nhưng đến khi cài instance thứ hai thì có một số vấn đề xảy ra.</p>
+<ul>
+<li><strong>SSRS</strong> dùng <strong>business connector</strong> để connect vào AX mà trên một máy chỉ có một configuration của connector lưu trong registry.</li>
+<li><strong>Instance1</strong> được cài thêm thư viện để connect vào AX khi setup ‘Reporting service component’, nhưng <strong>instance2</strong> khi cài thêm component này vô nó bảo máy này cài rồi không cài nữa.</li>
+</ul>
+<p>Để giải quyết 2 vấn đề trên ta làm như sau</p>
+<ol>
+<li>Sau khi cài <strong>instance2</strong> vào thư mục sau <em>‘C:Program FilesMicrosoft SQL ServerMSRS12.InstanceNameReporting ServicesReportServerbin’</em> tạo một file <em>Dynamics.AX.ReportConfiguration.axc</em> bằng công cụ AX configuration với các tham số của <strong>AOS2<a href="http://luannx.files.wordpress.com/2015/12/2.jpg" rel="attachment wp-att-396"><img class="alignnone size-full wp-image-396" src="{{ site.baseurl }}/assets/2.jpg" alt="2" width="816" height="558" /></a></strong></li>
+<li>Mở <strong>MS Dyanmics</strong> <strong>AX Management Shell</strong>, chạy dòng lệnh sau:</li>
+</ol>
+<p><span style="color:#ff0000;"><em>Install-AXReportInstanceExtensions –ReportServerInstanceName [SSRSInstanceName] -Credential [DomainNameUserName]</em></span></p>
+<p><a href="http://luannx.files.wordpress.com/2015/12/3.jpg" rel="attachment wp-att-397"><img class="alignnone size-full wp-image-397" src="{{ site.baseurl }}/assets/3.jpg" alt="3" width="671" height="165" /></a></p>
+<ol start="3">
+<li>Vào thư <em>mục ‘C:Program FilesMicrosoft SQL ServerMSRS12.TenInstanceReporting ServicesReportServer’</em> sửa file<strong>config</strong> như bên dưới từ <strong>Execution</strong> thành <strong>FullTrust</strong></li>
+</ol>
+<p><a href="http://luannx.files.wordpress.com/2015/12/4.jpg" rel="attachment wp-att-398"><img class="alignnone size-full wp-image-398" src="{{ site.baseurl }}/assets/4.jpg" alt="4" width="912" height="1162" /></a></p>
+<p>After this, remember restart reporting services.</p>
+<p>Mỗi lần vào<strong> Reporting Services Configuration Manager</strong> để configure report thì cần chọn Instance nào để configure.</p>
+<p><a href="http://luannx.files.wordpress.com/2015/12/6.png" rel="attachment wp-att-399"><img class="alignnone size-full wp-image-399" src="{{ site.baseurl }}/assets/6.png" alt="6" width="535" height="304" /></a></p>
+<p>Report server web services and report folder link.</p>
+<p><a href="http://luannx.files.wordpress.com/2015/12/7.png" rel="attachment wp-att-400"><img class="alignnone size-full wp-image-400" src="{{ site.baseurl }}/assets/7.png" alt="7" width="753" height="508" /></a></p>
+<p>Cảm ơn đã đọc bài.</p>

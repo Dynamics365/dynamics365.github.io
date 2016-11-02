@@ -1,0 +1,49 @@
+---
+layout: post
+title: Reporting Services Catalog Error
+date: 2015-10-27 09:57:11.000000000 +07:00
+type: post
+published: true
+status: publish
+categories:
+- SQL Server
+tags:
+- File Existence
+- Microsoft SQL Server 2014
+- MSSQL12
+- ReportServer
+- ReportServer_log
+- Temporary Database File Existence
+meta:
+  _publicize_pending: '1'
+  _edit_last: '60509763'
+  original_post_id: '282'
+  _wp_old_slug: '282'
+author:
+  login: luannx
+  email: luan52@outlook.com
+  display_name: luannx
+  first_name: ''
+  last_name: ''
+---
+<p>Applies to: Microsoft SQL Server 2014</p>
+<p><b><u>Error Message</u>.</b><br />
+SQL Server 2014 Setup shows the following error messages after running a set of rules to determine if the installation process will be blocked:</p>
+<ul>
+<li>Rule "Reporting Services Catalog Database File Existence" failed</li>
+<li>Rule "Reporting Services Catalog Temporary Database File Existence" failed.<br />
+<img src="{{ site.baseurl }}/assets/troubleshooting028-011.png" alt="" width="697" height="523" border="0" /></li>
+</ul>
+<p><b><u>Cause</u>.</b></p>
+<p>Setup program found the Reporting Services Catalog database file and Reporting Services Catalog temporary database file in the following path:</p>
+<p><strong><em>C:Program FilesMicrosoft SQL ServerMSSQL12.MSSQLSERVERMSSQLDATA</em></strong></p>
+<p><b><u>Solution</u>.</b></p>
+<p>Remove the following files from the "<em>C:Program FilesMicrosoft SQL ServerMSSQL12.MSSQLSERVERMSSQLDATA</em>" directory:</p>
+<ul>
+<li>ReportServer.mdf</li>
+<li>ReportServer_log.LDF</li>
+<li>ReportServerTempDB.mdf</li>
+<li>ReportServerTempDB_log.LDF.</li>
+</ul>
+<p><img src="{{ site.baseurl }}/assets/troubleshooting028-021.png" alt="" width="500" height="324" border="0" /></p>
+<p>After deleting the files, click on the "Re-run" button of the Installation Rules setup page, and click "Next" after passing all the installation rules.</p>

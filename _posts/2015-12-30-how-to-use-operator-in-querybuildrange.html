@@ -1,0 +1,55 @@
+---
+layout: post
+title: HOW TO USE OPERATOR OR IN QUERYBUILDRANGE
+date: 2015-12-30 04:23:09.000000000 +07:00
+type: post
+published: true
+status: publish
+categories:
+- Global knowlegde
+- Tip and Trick
+tags:
+- OPERATOR
+- OPERATOR OR
+- OR
+- query
+- QUERYBUILDRANGE
+- QUERYRANGE
+meta:
+  _publicize_pending: '1'
+  _edit_last: '60509763'
+  original_post_id: '403'
+  _wp_old_slug: '403'
+author:
+  login: luannx
+  email: luan52@outlook.com
+  display_name: luannx
+  first_name: ''
+  last_name: ''
+---
+<p>This blog post is show how to apply OR conditions in query build ranges in a simple way on same field in a table.</p>
+<p>Let's see the simple query :</p>
+<pre class="lang:c# decode:true">select * from CustTable where AccountNum == '2001' || AccountNum == '2002'</pre>
+<p>We can find out solutions on <a href="https://msdn.microsoft.com/en-us/library/aa893981.aspx" target="_blank">MSDN</a>  by using expression in query ranges, but as it has lot of specifications which needs to be followed.</p>
+<p>However there is a simple way to do it :</p>
+<pre class="lang:c# decode:true ">CustTable cust;
+Query query = new Query();
+QueryBuildDataSource qbds;
+QueryBuildRange queryRange1, queryRange2;
+;
+
+qbds = query.addDataSource(tableNum(CustTable));
+
+queryRange1 = qbds.addRange(fieldNum(CustTable, AccountNum));
+queryRange1.value('2001');
+
+queryRange2 = qbds.addRange(fieldNum(CustTable, AccountNum));
+queryRange2.value('2002');
+
+info(qbds.toString());</pre>
+<p>&nbsp;</p>
+<p>Result in below image :</p>
+<p><img class="alignnone size-full wp-image-404" src="{{ site.baseurl }}/assets/operatoror.jpg" alt="OperatorOR" width="906" height="440" /></p>
+<p>Thanks for reading :).</p>
+<p>Happy New Year.</p>
+<p>&nbsp;</p>

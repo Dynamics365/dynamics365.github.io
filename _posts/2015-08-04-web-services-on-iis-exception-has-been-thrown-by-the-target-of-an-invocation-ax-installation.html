@@ -1,0 +1,38 @@
+---
+layout: post
+title: Web Services on IIS - Exception has been thrown by the target of an invocation
+  - AX installation
+date: 2015-08-04 20:47:00.000000000 +07:00
+type: post
+published: true
+status: publish
+categories: []
+tags:
+- Exception 
+- iis
+- Web Services
+meta:
+  _publicize_pending: '1'
+  _edit_last: '60509763'
+  original_post_id: '16'
+  _wp_old_slug: '16'
+author:
+  login: luannx
+  email: luan52@outlook.com
+  display_name: luannx
+  first_name: ''
+  last_name: ''
+---
+<p>When I try to install Web Services on IIS for Retails POS Component, and I got the problem.</p>
+<p>This scenario shouldn't be common in a production environment, but, it is indeed quite common in a VM machine (I'm using virtual machine Hyper-V on Windows 8.1)</p>
+<p><img style="width:826px;" src="{{ site.baseurl }}/assets/web-services-on-iis-exception_1.png" alt="" /></p>
+<p><!--more--></p>
+<p>Error:</p>
+<p><img style="width:826px;" src="{{ site.baseurl }}/assets/web-services-on-iis-exception_2.png" alt="" /></p>
+<p>The error show in log file may be it's not clear.<span style="font-weight:bold;background-color:yellow;"> Exception has been thrown by the target of an invocation</span></p>
+<p><img style="width:826px;" src="{{ site.baseurl }}/assets/web-services-on-iis-exception_3.png" alt="" /></p>
+<p>So, the problem is relate to thee AOS Service account, which by default is usually "NT AUTHORITYNETWORK SERVICE" account.</p>
+<p><img style="width:826px;" src="{{ site.baseurl }}/assets/web-services-on-iis-exception_4.png" alt="" /></p>
+<p>but because of we are running on a Domain Controller Server, we should use any specific Domain account created just for running AOS services, then you'll success installing <span style="line-height:1.42857143;">Web Services on IIS.</span></p>
+<p><span style="line-height:1.42857143;"><img style="width:826px;" src="{{ site.baseurl }}/assets/web-services-on-iis-exception_5.png" alt="" /><br />
+</span></p>

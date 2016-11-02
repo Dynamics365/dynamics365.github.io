@@ -1,0 +1,125 @@
+---
+layout: post
+title: Integrating Other Applications – AIF Outbound  - (AX 4.0)
+date: 2015-01-15 10:14:00.000000000 +07:00
+type: post
+published: true
+status: publish
+categories: []
+tags:
+- AIF Outbound
+- AIF provides an extensible
+- dynamicsax 4.0
+meta:
+  _publicize_pending: '1'
+author:
+  login: luannx
+  email: luan52@outlook.com
+  display_name: luannx
+  first_name: ''
+  last_name: ''
+---
+<p>[ad]</p>
+<h1><span style="color:rgb(42,42,42);font-family:'Segoe UI', sans-serif;font-size:10pt;line-height:11.25pt;">AIF<br />
+provides an extensible framework within Microsoft Dynamics AX that enables the<br />
+exchange of data. Data is exchanged in the form of XML documents.</span></h1>
+<div style="text-align:center;"><span lang="DE" style="font-size:11pt;line-height:115%;font-family:&quot;color:#2A2A2A;"><img src="{{ site.baseurl }}/assets/integrating-other-applications-aif-outbound-ax-4-0_1.gif" style="width:597px;" /><br /><!--[endif]--></span></div>
+<p align="center" style="margin:0;margin-bottom:.0001pt;text-align:center;line-height:11.25pt;"><span style="color:rgb(42,42,42);font-family:'Segoe UI', sans-serif;font-size:10pt;line-height:11.25pt;">&nbsp;</span></p>
+<p style="margin:0 0 .0001pt;line-height:11.25pt;"><span style="font-size:10pt;font-family:&quot;color:#2A2A2A;">AIF<br />
+has the following types of exchanges:</span></p>
+<p style="margin-bottom:.0001pt;text-indent:-.25in;line-height:11.25pt;margin:0 0 0 .5in;"><!--[if !supportLists]--><span style="font-size:10pt;font-family:Symbol;color:#2A2A2A;">·<span style="font-stretch:normal;font-size:7pt;line-height:normal;font-family:'Times New Roman';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+</span></span><!--[endif]--><b><span style="font-size:10pt;font-family:&quot;color:#2A2A2A;">Adapter-based<br />
+exchange</span></b><span style="font-size:10pt;font-family:&quot;color:#2A2A2A;"> – An asynchronous document exchange that uses an adapter in<br />
+Microsoft Dynamics AX and does not require the installation of Microsoft<br />
+Internet Information Services (IIS). In this type of exchange, documents are<br />
+moved through the system by using queues. Adapter transports supported by AIF<br />
+are Microsoft Message Queuing (MSMQ), file system, Microsoft BizTalk Server<br />
+2006, and <b>outbound Web services</b>. (I’ll<br />
+use outbound web service in this article).</span></p>
+<p style="margin-bottom:.0001pt;text-indent:-.25in;line-height:11.25pt;margin:0 0 0 .5in;"><!--[if !supportLists]--><span style="font-size:10pt;font-family:Symbol;color:#2A2A2A;">·<span style="font-stretch:normal;font-size:7pt;line-height:normal;font-family:'Times New Roman';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+</span></span><!--[endif]--><b><span style="font-size:10pt;font-family:&quot;color:#2A2A2A;">Web<br />
+service exchange</span></b><span style="font-size:10pt;font-family:&quot;color:#2A2A2A;"> – A synchronous document exchange that uses Web services and<br />
+requires that IIS be installed and configured to send and receive data. Because<br />
+this type of exchange is synchronous, queues are not used. The Web services are<br />
+generated automatically from the Microsoft Dynamics AX business logic.<br />
+Developers with limited Web experience can easily create their own Web<br />
+services. The Web service exchange differs from the outbound Web service<br />
+adapter exchange in that it is synchronous, and it can accept requests. In<br />
+contrast, the outbound Web service adapter cannot.</span></p>
+<p style="margin:0;margin-bottom:.0001pt;line-height:11.25pt;"><span style="font-size:10pt;font-family:&quot;color:#2A2A2A;">&nbsp;</span></p>
+<p style="margin:0;margin-bottom:.0001pt;line-height:11.25pt;"><span style="font-size:10pt;font-family:&quot;color:#2A2A2A;">&nbsp;</span></p>
+<p style="margin:0;margin-bottom:.0001pt;line-height:11.25pt;"><span style="font-size:10pt;font-family:&quot;color:#2A2A2A;">&nbsp;</span></p>
+<p class="MsoNormal" align="center" style="text-align:center;"><span lang="DE" style="color:red;background:yellow;">AIF for adapter-based<br />
+exchanges flowchart</span><span lang="DE" style="color:red;"></span></p>
+<p class="MsoNormal" align="center" style="text-align:center;"><img src="{{ site.baseurl }}/assets/integrating-other-applications-aif-outbound-ax-4-0_2.gif" style="width:673px;" /></p>
+<p class="MsoNormal" align="center" style="text-align:left;">[more]</p>
+<h1 style="margin-left:.5in;"><!--[if !supportLists]--><span lang="DE"><span style="font-family:'Segoe UI', sans-serif;">1.</span><span style="font-family:'Times New Roman';font-stretch:normal;font-size:7pt;line-height:normal;">&nbsp;&nbsp;</span><span style="font-stretch:normal;">&nbsp;<br />
+</span></span><!--[endif]--><span style="font-size:24px;"><span lang="DE">Create and configure a local<br />
+endpoint by using the local enpoint f</span></span><span lang="DE"><span style="font-size:24px;">orm.</span></span></h1>
+<p style="margin:0 0 .0001pt;">A<br />
+local endpoint is the origination for sent messages and the destination for<br />
+received messages. That is, the local endpoint refers to your Microsoft<br />
+Dynamics AX installation. There may be more than one local endpoint, depending<br />
+on how many companies are configured for your Microsoft Dynamics AX<br />
+installation.</p>
+<p style="margin:0 0 .0001pt;">The<br />
+name of the local endpoint identifies you to your trading partners; therefore<br />
+we recommend that the name for the local endpoint be representative of the<br />
+Microsoft Dynamics AX company name that participates in the exchange.</p>
+<p style="margin:0 0 .0001pt;"></p>
+<p style="margin:0 0 .0001pt .5in;"><!--[if !supportLists]-->1.<span style="font-stretch:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+</span><!--[endif]-->Click<span class="apple-converted-space">&nbsp;</span><br />
+<span style="font-weight:bold;"><br />
+ Basic<span class="apple-converted-space">&nbsp;</span></p>
+<p>&gt;<span class="apple-converted-space">&nbsp;</span></p>
+<p> Setup</p>
+<p><span class="apple-converted-space">&nbsp;</span>&gt;<span class="apple-converted-space">&nbsp;</span></p>
+<p> Application Integration Framework</p>
+<p><span class="apple-converted-space">&nbsp;</span>&gt;<span class="apple-converted-space">&nbsp;</span></p>
+<p> Local endpoints</p>
+<p>.</span></p>
+<p align="center" style="margin:0 0 .0001pt .5in;"><img src="{{ site.baseurl }}/assets/integrating-other-applications-aif-outbound-ax-4-0_3.png" style="width:345px;" /></p>
+<p style="margin:0 0 .0001pt .5in;"><!--[if !supportLists]-->2.<span style="font-stretch:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+</span><!--[endif]-->Press <span style="font-weight:bold;">CTRL+N</span> to<br />
+create a new local endpoint record.</p>
+<p style="margin:0 0 .0001pt .5in;"><!--[if !supportLists]-->3.<span style="font-stretch:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+</span><!--[endif]-->Select a company from the<span class="apple-converted-space">&nbsp;</span></p>
+<p> Company</p>
+<p><span class="apple-converted-space">&nbsp;</span>field.</p>
+<p style="margin:0 0 .0001pt .5in;"><!--[if !supportLists]-->4.<span style="font-stretch:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+</span><!--[endif]-->Enter a name for the endpoint in the<span class="apple-converted-space">&nbsp;</span></p>
+<p> Local endpoint</p>
+<p><span class="apple-converted-space">&nbsp;</span>field.</p>
+<p style="margin:0 0 .0001pt .5in;"><!--[if !supportLists]-->5.<span style="font-stretch:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+</span><!--[endif]-->Press <span style="color:rgb(42,42,42);font-family:'Segoe UI', sans-serif;font-size:10pt;line-height:13.5pt;font-weight:bold;">CTRL+S</span> to save<br />
+the data.<span style="color:rgb(42,42,42);font-family:'Segoe UI', sans-serif;font-size:10pt;line-height:13.5pt;"></span></p>
+<h1 align="center" style="text-align:center;"><span style="color:inherit;font-family:inherit;line-height:1.1;"><img src="{{ site.baseurl }}/assets/integrating-other-applications-aif-outbound-ax-4-0_4.png" style="width:598px;" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></h1>
+<h1 style="margin-left:.5in;text-indent:-.25in;"><!--[if !supportLists]--><span lang="DE" style="font-size:9pt;line-height:115%;font-family:'Segoe UI', sans-serif;">2.<span style="font-stretch:normal;font-size:7pt;line-height:normal;font-family:'Times New Roman';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><!--[endif]--><span lang="DE" style="font-family:'Segoe UI', sans-serif;">Configure an action by using the action&nbsp;</span><span lang="DE" style="font-family:'Segoe UI', sans-serif;">form.</span><span lang="DE" style="font-size:9pt;line-height:115%;font-family:'Segoe UI', sans-serif;"></span></h1>
+<h1><span lang="DE" style="font-size:10pt;line-height:115%;font-family:'Segoe UI', sans-serif;">An action is comprised of a<br />
+document (</span><span lang="DE" style="font-size:10pt;line-height:115%;font-family:&quot;color:#2A2A2A;">actions are available for<br />
+the document in the AOT</span><span lang="DE" style="font-size:10pt;line-height:115%;font-family:'Segoe UI', sans-serif;">) and an operation (</span><span lang="DE" style="font-size:10pt;line-height:115%;font-family:&quot;color:#2A2A2A;">such as<span class="apple-converted-space">&nbsp;</span></span><strong><span lang="DE" style="font-size:10pt;line-height:115%;font-family:&quot;color:#2A2A2A;font-weight:normal;">Send</span></strong><span class="apple-converted-space"><span lang="DE" style="font-size:10pt;line-height:115%;font-family:&quot;color:#2A2A2A;">&nbsp;</span><span lang="DE" style="font-size:10pt;line-height:115%;font-family:&quot;color:#2A2A2A;">or<span class="apple-converted-space">&nbsp;</span></span></span><strong><span lang="DE" style="font-size:10pt;line-height:115%;font-family:&quot;color:#2A2A2A;font-weight:normal;">Receive</span></strong><span lang="DE" style="font-size:10pt;line-height:115%;font-family:&quot;color:#2A2A2A;">.</span><span lang="DE" style="font-size:10pt;line-height:115%;font-family:'Segoe UI', sans-serif;">), such as<span class="apple-converted-space">&nbsp;</span></span><span lang="DE" style="font-size:10pt;line-height:115%;font-family:&quot;">createSalesOrder</span><span lang="DE" style="font-size:10pt;line-height:115%;font-family:'Segoe UI', sans-serif;">. This form is also used to<br />
+generate Web services from actions. </span></h1>
+<p style="margin:0 0 .0001pt .5in;"><!--[if !supportLists]-->1.<span style="font-stretch:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+</span><!--[endif]-->Click<span class="apple-converted-space">&nbsp;</span></p>
+<p> Basic</p>
+<p><span class="apple-converted-space">&nbsp;</span>&gt;<span class="apple-converted-space">&nbsp;</span></p>
+<p> Setup</p>
+<p><span class="apple-converted-space">&nbsp;</span>&gt;<span class="apple-converted-space">&nbsp;</span></p>
+<p> Application Integration Framework</p>
+<p><span class="apple-converted-space">&nbsp;</span>&gt;<span class="apple-converted-space">&nbsp;</span></p>
+<p> Actions</p>
+<p>.</p>
+<p style="margin:0 0 .0001pt .5in;"><!--[if !supportLists]-->2.<span style="font-stretch:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+</span><!--[endif]-->To register all actions for document classes that exist in the<br />
+Application Object Tree (AOT), click<span class="apple-converted-space">. </span>Registering<br />
+an action creates a row for it in the<span class="apple-converted-space">&nbsp;</span>AifAction<span class="apple-converted-space">&nbsp;</span>table.</p>
+<p style="margin:0 0 .0001pt .5in;"><!--[if !supportLists]-->3.<span style="font-stretch:normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+</span><!--[endif]-->After all items are scanned and registered, select<span class="apple-converted-space">&nbsp;</span></p>
+<p> Enabled</p>
+<p><span class="apple-converted-space">&nbsp;</span>to enable the actions you<br />
+need for your exchange.<span style="font-size:10pt;line-height:11.25pt;"></span></p>
+<p class="MsoNormal">&nbsp;<img src="{{ site.baseurl }}/assets/integrating-other-applications-aif-outbound-ax-4-0_5.png" style="width:826px;" /></p>
+<p style="margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;line-height:12.5pt;margin:0 0 0 -.25in;"><span style="font-family:'Segoe UI', sans-serif;line-height:12.5pt;">ip &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
+<p style="margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;line-height:12.5pt;margin:0 0 0 -.25in;"><span style="font-family:'Segoe UI', sans-serif;"><br /></span></p>
+<p style="margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;line-height:12.5pt;margin:0 0 0 -.25in;"><span style="font-family:'Segoe UI', sans-serif;">Im still working on it...</span></p></p>
+<p style="margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;line-height:12.5pt;margin:0 0 0 -.25in;"></p>

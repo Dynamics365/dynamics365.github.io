@@ -1,0 +1,75 @@
+---
+layout: post
+title: COA - Import main account into AX 2012
+date: 2015-06-23 10:55:00.000000000 +07:00
+type: post
+published: true
+status: publish
+categories: []
+tags:
+- COA
+- Import 
+- main account
+- vietnamese
+meta:
+  _publicize_pending: '1'
+  _edit_last: '60509763'
+  original_post_id: '19'
+  _wp_old_slug: '19'
+author:
+  login: luannx
+  email: luan52@outlook.com
+  display_name: luannx
+  first_name: ''
+  last_name: ''
+---
+<p>Xin chào mọi người,</p>
+<p>Có nhiều cách import main account vào AX 2012, như là</p>
+<ul>
+<li>dùng excel add-in có hạn chế là bạn phải hiểu rõ cấu trúc dữ liệu của table trong AX 2012 và cấu trúc này không đơn giản xíu nào. tham khảo thêm</li>
+</ul>
+<p><a href="http://ax2012exceldataimport.blogspot.in/2012/01/dynamics-ax-2012-main-accounts-import.html">http://ax2012exceldataimport.blogspot.in/2012/01/dynamics-ax-2012-main-accounts-import.html</a></p>
+<ul>
+<li>dùng import/export framework thì lại phải cài SQL integration service, cũng khá phức tạp, xem thêm:</li>
+</ul>
+<p><a href="https://www.youtube.com/watch?v=JWgeodU2cJs">https://www.youtube.com/watch?v=JWgeodU2cJs</a></p>
+<p>Sau khi gặp rắc rối với 2 cách trên tôi nghĩ rằng mình có thể dùng một kỹ thuật khác cổ xưa là import bằng file text thông qua FormRun class, cách này có lợi điểm là đảm bảo schema, constrain mà cấu trúc file vô cùng đơn giản. Mời cùng xem dưới đây</p>
+<pre class="lang:c# decode:true ">static void Job1(Args _args)
+{
+    Args args = new Args();
+    FormRun fr;
+    MainAccount
+    MainAccount;
+
+    TextIo = new TextIo("D:COA1.txt","R");
+    container con;
+   
+    DimensionLedgerAccountType DimensionLedgerAccountType;
+    ;
+
+    args.name(formStr("MainAccount"));
+    fr = ClassFactory.formRunClass(args);
+    fr.init();
+    fr.run();
+  
+    TextIo.inFieldDelimiter("t");
+    con = TextIo.read();
+    while(con)
+    {
+        fr.createRecord("MainAccount");
+       
+        MainAccount=fr.dataSource(1).cursor();
+       
+        MainAccount.MainAccountId = conPeek(con,1);
+       
+        MainAccount.Name = conPeek(con,2);
+       
+        MainAccount.Type = str2enum(DimensionLedgerAccountType,conPeek(con,3));
+        con = TextIo.read();
+    }
+   
+     fr.createRecord("MainAccount");
+ 
+    fr.wait();
+}</pre>
+<p>&nbsp;</p>

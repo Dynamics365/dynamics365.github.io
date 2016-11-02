@@ -1,0 +1,58 @@
+---
+layout: post
+title: Link Type and Join Types in ax 2012
+date: 2016-01-07 04:39:12.000000000 +07:00
+type: post
+published: true
+status: publish
+categories:
+- Global knowlegde
+tags:
+- Active
+- Exist Join
+- InnerJoin
+- Join Type ax 2012
+- Link Type ax 2012
+- NotExistJoin
+- Outer Join
+meta:
+  _publicize_pending: '1'
+  _edit_last: '60509763'
+  original_post_id: '411'
+  _wp_old_slug: '411'
+author:
+  login: luannx
+  email: luan52@outlook.com
+  display_name: luannx
+  first_name: ''
+  last_name: ''
+---
+<p><strong>Link Type:</strong></p>
+<ol>
+<li><strong>Active: - Parent and child </strong>- data source is updated immediately when a new record in the parent data source is selected. Continuous updates consume lots of resources consuming.</li>
+</ol>
+<ol>
+<li><strong>Delayed: - Parent and child</strong> - A pause is inserted before linked child data sources are updated. This     enables faster navigation in the parent data source because the records from child data sources are not updated immediately. For example, you can scroll a list of orders where you do not want to review the lines associated with the order until you stop scrolling.</li>
+</ol>
+<ol>
+<li><strong>Passive: - Parent and child</strong> - Linked child data sources are not updated automatically. Updates of the child data source must be programmed on theactivemethod of the master data source.</li>
+</ol>
+<p><strong>Join Types:</strong></p>
+<ol>
+<li><strong>InnerJoin: - Combined data source</strong> – select the record from the main table that matches records in the joined table and vice versa.</li>
+</ol>
+<p>There is one record for each match. Records without related records in the other data source are eliminated from the result.</p>
+<ol>
+<li><strong>Outer Join: - Combined data source</strong> – select the records from the main table. The records are retrieved whether they have matching records in the joined table</li>
+</ol>
+<ol>
+<li><strong>Exist Join: - Combined data source</strong> -The data source retrieves a record from the main table for each matching record in the joined table.</li>
+</ol>
+<p>The differences between <strong>InnerJoin</strong> and <strong>ExistJoin</strong> are as follows:</p>
+<ul>
+<li>When the join type is <strong>ExistJoin</strong>, the search ends after the first match has been found.</li>
+<li>When the join type is <strong>InnerJoin</strong>, all matching records are searched for.</li>
+</ul>
+<ol>
+<li><strong>NotExistJoin: - Combined data source</strong> -Select records from the main table that do not have a match in the joined table.</li>
+</ol>

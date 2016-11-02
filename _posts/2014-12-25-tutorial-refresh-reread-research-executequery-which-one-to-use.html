@@ -1,0 +1,101 @@
+---
+layout: post
+title: 'Tutorial: refresh, reread, research, executeQuery - which one to use?'
+date: 2014-12-25 01:43:00.000000000 +07:00
+type: post
+published: true
+status: publish
+categories: []
+tags:
+- executeQuery
+- refresh
+- reread
+- research
+meta:
+  _publicize_pending: '1'
+author:
+  login: luannx
+  email: luan52@outlook.com
+  display_name: luannx
+  first_name: ''
+  last_name: ''
+---
+<p>[ad]</p>
+<p style="text-align:center;"><code>This post form&nbsp;http://kashperuk.blogspot.com/</code></p>
+<pre><em>X++ developers seem to be having a lot of trouble with these 4 datasource methods, no matter how senior they are in AX.</em><br /><em>So I decided to make a small hands-on tutorial, demonstrating the common usage scenario for each of the methods. I have ordered the methods based on the impact on the rows being displayed in the grid.</em><br /><em>You can download the <a href="http://cid-e5871abbdbd5cc92.skydrive.live.com/self.aspx/Public/DynamicsAX/20100406/PrivateProject%5E_Tutorial%5E_FormDataSourceRefresh.xpo">xpo with the tutorial on my SkyDrive</a>.</em></pre>
+<h4>1. Common mistakes</h4>
+<p style="padding-left:30px;">Often, developers call 2 of the mentioned methods in the following order:</p>
+<ol style="margin-right:0;margin-bottom:0;margin-left:0;padding:0 0 0 48px;color:rgb(172,172,172);font-family:Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace, serif;font-size:12px;line-height:21px;background-color:rgb(248,248,248);">
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">formDataSource<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">refresh</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="br0" style="color:rgb(0,128,0);">)</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">formDataSource<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">research</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="br0" style="color:rgb(0,128,0);">)</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">or</div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">formDataSource<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">reread</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="br0" style="color:rgb(0,128,0);">)</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">formDataSource<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">research</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="br0" style="color:rgb(0,128,0);">)</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">or</div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">formDataSource<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">research</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="br0" style="color:rgb(0,128,0);">)</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">formDataSource<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">executeQuery</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="br0" style="color:rgb(0,128,0);">)</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">or</div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">formDataSource<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">research</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="br0" style="color:rgb(0,128,0);">)</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">formDataSource<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">refresh</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="br0" style="color:rgb(0,128,0);">)</span>&nbsp;<span class="sy0" style="color:rgb(0,128,0);">/</span>&nbsp;formDataSource<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">reread</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="br0" style="color:rgb(0,128,0);">)</span></div>
+</li>
+</ol>
+<div><span style="color:rgb(0,128,0);font-family:Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace, serif;font-size:12px;line-height:21px;"><br /></span></div>
+<p style="padding-left:30px;"><span style="line-height:1.42857143;">All of these are wrong, or at least partially redundant.</span></p>
+<p style="padding-left:30px;">Hopefully, after reading the full post, there will be no questions as to why they are wrong. Leave a comment to this post if one of them is still unclear, and I will try to explain in more detail.</p>
+<p>[more]</p>
+<h4>2. Refresh</h4>
+<p style="padding-left:30px;">This method basically refreshes the data displayed in the form controls with whatever is stored in the form cache for that particular datasource record. Calling <em>refresh()</em> method will <strong>NOT</strong> reread the record from the database. So if changes happened to the record in another process, these will not be shown after executing <em>refresh()</em>.</p>
+<h5 style="padding-left:30px;"><span style="font-weight:bold;">refreshEx</span></h5>
+<ul>
+<li>Does a redraw of the grid rows, depending on the optional argment for specifying the number of the record to refresh (and this means the actual row number in the grid, which is less useful for AX devs). Special argument values include -1, which means that all records will be redrawn, and -2, which redraws all marked records and records with displayOptions. Default argument value is -2.<br />This method should be used sparingly, in cases where multiple rows from the grid are updated, resulting in changes in their displayOptions, as an example. So you should avoid using it as a replacement for refresh(), since they actually have completely different implementations in the kernel.</li>
+<li>Also, note, that <em>refreshEx()</em> only redraws the grid, so the controls not in the grid might still contain outdated values. <em>Refresh()</em> updates everything, since this is its intention.
+</li>
+</ul>
+<h4>3. Reread</h4>
+<ul>
+<li>Calling <em>reread()</em> will query the database and re-read the current record contents into the datasource form cache. This will not display the changes on the form until a redraw of the grid contents happens (for example, when you navigate away from the row or re-open the form).</li>
+<li>You should not use it to refresh the form data if you have through code added or removed records. For this, you would use a different method described below.
+</li>
+</ul>
+<h5 style="padding-left:30px;">How are these 2 methods commonly used?</h5>
+<p style="padding-left:30px;">Usually, when you change some values in the current record through some code (for example, when the user clicks on a button), and update the database by calling <em>update</em> method on the table buffer, you would want to show the user the changes that happened.</p>
+<p style="padding-left:30px;">In this case, you would call <em>reread()</em> method to update the datasource form cache with the values from the database (this will <strong>not</strong> update the screen), and then call <em>refresh()</em> to actually redraw the grid and show the changes to the user.</p>
+<h5 style="padding-left:30px;">Clicking buttons with SaveRecord == Yes</h5>
+<p style="padding-left:30px;">Each button has a property <em>SaveRecord</em>, which is by default set to <em>Yes</em>. Whenever you click a button, the changes you have done in the current record are saved to the database. So calling<em>reread</em> will not restore the original record values, as some expect. If that is the user expectation, you as a developer should set the property to <em>No</em>. </p>
+<h4>4. Research</h4>
+<p style="padding-left:30px;">Calling <em>research()</em> will rerun the existing form query against the database, therefore updating the list with new/removed records as well as updating all existing rows. This will honor any existing filters and sorting on the form, that were set by the user.</p>
+<h5 style="padding-left:30px;">Research(true)</h5>
+<p style="padding-left:60px;">The <em>research</em> method starting with AX 2009 accepts an optional boolean argument <em>_retainPosition</em>. If you call <em>research(true)</em>, the cursor position in the grid will be preserved after the data has been refreshed. This is an extremely useful addition, which solves most of the problems with cursor positioning (<em>findRecord</em> method is the alternative, but this method is very slow).</p>
+<h4>5. ExecuteQuery</h4>
+<p style="padding-left:30px;">Calling <em>executeQuery()</em> will also rerun the query and update/add/delete the rows in the grid. The difference in behavior from <em>research</em> is described below.</p>
+<p style="padding-left:30px;"><em>ExecuteQuery</em> should be used if you have modified the query in your code and need to refresh the form to display the data based on the updated query.</p>
+<h5 style="padding-left:30px;">formDataSource.queryRun().query() vs formDataSource.query()</h5>
+<ul>
+<li>An important thing to mention here is that the form has 2 instances of the query object - one is the original datasource query (stored in <em>formDataSource.query()</em>), and the other is the currently used query with any user filters applied (stored in <em>formDataSource.queryRun().query()</em>).</li>
+<li>When the <em>research</em> method is called, a new instance of the <em>queryRun</em> is created, using the<em>formDataSource.queryRun().query()</em> as the basis. Therefore, if the user has set up some filters on the displayed data, those will be preserved.</li>
+<li>This is useful, for example, when multiple users work with a certain form, each user has his own filters set up for displaying only relevant data, and rows get inserted into the underlying table externally (for example, through AIF).</li>
+<li>Calling <em>executeQuery</em>, on the other hand, will use the original query as the basis, therefore removing any user filters.</li>
+<li>This is a distinction that everyone should understand when using <em>research</em>/<em>executeQuery</em> methods in order to prevent possible collisions with the user filters when updating the query.</li>
+</ul>
+<p>[ad]</p>

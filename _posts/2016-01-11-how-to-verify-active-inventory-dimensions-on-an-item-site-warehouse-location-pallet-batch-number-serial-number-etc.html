@@ -1,0 +1,33 @@
+---
+layout: post
+title: How to verify active inventory dimensions on an item - Site, Warehouse, Location,
+  Pallet, Batch number, Serial number etc
+date: 2016-01-11 08:46:28.000000000 +07:00
+type: post
+published: true
+status: publish
+categories:
+- Tip and Trick
+tags: []
+meta:
+  _publicize_pending: '1'
+  _edit_last: '60509763'
+  original_post_id: '415'
+  _wp_old_slug: '415'
+author:
+  login: luannx
+  email: luan52@outlook.com
+  display_name: luannx
+  first_name: ''
+  last_name: ''
+---
+<pre class="lang:c# decode:true ">   InventTable     inventTable;
+   InventDimParm   inventDimParm;
+   ;
+   inventTable   = InventTable::find('0101010601');
+   inventDimParm =  InventDimParm::activeDimFlag(InventDimGroupSetup::newInventTable(inventTable));
+   if(inventDimParm.WMSPalletIdFlag)
+   {
+       info("Pallet Actived");
+   }</pre>
+<p>&nbsp;</p>

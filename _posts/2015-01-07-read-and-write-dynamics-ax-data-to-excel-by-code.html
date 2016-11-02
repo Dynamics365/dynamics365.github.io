@@ -1,0 +1,267 @@
+---
+layout: post
+title: Read and Write Dynamics Ax data to excel by Code
+date: 2015-01-07 17:16:00.000000000 +07:00
+type: post
+published: true
+status: publish
+categories: []
+tags:
+- data to excel
+- excel by Code
+meta:
+  _publicize_pending: '1'
+author:
+  login: luannx
+  email: luan52@outlook.com
+  display_name: luannx
+  first_name: ''
+  last_name: ''
+---
+<p>[ad]</p>
+<p><span style="font-family:Verdana, Geneva, sans-serif;font-size:12px;line-height:16.940000534058px;">This is code show you how to read excel file (more details please see this </span><a href="http://nuxulu.com/post/2015/01/08/reading-excel-file-to-store-data-in-a-table-in-ax-2012" target="_blank" style="font-family:Verdana, Geneva, sans-serif;font-size:12px;line-height:16.940000534058px;background-color:rgb(255,255,255);">post</a><span style="font-family:Verdana, Geneva, sans-serif;font-size:12px;line-height:16.940000534058px;">)</span></p>
+<ol style="margin-right:0;margin-bottom:0;margin-left:0;padding:0 0 0 48px;color:rgb(172,172,172);font-family:Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace, serif;font-size:12px;line-height:21px;background-color:rgb(248,248,248);">
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);"><span class="kw1" style="color:rgb(6,0,255);font-weight:bold;">static</span>&nbsp;<span class="kw4" style="color:rgb(102,102,204);font-weight:bold;">void</span>&nbsp;ReadExcel<span class="br0" style="color:rgb(0,128,0);">(</span>Args _args<span class="br0" style="color:rgb(0,128,0);">)</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);"><span class="br0" style="color:rgb(0,128,0);">{</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; SysExcelApplication application<span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; SysExcelWorkbooks workbooks<span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; SysExcelWorkbook workbook<span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; SysExcelWorksheets worksheets<span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; SysExcelWorksheet worksheet<span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; SysExcelCells cells<span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; COMVariantType type<span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp;&nbsp;<span class="kw4" style="color:rgb(102,102,204);font-weight:bold;">int</span>&nbsp;row<span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; ItemId itemid<span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; Name name<span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; FileName filename<span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp;&nbsp;<span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; application&nbsp;<span class="sy0" style="color:rgb(0,128,0);">=</span>&nbsp;SysExcelApplication<span class="sy0" style="color:rgb(0,128,0);">::</span><span class="me2" style="color:rgb(0,0,255);">construct</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; workbooks&nbsp;<span class="sy0" style="color:rgb(0,128,0);">=</span>&nbsp;application<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">workbooks</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp;&nbsp;<span class="co1" style="color:rgb(0,128,128);font-style:italic;">//specify the file path that you want to read</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; filename&nbsp;<span class="sy0" style="color:rgb(0,128,0);">=</span>&nbsp;<span class="st0" style="color:rgb(102,102,102);">"C:<span class="es0" style="color:rgb(0,128,128);font-weight:bold;"></span>item.xls"</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp;&nbsp;<span class="kw1" style="color:rgb(6,0,255);font-weight:bold;">try</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp;&nbsp;<span class="br0" style="color:rgb(0,128,0);">{</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; &nbsp; &nbsp; workbooks<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">open</span><span class="br0" style="color:rgb(0,128,0);">(</span>filename<span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp;&nbsp;<span class="br0" style="color:rgb(0,128,0);">}</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp;&nbsp;<span class="kw1" style="color:rgb(6,0,255);font-weight:bold;">catch</span>&nbsp;<span class="br0" style="color:rgb(0,128,0);">(</span>Exception<span class="sy0" style="color:rgb(0,128,0);">::</span><span class="me2" style="color:rgb(0,0,255);">Error</span><span class="br0" style="color:rgb(0,128,0);">)</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp;&nbsp;<span class="br0" style="color:rgb(0,128,0);">{</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<span class="kw1" style="color:rgb(6,0,255);font-weight:bold;">throw</span>&nbsp;error<span class="br0" style="color:rgb(0,128,0);">(</span><span class="st0" style="color:rgb(102,102,102);">"File cannot be opened."</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp;&nbsp;<span class="br0" style="color:rgb(0,128,0);">}</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; workbook&nbsp;<span class="sy0" style="color:rgb(0,128,0);">=</span>&nbsp;workbooks<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">item</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="nu0" style="color:rgb(255,0,0);">1</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; worksheets&nbsp;<span class="sy0" style="color:rgb(0,128,0);">=</span>&nbsp;workbook<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">worksheets</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; worksheet&nbsp;<span class="sy0" style="color:rgb(0,128,0);">=</span>&nbsp;worksheets<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">itemFromNum</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="nu0" style="color:rgb(255,0,0);">1</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; cells&nbsp;<span class="sy0" style="color:rgb(0,128,0);">=</span>&nbsp;worksheet<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">cells</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp;&nbsp;<span class="kw1" style="color:rgb(6,0,255);font-weight:bold;">do</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp;&nbsp;<span class="br0" style="color:rgb(0,128,0);">{</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; &nbsp; &nbsp; row<span class="sy0" style="color:rgb(0,128,0);">++;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; &nbsp; &nbsp; itemId&nbsp;<span class="sy0" style="color:rgb(0,128,0);">=</span>&nbsp;cells<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">item</span><span class="br0" style="color:rgb(0,128,0);">(</span>row,&nbsp;<span class="nu0" style="color:rgb(255,0,0);">1</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">.</span><span class="kw1" style="color:rgb(6,0,255);font-weight:bold;">value</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">bStr</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; &nbsp; &nbsp; name&nbsp;<span class="sy0" style="color:rgb(0,128,0);">=</span>&nbsp;cells<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">item</span><span class="br0" style="color:rgb(0,128,0);">(</span>row,&nbsp;<span class="nu0" style="color:rgb(255,0,0);">2</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">.</span><span class="kw1" style="color:rgb(6,0,255);font-weight:bold;">value</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">bStr</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; &nbsp; &nbsp; info<span class="br0" style="color:rgb(0,128,0);">(</span>strfmt<span class="br0" style="color:rgb(0,128,0);">(</span><span class="st0" style="color:rgb(102,102,102);">'%1 - %2'</span>, itemId, name<span class="br0" style="color:rgb(0,128,0);">)</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; &nbsp; &nbsp; type&nbsp;<span class="sy0" style="color:rgb(0,128,0);">=</span>&nbsp;cells<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">item</span><span class="br0" style="color:rgb(0,128,0);">(</span>row&nbsp;<span class="sy0" style="color:rgb(0,128,0);">+</span>&nbsp;<span class="nu0" style="color:rgb(255,0,0);">1</span>,&nbsp;<span class="nu0" style="color:rgb(255,0,0);">1</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">.</span><span class="kw1" style="color:rgb(6,0,255);font-weight:bold;">value</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">variantType</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp;&nbsp;<span class="br0" style="color:rgb(0,128,0);">}</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp;&nbsp;<span class="kw1" style="color:rgb(6,0,255);font-weight:bold;">while</span>&nbsp;<span class="br0" style="color:rgb(0,128,0);">(</span>type&nbsp;<span class="sy0" style="color:rgb(0,128,0);">!=</span>&nbsp;COMVariantType<span class="sy0" style="color:rgb(0,128,0);">::</span><span class="me2" style="color:rgb(0,0,255);">VT_EMPTY</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; application<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">quit</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);"><span class="br0" style="color:rgb(0,128,0);">}</span></div>
+</li>
+</ol>
+<div><span style="color:rgb(0,128,0);font-family:Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace, serif;font-size:12px;line-height:21px;"><br /></span></div>
+<div>and here is insert data to excel:</div>
+<div></div>
+<div>
+<ol style="margin-right:0;margin-bottom:0;margin-left:0;padding:0 0 0 48px;color:rgb(172,172,172);font-family:Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace, serif;font-size:12px;line-height:21px;background-color:rgb(248,248,248);">
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);"><span class="kw1" style="color:rgb(6,0,255);font-weight:bold;">static</span>&nbsp;<span class="kw4" style="color:rgb(102,102,204);font-weight:bold;">void</span>&nbsp;Write2ExcelFile<span class="br0" style="color:rgb(0,128,0);">(</span>Args _args<span class="br0" style="color:rgb(0,128,0);">)</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);"><span class="br0" style="color:rgb(0,128,0);">{</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; InventTable inventTable<span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; SysExcelApplication application<span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; SysExcelWorkbooks workbooks<span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; SysExcelWorkbook workbook<span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; SysExcelWorksheets worksheets<span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; SysExcelWorksheet worksheet<span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; SysExcelCells cells<span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; SysExcelCell cell<span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp;&nbsp;<span class="kw4" style="color:rgb(102,102,204);font-weight:bold;">int</span>&nbsp;row<span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp;&nbsp;<span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; application&nbsp;<span class="sy0" style="color:rgb(0,128,0);">=</span>&nbsp;SysExcelApplication<span class="sy0" style="color:rgb(0,128,0);">::</span><span class="me2" style="color:rgb(0,0,255);">construct</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; workbooks&nbsp;<span class="sy0" style="color:rgb(0,128,0);">=</span>&nbsp;application<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">workbooks</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; workbook&nbsp;<span class="sy0" style="color:rgb(0,128,0);">=</span>&nbsp;workbooks<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="kw1" style="color:rgb(6,0,255);font-weight:bold;">add</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; worksheets&nbsp;<span class="sy0" style="color:rgb(0,128,0);">=</span>&nbsp;workbook<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">worksheets</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; worksheet&nbsp;<span class="sy0" style="color:rgb(0,128,0);">=</span>&nbsp;worksheets<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">itemFromNum</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="nu0" style="color:rgb(255,0,0);">1</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; cells&nbsp;<span class="sy0" style="color:rgb(0,128,0);">=</span>&nbsp;worksheet<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">cells</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; cells<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">range</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="st0" style="color:rgb(102,102,102);">'A:A'</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">numberFormat</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="st0" style="color:rgb(102,102,102);">'@'</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp;</div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; cell&nbsp;<span class="sy0" style="color:rgb(0,128,0);">=</span>&nbsp;cells<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">item</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="nu0" style="color:rgb(255,0,0);">1</span>,&nbsp;<span class="nu0" style="color:rgb(255,0,0);">1</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; cell<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="kw1" style="color:rgb(6,0,255);font-weight:bold;">value</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="st0" style="color:rgb(102,102,102);">"Item"</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; cell&nbsp;<span class="sy0" style="color:rgb(0,128,0);">=</span>&nbsp;cells<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">item</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="nu0" style="color:rgb(255,0,0);">1</span>,&nbsp;<span class="nu0" style="color:rgb(255,0,0);">2</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; cell<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="kw1" style="color:rgb(6,0,255);font-weight:bold;">value</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="st0" style="color:rgb(102,102,102);">"Name"</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; row&nbsp;<span class="sy0" style="color:rgb(0,128,0);">=</span>&nbsp;<span class="nu0" style="color:rgb(255,0,0);">1</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp;&nbsp;<span class="kw1" style="color:rgb(6,0,255);font-weight:bold;">while</span>&nbsp;<span class="kw1" style="color:rgb(6,0,255);font-weight:bold;">select</span>&nbsp;inventTable</div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);"><span class="br0" style="color:rgb(0,128,0);">{</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; &nbsp; &nbsp; row<span class="sy0" style="color:rgb(0,128,0);">++;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; &nbsp; &nbsp; cell&nbsp;<span class="sy0" style="color:rgb(0,128,0);">=</span>&nbsp;cells<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">item</span><span class="br0" style="color:rgb(0,128,0);">(</span>row,&nbsp;<span class="nu0" style="color:rgb(255,0,0);">1</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; &nbsp; &nbsp; cell<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="kw1" style="color:rgb(6,0,255);font-weight:bold;">value</span><span class="br0" style="color:rgb(0,128,0);">(</span>inventTable<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">ItemId</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; &nbsp; &nbsp; cell&nbsp;<span class="sy0" style="color:rgb(0,128,0);">=</span>&nbsp;cells<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">item</span><span class="br0" style="color:rgb(0,128,0);">(</span>row,&nbsp;<span class="nu0" style="color:rgb(255,0,0);">2</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; &nbsp; &nbsp; cell<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="kw1" style="color:rgb(6,0,255);font-weight:bold;">value</span><span class="br0" style="color:rgb(0,128,0);">(</span>inventTable<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">ItemName</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp;&nbsp;<span class="br0" style="color:rgb(0,128,0);">}</span></div>
+</li>
+<li class="li1">
+<div class="de1" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);">&nbsp; &nbsp; application<span class="sy0" style="color:rgb(0,128,0);">.</span><span class="me1" style="color:rgb(0,0,255);">visible</span><span class="br0" style="color:rgb(0,128,0);">(</span><span class="kw1" style="color:rgb(6,0,255);font-weight:bold;">true</span><span class="br0" style="color:rgb(0,128,0);">)</span><span class="sy0" style="color:rgb(0,128,0);">;</span></div>
+</li>
+<li class="li2">
+<div class="de2" style="padding:0 5px;vertical-align:top;color:rgb(0,0,0);border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);margin:0 0 0 -7px;position:relative;background:rgb(255,255,255);"><span class="br0" style="color:rgb(0,128,0);">}</span></div>
+</li>
+</ol>
+<div><span style="color:rgb(0,128,0);font-family:Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace, serif;font-size:12px;line-height:21px;"><br /></span></div>
+<div><span style="font-style:italic;">How it works&nbsp;</span></div>
+<div><br style="font-style:italic;" /><span style="font-style:italic;">1. Use SysExcelAp</span><span style="font-style:italic;line-height:1.42857143;">plication class to create excel file.</span></div>
+<div><span style="font-style:italic;">2. Use SysExcelWorkbooks and SysExcelWorkbook to create a blank workbook(by&nbsp;</span><span style="font-style:italic;">default 3 worksheets will be available).</span><br style="font-style:italic;" /><span style="font-style:italic;">3. Use SysExcelWorkSheets to select worksheet for writing data.</span><br style="font-style:italic;" /><span style="font-style:italic;">4. SysExcelCells to select the cells in the excel for writing the data.</span><br style="font-style:italic;" /><span style="font-style:italic;">5. SysExcelCell to write the data in the selected cells.&nbsp;</span><br style="font-style:italic;" /><span style="font-style:italic;">6. Once you done with write operation use SysExcelApplication.visible to open&nbsp;</span><span style="font-style:italic;">file.&nbsp;</span></div>
+</div>
+<p>[ad]</p>
