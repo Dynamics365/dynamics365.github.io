@@ -1,0 +1,4 @@
+---
+slug: pointer
+name: Pointer
+---

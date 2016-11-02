@@ -1,0 +1,60 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+title: Nguyễn Xuân Luận - Senior Dynamics AX Technical Consultant
+email: luan52@outlook.com
+description: > # this means to ignore newlines until "baseurl:"
+  Just something I don't want to forget. Something about programing, especially
+  C++ stuff. Some stupid stuff should also be expected to appear here.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://Dynamics365.github.io" # the base hostname & protocol for your site
+twitter_username: infanprodigy
+github_username:  Dynamics365
+comments: true
+
+# Build settings
+markdown: kramdown
+sass:
+  style: compressed
+  
+collections:
+  my_categories:
+    output: true
+    permalink: /blog/category/:name/
+  my_tags:
+    output: true
+    permalink: /blog/tag/:name/
+
+defaults:
+  -
+    values:
+      comments: true
+  -
+    scope:
+      path: ""
+      type: pages
+    values:
+      layout: page
+  -
+    scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  -
+    scope:
+      path: ""
+      type: my_categories
+    values:
+      layout: blog_by_category
+  -
+    scope:
+      path: ""
+      type: my_tags
+    values:
+      layout: blog_by_tag
