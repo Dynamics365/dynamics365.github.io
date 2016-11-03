@@ -12,4 +12,5 @@ This blog is owned and maintained by ĐOÀN Trần Công Danh.
 - Has enough knowledge to understand OOP, X++, SQL, XML
 - Has passion in some stupid thing
 
-You can find him at {% include icon-github.html username=site.github_username %} or {% include icon-twitter.html username=site.twitter_username %} or {% include icon-skype.html username=site.skype_username %}
+You can find him at {% include icon-github.html username=site.github_username %} or {% include icon-twitter.html username=site.twitter_username %} 
+Chat with him at Skype {% include icon-skype.html username=site.skype_username %}
