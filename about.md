@@ -13,4 +13,4 @@ This blog is owned and maintained by Max Nguyen
 - Has passion in some stupid thing
 
 You can find him at {% include icon-github.html username=site.github_username %}, {% include icon-twitter.html username=site.twitter_username %}
-and please do not forget to check my Dynamics community profile https://community.dynamics.com/members/luan-nguyen
+and please do not forget to check [my Dynamics community profile.](https://community.dynamics.com/members/luan-nguyen)
