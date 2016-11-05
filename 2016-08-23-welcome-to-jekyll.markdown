@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
-date:   
+title: "Welcome to Jekyll!"
+date: 2015-11-3 08:26:15.000000000 +09:00
 categories: general, nontech
 ---
 
