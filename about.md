@@ -12,7 +12,4 @@ This blog is owned and maintained by Max Nguyen
 - Has enough knowledge to understand OOP, X++, SQL, XML
 - Has passion in some stupid thing
 
-You can find him at {% include icon-github.html username=site.github_username %}, {% include icon-twitter.html username=site.twitter_username %} 
-Chat with him at Skype {% include icon-skype.html username=site.skype_username %}
-
-My Stack {% include icon-stackoverflow.html %} Stack Overflow
+You can find him at {% include icon-github.html username=site.github_username %}, {% include icon-twitter.html username=site.twitter_username %}
