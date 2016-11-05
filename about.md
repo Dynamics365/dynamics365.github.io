@@ -1,10 +1,10 @@
 ---
 layout: page
-title: About this blog
+title: About him
 permalink: /about/
 ---
 
-This blog is owned and maintained by ĐOÀN Trần Công Danh.
+This blog is owned and maintained by Max Nguyen
 
 - A Native Vietnamese speaker
 - uses English as his second language
