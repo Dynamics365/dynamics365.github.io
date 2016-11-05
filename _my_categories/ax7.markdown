@@ -1,4 +1,4 @@
 ---
-slug: ax2012
-name: AX 2012 R2 R3
+slug: ax7
+name: Dynamics AX 7
 ---
