@@ -4,10 +4,10 @@ layout: post
 date: 2016-04-06 03:24:53.000000000 +07:00
 author: Max Nguyen
 categories: ssrs
-tags: ssrs, expression
+tags: [ssrs, expression]
 ---
 Expressions are usually used for appearance of the data in a report, change properties of the fields, calculate some values and display them in a proper way, compares values between data of fields and then display them.  
-## Types of Expressions
+## Types of Expressions  
 We have 3 types:  
 1. Globals  
 2. Operators - Arithmetic, Comparison,Concatenation, Logical  
