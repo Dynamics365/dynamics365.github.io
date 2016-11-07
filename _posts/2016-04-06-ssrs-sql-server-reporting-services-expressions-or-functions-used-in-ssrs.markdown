@@ -8,12 +8,14 @@ tags: [ssrs, expression]
 ---
 #### <i class="icon-refresh"></i> Manage document synchronization
 
-Expressions are usually used for appearance of the data in a report, change properties of the fields, calculate some values and display them in a proper way, compares values between data of fields and then display them.  
+Expressions are usually used for appearance of the data in a report, change properties of the fields, calculate some values and display them in a proper way, compares values between data of fields and then display them.
+ 
 ## Types of Expressions  
+
 We have 3 types:  
-1. Globals  
-2. Operators - Arithmetic, Comparison,Concatenation, Logical  
-3. Common Functions - Text, Date &amp; Time, Math, Inspection, Program Flow, Aggregate, Financial, Conversion, Miscellaneous  
+- Globals  
+- Operators - Arithmetic, Comparison,Concatenation, Logical  
+- Common Functions - Text, Date &amp; Time, Math, Inspection, Program Flow, Aggregate, Financial, Conversion, Miscellaneous  
 
 We can see each and every one very deataily  
 ### 1. Globals
