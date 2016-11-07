@@ -17,7 +17,8 @@ We have 3 types:
 
 We can see each and every one very deataily  
 
-### 1. Globals
+
+## 1. Globals
 Global expressions executes/works in Page Header and Footer parts only.   
 
 **ExecutionTime**  Shows date and time at when report executes  
@@ -26,7 +27,7 @@ Global expressions executes/works in Page Header and Footer parts only.
 **UserId** shows current user name like **_company/userID_**  
 **Language** displays language like US-English…  
 
-### 2. Operators  
+## 2. Operators  
 
 #### Arithmetic  
 
