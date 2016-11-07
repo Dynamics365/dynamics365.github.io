@@ -19,30 +19,40 @@ We have 3 types:
 
 We can see each and every one very deataily  
 ### 1. Globals
+
 Global expressions executes/works in Page Header and Footer parts only.   
 **ExecutionTime**  Shows date and time at when report executes  
 **PageNumber** shows page number of each and every page but allowed only in page header and footer  
 **ReportName**  displays name of the active report what name we have assigned to the active report  
 **UserId** shows current user name like **_company/userID_**  
 **Language** displays language like US-English…  
+
 ### 2. Operators  
+
 ##### Arithmetic  
+
 `^` power of  
 `*`multiplication  
 `/` divides two numbers and returns a floating point result  
  `:` divides two numbers and returns a integer result  
 `Mod` divides two numbers and returns remainder only  
 `adds` two numbers and concatenation for two strings  
-`-` subtraction and indicates negative value for numeric values    
+`-` subtraction and indicates negative value for numeric values   
+ 
 ##### Comparison
+
 Known operators : `< <= > >= <>`  
 `Like` compares two strings and return true if matched or else returns False.  
 Ex: `=Fields!Title.Value Like Fields!LoginID.Value`  
 `Is` compare two object reference variables 
 Ex: `=Fields!Title.Value Is Null`
+
 ##### Concatenation
+
 `+` and `&` symbols uses for concatenation
+
 ##### Logical
+
 Known: `And, Not, Or, Xor`  
 ```sql
 SELECT * FROM users where firstname = 'Larry' XOR lastname = 'Smith'`
@@ -51,7 +61,9 @@ SELECT * FROM users where firstname = 'Larry' XOR lastname = 'Smith'`
 `OrElse` same like above
 
 ### 3. Common Functions
+
 ##### Text
+
 `Asc, AscW` returns an integer value represents character code corresponding to a character.  
 `Chr, chrw` returns the character associated with the specified character code  
 `Filter` =Filter(Fields!Title.Value,"Pr",true,0)  
@@ -98,6 +110,7 @@ _0 returns 6/3/1977
 `UCase` =Ucase(Fields!Title.Value)  
 
 ##### Date & Time
+
 `CDate` Converts a object into date format  
 =Format(CDate(Fields!BirthDate.Value),"MMMM yyyy")  
 `DateAdd` Returns a datetime that is the result of adding the specified number of time interval units to the original datetime.  
@@ -145,7 +158,9 @@ Returns string value representing the current time of day according to your syst
 Returns name of the day of week  
 `Year` =year(Fields!BirthDate.Value)  
 Returns year of specified date  
+
 ##### Math
+
 Abs Returns the absolute value
 =Abs(-2.36)
 
