@@ -6,6 +6,8 @@ author: Max Nguyen
 categories: ssrs
 tags: [ssrs, expression]
 ---
+#### <i class="icon-refresh"></i> Manage document synchronization
+
 Expressions are usually used for appearance of the data in a report, change properties of the fields, calculate some values and display them in a proper way, compares values between data of fields and then display them.  
 ## Types of Expressions  
 We have 3 types:  
