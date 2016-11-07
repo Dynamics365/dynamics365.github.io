@@ -63,7 +63,7 @@ SELECT * FROM users where firstname = 'Larry' XOR lastname = 'Smith'`
 
 ## 3. Common Functions
 
-#### Text
+### **Text**
 
 `Asc, AscW` returns an integer value represents character code corresponding to a character.  
 `Chr, chrw` returns the character associated with the specified character code  
@@ -110,7 +110,7 @@ _0 returns 6/3/1977
 `Trim` =Trim(" "& Fields!Title.Value & " ")  
 `UCase` =Ucase(Fields!Title.Value)  
 
-#### Date & Time
+### **Date & Time**
 
 `CDate` Converts a object into date format  
 =Format(CDate(Fields!BirthDate.Value),"MMMM yyyy")  
