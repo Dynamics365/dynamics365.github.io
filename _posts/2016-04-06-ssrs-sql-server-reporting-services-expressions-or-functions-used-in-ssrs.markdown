@@ -6,15 +6,12 @@ author: Max Nguyen
 categories: ssrs
 tags: [ssrs, expression]
 ---
-
-
-# Expressions or Functions used in SSRS
-Expressions are usually used for appearance of the data in a report, change properties of the fields, calculate some values and display them in a proper way, compares values between data of fields and then display them.
+Expressions are usually used for appearance of the data in a report, change properties of the fields, calculate some values and display them in a proper way, compares values between data of fields and then display them.  
 ## Types of Expressions
 We have 3 types:  
 1. Globals  
 2. Operators - Arithmetic, Comparison,Concatenation, Logical  
-3. Common Functions - Text, Date &amp; Time, Math, Inspection, Program Flow, Aggregate, Financial, Conversion, Miscellaneous
+3. Common Functions - Text, Date &amp; Time, Math, Inspection, Program Flow, Aggregate, Financial, Conversion, Miscellaneous  
 
 We can see each and every one very deataily  
 ### 1. Globals
@@ -24,8 +21,8 @@ Global expressions executes/works in Page Header and Footer parts only.
 **ReportName**  displays name of the active report what name we have assigned to the active report  
 **UserId** shows current user name like **_company/userID_**  
 **Language** displays language like US-English…  
-### 2. Operators
-##### Arithmetic
+### 2. Operators  
+##### Arithmetic  
 `^` power of  
 `*`multiplication  
 `/` divides two numbers and returns a floating point result  
