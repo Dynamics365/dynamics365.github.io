@@ -6,11 +6,9 @@ author: Max Nguyen
 categories: ssrs
 tags: [ssrs, expression]
 ---
-#### <i class="icon-refresh"></i> Manage document synchronization
-
 Expressions are usually used for appearance of the data in a report, change properties of the fields, calculate some values and display them in a proper way, compares values between data of fields and then display them.
  
-## Types of Expressions  
+# Types of Expressions  
 
 We have 3 types:  
 - Globals  
@@ -18,9 +16,10 @@ We have 3 types:
 - Common Functions - Text, Date &amp; Time, Math, Inspection, Program Flow, Aggregate, Financial, Conversion, Miscellaneous  
 
 We can see each and every one very deataily  
-### 1. Globals
 
+### 1. Globals
 Global expressions executes/works in Page Header and Footer parts only.   
+
 **ExecutionTime**  Shows date and time at when report executes  
 **PageNumber** shows page number of each and every page but allowed only in page header and footer  
 **ReportName**  displays name of the active report what name we have assigned to the active report  
@@ -29,7 +28,7 @@ Global expressions executes/works in Page Header and Footer parts only.
 
 ### 2. Operators  
 
-##### Arithmetic  
+#### Arithmetic  
 
 `^` power of  
 `*`multiplication  
@@ -39,19 +38,20 @@ Global expressions executes/works in Page Header and Footer parts only.
 `adds` two numbers and concatenation for two strings  
 `-` subtraction and indicates negative value for numeric values   
  
-##### Comparison
+#### Comparison
 
 Known operators : `< <= > >= <>`  
 `Like` compares two strings and return true if matched or else returns False.  
-Ex: `=Fields!Title.Value Like Fields!LoginID.Value`  
-`Is` compare two object reference variables 
-Ex: `=Fields!Title.Value Is Null`
+*Ex:* `=Fields!Title.Value Like Fields!LoginID.Value`  
 
-##### Concatenation
+`Is` compare two object reference variables  
+*Ex:* `=Fields!Title.Value Is Null`
+
+#### Concatenation
 
 `+` and `&` symbols uses for concatenation
 
-##### Logical
+#### Logical
 
 Known: `And, Not, Or, Xor`  
 ```sql
@@ -62,7 +62,7 @@ SELECT * FROM users where firstname = 'Larry' XOR lastname = 'Smith'`
 
 ### 3. Common Functions
 
-##### Text
+#### Text
 
 `Asc, AscW` returns an integer value represents character code corresponding to a character.  
 `Chr, chrw` returns the character associated with the specified character code  
@@ -109,7 +109,7 @@ _0 returns 6/3/1977
 `Trim` =Trim(" "& Fields!Title.Value & " ")  
 `UCase` =Ucase(Fields!Title.Value)  
 
-##### Date & Time
+#### Date & Time
 
 `CDate` Converts a object into date format  
 =Format(CDate(Fields!BirthDate.Value),"MMMM yyyy")  
@@ -159,7 +159,7 @@ Returns name of the day of week
 `Year` =year(Fields!BirthDate.Value)  
 Returns year of specified date  
 
-##### Math
+#### Math
 
 Abs Returns the absolute value
 =Abs(-2.36)
@@ -244,7 +244,7 @@ Tanh
 =Tanh(Fields!EmployeeID.Value)
 Returns the hyperbolic tan value
 
-### Inspection
+#### Inspection
 
 IsArray
 =IsArray(Fields!EmployeeID.Value)
@@ -262,7 +262,7 @@ IsNumeric
 =IsNumeric(Fields!EmployeeID.Value)
 Returns a boolean value depends on specified object is Numeric value or not
 
-### Program Flow
+#### Program Flow
 
 Choose
 =CHOOSE(3, "Red", "Yellow", "Green", "White")
@@ -277,7 +277,7 @@ Switch
 Fields!EmployeeID.Value>10,"Green")
 Evaluates list of expressions
 
-### Aggregate
+#### Aggregate
 
 Avg
 =Avg(Fields!EmployeeID.Value)
@@ -336,7 +336,7 @@ RunningValue
 Returns running aggregate of the specified
 expression
 
-### Financial
+#### Financial
 
 DDB DDB (Double Declining Balance) method computes depreciation of an asset for a specified period.
 Syntax: DDB (Cost, Salvage, life, period, factor)
@@ -377,7 +377,7 @@ SLN(cost,salvage,life)
 SYD Returns the sum-of-years' digits depreciation of an asset for a specified period.
 SYD(cost,salvage,life,per)
 
-### Conversion
+#### Conversion
 
 CBool Convert to boolean
 =CBool(fields!EmployeeID.Value)
@@ -405,7 +405,7 @@ Returns string value of a number
 Val =Val("32.43")
 Returns numeric value in string format
 
-### Miscellaneous
+#### Miscellaneous
 
 Previous =Previous(Fields!EmployeeID.Value)
 Returns the previous value
