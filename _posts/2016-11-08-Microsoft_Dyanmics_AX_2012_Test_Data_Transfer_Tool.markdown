@@ -7,5 +7,5 @@ categories: [ax2012, tools]
 tags: [xpp, data, trick]
 ---
 
-![Image of Microsoft AX 2012 Test Data Transfer Tool](https://github.com/Dynamics365/dynamics365.github.io/blob/master/assets/Microsoft_Dyanmics_AX_2012_Test_Data_Transfer_Tool.png)
+![Image of Microsoft AX 2012 Test Data Transfer Tool](https://raw.githubusercontent.com/Dynamics365/dynamics365.github.io/master/assets/Microsoft_Dyanmics_AX_2012_Test_Data_Transfer_Tool.png)
 
