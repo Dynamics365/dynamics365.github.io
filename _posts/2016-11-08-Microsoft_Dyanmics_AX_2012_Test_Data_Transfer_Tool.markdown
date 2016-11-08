@@ -25,11 +25,13 @@ Tool can be used for two different purposes. One is to install **demo data** and
 
 * The data file format is the standard format produced by SQL Server bcp. The output is text based and can be stored and compared against other versions in a version control system.
 
+<!--excerpt-->
+
 ### How to
 
-1. Download **AX2012TestDataTransferTool.zip** file from LCS (https://lcs.dynamics.com/)
+1. Download **AX2012TestDataTransferTool.zip** file from [LCS](https://lcs.dynamics.com/)
 
-![Image of Microsoft AX 2012 Test Data Transfer Tool](https://dynamics365.github.io/assets/Microsoft_Dyanmics_AX_2012_Test_Data_Transfer_Tool.png)
+![Image of Microsoft AX 2012 Test Data Transfer Tool](https://dynamics365.github.io/assets/Microsoft_Dyanmics_AX_2012_Test_Data_Transfer_Tool.png "ahihi")
 
 **_PROD Environment_**
 
