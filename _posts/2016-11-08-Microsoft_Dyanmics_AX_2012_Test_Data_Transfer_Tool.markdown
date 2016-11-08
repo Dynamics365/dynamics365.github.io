@@ -55,23 +55,18 @@ Tool can be used for two different purposes. One is to install **demo data** and
 
 10. Now, Live (Golden) environment's data will be exported. Prepare a file to export live(Golden) data on Live SQL Server. For instance `C:\DC_EXPORT`
 
-11. Type the following command in command line and initiate the exportation process:
-
-`DP.exe EXPORT Directory>> Database name>> Server>>`
-
+11. Type the following command in command line and initiate the exportation process:  
+`DP.exe EXPORT Directory>> Database name>> Server>>`  
 `DP.exe EXPORT C:\DC_EXPORT "MicrosoftDynamicsAX" "ServerName"`
 
 12. Copy the exported file `(C:\DC_EXPORT)` to DEV environment
 
 13. Stop DEV AOS service
 
-14. Type the following command in command line and initiate the importation process:
-
-
+14. Type the following command in command line and initiate the importation process:  
 `DP.exe IMPORT Directory>> Database name>> Server>>`
 
-
 15. Start DEV AOS service.
-------
->NOTE: DP.exe EXPORT/IMPORT commands must be run from the related directories
+
+*Note*: DP.exe EXPORT/IMPORT commands must be run from the related directories
 
