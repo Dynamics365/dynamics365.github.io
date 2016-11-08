@@ -7,9 +7,10 @@ categories: [general]
 tags: [fun, programming]
 ---
 
-here is concept of the evolution 
+here is concept of the evolution
 
 ![Evolution of programming languages](https://dynamics365.github.io/assets/the-evolution-of-computer-programming-languages-infographic.jpg "ahihi")
 
+### Summary
 
-
+![evolution_of_programming_languages-2](https://dynamics365.github.io/assets/evolution_of_programming_languages-2.png "ahaha")
