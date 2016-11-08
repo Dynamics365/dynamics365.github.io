@@ -37,7 +37,9 @@ Global expressions executes/works in Page Header and Footer parts only.
  `:` divides two numbers and returns a integer result  
 `Mod` divides two numbers and returns remainder only  
 `adds` two numbers and concatenation for two strings  
-`-` subtraction and indicates negative value for numeric values   
+`-` subtraction and indicates negative value for numeric values  
+
+<!--excerpt--> 
  
 ### Comparison
 
