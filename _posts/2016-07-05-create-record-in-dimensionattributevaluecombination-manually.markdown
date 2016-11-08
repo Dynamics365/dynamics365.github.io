@@ -9,11 +9,11 @@ tags: [xpp, programming, fidim]
 
 Sometime we need this `RecId` value in `DimansionAttributeValueCombination` Table for some reasons likes putting new dimension in `LedgerDimension` field in `LedgerJournalTrans` Table, or somewhere else.
 
-Suppose my Account structure likes: MainAcct - Dept - Woker - SubAcct - Item,
+Suppose my Account structure likes: _**MainAcct - Dept - Woker - SubAcct - Item**_,
 you can custom base on your struture.
 
 
-This code is for creating a record into `DimansionAttributeValueCombination` in code and then get RecID of this. 
+This code is for creating a record into `DimansionAttributeValueCombination` in code and then get `RecID` of this. 
 
  
 ```c++
