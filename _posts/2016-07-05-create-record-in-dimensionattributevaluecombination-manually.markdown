@@ -9,12 +9,14 @@ tags: [xpp, programming, fidim]
 
 Sometime we need this `RecId` value in `DimansionAttributeValueCombination` Table for some reasons likes putting new dimension in `LedgerDimension` field in `LedgerJournalTrans` Table, or somewhere else.
 
-Suppose my Account structure likes: MainAcct - Dept - Woker - SubAcct - Item
-you can custom base on your struture
+Suppose my Account structure likes: MainAcct - Dept - Woker - SubAcct - Item,
+you can custom base on your struture.
+
 
 This code is for creating a record into `DimansionAttributeValueCombination` in code and then get RecID of this. 
+
  
-```csharp
+```c++
 static void createDimensionAttributeValueCombination(Args _args)
 {
     DimensionAttributeValueContract     ValueContract;
