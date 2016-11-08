@@ -4,8 +4,9 @@ layout: post
 date: 2016-04-06 03:24:53.000000000 +07:00
 author: Max Nguyen
 categories: ssrs
-tags: [ssrs, expression]
+tags: [ssrs]
 ---
+
 Expressions are usually used for appearance of the data in a report, change properties of the fields, calculate some values and display them in a proper way, compares values between data of fields and then display them.
  
 # Types of Expressions  
@@ -160,253 +161,292 @@ Returns name of the day of week
 `Year` =year(Fields!BirthDate.Value)  
 Returns year of specified date  
 
-#### Math
+### Math
 
-Abs Returns the absolute value
-=Abs(-2.36)
+`Abs=Abs(-2.36)`
 
-BigMul Returns multiplication value of two specified numbers
-=BigMul(2,3)
+Returns the absolute value
 
-Ceiling Returns next highest value
-=Ceiling(2.67)
+`BigMul =BigMul(2,3)`
 
-Cos
-=Cos(2.33)
+Returns multiplication value of two specified numbers
+
+`Ceiling =Ceiling(2.67)`
+
+Returns next highest value
+
+`Cos=Cos(2.33)`
+
 Returns cos value for specified number
 
-Cosh
+`Cosh=Cosh(2.33)`
 Returns hyperbolic cos value
-=Cosh(2.33)
 
-DivRem
-=DivRem(23,2,5)
+`DivRem=DivRem(23,2,5)`
 
-Fix
-=Fix(23.89)
+`Fix=Fix(23.89)`
+
 Returns integer portion
 
-Floor
-=Floor(24.54)
+`Floor=Floor(24.54)`
+
 Returns largest integer
 
-Int
-=Int(24.78)
+`Int=Int(24.78)`
+
 Returns integer portion of a number
 
-Log
-=Log(24.78)
+`Log=Log(24.78)`
+
 Returns logarithm value
 
-Log10
-=Log10(24.78)
+`Log10=Log10(24.78)`
+
 Returns the base 10 logaritm value
 
-Max
-=Max(Fields!EmployeeID.Value)
+`Max=Max(Fields!EmployeeID.Value)`
+
 Returns larger value in the specified values
 
-Min
-=Min(Fields!EmployeeID.Value)
+`Min=Min(Fields!EmployeeID.Value)`
+
 Returns smaller value in the specified values
 
-Pow
-=Pow(Fields!EmployeeID.Value,2)
+`Pow=Pow(Fields!EmployeeID.Value,2)`
+
 Returns power of value for specified number
 
-Rnd
-=Rnd()
+`Rnd=Rnd()`
+
 Returns a random number
 
-Round
-=Round(43.16)
+`Round=Round(43.16)`
+
 Returns rounded value to the nearest integer
 
-Sign
-=Sign(-34534543)
+`Sign=Sign(-34534543)`
 
-Sin
-=Sin(Fields!EmployeeID.Value)
+`Sin=Sin(Fields!EmployeeID.Value)`
 Returns the sin value
 
-Sinh
-=Sinh(Fields!EmployeeID.Value)
+`Sinh=Sinh(Fields!EmployeeID.Value)`
 Returns the hyperbolic sin value
 
-Sqrt
-=Sqrt(Fields!EmployeeID.Value)
-Returns square root value
 
-Tan
-=Tan(Fields!EmployeeID.Value)
-Returns the tan value
+### Inspection
 
-Tanh
-=Tanh(Fields!EmployeeID.Value)
-Returns the hyperbolic tan value
+`IsArray
+=IsArray(Fields!EmployeeID.Value)`
 
-#### Inspection
-
-IsArray
-=IsArray(Fields!EmployeeID.Value)
 Returns a boolean value indicating whether the specified object is array or not
 
-IsDate
-=IsDate(Fields!BirthDate.Value)
+`IsDate
+=IsDate(Fields!BirthDate.Value)`
+
 Returns a boolean value indicating whether the specified object is Date or not
 
-IsNothing
-=IsNothing(Fields!EmployeeID.Value)
+`IsNothing
+=IsNothing(Fields!EmployeeID.Value)`
+
 Returns a boolean value depends on specified object is Nothing or not
 
-IsNumeric
-=IsNumeric(Fields!EmployeeID.Value)
+`IsNumeric
+=IsNumeric(Fields!EmployeeID.Value)`
+
 Returns a boolean value depends on specified object is Numeric value or not
 
-#### Program Flow
+### Program Flow
 
-Choose
-=CHOOSE(3, "Red", "Yellow", "Green", "White")
+`Choose
+=CHOOSE(3, "Red", "Yellow", "Green", "White")`
+
 Returns a specific value using index in a list of arguments
 
-IIf
-=IIF(Fields!EmployeeID.Value>10,"Yes","No")
+`IIf
+=IIF(Fields!EmployeeID.Value>10,"Yes","No")`
+
 Returns any one value depends on condition
 
-Switch
-=Switch(Fields!EmployeeID.Value<10,"Red",
-Fields!EmployeeID.Value>10,"Green")
+`Switch
+=Switch(Fields!EmployeeID.Value<10,"Red",Fields!EmployeeID.Value>10,"Green")`
+
 Evaluates list of expressions
 
-#### Aggregate
+### Aggregate
 
-Avg
-=Avg(Fields!EmployeeID.Value)
+`Avg
+=Avg(Fields!EmployeeID.Value)`
+
 Returns average value for all specified values
 
-Count
-=Count(Fields!EmployeeID.Value)
+`Count
+=Count(Fields!EmployeeID.Value)`
+
 Returns count of all specified values
 
-CountDistinct
-=CountDistinct(Fields!EmployeeID.Value)
+`CountDistinct
+=CountDistinct(Fields!EmployeeID.Value)`
+
 Returns count of all distinct values
 
-CountRows
-=CountRows()
+`CountRows
+=CountRows()`
+
 Returns count of rows
 
-First
-=First(Fields!EmployeeID.Value)
+`First
+=First(Fields!EmployeeID.Value)`
+
 Returns first for all specified values
 
-Last
-=Last(Fields!EmployeeID.Value)
+`Last
+=Last(Fields!EmployeeID.Value)`
+
 Returns last for all specified values
 
-Max
-=Max(Fields!EmployeeID.Value)
+`Max
+=Max(Fields!EmployeeID.Value)`
+
 Returns max for all specified values
 
-Min
-=Min(Fields!EmployeeID.Value)
+`Min
+=Min(Fields!EmployeeID.Value)`
+
 Returns min for all specified values
 
-StDev
-=StDev(Fields!EmployeeID.Value)
+`StDev
+=StDev(Fields!EmployeeID.Value)`
+
 Returns standard deviation value
 
-StDevP
-=StDevP(Fields!EmployeeID.Value)
+`StDevP
+=StDevP(Fields!EmployeeID.Value)`
+
 Returns Population standard deviation value
 
-Sum
-=Sum(Fields!EmployeeID.Value)
+`Sum
+=Sum(Fields!EmployeeID.Value)`
+
 Returns sum of all values
 
-Var
-=Var(Fields!EmployeeID.Value)
+`Var
+=Var(Fields!EmployeeID.Value)`
+
 Returns variance of all values
 
-VarP
-=Var(Fields!EmployeeID.Value)
+`VarP
+=Var(Fields!EmployeeID.Value)`
+
 Returns population variance of all values
 
-RunningValue
-=RunningValue(Fields!EmployeeID.Value,sum,nothing)
+`RunningValue
+=RunningValue(Fields!EmployeeID.Value,sum,nothing)`
+
 Returns running aggregate of the specified
 expression
 
-#### Financial
+### Financial
 
-DDB DDB (Double Declining Balance) method computes depreciation of an asset for a specified period.
-Syntax: DDB (Cost, Salvage, life, period, factor)
+`DDB DDB` (Double Declining Balance) method computes depreciation of an asset for a specified period.
 
-FV FV (Future Value) of an investment based on periodic, constant payments and a constant interest rate.
-Syntax: FV (rate, nper, pmt, pv, type)
+Syntax: `DDB (Cost, Salvage, life, period, factor)`
 
-IPmt IPmt (Interest Payment) for a given period for an investment based on periodic, constant payment and a constant interest rate
-IPMT (rate, per, nper, pv, fv, type)
+`FV FV` (Future Value) of an investment based on periodic, constant payments and a constant interest rate.
 
-IRR IRR (Interest Rate of Return) for a series of cash flows represented by the numbers in values.
-IRR(values,guess)
+Syntax: `FV (rate, nper, pmt, pv, type)`
 
-MIRR MIRR ( Modified internal rate of return ) for a series of periodic cash flows
-MIRR(values,finance_rate,reinvest_rate)
+`IPmt IPmt` (Interest Payment) for a given period for an investment based on periodic, constant payment and a constant interest rate
 
-NPer Returns the number of periods for an investment based on periodic, constant payments and a constant interest rate.
-NPER (rate, pmt, pv, fv, type)
+`IPMT (rate, per, nper, pv, fv, type)`
 
-NPV Calculates the net present value of an investment by using a discount rate and a series of future payments (negative values) and income (positive values).
-Syntax: NPV(rate,value1,value2, ...)
+`IRR IRR` (Interest Rate of Return) for a series of cash flows represented by the numbers in values.
 
-Pmt Calculates the payment for a loan based on constant payments and a constant interest rate.
-PMT(rate,nper,pv,fv,type)
+`IRR(values,guess)`
+
+`MIRR MIRR` ( Modified internal rate of return ) for a series of periodic cash flows
+
+`MIRR(values,finance_rate,reinvest_rate)`
+
+`NPer` Returns the number of periods for an investment based on periodic, constant payments and a constant interest rate.
+
+`NPER (rate, pmt, pv, fv, type)`
+
+`NPV` Calculates the net present value of an investment by using a discount rate and a series of future payments (negative values) and income (positive values).
+
+Syntax: `NPV(rate,value1,value2, ...)`
+
+`Pmt` Calculates the payment for a loan based on constant payments and a constant interest rate.
+
+`PMT(rate,nper,pv,fv,type)`
 
 PPmt Returns the payment on the principal for a given period for an investment based on periodic, constant payments and a constant interest rate.
-PPMT(rate,per,nper,pv,fv,type)
+
+`PPMT(rate,per,nper,pv,fv,type)`
 
 PV Returns the present value of an investment. The present value is the total amount that a series of future payments is worth now. For example, when you borrow money, the loan amount is the present value to the lender.
-PV(rate,nper,pmt,fv,type)
+
+`PV(rate,nper,pmt,fv,type)`
 
 Rate Returns the interest rate per period of an annuity. RATE is calculated by iteration and can have zero or more solutions.
-RATE(nper,pmt,pv,fv,type,guess)
+
+`RATE(nper,pmt,pv,fv,type,guess)`
 
 SLN Returns the straight-line depreciation of an asset for one period.
-SLN(cost,salvage,life)
+
+`SLN(cost,salvage,life)`
 
 SYD Returns the sum-of-years' digits depreciation of an asset for a specified period.
-SYD(cost,salvage,life,per)
+`SYD(cost,salvage,life,per)`
 
-#### Conversion
+### Conversion
 
-CBool Convert to boolean
-=CBool(fields!EmployeeID.Value)
-CByte Convert to byte
-CChar Convert to char
-CDate Convert to date
-CDbl Convert to double
-CDec Convert to decimal
-CInt Convert to integer
-CLng Convert to long
-CObj Convert to object
-CShort Convert to short
-CSng Convert to single
-CStr Convert to string
-Fix =Fix(32.342143)
-Returns integer portion of a number
-Hex =Hex(Fields!EmployeeID.Value)
+`CBool` Convert to boolean
+
+`CByte` Convert to byte
+
+`CChar` Convert to char
+
+`CDate` Convert to date
+
+`CDbl` Convert to double
+
+`CDec` Convert to decimal
+
+`CInt` Convert to integer
+
+`CLng` Convert to long
+
+`CObj` Convert to object
+
+`CShort` Convert to short
+
+`CSng` Convert to single
+
+`CStr` Convert to string
+
+`Hex =Hex(Fields!EmployeeID.Value)`
+
 Returns a hexadecimal value of a number
-Int =Int(43.44)
+
+`Int =Int(43.44)`
+
 Returns integer portion of a number
-Oct =Oct(Fields!EmployeeID.Value)
+
+`Oct =Oct(Fields!EmployeeID.Value)`
+
 Returns a octal value of a number
-Str =Str(Fields!EmployeeID.Value)
+
+`Str =Str(Fields!EmployeeID.Value)`
+
 Returns string value of a number
-Val =Val("32.43")
+
+`Val =Val("32.43")`
+
 Returns numeric value in string format
 
-#### Miscellaneous
 
-Previous =Previous(Fields!EmployeeID.Value)
+### Miscellaneous
+
+`Previous =Previous(Fields!EmployeeID.Value)`
+
 Returns the previous value
