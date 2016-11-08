@@ -1,7 +1,7 @@
 ---
 title: Expressions or Functions used in SSRS
 layout: post
-date: 2016-04-06 03:24:53.000000000 +07:00
+date: 2016-10-07 03:24:53.000000000 +09:00
 author: Max Nguyen
 categories: ssrs
 tags: [ssrs]
