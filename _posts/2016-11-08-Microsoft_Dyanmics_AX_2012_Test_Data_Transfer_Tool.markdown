@@ -57,9 +57,9 @@ Tool can be used for two different purposes. One is to install **demo data** and
 
 11. Type the following command in command line and initiate the exportation process:
 
-. `DP.exe EXPORT Directory>> Database name>> Server>>`
+..*`DP.exe EXPORT Directory>> Database name>> Server>>`
 
-. `DP.exe EXPORT C:\DC_EXPORT "MicrosoftDynamicsAX" "ServerName"`
+..*`DP.exe EXPORT C:\DC_EXPORT "MicrosoftDynamicsAX" "ServerName"`
 
 12. Copy the exported file `(C:\DC_EXPORT)` to DEV environment
 
@@ -67,8 +67,9 @@ Tool can be used for two different purposes. One is to install **demo data** and
 
 14. Type the following command in command line and initiate the importation process:
 
-`DP.exe IMPORT Directory>> Database name>> Server>>`
+...`DP.exe IMPORT Directory>> Database name>> Server>>`
 
 15. Start DEV AOS service.
+
 >NOTE: DP.exe EXPORT/IMPORT commands must be run from the related directories
 
