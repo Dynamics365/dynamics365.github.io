@@ -61,4 +61,37 @@ static void createDimensionAttributeValueCombination(Args _args)
 }
 ```
 
+or you can use this way
+
+```csharp
+static void createDimension(Args _args)
+{
+    Struct      struct = new Struct();
+    container   financialDimension;
+    LedgerDimensionAccount legder;
+
+    //// Get main account with structure : Mainacct - DE - woker - subacct - item
+    struct.add('Department', '6020');
+    struct.add('Item', '220006');
+    struct.add('SubAcct', '교보생명');
+    struct.add('Worker', '000002');
+
+    financialDimension += struct.fields();
+    financialDimension += struct.fieldName(1);
+    financialDimension += struct.valueIndex(1);
+    financialDimension += struct.fieldName(2);
+    financialDimension += struct.valueIndex(2);
+    financialDimension += struct.fieldName(3);
+    financialDimension += struct.valueIndex(3);
+    financialDimension += struct.fieldName(4);
+    financialDimension += struct.valueIndex(4);
+
+    legder = DimensionDefaultingService::serviceCreateLedgerDimension(
+                            DimensionStorage::getDefaultAccountForMainAccountNum("910001"),
+                            AxdDimensionUtil::getDimensionAttributeValueSetId(financialDimension));
+    info(strFmt("%1",legder));
+
+}
+```
+
 
