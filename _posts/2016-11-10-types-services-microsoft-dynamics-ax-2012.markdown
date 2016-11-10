@@ -21,6 +21,7 @@ A document service is composed of the following components:
 When creating document services, developers need to make sure **that the business object is mapped correctly to the document query**. The document services framework will handle all other things such as the serialization and deserialization of XML, date effectiveness, and so on.
 
 Document services can be deployed using the integration ports and all available adapters can be used.
+<!--excerpt-->
 
 # Custom services
 
@@ -60,7 +61,7 @@ The resulting rows will be returned as an ADO.NET DataSet object. This can be ve
 
 The query service can be found at the following address:
 
-'net.tcp://hostname:port/DynamicsAX/Services/QueryService'
+`net.tcp://hostname:port/DynamicsAX/Services/QueryService`
 
 
 # Metadata service
@@ -69,7 +70,7 @@ This system service can be used to retrieve metadata information about the AOT. 
 
 The metadata service can be found at the following address:
 
-'net.tcp://hostname:port/DynamicsAX/Services/MetaDataService'
+`net.tcp://hostname:port/DynamicsAX/Services/MetaDataService`
 
 
 # User session service
@@ -78,7 +79,7 @@ The third system service is the user session service. With this service you can 
 
 The user session service can be found at the following address:
 
-'net.tcp://hostname:port/DynamicsAX/Services/UserSessionService'
+`net.tcp://hostname:port/DynamicsAX/Services/UserSessionService`
 
 # The right service for the right job
 
