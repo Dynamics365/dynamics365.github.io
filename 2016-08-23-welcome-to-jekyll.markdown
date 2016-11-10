@@ -12,5 +12,5 @@ to this side.
 
 
 I will take time to move my post to this site.
-![AX Development](http://axdeveloping.com)
-![Blogspot](http://devdax.blogspot.com)
+[AX Development](http://axdeveloping.com)
+[Blogspot](http://devdax.blogspot.com)
