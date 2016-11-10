@@ -1,4 +1,4 @@
 ---
-slug: serivces
+slug: services
 name: Services in Dynamics AX
 ---

@@ -45,7 +45,7 @@ These services are new since the release of Microsoft Dynamics AX 2012. The main
 
 There are three system services available for use in Microsoft Dynamics AX 2012: the query service, the metadata service, and the user session service.
 
-##
+
 # Query service
 
 The query service provides the means to run queries of the following three types:
@@ -62,7 +62,7 @@ The query service can be found at the following address:
 
 'net.tcp://hostname:port/DynamicsAX/Services/QueryService'
 
-##
+
 # Metadata service
 
 This system service can be used to retrieve metadata information about the AOT. Consumers of this service can get information such as which tables, classes, forms, and menu items are available in the system. An example usage of this service could be retrieving information about the AOT and using it in a dashboard application running on the Microsoft .NET Framework.
@@ -71,7 +71,7 @@ The metadata service can be found at the following address:
 
 'net.tcp://hostname:port/DynamicsAX/Services/MetaDataService'
 
-##
+
 # User session service
 
 The third system service is the user session service. With this service you can retrieve information about the caller's user session. This information includes the user's default company, language, preferred calendar, time zone, and currency.
