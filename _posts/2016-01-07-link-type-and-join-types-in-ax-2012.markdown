@@ -78,8 +78,8 @@ AND EXISTS (SELECT 'x'
 
 *The differences between InnerJoin and ExistJoin are as follows:*
 
-_ When the join type is **_ExistJoin_**, the search ends after the first match has been found.
++ When the join type is **_ExistJoin_**, the search ends after the first match has been found.
 
-_ When the join type is **_InnerJoin_**, all matching records are searched for.
++ When the join type is **_InnerJoin_**, all matching records are searched for.
 
-_ **_NotExistJoin_**: `Combined data source` Select records from the main table that do not have a match in the joined table.
++ **_NotExistJoin_**: `Combined data source` Select records from the main table that do not have a match in the joined table.
