@@ -23,6 +23,7 @@ For example, you can scroll a list of orders where you do not want to review the
 
 **InnerJoin** `Combined data source` select the record from the main table that matches records in the joined table and vice versa.
 
+
 ```sql
 //X++
 select AccountNum from custTable
@@ -36,9 +37,11 @@ WHERE ((T1.PARTITION=?) AND (T1.DATAAREAID=?))
    AND (T2.CUSTGROUP=T1.CUSTGROUP))
 ```
 
+
 There is one record for each match. Records without related records in the other data source are eliminated from the result.
 
 **Outer Join**: `Combined data source` select the records from the main table. The records are retrieved whether they have matching records in the joined table
+
 
 ```sql
 //X++:
@@ -53,7 +56,9 @@ AND (T1.ACCOUNTNUM=T2.CUSTACCOUNT))
 WHERE ((T1.PARTITION=?) AND (T1.DATAAREAID=?))
 ```
 
+
 **Exist Join**: `Combined data source`The data source retrieves a record from the main table for each matching record in the joined table.
+
 
 ```sql
 //X++:
@@ -70,7 +75,11 @@ AND EXISTS (SELECT 'x'
               AND  (T1.CUSTACCOUNT=T2.ACCOUNTNUM)))
 ```
 
+
 *The differences between InnerJoin and ExistJoin are as follows:*
-* When the join type is **_ExistJoin_**, the search ends after the first match has been found.
-* When the join type is **_InnerJoin_**, all matching records are searched for.
-* **_NotExistJoin_**: `Combined data source` Select records from the main table that do not have a match in the joined table.
+
+_ When the join type is **_ExistJoin_**, the search ends after the first match has been found.
+
+_ When the join type is **_InnerJoin_**, all matching records are searched for.
+
+_ **_NotExistJoin_**: `Combined data source` Select records from the main table that do not have a match in the joined table.
