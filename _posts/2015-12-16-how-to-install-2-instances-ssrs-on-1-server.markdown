@@ -25,6 +25,7 @@ Reporting service component uses **business connector** to connect to AX, and it
 
 1. After installed second instance into `C:\Program Files\Microsoft SQL Server\MSRS12.InstanceName\Reporting Services\ReportServer\bin`, we need to create one `Dynamics.AX.ReportConfiguration.axc` file by **AX configuration client** with second AOS information.
 
+
 ![how-to-install-2-instances-ssrs-on-1-server-2](https://dynamics365.github.io/assets/how-to-install-2-instances-ssrs-on-1-server-2.jpg)
 
 
@@ -33,6 +34,7 @@ Reporting service component uses **business connector** to connect to AX, and it
 `Install-AXReportInstanceExtensions –ReportServerInstanceName [SSRSInstanceName] -Credential [DomainNameUserName]`
 
 ![how-to-install-2-instances-ssrs-on-1-server-3](https://dynamics365.github.io/assets/how-to-install-2-instances-ssrs-on-1-server-3.jpg)
+
 
 3. goto `C:\Program Files\Microsoft SQL Server\MSRS12.SecondInstance\Reporting Services\ReportServer` fix `fileconfi` with value from `Execution` to `FullTrust`
 
