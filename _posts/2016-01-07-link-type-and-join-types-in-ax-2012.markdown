@@ -17,7 +17,7 @@ tags: [trick, linktype, jointype]
 
 For example, you can scroll a list of orders where you do not want to review the lines associated with the order until you stop scrolling.
 
-**Passive**: `Parent and child` Linked child data sources are not updated automatically. Updates of the child data source must be programmed on theactivemethod of the master data source.
+**Passive**: `Parent and child` Linked child data sources are not updated automatically. Updates of the child data source must be programmed on the `active()` method of the master data source.
 
 # Join Types:
 
