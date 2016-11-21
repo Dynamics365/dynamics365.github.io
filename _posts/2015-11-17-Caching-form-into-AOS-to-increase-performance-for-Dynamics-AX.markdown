@@ -7,12 +7,14 @@ categories: [ax2012, sourcecontrol]
 tags: [trick, aos, programming]
 ---
 
-Scenario:
+**Scenario:**
+
 Normally when we open form for the first time in Dynamics AX, it will take sometimes to compilte and cache into AOS. That's why at second time always faster.
 If we often restart AOS, how can we keep performance ?
 
 
-Solution:
+**Solution:**
+
 After restart AOS we can let some scripts run to open up some often used forms then cache to AOS, then close those forms.
 
 Here is the code
