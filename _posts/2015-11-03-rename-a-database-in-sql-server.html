@@ -1,33 +1,22 @@
 ---
-layout: post
 title: Rename a Database in SQL Server
+layout: post
 date: 2015-11-03 03:45:13.000000000 +07:00
-type: post
-published: true
-status: publish
-categories:
-- SQL Server
-tags:
-- Rename a Database
-- SQL Server
-- Take Offline
-meta:
-  _publicize_pending: '1'
-  _edit_last: '60509763'
-  original_post_id: '335'
-  _wp_old_slug: '335'
-author:
-  login: luannx
-  email: luan52@outlook.com
-  display_name: luannx
-  first_name: ''
-  last_name: ''
+author: Max Nguyen
+categories: [general, sql]
+tags: [trick, programming]
 ---
-<ol>
-<li>Open Microsoft SQL Server Management Studio.</li>
-<li>Connect to the server wherein the DB you want to rename is located.</li>
-<li>Modify the following script and run it
-<pre>-- Replace all MyDBs with the name of the DB you want to change its name
+
+1. Open Microsoft SQL Server Management Studio.
+
+
+2. Connect to the server wherein the DB you want to rename is located. 
+
+
+3. Modify the following script and run it
+
+```sql
+-- Replace all MyDBs with the name of the DB you want to change its name
 USE [MyDB];
 -- Changing Physical names and paths
 -- Replace all NewMyDB with the new name you want to set for the DB
@@ -37,9 +26,14 @@ ALTER DATABASE MyDB MODIFY FILE (NAME = ' MyDB ', FILENAME = 'C:...NewMyDB.mdf')
 ALTER DATABASE MyDB MODIFY FILE (NAME = ' MyDB _log', FILENAME = 'C:...NewMyDB_log.ldf');
 -- Changing logical names
 ALTER DATABASE MyDB MODIFY FILE (NAME = MyDB, NEWNAME = NewMyDB);
-ALTER DATABASE MyDB MODIFY FILE (NAME = MyDB _log, NEWNAME = NewMyDB_log);</pre>
-</li>
-<li>Right click on the DB and select Tasks&gt;Take Offline</li>
-<li>Go to the location that MDF and LDF files are located and rename them exactly as you specified in first two alter commands. If you changed the folder path, then you need to move them there.</li>
-<li>Go back to Microsoft SQL Server Management Studio and right click on the DB and select Tasks&gt;Bring Online.</li>
-</ol>
+ALTER DATABASE MyDB MODIFY FILE (NAME = MyDB _log, NEWNAME = NewMyDB_log);
+```
+
+4. Right click on the DB and select Tasks>Take Offline
+
+
+5. Go to the location that MDF and LDF files are located and rename them exactly as you specified in first two alter commands. If you changed the folder path, then you need to move them there.
+
+
+6. Go back to Microsoft SQL Server Management Studio and right click on the DB and select Tasks>Bring Online.
+
