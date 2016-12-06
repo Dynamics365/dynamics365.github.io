@@ -1,24 +1,12 @@
 ---
+title: The Type system of Dynamics AX 2012
 layout: post
-title: Assigning Shortcut Keys to Dynamics AX 2012 POS Buttons
-date: 2015-09-14 04:15:21.000000000 +07:00
-type: post
-published: true
-status: publish
-categories: []
-tags: []
-meta:
-  _publicize_pending: '1'
-  _edit_last: '60509763'
-  original_post_id: '133'
-  _wp_old_slug: '133'
-author:
-  login: luannx
-  email: luan52@outlook.com
-  display_name: luannx
-  first_name: ''
-  last_name: ''
+date: 2016-11-24 08:22:39.000000000 +07:00
+author: Max Nguyen
+categories: [ax2012, trick]
+tags: [trick, programming]
 ---
+
 <p>Although the POS screens are designed to be touched, you may also want to give the power POS users the ability to navigate through the screens with shortcuts and hot keys on the keyboard.</p>
 <p>In this example we will show how you can easily configure shortcut keys through the POS designer.<span id="more-1101"></span></p>
 <h2>How to do it…</h2>
