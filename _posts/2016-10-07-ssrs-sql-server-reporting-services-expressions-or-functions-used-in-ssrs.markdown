@@ -39,7 +39,7 @@ Global expressions executes/works in Page Header and Footer parts only.
 `adds` two numbers and concatenation for two strings  
 `-` subtraction and indicates negative value for numeric values  
 
-<!--excerpt--> 
+<!--more-->
  
 ### Comparison
 

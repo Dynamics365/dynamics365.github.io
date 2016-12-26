@@ -9,7 +9,20 @@ tag: [trick, programming, posting]
 
 Base on JournalId on LedgerJournalTable you can use code below for posting into transactions
 
-```Csharp
+{% highlight csharp %}
+//Contract class
+[
+    DataMemberAttribute('gJournalId'),
+    SysOperationDisplayOrderAttribute('1')
+]
+public LedgerJournalId parmJournalNum(LedgerJournalId _journalId = gJournalId)
+{
+    gJournalId = _journalId;
+
+    return gJournalId;
+}
+
+//Processing class
 [SysEntryPointAttribute]
 public void process(MAV_PostCustPaymentJourContract _contract)
 {
@@ -23,18 +36,4 @@ public void process(MAV_PostCustPaymentJourContract _contract)
         postCustPaymentJournal.run();
     }
 }
-```
-
-
-```Csharp
-[
-    DataMemberAttribute('gJournalId'),
-    SysOperationDisplayOrderAttribute('1')
-]
-public LedgerJournalId parmJournalNum(LedgerJournalId _journalId = gJournalId)
-{
-    gJournalId = _journalId;
-
-    return gJournalId;
-}
-```
+{% endhighlight %}
