@@ -7,7 +7,7 @@ categories: [ax2012, trick]
 tag: [trick, programming, posting]
 ---
 
-Base on JournalId on LedgerJournalTable you can use code below for posting into transactions
+Base on `JournalId` on `LedgerJournalTable` you can use code below for posting into transactions
 
 {% highlight csharp %}
 //Contract class
