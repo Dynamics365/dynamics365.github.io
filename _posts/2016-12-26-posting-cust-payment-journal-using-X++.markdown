@@ -1,9 +1,40 @@
 ---
-title: Number sequence farmework in Dynamics AX 2012
-layout: post
-date: 2016-12-21 00:00:00.000000000 +9:00
+title: posting Cust payment journal using X++
+layout: dark-post
+date: 2016-12-26 00:00:00.000000000 +9:00
 author: Max Nguyen
-categories: [ax2012, tools]
-tag: [trick]
+categories: [ax2012, trick]
+tag: [trick, programming, posting]
 ---
 
+Base on JournalId on LedgerJournalTable you can use code below for posting into transactions
+
+```Csharp
+[SysEntryPointAttribute]
+public void process(MAV_PostCustPaymentJourContract _contract)
+{
+    LedgerJournalTable      ledgerJournalTable;
+    LedgerJournalCheckPost  postCustPaymentJournal;
+
+    ledgerJournalTable = LedgerJournalTable::find(_contract.parmJournalNum());
+    if (ledgerJournalTable)
+    {
+        postCustPaymentJournal = LedgerJournalCheckPost::newLedgerJournalTable(ledgerJournalTable, NoYes::Yes);
+        postCustPaymentJournal.run();
+    }
+}
+```
+
+
+```Csharp
+[
+    DataMemberAttribute('gJournalId'),
+    SysOperationDisplayOrderAttribute('1')
+]
+public LedgerJournalId parmJournalNum(LedgerJournalId _journalId = gJournalId)
+{
+    gJournalId = _journalId;
+
+    return gJournalId;
+}
+```

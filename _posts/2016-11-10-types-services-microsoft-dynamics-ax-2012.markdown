@@ -21,7 +21,8 @@ A document service is composed of the following components:
 When creating document services, developers need to make sure **that the business object is mapped correctly to the document query**. The document services framework will handle all other things such as the serialization and deserialization of XML, date effectiveness, and so on.
 
 Document services can be deployed using the integration ports and all available adapters can be used.
-<!--excerpt-->
+
+<!--more-->
 
 # Custom services
 
