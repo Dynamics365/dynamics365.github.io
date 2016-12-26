@@ -22,8 +22,8 @@ When creating document services, developers need to make sure **that the busines
 
 Document services can be deployed using the integration ports and all available adapters can be used.
 
-<!--more-->
 <div markdown="0"><a href="https://dynamics365.github.io/services/ax2012/types-services-microsoft-dynamics-ax-2012/" class="btn btn-info">Continute reading</a></div>
+<!--more-->
 
 # Custom services
 

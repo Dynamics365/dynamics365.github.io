@@ -16,6 +16,9 @@ easierly, please take a look the picture below
 
 *__Figure 1__: Two SSRS instance are running same server.*
 
+<div markdown="0"><a href="https://dynamics365.github.io/ax2012/ssrs/how-to-install-2-instances-ssrs-on-1-server/" class="btn btn-info">Continute reading</a></div>
+<!--more-->
+
 ## Problems:
 First you need to install 2 SSRS instance in same server, and install `reporting service component` for first AOS, this step is very simple. The problems come when we install second `reporting service component` for second AOS.
 

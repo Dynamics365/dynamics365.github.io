@@ -25,7 +25,7 @@ Technical information (for administrator):
 
 _Error 2_
 
-`Could not load file or assembly 'Microsoft.TeamFoundation.Client, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' or one of its dependencies. The system cannot find the file specified.`
+*Could not load file or assembly 'Microsoft.TeamFoundation.Client, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' or one of its dependencies. The system cannot find the file specified.*
 
 
 Client computers that are not running Visual Studio 2010 must have the [Team Foundation Server 2010 SP1 Object Model](https://visualstudiogallery.msdn.microsoft.com/a37e19fb-3052-4fc9-bef7-4a4682069a75) installed to use TFS source control with Microsoft Dynamics AX.
