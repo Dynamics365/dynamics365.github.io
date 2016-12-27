@@ -18,11 +18,11 @@ There are two types of Products in 2012 they are:
 
 1. **Product**
 
-     _*Product information management/Common/Products/Products*_
+     _Product information management/Common/Products/Products_
 
 2. **Product Master**
 
-   _*Product information management/Common/Products/Products master*_
+   _Product information management/Common/Products/Products master_
 
    a. **Variants:**
 
@@ -60,14 +60,16 @@ Ax provides us standard services for this purpose, so we don’t need to create 
 
 | Service | Purpose |
 |:--------|:-------:|
-| EcoResProductService   | Create products (all types). The service can also be used to                            retrieve data that has already been created (Create Product details in The EcoRes tables). |
+| `EcoResProductService`   | Create products (all types). The service can also be used to                            retrieve data that has already been created (Create Product details in The EcoRes tables). |
 |----
-| EcoResProductMasterDimValueService   | Specify values of product dimensions for a product master. These values become available for the creation of product variants. The service can also be used to retrieve data that has already been created.| 
+| `EcoResProductMasterDimValueService`   | Specify values of product dimensions for a product master. These values become available for the creation of product variants. The service can also be used to retrieve data that has already been created.| 
 |----
-| ItemService   | Release distinct products and product masters. The service can also be used to retrieve data that has already been created.|
+| `ItemService`   | Release distinct products and product masters. The service can also be used to retrieve data that has already been created.|
 |----
-| InventDimCombinationService   | Release product variants. The service can also be used to retrieve data that has already been created.|
+| `InventDimCombinationService`   | Release product variants. The service can also be used to retrieve data that has already been created.|
 {: rules="groups"}
+
+we have 4 steps
 
 1. Create 4 AIF inbound services against Services operation above and active it
 `http://DEV-ERP:8103/DynamicsAx/Services/BCEcoResProduct`
@@ -413,7 +415,7 @@ static void releaseProductVariants()
 
 Just for example, in `main` I only create Distinct product and release it, but you can use another method to create master, variant, masterDim and so on.
 
-    4.Try to run it and here is a result
+    4. Try to run it and here is a result
 
 ![](https://dynamics365.github.io/assets/CRUD-Items,-products,-products-master-dimension,-variants-using-AIF-in-Dynamics-AX-2012-R3-02.png)
 
