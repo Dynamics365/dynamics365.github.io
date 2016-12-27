@@ -1,7 +1,7 @@
 ---
 layout: page
-title: About him
-permalink: /about/
+title: About
+share: true
 ---
 
 This blog is owned and maintained by Max Nguyen
