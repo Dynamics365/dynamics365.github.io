@@ -22,6 +22,7 @@
             </div>
         {% endif %}
       <h1 class="post-title entry-title">{{ page.title }}</h1>
+	  {% include advertisements_footer.html %}
       {{ content }}
 	  <!-- add google adsense -->
 	  {% include advertisements.html %}
@@ -36,13 +37,12 @@
     {% include author.html %}
 	
     {% if page.comments != false and site.disqus_shortname %}<section id="disqus_thread"></section><!-- /#disqus_thread -->{% endif %}
-	{% include advertisements_footer.html %}
     {% if site.related_posts.size > 0 %}{% include read-more.html %}{% endif %}
   </article>
 </div><!-- /#main -->
 
 {% include scripts.html %}
-
+{% include advertisements_footer.html %}
 <div class="footer-wrapper">
   <footer role="contentinfo">
     {% include footer.html %}
