@@ -64,160 +64,160 @@ In Class, I will write method to return list of `EnityKey` PurchId
 
 {% highlight csharp %}
 private static EntityKey[] EntityForPurchId(string purchId)
-        {
-            KeyField field = new KeyField()
-            {
-                Field = "PurchId",
-                Value = purchId
-            };
+{
+	KeyField field = new KeyField()
+	{
+		Field = "PurchId",
+		Value = purchId
+	};
 
-            EntityKey key = new EntityKey()
-            {
-                KeyData = new[] { field }
-            };
+	EntityKey key = new EntityKey()
+	{
+		KeyData = new[] { field }
+	};
 
-            return new[] { key };
-        }
+	return new[] { key };
+}
 {% endhighlight %}		
 		
 `Code for create purchase order `
 
 {% highlight csharp %}
-		var dim = new AxdEntity_InventDim()
-		{
-			InventSiteId = "DN",
-			InventLocationId = "F10-S120",
-			InventBatchId = "BATCH001"
-		};
+var dim = new AxdEntity_InventDim()
+{
+	InventSiteId = "DN",
+	InventLocationId = "F10-S120",
+	InventBatchId = "BATCH001"
+};
 
-		var purchLine = new AxdEntity_PurchLine()
-		{
-			ItemId = "220067",
-			PurchQty = 15,
-			PurchUnit=  "ea",
+var purchLine = new AxdEntity_PurchLine()
+{
+	ItemId = "220067",
+	PurchQty = 15,
+	PurchUnit=  "ea",
 
-			InventDim = new AxdEntity_InventDim[] { dim }
-		};
+	InventDim = new AxdEntity_InventDim[] { dim }
+};
 
 
-		var purchTable = new AxdEntity_PurchTable()
-		{
-			OrderAccount = "101-01-75441",
-			LanguageId = "en-us",
-			CurrencyCode = "KRW",
-			PurchName = "AIF PO Test",
-			PurchLine = new AxdEntity_PurchLine[] { purchLine }
+var purchTable = new AxdEntity_PurchTable()
+{
+	OrderAccount = "101-01-75441",
+	LanguageId = "en-us",
+	CurrencyCode = "KRW",
+	PurchName = "AIF PO Test",
+	PurchLine = new AxdEntity_PurchLine[] { purchLine }
 
-		};
+};
 
-		AxdMav_PurchOrderService purchOrder = new AxdMav_PurchOrderService();
-		
-		purchOrder.PurchTable = new AxdEntity_PurchTable[] { purchTable };
+AxdMav_PurchOrderService purchOrder = new AxdMav_PurchOrderService();
 
-		CallContext callContext = new CallContext
-		{
-			Company = "bgr",
-			Language = "en-us"
-		};
+purchOrder.PurchTable = new AxdEntity_PurchTable[] { purchTable };
 
-		Mav_PurchOrderServiceServiceClient client = new Mav_PurchOrderServiceServiceClient();
+CallContext callContext = new CallContext
+{
+	Company = "bgr",
+	Language = "en-us"
+};
 
-		try
-		{
-			EntityKey[] purchOrderCreatedEntity = client.create(callContext, purchOrder);
-			EntityKey purchOrderCreated = (EntityKey)purchOrderCreatedEntity.GetValue(0);
+Mav_PurchOrderServiceServiceClient client = new Mav_PurchOrderServiceServiceClient();
 
-			Console.WriteLine("The purch order created has a Purch ID of " + purchOrderCreated.KeyData[0].Value);
-			Console.ReadLine();
-		}
-		catch (Exception e)
-		{
-			Console.WriteLine(e.ToString());
-			Console.ReadLine();
-		}
+try
+{
+	EntityKey[] purchOrderCreatedEntity = client.create(callContext, purchOrder);
+	EntityKey purchOrderCreated = (EntityKey)purchOrderCreatedEntity.GetValue(0);
+
+	Console.WriteLine("The purch order created has a Purch ID of " + purchOrderCreated.KeyData[0].Value);
+	Console.ReadLine();
+}
+catch (Exception e)
+{
+	Console.WriteLine(e.ToString());
+	Console.ReadLine();
+}
 {% endhighlight %}
 
 `Code for read purchase order `
 
 {% highlight csharp %}
-		EntityKey[] entityKeyList = EntityForPurchId("BGR-000054");
+EntityKey[] entityKeyList = EntityForPurchId("BGR-000054");
 
-		CallContext callContext      = new CallContext();
-		callContext.Company          = "bgr";
-		Mav_PurchOrderServiceServiceClient client = new Mav_PurchOrderServiceServiceClient();
+CallContext callContext      = new CallContext();
+callContext.Company          = "bgr";
+Mav_PurchOrderServiceServiceClient client = new Mav_PurchOrderServiceServiceClient();
 
-		AxdMav_PurchOrderService purchOrders = client.read(callContext, entityKeyList);
-		AxdEntity_PurchTable[] purchTables = purchOrders.PurchTable;
-		AxdEntity_PurchTable    purchTable = purchTables[0];
-		AxdEntity_PurchLine purchLine = purchTable.PurchLine[0];
+AxdMav_PurchOrderService purchOrders = client.read(callContext, entityKeyList);
+AxdEntity_PurchTable[] purchTables = purchOrders.PurchTable;
+AxdEntity_PurchTable    purchTable = purchTables[0];
+AxdEntity_PurchLine purchLine = purchTable.PurchLine[0];
 
-		Console.WriteLine("Purch Name: " + purchTable.PurchName);            
-		Console.WriteLine("Order Account: " + purchTable.OrderAccount);
-		Console.WriteLine("Language Id: " + purchTable.LanguageId);
-		Console.WriteLine("Qty: " + purchLine.PurchQty);
-		Console.WriteLine("Item Id: " + purchLine.ItemId);
+Console.WriteLine("Purch Name: " + purchTable.PurchName);            
+Console.WriteLine("Order Account: " + purchTable.OrderAccount);
+Console.WriteLine("Language Id: " + purchTable.LanguageId);
+Console.WriteLine("Qty: " + purchLine.PurchQty);
+Console.WriteLine("Item Id: " + purchLine.ItemId);
 
-		client.Close();
-		Console.ReadLine();
+client.Close();
+Console.ReadLine();
 			
 {% endhighlight %}
 
 `Code for update purchase order `
 
 {% highlight csharp %}
-			Mav_PurchOrderServiceServiceClient client = new Mav_PurchOrderServiceServiceClient();
-            CallContext callContext = new CallContext();
-            callContext.Company = "bgr";
+Mav_PurchOrderServiceServiceClient client = new Mav_PurchOrderServiceServiceClient();
+CallContext callContext = new CallContext();
+callContext.Company = "bgr";
 
-            EntityKey[] entityKeyList = EntityForPurchId("BGR-000078");
-            AxdMav_PurchOrderService purchOrders = client.read(callContext, entityKeyList);
+EntityKey[] entityKeyList = EntityForPurchId("BGR-000078");
+AxdMav_PurchOrderService purchOrders = client.read(callContext, entityKeyList);
 
-            //salesOrders.GetHashCode();
-            AxdEntity_PurchTable[] purchTables = purchOrders.PurchTable;
-            AxdEntity_PurchTable purchTable = new AxdEntity_PurchTable();
-            purchTable = purchTables.First();
+//salesOrders.GetHashCode();
+AxdEntity_PurchTable[] purchTables = purchOrders.PurchTable;
+AxdEntity_PurchTable purchTable = new AxdEntity_PurchTable();
+purchTable = purchTables.First();
 
-            //salesTable.GetHashCode();
-            AxdEntity_PurchLine purchLine = new AxdEntity_PurchLine();
-            purchLine = purchTable.PurchLine.First();
+//salesTable.GetHashCode();
+AxdEntity_PurchLine purchLine = new AxdEntity_PurchLine();
+purchLine = purchTable.PurchLine.First();
 
-            decimal purchQty = 20;
-            purchLine.PurchQty = purchQty;
+decimal purchQty = 20;
+purchLine.PurchQty = purchQty;
 
-            try
-            {
-                client.update(callContext, entityKeyList, purchOrders);
-                EntityKey purchOrdersUpdated = (EntityKey)entityKeyList.GetValue(0);
-                Console.WriteLine("The purchase order has been updated has a Purch ID of " + purchOrdersUpdated.KeyData[0].Value + " with Qty " + purchQty.ToString() + "");
-                Console.ReadLine();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-                Console.ReadLine();
-            }
+try
+{
+	client.update(callContext, entityKeyList, purchOrders);
+	EntityKey purchOrdersUpdated = (EntityKey)entityKeyList.GetValue(0);
+	Console.WriteLine("The purchase order has been updated has a Purch ID of " + purchOrdersUpdated.KeyData[0].Value + " with Qty " + purchQty.ToString() + "");
+	Console.ReadLine();
+}
+catch (Exception ex)
+{
+	Console.WriteLine(ex.ToString());
+	Console.ReadLine();
+}
 {% endhighlight %}
 			
 `Code for delete purchase order `
 
 {% highlight csharp %}
-			Mav_PurchOrderServiceServiceClient client = new Mav_PurchOrderServiceServiceClient();
-            CallContext callContext = new CallContext();
-            callContext.Company = "bgr";
+Mav_PurchOrderServiceServiceClient client = new Mav_PurchOrderServiceServiceClient();
+CallContext callContext = new CallContext();
+callContext.Company = "bgr";
 
-            EntityKey[] entityKeyList = EntityForPurchId("BGR-000054");
-            try
-            {
-                client.delete(callContext, entityKeyList);
-                EntityKey purchOrdersDeleted = (EntityKey)entityKeyList.GetValue(0);
-                Console.WriteLine("The purch order has been deleted has a purch ID of " + purchOrdersDeleted.KeyData[0].Value);
-                Console.ReadLine();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-                Console.ReadLine();
-            }
+EntityKey[] entityKeyList = EntityForPurchId("BGR-000054");
+try
+{
+	client.delete(callContext, entityKeyList);
+	EntityKey purchOrdersDeleted = (EntityKey)entityKeyList.GetValue(0);
+	Console.WriteLine("The purch order has been deleted has a purch ID of " + purchOrdersDeleted.KeyData[0].Value);
+	Console.ReadLine();
+}
+catch (Exception ex)
+{
+	Console.WriteLine(ex.ToString());
+	Console.ReadLine();
+}
 {% endhighlight %}
 
 Thank you for reading!

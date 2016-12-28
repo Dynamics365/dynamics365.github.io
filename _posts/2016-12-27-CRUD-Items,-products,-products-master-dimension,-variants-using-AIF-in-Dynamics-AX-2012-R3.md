@@ -90,12 +90,11 @@ using ItemsMaster.EcoResProductRef;
 using ItemsMaster.EcoResProductMasterRef;
 using ItemsMaster.InventDimRef;
 static void Main(string[] args)
-        {
-          
-            Program master = new Program();
-            master.createDistinctProduct();
-            Program.releaseProduct();
-        }
+{
+	Program master = new Program();
+	master.createDistinctProduct();
+	Program.releaseProduct();
+}
 
 {% endhighlight %}
 
@@ -103,59 +102,59 @@ static void Main(string[] args)
 
 {% highlight csharp %}
 
-        public void createDistinctProduct()
-        {
-            AxdEntity_Product_EcoResDistinctProduct distinctProduct = new AxdEntity_Product_EcoResDistinctProduct()
-            {
-                DisplayProductNumber = "MAX00002",
-                ProductType = AxdEnum_EcoResProductType.Item,
-                SearchName = "Max",
-               
-            };
+public void createDistinctProduct()
+{
+	AxdEntity_Product_EcoResDistinctProduct distinctProduct = new AxdEntity_Product_EcoResDistinctProduct()
+	{
+		DisplayProductNumber = "MAX00002",
+		ProductType = AxdEnum_EcoResProductType.Item,
+		SearchName = "Max",
+	   
+	};
 
-            distinctProduct.Translation = new AxdEntity_Translation[1];
-            distinctProduct.Translation[0] = new AxdEntity_Translation()
-            {
-                LanguageId = "en-us",
-                Name = "Max Nguyen"
-            };
+	distinctProduct.Translation = new AxdEntity_Translation[1];
+	distinctProduct.Translation[0] = new AxdEntity_Translation()
+	{
+		LanguageId = "en-us",
+		Name = "Max Nguyen"
+	};
 
-            distinctProduct.Identifier = new AxdEntity_Identifier[1];
-            distinctProduct.Identifier[0] = new AxdEntity_Identifier()
-            {
-                ProductNumber = "MAX00002"
-            };
+	distinctProduct.Identifier = new AxdEntity_Identifier[1];
+	distinctProduct.Identifier[0] = new AxdEntity_Identifier()
+	{
+		ProductNumber = "MAX00002"
+	};
 
-            distinctProduct.StorageDimGroup = new AxdEntity_StorageDimGroup[1];
-            distinctProduct.StorageDimGroup[0] = new AxdEntity_StorageDimGroup()
-            {
-                Product = "MAX00002",
-                StorageDimensionGroup = "SW_P"
-            };
+	distinctProduct.StorageDimGroup = new AxdEntity_StorageDimGroup[1];
+	distinctProduct.StorageDimGroup[0] = new AxdEntity_StorageDimGroup()
+	{
+		Product = "MAX00002",
+		StorageDimensionGroup = "SW_P"
+	};
 
-            distinctProduct.TrackingDimGroup = new AxdEntity_TrackingDimGroup[1];
-            distinctProduct.TrackingDimGroup[0] = new AxdEntity_TrackingDimGroup()
-            {
-                Product = "MAX00002",
-                TrackingDimensionGroup = "Batch Only"
-            };
+	distinctProduct.TrackingDimGroup = new AxdEntity_TrackingDimGroup[1];
+	distinctProduct.TrackingDimGroup[0] = new AxdEntity_TrackingDimGroup()
+	{
+		Product = "MAX00002",
+		TrackingDimensionGroup = "Batch Only"
+	};
 
-            AxdEcoResProduct product = new AxdEcoResProduct()
-            {
-                Product = new AxdEntity_Product_EcoResProduct[1] { distinctProduct }
-            };
+	AxdEcoResProduct product = new AxdEcoResProduct()
+	{
+		Product = new AxdEntity_Product_EcoResProduct[1] { distinctProduct }
+	};
 
-            EcoResProductRef.CallContext EcoResProductSctx = new EcoResProductRef.CallContext()
-            {
-                Company = "bgr",
-                Language = "en-us",
-            };
+	EcoResProductRef.CallContext EcoResProductSctx = new EcoResProductRef.CallContext()
+	{
+		Company = "bgr",
+		Language = "en-us",
+	};
 
-            EcoResProductRef.EcoResProductServiceClient ecoResProductSClient = new EcoResProductRef.EcoResProductServiceClient();
-            
-            ecoResProductSClient.create(EcoResProductSctx, product);
+	EcoResProductRef.EcoResProductServiceClient ecoResProductSClient = new EcoResProductRef.EcoResProductServiceClient();
+	
+	ecoResProductSClient.create(EcoResProductSctx, product);
 
-        }
+}
 
 {% endhighlight %}
 
@@ -164,50 +163,50 @@ static void Main(string[] args)
 {% highlight csharp %}
 
 public void createMaster()
-        {
-            AxdEntity_Product_EcoResProductMaster productMaster = new AxdEntity_Product_EcoResProductMaster()
-            {
-                DisplayProductNumber = "MAX00002",
-                ProductType = AxdEnum_EcoResProductType.Item,
-                SearchName = "Max Nguyen"
-            };
+{
+	AxdEntity_Product_EcoResProductMaster productMaster = new AxdEntity_Product_EcoResProductMaster()
+	{
+		DisplayProductNumber = "MAX00002",
+		ProductType = AxdEnum_EcoResProductType.Item,
+		SearchName = "Max Nguyen"
+	};
 
-            productMaster.Translation = new AxdEntity_Translation[1];
-            productMaster.Translation[0] = new AxdEntity_Translation()
-            {
-                LanguageId = "en-us",
-                Name = "Max Nguyen"
-            };
+	productMaster.Translation = new AxdEntity_Translation[1];
+	productMaster.Translation[0] = new AxdEntity_Translation()
+	{
+		LanguageId = "en-us",
+		Name = "Max Nguyen"
+	};
 
-            productMaster.Identifier = new AxdEntity_Identifier[1];
-            productMaster.Identifier[0] = new AxdEntity_Identifier()
-            {
-                ProductNumber = "MAX00002"
-            };
-            productMaster.ProductDimGroup = new AxdEntity_ProductDimGroup[1];
-            productMaster.ProductDimGroup[0] = new AxdEntity_ProductDimGroup()
-            {
-                Product = "MAX00002",
-                ProductDimensionGroup = "MAX10"
-            };
-            productMaster.VariantConfigurationTechnology = AxdEnum_EcoResVariantConfigurationTechnologyType.PredefinedVariants;
+	productMaster.Identifier = new AxdEntity_Identifier[1];
+	productMaster.Identifier[0] = new AxdEntity_Identifier()
+	{
+		ProductNumber = "MAX00002"
+	};
+	productMaster.ProductDimGroup = new AxdEntity_ProductDimGroup[1];
+	productMaster.ProductDimGroup[0] = new AxdEntity_ProductDimGroup()
+	{
+		Product = "MAX00002",
+		ProductDimensionGroup = "MAX10"
+	};
+	productMaster.VariantConfigurationTechnology = AxdEnum_EcoResVariantConfigurationTechnologyType.PredefinedVariants;
 
-            AxdEcoResProduct axdProduct = new AxdEcoResProduct()
-            {
-                Product = new AxdEntity_Product_EcoResProduct[1] { productMaster }
-            };
+	AxdEcoResProduct axdProduct = new AxdEcoResProduct()
+	{
+		Product = new AxdEntity_Product_EcoResProduct[1] { productMaster }
+	};
 
-            EcoResProductRef.CallContext EcoResProductSctx = new EcoResProductRef.CallContext()
-            {
-                Company = "bgr",
-                Language = "en-us",
-            };
+	EcoResProductRef.CallContext EcoResProductSctx = new EcoResProductRef.CallContext()
+	{
+		Company = "bgr",
+		Language = "en-us",
+	};
 
-            EcoResProductRef.EcoResProductServiceClient ecoResProductSClient = new EcoResProductRef.EcoResProductServiceClient();
-            
-            ecoResProductSClient.create(EcoResProductSctx, axdProduct);
+	EcoResProductRef.EcoResProductServiceClient ecoResProductSClient = new EcoResProductRef.EcoResProductServiceClient();
+	
+	ecoResProductSClient.create(EcoResProductSctx, axdProduct);
 
-        }
+}
 
 {% endhighlight %}
 
@@ -216,49 +215,49 @@ public void createMaster()
 {% highlight csharp %}
 
 static void createMasterDimensions()
-        {
+{
 
-            EcoResProductMasterRef.AxdEntity_EcoResSize ecoResSizeL = new EcoResProductMasterRef.AxdEntity_EcoResSize()
-            {
-                Name = "L"
-            };
+	EcoResProductMasterRef.AxdEntity_EcoResSize ecoResSizeL = new EcoResProductMasterRef.AxdEntity_EcoResSize()
+	{
+		Name = "L"
+	};
 
-            EcoResProductMasterRef.AxdEntity_EcoResSize ecoResSizeM = new EcoResProductMasterRef.AxdEntity_EcoResSize()
-            {
-                Name = "M"
-            };
-            //master dimensions definition (two sizes, L and M)
-            AxdEntity_MasterDim_EcoResProductMasterSize sizeDimensionL = new AxdEntity_MasterDim_EcoResProductMasterSize()
-            {
-                SizeProductMaster = "MAX00002",
-                Size = "L",
-                EcoResSize = new EcoResProductMasterRef.AxdEntity_EcoResSize[1] { ecoResSizeL }
-            };
-            AxdEntity_MasterDim_EcoResProductMasterSize sizeDimensionM = new AxdEntity_MasterDim_EcoResProductMasterSize()
-            {
-                SizeProductMaster = "MAX00002",
-                Size = "M",
-                EcoResSize = new EcoResProductMasterRef.AxdEntity_EcoResSize[1] { ecoResSizeM }
+	EcoResProductMasterRef.AxdEntity_EcoResSize ecoResSizeM = new EcoResProductMasterRef.AxdEntity_EcoResSize()
+	{
+		Name = "M"
+	};
+	//master dimensions definition (two sizes, L and M)
+	AxdEntity_MasterDim_EcoResProductMasterSize sizeDimensionL = new AxdEntity_MasterDim_EcoResProductMasterSize()
+	{
+		SizeProductMaster = "MAX00002",
+		Size = "L",
+		EcoResSize = new EcoResProductMasterRef.AxdEntity_EcoResSize[1] { ecoResSizeL }
+	};
+	AxdEntity_MasterDim_EcoResProductMasterSize sizeDimensionM = new AxdEntity_MasterDim_EcoResProductMasterSize()
+	{
+		SizeProductMaster = "MAX00002",
+		Size = "M",
+		EcoResSize = new EcoResProductMasterRef.AxdEntity_EcoResSize[1] { ecoResSizeM }
 
-            };
+	};
 
-            AxdEcoResProductMasterDimValue axdDimValue = new AxdEcoResProductMasterDimValue()
-            {
-                MasterDim = new AxdEntity_MasterDim_EcoResProductMasterDimensionValue[2] { sizeDimensionL, sizeDimensionM }
-            };
+	AxdEcoResProductMasterDimValue axdDimValue = new AxdEcoResProductMasterDimValue()
+	{
+		MasterDim = new AxdEntity_MasterDim_EcoResProductMasterDimensionValue[2] { sizeDimensionL, sizeDimensionM }
+	};
 
-            EcoResProductMasterRef.CallContext masterDimctx = new EcoResProductMasterRef.CallContext();
-            EcoResProductMasterDimValueServiceClient masterDimensionService = new EcoResProductMasterDimValueServiceClient();
-            try
-            {
-                masterDimensionService.create(masterDimctx, axdDimValue);
-            }
-            catch (Exception e)
-            {
-                System.Console.WriteLine(e.Message);
-                System.Console.ReadKey();
-            }
-        }
+	EcoResProductMasterRef.CallContext masterDimctx = new EcoResProductMasterRef.CallContext();
+	EcoResProductMasterDimValueServiceClient masterDimensionService = new EcoResProductMasterDimValueServiceClient();
+	try
+	{
+		masterDimensionService.create(masterDimctx, axdDimValue);
+	}
+	catch (Exception e)
+	{
+		System.Console.WriteLine(e.Message);
+		System.Console.ReadKey();
+	}
+}
 
 {% endhighlight %}
 
@@ -268,49 +267,49 @@ static void createMasterDimensions()
 {% highlight csharp %}
 
 static void createVariant()
-        {
-            //product variant definition
-            AxdEntity_Product_EcoResDistinctProductVariant productVariant = new AxdEntity_Product_EcoResDistinctProductVariant()
-            {
-                DisplayProductNumber = "MAXL",
-                ProductType = AxdEnum_EcoResProductType.Item,
-                SearchName = "MAXL",
-                ProductMaster = "MAX00002"
-            };
-            productVariant.Translation = new AxdEntity_Translation[1];
-            productVariant.Translation[0] = new AxdEntity_Translation()
-            {
-                LanguageId = "en-us",
-                Name = "Max L size"
-            };
-            productVariant.VariantDimValue = new AxdEntity_VariantDimValue_EcoResProductVariantDimensionValue[1];
-            productVariant.VariantDimValue[0] = new AxdEntity_VariantDimValue_EcoResProductVariantSize()
-            {
-                DistinctProductVariant = "MAXL",
-                ProductDimensionAttribute = 3173,//The ID of the EcoResSize table
-                Size = "L",
-                EcoResSize = new EcoResProductRef.AxdEntity_EcoResSize[1]
-                {
-                    new EcoResProductRef.AxdEntity_EcoResSize() { Name = "L" }
-                }
-            };
+{
+	//product variant definition
+	AxdEntity_Product_EcoResDistinctProductVariant productVariant = new AxdEntity_Product_EcoResDistinctProductVariant()
+	{
+		DisplayProductNumber = "MAXL",
+		ProductType = AxdEnum_EcoResProductType.Item,
+		SearchName = "MAXL",
+		ProductMaster = "MAX00002"
+	};
+	productVariant.Translation = new AxdEntity_Translation[1];
+	productVariant.Translation[0] = new AxdEntity_Translation()
+	{
+		LanguageId = "en-us",
+		Name = "Max L size"
+	};
+	productVariant.VariantDimValue = new AxdEntity_VariantDimValue_EcoResProductVariantDimensionValue[1];
+	productVariant.VariantDimValue[0] = new AxdEntity_VariantDimValue_EcoResProductVariantSize()
+	{
+		DistinctProductVariant = "MAXL",
+		ProductDimensionAttribute = 3173,//The ID of the EcoResSize table
+		Size = "L",
+		EcoResSize = new EcoResProductRef.AxdEntity_EcoResSize[1]
+		{
+			new EcoResProductRef.AxdEntity_EcoResSize() { Name = "L" }
+		}
+	};
 
-            AxdEcoResProduct axdProduct = new AxdEcoResProduct()
-            {
-                Product = new AxdEntity_Product_EcoResProduct[1] { productVariant }
-            };
-            EcoResProductRef.CallContext inventDimctx = new EcoResProductRef.CallContext();
-            EcoResProductServiceClient productService = new EcoResProductServiceClient();
-            try
-            {
-                productService.create(inventDimctx, axdProduct);
-            }
-            catch (Exception e)
-            {
-                System.Console.WriteLine(e.Message);
-                System.Console.ReadKey();
-            }
-        }
+	AxdEcoResProduct axdProduct = new AxdEcoResProduct()
+	{
+		Product = new AxdEntity_Product_EcoResProduct[1] { productVariant }
+	};
+	EcoResProductRef.CallContext inventDimctx = new EcoResProductRef.CallContext();
+	EcoResProductServiceClient productService = new EcoResProductServiceClient();
+	try
+	{
+		productService.create(inventDimctx, axdProduct);
+	}
+	catch (Exception e)
+	{
+		System.Console.WriteLine(e.Message);
+		System.Console.ReadKey();
+	}
+}
 
 {% endhighlight %}
 
@@ -319,61 +318,61 @@ static void createVariant()
 {% highlight csharp %}
 
 public static void releaseProduct()
-        {
-            var invent = new AxdEntity_Invent()
-            {
-                ItemId = "MAX00002",
-                UnitId = "box"
-            };
+{
+	var invent = new AxdEntity_Invent()
+	{
+		ItemId = "MAX00002",
+		UnitId = "box"
+	};
 
-            var purch = new AxdEntity_Purch()
-            {
-                ItemId = "MAX00002",
-                UnitId = "box"
-            };
+	var purch = new AxdEntity_Purch()
+	{
+		ItemId = "MAX00002",
+		UnitId = "box"
+	};
 
-            var sales = new AxdEntity_Sales()
-            {
-                ItemId = "MAX00002",
-                UnitId = "box"
-            };
+	var sales = new AxdEntity_Sales()
+	{
+		ItemId = "MAX00002",
+		UnitId = "box"
+	};
 
-            var inventTable = new AxdEntity_InventTable()
-            {
-                ItemId = "MAX00002",
-                PmfProductType = AxdEnum_PmfProductType.MainItem,
-                Product = "MAX00002",
-                Invent = new AxdEntity_Invent[] { invent },
-                Purch = new AxdEntity_Purch[] { purch },
-                Sales = new AxdEntity_Sales[] { sales },
-                
-            };
+	var inventTable = new AxdEntity_InventTable()
+	{
+		ItemId = "MAX00002",
+		PmfProductType = AxdEnum_PmfProductType.MainItem,
+		Product = "MAX00002",
+		Invent = new AxdEntity_Invent[] { invent },
+		Purch = new AxdEntity_Purch[] { purch },
+		Sales = new AxdEntity_Sales[] { sales },
+		
+	};
 
-            var item = new AxdItem()
-            {
-                InventTable = new AxdEntity_InventTable[1] { inventTable }
-            };
+	var item = new AxdItem()
+	{
+		InventTable = new AxdEntity_InventTable[1] { inventTable }
+	};
 
-            ItemsRef.CallContext callContext = new ItemsRef.CallContext();
-            ItemsRef.ItemServiceClient client = new ItemsRef.ItemServiceClient();
+	ItemsRef.CallContext callContext = new ItemsRef.CallContext();
+	ItemsRef.ItemServiceClient client = new ItemsRef.ItemServiceClient();
 
-            callContext.Company = "bgr";
-            callContext.Language = "en-us";
+	callContext.Company = "bgr";
+	callContext.Language = "en-us";
 
-            try
-            {
-                ItemsRef.EntityKey[] itemCreatedEntity = client.create(callContext, item);
-                ItemsRef.EntityKey itemCreated = (ItemsRef.EntityKey)itemCreatedEntity.GetValue(0);
+	try
+	{
+		ItemsRef.EntityKey[] itemCreatedEntity = client.create(callContext, item);
+		ItemsRef.EntityKey itemCreated = (ItemsRef.EntityKey)itemCreatedEntity.GetValue(0);
 
-                Console.WriteLine("AxdEntity_Invent " + itemCreated.KeyData[0].Value);
-                Console.ReadLine();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-                Console.ReadLine();
-            }
-        }
+		Console.WriteLine("AxdEntity_Invent " + itemCreated.KeyData[0].Value);
+		Console.ReadLine();
+	}
+	catch (Exception e)
+	{
+		Console.WriteLine(e.ToString());
+		Console.ReadLine();
+	}
+}
 
 {% endhighlight %}
 
@@ -382,34 +381,34 @@ public static void releaseProduct()
 {% highlight csharp %}
 
 static void releaseProductVariants()
-        {
-            AxdEntity_InventDimCombination releasedVariant = new AxdEntity_InventDimCombination()
-            {
-                DistinctProductVariant = "MAX00002",
-                ItemId = ""
-            };
+{
+	AxdEntity_InventDimCombination releasedVariant = new AxdEntity_InventDimCombination()
+	{
+		DistinctProductVariant = "MAX00002",
+		ItemId = ""
+	};
 
-            AxdInventDimCombination inventDimCombination = new AxdInventDimCombination()
-            {
-                InventDimCombination = new AxdEntity_InventDimCombination[1] { releasedVariant }
-            };
+	AxdInventDimCombination inventDimCombination = new AxdInventDimCombination()
+	{
+		InventDimCombination = new AxdEntity_InventDimCombination[1] { releasedVariant }
+	};
 
-            InventDimRef.CallContext itemsctx = new InventDimRef.CallContext()
-            {
-                Company = "bgr",
-                Language = "en-us"
-            };
-            InventDimCombinationServiceClient inventDimCombinationService = new InventDimCombinationServiceClient();
-            try
-            {
-                inventDimCombinationService.create(itemsctx, inventDimCombination);
-            }
-            catch (Exception e)
-            {
-                System.Console.WriteLine(e.Message);
-                System.Console.ReadKey();
-            }
-        }
+	InventDimRef.CallContext itemsctx = new InventDimRef.CallContext()
+	{
+		Company = "bgr",
+		Language = "en-us"
+	};
+	InventDimCombinationServiceClient inventDimCombinationService = new InventDimCombinationServiceClient();
+	try
+	{
+		inventDimCombinationService.create(itemsctx, inventDimCombination);
+	}
+	catch (Exception e)
+	{
+		System.Console.WriteLine(e.Message);
+		System.Console.ReadKey();
+	}
+}
 
 {% endhighlight %}
 
