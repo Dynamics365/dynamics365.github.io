@@ -419,5 +419,5 @@ Just for example, in `main` I only create Distinct product and release it, but y
 
 ![](https://dynamics365.github.io/assets/CRUD-Items,-products,-products-master-dimension,-variants-using-AIF-in-Dynamics-AX-2012-R3-02.png)
 
-Thannk you for reading and feel free to give me a question.
+Thank you for reading and feel free to give me a question.
 
