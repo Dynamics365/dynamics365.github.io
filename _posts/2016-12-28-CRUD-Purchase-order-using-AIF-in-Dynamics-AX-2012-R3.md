@@ -12,42 +12,46 @@ Due to Purchase order doesn’t have Standard document service so we have to cre
 
 I’m using AIF document service with `NETTCP` or `HTTP` Adapter to Create Purchase order service, here is steps
 
-## 1.	Create Query 
+## Create Query 
 with three **datasouce** (`PurchTable, PurchLine, InventDim`) likes below
-       ![](https://dynamics365.github.io/assets/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-01.png)
 
-       > As best practice for Document service, name of query should be start with Axd* prefix.
+![](https://dynamics365.github.io/assets/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-01.png)
 
-## 2.	Using AIF Wizards
+> As best practice for Document service, name of query should be start with Axd* prefix.
+
+## Using AIF Wizards
 In AX development environment, go to *Tools > Wizards > AIF document service wizards*
+
  ![](https://dynamics365.github.io/assets/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-02.png)
 
-      Choose recent created query and click *next*.
+Choose recent created query and click **next**.
 
-## 3.	Create Service operation and `AxBC class`
+## Create Service operation and `AxBC class`
 
  ![](https://dynamics365.github.io/assets/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-03.png)
-            Click `next` and then `Generate`.
 
-           You will get service project in **Private** project
+Click `next` and then `Generate`.
 
-## 4.	Deploy and create service
+You will get service project in **Private** project
 
-    •	Right click on `PurchOrderService` > Add-Ins > Register service
+## Deploy and create service
 
-    •	System administration > Setup > Services and AIF > Inbound ports
+ •	Right click on `PurchOrderService` > Add-Ins > Register service
 
-    •	Click `New` on `Inbound ports form` and name the Service.
+ •	System administration > Setup > Services and AIF > Inbound ports
 
-    •	Adapter: NETTCP (it also works with HTTP adapter)
+ •	Click `New` on `Inbound ports form` and name the Service.
 
-    •	In *Service contract customizations* fast tab click `Service operations`
+ •	Adapter: NETTCP (it also works with HTTP adapter)
 
-        ![](https://dynamics365.github.io/assets/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-4.png)
+ •	In *Service contract customizations* fast tab click `Service operations`
 
-## 5.	`Active` recent created Service  
+![](https://dynamics365.github.io/assets/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-4.png)
 
-## 6.	Consume service using C#.NET
+
+`Active` recent created Service  
+
+## Consume service using C#.NET
 
 After service is activated, you can get **WSDL URI** likes 
 
@@ -55,6 +59,7 @@ After service is activated, you can get **WSDL URI** likes
 
 Create console project and Add Service References, the code below
  ![](https://dynamics365.github.io/assets/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-05.png)
+
 In Class, I will write method to return list of `EnityKey` PurchId
 
 {% highlight csharp %}
