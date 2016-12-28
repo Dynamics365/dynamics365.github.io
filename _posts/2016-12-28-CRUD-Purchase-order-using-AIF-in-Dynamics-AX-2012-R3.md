@@ -12,25 +12,26 @@ Due to Purchase order doesn’t have Standard document service so we have to cre
 
 I’m using AIF document service with `NETTCP` or `HTTP` Adapter to Create Purchase order service, here is steps
 
-1.	Create Query with three **datasouce** (`PurchTable, PurchLine, InventDim`) likes below
+## 1.	Create Query 
+with three **datasouce** (`PurchTable, PurchLine, InventDim`) likes below
        ![](https://dynamics365.github.io/assets/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-01.png)
 
        > As best practice for Document service, name of query should be start with Axd* prefix.
 
-2.	In AX development environment, go to *Tools > Wizards > AIF document service wizards*
+## 2.	Using AIF Wizards
+In AX development environment, go to *Tools > Wizards > AIF document service wizards*
  ![](https://dynamics365.github.io/assets/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-02.png)
 
       Choose recent created query and click *next*.
 
-3.	Create Service operation and `AxBC class`
+## 3.	Create Service operation and `AxBC class`
 
-      ![](https://dynamics365.github.io/assets/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-03.png)
+ ![](https://dynamics365.github.io/assets/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-03.png)
+            Click `next` and then `Generate`.
 
-       Click `next` and then `Generate`.
+           You will get service project in **Private** project
 
-       You will get service project in **Private** project
-
-4.	Deploy and create service
+## 4.	Deploy and create service
 
     •	Right click on `PurchOrderService` > Add-Ins > Register service
 
@@ -42,11 +43,11 @@ I’m using AIF document service with `NETTCP` or `HTTP` Adapter to Create Purch
 
     •	In *Service contract customizations* fast tab click `Service operations`
 
-      ![](https://dynamics365.github.io/assets/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-4.png)
+        ![](https://dynamics365.github.io/assets/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-4.png)
 
+## 5.	`Active` recent created Service  
 
-5.	`Active` recent created Service  
-6.	Consume service using C#.NET
+## 6.	Consume service using C#.NET
 
 After service is activated, you can get **WSDL URI** likes 
 
