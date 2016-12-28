@@ -12,4 +12,4 @@ share: true
 - Has enough knowledge to understand OOP, X++, SQL language.
 - Has passion in some stupid thing.
 
-You can find him at {% include icon-github.html username=site.github_username %} and please do not forget to check [my Dynamics community profile.](https://community.dynamics.com/members/luan-nguyen)
+{% include author.html %}
