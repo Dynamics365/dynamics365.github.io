@@ -10,18 +10,20 @@ tags: [axbuild, trick, aos]
 
 If you have only 10 mins to build ax, try this
 
-go to `C:\Program Files\Microsoft Dynamics AX\60\Server\DAX\bin` and open `cmd` from here then run this command
-
-![](https://dynamics365.github.io/assets/axbuild-exe-for-parallel-compile-on-aos_2.png)
+In AOS server, go to `C:\Program Files\Microsoft Dynamics AX\60\Server\DAX\bin` and open `cmd` from here then run this command
 
 {% highlight yaml %}
 axbuild.exe xppcompileall /s=01 /altbin="C:\Program Files (x86)\Microsoft Dynamics AX\60\Client\Bin"
 {% endhighlight %}
 
-Run at AOS server
+![](https://dynamics365.github.io/assets/axbuild-exe-for-parallel-compile-on-aos_2.png)
 
 Result
 
 ![](https://dynamics365.github.io/assets/axbuild-exe-for-parallel-compile-on-aos_3.png)
 
-Reference from [MSDN](https://msdn.microsoft.com/en-us/library/dn528954.aspx) .
+Once compile complete, you can import compile log file at `C:\Program Files\Microsoft Dynamics AX\60\Server\DAX\log` into compiler out of AX client
+
+![](https://dynamics365.github.io/assets/axbuild-exe-for-parallel-compile-on-aos_4.png)
+
+*Reference from* [MSDN](https://msdn.microsoft.com/en-us/library/dn528954.aspx) .
