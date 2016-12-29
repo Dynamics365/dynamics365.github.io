@@ -8,9 +8,9 @@ categories: [ax2012, trick]
 tags: [trick, xpp, programming]
 ---
 
-This is to show a method to execute external database stored procedures from X++ code. Create a job in AOT with following code. Follow the steps as explained here in the code like replace Server Name, Database name , Stored Procedure name.
+This is to show a method to execute external database stored procedures from X++ code. Create a job in AOT with following code. Follow the steps as explained here in the code like replace `Server Name`, `Database name` , `Stored Procedure name`.
 
-The below code is executed through the ODBC Connection.
+The below code is executed through `the ODBC Connection`.
 
 {% highlight csharp %}
 
