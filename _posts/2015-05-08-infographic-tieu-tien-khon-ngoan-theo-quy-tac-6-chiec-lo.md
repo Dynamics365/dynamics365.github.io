@@ -8,4 +8,4 @@ categories: [general, life]
 tags: [fun]
 ---
 
-![Infographic Tiêu tiền khôn ngoan theo quy tắc 6 chiếc lọ](infographic-tieu-tien-khon-ngoan-theo-quy-tac-6-chiec-lo.png)
+![Infographic Tiêu tiền khôn ngoan theo quy tắc 6 chiếc lọ](https://dynamics365.github.io/assets/infographic-tieu-tien-khon-ngoan-theo-quy-tac-6-chiec-lo.png)
