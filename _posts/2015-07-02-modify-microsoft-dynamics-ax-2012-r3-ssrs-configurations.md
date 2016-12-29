@@ -31,8 +31,6 @@ Write-Host "1) Modified the Report Manager Web.config file"
 ` RsReportServer.ps1`
 
 
-`reportManagerWebConfig.ps1`
-
 {% highlight powershell %}
 #Modify the Report Server Web.config file. ie replace MSRS11.VAS with your folder name
 Set-ExecutionPolicy Unrestricted
