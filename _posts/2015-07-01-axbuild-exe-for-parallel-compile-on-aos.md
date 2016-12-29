@@ -22,7 +22,7 @@ Result
 
 ![](https://dynamics365.github.io/assets/axbuild-exe-for-parallel-compile-on-aos_3.png)
 
-Once compile complete, you can import compile log file at `C:\Program Files\Microsoft Dynamics AX\60\Server\DAX\log` into compiler out of AX client
+Once compile complete, you can import compile log file at `C:\Program Files\Microsoft Dynamics AX\60\Server\DAX\log` into compiler output of AX client
 
 ![](https://dynamics365.github.io/assets/axbuild-exe-for-parallel-compile-on-aos_4.png)
 
