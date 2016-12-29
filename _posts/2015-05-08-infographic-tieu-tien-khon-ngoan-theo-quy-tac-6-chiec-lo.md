@@ -1,7 +1,7 @@
 ---
 layout: post
-title: [Infographic] Tiêu tiền khôn ngoan theo quy tắc 6 chiếc lọ
-description: [Infographic] Tiêu tiền khôn ngoan theo quy tắc 6 chiếc lọ
+title: Infographic Tiêu tiền khôn ngoan theo quy tắc 6 chiếc lọ
+description: Infographic Tiêu tiền khôn ngoan theo quy tắc 6 chiếc lọ
 author: Max Nguyen
 modified: 2015-05-08
 categories: [general, life]
