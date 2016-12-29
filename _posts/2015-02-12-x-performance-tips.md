@@ -29,7 +29,7 @@ static void KlForTickCountSample(Args _args)
     ticks = winapi::getTickCount() – ticks;
     
     // display result
-    info(strfmt(‘Number of ticks: %1’, ticks));
+    info(strfmt('Number of ticks: %1', ticks));
 }
 {% endhighlight %}
 
@@ -49,7 +49,7 @@ static void KlForIfInLoop(Args _args)
     // usually slower
     while select vendTable
     {
-        if(vendTable.VendGroup == ‘VG1’)
+        if(vendTable.VendGroup == 'VG1')
         {
             info(vendTable.AccountNum);
         }
@@ -57,7 +57,7 @@ static void KlForIfInLoop(Args _args)
 
     // usually faster
     while select vendTable
-    where vendTable.VendGroup == ‘VG1’
+    where vendTable.VendGroup == 'VG1'
     {
         info(vendTable.AccountNum);
     }
@@ -149,7 +149,7 @@ cont += "a value";
  is faster than 
  
  {% highlight csharp %}
- cont = conins(cont, conlen(cont), “a value”);
+ cont = conins(cont, conlen(cont), "a value");
  {% endhighlight %}
  
  
