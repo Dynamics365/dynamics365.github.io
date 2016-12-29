@@ -14,9 +14,9 @@ go to `C:\Program Files\Microsoft Dynamics AX\60\Server\DAX\bin` and open `cmd` 
 
 ![](https://dynamics365.github.io/assets/axbuild-exe-for-parallel-compile-on-aos_2.png)
 
-{% raw %}
+{% highlight yaml %}
 axbuild.exe xppcompileall /s=01 /altbin="C:\Program Files (x86)\Microsoft Dynamics AX\60\Client\Bin"
-{% endraw %}
+{% endhighlight %}
 
 Run at AOS server
 
