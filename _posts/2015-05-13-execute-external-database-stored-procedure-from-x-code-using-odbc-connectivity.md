@@ -13,93 +13,65 @@ This is to show a method to execute external database stored procedures from X++
 The below code is executed through the ODBC Connection.
 
 {% highlight csharp %}
+
 static void execExternalDatabase(Args _args)
 {
-    LoginProperty
-loginProperty;
+    LoginProperty loginProperty;
+    ODBCConnection odbcConnection;
+    Statement statement;
+    ResultSet resultSet;
    
-ODBCConnection odbcConnection;
-    Statement
-statement;
-    ResultSet
-resultSet;
-   
-ResultSetMetaData resultSetMetaData;
-    Counter
-counter;
+	ResultSetMetaData resultSetMetaData;
+    Counter counter;
     str sql;
-   
-SqlStatementExecutePermission perm;
+    SqlStatementExecutePermission perm;
     ;
  
    
-loginProperty = new LoginProperty();
-   
-loginProperty.setServer(“SERVERNAME Here”); // Replace your Database Server Name here
+    loginProperty = new LoginProperty();
+    loginProperty.setServer("SERVERNAME Here"); // Replace your Database Server Name here
+    loginProperty.setDatabase("DemoDB"); //Replace your Database name here
+    odbcConnection = new ODBCConnection(loginProperty); // setting odbc connection here.
  
-   
-loginProperty.setDatabase(“DemoDB”); //Replace your Database name here
+    // ODBC Connection to create statement
+    statement = odbcConnection.createStatement();
  
-   
-odbcConnection = new ODBCConnection(loginProperty); // setting odbc connection here.
+    // Replace the StoredProcedure you want to execute.
+    sql = strfmt('EXEC[myStoredProcedureName]');
  
-    // ODBC Connection to create
-Statement
-    statement =
-odbcConnection.createStatement();
- 
-    // Replace the StoredProcedure you
-want to execute.
-    sql =
-strfmt(‘EXEC
-[myStoredProcedureName]’);
- 
-    // Set code access permission to
-Execute
+    // Set code access permission to Execute
     perm = new SqlStatementExecutePermission(sql);
-   
-perm.assert();
+    perm.assert();
  
     try
     {
-        // if Stored Procedure has Select
-query use executeQuery method.
+        // if Stored Procedure has Select query use executeQuery method.
        
-resultSet = statement.executeQuery(sql);
+        resultSet = statement.executeQuery(sql);
         resultSet.next();
        
-resultSetMetaData = resultSet.getMetaData();
-        for (counter = 1; counter <=
-resultSetMetaData.getColumnCount(); counter++)
+        resultSetMetaData = resultSet.getMetaData();
+        for (counter = 1; counter <= resultSetMetaData.getColumnCount(); counter++)
         {
-            switch
-(resultSetMetaData.getColumnType(counter))
+            switch(resultSetMetaData.getColumnType(counter))
             {
                 case 0,1 :
-           
-info(resultSet.getString(counter));
-                   
-break;
+                    info(resultSet.getString(counter));
+                break;
                 case 3:
-                   
-info(date2StrUsr(resultSet.getdate(counter)));
-                   
-break;
+                    info(date2StrUsr(resultSet.getdate(counter)));
+                break;
             }
         }
     }
     catch (exception::Error)
     {
-        print “An error occured in the
-query.”;
+        print "An error occured in the query.";
         pause;
     }
- 
-    // Code access permission scope
-ends here.
-   
-CodeAccessPermission::revertAssert();
-}. 
+    // Code access permission scope ends here.
+    CodeAccessPermission::revertAssert();
+}
 
 {% endhighlight %}
 
