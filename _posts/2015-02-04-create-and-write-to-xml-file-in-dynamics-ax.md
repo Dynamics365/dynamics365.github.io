@@ -92,7 +92,7 @@ static void WriteXml(Args _args)
     xmlDoc.appendChild(xmlRoot);
     // Create a new object of the XmlWriter class
     // in order to be able to write the xml to a file
-    xmlWriter = XMLWriter::newFile(@”c:tempcars.xml”);
+    xmlWriter = XMLWriter::newFile(@"c:tempcars.xml");
     // Write the content of the XmlDocument to the
     // file as specified by the XmlWriter
     xmlDoc.writeTo(xmlWriter);
