@@ -1,4 +1,4 @@
 ---
 slug: error
-name: Errors
+name: Exception
 ---
