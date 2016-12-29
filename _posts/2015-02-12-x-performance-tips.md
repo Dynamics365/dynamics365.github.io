@@ -123,7 +123,7 @@ Code on tables is usually fast, but things can get slow if you use it to much. S
 InventDim::find(this.inventDim)
 {% endhighlight %}
 
-When you put these methods on a class, you could optimise it by fetching the record only once and storing it in the classDeclaration, or better, passing it as a parameter to your methods. An other example is fetching parameters from parameter tables, eg `InventParameters::find()`. On a table, you have to fetch it each time you call a method. In a class, you would probably optimize your code to only fetch the parameter record once.
+When you put these methods on a class, you could optimise it by fetching the record only once and storing it in the `classDeclaration`, or better, passing it as a parameter to your methods. An other example is fetching parameters from parameter tables, eg `InventParameters::find()`. On a table, you have to fetch it each time you call a method. In a class, you would probably optimize your code to only fetch the parameter record once.
 
 ### Tip 6: Use the fastest code
 
@@ -143,14 +143,15 @@ where custTable.custGroup == 'TST';
 
 The same applies to update_recordset for updating records. Also, when adding values to the end of a container 
 {% highlight csharp %}
-`cont += "a value";`
+cont += "a value";
 {% endhighlight %}
 
  is faster than 
  
  {% highlight csharp %}
- `cont = conins(cont, conlen(cont), “a value”);`
+ cont = conins(cont, conlen(cont), “a value”);
  {% endhighlight %}
+ 
  
  ### Tip 7: Every optimization counts
  

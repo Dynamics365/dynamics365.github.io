@@ -14,25 +14,25 @@ When creating new elements, ensure that you follow the recommended naming conven
 
 **Axd** Microsoft Dynamics AX business document
 
-**Asset Asset management
+**Asset** Asset management
 
-**BOM Bill of material
+**BOM** Bill of material
 
-**COS Cost accounting
+**COS** Cost accounting
 
-**Cust Customer
+**Cust** Customer
 
-**Dir Directory, global address book
+**Dir** Directory, global address book
 
-**EcoRes Economic resources
+**EcoRes** Economic resources
 
-**HRM/HCM Human resources
+**HRM/HCM** Human resources
 
-**Invent Inventory management
+**Invent** Inventory management
 
-**JMG Shop flor control
+**JMG** Shop flor control
 
-**KM Knowledge management
+**KM** Knowledge management
 
 **Ledger** General ledger
 
