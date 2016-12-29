@@ -153,9 +153,9 @@ cont += "a value";
  {% endhighlight %}
  
  
- ### Tip 7: Every optimization counts
+### Tip 7: Every optimization counts
  
- Remember that every optimization you do to you code counts, even if it’s a little one. Small performance tweaks can have a huge effect once you process large quantities of data. So don’t be lazy, and optimize.
+Remember that every optimization you do to you code counts, even if it’s a little one. Small performance tweaks can have a huge effect once you process large quantities of data. So don’t be lazy, and optimize.
 
 
 Share from http://www.artofcreation.be/
