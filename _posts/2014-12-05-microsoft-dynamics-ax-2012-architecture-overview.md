@@ -16,7 +16,8 @@ This diagram provides a high-level over of a Microsoft Dynamics AX 2012 system w
 
 ![](https://dynamics365.github.io/assets/AXSystemArchitechture.gif)
 
-### 1. Application Object Server (AOS) architecture
+
+### * Application Object Server (AOS) architecture
 
 	This diagram describes the functionality within the AOS Windows service, and describes how communications flow within it.
 
@@ -24,7 +25,8 @@ This diagram provides a high-level over of a Microsoft Dynamics AX 2012 system w
 
 	**Note**: Clients communicate with an AOS by using remote procedure calls (RPCs), Windows Communication Foundation (WCF), or AOS services. In previous releases, other components and third-party programs could communicate with an AOS by using either .NET Business Connector or Application Integration Framework (AIF). For this release, we recommend that third-party programs use AOS services to communicate with AOS.
 
-### 2. Business Connector architecture
+	
+### * Business Connector architecture
 
 	The differences between the client kernel as it runs on a standard client and a Business Connector client are:
 
@@ -36,9 +38,11 @@ This diagram provides a high-level over of a Microsoft Dynamics AX 2012 system w
 
 	![](https://dynamics365.github.io/assets/Business_Connector_Client.gif)
 
-### 3. Application file server architecture
+
+### * Application file server architecture
 
 	![](https://dynamics365.github.io/assets/App_file_server_architechture.gif)
+
 
 ## Model store architecture
 
