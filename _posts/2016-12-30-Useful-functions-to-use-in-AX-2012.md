@@ -7,12 +7,11 @@ modified: 2016-12-30
 categories: [ax2012, trick, tools]
 tags: [aif, programming, csharpdotnet, xpp]
 ---
-{% include advertisements_right.html %}
-
 Useful functions to use in AX 2012
 
-
 <div markdown="0"><a href="https://dynamics365.github.io/ax2012/trick/tools/Useful-functions-to-use-in-AX-2012/" class="btn btn-info">Continute reading</a></div>
+
+{% include advertisements_right.html %}
 
 <!--more-->
 
