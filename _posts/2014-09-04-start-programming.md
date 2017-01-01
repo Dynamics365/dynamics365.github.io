@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Architecture overview Microsoft Dynamics AX 2012
-description: Architecture overview Microsoft Dynamics AX 2012
+title: Start programming
+description: Start programming
 author: Max Nguyen
 modified: 2014-09-04
 categories: [life, general]
