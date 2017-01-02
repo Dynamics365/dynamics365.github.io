@@ -26,7 +26,9 @@ If I were to want to see open customer invoices from the last 90 days, I would f
 
 If you are creating your query ranges in code, these methods can also be utilized whenever you are setting them. Definitely be sure to check out the `SysQueryRangeUtil` class as there are many more methods to use.
 
-{% raw %}
+Here is some methods you can use:
+
+{% highlight html %}
 currentCustomerAccount()
 
 currentVendorAccount()
@@ -56,11 +58,11 @@ lessthanUtcNow()
 monthRange()
 
 yearRange()
-{% endraw %}
+{% endhighlight %}
 
 > for example:
 
-{% raw %}
+{% highlight html %}
 (dayRange(-30,0)) – Results in a date range for the last 30 days: "26-01-2017".."25-02-2017"
 
 (day(-1)) – Results in yesterday's date: 24-02-2017
@@ -76,6 +78,6 @@ yearRange()
 (monthRange(0,2)) – Results in first day till the last day of the month's choosen (0 = current month): "01-02-2017".."30-04-2017"
 
 (yearRange(-1,-1)) – Results in first day till the last day of the chosen year: "01-01-2017".."31-12-2017"
-{% endraw %}
+{% endhighlight %}
 
 Thank you for reading!
