@@ -28,33 +28,54 @@ If you are creating your query ranges in code, these methods can also be utilize
 
 {% raw %}
 currentCustomerAccount()
+
 currentVendorAccount()
+
 currentUserId()
+
 currentDate()
+
 dateRange()
+
 day()
+
 dayRange()
+
 greaterThanDate()
+
 greaterThanUtcDate()
+
 greaterThanUtcNow()
+
 lessthanDate()
+
 lessthanUtcDate()
+
 lessthanUtcNow()
+
 monthRange()
+
 yearRange()
 {% endraw %}
 
 > for example:
 
 {% raw %}
-(dayRange(-30,0)) – Results in a date range for the last 30 days: “26-01-2014”..”25-02-2014″
-(day(-1)) – Results in yesterday’s date: 24-02-2014
-(day(0)) – Results in today’s date: 25-02-2014
-(day(1)) – Results in tomorrow’s date: 26-02-2014
-(greaterThanDate(2)) – Results in every date after today plus 2: > 27-02-2014
-(lessThanDate(-1)) – Results in every date of today minus 1: < 24-02-2014
-(monthRange(0,2)) – Results in first day till the last day of the month’s choosen (0 = current month): “01-02-2014”..”30-04-2014″
-(yearRange(-1,-1)) – Results in first day till the last day of the chosen year: “01-01-2013”..”31-12-2013″
+(dayRange(-30,0)) – Results in a date range for the last 30 days: "26-01-2017".."25-02-2017"
+
+(day(-1)) – Results in yesterday's date: 24-02-2017
+
+(day(0)) – Results in today's date: 25-02-2017
+
+(day(1)) – Results in tomorrow's date: 26-02-2017
+
+(greaterThanDate(2)) – Results in every date after today plus 2: > 27-02-2017
+
+(lessThanDate(-1)) – Results in every date of today minus 1: < 24-02-2017
+
+(monthRange(0,2)) – Results in first day till the last day of the month's choosen (0 = current month): "01-02-2017".."30-04-2017"
+
+(yearRange(-1,-1)) – Results in first day till the last day of the chosen year: "01-01-2017".."31-12-2017"
 {% endraw %}
 
 Thank you for reading!
