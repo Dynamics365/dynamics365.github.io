@@ -73,8 +73,11 @@ Main logic here is find Vend accounts are not exist in `VendTrans` table with co
 public class Max_VendorBlockedBatch extends RunBaseBatch
 {
 }
+{% endhighlight %}
 
-//Get the date before 6 months from today
+Get the date before 6 months from today
+
+{% highlight csharp %}
 public TransDate getBeginDate()
 {
     TransDate   beginDate;
@@ -98,8 +101,11 @@ public TransDate getBeginDate()
 
     return beginDate;
 }
+{% endhighlight %}
 
-//Send E-mail
+Send E-mail
+
+{% highlight csharp %}
 public void sendEmail(AccountNum _vendor, str _recipient)
 {
     str                                     sender  = 'sender@email.com';
@@ -164,20 +170,29 @@ public void sendEmail(AccountNum _vendor, str _recipient)
         CodeAccessPermission::revertAssert();
     }
 }
+{% endhighlight %}
 
-// Initializes a new instance of the <c>MAVBatch</c> class.
+Initializes a new instance of the *<c>Batch</c>* class.
+
+{% highlight csharp %}
 public static MAX_VendorBlockedBatch construct()
 {
     return new MAX_VendorBlockedBatch();
 }
+{% endhighlight %}
 
-// Gets description of the dialog.
+Gets description of the dialog.
+
+{% highlight csharp %}
 public static ClassDescription description()
 {
     return 'Vendor blocked batch';
 }
+{% endhighlight %}
 
-// Find the vendor without transaction and disable, then send email to vendor
+Find the vendor without transaction and disable, then send email to vendor
+
+{% highlight csharp %}
 public void run()
 {
     VendTrans   vendTrans;
@@ -217,8 +232,11 @@ public void run()
         retry;
     }
 }
+{% endhighlight %}
 
-// Provides an enter point for the <c>Batch</c> class.
+Provides an enter point for the <c>Batch</c> class.
+
+{% highlight csharp %}
 public static void main(Args _args)
 {
     MAX_VendorBlockedBatch vendorBlockedBatch = MAX_VendorBlockedBatch::construct();
@@ -228,7 +246,6 @@ public static void main(Args _args)
         vendorBlockedBatch.run();
     }
 }
-
 {% endhighlight %}
 
 From here you can run class and set up recurrence for batch job.
