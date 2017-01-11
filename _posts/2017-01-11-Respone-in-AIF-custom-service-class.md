@@ -21,8 +21,9 @@ We already know for Custom AIF service we actually need 2 classes, one is `contr
 I want to get `HcmPersonnelNumberId` and `HcmWorkerName` of current userID on C#.NET application.
 
 ### Solution
-
+	
 . Write Custom AIF service to get Worker information, and then public this service.
+
 . Write C#.NET console to consume that service.
 
 ### Walkthrough
@@ -105,7 +106,7 @@ go to AIF inbound form to create new service and add `getEmployee` operation to 
 
 #### Consume service
 
-add Recent WSDL URI into Service reference in C# Console project
+Add recent WSDL URI `http://WINSERVER:8104/DynamicsAx/Services/MaxPurchReqGeneral` into Service reference in C# Console project
 
 {% highlight csharp %}
 static void Main(string[] args)
