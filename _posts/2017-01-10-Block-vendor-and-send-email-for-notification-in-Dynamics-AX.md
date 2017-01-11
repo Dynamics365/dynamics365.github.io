@@ -21,7 +21,7 @@ For set up email, we need Go to AX `System administrator > Setup > E-mail parame
 Vendor emails locate on `LogisticsElectronicAddress.Locator`, `partyTable.PrimaryContactEmail`, `partyLocation.Location`, please take a look on this job to find how to update Vendor emails and you also could see the relations more clearly.
 
 {% highlight csharp %}
-static void MAV_UpdateVendorEmail(Args _args)
+static void UpdateVendorEmail(Args _args)
 {
     VendTable                   vendTable;
     LogisticsElectronicAddress  electronicAddress;
@@ -232,3 +232,5 @@ public static void main(Args _args)
 {% endhighlight %}
 
 From here you can run class and set up recurrence for batch job.
+
+Thank you for reading!
