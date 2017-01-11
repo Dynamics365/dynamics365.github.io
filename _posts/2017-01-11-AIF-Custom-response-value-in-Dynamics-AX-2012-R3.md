@@ -33,8 +33,6 @@ public AifEntityKeyList createList(
 }
 {% endhighlight %}
 
-It will return `SalesID`.
-
 So, how about customer wants another meaning value beside `SalesID` likes `InventTransId` information in `SalesLine` table or another tables base on your requirement. To do that, we need to customize this method.
 
 ### How to do
@@ -131,5 +129,7 @@ catch (Exception e)
 Here is what we got
 
 ![](https://dynamics365.github.io/assets/AIF-Custom-response-value-in-Dynamics-AX-2012-R3.png)
+
+Just remember this one just for AIF Document Standard, for AIF custom service we do another way I will so in next post.
 
 Thank you for reading.

@@ -106,6 +106,7 @@ public TransDate getBeginDate()
 Send E-mail
 
 {% highlight csharp %}
+
 public void sendEmail(AccountNum _vendor, str _recipient)
 {
     str                                     sender  = 'sender@email.com';
@@ -170,6 +171,7 @@ public void sendEmail(AccountNum _vendor, str _recipient)
         CodeAccessPermission::revertAssert();
     }
 }
+
 {% endhighlight %}
 
 Initializes a new instance of the *<c>Batch</c>* class.
