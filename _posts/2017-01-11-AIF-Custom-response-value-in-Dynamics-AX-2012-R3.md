@@ -3,7 +3,7 @@ layout: dark-post
 title: AIF Custom response value in Dynamics AX 2012 R3
 description: AIF Custom response value in Dynamics AX 2012 R3
 author: Max Nguyen
-modified: 2017-01-10
+modified: 2017-01-11
 categories: [ax2012, trick, tools, integration]
 tags: [xpp, aif]
 ---

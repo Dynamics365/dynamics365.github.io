@@ -3,7 +3,7 @@ layout: post
 title: Simple summary Keys are in Dynamics AX
 description: Simple summary Keys are in Dynamics AX
 author: Max Nguyen
-modified: 2017-01-02
+modified: 2017-01-03
 categories: [ax2012, trick, tools]
 tags: [key]
 ---
