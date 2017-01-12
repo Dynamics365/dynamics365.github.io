@@ -1,0 +1,72 @@
+---
+layout: post
+title: Handle AIF error messages in dynamics AX 2012 R3
+description: Handle AIF error messages in dynamics AX 2012 R3
+author: Max Nguyen
+modified: 2017-01-12
+categories: [ax2012, trick, tools, integration]
+tags: [xpp, aif]
+---
+
+Normally, when we consume AIF Service, we use this code like below to handle Error messages
+
+{% highlight csharp %}
+try
+{
+	client.register(ctx, contract);
+	Console.WriteLine("items registed on Trans Id: " + contract.InventTransId + " with " + contract.Qty + " quantities.");
+	Console.ReadLine();
+}
+catch (Exception ex)
+{
+	Console.WriteLine(string.Format("Ex: {0}", ex.Message));
+	Console.ReadLine();
+}
+{% endhighlight %}
+
+If you get error, it would return like this
+
+![](https://dynamics365.github.io/assets/Handle-AIF-error-messages-in-dynamics-AX-2012-R3-1.png)
+
+If you want to know why you have to go In Dynamics ax AIF Exceptions form then check
+
+![](https://dynamics365.github.io/assets/Handle-AIF-error-messages-in-dynamics-AX-2012-R3-2.png)
+
+It's quite hard for 3rd party developer, especially they don't have right to access AX server.
+
+Anyway, we can get meaningful error message by doing below steps
+
+* Check that box in AIF inbound ports
+
+![](https://dynamics365.github.io/assets/Handle-AIF-error-messages-in-dynamics-AX-2012-R3-3.png)
+
+* Use this `FaultException` to get message
+
+{% highlight csharp %}
+try
+{
+	client.register(ctx, contract);
+	Console.WriteLine("items registed on Trans Id: " + contract.InventTransId + " with " + contract.Qty + " quantities.");
+	Console.ReadLine();
+
+}
+catch (System.ServiceModel.FaultException<ItemsRegistration.RegRef.AifFault> aifFault)
+{
+	//FaultMessageList[] list = aifFault.Detail.FaultMessageListArray[0];
+	InfologMessage[] list = aifFault.Detail.InfologMessageList;
+
+	foreach (InfologMessage message in list)
+	{
+		Console.WriteLine(message.Message);
+
+	}
+	Console.ReadLine();
+
+}
+{% endhighlight %}
+
+what we got
+
+![](https://dynamics365.github.io/assets/Handle-AIF-error-messages-in-dynamics-AX-2012-R3-4.png)
+
+Thank you for reading.

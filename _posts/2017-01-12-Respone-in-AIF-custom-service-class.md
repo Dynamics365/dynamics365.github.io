@@ -3,7 +3,7 @@ layout: dark-post
 title: Response in AIF custom service class
 description: Response in AIF custom service class
 author: Max Nguyen
-modified: 2017-01-11
+modified: 2017-01-12
 categories: [ax2012, trick, tools, integration]
 tags: [xpp, aif]
 ---
