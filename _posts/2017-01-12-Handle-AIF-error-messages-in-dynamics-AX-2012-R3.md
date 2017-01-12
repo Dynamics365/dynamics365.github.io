@@ -24,11 +24,11 @@ catch (Exception ex)
 }
 {% endhighlight %}
 
-If you get error, it would return like this
+If it cause error, message would return like this
 
 ![](https://dynamics365.github.io/assets/Handle-AIF-error-messages-in-dynamics-AX-2012-R3-1.png)
 
-If you want to know why you have to go In Dynamics ax AIF Exceptions form then check
+If you want to know more details, you have to go In Dynamics ax **AIF Exceptions form** then check
 
 ![](https://dynamics365.github.io/assets/Handle-AIF-error-messages-in-dynamics-AX-2012-R3-2.png)
 
@@ -40,7 +40,7 @@ Anyway, we can get meaningful error message by doing below steps
 
 ![](https://dynamics365.github.io/assets/Handle-AIF-error-messages-in-dynamics-AX-2012-R3-3.png)
 
-* Use this `FaultException` to get message
+* Use `FaultException` class to get message
 
 {% highlight csharp %}
 try

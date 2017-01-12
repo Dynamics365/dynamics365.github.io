@@ -12,9 +12,9 @@ At the previous [post](http://axdeveloping.com/ax2012/trick/tools/integration/AI
 
 We already know for Custom AIF service we actually need 2 classes, one is `contract` for data input and one is `service` to process a logic. With `Response` class, it's literally same with `contract` class. They both hold parm value.
 
-**`contract` class** gets parametters.
+* **`contract` class** gets parametters.
 
-**`Response` class** sets return values.
+* **`Response` class** sets return values.
 
 ### Scenario
 
@@ -22,9 +22,9 @@ I want to get `HcmPersonnelNumberId` and `HcmWorkerName` of current userID on C#
 
 ### Solution
 	
-. Write Custom AIF service to get Worker information, and then public this service.
+* Write Custom AIF service to get Worker information, and then public this service.
 
-. Write C#.NET console to consume that service.
+* Write C#.NET console to consume that service.
 
 ### Walkthrough
 
