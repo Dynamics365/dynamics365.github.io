@@ -12,6 +12,8 @@ We normally create action delete in foreign table to make sure referential integ
 
 The delete action has the following options: **None, Restricted, Cascade, Cascade + Restricted**
 
+<!-- more -->
+
 #### None:
 
 This has no effect, and effectively disables the delete action. This is useful if you want to specifically state *do nothing* so that someone else doesn't try to correct what seems to be an omission.

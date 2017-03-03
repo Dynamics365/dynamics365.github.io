@@ -20,6 +20,8 @@ We already know for Custom AIF service we actually need 2 classes, one is `contr
 
 I want to get `HcmPersonnelNumberId` and `HcmWorkerName` of current userID on C#.NET application.
 
+<!-- more -->
+
 ### Solution
 	
 * Write Custom AIF service to get Worker information, and then public this service.
