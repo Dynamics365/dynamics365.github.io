@@ -24,8 +24,6 @@ The following classes are included in the library:
 
 <!-- more -->
 
-{% include banner-top.html %}
-
   * KetaiGesture
   * KetaiSensor
   * KetaiLocation
@@ -51,5 +49,3 @@ The following classes are included in the library:
 Yes, it's completely simple! Your Processing IDE is ready for Ketai. Now, you can take a look in my blog and check for other tutorials, I'm going to write some of them about Processing IDE with Ketai.
 
 That's it. Thanks for reading.
-
-{% include banner-bottom.html %}
