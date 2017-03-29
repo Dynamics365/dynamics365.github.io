@@ -28,6 +28,8 @@ If it cause error, message would return like this
 
 ![](https://dynamics365.github.io/assets/Handle-AIF-error-messages-in-dynamics-AX-2012-R3-1.png)
 
+<!-- more -->
+
 If you want to know more details, you have to go In Dynamics ax **AIF Exceptions form** then check
 
 ![](https://dynamics365.github.io/assets/Handle-AIF-error-messages-in-dynamics-AX-2012-R3-2.png)
