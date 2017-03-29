@@ -9,7 +9,7 @@ tags: [aif, programming, csharpdotnet, xpp]
 ---
 Useful functions to use in AX 2012
 
-<!--more-->
+<!-- more -->
 
 <script src="https://gist.github.com/Dynamics365/3820c3ff2a128658e111.js"></script>
 
