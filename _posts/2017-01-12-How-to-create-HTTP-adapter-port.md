@@ -14,6 +14,8 @@ As my experience, if we use `NETTCP` adapter for consuming by Java system, we wi
 
 So, my solution is creating HTTP adapter for Java, you can also use .NET system to consume HTTP adapter without any problems
 
+<!-- more -->
+
 ### How to do
 
 * You need to make sure install web services component on Internet Information Services (IIS) and verify that the default website is working.
