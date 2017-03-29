@@ -29,7 +29,9 @@ This matches the list of modules shown in the client's left-hand navigation pane
 4. For Porperties of created Menu: 
 
 	. Enter the **label** and create a label.
+	
 	. As this menu will be a module with company-specifc information, set the **SetCompany** property to Yes.
+	
 	. Choose the icons in the **NormalImage** property and set **ImageLocation** to EmbeddedResource.
 
 5. Create **Submenu**, by right-clicking on the menu and navigating to **New | Submenu**.
