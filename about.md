@@ -37,7 +37,7 @@ Some of my freelance experience
 
 ## Contact
 
-You can send me an email at: luan52@outlook.com or use the form bellow:
+You can send me an email at: _**luan52@outlook.com**_ or use the form bellow:
 
 <form action="http://formspree.io/luan52@outlook.com" method="post">
 	<label for="name">Name</label>    
