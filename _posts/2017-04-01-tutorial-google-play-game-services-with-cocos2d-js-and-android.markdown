@@ -37,8 +37,6 @@ Let's take a look!
 
 <!-- more -->
 
-{% include banner-top.html %}
-
 ## I - About Cocos-js
 
 [Cocos2d-JS](https://github.com/cocos2d/cocos2d-js) is an open source game engine for web games and native games. It has a high performance, is user-friendly and supports multi-platform development. Supported platforms include web, Android, iOS, Windows Phone 8, Mac, Windows, etc. Cocos2d-JS makes 2D game programming easier and faster. It clarifies the key components of 2D game programming by being easy to learn and having an easy to use API. All of this combined makes it an outstanding framework compared to others. Cocos2d-JS is the HTML5 version of Cocos2d-x, includes [Cocos2d-html5](https://github.com/cocos2d/cocos2d-html5) and Cocos2d-x JavaScript Binding (JSB). Using Cocos2d-JS, you can write games in JavaScript and run your games on browsers that support HTML5. The API is completely compatible between Cocos2d-html5 and Cocos2d-x JSB. This means that Cocos2d-JS games can be run using Cocos2d's "JavaScript Binding" on Cocos2d-x without or with very little modification.
@@ -171,9 +169,3 @@ jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppActivity", "showLead
 That's it :)
 
 If you have any problem, feel free to comment here :)
-
-Thx for reading,
-
-Aron Bordin.
-
-{% include banner-bottom.html %}
