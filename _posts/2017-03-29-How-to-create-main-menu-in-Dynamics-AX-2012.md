@@ -12,7 +12,10 @@ All main entry points to the UI and reports are access though the menu structure
 
 Each module will have a menu, which is created by adding a menu reference (or shortcut) to the main menu:
 
-![](https://dynamics365.github.io/assets/reference_menu.png)
+<figure class='center '>
+  <a href="https://dynamics365.github.io/assets/reference_menu.png"><img src="https://dynamics365.github.io/assets/reference_menu.png" alt=""></a>
+  <figcaption></figcaption>
+</figure>
 
 This matches the list of modules shown in the client's left-hand navigation pane.
 
@@ -46,7 +49,10 @@ This matches the list of modules shown in the client's left-hand navigation pane
 
 4. This opens a new window titled Select: Menus. Locate **your menu** and drag it to **MainMenu**, as shown in the following screenshot (the title changes from Select: Menus to the path of the select node when you click on it):
 
-![](https://dynamics365.github.io/assets/mainmenu2.png)
+<figure class='center '>
+  <a href=""><img src="https://dynamics365.github.io/assets/mainmenu2.png" alt=""></a>
+  <figcaption></figcaption>
+</figure>
 
 *Note: Do not drag the menu from your project!*
 
