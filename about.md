@@ -9,7 +9,8 @@ tags: [Freelancer, Dynamics AX, Dynamics 365, development, consultant]
 
 ### Hi There!!
 
-My name Luận (don't mind if you don't know how to pronounce), I'm Vietnamese.
+My name is Max, I'm Vietnamese.
+
 
 ## Freelancer
 
@@ -34,6 +35,7 @@ Some of my freelance experience
   * **C#**
   * **XML**
   
+**Module which I've been working with**
 
 ## Contact
 
