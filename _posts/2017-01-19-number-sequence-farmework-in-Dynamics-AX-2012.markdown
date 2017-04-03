@@ -14,27 +14,27 @@ share: false
   <a href="{{site.url}}/assets/number-sequence-overview.png"><img src="{{site.url}}/assets/number-sequence-overview.png" alt=""></a>
 </figure>
 
-For this demo, I will create New module, about creating Number Sequence without module is also same steps just leave some steps base on Design picture above
+For this demo, I will create New module along with NumberSequence, about creating Number Sequence *without* module you also use same steps just leave some steps base on Design picture above.
 
-1.	Create ETD `ContosoId` extends `num` datatype.
+1. Create ETD `ContosoId` extends `num` datatype.
 
-2.	Create `Contoso` Table with `ContosoId` field.
+2. Create `Contoso` Table with `ContosoId` field.
 
-3.	Create a new enum value `Contoso` in BaseEnum `NumberSeqModule`.
+3. Create a new enum value `Contoso` in BaseEnum `NumberSeqModule`.
 
 This value will be used to link number sequence to the module and to restrict displayed number sequence by module in Form.
 
 <!-- more -->
 
-4.  `NumberSeqModuleXXX` class
+4. Create `NumberSeqModuleXXX` class
 
 Create a new `NumberSeqModuleXXX` class, such as `NumberSeqModuleContoso`, which extends the `NumberSeqApplicationModule` **class**. The sample code for creating this class is as follows:
-
 
 	{% highlight csharp %}
 	public class NumberSeqModuleContoso extends NumberSeqApplicationModule
 	{
 	}
+	
 	protected void loadModule()
 	{
 		NumberSeqDatatype datatype = NumberSeqDatatype::construct();
@@ -51,6 +51,7 @@ Create a new `NumberSeqModuleXXX` class, such as `NumberSeqModuleContoso`, which
 		datatype.addParameterType(NumberSeqParameterType::DataArea, true, false);
 		this.create(datatype);
 	}
+	
 	public NumberSeqModule numberSeqModule()
 	{
 		;
@@ -82,7 +83,8 @@ You need to Create `ContosoParameters` Table along with form, See existing forms
 
 > These forms are using **DetailsFormMaster** form parten as Best Practice for Setup form.
 
-	a. `ContosoParameters` Table
+
+	1. Create `ContosoParameters` Table
 	
 		**Add field key **
 		
@@ -153,7 +155,7 @@ You need to Create `ContosoParameters` Table along with form, See existing forms
 		}
 		{% endhighlight %}
 
-	b.	`ContosoParameters` form
+	2. Create `ContosoParameters` form
 	
 	Note This form can only be used for references that have a scope of DataArea. The administration forms described in the Setup and Administration of number sequences section can be used for references that have any scope. These forms can be found in *Organization Administration > Common > Number Sequences*
 	
@@ -273,18 +275,18 @@ Optional method – in case you don’t want to expose Number sequence on Form L
 	}
 	{% endhighlight %}
 	
-	From now on you can create new record in Contoso Table with number sequence.
+From now on you can create new record in Contoso Table with number sequence.
 	
 7.	How to use on form level (In case you don’t want to expose NS in Table Level)
 
-. In the class declaration of the form that will be accessing data, add a variable declaration for the number sequence handler. The following example shows the variable definition for a number sequence handler.
+* In the class declaration of the form that will be accessing data, add a variable declaration for the number sequence handler. The following example shows the variable definition for a number sequence handler.
 
 	public class FormRun extends ObjectRun
 	{
 		NumberSeqFormHandler numberSeqFormHandlerContosoId;
 	}
 
-. Add the `NumberSeqFormHandler` method to the form. The code in this method will create an instance of the number sequence form handler and return it.
+* Add the `NumberSeqFormHandler` method to the form. The code in this method will create an instance of the number sequence form handler and return it.
 
 {% highlight csharp %}
 	public NumberSeqFormHandler numSeqFormHandlerContosoId()
@@ -301,7 +303,7 @@ Optional method – in case you don’t want to expose Number sequence on Form L
 	}
 {% endhighlight %}
 
-. Add **create, delete, and write** methods to the data source of the table that contains the field for which the number sequence is being used. The following code examples show these methods that are added to the data source for the Contoso table to support the number sequence for the `ContosoId` field.
+* Add **create, delete, and write** methods to the data source of the table that contains the field for which the number sequence is being used. The following code examples show these methods that are added to the data source for the Contoso table to support the number sequence for the `ContosoId` field.
 
 	{% highlight csharp %}
 	public void create(boolean _append = false)
