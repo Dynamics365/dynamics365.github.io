@@ -26,9 +26,9 @@ Create `Contoso` Table with `ContosoId` field.
 
 Create a new enum value `Contoso` in BaseEnum `NumberSeqModule`.
 
-	This value will be used to link number sequence to the module and to restrict displayed number sequence by module in Form.
+This value will be used to link number sequence to the module and to restrict displayed number sequence by module in Form.
 
-	<!-- more -->
+<!-- more -->
 
 ## NumberSeqModule Class
 
@@ -91,17 +91,17 @@ You need to Create `ContosoParameters` Table along with form, See existing forms
 
 _These forms are using **DetailsFormMaster** form parten as Best Practice for Setup form._
 
-1. Create `ContosoParameters` Table
+### Create `ContosoParameters` Table
 		
-**Add field key**
+1. Add field key
 	
 * Extends from `ParametersKey`
 
 * Visible = false, AllowEdit = false, AllowEditOnCreate = false
 	
-**Create index name Key with AllowDuplicate = No**
+2. Create index name Key with AllowDuplicate = No
 	
-**Set table properties**
+3. Set table properties
 	
 * TableContent = Default data
 
@@ -115,7 +115,7 @@ _These forms are using **DetailsFormMaster** form parten as Best Practice for Se
 
 * ClusterKey = Key
 	
-**The sample code** for creating method this table as below:
+4. The sample code for creating method this table as below:
 		
 {% highlight csharp %}
 void delete()
@@ -162,7 +162,7 @@ public server static NumberSequenceReference numRefContosoId()
 }
 {% endhighlight %}
 
-2. Create `ContosoParameters` form
+### Create `ContosoParameters` form
 		
 Note This form can only be used for references that have a scope of DataArea. The administration forms described in the Setup and Administration of number sequences section can be used for references that have any scope. These forms can be found in *Organization Administration > Common > Number Sequences*
 
@@ -243,7 +243,6 @@ void executeQuery()
 }
 {% endhighlight %}
 		
-
 ## How to use on Table
 
 Set number sequence in Contoso Table
