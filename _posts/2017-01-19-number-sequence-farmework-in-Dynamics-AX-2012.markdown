@@ -14,17 +14,25 @@ tags: [xpp, numbersequence, programming]
 
 For this demo, I will create New module along with NumberSequence, about creating Number Sequence *without* module you also use same steps just leave some steps base on Design picture above.
 
-1. Create ETD `ContosoId` extends `num` datatype.
+## ETD
 
-2. Create `Contoso` Table with `ContosoId` field.
+Create ETD `ContosoId` extends `num` datatype.
 
-3. Create a new enum value `Contoso` in BaseEnum `NumberSeqModule`.
+## Table
+
+Create `Contoso` Table with `ContosoId` field.
+
+## Enum
+
+Create a new enum value `Contoso` in BaseEnum `NumberSeqModule`.
 
 	This value will be used to link number sequence to the module and to restrict displayed number sequence by module in Form.
 
 	<!-- more -->
 
-4. Create `NumberSeqModuleXXX` class
+## NumberSeqModule Class
+
+Create `NumberSeqModuleXXX` class
 
 	Create a new `NumberSeqModuleXXX` class, such as `NumberSeqModuleContoso`, which extends the `NumberSeqApplicationModule` **class**. The sample code for creating this class is as follows:
 {% highlight csharp %}
@@ -74,162 +82,170 @@ You can also reinitialize all references by running a job that executes the `Loa
 
 Then run the wizard in *Organization Administration > CommonForms > Numbersequences > Numbersequences > Generate > run the wizard*.
 
-5. Create a Number sequences page in the parameters form of the new module.
+## Parameters Table and Form
 
-	You need to Create `ContosoParameters` Table along with form, See existing forms such as `CustParameters` or `LedgerParameters` for examples of the implementation.
+Create a Number sequences page in the parameters form of the new module.
 
-	_These forms are using **DetailsFormMaster** form parten as Best Practice for Setup form._
+You need to Create `ContosoParameters` Table along with form, See existing forms such as `CustParameters` or `LedgerParameters` for examples of the implementation.
 
-	1. Create `ContosoParameters` Table
+_These forms are using **DetailsFormMaster** form parten as Best Practice for Setup form._
+
+1. Create `ContosoParameters` Table
 		
-		**Add field key **
+**Add field key **
+	
+	* Extends from `ParametersKey`
+	
+	* Visible = false, AllowEdit = false, AllowEditOnCreate = false
+	
+**Create index name Key with AllowDuplicate = No**
+	
+**Set table properties**
+	
+	* TableContent = Default data
+	
+	* ConfigurationKey
+	
+	* CacheLookup = Found
+	
+	* TableGroup = Parameter
+	
+	* PrimaryKey = Key
+	
+	* ClusterKey = Key
+	
+**The sample code** for creating method this table as below:
 		
-		* Extends from `ParametersKey`
-		
-		* Visible = false, AllowEdit = false, AllowEditOnCreate = false
-		
-		**Create index name Key with AllowDuplicate = No**
-		
-		**Set table properties**
-		
-		* TableContent = Default data
-		
-		* ConfigurationKey
-		
-		* CacheLookup = Found
-		
-		* TableGroup = Parameter
-		
-		* PrimaryKey = Key
-		
-		* ClusterKey = Key
-		
-		**The sample code** for creating method this table as below:
-		
-	{% highlight csharp %}
-	void delete()
+{% highlight csharp %}
+void delete()
+{
+	throw error("@SYS23721");
+}
+public void initValue()
+{
+	;
+	super();
+	// Key is set to mandatory so set it to 1
+	this.Key = 1;
+}
+static ContosoParameters find(boolean _forupdate = false)
+{
+	ContosoParameters parameter;
+
+	if (_forupdate)
 	{
-		throw error("@SYS23721");
+		parameter.selectForUpdate(_forupdate);
 	}
-	public void initValue()
+
+	select firstonly RecId from parameter
+		where parameter.Key == 1;
+
+	if (!parameter && !parameter.isTmp())
 	{
-		;
+		Company::createParameter(parameter);
+	}
+
+	return parameter;
+}
+client server static NumberSeqModule numberSeqModule()
+{
+	;
+	return NumberSeqModule::Contoso;
+}
+public server static NumberSequenceReference numRefContosoId()
+{
+	;
+	NumberSeqScopeFactory::CreateDataAreaScope(curext());
+	return NumberSeqReference::findReference(extendedtypenum (ContosoId));
+
+}
+{% endhighlight %}
+
+2. Create `ContosoParameters` form
+		
+Note This form can only be used for references that have a scope of DataArea. The administration forms described in the Setup and Administration of number sequences section can be used for references that have any scope. These forms can be found in *Organization Administration > Common > Number Sequences*
+
+The data source of Parameters form likes picture below, you can also refer to `CustParameters` form for design.
+
+<figure class='center '>
+  <a href="{{site.url}}/assets/ContosoParameters.png"><img src="{{site.url}}/assets/ContosoParameters.png" alt=""></a>
+</figure>
+
+Code example for form methods:
+		
+{% highlight csharp %}
+public class FormRun extends ObjectRun
+{
+	NumberSeqReference          numberSeqReference;
+	boolean                     runExecuteDirect;
+	TmpIdRef                    tmpIdRef;
+	NumberSeqScope              scope;
+	NumberSeqApplicationModule  numberSeqApplicationModule;
+	container                   numberSequenceModules;
+}
+
+void init()
+{
+	;
+	this.numberSeqPreInit();
+	super();
+	ContosoParameters::find();
+	this.numberSeqPostInit();
+}
+
+void numberSeqPostInit()
+{
+	numberSequenceReference_ds.object(fieldNum(NumberSequenceReference, AllowSameAs)).visible(numberSeqApplicationModule.sameAsActive());
+	referenceSameAsLabel.visible(numberSeqApplicationModule.sameAsActive());
+}
+
+void numberSeqPreInit()
+{
+	;
+	runExecuteDirect            = false;
+
+	numberSequenceModules       = [NumberSeqModule::Contoso];
+	numberSeqApplicationModule  = new NumberSeqModuleContoso ();
+	scope                       = NumberSeqScopeFactory::createDataAreaScope();
+	NumberSeqApplicationModule::createReferencesMulti(numberSequenceModules, scope);
+
+	tmpIdRef.setTmpData(NumberSequenceReference::configurationKeyTableMulti(numberSequenceModules));
+}
+{% endhighlight %}
+	
+Code example for `NumberSequenceReference` data source methods
+	
+{% highlight csharp %}
+void removeFilter()
+{
+	;
+	runExecuteDirect = false;
+	numbersequenceReference_ds.executeQuery();
+}
+
+void executeQuery()
+{
+	if (runExecuteDirect)
+	{
 		super();
-		// Key is set to mandatory so set it to 1
-		this.Key = 1;
 	}
-	static ContosoParameters find(boolean _forupdate = false)
+	else
 	{
-		ContosoParameters parameter;
-
-		if (_forupdate)
-		{
-			parameter.selectForUpdate(_forupdate);
-		}
-
-		select firstonly RecId from parameter
-			where parameter.Key == 1;
-
-		if (!parameter && !parameter.isTmp())
-		{
-			Company::createParameter(parameter);
-		}
-
-		return parameter;
+		runExecuteDirect = true;
+		this.queryRun(NumberSeqReference::buildQueryRunMulti(numberSequenceReference,
+															 tmpIdRef,
+															 numberSequenceTable,
+															 numberSequenceModules,
+															 scope));
+		numbersequenceReference_ds.research();
 	}
-	client server static NumberSeqModule numberSeqModule()
-	{
-		;
-		return NumberSeqModule::Contoso;
-	}
-	public server static NumberSequenceReference numRefContosoId()
-	{
-		;
-		NumberSeqScopeFactory::CreateDataAreaScope(curext());
-		return NumberSeqReference::findReference(extendedtypenum (ContosoId));
-
-	}
-	{% endhighlight %}
-
-	2. Create `ContosoParameters` form
+}
+{% endhighlight %}
 		
-		Note This form can only be used for references that have a scope of DataArea. The administration forms described in the Setup and Administration of number sequences section can be used for references that have any scope. These forms can be found in *Organization Administration > Common > Number Sequences*
-		
-		The data source of Parameters form likes picture below, you can also refer to `CustParameters` form for design.
-		
-		<figure class='center '>
-		  <a href="{{site.url}}/assets/ContosoParameters.png"><img src="{{site.url}}/assets/ContosoParameters.png" alt=""></a>
-		</figure>
-		
-		Code example for form methods:
-		
-	{% highlight csharp %}
-	public class FormRun extends ObjectRun
-	{
-		NumberSeqReference          numberSeqReference;
-		boolean                     runExecuteDirect;
-		TmpIdRef                    tmpIdRef;
-		NumberSeqScope              scope;
-		NumberSeqApplicationModule  numberSeqApplicationModule;
-		container                   numberSequenceModules;
-	}
-	
-	void init()
-	{
-		;
-		this.numberSeqPreInit();
-		super();
-		ContosoParameters::find();
-		this.numberSeqPostInit();
-	}
-	
-	void numberSeqPostInit()
-	{
-		numberSequenceReference_ds.object(fieldNum(NumberSequenceReference, AllowSameAs)).visible(numberSeqApplicationModule.sameAsActive());
-		referenceSameAsLabel.visible(numberSeqApplicationModule.sameAsActive());
-	}
-	
-	void numberSeqPreInit()
-	{
-		;
-		runExecuteDirect            = false;
 
-		numberSequenceModules       = [NumberSeqModule::Contoso];
-		numberSeqApplicationModule  = new NumberSeqModuleContoso ();
-		scope                       = NumberSeqScopeFactory::createDataAreaScope();
-		NumberSeqApplicationModule::createReferencesMulti(numberSequenceModules, scope);
+## How to use on Table
 
-		tmpIdRef.setTmpData(NumberSequenceReference::configurationKeyTableMulti(numberSequenceModules));
-	}
-	
-	Code example for `NumberSequenceReference` data source methods
-	void removeFilter()
-	{
-		;
-		runExecuteDirect = false;
-		numbersequenceReference_ds.executeQuery();
-	}
-	
-	void executeQuery()
-	{
-		if (runExecuteDirect)
-		{
-			super();
-		}
-		else
-		{
-			runExecuteDirect = true;
-			this.queryRun(NumberSeqReference::buildQueryRunMulti(numberSequenceReference,
-																 tmpIdRef,
-																 numberSequenceTable,
-																 numberSequenceModules,
-																 scope));
-			numbersequenceReference_ds.research();
-		}
-	}
-	{% endhighlight %}
-		
-6. Set number sequence in Contoso Table
+Set number sequence in Contoso Table
 
 {% highlight csharp %}
 private void setContosoId()
@@ -247,7 +263,7 @@ private void setContosoId()
 }
 {% endhighlight %}
 
-	Optional method – in case you don’t want to expose Number sequence on Form Level
+Optional method – in case you don’t want to expose Number sequence on Form Level
 
 {% highlight csharp %}
 public void initValue()
@@ -270,11 +286,14 @@ public void insert()
 	super();
 }
 {% endhighlight %}
-	From now on you can create new record in Contoso Table with number sequence.
-		
-7. How to use on form level (In case you don’t want to expose NS in Table Level)
 
-	* In the class declaration of the form that will be accessing data, add a variable declaration for the number sequence handler. The following example shows the variable definition for a number sequence handler.
+From now on you can create new record in Contoso Table with number sequence.
+
+## How to use on Form
+
+How to use on form level (In case you don’t want to expose NS in Table Level)
+
+* In the class declaration of the form that will be accessing data, add a variable declaration for the number sequence handler. The following example shows the variable definition for a number sequence handler.
 
 {% highlight csharp %}
 public class FormRun extends ObjectRun
@@ -282,7 +301,8 @@ public class FormRun extends ObjectRun
 	NumberSeqFormHandler numberSeqFormHandlerContosoId;
 }
 {% endhighlight %}
-	* Add the `NumberSeqFormHandler` method to the form. The code in this method will create an instance of the number sequence form handler and return it.
+
+* Add the `NumberSeqFormHandler` method to the form. The code in this method will create an instance of the number sequence form handler and return it.
 
 {% highlight csharp %}
 public NumberSeqFormHandler numSeqFormHandlerContosoId()
@@ -299,7 +319,7 @@ public NumberSeqFormHandler numSeqFormHandlerContosoId()
 }
 {% endhighlight %}
 
-	* Add **create, delete, and write** methods to the data source of the table that contains the field for which the number sequence is being used. The following code examples show these methods that are added to the data source for the Contoso table to support the number sequence for the `ContosoId` field.
+* Add **create, delete, and write** methods to the data source of the table that contains the field for which the number sequence is being used. The following code examples show these methods that are added to the data source for the Contoso table to support the number sequence for the `ContosoId` field.
 
 {% highlight csharp %}
 public void create(boolean _append = false)
@@ -349,9 +369,11 @@ public void linkActive()
 }
 {% endhighlight %}
 		
-8. Continuous sequence (optional)	
+## Optional method
 
-	To avoid having gaps for continuous sequence you should add this code to the delete of the table.
+Continuous sequence
+
+To avoid having gaps for continuous sequence you should add this code to the delete of the table.
 
 {% highlight csharp %}
 public void delete()
@@ -361,7 +383,9 @@ public void delete()
 }
 {% endhighlight %}
 		
-9. Testing Number sequence by Job
+## Testing
+
+Testing Number sequence by Job
 
 {% highlight csharp %}
 static void Max_numberSeqRefCustAccount(Args _args)
