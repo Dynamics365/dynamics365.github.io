@@ -34,7 +34,8 @@ Create a new enum value `Contoso` in BaseEnum `NumberSeqModule`.
 
 Create `NumberSeqModuleXXX` class
 
-	Create a new `NumberSeqModuleXXX` class, such as `NumberSeqModuleContoso`, which extends the `NumberSeqApplicationModule` **class**. The sample code for creating this class is as follows:
+Create a new `NumberSeqModuleXXX` class, such as `NumberSeqModuleContoso`, which extends the `NumberSeqApplicationModule` class. The sample code for creating this class is as follows:
+
 {% highlight csharp %}
 public class NumberSeqModuleContoso extends NumberSeqApplicationModule
 {
@@ -92,27 +93,27 @@ _These forms are using **DetailsFormMaster** form parten as Best Practice for Se
 
 1. Create `ContosoParameters` Table
 		
-**Add field key **
+**Add field key**
 	
-	* Extends from `ParametersKey`
-	
-	* Visible = false, AllowEdit = false, AllowEditOnCreate = false
+* Extends from `ParametersKey`
+
+* Visible = false, AllowEdit = false, AllowEditOnCreate = false
 	
 **Create index name Key with AllowDuplicate = No**
 	
 **Set table properties**
 	
-	* TableContent = Default data
-	
-	* ConfigurationKey
-	
-	* CacheLookup = Found
-	
-	* TableGroup = Parameter
-	
-	* PrimaryKey = Key
-	
-	* ClusterKey = Key
+* TableContent = Default data
+
+* ConfigurationKey
+
+* CacheLookup = Found
+
+* TableGroup = Parameter
+
+* PrimaryKey = Key
+
+* ClusterKey = Key
 	
 **The sample code** for creating method this table as below:
 		
