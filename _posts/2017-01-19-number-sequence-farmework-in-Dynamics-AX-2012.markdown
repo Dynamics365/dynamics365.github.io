@@ -93,15 +93,13 @@ _These forms are using **DetailsFormMaster** form parten as Best Practice for Se
 
 ### Create `ContosoParameters` Table
 		
-1. Add field key
-	
-* Extends from `ParametersKey`
+* Add field key, Extends from `ParametersKey`
 
-* Visible = false, AllowEdit = false, AllowEditOnCreate = false
+* Properties on Field key Visible = false, AllowEdit = false, AllowEditOnCreate = false
 	
-2. Create index name Key with AllowDuplicate = No
+* Create index name Key with AllowDuplicate = No.
 	
-3. Set table properties
+* Set table properties.
 	
 * TableContent = Default data
 
@@ -115,7 +113,7 @@ _These forms are using **DetailsFormMaster** form parten as Best Practice for Se
 
 * ClusterKey = Key
 	
-4. The sample code for creating method this table as below:
+The sample code for creating method this table as below:
 		
 {% highlight csharp %}
 void delete()
