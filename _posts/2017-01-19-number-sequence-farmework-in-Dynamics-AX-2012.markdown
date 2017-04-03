@@ -55,9 +55,11 @@ public NumberSeqModule numberSeqModule()
 	return NumberSeqModule::Contoso;
 }
 {% endhighlight %}
-	Use of the `DataArea` segment in *Step 4* to describe the default segment for the extended data types used for `ContosoId`.
 
-	Note In **Microsoft Dynamics AX 2009**, number sequence references could be initialized by restarting the Application Object Server (AOS). In **Microsoft Dynamics AX 2012**, the initialization of references to populate the `NumberSequenceDatatype` and `NumberSequenceParameterType` tables has moved to the initialization checklist. To initialize the newly created references, run a job that executes the `LoadModule` method likes below
+Use of the `DataArea` segment in *Step 4* to describe the default segment for the extended data types used for `ContosoId`.
+
+Note In **Microsoft Dynamics AX 2009**, number sequence references could be initialized by restarting the Application Object Server (AOS). In **Microsoft Dynamics AX 2012**, the initialization of references to populate the `NumberSequenceDatatype` and `NumberSequenceParameterType` tables has moved to the initialization checklist. To initialize the newly created references, run a job that executes the `LoadModule` method likes below.
+	
 {% highlight csharp %}
 static void loadNumSeq (Args _args)
 {
@@ -67,9 +69,10 @@ static void loadNumSeq (Args _args)
 	seqMod.load();
 }
 {% endhighlight %}
-	You can also reinitialize all references by running a job that executes the `LoadAll` method in the `NumberSequenceModuleSetup` class. However, for reinitializing all references, you must ensure that there are no existing number sequences already defined in the system.
 
-	Then run the wizard in *Organization Administration > CommonForms > Numbersequences > Numbersequences > Generate > run the wizard*.
+You can also reinitialize all references by running a job that executes the `LoadAll` method in the `NumberSequenceModuleSetup` class. However, for reinitializing all references, you must ensure that there are no existing number sequences already defined in the system.
+
+Then run the wizard in *Organization Administration > CommonForms > Numbersequences > Numbersequences > Generate > run the wizard*.
 
 5. Create a Number sequences page in the parameters form of the new module.
 
