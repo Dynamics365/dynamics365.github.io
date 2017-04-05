@@ -9,8 +9,12 @@ tags: [Freelancer, Dynamics AX, Dynamics 365, development, consultant]
 
 ### Hi There!!
 
+<<<<<<< HEAD
 My name is Max, I'm Vietnamese.
 
+=======
+My name Max, I'm Vietnamese.
+>>>>>>> 1b8ba44940c7ea8729a5666e8d1acbc6f069ad9c
 
 ## Freelancer
 
