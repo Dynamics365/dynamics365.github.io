@@ -3,7 +3,7 @@ comments: true
 date: 2017-04-10 01:33:44+00:00
 layout: post
 slug: Management-reporter-in-Dynamics-365-for-operation
-title: 'MANAGEMENT REPORTER IN NEW AX, DYNAMICS 365 FOR OPERATION'
+title: Management reporter in new AX, Dynamics 365 For Operation
 categories:
 - dynamics365
 tags:
@@ -19,8 +19,7 @@ tags:
 - cash flow statements
 ---
 
-1.	### Overview Management Reporter in New AX
-
+### 1. Overview Management Reporter in New AX
 Management Reporter is now **Financial reports**.
 
 As you know Management Reporter is a real-time financial reporting application that is designed to empower information workers to quickly and easily create, generate, secure, and publish financial statements, such as Profit and Loss statements, balance sheets, and cash flow reports. 
@@ -34,72 +33,69 @@ Here is the list
   <a href="{{site.url}}/images/Financial_reports.png"><img src="{{site.url}}/images/Financial_reports.png" alt=""></a>
 </figure>
 
-2.	### Access
+### 2. Access
 You can find the financial reporting menu in Dynamics 365 For Operation by visiting 
 
 _**General Ledger > Inquiries and reports > Financial reporting.**_
 
-Although, there are some privileges and duties relating to this.  These report functions are available to users that have their appropriate privileges and duties assigned to them already.
+Although, there are some privileges and duties relating to this. These report functions are available to users that have their appropriate privileges and duties assigned to them already.
 In order to view, edit, and manage reports in Management Reporter you need to add security administrator role to business Users. Besides, if you only need users can run the financial reports then you have to add the appropriate privileges and duties assigned to them.
 
 Before creating and generating financial reports for a legal entity, you must be done set up for that legal entity:
 
-* 	Fiscal calendar
-
-* 	Ledger
-
-* 	Chart of Accounts
-
-* 	Currency
+  * Fiscal calendar
+  * Ledger
+  * Chart of Accounts
+  * Currency
 
 3.	### Management Reporter Benefits
 
 With Management Reporter, business users can:
 
-* 	Create their own boardroom-quality reports without IT assistance. 
+* Create their own boardroom-quality reports without IT assistance. 
 
-* 	Take advantage of secure report distribution through the centralized Report Library. 
+* Take advantage of secure report distribution through the centralized Report Library. 
 
-* 	Gain strong support for regulatory compliance (Change the report date, currency, view in Summary view or a detailed view, Add either dimension filters or attribute filters).
+* Gain strong support for regulatory compliance (Change the report date, currency, view in Summary view or a detailed view, Add either dimension filters or attribute filters).
 
-* 	Report design flexibility likes Save dimension combinations, and reuse the dimensions for multiple reports. Management Report Components.
+* Report design flexibility likes Save dimension combinations, and reuse the dimensions for multiple reports. Management Report Components.
 
-* 	Financial report collaboration:
+* Financial report collaboration:
 
-	* 	Schedule reports so that they are automatically generated on a daily, weekly, monthly, or annual basis.
-	* 	Export to the read-only XPS format, which provides better document security through digital signatures.
-	* 	Export to a Microsoft Excel worksheet.
-	* 	To share reports, you can create email messages that contain links to the reports.
+	* Schedule reports so that they are automatically generated on a daily, weekly, monthly, or annual basis.
+	* Export to the read-only XPS format, which provides better document security through digital signatures.
+	* Export to a Microsoft Excel worksheet.
+	* To share reports, you can create email messages that contain links to the reports.
 
 4.	### Management Report Components
 
 Some important components I want to mention here:
 
-* 	**Report Designer**
+* **Report Designer**
 
 Create report building blocks that can be combined to define and generate a report. The report wizard guides less experienced users through the design process. Advanced users can create new report building blocks or modify existing building blocks to meet their requirements.
 
-* 	**Desktop Viewer** 
+* **Desktop Viewer** 
 
 Used to organize and view reports and supporting files. It also stores the report library. 
 
-* 	**Web Viewer** 
+* **Web Viewer** 
 
 Displays Management Reporter reports in a web browser. The Web Viewer does not require an installation of Management Reporter server components. 
 
-* 	**Report schedules** 
+* **Report schedules** 
 
 A user can schedule a single report or a group of reports to generate regularly. 
 
-* 	**Management Reporter database **
+* **Management Reporter database **
 
 This SQL database stores the components, known as building blocks, which are used to generate reports. It also stores report definitions and previously generated reports. 
 
-* 	**Application service** 
+* **Application service** 
 
 Controls access to the data provider and provides connectivity to clients. 
 
-* 	**Process service** 
+* **Process service** 
 
 Generates the reports that are created and queued by the Management Reporter client. 
 
@@ -144,20 +140,20 @@ Row, Column, Tree, Report definitions work essentially the same as they did in *
 
 Here are some of the functions that are not available in Financial Reporting for Dynamics 365 for Operations:
 
-* 	Publishing/distributing reports to SharePoint and/or SharePoint Online locations is not available.
+* Publishing/distributing reports to SharePoint and/or SharePoint Online locations is not available.
 
-* 	Report Viewer/Library has been removed.
-* 	Import data from an Excel file is not available.
+* Report Viewer/Library has been removed.
+* Import data from an Excel file is not available.
 
-* 	XBRL (extensible Business Reporting Language) is no longer available.
+* XBRL (extensible Business Reporting Language) is no longer available.
 
-* 	Comments are not currently available in the web client.
+* Comments are not currently available in the web client.
 
-* 	Running a consolidation between companies in different instances of AX is not available.
+* Running a consolidation between companies in different instances of AX is not available.
 
-* 	The Wizard has been removed.
+* The Wizard has been removed.
 
-* 	Management Reporter includes direct integration with the Microsoft Dynamics AX general ledger so that there is no need to create a custom connection to the data source.
+* Management Reporter includes direct integration with the Microsoft Dynamics AX general ledger so that there is no need to create a custom connection to the data source.
 
 Nevertheless, with custom reporting structures, ledger accounts, and dimensions mapping, creation and the capabilities to publish reports to multiple channels and formats from the desktop, and embedding transactional and analytical reports into a customizable dashboard, Financial Reporting in Dynamics 365 For Operation is all set to simplify the financial reporting process, providing instant insight into your financials.
 
