@@ -72,7 +72,7 @@ Used to organize and view reports and supporting files. It also stores the repor
 Displays Management Reporter reports in a web browser. The Web Viewer does not require an installation of Management Reporter server components. 
   * **Report schedules** 
 A user can schedule a single report or a group of reports to generate regularly. 
-  * **Management Reporter database **
+  * **Management Reporter database**
 This SQL database stores the components, known as building blocks, which are used to generate reports. It also stores report definitions and previously generated reports. 
   * **Application service** 
 Controls access to the data provider and provides connectivity to clients. 
