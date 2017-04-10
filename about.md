@@ -10,12 +10,9 @@ tags: [Freelancer, Dynamics AX, Dynamics 365, development, consultant]
 ### Hi There!!
 
 My name is Max, I'm Developer, Technical Consultant and I'm Vietnamese.
+Here is some of my experience in AX expertise
 
-## Freelancer
-
-Some of my freelance experience
-
-**Think in my mind when I do the customizations**
+#### Things are in my mind when I do the customizations
 
   * Minimizing the footprint of changes (I know how painful is when merging code from different partners or upgrade or installing hotfix).
   * Where to make the change (always at the highest level and in this order: class, table, form data source feld/method, form control).
@@ -26,7 +23,7 @@ Some of my freelance experience
   * Apply Dynamics AX design patterns.
   * Apply Best pratice.
 	
-**ERP and CRM**
+#### ERP and CRM
 
   * **Dynamics AX Version**
 	* Dynamics AX 2012 R2 CU7 and above
@@ -38,7 +35,7 @@ Some of my freelance experience
     * Microsoft Dynamics 365 for Sales
     * Microsoft Dynamics 365 for Customer Service
 	
-**Language**
+#### Language
 
 Expertise in order below: 
 
@@ -47,7 +44,7 @@ Expertise in order below:
   * **C#**
   * **XML**
   
-**Most functions which I've been working with**
+#### Most functions which I've been working with*
   * **Financials**
 	* Financials Dimension
 	* Chart of accounts
@@ -73,7 +70,7 @@ Expertise in order below:
 	* Picking and packing
 	* Mobile devices
 	
-**Most technologies which I've been working with**
+#### Most technologies which I've been working with*
 	
   * **PowerBI**
   * **SSRS and Financial reporting**
