@@ -9,12 +9,23 @@ tags: [Freelancer, Dynamics AX, Dynamics 365, development, consultant]
 
 ### Hi There!!
 
-My name is Max, I'm Vietnamese.
+My name is Max, I'm Developer, Technical Consultant and I'm Vietnamese.
 
 ## Freelancer
 
 Some of my freelance experience
 
+**Think in my mind when I do the customizations**
+
+	* Minimizing the footprint of changes (I know how painful is when merging code from different partners or upgrade or installing hotfix).
+    * Where to make the change (always at the highest level and in this order: class, table, form data source feld/method, form control).
+    * Using field groups (The reason this reduces footprint).
+	* Upgrades and system maintainability.
+	* Design for a service-oriented architecture.
+	* Design for code reuse.
+	* Apply Dynamics AX design patterns.
+	* Apply Best pratice.
+	
 **ERP and CRM**
 
   * **Dynamics AX Version**
@@ -29,13 +40,51 @@ Some of my freelance experience
 	
 **Language**
 
-  * **X++**
-  * **SQL**
-  * **C#**
-  * **XML**
-  
-**Module which I've been working with**
+Expertise in order below: 
 
+	* **X++**
+	* **SQL**
+	* **C#**
+	* **XML**
+  
+**Most functions which I've been working with**
+	* **Financials**
+		* Financials Dimension
+		* Chart of accounts
+		* Financial statements – Balance sheet, Income statement
+	* **Trade and Logicstics**
+		* Item creation
+		* Sales process
+		* Purchase process
+		* Transfer order
+		* Supply chain management
+	* **Production**
+		* BOM
+		* Routes and operations
+		* Purchase process
+		* Transfer order
+	* **Retails**
+		* Installation and configrution Retails POS
+		* The Async Service
+		* Real-time Service
+		* Certificate Management
+	* **Warehouse management **
+		* Workflows
+		* Picking and packing
+		* Mobile devices
+	
+**Most technologies which I've been working with**
+	
+	* **PowerBI**
+	* **SSRS and Financial reporting**
+	* **Application Integration Framework (AIF)**
+	* **Extensible Data Security**
+	* **TFS and DAX Source Version Control**
+	* **Batch**
+	* **File integration using WINAPI**
+	
+:)
+	
 ## Contact
 
 You can send me an email at: _**luan52@outlook.com**_ or use the form bellow:
