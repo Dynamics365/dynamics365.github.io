@@ -44,7 +44,7 @@ Expertise in order below:
   * **C#**
   * **XML**
   
-#### Most functions which I've been working with*
+#### Most functions which I've been working with
   * **Financials**
 	* Financials Dimension
 	* Chart of accounts
@@ -65,13 +65,12 @@ Expertise in order below:
 	* The Async Service
 	* Real-time Service
 	* Certificate Management
-  * **Warehouse management **
+  * **Warehouse management**
 	* Workflows
 	* Picking and packing
 	* Mobile devices
 	
-#### Most technologies which I've been working with*
-	
+#### Most technologies which I've been working with	
   * **PowerBI**
   * **SSRS and Financial reporting**
   * **Application Integration Framework (AIF)**
