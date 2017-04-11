@@ -294,11 +294,14 @@ The Output of above class is here:
 ### 5. Access Modifiers
 
 Access Modifiers are nothing but the Usage and Limitation of our type like variable, Methods and Class. For Example we can say it as a security limit. This six are the basic Access modifiers which we used in our C# Class/method and in Variables.
-  * private
+  * `Private`
+  
 Let’s take our House Example .We will have a Security Guard in House, His duty is till the Entrance of the house. He cannot go inside the house and access all the things. In this case we can create a SecurityGuardClass and declare the variable and method for Security as private .
-  * public
+  * `Public`
+  
 House Owners are public to the class where they can access all classes related to the House. They have no restrictions to access their house.
-  * internal
+  * `Internal`
+  
 Access limit of variable or method is within a project. For example let’s consider in our project we have more than one class and we have declared a variable as internal in one class. Let’s see an example program for internal variable.
 
 {% highlight csharp %}
@@ -331,9 +334,11 @@ class Modifiers
   <a href="{{site.url}}/assets/basic-c-oop-concept_4.png"><img src="{{site.url}}/assets/basic-c-oop-concept_4.png" alt=""></a>
 </figure>
 
-  * protected
+  * `Protected`
+  
 Only the main class and derived class can have access of protected variable or method. For example servants and Guests are example for the Protected. For Example Servants can go to all room and do cleaning and other activates. However, they have limitations of access in the house, as they cannot take rest in a bed of house owner.
-  * protected internal
+  * `Protected Internal`
+  
 Protected Internal variable or Method has limitation with in a project of class or Derived class. Here is a sample program for Protect Internal Variable .In this example I have used the Inheritance .we will see in detail about Inheritance more detail in this article.
 
 {% highlight csharp %}
@@ -439,7 +444,9 @@ public class HouseServerntClass
 
 Inheritance is used to reuse the code. In Protected Internal Access modifier section we have already seen an example program for Inheritance. Inheritance is nothing but accessing and using all base class variable and methods in the Derived Class. Inheritance can be
 
-  * Single level Inheritance: With one Base class and one derived Class for example.
+  * **Single level Inheritance**
+
+With one Base class and one derived Class for example.
 
 {% highlight csharp %}
 public class baseClass
@@ -479,7 +486,8 @@ Here we can see a simple Inheritance where the base class is the `GuestVist` and
   <a href="{{site.url}}/assets/basic-c-oop-concept_8.png"><img src="{{site.url}}/assets/basic-c-oop-concept_8.png" alt=""></a>
 </figure>
 
-  * Multi level Inheritance: 
+  * **Multi level Inheritance**
+  
 With more than one Derived Class for example. Here we can see an example first base class is derived in **DerivedClass1** and then the **DerivedClass1** is derived in **DerivedClass2** .Now from **DerivedClass2** we can access both **baseClass** and **DerivedClass1** variable and methods.
 
 {% highlight csharp %}
@@ -518,7 +526,8 @@ public class DerivedClass2 : DerivedClass1
   <a href="{{site.url}}/assets/basic-c-oop-concept_9.png"><img src="{{site.url}}/assets/basic-c-oop-concept_9.png" alt=""></a>
 </figure>
 
-  * Multiple Inheritance
+  * **Multiple Inheritance**
+  
 	* Will the .Net Support Multiple Inheritance?
 The Answer to this Question is **No**. In C #, it’s not possible to write a Multiple Inheritance using Class.
 What is Multiple Inheritance? Multiple Inheritance is nothing but we can have more than one class and we can inherit both Classes in our derived class.
@@ -538,7 +547,8 @@ See the below image which shows the Warning error message while I write Multiple
 Ploy means more than one form. In the beginning of the Article at Method Section, we have already seen an example of Polymorphism. Same method name with different parameter is an example for the polymorphism.
 **Method Overloading** and **Method Overriding** will be used in polymorphism. Polymorphism have two types of execution one is Compile Time Polymorphism and the other one is called the Run time Polymorphism.
 
-  * Method Overloading:
+  * **Method Overloading**
+  
 Method overloading are nothing but same Method name will be used for more than one method with different Argument.
 Here is an example program for the Method Overloading. As we can see here Method name `BedRoom` has been used for two Method but the parameter for both methods are different.
 
@@ -570,15 +580,20 @@ class HouseOwnerClass
   <a href="{{site.url}}/assets/basic-c-oop-concept_11.png"><img src="{{site.url}}/assets/basic-c-oop-concept_11.png" alt=""></a>
 </figure>
 
-  * Method Overriding:
+  * **Method Overriding**
+  
 The difference between the Method Overloading and Overriding are.In Method Overloading we will have same method name with different argument.
 In Method Overriding we will have same Method Name same Argument and same type but method overriding can only be used in the derived class, Method Overriding cannot be done in the same class.
 We will see how Method Overriding can be used in **Abstract Method, Virtual Method and in Sealed Method** kindly refer to that section in this article.
 
 ### 10. Abstract Class/Method
+
   * Abstract Class: Abstract class will have a keyword `abstract`.
+  
 The Abstract class will be as a super class for all our class. Abstract class cannot be accessed by an object, which means we cannot create an object for an abstract class.
+
   * What will happen when we create an object for an Abstract Class?
+  
 Here we can see an error warning message as “An instance of an abstract class cannot be created” when I try to create an object for my abstract class.
 
 <figure class='center '>
@@ -588,6 +603,7 @@ Here we can see an error warning message as “An instance of an abstract class 
 Abstract class can have both Abstract Method and normal Method. In Abstract Class at least one Abstract Method should be declared. In addition, derived class should override the abstract method. To access the abstract method we should use the “override” keyword in our derived class.
 
   * What will happen if we create an abstract method but which is not override in derived class?
+  
 Here we can see an abstract class has an abstract method, But the abstract method is not override in the derived class. See the below image for the warning message displaying as class must implement the abstract member.
 
 <figure class='center '>
@@ -637,11 +653,18 @@ public class A : GuestVist
 Virtual method is very useful in our day-to-day programming.
 
   * What is virtual Method and what is the use of Virtual Method?
+  
 Take our House example one guest confirms, as today total five persons will visit your home. For this, we write a function as message display as five Guest visiting our home. Once Guest visits, we see their total 20 persons have visited. In Some cases it might be increase or decrease we will come to know when they reach us.
+
 In that case, the guest will be as a Separate Class and House will be as separate class. Without changing the message in Guest class how can we change the data in our Derived class?
+
   * What is the Difference between Abstract Method and Virtual Method?
+  
 Both similarities use the override keyword. Abstract Method can only be declared in Abstract Class, which means no body part for abstract method in Abstract class. However, for virtual it can have body part.
-See the example program below. Here we have both Abstract Method and Virtual Method. In Abstract class, the virtual method says as total five guests but in the derived Class program, the message was override as 20 guests. See the final output in below. Guess what will be displayed for Virtual Method? Will the result be 5 Guests or 20 Guests check for the output below the program.
+
+See the example program below. Here we have both Abstract Method and Virtual Method. 
+
+In Abstract class, the virtual method says as total five guests but in the derived Class program, the message was override as 20 guests. See the final output in below. Guess what will be displayed for Virtual Method? Will the result be 5 Guests or 20 Guests check for the output below the program.
 
 {% highlight csharp %}
 public abstract class GuestVist
@@ -682,14 +705,20 @@ class AbstractHouseClass : GuestVist
 
 ### 12. Sealed Class/Method
 
-**Sealed Class**: As name says this class cannot be inherited by other classes.
+**Sealed Class**: 
+
+As name says this class cannot be inherited by other classes.
+
 Take our House Example. In a house, the Houseowner can have a secret room, as might be official or financial rooms. The owner don’t want others to access his official room. The sealed class will be useful in those cases.
 Sealed class can be declared using the keyword Sealed. If one class is declared as Sealed, it cannot be inherited in other derived classes.
   * What will happen when we inherit sealed class in our derived class?
+  
 Let’s see an example when I try to inherit my sealed class from my derived class. It shows me the below warning message.
+
 <figure class='center '>
   <a href="{{site.url}}/assets/basic-c-oop-concept_16.png"><img src="{{site.url}}/assets/basic-c-oop-concept_16.png" alt=""></a>
 </figure>
+
 Here we can see an example program of Sealed Class.
 
 {% highlight csharp %}
@@ -711,8 +740,12 @@ class HouseSealedClass
 }
 {% endhighlight %}
 
-**Sealed Method**: If we declared a method as sealed that specific method cannot be override in the derived class.
+**Sealed Method**: 
+
+If we declared a method as sealed that specific method cannot be override in the derived class.
+
 Let’s see our house class here I have base class with Virtual Method and virtual Sealed method.
+
 The Virtual method can be override in the derived class .But the Virtual Sealed Method cannot be override in sealed class.
 
 ### 13. Static Class/Method
@@ -721,8 +754,11 @@ We have already learned about what is Sealed Class in this Article; now let’s 
 Both Static and Sealed Class cannot be inherited.
 
   * What is the Difference between Static Class and Sealed Class?
+  
 We can create an Object (instance) for the Sealed Class, we can see in my sealed class section I have created a sample Sealed class and in Main Method I have created an object to access the sealed Class. And in a Sealed Class both Static and non-Static methods can be written.
+
 But for a Static Class it’s not possible to create an Object. In Static Class only Static members are allowed which means in a static Class it’s not possible to write non-static method.
+
 We can say our main method as an example for the Static method. When we create a console application in c# we can see each class will have a default main method. In my article I have explained that when an Console or Windows application start execute first the main method will be executed .There is no need to create an object for the main method since it was been declared as a static method.
 
 `static void Main(string[] args)`
@@ -731,6 +767,7 @@ Another interesting one in Static class is that memory will be allocated for all
 Let’s take our same sealed class Example for our static Class and method.
 
   * What will happen when we inherit Static class in our derived class?
+  
 Let’s see an example when I try to inherit my static class from my derived class. It shows me the below warning message.
 
 <figure class='center '>
@@ -738,6 +775,7 @@ Let’s see an example when I try to inherit my static class from my derived cla
 </figure>
 
   * What will happen when we declare non-Static method in a Static class?
+  
 Let’s see an example when I try to create a non-Static method at my Static Class.
 
 <figure class='center '>
@@ -745,6 +783,7 @@ Let’s see an example when I try to create a non-Static method at my Static Cla
 </figure>
 
   * What will happen when we create an object for the Static class?
+  
 Let’s see an example when I try to create an object for my Static Class.
 
 <figure class='center '>
@@ -754,6 +793,7 @@ Let’s see an example when I try to create an object for my Static Class.
 When we run the program we get the error message as *Can not create an instance of a static class*
 
   * How to call the Static Class Method and variable without creating the Object?
+  
 It’s simple just we can use the **ClassName.Variable or Method Name** for example `OwnerofficialRoom.AllMyPersonalItems();`
 See the below example with Static class
 
@@ -776,6 +816,7 @@ class HouseStaticClass
 {% endhighlight %}
 
   * Is that possible to create a Static Method in non-Static Class?
+  
 The answer is yes. We can create a Static Method to the non Static class. No need to create an object to access the static method in non-static class. We can directly use the class name to access the Static method.
 See the below example with Static method in non-static Class.
 
@@ -810,8 +851,12 @@ class StaticmethodClass
 </figure>
 
 ### 14. Interface
-Interface is same like abstract class but in Interface we will have only method declaration but in abstract class we can have both method declaration and method definition .Methods of Interface must be implemented in a implementing class
-See the below Example program for an Interface. All the methods of Interface have been implemented in the class. As I have already told you that c# don’t support multiple inheritance for using multiple inheritance we can use Interface. This below program is an example for multiple inheritance using Interface.
+
+Interface is same like abstract class but in Interface we will have only method declaration but in abstract class we can have both method declaration and method definition .Methods of Interface must be implemented in a implementing class.
+
+See the below Example program for an Interface. All the methods of Interface have been implemented in the class. As I have already told you that c# don’t support multiple inheritance for using multiple inheritance we can use Interface.
+
+This below program is an example for multiple inheritance using Interface.
 
 {% highlight csharp %}
 interface GuestInterface { void GuestWelcomeMessage(); void NoofGuestes();    }
@@ -852,6 +897,7 @@ class HouseOwnerClass : GuestInterface, FriendsandRelationsInterface
 
 In some cases we need to have certain methods which will be used in many derived classes. Each derived can implement different functionality for those Methods. In These cases, we can use the Interface.
 We can say our Guest and house example. For Guest the `Welcome Message` and `No of Guest` Function are common, but it will be different for different owners in the same house, Guest might a fathers guest, Mothers Guest, Children’s Guest or Family Guest. Each guest can have different welcome message subject, but the functions are same as Message .let’s consider now Father is a Class, Mother is a class and Children are one Class. Both guestWelcome Message and Noofguest method are same for all. In this case, we can create an Interface and declare both methods in the Interface. All father, mother and Children Classes can inherit the interface and write their own method details.
+
 Interface is similar to Abstract class but the major difference between the Abstract Class and the Interface are .In Abstract Class there can be both Abstract Method and Non Abstract methods .But in Interface all methods are abstract by default which means there is no non Abstract type method in the Interface. All the Methods declared in Interface should be override in the derived class.
 
 **What will happen when non-abstract methods with body part are declared in an Interface?**
