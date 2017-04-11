@@ -1,6 +1,6 @@
 ---
 comments: true
-date: 2017-04-10 00:00:00+00:00
+date: 2017-0-10 00:00:00+00:00
 layout: post
 slug: Basic-OOP-Concept
 title: Basic C# OOP Concept
@@ -32,12 +32,16 @@ Same like blueprint class is an outline of program. Using the class we can write
 For more easy understanding of OOP with real world example here I have explained a class with House. We can imagine a House as an example for a Class. In a house, we will have rooms like living room, bedroom, kitchen and items like TV, fridge etc. House owner can access and use all the rooms and rooms' items. Same like this in a Class will have a group of **Methods and Variables**. Rooms and Rooms' Items are example for Methods and Variables. So now, we have a complete house with all rooms and rooms' items. House owner can access and use all the rooms and Rooms' Items. To access and use a Class, methods and variables here we use **Objects**. Objects are instance of a class. We will see details about objects in the next section.
 What will happen if there are no rooms and items in a House?  It will be empty and no one can use the house until it has all the rooms and Items. See the below image as an example for the empty house.
 
-EmptyHouse.jpg
+<figure class='center '>
+  <a href="{{site.url}}/assets/EmptyHouse.jpg"><img src="{{site.url}}/assets/EmptyHouse.jpg" alt=""></a>
+</figure>
 
 Now this empty house is a Class .So what is the use of a Class without Methods and variable.
 Now let’s see an example for a Complete House with Rooms and items.
 
-CompleteHouse.jpg
+<figure class='center '>
+  <a href="{{site.url}}/assets/CompleteHouse.jpg"><img src="{{site.url}}/assets/CompleteHouse.jpg" alt=""></a>
+</figure>
 
 So here, we have a complete house. Similarly, the Class will be complete with group of Variables, Methods and Objects. We can see details of all this in next sections of this article.
 Class and objects are the base concept of OOP – Object Oriented Programming.
@@ -45,7 +49,6 @@ Here is an Example of Class -> Class should be started with the Keyword class an
 
 {% highlight csharp %}
 using System;
- 
 public class ClassA
 {
 }
@@ -58,13 +61,13 @@ Here is an example of Object -> Here “objHouseOwner” is the Object for a cla
 {% highlight csharp %}
 namespace ConsoleApplication1
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Program pro = new Program();
-        }
-    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Program pro = new Program();
+        }
+    }
 }
 {% endhighlight %}
 
@@ -80,24 +83,26 @@ Example of Variable:
 {% highlight csharp %}
 namespace ConsoleApplication1
 {
-    // Example Program 
-    class ShanuHouseClass
-    {
-        public int noOfTV = 0;
-        private Boolean doYouHaveTV = true;
-        protected String yourTVName = "SAMSUNG";
-        static void Main(string[] args)
-        {
-            ShanuHouseClass objHouseOwner = new ShanuHouseClass();
-            Console.WriteLine("You Have total " + objHouseOwner.noOfTV + " no of TV :");
-            Console.WriteLine("Your TV Name is :" + objHouseOwner.yourTVName);
-            Console.ReadLine();
-        }
-    }
+    // Example Program 
+    class ShanuHouseClass
+    {
+        public int noOfTV = 0;
+        private Boolean doYouHaveTV = true;
+        protected String yourTVName = "SAMSUNG";
+        static void Main(string[] args)
+        {
+            ShanuHouseClass objHouseOwner = new ShanuHouseClass();
+            Console.WriteLine("You Have total " + objHouseOwner.noOfTV + " no of TV :");
+            Console.WriteLine("Your TV Name is :" + objHouseOwner.yourTVName);
+            Console.ReadLine();
+        }
+    }
 }
 {% endhighlight %}
 
-basic-c-oop-concept_1.png
+<figure class='center '>
+  <a href="{{site.url}}/assets/basic-c-oop-concept_1.png"><img src="{{site.url}}/assets/basic-c-oop-concept_1.png" alt=""></a>
+</figure>
 
 In Above example program I have declared two variables inside a class. In main method I have created object for class. Here we can see using the object we can access the variable of a class and display the output.
 Main Method is the default Method of C#, where every console and windows application will start the program execution, In the Main Method, we can declare the Object for the class and use the object, and we can access all variables and Methods of a Class. For example, we can say there will be entrance gate for every house. Using the entrance gate we can enter inside our house. Similarly, to run our program there should be some default program execution starting Method. Main method will be useful in this program execution starting point. Whenever we run our C# Console or windows application, first the Main method will be executed .From the main method we can create an object for our other classes and call their Methods.
@@ -107,28 +112,30 @@ Method is a group of code statement .Now here we can see the above example progr
 {% highlight csharp %}
 class ShanuHouseClass
 {
-    public int noOfTV = 2;
-    private Boolean doYouHaveTV = true;
-    protected String yourTVName = "SAMSUNG";
- 
-    public void myFirstMethod()
-    {
-        Console.WriteLine("You Have total " + noOfTV + "no of TV :");
-        Console.WriteLine("Your TV Name is :" + yourTVName);
-        Console.ReadLine();
-    }
+    public int noOfTV = 2;
+    private Boolean doYouHaveTV = true;
+    protected String yourTVName = "SAMSUNG";
+
+    public void myFirstMethod()
+    {
+        Console.WriteLine("You Have total " + noOfTV + "no of TV :");
+        Console.WriteLine("Your TV Name is :" + yourTVName);
+        Console.ReadLine();
+    }
 }
 class a
 {
-    static void Main(string[] args)
-    {
-        ShanuHouseClass a = new ShanuHouseClass();
-        a.myFirstMethod();
-    }
+    static void Main(string[] args)
+    {
+        ShanuHouseClass a = new ShanuHouseClass();
+        a.myFirstMethod();
+    }
 }
 {% endhighlight %}
-
-basic-c-oop-concept_2.png
+\
+<figure class='center '>
+  <a href="{{site.url}}/assets/basic-c-oop-concept_2.png"><img src="{{site.url}}/assets/basic-c-oop-concept_2.png" alt=""></a>
+</figure>
 
 > Most of developers were wondering about what is the difference between the Method and Function, both Methods and Functions are the same. Here in my article, I will use Method instead of functions. However, there is one difference in Methods and Functions, In OOP Languages like `C#, Java` etc. We use the term Method while the non-OOP programming like `C` etc. we use the term Function.
 
@@ -150,46 +157,46 @@ _**Here is an example of Method:**_
   
 {% highlight csharp %}
 // Function with void and no parameter  -- here void means no return type        
-	public void veranda()
-    {
-        Console.WriteLine("Welcome to Veranda");
-        Console.WriteLine("How Many Chairs Do you have in your Veranda");
-        NoofChair = Convert.ToInt32(Console.ReadLine());
-        Console.WriteLine("I have total " + NoofChair + " Chairs in my Veranda");
-    }
+public void veranda()
+{
+	Console.WriteLine("Welcome to Veranda");
+	Console.WriteLine("How Many Chairs Do you have in your Veranda");
+	NoofChair = Convert.ToInt32(Console.ReadLine());
+	Console.WriteLine("I have total " + NoofChair + " Chairs in my Veranda");
+}
 {% endhighlight %}
 
   * **Method with Return Type**: Method with return type will return some result, which can be used in our program, for example, here we have Method TVNAME with return Type as `String`. We can say in our home we might have a TV in our LivingROOM and in the parent’s bedroom and also in kids bedroom .We might have different TV brand in each room, suppose if we want to know each room TV Brand Name then we need to enter the same code 3 times. Instead of writing the same code again, we can use a method with Return Type.
   
 {% highlight csharp %}
 // Function with Return type as String        
-    public string TVNAME()
-    {
-        String YOURTVName;
-        Console.WriteLine("Enter Your TV Brand NAME");
-        YOURTVName = Console.ReadLine(); 
-        return YOURTVName;
-    }
+public string TVNAME()
+{
+	String YOURTVName;
+	Console.WriteLine("Enter Your TV Brand NAME");
+	YOURTVName = Console.ReadLine(); 
+	return YOURTVName;
+}
 {% endhighlight %}
 
  * **Method with Parameter-List**: So far, we have seen methods without arguments. Arguments are used to pass some data to the Method to do our process in a better way. For example, we can say we want to do a painting, to our bedrooms. We need to get the opinions of all the member of the house in order to know there choices of color for each bedroom, we can pass the member Name and their favorite color as parameter to a Method.
 
- {% highlight csharp %}
-	//Function with parameter        
-    public void BedRoom(String nameandColor)
-    {
-        Console.WriteLine(nameandColor);
-    }
+{% highlight csharp %}
+//Function with parameter    
+public void BedRoom(String nameandColor)
+{
+	Console.WriteLine(nameandColor);
+}
 {% endhighlight %}
 
 Same Method name with different arguments are called as Method over loading, here we can see below .Both Method has the same name but it has different arguments.
 
 {% highlight csharp %}
 // Same Function Name with Different Paramenter        
-    public void BedRoom(String MemberName, String Color)
-    {
-        Console.WriteLine(MemberName + " Like " + Color + "Color");
-    }
+public void BedRoom(String MemberName, String Color)
+{
+	Console.WriteLine(MemberName + " Like " + Color + "Color");
+}
 {% endhighlight %}
 
 The Complete Class with Main Method Example:
@@ -204,53 +211,53 @@ using System.Threading.Tasks;
 // Example Program
 class ShanuHouseClass
 {
-    public int noOfTV = 2;
-    private Boolean doYouHaveTV = true;
-    protected String yourTVName = "SAMSUNG";
-    public int NoofChair;
+    public int noOfTV = 2;
+    private Boolean doYouHaveTV = true;
+    protected String yourTVName = "SAMSUNG";
+    public int NoofChair;
  
-    public void myFirstMethod()
-    {
-        Console.WriteLine("You Have total " + noOfTV + "no of TV :");
-        Console.WriteLine("Your TV Name is :" + yourTVName);
-        Console.ReadLine();
-    }
-    // Function with void and no parameter  -- here void means no return type       
-    public void veranda()
-    {
-        Console.WriteLine("Welcome to Veranda");
-        Console.WriteLine("How Many Chairs Do you have in your Veranda");
-        NoofChair = Convert.ToInt32(Console.ReadLine());
-        Console.WriteLine("I have total " + NoofChair + " Chairs in my Veranda");
-    }
-    // Function with Return type as String       
-    public string TVNAME()
-    {
-        String YOURTVName;
-        Console.WriteLine("Enter Your TV Brand NAME");
-        YOURTVName = Console.ReadLine();
-        return YOURTVName;
-    }
-    //Function with parameter        
-    public void BedRoom(String nameandColor)
-    {
-        Console.WriteLine(nameandColor);
-    }
-    // Same Function Name with Different Paramenter       
-    public void BedRoom(String MemberName, String Color)
-    {
-        Console.WriteLine(MemberName + " Like " + Color + "Color");
-    }
-    static void Main(string[] args)
-    {
-        ShanuHouseClass objHouseOwner = new ShanuHouseClass();
-        objHouseOwner.veranda();
-        String returnvalue = objHouseOwner.TVNAME();
-        Console.WriteLine("Your TV BRAND NAME IS: " + returnvalue);
-        objHouseOwner.BedRoom("My Name is Shanu I like Lavender color");
-        objHouseOwner.BedRoom("My Name is Afraz I like Light Blue color");
-        objHouseOwner.BedRoom("SHANU", "Lavender");
-        Console.ReadLine();
-    }
+    public void myFirstMethod()
+    {
+        Console.WriteLine("You Have total " + noOfTV + "no of TV :");
+        Console.WriteLine("Your TV Name is :" + yourTVName);
+        Console.ReadLine();
+    }
+    // Function with void and no parameter  -- here void means no return type   
+    public void veranda()
+    {
+        Console.WriteLine("Welcome to Veranda");
+        Console.WriteLine("How Many Chairs Do you have in your Veranda");
+        NoofChair = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("I have total " + NoofChair + " Chairs in my Veranda");
+    }
+    // Function with Return type as String   
+    public string TVNAME()
+    {
+        String YOURTVName;
+        Console.WriteLine("Enter Your TV Brand NAME");
+        YOURTVName = Console.ReadLine();
+        return YOURTVName;
+    }
+    //Function with parameter    
+    public void BedRoom(String nameandColor)
+    {
+        Console.WriteLine(nameandColor);
+    }
+    // Same Function Name with Different Paramenter   
+    public void BedRoom(String MemberName, String Color)
+    {
+    Console.WriteLine(MemberName + " Like " + Color + "Color");
+    }
+    static void Main(string[] args)
+    {
+        ShanuHouseClass objHouseOwner = new ShanuHouseClass();
+        objHouseOwner.veranda();
+        String returnvalue = objHouseOwner.TVNAME();
+        Console.WriteLine("Your TV BRAND NAME IS: " + returnvalue);
+        objHouseOwner.BedRoom("My Name is Shanu I like Lavender color");
+        objHouseOwner.BedRoom("My Name is Afraz I like Light Blue color");
+        objHouseOwner.BedRoom("SHANU", "Lavender");
+        Console.ReadLine();
+    }
 }
 {% endhighlight %}
