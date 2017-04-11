@@ -19,7 +19,7 @@ tags:
 ### 1. Class
 **Class** is a like a Blueprint.
 
-Blueprint is outline drawing of our actual plan. For example if we plan to build our new home ,The Engineer will explain our new house plan with a blue print as shown in the image below. Once we finalized the plan the engineer will start building the house with same plan.
+Blueprint is outline drawing of our actual plan. For example if we plan to build our new house, the Engineer will explain our new house plan with a blue print as shown in the image below. Once we finalized the plan the engineer will start building the house with same plan.
 
 Same like blueprint class is an outline of program. Using the class we can write our own method and declare the variables and using the objects we can access the class Method and Variables. The class will be complete with Variables, Methods and Objects.
 
@@ -29,14 +29,16 @@ Same like blueprint class is an outline of program. Using the class we can write
 
 <!-- more -->
 
-For more easy understanding of OOP with real world example here I have explained a class with House. We can imagine a House as an example for a Class. In a house, we will have rooms like living room, bedroom, kitchen and items like TV, fridge etc. House owner can access and use all the rooms and rooms' items. Same like this in a Class will have a group of **Methods and Variables**. Rooms and Rooms' Items are example for Methods and Variables. So now, we have a complete house with all rooms and rooms' items. House owner can access and use all the rooms and Rooms' Items. To access and use a Class, methods and variables here we use **Objects**. Objects are instance of a class. We will see details about objects in the next section.
+For more easy understanding of OOP with real world example here I have explained a class with House. 
+We can imagine a House as an example for a Class. In a house, we will have rooms like living room, bedroom, kitchen and items like TV, fridge etc. House owner can access and use all the rooms and rooms' items. Same like this in a Class will have a group of **Methods and Variables**. 
+Rooms and Rooms'items are example for **Methods and Variables**. So now, we have a complete house with all rooms and rooms'items. House owner can access and use all the rooms and Rooms' Items. To access and use a Class, methods and variables here we use **Objects**. Objects are instance of a class. We will see details about objects in the next section.
 What will happen if there are no rooms and items in a House?  It will be empty and no one can use the house until it has all the rooms and Items. See the below image as an example for the empty house.
 
 <figure class='center '>
   <a href="{{site.url}}/assets/EmptyHouse.jpg"><img src="{{site.url}}/assets/EmptyHouse.jpg" alt=""></a>
 </figure>
 
-Now this empty house is a Class .So what is the use of a Class without Methods and variable.
+Now this empty house is a Class. So what is the use of a Class without Methods and variable.
 Now let’s see an example for a Complete House with Rooms and items.
 
 <figure class='center '>
