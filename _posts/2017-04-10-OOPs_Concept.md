@@ -29,10 +29,13 @@ Same like blueprint class is an outline of program. Using the class we can write
 
 <!-- more -->
 
-For more easy understanding of OOP with real world example here I have explained a class with House. 
-We can imagine a House as an example for a Class. In a house, we will have rooms like living room, bedroom, kitchen and items like TV, fridge etc. House owner can access and use all the rooms and rooms' items. Same like this in a Class will have a group of **Methods and Variables**. 
+For more easy understanding of OOP with real world example here I have explained a class with House.
+
+We can imagine a House as an example for a Class. In a house, we will have rooms like living room, bedroom, kitchen and items like TV, fridge etc. House owner can access and use all the rooms and rooms' items. Same like this in a Class will have a group of **Methods and Variables**.
+
 Rooms and Rooms'items are example for **Methods and Variables**. So now, we have a complete house with all rooms and rooms'items. House owner can access and use all the rooms and Rooms' Items. To access and use a Class, methods and variables here we use **Objects**. Objects are instance of a class. We will see details about objects in the next section.
-What will happen if there are no rooms and items in a House?  It will be empty and no one can use the house until it has all the rooms and Items. See the below image as an example for the empty house.
+
+*What will happen if there are no rooms and items in a House?*  It will be empty and no one can use the house until it has all the rooms and Items. See the below image as an example for the empty house.
 
 <figure class='center '>
   <a href="{{site.url}}/assets/EmptyHouse.jpg"><img src="{{site.url}}/assets/EmptyHouse.jpg" alt=""></a>
