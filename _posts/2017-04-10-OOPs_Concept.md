@@ -17,10 +17,10 @@ tags:
 > There are many explanations that we can find in internet about C# OOP, but here in my article I will give a very simple example. In this article, I will use a “House (like the houses we live in) “as a real-time example for easy understanding of OOP Concept in C#.
 
 ### 1. Class
-
 **Class** is a like a Blueprint.
-What is a blueprint?
+
 Blueprint is outline drawing of our actual plan. For example if we plan to build our new home ,The Engineer will explain our new house plan with a blue print as shown in the image below. Once we finalized the plan the engineer will start building the house with same plan.
+
 Same like blueprint class is an outline of program. Using the class we can write our own method and declare the variables and using the objects we can access the class Method and Variables. The class will be complete with Variables, Methods and Objects.
 
 <figure class='center '>
@@ -832,4 +832,4 @@ Interface is similar to Abstract class but the major difference between the Abst
 **What will happen when non-abstract methods with body part are declared in an Interface?**
 It will display the warning message as “unexpected modifier” in Access modifier part and “Unexpected Method body” error warning at message Body.
 
-Thank you!
+This article repost from [here](http://www.c-sharpcorner.com/UploadFile/asmabegam/basic-concept-of-oop-in-C-Sharp) under markdown format. Thank you!
