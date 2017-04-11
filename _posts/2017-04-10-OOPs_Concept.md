@@ -63,8 +63,9 @@ public class ClassA
 
 ### 2. Object
 
-As we have already seen that, House Owner will access and use all the Rooms of the House and its Items. Similarly, to access all Class Method and Variable we use Objects. We can create one or many object for a same Class. Example we can say for a house there might be one or many owners.
-Here is an example of Object -> Here “objHouseOwner” is the Object for a class which will be used to access all variable and Method of a class.
+As we have already seen that, **House Owner** will access and use all the **Rooms** of the House and its Items. Similarly, to access all **Class Method** and **Variable** we use **Objects**. We can create one or many object for a same Class. Example we can say for a house there might be one or many owners.
+
+`objHouseOwner` is the Object for a class which will be used to access all variable and Method of a class.
 
 {% highlight csharp %}
 namespace ConsoleApplication1
@@ -82,11 +83,17 @@ namespace ConsoleApplication1
 ### 3. Variable
 
 Variables are used to store our value. Our value can be numeric or characters for example to store a Phone no we can use `int` type variable and to store our name we can use `string` type variable with name for each variable.
-Variables can be local or Global. For Example, we can say if we buy a new TV , TV Service man will come and setup the TV in our home .He will give his contact number for future contacts .Usually what we do is take a memo paper and write his contact number and keep it in a common place or in a wallet of ours. If we keep the memo in a Commonplace everyone who is visiting our house can see that contact number. Global or public variables are similar to this. If we declared the variable as Global, All the Methods inside the class can access the variable. If we store the memo Only in our wallet, we can see the contact number. Local or private variables are similar to this.
+
+**Variables can be local or Global**. For Example, we can say if we buy a new TV , TV Service man will come and setup the TV in our home. He will give his contact number for future contacts. Usually what we do is take a memo paper and write his contact number and keep it in a common place or in a wallet of ours. 
+
+If we keep the memo in a Common place everyone who is visiting our house can see that contact number. **Global or public variables** are similar to this. If we declared the variable as Global, All the Methods inside the class can access the variable. If we store the memo Only in our wallet, we can see the contact number. Local or private variables are similar to this.
 
 Syntax for variable:
+
 `Access-Modifiers Data-Type Variable-Name`
+
 By default the Access-Modifiers are by private, we can also use public to variable.
+
 Example of Variable:
 
 {% highlight csharp %}
@@ -114,10 +121,13 @@ namespace ConsoleApplication1
 </figure>
 
 In Above example program I have declared two variables inside a class. In main method I have created object for class. Here we can see using the object we can access the variable of a class and display the output.
+
 Main Method is the default Method of C#, where every console and windows application will start the program execution, In the Main Method, we can declare the Object for the class and use the object, and we can access all variables and Methods of a Class. For example, we can say there will be entrance gate for every house. Using the entrance gate we can enter inside our house. Similarly, to run our program there should be some default program execution starting Method. Main method will be useful in this program execution starting point. Whenever we run our C# Console or windows application, first the Main method will be executed .From the main method we can create an object for our other classes and call their Methods.
 
-4. Method or Functions:
+### 4. Method or Functions
+
 Method is a group of code statement .Now here we can see the above example program with method.
+
 {% highlight csharp %}
 class ShanuHouseClass
 {
@@ -149,8 +159,10 @@ class a
 > Most of developers were wondering about what is the difference between the Method and Function, both Methods and Functions are the same. Here in my article, I will use Method instead of functions. However, there is one difference in Methods and Functions, In OOP Languages like `C#, Java` etc. We use the term Method while the non-OOP programming like `C` etc. we use the term Function.
 
 **What is the use of Methods?**
-Another real-time example let’s take our mobile phone, we can say as we have Mobile phone and store many Songs in it. However, we always like to listen to the selected songs. It will be boring and hard for us to select our favorite song every time and play it. Instead of doing the same work repeatedly, we use the playlist. In playlist, we can add all-favorite songs of ours. Just click on the playlist of our collections and listen to the music. This will make our work easier and we don’t need to do the same thing again and again. Methods are used like a playlist where we can write all our repeated code in one Method and just call the method wherever we needed.
-Here we can see more details about the Method.
+Another real-time example let’s take our mobile phone, we can say as we have Mobile phone and store many Songs in it. However, we always like to listen to the selected songs. It will be boring and hard for us to select our favorite song every time and play it. 
+
+Instead of doing the same work repeatedly, we use the playlist. In playlist, we can add all-favorite songs of ours. Just click on the playlist of our collections and listen to the music. This will make our work easier and we don’t need to do the same thing again and again. Methods are used like a playlist where we can write all our repeated code in one Method and just call the method wherever we needed.
+
 In a house, there might be one big room or multiple rooms but each room will have different facilities, similarly in a class we can write one or multiple Methods. In a house, there might be two or three Bedrooms. Here the room name is Bedroom, but each bedroom can be different by size, color etc. This means same Rooms with different type. Similarly, in a class we can create more than one method with the same name but different parameter. In OOP it’s called as **Polymorphism** we can see details about Polymorphism later on in this article.
 
 *Syntax for the Functions*
@@ -162,7 +174,8 @@ In a house, there might be one big room or multiple rooms but each room will hav
   * Parameter-List: Parameter-List or Arguments, which we pass to the function.
 
 _**Here is an example of Method:**_
-  * **Method with Void Type**: Void is a keyword which will not return any data from the Method, for example we can see the below Method with void Type, here in this method we display all our output using the `Console.WriteLine` and have used the `Console.ReadLine());` to get the Input. This Method has all Input and Output Operation but this method don’t return any value.
+  * **Method with Void Type**:
+Void is a keyword which will not return any data from the Method, for example we can see the below Method with void Type, here in this method we display all our output using the `Console.WriteLine` and have used the `Console.ReadLine());` to get the Input. This Method has all Input and Output Operation but this method don’t return any value.
   
 {% highlight csharp %}
 // Function with void and no parameter  -- here void means no return type        
@@ -175,7 +188,8 @@ public void veranda()
 }
 {% endhighlight %}
 
-  * **Method with Return Type**: Method with return type will return some result, which can be used in our program, for example, here we have Method TVNAME with return Type as `String`. We can say in our home we might have a TV in our LivingROOM and in the parent’s bedroom and also in kids bedroom .We might have different TV brand in each room, suppose if we want to know each room TV Brand Name then we need to enter the same code 3 times. Instead of writing the same code again, we can use a method with Return Type.
+  * **Method with Return Type**:
+Method with return type will return some result, which can be used in our program, for example, here we have Method TVNAME with return Type as `String`. We can say in our home we might have a TV in our LivingROOM and in the parent’s bedroom and also in kids bedroom .We might have different TV brand in each room, suppose if we want to know each room TV Brand Name then we need to enter the same code 3 times. Instead of writing the same code again, we can use a method with Return Type.
   
 {% highlight csharp %}
 // Function with Return type as String        
@@ -188,7 +202,8 @@ public string TVNAME()
 }
 {% endhighlight %}
 
- * **Method with Parameter-List**: So far, we have seen methods without arguments. Arguments are used to pass some data to the Method to do our process in a better way. For example, we can say we want to do a painting, to our bedrooms. We need to get the opinions of all the member of the house in order to know there choices of color for each bedroom, we can pass the member Name and their favorite color as parameter to a Method.
+ * **Method with Parameter-List**:
+So far, we have seen methods without arguments. Arguments are used to pass some data to the Method to do our process in a better way. For example, we can say we want to do a painting, to our bedrooms. We need to get the opinions of all the member of the house in order to know there choices of color for each bedroom, we can pass the member Name and their favorite color as parameter to a Method.
 
 {% highlight csharp %}
 //Function with parameter    
@@ -369,7 +384,9 @@ class ShanuHouseClass
 ### 6. Encapsulation
 
 Encapsulation is to hide the member or variable to outside class. In our house example, I have already told that House security guard limitation is till the entrance of the house. The security guard doesn’t need to know about what is happening inside the house. Therefore, the House Owner will hide all the happenings to Security guard for more safety. The hiding and limitation are called as Encapsulation.
-For example, we have two Classes the first one is `Houseclass` and the other class as `houseSecurityClass`
+
+For example, we have two Classes the first one is `Houseclass` and the other class as `houseSecurityClass`.
+
 Here we can see all the variables are wrap into a class where `houseSecurityClass` is set as public, so the `Houseclass` can access that, but `houseClass` has both Public and private variable where the private variable of a class cannot be accessed outside of the class.
 
 {% highlight csharp %}
@@ -447,6 +464,7 @@ public class DerivedClass : baseClass
     }
 }
 {% endhighlight %}
+
 The Error is:
 
 <figure class='center '>
@@ -833,10 +851,10 @@ class HouseOwnerClass : GuestInterface, FriendsandRelationsInterface
 </figure>
 
 In some cases we need to have certain methods which will be used in many derived classes. Each derived can implement different functionality for those Methods. In These cases, we can use the Interface.
-We can say our Guest and house example. For Guest the “Welcome Message” and “No of Guest” Function are common, but it will be different for different owners in the same house, Guest might a fathers guest, Mothers Guest, Children’s Guest or Family Guest. Each guest can have different welcome message subject, but the functions are same as Message .let’s consider now Father is a Class, Mother is a class and Children are one Class. Both guestWelcome Message and Noofguest method are same for all. In this case, we can create an Interface and declare both methods in the Interface. All father, mother and Children Classes can inherit the interface and write their own method details.
+We can say our Guest and house example. For Guest the `Welcome Message` and `No of Guest` Function are common, but it will be different for different owners in the same house, Guest might a fathers guest, Mothers Guest, Children’s Guest or Family Guest. Each guest can have different welcome message subject, but the functions are same as Message .let’s consider now Father is a Class, Mother is a class and Children are one Class. Both guestWelcome Message and Noofguest method are same for all. In this case, we can create an Interface and declare both methods in the Interface. All father, mother and Children Classes can inherit the interface and write their own method details.
 Interface is similar to Abstract class but the major difference between the Abstract Class and the Interface are .In Abstract Class there can be both Abstract Method and Non Abstract methods .But in Interface all methods are abstract by default which means there is no non Abstract type method in the Interface. All the Methods declared in Interface should be override in the derived class.
 
 **What will happen when non-abstract methods with body part are declared in an Interface?**
-It will display the warning message as “unexpected modifier” in Access modifier part and “Unexpected Method body” error warning at message Body.
+It will display the warning message as `unexpected modifier` in Access modifier part and `Unexpected Method body` error warning at message Body.
 
 This article repost from [here](http://www.c-sharpcorner.com/UploadFile/asmabegam/basic-concept-of-oop-in-C-Sharp) under markdown format. Thank you!
