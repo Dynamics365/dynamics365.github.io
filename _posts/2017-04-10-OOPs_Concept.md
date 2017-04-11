@@ -49,8 +49,10 @@ Now let’s see an example for a Complete House with Rooms and items.
 </figure>
 
 So here, we have a complete house. Similarly, the Class will be complete with group of Variables, Methods and Objects. We can see details of all this in next sections of this article.
-Class and objects are the base concept of OOP – Object Oriented Programming.
-Here is an Example of Class -> Class should be started with the Keyword class and next we give the name for our class we can give any meaning full name as Class Name, next we will have the Open and close brackets.
+
+_**Class and objects are the base concept of OOP – Object Oriented Programming.**_
+
+Class should be started with the Keyword class and next we give the name for our class we can give any meaning full name as Class Name, next we will have the Open and close brackets.
 
 {% highlight csharp %}
 using System;
