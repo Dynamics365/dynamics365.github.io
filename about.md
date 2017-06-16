@@ -87,6 +87,8 @@ Here is some of my experience in AX expertise
 	* Mobile devices
 	
 :)
+
+{% include author.html %}
 	
 ## Contact
 
