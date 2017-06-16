@@ -23,6 +23,30 @@ Here is some of my experience in AX expertise
   * Apply Dynamics AX design patterns.
   * Apply Best pratice.
 	
+#### Most Dynamics technologies which I've been working with	
+
+  * **PowerBI**
+  * **SSRS and Financial reporting**
+  * **Application Integration Framework (AIF)**
+  * **Extensible Data Security**
+  * **TFS and DAX Source Version Control**
+  * **Batch**
+  * **File integration using WINAPI**
+  
+#### Industries Which I've been working with
+
+  * Manufacturing
+  * Professional Services
+  * Fleet Management
+  * Retail
+  
+#### Language
+
+  * **X++**
+  * **SQL**
+  * **C#**
+  * **XML**
+  
 #### ERP and CRM
 
   * **Dynamics AX Version**
@@ -35,16 +59,8 @@ Here is some of my experience in AX expertise
     * Microsoft Dynamics 365 for Sales
     * Microsoft Dynamics 365 for Customer Service
 	
-#### Language
-
-Expertise in order below: 
-
-  * **X++**
-  * **SQL**
-  * **C#**
-  * **XML**
-  
 #### Most functions which I've been working with
+
   * **Financials**
 	* Financials Dimension
 	* Chart of accounts
@@ -69,15 +85,6 @@ Expertise in order below:
 	* Workflows
 	* Picking and packing
 	* Mobile devices
-	
-#### Most technologies which I've been working with	
-  * **PowerBI**
-  * **SSRS and Financial reporting**
-  * **Application Integration Framework (AIF)**
-  * **Extensible Data Security**
-  * **TFS and DAX Source Version Control**
-  * **Batch**
-  * **File integration using WINAPI**
 	
 :)
 	
