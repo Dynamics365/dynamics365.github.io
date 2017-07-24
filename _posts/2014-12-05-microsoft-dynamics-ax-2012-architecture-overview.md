@@ -16,31 +16,31 @@ This diagram provides a high-level over of a Microsoft Dynamics AX 2012 system w
 
 ![](https://dynamics365.github.io/assets/AXSystemArchitechture.gif)
 
-1. ### Application Object Server (AOS) architecture
+### 1. Application Object Server (AOS) architecture
 
-	This diagram describes the functionality within the AOS Windows service, and describes how communications flow within it.
+This diagram describes the functionality within the AOS Windows service, and describes how communications flow within it.
 
-	![](https://dynamics365.github.io/assets/AOSWindowsService.gif)
+![](https://dynamics365.github.io/assets/AOSWindowsService.gif)
 
-	**Note**: Clients communicate with an AOS by using remote procedure calls (RPCs), Windows Communication Foundation (WCF), or AOS services. In previous releases, other components and third-party programs could communicate with an AOS by using either .NET Business Connector or Application Integration Framework (AIF). For this release, we recommend that third-party programs use AOS services to communicate with AOS.
+**Note**: Clients communicate with an AOS by using remote procedure calls (RPCs), Windows Communication Foundation (WCF), or AOS services. In previous releases, other components and third-party programs could communicate with an AOS by using either .NET Business Connector or Application Integration Framework (AIF). For this release, we recommend that third-party programs use AOS services to communicate with AOS.
 
 	
-2. ### Business Connector architecture
+### 2. Business Connector architecture
 
-	The differences between the client kernel as it runs on a standard client and a Business Connector client are:
+The differences between the client kernel as it runs on a standard client and a Business Connector client are:
 
-	* The Session Manager in the client kernel manages only a single instance–in the Business Connector kernel, it manages multiple instances.
+* The Session Manager in the client kernel manages only a single instance–in the Business Connector kernel, it manages multiple instances.
 
-	* he client kernel includes forms security, while the Business Connector kernel does not.
+* he client kernel includes forms security, while the Business Connector kernel does not.
 
-	This diagram describes the architecture of the Business Connector version of the client kernel, and describes how communications flow within it.
+This diagram describes the architecture of the Business Connector version of the client kernel, and describes how communications flow within it.
 
-	![](https://dynamics365.github.io/assets/Business_Connector_Client.gif)
+![](https://dynamics365.github.io/assets/Business_Connector_Client.gif)
 
 
-### * Application file server architecture
+### 3. Application file server architecture
 
-	![](https://dynamics365.github.io/assets/App_file_server_architechture.gif)
+![](https://dynamics365.github.io/assets/App_file_server_architechture.gif)
 
 
 ## Model store architecture
