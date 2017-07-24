@@ -21,8 +21,7 @@ First you need to install 2 SSRS instance in same server, and install `reporting
 
 Reporting service component uses **business connector** to connect to AX, and it's saved on configuration in Registry. When we install second `reporting service component` it will through message that component already installed.
 
-<div markdown="0"><a href="https://dynamics365.github.io/ax2012/ssrs/how-to-install-2-instances-ssrs-on-1-server/" class="btn btn-info">Continute reading</a></div>
-<!--more-->
+<!-- more -->
 
 ## How to do:
 

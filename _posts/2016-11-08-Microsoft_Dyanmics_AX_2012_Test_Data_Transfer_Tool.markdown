@@ -13,8 +13,7 @@ Tool can be used for two different purposes. One is to install **demo data** and
 
 `The Microsoft Dynamics AX 2012 Test Data Transfer Tool (beta)` is a tool that helps move data between from production to non-production environments or from non-production environments to production environments to make a new production environment. But you must be careful becasue the tool imports data table by table and deletes the data in the table before importing. Hence it is highly advised against running the tool for import in production environments.
 
-<div markdown="0"><a href="https://dynamics365.github.io/ax2012/tools/Microsoft_Dyanmics_AX_2012_Test_Data_Transfer_Tool/" class="btn btn-info">Continute reading</a></div>
-<!--more-->
+<!-- more -->
 
 ## BENEFITS
 
@@ -27,8 +26,6 @@ Tool can be used for two different purposes. One is to install **demo data** and
 * The tool minimally changes data during the import process. The only data the tool changes are the entity IDs (IDs related to table, field, etc.) that are stored as data and that could change with each deployment. The tool recognizes the changes and patches the data with the AXIDs of the system that the data is being imported into.
 
 * The data file format is the standard format produced by SQL Server bcp. The output is text based and can be stored and compared against other versions in a version control system.
-
-<!--excerpt-->
 
 ### How to
 
