@@ -153,30 +153,6 @@ then the `UpdateConflictNotRecovered` exception is thrown. This means the whole 
 
 
 ### 5. Conclusion
-We are currently at Financial reports screen as picture below
-
-<figure class='center '>
-  <a href="{{site.url}}/assets/2017-04-10_11h56_15.png"><img src="{{site.url}}/assets/2017-04-10_11h56_15.png" alt=""></a>
-</figure>
-
-As you can see there's nowhere on the screen or anything that indicates that there's the Management Reporter available, but if we click this `edit` button and entering your email account and password. After you log in, it will open the **Report Definitions** Management Reporter window for us. 
-
-<figure class='center '>
-  <a href="{{site.url}}/assets/2017-04-10_11h57_20.png"><img src="{{site.url}}/assets/2017-04-10_11h57_20.png" alt=""></a>
-</figure>
-
-On the left, here we have a list of all the same reports that we were looking at in AX.
-Let's look at `the income statement - default report`, So I have a couple parameter fields we need to change before we can generate our report. Please prefer below picture
-<figure class='center '>
-  <a href="{{site.url}}/assets/2017-04-10_12h08_53.png"><img src="{{site.url}}/assets/2017-04-10_12h08_53.png" alt=""></a>
-</figure>
-After we click **generate** button, Financial will be generated on current web browser
-<figure class='center '>
-  <a href="{{site.url}}/assets/2017-04-10_12h11_29.png"><img src="{{site.url}}/assets/2017-04-10_12h11_29.png" alt=""></a>
-</figure>
-we can see here by the report date.  So, on our income statement, we have all the usual fields here.  We have total revenues, gross profit, total operating experiences, net operating income and net income. That all is pretty standard and it all looks good.
-
-### 6. Conclusion
 We do not, in any case, want an error to be thrown that stops the form from opening. Also, if there is an error, we need to decide whether the user actually needs to know that an error occurred. It may be enough for our purposes that the fields don't appear, and we can use the debugger to trace through the code to determine why.
 
 Thank you for reading!
