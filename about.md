@@ -11,7 +11,7 @@ tags: [Freelancer, Dynamics AX, Dynamics 365, development, consultant]
 
 My name is Max, I'm a Developer, a Technical Consultant and a Solution Architects.
 
-Here is [my badges] (https://www.youracclaim.com/users/nguyen-max).
+Here is [my badges](https://www.youracclaim.com/users/nguyen-max).
 
 Here is some of my experience in AX expertise
 
