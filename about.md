@@ -9,7 +9,10 @@ tags: [Freelancer, Dynamics AX, Dynamics 365, development, consultant]
 
 ### Hi There!!
 
-My name is Max, I'm Developer, Technical Consultant and I'm Vietnamese.
+My name is Max, I'm a Developer, a Technical Consultant and a Solution Architects.
+
+Here is my badges: https://www.youracclaim.com/users/nguyen-max
+
 Here is some of my experience in AX expertise
 
 #### Things are in my mind when I do the customizations
@@ -25,13 +28,11 @@ Here is some of my experience in AX expertise
 	
 #### Most Dynamics technologies which I've been working with	
 
-  * **PowerBI**
+  * **Data Management in D365FO**
   * **SSRS and Financial reporting**
-  * **Application Integration Framework (AIF)**
+  * **PowerBI for D365**
   * **Extensible Data Security**
   * **TFS and DAX Source Version Control**
-  * **Batch**
-  * **File integration using WINAPI**
   
 #### Industries Which I've been working with
 
@@ -50,14 +51,11 @@ Here is some of my experience in AX expertise
 #### ERP and CRM
 
   * **Dynamics AX Version**
+	* Microsoft Dynamics 365 for Finance and Operations
 	* Dynamics AX 2012 R2 CU7 and above
     * Dynamics AX 2012 R3 CU8 and above
-    * Dynamics AX 365 for operation (aka AX7)
   * **Dynamics CRM Version**
     * CRM 2011
-  * **Microsoft Dynamics 365**
-    * Microsoft Dynamics 365 for Sales
-    * Microsoft Dynamics 365 for Customer Service
 	
 #### Most functions which I've been working with
 
@@ -85,7 +83,16 @@ Here is some of my experience in AX expertise
 	* Workflows
 	* Picking and packing
 	* Mobile devices
-	
+
+#### Developing Microsoft Azure Solutions
+
+	* Experience in Linux, Windows VM.
+	* Experience in Cloud Infrastructure Scripting including ARM/Cloud Formation, node, Python, PowerShell.
+	* Experience VM Configuration management using Chef, rspec, inspect.
+	* Experience with high availability service configurations.
+	* Experience with deployment automation with tools such as Artifactory, Jenkins, Docker, GitLab and GitLab Runners.
+	* Experience in testing including JUnit, Pester, rspec.
+
 :)
 
 {% include author.html %}
