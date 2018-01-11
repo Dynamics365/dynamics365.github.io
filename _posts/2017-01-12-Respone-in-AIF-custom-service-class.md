@@ -8,7 +8,7 @@ categories: [ax2012, trick, tools, integration]
 tags: [xpp, aif]
 ---
 
-At the previous [post](http://axdeveloping.com/ax2012/trick/tools/integration/AIF-Custom-response-value-in-Dynamics-AX-2012-R3/) I already show how to customize Response Value list in AIF Document standard service, today we will talk about response in Custom AIF service class.
+At the previous [post](http://nuxulu.com/ax2012/trick/tools/integration/AIF-Custom-response-value-in-Dynamics-AX-2012-R3/) I already show how to customize Response Value list in AIF Document standard service, today we will talk about response in Custom AIF service class.
 
 We already know for Custom AIF service we actually need 2 classes, one is `contract` for data input and one is `service` to process a logic. With `Response` class, it's literally same with `contract` class. They both hold parm value.
 
