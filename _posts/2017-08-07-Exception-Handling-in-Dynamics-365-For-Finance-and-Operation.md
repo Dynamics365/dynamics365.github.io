@@ -1,4 +1,4 @@
----
+﻿---
 comments: true
 date: 2017-08-07 0:00:00+00:00
 layout: post
@@ -12,7 +12,7 @@ tags:
 - AX7
 ---
 
-When we write a code, or making customizations to Dynamics 365 For Operation which is using X++ should make use of Exception Handling to provide some context for the message or a different more useful message. In this article, I will be exploring how I can come up with a uniform way to catch multiple types of exception that can be raised in X++.
+When we write a code, or make a customization to Dynamics 365 For Operation which is using X++ should make use of Exception Handling to provide some context for the message or a different more useful message. In this article, I will be exploring how I can come up with a uniform way to catch multiple types of exception that can be raised in X++.
 
 ### 1. Exception type
 There are many several types of exception and the type differs depending on what caused the error. Much of exception types are determined by the kernel and are not normally thrown by application code. All **exception types**, however, can be caught, and it is the developers’ responsibility to decide which exceptions need to be handled.
