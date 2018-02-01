@@ -17,68 +17,71 @@ Here is some of my experience in AX expertise
 
 #### Things are in my mind when I do the customizations
 
-  * Minimizing the footprint of changes (I know how painful is when merging code from different partners or upgrade or installing hotfix).
-  * Where to make the change (always at the highest level and in this order: class, table, form data source feld/method, form control).
+  * Minimizing the footprint of changes (I know how painful is when merging code from different partners or upgrade or installing hot-fix).
+  * Where to make the change (always at the highest level and in this order: class, table, form data source field/method, form control).
   * Using field groups (The reason this reduces footprint).
   * Upgrades and system maintainability.
   * Design for a service-oriented architecture.
   * Design for code reuse.
   * Apply Dynamics AX design patterns.
-  * Apply Best pratice.
+  * Apply Best practice.
 	
 #### Most Dynamics technologies which I've been working with	
 
-  * **Data Management in D365FO**
+  * **Data Management in Dynamics 365 For Finance and Operations, Enterprise Edition**
   * **SSRS and Financial reporting**
-  * **PowerBI for D365**
+  * **PowerBI**
   * **Extensible Data Security**
   * **TFS and DAX Source Version Control**
   
 #### Industries Which I've been working with
 
-  * Manufacturing
+  * Manufacturing (Chemicals and Pharmaceuticals)
+  * Distribution
   * Professional Services
-  * Fleet Management
-  * Retail
   
 #### Language
 
   * **X++**
   * **SQL**
-  * **C#**
   * **XML**
+  * This blog is presented by Markdown
   
 #### ERP and CRM
 
   * **Dynamics AX Version**
-	* Microsoft Dynamics 365 for Finance and Operations
+	* Microsoft Dynamics 365 for Finance and Operations, EE
 	* Dynamics AX 2012 R2 CU7 and above
     * Dynamics AX 2012 R3 CU8 and above
-  * **Dynamics CRM Version**
-    * CRM 2011
 	
 #### Most functions which I've been working with
 
-  * **Financials**
-	* Financials Dimension
+  * **General Ledger**
+	* Financial Dimension
 	* Chart of accounts
 	* Financial statements – Balance sheet, Income statement
+	* Currency and exchange
+	* Journal and Journal posting framework
+
   * **Trade and Logicstics**
 	* Item creation
 	* Sales process
 	* Purchase process
 	* Transfer order
 	* Supply chain management
+	
   * **Production**
 	* BOM
 	* Routes and operations
 	* Purchase process
 	* Transfer order
+	
   * **Retails**
 	* Installation and configrution Retails POS
 	* The Async Service
 	* Real-time Service
 	* Certificate Management
+	
   * **Warehouse management**
 	* Workflows
 	* Picking and packing
