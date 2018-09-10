@@ -9,9 +9,9 @@ tags: [Freelancer, Dynamics AX, Dynamics 365, development, consultant]
 
 ### Hi There!!
 
-My name is Max, I'm a Developer, a Technical Consultant and a Solution Architects.
+My name is Max, I'm a Developer, a Technical Consultant, and a Solution Architects.
 
-Here is [my badges](https://www.youracclaim.com/users/nguyen-max).
+Here are [my badges](https://www.youracclaim.com/users/nguyen-max).
 
 Here is some of my experience in AX expertise
 
@@ -63,7 +63,7 @@ Here is some of my experience in AX expertise
 	* Currency and exchange
 	* Journal and Journal posting framework
 
-  * **Trade and Logicstics**
+  * **Trade and Logistics**
 	* Item creation
 	* Sales process
 	* Purchase process
@@ -77,7 +77,7 @@ Here is some of my experience in AX expertise
 	* Transfer order
 	
   * **Retails**
-	* Installation and configrution Retails POS
+	* Installation and configuration Retails POS
 	* The Async Service
 	* Real-time Service
 	* Certificate Management
@@ -91,10 +91,10 @@ Here is some of my experience in AX expertise
 
   * Experience in Linux, Windows VM.
   * Experience in Cloud Infrastructure Scripting including ARM/Cloud Formation, node, Python, PowerShell.
-  * Experience VM Configuration management using Chef, rspec, inspect.
+  * Experience VM Configuration management using Chef, Rspec, Inspect.
   * Experience with high availability service configurations.
   * Experience with deployment automation with tools such as Artifactory, Jenkins, Docker, GitLab and GitLab Runners.
-  * Experience in testing including JUnit, Pester, rspec.
+  * Experience in testing including JUnit, Pester, Rspec.
 
 :)
 
