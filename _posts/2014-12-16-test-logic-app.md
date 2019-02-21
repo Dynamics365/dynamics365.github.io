@@ -1,0 +1,2 @@
+The model store is the portion of the Microsoft Dynamics AX database where all Microsoft Dynamics AX application elements are stored, including customization. The model store replaces the AOD (application object definition) files used in previous releases of Microsoft Dynamics AX (I mean from 4.0 to 2009).
+Layer and model information are integral parts of the store. The AOS has access to the model store, handles layer-flattening, and provides model data to all the Microsoft Dynamics AX sub-systems, such as form- and report-rendering and X++ code.
