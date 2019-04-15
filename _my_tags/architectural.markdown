@@ -1,4 +1,0 @@
----
-slug: architectural
-name: Architectural
----

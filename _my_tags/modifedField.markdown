@@ -1,4 +1,0 @@
----
-slug: modifedField
-name: modifedField()
----

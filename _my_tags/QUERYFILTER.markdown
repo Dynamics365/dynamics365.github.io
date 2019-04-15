@@ -1,4 +1,0 @@
----
-slug: QUERYFILTER
-name: QUERYFILTER
----

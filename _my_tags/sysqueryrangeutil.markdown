@@ -1,4 +1,0 @@
----
-slug: sysqueryrangeutil
-name: sysqueryrangeutil
----
