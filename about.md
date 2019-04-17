@@ -4,7 +4,7 @@ layout: page
 title: About
 share: true
 title: Contact Me - Freelancer
-tags: [Freelancer, Dynamics AX, Dynamics 365, development, consultant]
+tags: [Freelancer, Dynamics AX, Dynamics 365, development, Azure]
 ---
 
 ### Hi There!!
