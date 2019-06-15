@@ -9,14 +9,54 @@ tags: [Freelancer, Dynamics AX, Dynamics 365, development, Azure]
 
 ### Hi There!!
 
-My name is Max, I'm a Developer, a Technical Consultant, and a Solution Architects.
+A Developer, a Technical Consultant, and a Solution Architects.
 
-Here are [my badges](https://www.youracclaim.com/users/nguyen-max).
+Here are some of my experience with Dynamics 365 for finance and operations
 
-Here is some of my experience in AX expertise
+#### Dynamics 365 for finance and operations development skills: 
+  * Familiar with extensibility in Dynamics 365 for finance and operations (Class extensions, method wrapping/replacing and Chain of Command).
+  * Strong X++ coding skills.
+  * Workflow, batch job development.
+  * Office add-ins development for form.
+  * Familiar with SSRS reports, data entity, Aggregate measurement. 
+  * VSTS Azure DevOps configuration for DEV and UAT environment.
+  * Continuous build and deployment configuration for BUILD and UAT environment.
+  * Automation load test practice using Regression tool and Perf SDK.
+  * Expert in debugging in DEV/UAT and using trace parser.
+  * Project, model, package management.
 
-#### Things are in my mind when I do the customizations
+#### Dynamics 365 for finance and operations provisioning and operation skills:
+  * Ability to deploy On-premises version (have successfully deployed two on-premises environments).
+  * Setup and provision Cloud-hosted environment include DEV and BUILD/TEST environment; implementation environment includes DEV, UAT sandbox, Production; VHD local development environment.
+  * LCS configuration with Azure subscription, mapping BPM with Azure DevOps.
+  * Environment maintenance and SQL performance monitoring within LCS.
+  * Apply packages, hotfixes, upgrading.
+  * Refresh data From PROD to UAT/DEV, moving data across the environments.
 
+#### Dynamics 365 for finance and operations data management and integration skills:
+  * Building and using Aggregate Measurements, data entity, and Composite data entity development.
+  * Using data management framework to import and export data.
+  * Ability to use Bring your own database feature.
+  * Implement data integration in many scenarios using OData, Batch data API, Recurring integrations, Data package API, consume external web services, excel integration.
+  * Data integration by using Common Data Service (PowerApps).
+  * Ability to use Postman for integration testing.
+
+#### Dynamics 365 for finance and operations reporting skills:
+  * Building and extending Aggregate measurement for PowerBI report.
+  * Configure Power BI integration for workspaces.
+  * Familiar with Financial report, generate or reset data mart.
+  * Power BI integration with Entity store
+  * Configure BYOD to connect with another reporting system.
+
+#### Dynamics 365 for finance and operations troubleshooting skills:
+  * Reading Trace parser for X++ logic error or data inconsistency.
+  * Using LCS to find expensive SQL queries for application hanging or slow
+  * Ability to use Fiddler to troubleshoot authentication error client interaction.
+  * Ability to use ProcDump, ListDLLs, Process Monitor tools.
+  * PowerShell scripts debugging for deployment errors.
+ 
+
+#### If there is a customization, then should follow these things
   * Minimizing the footprint of changes (I know how painful is when merging code from different partners or upgrade or installing hot-fix).
   * Where to make the change (always at the highest level and in this order: class, table, form data source field/method, form control).
   * Using field groups (The reason this reduces footprint).
@@ -26,35 +66,7 @@ Here is some of my experience in AX expertise
   * Apply Dynamics AX design patterns.
   * Apply Best practice.
 	
-#### Most Dynamics technologies which I've been working with	
-
-  * **Data Management in Dynamics 365 For Finance and Operations, Enterprise Edition**
-  * **SSRS and Financial reporting**
-  * **PowerBI**
-  * **Extensible Data Security**
-  * **TFS and DAX Source Version Control**
-  
-#### Industries Which I've been working with
-
-  * Manufacturing (Chemicals and Pharmaceuticals)
-  * Distribution
-  * Professional Services
-  
-#### Language
-
-  * **X++**
-  * **SQL**
-  * **XML**
-  * This blog is presented by Markdown
-  
-#### ERP and CRM
-
-  * **Dynamics AX Version**
-	* Microsoft Dynamics 365 for Finance and Operations, EE
-	* Dynamics AX 2012 R2 CU7 and above
-    * Dynamics AX 2012 R3 CU8 and above
-	
-#### Most functions which I've been working with
+#### The functions which I've been working with
 
   * **General Ledger**
 	* Financial Dimension
@@ -87,14 +99,7 @@ Here is some of my experience in AX expertise
 	* Picking and packing
 	* Mobile devices
 
-#### Developing Microsoft Azure Solutions
-
-  * Experience in Linux, Windows VM.
-  * Experience in Cloud Infrastructure Scripting including ARM/Cloud Formation, node, Python, PowerShell.
-  * Experience VM Configuration management using Chef, Rspec, Inspect.
-  * Experience with high availability service configurations.
-  * Experience with deployment automation with tools such as Artifactory, Jenkins, Docker, GitLab and GitLab Runners.
-  * Experience in testing including JUnit, Pester, Rspec.
+Here are [my badges](https://www.youracclaim.com/users/nguyen-max). Thank you for reading.
 
 :)
 
