@@ -17,14 +17,15 @@
     <div class="entry-content">
 	{% include advertisements.html %}
         {% if page.image.feature %}
-		
+    	<!-- Max added
+	{% include toc.html html=content %}
             <div class="entry-image-index">
               <img src="{{ site.url }}/images/{{ page.image.feature }}" alt="{{ page.title }}">
               {% if page.image.credit %}<div class="image-credit">Image source: <a target="_blank" href="{{ page.image.creditlink }}">{{ page.image.credit }}</a></div><!-- /.image-credit -->{% endif %}
             </div>
         {% endif %}
       <h1 class="post-title entry-title">{{ page.title }}</h1>
-      {{ content }}
+      {{ content }} 
 	  <!-- add google adsense -->
 	  {% include advertisements_right.html %}
       <footer class="entry-meta">
