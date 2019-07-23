@@ -26,7 +26,7 @@ The following table shows the exception literals that are the values of the Exce
   <a href="{{site.url}}/assets/imagesposts/2017-08-07_10h00_37.png"><img src="{{site.url}}/assets/imagesposts/2017-08-07_10h00_37.png" alt=""></a>
 </figure>
 
-<!-- more -->
+<!--more-->
 
 ### 2. Key commands
 The **Try** command signifies the start of a block of code that you want to control with the X++ exception handling system. Any exceptions that are thrown in that block of code can be caught and handled accordingly. The block of code inside the Try statement must be contained between brackets ( { } ).
