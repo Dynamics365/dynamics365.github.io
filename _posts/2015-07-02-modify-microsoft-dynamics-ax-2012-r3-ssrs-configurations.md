@@ -28,7 +28,7 @@ $node.SetAttributeNode($attribute )
 $doc.Save($webConfig)
 Write-Host "1) Modified the Report Manager Web.config file"
 {% endhighlight %}
-
+<!--more-->
 ` RsReportServer.ps1`
 
 

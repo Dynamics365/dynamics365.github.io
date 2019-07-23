@@ -29,7 +29,7 @@ public void modifiedField(FieldId _fieldId)
     }
 }
 ```
-
+<!--more-->
 the `modifiedField()` method is located on tables and it is called by a form (or a dataset) when any field is changed. It has field ID as a parameter and therefore it is very easy to write code reacting to a change of a particular field. It is so easy that the `modifiedField()` method is often used even in such cases, when it really shouldn’t be used.  
 
 If you want to get previous field value in the `modifiedField()` for comparative purpose, you can use `this.orig()` method:

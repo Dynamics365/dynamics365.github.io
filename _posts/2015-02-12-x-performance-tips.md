@@ -33,7 +33,7 @@ static void KlForTickCountSample(Args _args)
     info(strfmt('Number of ticks: %1', ticks));
 }
 {% endhighlight %}
-
+<!--more-->
 ### Tip 2: limit the number of loops
 
 A LOT of time goes into loops. If you have a performance problem, start looking for loops. Code can run really fast, but it can get slow when it is executed too many time, eg, in a loop.

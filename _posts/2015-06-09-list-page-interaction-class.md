@@ -24,7 +24,7 @@ Form interaction classes are not mandatory for list pages but should be used on 
 * **selectionChanged**: Called when the active record changes – Similar to the datasource active method.
 
 * **setButtonEnabled**: Should be overridden to dynamically enable/disable buttons based on the current selection. This is called from the selectionChanged method.
-
+<!--more-->
 {% highlight csharp %}
 public void selectionChanged()
 {

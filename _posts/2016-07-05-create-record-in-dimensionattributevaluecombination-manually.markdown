@@ -61,7 +61,7 @@ static void createDimensionAttributeValueCombination(Args _args)
     info(strFmt("RecId : %1 - DisplayValue : %2", davc.RecId, davc.DisplayValue));
 }
 ```
-
+<!--more-->
 or you can use this way
 
 ```csharp

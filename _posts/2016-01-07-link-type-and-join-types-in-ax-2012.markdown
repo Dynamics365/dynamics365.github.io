@@ -24,7 +24,7 @@ For example, you can scroll a list of orders where you do not want to review the
 
 **InnerJoin** `Combined data source` select the record from the main table that matches records in the joined table and vice versa.
 
-
+<!--more-->
 ```sql
 //X++
 select AccountNum from custTable

@@ -18,7 +18,7 @@ We have 3 types:
 - Common Functions - Text, Date &amp; Time, Math, Inspection, Program Flow, Aggregate, Financial, Conversion, Miscellaneous  
 
 We can see each and every one very deataily
-
+<!--more-->
 ## 1. Globals
 Global expressions executes/works in Page Header and Footer parts only.   
 

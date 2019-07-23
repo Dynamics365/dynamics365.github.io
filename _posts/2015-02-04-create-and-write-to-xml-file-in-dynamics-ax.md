@@ -99,7 +99,7 @@ static void WriteXml(Args _args)
     xmlDoc.writeTo(xmlWriter);
 }
 {% endhighlight %}
-
+<!--more-->
 The file that is created looks like the one in the following screenshot(only first part of the file is shown):
 
 ![]({{site.url}}/assets/imagesposts/create-and-write-to-xml-file-in-dynamics-ax_1.png)
