@@ -22,7 +22,7 @@ First you need to install 2 SSRS instance in same server, and install `reporting
 
 Reporting service component uses **business connector** to connect to AX, and it's saved on configuration in Registry. When we install second `reporting service component` it will through message that component already installed.
 
-<!-- more -->
+<!--more-->
 
 ## How to do:
 

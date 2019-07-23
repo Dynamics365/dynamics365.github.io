@@ -24,7 +24,7 @@ Here is the list
   <a href="{{site.url}}/assets/imagesposts/Financial_reports.png"><img src="{{site.url}}/assets/imagesposts/Financial_reports.png" alt=""></a>
 </figure>
 
-<!-- more -->
+<!--more-->
 
 ### 2. Access
 You can find the financial reporting menu in Dynamics 365 For Operation by visiting 

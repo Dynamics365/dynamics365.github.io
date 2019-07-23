@@ -27,7 +27,7 @@ Create a new enum value `Contoso` in BaseEnum `NumberSeqModule`.
 
 This value will be used to link number sequence to the module and to restrict displayed number sequence by module in Form.
 
-<!-- more -->
+<!--more-->
 
 ## NumberSeqModule Class
 

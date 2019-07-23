@@ -26,7 +26,7 @@ Same like blueprint class is an outline of program. Using the class we can write
   <a href="{{site.url}}/assets/imagesposts/Blueprint.jpg"><img src="{{site.url}}/assets/imagesposts/Blueprint.jpg" alt=""></a>
 </figure>
 
-<!-- more -->
+<!--more-->
 
 For more easy understanding of OOP with real world example here I have explained a class with House.
 

@@ -15,7 +15,7 @@ As my experience, if we use `NETTCP` adapter for consuming by Java system, we wi
 
 So, my solution is creating HTTP adapter for Java, you can also use .NET system to consume HTTP adapter without any problems
 
-<!-- more -->
+<!--more-->
 
 ### How to do
 

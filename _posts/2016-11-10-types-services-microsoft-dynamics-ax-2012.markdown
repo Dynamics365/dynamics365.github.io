@@ -23,7 +23,7 @@ When creating document services, developers need to make sure **that the busines
 
 Document services can be deployed using the integration ports and all available adapters can be used.
 
-<!-- more -->
+<!--more-->
 
 # Custom services
 

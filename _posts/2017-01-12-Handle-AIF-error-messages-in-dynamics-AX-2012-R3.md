@@ -29,7 +29,7 @@ If it cause error, message would return like this
 
 ![]({{site.url}}/assets/imagesposts/Handle-AIF-error-messages-in-dynamics-AX-2012-R3-1.png)
 
-<!-- more -->
+<!--more-->
 
 If you want to know more details, you have to go In Dynamics ax **AIF Exceptions form** then check
 

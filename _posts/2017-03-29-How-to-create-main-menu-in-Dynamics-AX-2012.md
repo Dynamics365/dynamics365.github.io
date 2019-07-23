@@ -20,7 +20,7 @@ Each module will have a menu, which is created by adding a menu reference (or sh
 
 This matches the list of modules shown in the client's left-hand navigation pane.
 
-<!-- more -->
+<!--more-->
 
 #### Create Menu in AOT
 

@@ -14,7 +14,7 @@ We normally create action delete in foreign table to make sure referential integ
 
 The delete action has the following options: **None, Restricted, Cascade, Cascade + Restricted**
 
-<!-- more -->
+<!--more-->
 
 #### None:
 

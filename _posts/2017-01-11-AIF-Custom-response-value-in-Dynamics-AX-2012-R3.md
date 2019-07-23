@@ -36,7 +36,7 @@ public AifEntityKeyList createList(
 
 So, how about customer wants another meaning value beside `SalesID` likes `InventTransId` information in `SalesLine` table or another tables base on your requirement. To do that, we need to customize this method.
 
-<!-- more -->
+<!--more-->
 
 ### How to do
 
