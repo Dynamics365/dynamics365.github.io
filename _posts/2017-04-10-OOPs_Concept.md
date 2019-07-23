@@ -2,6 +2,7 @@
 key: d365
 date: 2017-04-11 00:00:00+00:00
 visible: 1
+published: false
 slug: Basic-OOP-Concept
 title: Basic C# OOP Concept
 categories:
