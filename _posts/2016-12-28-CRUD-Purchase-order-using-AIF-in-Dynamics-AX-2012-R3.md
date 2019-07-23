@@ -32,7 +32,7 @@ Choose recent created query and click **next**.
  ![]({{site.url}}/assets/imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-03.png)
 
 Click `next` and then `Generate`.
-
+<!--more-->
 You will get service project in **Private** project
 
 ## Deploy and create service

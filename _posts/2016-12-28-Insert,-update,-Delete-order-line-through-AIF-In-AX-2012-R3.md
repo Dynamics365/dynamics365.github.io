@@ -41,6 +41,7 @@ private static EntityKey[] EntityForPurchId(string purchId)
 
 {% endhighlight %}
 
+<!--more-->
 `create Line, delete Line, update line in Purchase order`
 
 {% highlight csharp %}

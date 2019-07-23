@@ -37,7 +37,7 @@ To create product variants, you must complete the following tasks:
 * Assign variant groups to a retail hierarchy.
 
 * Create a product master and variants.
-
+<!--more-->
    b. **Product dimensions**
 
 Product dimensions are characteristics that serve to identify a product variant. You can use combinations of product dimensions to define product variants. You must define at least one product dimension for a product master to create a product variant.

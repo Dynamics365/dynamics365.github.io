@@ -21,7 +21,7 @@ Value types include the built-in `primitive types, extended data types, enumerat
 * **The enumeration types** are base enumerations and extended data types. 
 * **The collection types** are the built-in array and container types. 
 
-
+<!--more-->
 >By default, variables declared as **value types** are assigned their zero value by the Microsoft Dynamics AX runtime. These variables can’t be set to null. Variable values are copied when variables are used to invoke methods and when they are used in assignment statements. Therefore, two value type variables can’t reference the same value.
 
 ![2015-10-06-the-type-system-of-dynamics-ax-2012]({{site.url}}/assets/imagesposts/2015-10-06-the-type-system-of-dynamics-ax-2012.png)

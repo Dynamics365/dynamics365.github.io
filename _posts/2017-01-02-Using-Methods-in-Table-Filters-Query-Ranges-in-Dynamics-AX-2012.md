@@ -17,6 +17,8 @@ Let’s say you have a report that you always want to run to see orders with shi
 
 ![Figure 1 – Filtering the requested ship dates in an AX query for tomorrow]({{site.url}}/assets/imagesposts/Using-Methods-in-Table-Filters-Query-Ranges-in-Dynamics-AX-2012.jpg)
 
+<!--more-->
+
 *Filtering the requested ship dates in an AX query for tomorrow `(current day() + 1)`*
 
 On any form with a grid, you filter your data by pressing **_Ctrl+G_**. 

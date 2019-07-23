@@ -16,7 +16,7 @@ So what's difference between them? when do we use `QueryFilter` class? When do w
 Today, i will make a simple sample to show what is difference between them. You can download example project from _[here](https://1drv.ms/u/s!AuMuU-6qq5hxiYQLElp6RoLgmB_uIA)_.
 
 I have two table :
-
+<!--more-->
 Table `DuyDang_ParentTable` which have 1 columns : `ID`.
 
 ![Parent_Table]({{site.url}}/assets/imagesposts/Parent_Table.jpg)

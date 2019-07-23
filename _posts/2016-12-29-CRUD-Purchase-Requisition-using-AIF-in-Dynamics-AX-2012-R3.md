@@ -70,6 +70,8 @@ protected void setPurchReqId()
 
 Base on this method, you could know how System get PurchReqId.
 
+<!--more-->
+
 ### How to do
 
 Go to Inbound ports form to create new service with `NETTCP` adapter, choose service operations likes below:
