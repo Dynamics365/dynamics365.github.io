@@ -1,10 +1,11 @@
 ---
 title: How to create main menu in Dynamics AX 2012
-description: How to create main menu in Dynamics AX 2012
 author: Max Nguyen
 modified: 2017-03-29
-categories: [ax2012, trick, tool]
-tags: [display]
+tags: 
+ - main menu
+ - X++
+ - AX2012
 key: d365
 ---
 

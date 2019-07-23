@@ -1,11 +1,9 @@
 ---
 
 title: Number sequence farmework overview in Dynamics AX 2012
-description: How to create number sequence in Dynamics AX 2012 with difference scenarios
 author: Max Nguyen
 modified: 2017-01-19
-categories: [ax2012, trick, tools]
-tags: [xpp, numbersequence, programming]
+tags: [X++, numbersequence, programming]
 key: d365
 ---
 

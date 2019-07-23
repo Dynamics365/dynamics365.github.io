@@ -4,8 +4,9 @@ title: Overview delete action in Dyanmics AX 2012
 description: Overview delete action in Dyanmics AX 2012
 author: Max Nguyen
 modified: 2017-01-19
-categories: [ax2012, trick, tool]
-tags: [delete]
+tags: 
+ - delete acitons
+ - AX2012
 key: d365
 ---
 

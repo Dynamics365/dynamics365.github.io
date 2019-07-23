@@ -1,22 +1,13 @@
 ---
 key: d365
 date: 2017-07-24 01:33:44+00:00
-
 slug: Management-reporter-in-Dynamics-365-for-operation
 title: Management reporter in new AX, Dynamics 365 For Operation
-categories:
-- dynamics365
 tags:
-- mr
-- camera
-- Financial reports
+- Management reporter
 - Financial reporting
-- DYNAMICS 365 FOR OPERATION
-- AX7
-- General Ledger report
-- balance sheets
-- income statements
-- cash flow statements
+- Dynamics 365 for finance and operations
+author: Max Nguyen
 ---
 
 ### 1. Overview Management Reporter in New AX

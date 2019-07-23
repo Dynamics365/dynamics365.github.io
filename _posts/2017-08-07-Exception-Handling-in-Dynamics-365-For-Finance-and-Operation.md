@@ -4,8 +4,8 @@ date: 2017-08-07
 title: Exception Handling in Dynamics 365 For Finance and Operation
 tags:
 - Exception Handling
-- DYNAMICS 365 FOR Finance and OPERATION
-- AX7
+- Dynamics 365 for finance and operations
+- X++
 author: Max Nguyen
 key: d365
 ---

@@ -5,8 +5,6 @@ visible: 1
 published: false
 slug: Basic-OOP-Concept
 title: Basic C# OOP Concept
-categories:
-- general
 tags:
 - C#
 - OOP
