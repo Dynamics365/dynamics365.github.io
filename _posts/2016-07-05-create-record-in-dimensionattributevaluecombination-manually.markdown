@@ -5,6 +5,7 @@ date: 2016-07-05 18:47:00 +09:00
 author: Max Nguyen
 categories: [ax2012, trick]
 tags: [xpp, programming, fidim]
+key: d365
 ---
 
 Sometime we need this `RecId` value in `DimansionAttributeValueCombination` Table for some reasons likes putting new dimension in `LedgerDimension` field in `LedgerJournalTrans` Table, or somewhere else.

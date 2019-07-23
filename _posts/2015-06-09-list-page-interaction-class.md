@@ -6,6 +6,7 @@ author: Max Nguyen
 modified: 2015-07-01
 categories: [ax2012]
 tags: [trick, Interaction]
+key: d365
 ---
 
 Form interaction classes that allow user interface control logic to be shared across forms. For instance, controlling which buttons are available to a list page and the associated detail form.

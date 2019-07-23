@@ -6,6 +6,7 @@ author: Max Nguyen
 modified: 2017-01-11
 categories: [ax2012, trick, tools, integration]
 tags: [xpp, aif]
+key: d365
 ---
 
 For this demonstration, I use AIF service to create Sales order with `SalesSalesOrderService` and I gonna consume AIF using C#.NET.

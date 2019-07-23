@@ -6,6 +6,7 @@ author: Max Nguyen
 modified: 2015-05-13
 categories: [ax2012, ssrs]
 tags: [trick, ssrs]
+key: d365
 ---
 
 Login to the AX AOS server and follow below steps.

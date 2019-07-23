@@ -6,6 +6,7 @@ author: Max Nguyen
 modified: 2017-01-02
 categories: [ax2012, tools, trick]
 tags: [trick, sysqueryrangeutil, QUERYFILTER, QUERYBUILDRANGE]
+key: d365
 ---
 
 In Dynamics AX, there is a class called `SysQueryRangeUtil` that can be utilized in both query ranges and table filters. Using methods from this class allow you to be very precise about what dates you want to use in reports or for filtering your data.

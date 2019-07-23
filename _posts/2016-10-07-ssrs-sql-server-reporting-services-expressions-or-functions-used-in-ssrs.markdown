@@ -5,6 +5,7 @@ date: 2016-10-07 03:24:53.000000000 +09:00
 author: Max Nguyen
 categories: ssrs
 tags: [ssrs]
+key: d365
 ---
 
 Expressions are usually used for appearance of the data in a report, change properties of the fields, calculate some values and display them in a proper way, compares values between data of fields and then display them.

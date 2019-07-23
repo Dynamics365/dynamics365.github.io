@@ -5,6 +5,7 @@ date: 2016-01-15 16:22:50.000000000 +07:00
 author: Max Nguyen
 categories: [services, ssrs, ax2012, trick, problem]
 tags: [ssrs, programming]
+key: d365
 ---
 
 Recently I updated my dynamics Ax development Environment by restoring Database from Production Dynamics AX DB and I got this problem 

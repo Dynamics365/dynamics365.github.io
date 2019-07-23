@@ -5,6 +5,7 @@ date: 2015-11-03 03:45:13.000000000 +07:00
 author: Max Nguyen
 categories: [general, sql]
 tags: [trick, programming]
+key: d365
 ---
 
 1. Open `Microsoft SQL Server Management Studio`.

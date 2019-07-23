@@ -6,6 +6,7 @@ author: Max Nguyen
 modified: 2014-12-16
 categories: [ax2012, trick, general]
 tags: [architectural]
+key: d365
 ---
 
 The model store is the portion of the Microsoft Dynamics AX database where all Microsoft Dynamics AX application elements are stored, including customization. **The model store replaces the AOD (application object definition)** files used in previous releases of Microsoft Dynamics AX (I mean from 4.0 to 2009).

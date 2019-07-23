@@ -5,6 +5,7 @@ date: 2016-12-26 00:00:00.000000000 +9:00
 author: Max Nguyen
 categories: [ax2012, trick]
 tag: [trick, programming, posting]
+key: d365
 ---
 
 Base on `JournalId` on `LedgerJournalTable` you can use code below for <span style="color: red">posting into transactions</span>

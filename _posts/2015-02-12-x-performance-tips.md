@@ -6,6 +6,7 @@ author: Max Nguyen
 modified: 2015-02-12
 categories: [ax2012, trick]
 tags: [trick, xpp, programming]
+key: d365
 ---
 
 ### Tip 1: Measure execution time of your code

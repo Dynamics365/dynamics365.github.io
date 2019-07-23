@@ -5,6 +5,7 @@ date: 2015-07-02
 author: Max Nguyen
 categories: [ax2012, trick, ssrs]
 tag: [trick, programming]
+key: d365
 ---
 
 `reportManagerWebConfig.ps1`

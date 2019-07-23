@@ -6,6 +6,7 @@ author: Max Nguyen
 modified: 2015-08-04
 tags: [error, ssrs]
 categories: [ax2012, problem, services, ssrs]
+key: d365
 ---
 
 When I try to install Web Services on IIS for Retails POS Component, and I got the problem.

@@ -5,6 +5,7 @@ date: 2016-11-10 18:47:00 +09:00
 author: Max Nguyen
 categories: [services, ax2012]
 tags: [aif, xpp, aos]
+key: d365
 ---
 
 # Document services

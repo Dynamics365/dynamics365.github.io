@@ -6,6 +6,7 @@ author: Max Nguyen
 modified: 2017-01-12
 categories: [ax2012, trick, tools, integration]
 tags: [xpp, aif]
+key: d365
 ---
 
 Normally, when we consume AIF Service, we use this code like below to handle Error messages

@@ -6,6 +6,7 @@ author: Duy Dang
 modified: 2017-01-01
 categories: [ax2012, sql, trick]
 tags: [buildquery, programming, QUERYFILTER, QUERYBUILDRANGE]
+key: d365
 ---
 
 In Dynamics AX, we have two way to filter the result set of records in joined query is using `QueryFilter` class and `QueryBuildRange` class.

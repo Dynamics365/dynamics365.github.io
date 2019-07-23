@@ -5,6 +5,7 @@ date: 2015-11-13 06:57:46.000000000 +07:00
 author: Max Nguyen
 categories: [ax2012, trick]
 tags: [operator, programming, trick]
+key: d365
 ---
 
 Beside modify metadata on form properties, as best practice we can use code like below to assign default value for combobox.

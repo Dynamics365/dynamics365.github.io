@@ -5,6 +5,7 @@ date: 2015-12-30 04:23:09.000000000 +07:00
 author: Max Nguyen
 categories: [ax2012]
 tags: [trick]
+key: d365
 ---
 
 This blog post is show how to apply OR conditions in query build ranges in a simple way on same field in a table. Let's see the simple query :

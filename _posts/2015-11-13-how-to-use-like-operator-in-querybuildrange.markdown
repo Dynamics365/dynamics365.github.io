@@ -5,6 +5,7 @@ date: 2015-11-13 06:57:46.000000000 +07:00
 author: Max Nguyen
 categories: [ax2012]
 tags: [operator, programming]
+key: d365
 ---
 
 To make something as the `LIKE` operator in a query, just assign a value to the QueryRange including a wildcard.

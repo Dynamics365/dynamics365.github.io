@@ -5,6 +5,7 @@ date: 2015-11-20 13:52:40.000000000 +07:00
 author: Max Nguyen
 categories: [ax2012, sourcecontrol]
 tags: [error, tfs]
+key: d365
 ---
 
 When you try connecting between TFS and Dynamics AX CU8, CU9 and you got error like this:

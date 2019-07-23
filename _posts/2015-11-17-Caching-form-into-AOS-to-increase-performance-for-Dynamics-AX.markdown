@@ -5,6 +5,7 @@ date: 2015-11-17 03:13:45.000000000 +07:00
 author: Max Nguyen
 categories: [ax2012, sourcecontrol]
 tags: [trick, aos, programming]
+key: d365
 ---
 
 **Scenario:**

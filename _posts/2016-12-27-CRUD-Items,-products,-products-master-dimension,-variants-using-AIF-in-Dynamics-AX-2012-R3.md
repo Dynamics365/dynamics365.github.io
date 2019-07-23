@@ -6,6 +6,7 @@ author: Max Nguyen
 modified: 2016-12-27
 tags: [aif, programming, csharpdotnet, xpp]
 categories: [ax2012, integration]
+key: d365
 ---
 
 ## Scenarios:

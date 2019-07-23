@@ -6,6 +6,7 @@ author: Max Nguyen
 modified: 2016-12-28
 tags: [aif, programming, csharpdotnet, xpp]
 categories: [ax2012, integration]
+key: d365
 ---
 
 In previous [post](https://dynamics365.github.io/ax2012/integration/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3/), I already show how to create purchase order through AIF with `NETTCP` or `HTTP adapter`. In this post, we will get little deep more about action on line of order.

@@ -6,6 +6,7 @@ author: Max Nguyen
 modified: 2017-01-19
 categories: [ax2012, trick, tool]
 tags: [delete]
+key: d365
 ---
 
 We normally create action delete in foreign table to make sure referential integrity in Logic and validation.

@@ -1,5 +1,5 @@
 ---
-comments: true
+key: d365
 date: 2017-07-24 01:33:44+00:00
 
 slug: Management-reporter-in-Dynamics-365-for-operation

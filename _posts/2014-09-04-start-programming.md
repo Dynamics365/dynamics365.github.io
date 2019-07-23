@@ -6,6 +6,7 @@ author: Max Nguyen
 modified: 2014-09-04
 categories: [life, general]
 tags: [fun]
+key: d365
 ---
 
 I don’t know exactly how I ended up where I am. I mean, programming, and lovin’ it. Even if I’m not so good.

@@ -6,6 +6,7 @@ author: Max Nguyen
 modified: 2015-02-04
 categories: [ax2012, trick]
 tags: [trick, xpp, programming]
+key: d365
 ---
 In this post let's explore creating XML using X++ code in Dynamics AX. 
 

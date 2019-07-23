@@ -5,6 +5,7 @@ date: 2016-11-08 18:47:00 +09:00
 author: Max Nguyen
 categories: [ax2012, tools]
 tags: [xpp, data, trick]
+key: d365
 ---
 
 ## SUMMARY

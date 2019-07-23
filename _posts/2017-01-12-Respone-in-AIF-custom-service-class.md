@@ -6,6 +6,7 @@ author: Max Nguyen
 modified: 2017-01-12
 categories: [ax2012, trick, tools, integration]
 tags: [xpp, aif]
+key: d365
 ---
 
 At the previous [post](http://nuxulu.com/ax2012/trick/tools/integration/AIF-Custom-response-value-in-Dynamics-AX-2012-R3/) I already show how to customize Response Value list in AIF Document standard service, today we will talk about response in Custom AIF service class.

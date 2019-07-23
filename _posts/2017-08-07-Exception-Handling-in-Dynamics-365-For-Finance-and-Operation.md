@@ -2,7 +2,7 @@
 date: 2017-08-07
 slug: Exception-Handling-in-Dynamics-365-For-Finance-and-Operation
 title: Exception Handling in Dynamics 365 For Finance and Operation
-comments: true
+key: d365
 categories:
 - dynamics365
 tags:

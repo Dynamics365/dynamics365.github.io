@@ -6,6 +6,7 @@ author: Max Nguyen
 modified: 2017-01-10
 categories: [ax2012, trick, tools, integration]
 tags: [xpp, batch]
+key: d365
 ---
 
 Main requirements is Using batch to find and block vendor base on last transaction condition and notify for them by emails.

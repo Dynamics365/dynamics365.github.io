@@ -6,6 +6,7 @@ author: Max Nguyen
 modified: 2014-12-05
 categories: [ax2012, general]
 tags: [architectural, axbuild, xpp]
+key: d365
 ---
 
 > Understanding the internal architecture of Microsoft Dynamics AX 2012 can help you make decision when planning and developing a Microsoft Dynamics AX 2012 system. Here are some pointers on DAX 2012 architecture primarily for DAX 2012 architects & solution developers. This topic provides a high-level overview of the system architecture of Microsoft Dynamics AX.

@@ -6,6 +6,7 @@ author: Max Nguyen
 modified: 2015-05-13
 categories: [ax2012, trick]
 tags: [trick, xpp, programming]
+key: d365
 ---
 
 This is to show a method to execute external database stored procedures from X++ code. Create a job in AOT with following code. Follow the steps as explained here in the code like replace `Server Name`, `Database name` , `Stored Procedure name`.

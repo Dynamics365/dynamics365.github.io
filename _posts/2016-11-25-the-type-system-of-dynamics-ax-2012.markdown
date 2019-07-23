@@ -5,6 +5,7 @@ date: 2016-11-24 08:22:39.000000000 +07:00
 author: Max Nguyen
 categories: [ax2012]
 tags: [operator, programming]
+key: d365
 ---
 
 The Microsoft Dynamics AX runtime manages the storage of *value type* data on the **call stack** and *reference type objects* on the **memory heap**. 

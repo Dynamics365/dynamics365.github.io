@@ -6,6 +6,7 @@ author: Max Nguyen
 modified: 2015-07-01
 categories: [ax2012, trick]
 tags: [axbuild, trick, aos]
+key: d365
 ---
 
 If you have only 10 mins to build ax, try this

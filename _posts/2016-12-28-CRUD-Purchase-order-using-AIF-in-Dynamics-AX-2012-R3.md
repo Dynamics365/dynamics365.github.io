@@ -6,6 +6,7 @@ author: Max Nguyen
 modified: 2016-12-28
 tags: [aif, programming, csharpdotnet, xpp]
 categories: [ax2012, integration]
+key: d365
 ---
 
 Due to Purchase order doesn’t have Standard document service so we have to create new Document service for that using AIF wizards.

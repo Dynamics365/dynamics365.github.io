@@ -5,6 +5,7 @@ date: 2016-09-06 18:47:00 +09:00
 author: Max Nguyen
 categories: [general]
 tags: [fun, programming]
+key: d365
 ---
 
 here is concept of the evolution

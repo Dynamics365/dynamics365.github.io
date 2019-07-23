@@ -6,6 +6,7 @@ author: Max Nguyen
 modified: 2015-04-13
 categories: [ax2012, trick]
 tags: [trick]
+key: d365
 ---
 
 When creating new elements, ensure that you follow the recommended naming conventions. Any future development and maintenance will be much easier.

@@ -6,6 +6,7 @@ author: Max Nguyen
 modified: 2017-01-02
 categories: [ax2012, trick, tools]
 tags: [key]
+key: d365
 ---
 
 * There is a maximum of one `Primary Key` per table, whereas a table can have several `alternate keys`. The `primary key` is usually the type of key that other tables, called child tables, refer to when a `foreign key` field in those other tables need a relational identifier.

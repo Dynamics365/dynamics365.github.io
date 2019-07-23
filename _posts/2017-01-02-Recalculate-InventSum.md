@@ -6,6 +6,7 @@ author: Max Nguyen
 modified: 2017-01-02
 categories: [ax2012, trick, tools]
 tags: [inventsum, expression, trick, xpp, programming]
+key: d365
 ---
 
 `InventSum` is needed to recalculate sometimes. We should use `InventSumRecalcItem` class in Dynamics AX.

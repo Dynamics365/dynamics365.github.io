@@ -6,6 +6,7 @@ author: Max Nguyen
 modified: 2017-01-19
 categories: [ax2012, trick, tools]
 tags: [xpp, numbersequence, programming]
+key: d365
 ---
 
 <figure class='center '>
