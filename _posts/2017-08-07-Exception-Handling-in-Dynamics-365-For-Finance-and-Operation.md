@@ -9,7 +9,9 @@ tags:
 key: d365
 ---
 
-When we write a code, or make a customization to Dynamics 365 For Operation which is using X++ should make use of Exception Handling to provide some context for the message or a different more useful message. In this article, I will be exploring how I can come up with a uniform way to catch multiple types of exception that can be raised in X++.
+When we write a code, or make a customization to Dynamics 365 For Operation which is using X++ should make use of Exception Handling to provide some context for the message or a different more useful message. 
+<!--more-->
+In this article, I will be exploring how I can come up with a uniform way to catch multiple types of exception that can be raised in X++.
 
 ### 1. Exception type
 There are many several types of exception and the type differs depending on what caused the error. Much of exception types are determined by the kernel and are not normally thrown by application code. All **exception types**, however, can be caught, and it is the developers’ responsibility to decide which exceptions need to be handled.
@@ -22,7 +24,7 @@ The following table shows the exception literals that are the values of the Exce
   <a href="{{site.url}}/assets/imagesposts/2017-08-07_10h00_37.png"><img src="{{site.url}}/assets/imagesposts/2017-08-07_10h00_37.png" alt=""></a>
 </figure>
 
-<!--more-->
+
 
 ### 2. Key commands
 The **Try** command signifies the start of a block of code that you want to control with the X++ exception handling system. Any exceptions that are thrown in that block of code can be caught and handled accordingly. The block of code inside the Try statement must be contained between brackets ( { } ).
