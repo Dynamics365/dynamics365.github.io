@@ -17,6 +17,8 @@ For set up email, we need Go to AX `System administrator > Setup > E-mail parame
 
 ![]({{site.url}}/assets/imagesposts/Email-parameters.png)
 
+<!--more-->
+
 ### Vendor emails
 
 Vendor emails locate on `LogisticsElectronicAddress.Locator`, `partyTable.PrimaryContactEmail`, `partyLocation.Location`, please take a look on this job to find how to update Vendor emails and you also could see the relations more clearly.
