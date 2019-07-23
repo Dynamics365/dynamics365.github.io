@@ -6,6 +6,7 @@ tags:
 - Exception Handling
 - DYNAMICS 365 FOR Finance and OPERATION
 - AX7
+author: Max Nguyen
 key: d365
 ---
 
