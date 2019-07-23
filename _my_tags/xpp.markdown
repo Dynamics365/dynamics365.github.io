@@ -1,4 +1,0 @@
----
-slug: xpp
-name: X++
----

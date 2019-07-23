@@ -1,4 +1,0 @@
----
-slug: aif
-name: AIF
----

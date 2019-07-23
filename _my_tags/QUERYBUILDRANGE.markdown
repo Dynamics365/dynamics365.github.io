@@ -1,4 +1,0 @@
----
-slug: QUERYBUILDRANGE
-name: QUERYBUILDRANGE
----

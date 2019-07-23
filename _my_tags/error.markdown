@@ -1,4 +1,0 @@
----
-slug: error
-name: Exception
----
