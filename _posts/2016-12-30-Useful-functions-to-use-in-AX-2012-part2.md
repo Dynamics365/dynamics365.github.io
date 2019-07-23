@@ -7,6 +7,7 @@ modified: 2016-12-30
 categories: [ax2012, trick, tools]
 tags: [aif, programming, csharpdotnet, xpp]
 key: d365
+published: false
 ---
 Useful functions to use in AX 2012 part 2
 

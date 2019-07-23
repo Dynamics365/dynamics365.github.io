@@ -74,7 +74,7 @@ static void createDimension(Args _args)
     //// Get main account with structure : Mainacct - DE - woker - subacct - item
     struct.add('Department', '6020');
     struct.add('Item', '220006');
-    struct.add('SubAcct', '교보생명');
+    struct.add('SubAcct', 'Max test account');
     struct.add('Worker', '000002');
 
     financialDimension += struct.fields();
