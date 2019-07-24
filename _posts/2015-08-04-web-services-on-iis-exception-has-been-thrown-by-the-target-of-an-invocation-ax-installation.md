@@ -5,7 +5,6 @@ description: Web Services on IIS - Exception has been thrown by the target of an
 author: Max Nguyen
 modified: 2015-08-04
 tags: [error, ssrs]
-categories: [ax2012, problem, services, ssrs]
 key: d365
 ---
 
@@ -14,7 +13,7 @@ When I try to install Web Services on IIS for Retails POS Component, and I got t
 This scenario shouldn't be common in a production environment, but, it is indeed quite common in a VM machine (I'm using virtual machine Hyper-V on Windows 8.1)
 
 ![]({{site.url}}/assets/imagesposts/web-services-on-iis-exception_1.png)
-
+<!--more-->
 <span style="color: red">Error:</span>
 
 ![]({{site.url}}/assets/imagesposts/web-services-on-iis-exception_2.png)
