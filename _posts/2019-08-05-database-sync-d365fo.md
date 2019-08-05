@@ -5,12 +5,11 @@ title: Dynamics 365 for finance and operations database synchronization using co
 tags:
 - database synchronization
 - Power shell
-author: Max Nguyen
 ---
 
 You can either execute the script for *cloud-hosted*, *onebox VHD*, or *UAT* (Azure DB) environment.
 Open PowerShell, run following script
 
-```K:\AOSService\webroot\bin\Microsoft.Dynamics.AX.Deployment.Setup.exe -bindir "K:\AosService\PackagesLocalDirectory" metadatadir "K:\AosService\PackagesLocalDirectory" -sqluser "axdbadmin" -sqlserver "." -sqldatabase "AxDB" -setupmode "sync" -syncmode "fullall" -isazuresql "false" -sqlpwd "5QVC7*@EXcu=Vk"```
+```K:\AOSService\webroot\bin\Microsoft.Dynamics.AX.Deployment.Setup.exe -bindir "K:\AosService\PackagesLocalDirectory" metadatadir "K:\AosService\PackagesLocalDirectory" -sqluser "axdbadmin" -sqlserver "." -sqldatabase "AxDB" -setupmode "sync" -syncmode "fullall" -isazuresql "false" -sqlpwd "************"```
 
 AX DB user you can get from LCS, if you want to sync Azure DB please change **-isazuresql** to True
