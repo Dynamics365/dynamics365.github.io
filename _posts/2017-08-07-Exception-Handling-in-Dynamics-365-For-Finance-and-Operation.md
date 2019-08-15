@@ -1,5 +1,5 @@
 ﻿---
-layout: articles
+layout: article
 date: 2017-08-07
 #slug: Exception-Handling-in-Dynamics-365-For-Finance-and-Operation
 title: Exception Handling in Dynamics 365 For Finance and Operation
@@ -9,12 +9,11 @@ tags:
 - X++
 author: Max Nguyen
 key: Exception-Handling-in-Dynamics-365-For-Finance-and-Operation
-layout: articles
 cover: /assets/images/test2.jpg
-articles:
-    type: grid
-    show_excerpt: true
-    show_readmore: true
+# articles:
+#     type: grid
+#     show_excerpt: true
+#     show_readmore: true
 ---
 
 When we write a code, or make a customization to Dynamics 365 For Operation which is using X++ should make use of Exception Handling to provide some context for the message or a different more useful message. In this article, I will be exploring how I can come up with a uniform way to catch multiple types of exception that can be raised in X++.
