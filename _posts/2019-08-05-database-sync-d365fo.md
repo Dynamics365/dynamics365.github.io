@@ -1,10 +1,12 @@
 ---
-key: d365
 date: 2019-08-05 00:00:00+00:00
 title: Dynamics 365 for finance and operations database synchronization using command line 
 tags:
 - database synchronization
 - Power shell
+author: Max Nguyen
+key: 2019-08-05-database-sync-d365fo
+cover: /assets/images/test2.jpg
 ---
 
 You can either execute the script for *cloud-hosted*, *onebox VHD*, or *UAT* (Azure DB) environment.
