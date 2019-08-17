@@ -4,6 +4,7 @@ title: Dynamics 365 for finance and operations database synchronization using co
 tags:
 - database synchronization
 - Power shell
+author: Max Nguyen
 key: 2019-08-05-database-sync-d365fo
 cover: /assets/images/test2.jpg
 header:

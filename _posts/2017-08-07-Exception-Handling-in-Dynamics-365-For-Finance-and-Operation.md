@@ -6,6 +6,7 @@ tags:
 - Exception Handling
 - Dynamics 365 for finance and operations
 - X++
+author: Max Nguyen
 key: Exception-Handling-in-Dynamics-365-For-Finance-and-Operation
 cover: /assets/images/test2.jpg
 # articles:
