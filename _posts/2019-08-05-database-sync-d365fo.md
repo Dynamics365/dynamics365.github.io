@@ -8,10 +8,11 @@ author: Max Nguyen
 key: 2019-08-05-database-sync-d365fo
 cover: /assets/images/test2.jpg
 header:
-    theme: dark
+    theme: light
     background: 'linear-gradient(135deg, rgb(34, 139, 87), rgb(139, 34, 139))'
 article_header:
-    theme: dark
+    type: overlay
+    theme: light
     background_color: '#203028'
     background_image:
         gradient: 'linear-gradient(135deg, rgba(34, 139, 87 , .4), rgba(139, 34, 139, .4))'
