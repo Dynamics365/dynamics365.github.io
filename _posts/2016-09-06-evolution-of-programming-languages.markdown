@@ -6,6 +6,7 @@ author: Max Nguyen
 categories: [general]
 tags: [fun, programming]
 key: d365
+hidden: false
 ---
 
 ![Evolution of programming languages]({{site.url}}/assets/imagesposts/the-evolution-of-computer-programming-languages-infographic.jpg)
