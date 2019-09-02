@@ -17,7 +17,7 @@ titles:
   ko-KR   : *KO
 key: page-about
 ---
-{%- include advertisements2.html -%}
+
 {% include advertisements2.html %}
 A Developer in Dynamics Ax, Dynamics 365 for finance and operations, Azure, PowerApps.
 
