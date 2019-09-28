@@ -15,3 +15,5 @@ Open PowerShell, run following script
 ```K:\AOSService\webroot\bin\Microsoft.Dynamics.AX.Deployment.Setup.exe -bindir "K:\AosService\PackagesLocalDirectory" metadatadir "K:\AosService\PackagesLocalDirectory" -sqluser "axdbadmin" -sqlserver "." -sqldatabase "AxDB" -setupmode "sync" -syncmode "fullall" -isazuresql "false" -sqlpwd "************"```
 
 AX DB user you can get from LCS, if you want to sync Azure DB please change **-isazuresql** to True
+
+<iframe src="https://onedrive.live.com/embed?cid=7198ABAAEE532EE3&resid=7198ABAAEE532EE3%21337409&authkey=ABl8QaiHw7y4r7g&em=2" width="402" height="346" frameborder="0" scrolling="no"></iframe>
