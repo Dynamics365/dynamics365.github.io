@@ -21,13 +21,13 @@ Same with AX 2012 version, there is no change on how you developer a new SSRS re
 
 The steps
 
-1. The main temp table is **CustAccountStatementExtTmp**, right click and create an extension; I'm going to add a new string field **MaxTxT**
+### 1. The main temp table is **CustAccountStatementExtTmp**, right click and create an extension; I'm going to add a new string field **MaxTxT**
 
 <figure class='center '>
   <a href="{{site.url}}/assets/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_1.png"><img src="{{site.url}}/assets/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_1.png" alt=""></a>
 </figure>
 
-2. Duplicate the **CustAccountStatementExt** report in *the Application explorer > AOT > Reports > CustAccountStatementExt* as shown in below screen shot:
+### 2. Duplicate the **CustAccountStatementExt** report in *the Application explorer > AOT > Reports > CustAccountStatementExt* as shown in below screen shot:
 
 <figure class='center '>
   <a href="{{site.url}}/assets/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_2.png"><img src="{{site.url}}/assets/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_2.png" alt=""></a>
@@ -35,7 +35,7 @@ The steps
 
 Rename the report and provide any appropriate name: **MaxCustAccountStatementExt**
 
-3. Modify the report design, right click on report dataset and choose restore to refresh the new field
+### 3. Modify the report design, right click on report dataset and choose restore to refresh the new field
 
 <figure class='center '>
   <a href="{{site.url}}/assets/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_3.png"><img src="{{site.url}}/assets/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_3.png" alt=""></a>
@@ -47,7 +47,7 @@ Open report designer and add that field into a table
   <a href="{{site.url}}/assets/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_4.png"><img src="{{site.url}}/assets/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_4.png" alt=""></a>
 </figure>
 
-4. Create a new Extension class that extends the standard report controller class.
+### 4. Create a new Extension class that extends the standard report controller class.
 
 ***class MaxCustAccountStatementExtController_Ext extends CustAccountStatementExtController{}***
 
@@ -90,7 +90,7 @@ protected void outputReport()
 }
 {% endhighlight %}
 
-5. Create new report handler class
+### 5. Create new report handler class
 
 ***class MaxCustAccountStatementHandler ***
 
@@ -124,7 +124,7 @@ public static void TmpTablePostHandler(XppPrePostArgs arguments)
 }
 {% endhighlight %}
 
-6. Add a delegate handler method to start to use your custom report. In this example, extend the ***getDefaultReportFormatDelegate*** method in the ***PrintMgtDocTypeHandlerExt*** class by using the following code.
+### 6. Add a delegate handler method to start to use your custom report. In this example, extend the ***getDefaultReportFormatDelegate*** method in the ***PrintMgtDocTypeHandlerExt*** class by using the following code.
 
 {% highlight csharp %}
 class MaxPrintMgtDocTypeHandlersExt
@@ -142,7 +142,7 @@ class MaxPrintMgtDocTypeHandlersExt
 }
 {% endhighlight %}
 
-7. Create extension for the existing menu items: navigating to the **CustAccountStatementExt** output menu item and create extension.
+### 7. Create extension for the existing menu items: navigating to the **CustAccountStatementExt** output menu item and create extension.
 
 <figure class='center '>
   <a href="{{site.url}}/assets/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_5.png"><img src="{{site.url}}/assets/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_5.png" alt=""></a>
@@ -156,7 +156,7 @@ That's all, this is what you should have
   <a href="{{site.url}}/assets/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_9.png"><img src="{{site.url}}/assets/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_9.png" alt=""></a>
 </figure>
 
-8. Update the Print management settings to use the custom business document
+### 8. Update the Print management settings to use the custom business document
 
 Go to *Account payable > Inquiries and reports > Setup > Forms > Form setup*
 Click **Print Management**, find the document configuration settings, and then select the custom design
@@ -169,7 +169,7 @@ Click **Print Management**, find the document configuration settings, and then s
   <a href="{{site.url}}/assets/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_7.png"><img src="{{site.url}}/assets/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_7.png" alt=""></a>
 </figure>
 
-9. Run report and test the result
+### 9. Run report and test the result
 
 <figure class='center '>
   <a href="{{site.url}}/assets/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_8.png"><img src="{{site.url}}/assets/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_8.png" alt=""></a>
