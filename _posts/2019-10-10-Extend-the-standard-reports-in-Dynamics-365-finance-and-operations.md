@@ -96,7 +96,7 @@ protected void outputReport()
 
 ### 5. Create new report handler class
 
-***class MaxCustAccountStatementHandler ***
+***class MaxCustAccountStatementHandler {}***
 
 We have two different ways to Populate the data in the Report handler class:
 * Add a temp table Inserting event, row-by-row calculations.
