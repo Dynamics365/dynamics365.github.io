@@ -12,14 +12,14 @@ key: 2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postm
 cover: /assets/images/test2.jpg
 ---
 
-Got inspired by this topic https://community.dynamics.com/365/financeandoperations/f/dynamics-365-for-finance-and-operations-forum/286810/inserting-multiple-records-via-odata-from-postman, I'd like to write this article to show you how to post multiple records in single request by using Postman.
+Got inspired by [this topic](https://community.dynamics.com/365/financeandoperations/f/dynamics-365-for-finance-and-operations-forum/286810/inserting-multiple-records-via-odata-from-postman), I'd like to write this article to show you how to post multiple records in single request by using Postman.
 
-Generally, batch requests are supported in the OData service https://docs.oasis-open.org/odata/odata/v4.0/errata02/os/complete/part1-protocol/odata-v4.0-errata02-os-part1-protocol-complete.html#_Toc406398359, The easiest way is you can use the C# code approach https://github.com/Microsoft/Dynamics-AX-Integration/tree/master/ServiceSamples/ODataConsoleApplication and the excel add-ins in Dynamics 365 for finance and operations use Odata batch to communicate in a single request but how can we leverage it in Postman.
+Generally, batch requests are supported in the [OData service](https://docs.oasis-open.org/odata/odata/v4.0/errata02/os/complete/part1-protocol/odata-v4.0-errata02-os-part1-protocol-complete.html#_Toc406398359), The easiest way is you can use the C# code approach from [github](https://github.com/Microsoft/Dynamics-AX-Integration/tree/master/ServiceSamples/ODataConsoleApplication) and the excel add-ins in Dynamics 365 for finance and operations use Odata batch to communicate in a single request but how can we leverage it in Postman.
 
-Using Excel add-in then add 2 customer groups records and submit to Dynamics 365 for finance and operations, while you are doing that using fiddler (https://www.telerik.com/fiddler) on the same box to see how the odata batch framework works.
+Using Excel add-in then add 2 customer groups records and submit to Dynamics 365 for finance and operations, while you are doing that using [fiddler](https://www.telerik.com/fiddler) on the same box to see how the odata batch framework works.
 This can be done from POSTMAN too and you need to use header and body as you see in Fiddler.
 
-For basic setting up Dynamics 365 for finance and operations and Postman please follow this document https://docs.microsoft.com/en-us/dynamics365/unified-operations/dev-itpro/data-entities/third-party-service-test
+For basic setting up Dynamics 365 for finance and operations and Postman please follow [this offical document](https://docs.microsoft.com/en-us/dynamics365/unified-operations/dev-itpro/data-entities/third-party-service-test)
 
 ### 1. Get Dynamics 365 for finance and operations authorization 
 
