@@ -7,7 +7,8 @@ modified: 2014-09-04
 categories: [life, general]
 tags: [fun]
 key: d365
-published: false
+published: true
+hidden: true
 ---
 
 I don’t know exactly how I ended up where I am. I mean, programming, and lovin’ it. Even if I’m not so good.
