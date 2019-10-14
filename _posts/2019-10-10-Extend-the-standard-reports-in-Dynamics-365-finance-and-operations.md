@@ -21,13 +21,17 @@ Same with AX 2012 version, there is no change on how you developer a new SSRS re
 
 The steps
 
-### 1. The main temp table is **CustAccountStatementExtTmp**, right click and create an extension; I'm going to add a new string field **MaxTxT**
+### 1. Adding a new field
+
+The main temp table is **CustAccountStatementExtTmp**, right click and create an extension; I'm going to add a new string field **MaxTxT**
 
 <figure class='center '>
   <a href="{{site.url}}/assets/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_1.png"><img src="{{site.url}}/assets/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_1.png" alt=""></a>
 </figure>
 
-### 2. Duplicate the **CustAccountStatementExt** report in *the Application explorer > AOT > Reports > CustAccountStatementExt* as shown in below screen shot:
+### 2. Duplicate the report
+
+Duplicate the **CustAccountStatementExt** report in *the Application explorer > AOT > Reports > CustAccountStatementExt* as shown in below screen shot:
 
 <figure class='center '>
   <a href="{{site.url}}/assets/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_2.png"><img src="{{site.url}}/assets/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_2.png" alt=""></a>
@@ -124,7 +128,9 @@ public static void TmpTablePostHandler(XppPrePostArgs arguments)
 }
 {% endhighlight %}
 
-### 6. Add a delegate handler method to start to use your custom report. In this example, extend the ***getDefaultReportFormatDelegate*** method in the ***PrintMgtDocTypeHandlerExt*** class by using the following code.
+### 6. Add a delegate handler method to start to use your custom report. 
+
+In this example, extend the ***getDefaultReportFormatDelegate*** method in the ***PrintMgtDocTypeHandlerExt*** class by using the following code.
 
 {% highlight csharp %}
 class MaxPrintMgtDocTypeHandlersExt
@@ -142,7 +148,9 @@ class MaxPrintMgtDocTypeHandlersExt
 }
 {% endhighlight %}
 
-### 7. Create extension for the existing menu items: navigating to the **CustAccountStatementExt** output menu item and create extension.
+### 7. Create extension for the existing menu items
+
+Navigating to the **CustAccountStatementExt** output menu item and create extension.
 
 <figure class='center '>
   <a href="{{site.url}}/assets/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_5.png"><img src="{{site.url}}/assets/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_5.png" alt=""></a>
