@@ -21,7 +21,7 @@ In this article I will show how to send business event to HTTPs endpoint that le
 
 The scenario: Once a free text invoice is posted, Business event will be triggered and send messages to the HTTPs endpoint.
 
-### 1. HTTPs and Azure function
+## 1. HTTPs and Azure function
 
 Ideally, I will create a new Azure function which has HTTPs endpoint to subscribe the business events in FinOps.
 To create Azure function please follow this https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-azure-function
@@ -64,7 +64,7 @@ Go to *Azure portal > AAD > App registrations > New registration*
   * Depend on you have multitenant or not
   * Dynamics 365 finance and operations URL
 
-  ### API Permissions
+### API Permissions
 
 Go to the newly created application > API permissions and adding permission as below
 <figure class='center'>
