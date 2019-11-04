@@ -46,18 +46,14 @@ This basically listens the JSON messages from Business events and display the Js
 
 From the Azure function you can get the HTTPs endpoint, save it for later reference.
 
-<figure class='center'>
-  <a href="{{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_1.png"><img src="{{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_1.png" alt=""></a>
-</figure>
+![Image]({{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_1.png){:.border}
 
 ## 2. Application registration int AAD
 
 We need an application to authenticate with FinOps and Azure function HTTPs. 
 Go to *Azure portal > AAD > App registrations > New registration*
 
-<figure class='center'>
-  <a href="{{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_2.png"><img src="{{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_2.png" alt=""></a>
-</figure>
+![Image]({{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_2.png){:.border}
 
   * Name of the application.
   * Depend on you have multitenant or not
@@ -66,17 +62,14 @@ Go to *Azure portal > AAD > App registrations > New registration*
 ### API Permissions
 
 Go to the newly created application > API permissions and adding permission as below
-<figure class='center'>
-  <a href="{{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_3.png"><img src="{{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_3.png" alt=""></a>
-</figure>
+
+![Image]({{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_3.png){:.border}
 
 ### Secrets
 
 Go to Certificates & secrets menu item and create a new client secret
 
-<figure class='center'>
-  <a href="{{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_4.png"><img src="{{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_4.png" alt=""></a>
-</figure>
+![Image]({{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_4.png){:.border}
 
 After this you will have **Application Id and Application Secret**, save it for later.
 
@@ -84,31 +77,23 @@ After this you will have **Application Id and Application Secret**, save it for 
 
 In Azure portal create a new keyVault to store the HTTPs endpoint URL information
 
-<figure class='center'>
-  <a href="{{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_5.png"><img src="{{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_5.png" alt=""></a>
-</figure>
+![Image]({{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_5.png){:.border}
 
 ### Access policy
 
 Click next to create access policy (you also can set up this later after creating Key Vault)
 
-<figure class='center'>
-  <a href="{{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_6.png"><img src="{{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_6.png" alt=""></a>
-</figure>
+![Image]({{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_6.png){:.border}
 
 Select all the permissions in Key, Secret and Certificate, In select principal choose the application you have created before.
 
-<figure class='center'>
-  <a href="{{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_7.png"><img src="{{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_7.png" alt=""></a>
-</figure>
+![Image]({{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_7.png){:.border}
 
 ### Key Vault secret
 
 Go to the newly *created Key vault > secrets > generate a new one*
 
-<figure class='center'>
-  <a href="{{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_8.png"><img src="{{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_8.png" alt=""></a>
-</figure>
+![Image]({{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_8.png){:.border}
 
 Value is the endpoint URL for D365 to call the one we got from the first step.
 After this step you will have the Key vault DNS name *https://maxfokeyvault.vault.azure.net/* and Key Vault secret name *D365VaultSecretName*
@@ -120,16 +105,12 @@ Go to *System administrator > Business events > Business events catalog*, Click 
 
 Click on **Business events catalog**, look for business event Id *CustFreeTextInvoicePostedBusinessEvent*, check the record and click **Active**; from there choose legal entity and the Endpoint that we have just created.
 
-<figure class='center'>
-  <a href="{{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_9.png"><img src="{{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_9.png" alt=""></a>
-</figure>
+![Image]({{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_9.png){:.border}
 
 After that, if you check on **Active events tab**, there will be a new record created.
 That's it, now I will create a free text invoice and post it, this is what I got from the console log in Azure.
 
-<figure class='center'>
-  <a href="{{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_10.png"><img src="{{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_10.png" alt=""></a>
-</figure>
+![Image]({{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_10.png){:.border}
 
 With the JSON messages, you can deserialize it and save to Cosmos DB or do whatever in Azure function.
 
@@ -139,17 +120,8 @@ Before PU26, Business event run in batch, following menu *System admin > Busines
 
 
 ![Image]({{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_11.png){:.border}
-<!-- <figure class='center'>
-  <a href="{{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_11.png"><img src="{{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_11.png" alt=""></a>
-</figure> -->
-
-<figure class='center'>
-  <a href="{{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_12.png"><img src="{{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_12.png" alt=""></a>
-</figure>
-
-<figure class='center'>
-  <a href="{{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_13.png"><img src="{{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_13.png" alt=""></a>
-</figure>
+![Image]({{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_12.png){:.border}
+![Image]({{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_13.png){:.border}
 
 In **BusinessEventsParameters**, the value will be ```Enabled = 0 , BatchEnabled = 1```. 
 
