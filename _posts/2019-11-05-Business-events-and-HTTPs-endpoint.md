@@ -35,11 +35,10 @@ using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json;
 public static async Task<IActionResult> Run(HttpRequest req, ILogger log)
 {
-log.LogInformation("Dynamics 365 finance and operations notifications");
-//log.LogInformation(req.Query["name"]);
-string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-log.LogInformation(requestBody);
-return (ActionResult)new OkObjectResult($"Hello world");
+  log.LogInformation("Dynamics 365 finance and operations notifications");
+  string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+  log.LogInformation(requestBody);
+  return (ActionResult)new OkObjectResult($"Hello world");
 }
 {% endhighlight %}
 
@@ -138,9 +137,11 @@ With the JSON messages, you can deserialize it and save to Cosmos DB or do whate
 
 Before PU26, Business event run in batch, following menu *System admin > Business events > Start business events batch job*
 
-<figure class='center'>
+
+![Image]({{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_11.png){:.border}
+<!-- <figure class='center'>
   <a href="{{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_11.png"><img src="{{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_11.png" alt=""></a>
-</figure>
+</figure> -->
 
 <figure class='center'>
   <a href="{{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_12.png"><img src="{{site.url}}/assets/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_12.png" alt=""></a>
