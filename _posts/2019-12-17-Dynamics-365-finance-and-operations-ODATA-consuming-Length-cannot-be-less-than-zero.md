@@ -20,7 +20,7 @@ errorSystem.ArgumentOutOfRangeException : Length cannot be less than zero” and
 
 ![Image]({{site.url}}/assets/imagesposts/Dynamics-365-finance-and-operations-ODATA-consuming-Length-cannot-be-less-than-zero_1.png){:.border}
 
-The reason is the temporary XML file where the metadata stored which mismatches with the metadata from __*https://<yourenvironment>.cloudax.dynamics.com/data/$metadata*__
+The reason is the temporary XML file where the metadata stored which mismatches with the metadata from `https://<yourenvironment>.cloudax.dynamics.com/data/$metadata`
 
 You can follow this [post](https://nuxulu.com/2019/12/16/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET.html) to understand how to create the XML file.
 
