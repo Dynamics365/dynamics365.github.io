@@ -58,7 +58,7 @@ The simplest way to fix is add TempFilePath, ensure that you have write permissi
 
 ![Image]({{site.url}}/assets/imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_2.png){:.border}
 
-Save the **ODataClient.tt** and there will be **Test1.xml** file created to store metadata, there should be a bug while generating the xml file, one more step you need to do is replace the double quote to single quote. This is what you have 
+Save the **ODataClient.tt** and there will be **Test1.xml** file created to store metadata, there should be a bug while generating the xml file, one more step you need to do is replace the double quote to single quote (a global replace of "" with " ), and this is what you have 
 
 ![Image]({{site.url}}/assets/imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_3.png){:.border}
 You can build the project without problem.
