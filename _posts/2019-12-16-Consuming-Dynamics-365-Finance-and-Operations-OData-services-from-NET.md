@@ -47,7 +47,8 @@ You've now finished setting up the prerequisites. After the external application
 
 If you save the ODataClient.tt file, it will generate Odata proxies and classes. From PU12 onward, there are so many entities so you will get an error after compiling 
 
-`Combined length of user strings used by the program exceeds allowed limit. Try to decrease use of string literals`{:.error}
+Combined length of user strings used by the program exceeds allowed limit. Try to decrease use of string literals.
+{:.error}
 
 There are 2 ways to fix it
 
@@ -112,6 +113,11 @@ Under AuthenticationUtility project, you need to modify ClientConfiguration.cs f
 ![Image]({{site.url}}/assets/imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_4.png){:.border}
  
 From now, you can freely test the integrations under **ODataConsoleApplication** project.
-If you are testing with a custom data entity and you get this error `System.ArgumentOutOfRangeException : Length cannot be less than zero`{:.error}, please check this post.
+If you are testing with a custom data entity and you get this error 
+
+System.ArgumentOutOfRangeException : Length cannot be less than zero.
+{:.error}
+
+Please check this post.
 
 Thank you for reading.
