@@ -118,6 +118,6 @@ If you are testing with a custom data entity and you get this error
 System.ArgumentOutOfRangeException : Length cannot be less than zero.
 {:.error}
 
-Please check this post.
+Please check this [post](https://nuxulu.com/2019/12/17/Dynamics-365-finance-and-operations-ODATA-consuming-Length-cannot-be-less-than-zero.html).
 
 Thank you for reading.
