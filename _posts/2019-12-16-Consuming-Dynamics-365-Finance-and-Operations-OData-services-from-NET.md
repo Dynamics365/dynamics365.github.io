@@ -16,10 +16,10 @@ cover: /assets/images/test2.jpg
 
 We need an authentication to connect Dynamics 365 finance and operations from .Net application by using service principal.  
 
-How to create an app registration in Azure https://docs.microsoft.com/en-us/azure/active-directory/develop/app-registrations-training-guide-for-app-registrations-legacy-users 
+How to create an app registration in Azure [https://docs.microsoft.com/en-us/azure/active-directory/develop/app-registrations-training-guide-for-app-registrations-legacy-users](https://docs.microsoft.com/en-us/azure/active-directory/develop/app-registrations-training-guide-for-app-registrations-legacy-users) 
 
 You also need to add required permissions for Dynamics 365 finance and operations, please follow  
-https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/services-home-page#register-a-web-application-with-aad 
+[https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/services-home-page#register-a-web-application-with-aad](https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/services-home-page#register-a-web-application-with-aad)
 
 This is what you should have
 
@@ -27,9 +27,9 @@ This is what you should have
 
 # 2. Register your external application
 
-## a. In the FinOps application, go to **System administration > Setup > Azure Active Directory applications**.
-## b.	Select **New**.
-## c.	Fill in the fields for the new record:
+### a. In the FinOps application, go to **System administration > Setup > Azure Active Directory applications**.
+### b.	Select **New**.
+### c.	Fill in the fields for the new record:
 
 * In the **Client Id** field, enter the application ID that you registered in Azure AD.
 * In the **Name field**, enter a name for the application.
@@ -47,7 +47,7 @@ You've now finished setting up the prerequisites. After the external application
 
 If you save the ODataClient.tt file, it will generate Odata proxies and classes. From PU12 onward, there are so many entities so you will get an error after compiling 
 
-Combined length of user strings used by the program exceeds allowed limit. Try to decrease use of string literals.{:.error}
+Combined length of user strings used by the program exceeds allowed limit. Try to decrease use of string literals. {:.error}
 
 There are 2 ways to fix it
 
@@ -112,8 +112,10 @@ Under AuthenticationUtility project, you need to modify ClientConfiguration.cs f
 ![Image]({{site.url}}/assets/imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_4.png){:.border}
  
 From now, you can freely test the integrations under **ODataConsoleApplication** project.
-If you are testing with a custom data entity and you get this error 
-System.ArgumentOutOfRangeException : Length cannot be less than zero.{:.error} 
-please check this post.
+If you are testing with a custom data entity and you get this error: 
+
+System.ArgumentOutOfRangeException : Length cannot be less than zero. {:.error}
+
+Please check this post.
 
 Thank you for reading.
