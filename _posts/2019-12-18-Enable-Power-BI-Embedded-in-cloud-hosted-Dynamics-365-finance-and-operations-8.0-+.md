@@ -50,7 +50,8 @@ Get-AzPowerBIWorkspaceCollection -ResourceGroupName $ResourceGroupName -name "<y
 ## 2. Create AxWD Azure SQL Database
 
 We must use the Azure SQL Database for the AxDW in Dynamics 365 finance and operations cloud-hosted environment.
-Please follow [this document to create Azure SQL DB](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-single-database-get-started?tabs=azure-portal)
+Please follow [this document to create Azure SQL DB](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-single-database-get-started?tabs=azure-portal).
+
 We need at least **5 GB storage for Database**, for Pricing tier, I will recommend using from S1, and name the database AxDB
 
 This is my DB property
@@ -98,17 +99,22 @@ Run Notepad in **administrator** mode, open web.config from *K:\AOSService\webro
 
 Update the configuration settings:
 
+```xml
 <add key="BiReporting.DW" value="[Database name]" />
 <add key="BiReporting.DWServer" value="[Server name]" />
 <add key="BiReporting.DWRuntimeUser" value="[Server Admin login]" />
 <add key="BiReporting.DWRuntimePwd" value="[Password]" />
+```
+
 Update the Power BI Embedded Service configuration settings:
 
+```xml
 <add key="PowerBIEmbedded.AccessKey" value="[Access Key1]" />
 <add key="PowerBIEmbedded.AccessKey2" value="[Access Key2]" />
 <add key="PowerBIEmbedded.ApiUrl" value="https://api.powerbi.com" />
 <add key="PowerBIEmbedded.IsPowerBIEmbeddedEnabled" value="true" />
 <add key="PowerBIEmbedded.WorkspaceCollectionName" value="[Workspace Collection Name]" />
+```
 
 After that, you need to restart IIS and Dynamics 365 for finance and operations batch service
 
