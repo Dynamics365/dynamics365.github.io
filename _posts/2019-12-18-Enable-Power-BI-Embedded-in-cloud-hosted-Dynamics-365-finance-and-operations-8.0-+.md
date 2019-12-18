@@ -99,7 +99,7 @@ Run Notepad in **administrator** mode, open web.config from *K:\AOSService\webro
 
 Update the configuration settings:
 
-```text
+```cs
 <add key="BiReporting.DW" value="[Database name]" />
 <add key="BiReporting.DWServer" value="[Server name]" />
 <add key="BiReporting.DWRuntimeUser" value="[Server Admin login]" />
@@ -108,7 +108,7 @@ Update the configuration settings:
 
 Update the Power BI Embedded Service configuration settings:
 
-```text
+```cs
 <add key="PowerBIEmbedded.AccessKey" value="[Access Key1]" />
 <add key="PowerBIEmbedded.AccessKey2" value="[Access Key2]" />
 <add key="PowerBIEmbedded.ApiUrl" value="https://api.powerbi.com" />
