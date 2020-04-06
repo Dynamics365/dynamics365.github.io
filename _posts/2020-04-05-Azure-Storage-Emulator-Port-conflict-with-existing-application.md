@@ -36,7 +36,7 @@ The process ID 4 is currently taking port 10001.
 
 You can either terminate the conflict program or change the default port for Azure Storage Emulator.
 
-### * To determine the conflict program we can use this command in CMD
+### To determine the conflict program we can use this command in CMD
 
 Run following command to check which application/process has the same port, then simply go to task manager and terminate it.
 
@@ -44,7 +44,7 @@ Run following command to check which application/process has the same port, then
 
 ![Image]({{site.url}}/assets/imagesposts/Azure-Storage-Emulator-Port-conflict-with-existing-application-5.png){:.border}
 
-### * To change the default port for Azure storage Emulator
+### To change the default port for Azure storage Emulator
 
 Go to your storage emulator default installation folder, which is located at _**C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator**_, open the **AzureStorageEmulator.exe.config** by notepad and edit the port number to different number
 
