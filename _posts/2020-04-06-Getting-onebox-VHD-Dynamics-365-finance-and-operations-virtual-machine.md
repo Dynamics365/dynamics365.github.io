@@ -14,30 +14,30 @@ cover: /assets/images/test2.jpg
 
 ## Download Dynamics 365 finance and operations VHD files
 
-• Go to the LCS main page and select **Shared asset library** or go to Shared Asset Library.
+* Go to the LCS main page and select **Shared asset library** or go to Shared Asset Library.
 
-• Select the asset type **Downloadable VHD**.
+* Select the asset type **Downloadable VHD**.
 
-• Find the VHD you are looking for based on the desired Finance and Operation version. The VHD is divided into multiple file parts that you need to download. For example, the asset files that start with "VHD - 10.0.5" are the different files you need in order to install version 10.0.5.
+* Find the VHD you are looking for based on the desired Finance and Operation version. The VHD is divided into multiple file parts that you need to download. For example, the asset files that start with "VHD - 10.0.5" are the different files you need in order to install version 10.0.5.
 
-• Download all files (parts) associated with the desired VHD to a local folder.
+* Download all files (parts) associated with the desired VHD to a local folder.
 
-• After the download is complete, run the executable file that you downloaded, accept the software license agreement, and choose a file path to extract the VHD to.
+* After the download is complete, run the executable file that you downloaded, accept the software license agreement, and choose a file path to extract the VHD to.
 
-• This creates a local VHD file that you can use to run a local virtual machine.
+* This creates a local VHD file that you can use to run a local virtual machine.
 
-• Sign in to the VM by using the following credentials:
+* Sign in to the VM by using the following credentials:
 
-..* User name: **Administrator**
-..* Password: **pass@word1**
+    * User name: **Administrator**
+    * Password: **pass@word1**
 
-• Provision the administrator user.
+* Provision the administrator user.
 
 ## Rename VM
 
-• Rename and restart the machine before you start development or connect to Azure DevOps.
+* Rename and restart the machine before you start development or connect to Azure DevOps.
 
-• Update the server name in SQL Server
+* Update the server name in SQL Server
 
     a. To be able to login, Start SQL Server with **administrator** or using the user **axdbadmin** has password **AOSWebSite@12**
 
@@ -50,9 +50,9 @@ cover: /assets/images/test2.jpg
 
     c. restart SQL service
 
-• Open Reporting Services Configuration Manager for SQL Server 2016, then Select Database, select Change Database, and use the new server name
+* Open Reporting Services Configuration Manager for SQL Server 2016, then Select Database, select Change Database, and use the new server name
 
-• Update the Azure Storage Emulator
+* Update the Azure Storage Emulator
 
     a. From the Start menu, open Microsoft Azure Storage Emulator - v4.0, and run the following commands.
 
