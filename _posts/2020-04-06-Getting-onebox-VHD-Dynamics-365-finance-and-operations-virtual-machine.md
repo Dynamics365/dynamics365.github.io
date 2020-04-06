@@ -28,8 +28,8 @@ cover: /assets/images/test2.jpg
 
 • Sign in to the VM by using the following credentials:
 
-    * User name: **Administrator**
-    * Password: **pass@word1**
+..* User name: **Administrator**
+..* Password: **pass@word1**
 
 • Provision the administrator user.
 
