@@ -36,37 +36,34 @@ cover: /assets/images/test2.jpg
 ## Rename VM
 
 * Rename and restart the machine before you start development or connect to Azure DevOps.
-
 * Update the server name in SQL Server
 
-    a. To be able to login, Start SQL Server with **administrator** or using the user **axdbadmin** has password **AOSWebSite@12**
+  * To be able to login, Start SQL Server with **administrator** or using the user **axdbadmin** has password **AOSWebSite@12**
+  * Run following query
 
-    b. Run following query
+    ```sql
+    sp_dropserver [old_name]
+    sp_addserver [new_name], local
+    ```
 
-        ```sql
-        sp_dropserver [old_name]
-        sp_addserver [new_name], local
-        ```
+  * Restart SQL service
 
-    c. restart SQL service
-
-* Open Reporting Services Configuration Manager for SQL Server 2016, then Select Database, select Change Database, and use the new server name
-
+* Open Reporting Services Configuration Manager for SQL Server 2016, then Select Database, select Change Database, and use the new server name.
 * Update the Azure Storage Emulator
 
     a. From the Start menu, open Microsoft Azure Storage Emulator - v4.0, and run the following commands.
 
-        ```AzureStorageEmulator.exe start```
+    ```AzureStorageEmulator.exe start```
 
     > If you got an error **_Port conflict with existing application_**, please check this [post](https://nuxulu.com/2020/04/05/Azure-Storage-Emulator-Port-conflict-with-existing-application.html).
 
     b. This command verifies that the emulator is running.
 
-        ```AzureStorageEmulator.exe status```
+    ```AzureStorageEmulator.exe status```
 
     c. Update the server name
 
-        ```AzureStorageEmulator.exe init -server new_name```
+    ```AzureStorageEmulator.exe init -server new_name```
 
     For more information about Azure storage emulator please follow <https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator>
 
