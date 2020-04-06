@@ -67,7 +67,7 @@ cover: /assets/images/test2.jpg
     c. Update the server name
 
         ```AzureStorageEmulator.exe init -server new_name```
-        
+
     For more information about Azure storage emulator please follow <https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator>
 
 ## Location of packages, source code, and other AOS configurations
