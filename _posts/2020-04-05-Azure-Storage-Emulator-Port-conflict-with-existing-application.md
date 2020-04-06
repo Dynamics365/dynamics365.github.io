@@ -18,11 +18,12 @@ In Dynamics 365 finance and operations onebox environment, we also use Microsoft
 
 ![Image]({{site.url}}/assets/imagesposts/Azure-Storage-Emulator-Port-conflict-with-existing-application-1.png){:.border}
 
-Port conflict with existing application{:.error}
+Port conflict with existing application
+{:.error}
 
 ## Reason
 
-By default, Azure storage emulator is using port number 10000, 10001, 10002 for Blob, Queue and Table services respectively. And there is a progress/system takes those port already, so you are not able to start its service.
+By default, Azure storage emulator is using port number 10000, 10001, 10002 for Blob, Queue and Table services respectively. And there is a progress/system takes those ports already, so you are not able to start its service.
 We can simply use this command in CMD to see which one has conflict
 
 ```netstat -p tcp -ano | findstr :10001```
@@ -35,15 +36,15 @@ The process ID 4 is currently taking port 10001.
 
 You can either terminate the conflict program or change the default port for Azure Storage Emulator.
 
-### To determine the conflict program we can use this command in CMD
+### * To determine the conflict program we can use this command in CMD
 
 Run following command to check which application/process has the same port, then simply go to task manager and terminate it.
 
 ```tasklist /fi "pid eq 4"```
 
-![Image]({{site.url}}/assets/imagesposts/Azure-Storage-Emulator-Port-conflict-with-existing-application-3.png){:.border}
+![Image]({{site.url}}/assets/imagesposts/Azure-Storage-Emulator-Port-conflict-with-existing-application-5.png){:.border}
 
-### To change the default port for Azure storage Emulator
+### * To change the default port for Azure storage Emulator
 
 Go to your storage emulator default installation folder, which is located at _**C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator**_, open the **AzureStorageEmulator.exe.config** by notepad and edit the port number to different number
 
@@ -53,6 +54,6 @@ When done, try to start its service again using
 
 ```AzureStorageEmulator.exe start```
 
-![Image]({{site.url}}/assets/imagesposts/Azure-Storage-Emulator-Port-conflict-with-existing-application-5.png){:.border}
+![Image]({{site.url}}/assets/imagesposts/Azure-Storage-Emulator-Port-conflict-with-existing-application-3.png){:.border}
 
 Thank you for reading.
