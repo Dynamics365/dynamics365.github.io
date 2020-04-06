@@ -12,7 +12,7 @@ key: Getting-onebox-VHD-Dynamics-365-finance-and-operations-virtual-machine
 cover: /assets/images/test2.jpg
 ---
 
-## Download Dynamics 365 finance and operations VHD files
+## 1. Download Dynamics 365 finance and operations VHD files
 
 * Go to the LCS main page and select **Shared asset library** or go to Shared Asset Library.
 
@@ -33,7 +33,7 @@ cover: /assets/images/test2.jpg
 
 * Provision the administrator user.
 
-## Rename VM
+## 2. Rename VM
 
 * Rename and restart the machine before you start development or connect to Azure DevOps.
 * Update the server name in SQL Server
@@ -51,23 +51,32 @@ cover: /assets/images/test2.jpg
 * Open Reporting Services Configuration Manager for SQL Server 2016, then Select Database, select Change Database, and use the new server name.
 * Update the Azure Storage Emulator
 
-    a. From the Start menu, open Microsoft Azure Storage Emulator - v4.0, and run the following commands.
+  * From the Start menu, open Microsoft Azure Storage Emulator - v4.0, and run the following commands.
 
     ```AzureStorageEmulator.exe start```
 
     > If you got an error **_Port conflict with existing application_**, please check this [post](https://nuxulu.com/2020/04/05/Azure-Storage-Emulator-Port-conflict-with-existing-application.html).
 
-    b. This command verifies that the emulator is running.
+  * This command verifies that the emulator is running.
 
     ```AzureStorageEmulator.exe status```
 
-    c. Update the server name
+  * Update the server name
 
     ```AzureStorageEmulator.exe init -server new_name```
 
     For more information about Azure storage emulator please follow <https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator>
 
-## Location of packages, source code, and other AOS configurations
+  * Update financial reporting
+
+  Open a Microsoft Windows PowerShell command window as an admin, and run the following command. This command contains the default passwords that might have to be updated. Be sure to replace **new_name** with the new name.
+
+    ```powershell
+    cd <update folder>\MROneBox\Scripts\Update
+    .\ConfigureMRDatabase.ps1 -NewAosDatabaseName AxDB -NewAosDatabaseServerName new_name -NewMRDatabaseName ManagementReporter -NewAxAdminUserPassword AOSWebSite@123 -NewMRAdminUserName MRUser -NewMRAdminUserPassword MRWebSite@123 -NewMRRuntimeUserName MRUSer -NewMRRuntimeUserPassword MRWebSite@123 -NewAxMRRuntimeUserName MRUser -NewAxMRRuntimeUserPassword MRWebSite@123
+    ```
+
+## 3. Location of packages, source code, and other AOS configurations
 
 On a VM, you can find most of the application configuration by opening the web.config file of AOSWebApplication.
 
@@ -85,7 +94,7 @@ On a VM, you can find most of the application configuration by opening the web.c
 
     * **Aos.AppRoot** – This key points to the root folder of the Application Object Server (AOS) web application.
 
-## Redeploying or restarting the runtime on the VM
+## 4. Redeploying or restarting the runtime on the VM
 
 To restart the local runtime and redeploy all the packages, follow these steps.
 
@@ -95,7 +104,7 @@ To restart the local runtime and redeploy all the packages, follow these steps.
 
 This process might take a while. The process is completed when the cmd.exe window closes. If you just want to restart AOS (without redeploying the runtime), run iisreset from an administrator Command Prompt window, or restart AOSWebApplication from IIS.
 
-## Upgrade to the latest
+## 5. Update to the latest version
 
 Please check this document
 <https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/deployment/install-deployable-package>
