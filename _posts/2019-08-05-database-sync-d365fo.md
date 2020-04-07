@@ -12,6 +12,14 @@ cover: /assets/images/test2.jpg
 You can either execute the script for *cloud-hosted*, *onebox VHD*, or *UAT* (Azure DB) environment.
 Open PowerShell, run following script
 
-```K:\AOSService\webroot\bin\Microsoft.Dynamics.AX.Deployment.Setup.exe -bindir "K:\AosService\PackagesLocalDirectory" metadatadir "K:\AosService\PackagesLocalDirectory" -sqluser "axdbadmin" -sqlserver "." -sqldatabase "AxDB" -setupmode "sync" -syncmode "fullall" -isazuresql "false" -sqlpwd "************"```
+```powershell
+K:\AOSService\webroot\bin\Microsoft.Dynamics.AX.Deployment.Setup.exe -bindir "K:\AosService\PackagesLocalDirectory" metadatadir "K:\AosService\PackagesLocalDirectory" -sqluser "axdbadmin" -sqlserver "." -sqldatabase "AxDB" -setupmode "sync" -syncmode "fullall" -isazuresql "false" -sqlpwd "************"
+```
+
+For example
+
+```powershell
+C:\AOSService\webroot\bin\Microsoft.Dynamics.AX.Deployment.Setup.exe -bindir "C:\AosService\PackagesLocalDirectory" metadatadir "C:\AosService\PackagesLocalDirectory" -sqluser "axdbadmin" -sqlserver "." -sqldatabase "AxDB" -setupmode "sync" -syncmode "fullall" -isazuresql "false" -sqlpwd "AOSWebSite@123"
+```
 
 AX DB user you can get from LCS, if you want to sync Azure DB please change **-isazuresql** to True
