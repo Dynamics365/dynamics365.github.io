@@ -7,7 +7,7 @@ tags:
 - upgrade
 - LCS 
 - OneBox
-author: Max Nguyen
+author: Tian Qi
 key: Getting-onebox-VHD-Dynamics-365-finance-and-operations-virtual-machine
 cover: /assets/images/test2.jpg
 ---
