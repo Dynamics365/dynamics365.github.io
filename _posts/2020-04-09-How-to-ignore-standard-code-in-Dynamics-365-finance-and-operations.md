@@ -20,7 +20,7 @@ When doing some implementations, we found out that there is a tricky way to comp
 Please see below for more details:
 For example, I created a project and add a new runnable class named Alex:
 
-```Cs
+```cs
 class Alex
 {
     public static void main(Args _args)
