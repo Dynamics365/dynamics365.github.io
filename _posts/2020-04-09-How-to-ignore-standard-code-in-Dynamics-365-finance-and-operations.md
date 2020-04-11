@@ -79,4 +79,7 @@ Using this I will ignore the the main method of *LedgerJournalController* class 
 
 This is a little bit tricky because we still call next in our extension class as per the requirement of COC, but as we never call the method that "wrap" the next call so it will not be executed. You can try this to simply ignore or rewrite a method of a class in FinOps.
 
-Hope this is useful and thank you for reading.
+Thank you for reading.
+
+Disclaimers: Try at your own risk, this is consider as a bug and it will be fixed soon.
+{:.error}
