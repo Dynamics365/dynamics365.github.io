@@ -10,6 +10,9 @@ key: How-to-ignore-standard-code-in-Dynamics-365-finance-and-operations
 cover: /assets/images/test2.jpg
 ---
 
+Disclaimers: Try at your own risk, this is consider as a bug and it will be fixed soon.
+{:.error}
+
 According to this MS article about Chain Of Command <https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/extensibility/method-wrapping-coc#wrapper-methods-must-always-call-next>
 
 > "Wrapper methods must always call next Wrapper methods in an extension class must always call next, so that the next method in the chain and, finally, the original implementation are always called. This restriction helps guarantee that every method in the chain contributes to the result. In the current implementation of this restriction, the call to next must be in the first-level statements in the method body."
@@ -81,5 +84,3 @@ This is a little bit tricky because we still call next in our extension class as
 
 Thank you for reading.
 
-Disclaimers: Try at your own risk, this is consider as a bug and it will be fixed soon.
-{:.error}
