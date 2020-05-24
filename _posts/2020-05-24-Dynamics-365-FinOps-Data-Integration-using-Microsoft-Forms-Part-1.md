@@ -2,9 +2,11 @@
 date: 2020-05-24 00:00:00+00:00
 title: Dynamics 365 FinOps Data Integration using Microsoft Forms (Part 1)  
 tags:
-- DB sync
-- Dynamics 365 finance and operations 
-- InvalidOperationException
+- Microsoft Forms
+- Power Automate
+- PowerApps
+- Data Entities
+- integration framework
 author: Kome Hoang
 key: Dynamics-365-FinOps-Data-Integration-using-Microsoft-Forms-Part-1
 cover: /assets/images/test2.jpg
