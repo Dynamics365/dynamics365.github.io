@@ -50,10 +50,10 @@ Let go through three examples in the next articles in the series (from the simpl
 
 As easy as it sounds, in this example, we will create a new Vendor Account from Microsoft Forms with only a small number of fields being populate.
 
-> ***Note***
->
+***Note***
+
 > *To help simplify the example, the number of fields is minimised. In other words, we will import just enough fields so the new Vendor Account is valid.*
->
+
 > *Given that, only `Vendor Account` and `Vendor Group` are chosen to be imported.*
 
 ### **Step 1: Create a MS Form**
@@ -64,16 +64,16 @@ To do so, we will access [Microsoft Forms](https://forms.office.com/) and create
 
 Note all information on the form is customisable.
 
-> ***Note 1-1***
->
+***Note 1-1***
+
 > *We can make the questions...any questions that suit the purpose of the form. Say, in reality, the question can be `"What is your company's name?"` if you want to send this form to any external vendor users. The question does not change the usability of the returned response's value. It can still be mapped to VendAccount not matter what the question is.*
-> ***Note 1-2***
->
+
+***Note 1-2***
 > *The second question is being set in form of a Choice question. The given choices should match with available Vendor Group values found on your D365FO client. If this question is a Text one, chance is that its response might not match with any available Vendor Group values, thus, will return an error during Flow runtime.*
->
+
 > *Vendor Groups can be found under `Account Payable > Vendors > Vendor Groups`. In this example, `TopVendor` and `Others` are two available Vendor Groups in my D365FO client.*
->
-> ![Vendor Groups]({{site.url}}/assets/imagesposts/E1-2-VendorGroups.png "Vendor Groups")
+
+![Vendor Groups]({{site.url}}/assets/imagesposts/E1-2-VendorGroups.png "Vendor Groups")
 
 ### **Step 2: Create a MS Flow**
 
@@ -119,8 +119,8 @@ The `Instance` should be the `link` to your D365FO client. Set `Entity name` Ven
 
 ![FLow step 10]({{site.url}}/assets/imagesposts/E1-12-Flow-10.png "Set Instance and Entity")
 
-> ***Note 1-3***
->
+***Note 1-3***
+
 > *Later in this series, we will see how to find the exact `Entity name` using `Visual Studio`. Also, we will see in which condition, the Entity can be used in `Power Automate`.*
 
 Populate the fields that we want to import. In this example, we will populate only 3 fields: `Group (VendorGroupID)`, `Company (DataAreaId)` and `Supplier Account (VendorAccountNumber)`.
@@ -151,6 +151,6 @@ Check out `All Vendors (VendTableListPage)` on the client to find a new Vendor A
 
 ![FLow step 14]({{site.url}}/assets/imagesposts/E1-16-Flow-14.png "Map Form fields with Automate fields")
 
-> ***Note 1-4***
->
+***Note 1-4***
+
 > *Use `Test` option in Power Automate to follow the process of the Flow. This, in other words, is so-called `"Run Flow with Debug"` option.*
