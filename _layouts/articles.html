@@ -35,55 +35,55 @@ layout: page
 
 <div class="layout--articles">
 
-  {%- if _type == 'grid' -%}
-  {%- if page.articles.size == 'sm' -%}
-  {%- include article-list.html articles=_articles type='grid' size='sm' -%}
-  {%- else -%}
-  {%- include article-list.html articles=_articles type='grid' -%}
-  {%- endif -%}
+      {%- if _type == 'grid' -%}
+      {%- if page.articles.size == 'sm' -%}
+      {%- include article-list.html articles=_articles type='grid' size='sm' -%}
+      {%- else -%}
+      {%- include article-list.html articles=_articles type='grid' -%}
+      {%- endif -%}
 
-  {%- elsif _type == 'brief' -%}
-  {%- include snippets/assign.html
+      {%- elsif _type == 'brief' -%}
+      {%- include snippets/assign.html
         target=site.data.variables.default.page.articles.show_info
         source0=layout.articles.show_info source1=page.articles.show_info -%}
-  {%- assign _show_info = __return -%}
+      {%- assign _show_info = __return -%}
 
-  {%- include article-list.html articles=_articles type='brief' show_info=_show_info -%}
+      {%- include article-list.html articles=_articles type='brief' show_info=_show_info -%}
 
-  {%- else -%}
-  {%- include snippets/assign.html
+      {%- else -%}
+      {%- include snippets/assign.html
         target=site.data.variables.default.page.articles.show_cover
         source0=layout.articles.show_cover source1=page.articles.show_cover -%}
-  {%- assign _show_cover = __return -%}
+      {%- assign _show_cover = __return -%}
 
-  {%- include snippets/assign.html
+      {%- include snippets/assign.html
         target=site.data.variables.default.page.articles.show_excerpt
         source0=layout.articles.show_excerpt source1=page.articles.show_excerpt -%}
-  {%- assign _show_excerpt = __return -%}
+      {%- assign _show_excerpt = __return -%}
 
-  {%- include snippets/assign.html
+      {%- include snippets/assign.html
         target=site.data.variables.default.page.articles.show_readmore
         source0=layout.articles.show_readmore source1=page.articles.show_readmore -%}
-  {%- assign _show_readmore = __return -%}
+      {%- assign _show_readmore = __return -%}
 
-  {%- include snippets/assign.html
+      {%- include snippets/assign.html
         target=site.data.variables.default.page.articles.show_info
         source0=layout.articles.show_info source1=page.articles.show_info -%}
-  {%- assign _show_info = __return -%}
+      {%- assign _show_info = __return -%}
 
-  {%- assign _article_type = page.articles.article_type | default: layout.articles.article_type -%}
-  {%- assign _cover_size = page.articles.cover_size | default: layout.articles.cover_size -%}
-  {%- assign _excerpt_type = page.articles.excerpt_type | default: layout.articles.excerpt_type -%}
+      {%- assign _article_type = page.articles.article_type | default: layout.articles.article_type -%}
+      {%- assign _cover_size = page.articles.cover_size | default: layout.articles.cover_size -%}
+      {%- assign _excerpt_type = page.articles.excerpt_type | default: layout.articles.excerpt_type -%}
 
-  {%- include article-list.html articles=_articles type='item'
+      {%- include article-list.html articles=_articles type='item'
         article_type=_article_type
         show_cover=_show_cover cover_size=_cover_size
         show_excerpt=_show_excerpt excerpt_type=_excerpt_type
         show_readmore=_show_readmore show_info=_show_info -%}
 
-  {%- endif -%}
+      {%- endif -%}
 
 </div>
 {%- endif -%}
-{% include advertisements.html %}
+
 {{ content }}
