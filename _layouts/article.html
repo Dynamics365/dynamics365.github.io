@@ -3,13 +3,15 @@
 {%- assign _sharing = __return -%}
 
 <div class="layout--article">
-    {%- include article/top/custom.html -%} {% include advertisements.html %}
+    {%- include article/top/custom.html -%} 
+    {% include advertisements.html %}
     <div class="article__content" itemprop="articleBody">{{ content }}</div>
     {%- if _sharing -%}
     <section class="article__sharing d-print-none">{%- include sharing.html -%}</section>
     {%- endif -%}
 
     <div class="d-print-none">
+        {% include advertisements.html %}
         {%- include article-footer.html -%} {%- include article-section-navigator.html -%}
     </div>
 
