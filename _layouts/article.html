@@ -12,15 +12,14 @@ type: article
   {%- include article/top/custom.html -%}
 
   <div class="article__content" itemprop="articleBody">{{ content }}</div>
-
+  <!-- ads -->
+  {% include advertisements.html %}
+  <!-- end ads -->
   {%- if _sharing -%}
     <section class="article__sharing d-print-none">{%- include sharing.html -%}</section>
   {%- endif -%}
 
   <div class="d-print-none">
-    <!-- ads -->
-    {% include advertisements.html %}
-    <!-- end ads -->
     {%- include article-footer.html -%}
     {%- include article-section-navigator.html -%}
   </div>
