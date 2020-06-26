@@ -18,7 +18,6 @@ titles:
 key: page-about
 ---
 
-{% include advertisements.html %}
 A Developer in Dynamics Ax, Dynamics 365 for finance and operations, Azure, PowerApps.
 
 Here are some of my experience with Dynamics 365 for finance and operations
