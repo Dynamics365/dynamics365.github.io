@@ -19,7 +19,7 @@ cover: /assets/images/test2.jpg
 
 ![Introduction]({{site.url}}/assets/imagesposts/Introduction.png "The trio"){:.border}
 
-## When
+# When
 
 This method should be at its finest when you are planning to outsource the input to any external users.
 
@@ -30,7 +30,7 @@ That demand should raise two questions:
 - How can we let the vendors enter their information by themselves?
 - And, how can we then have all such information in our system?
 
-## What
+# What
 
 What should be needed?
 
@@ -38,7 +38,7 @@ What should be needed?
 - **[Microsoft Power Automate aka. Microsoft Flow](https://flow.microsoft.com/):** To set up a protocol to push the input information (form responses) to the target (D365FO Data Entities).
 - ***(Optional)*** **Access to Visual Studio on your virtual machine:** To help you determine the target Data Entities more easily and efficiently.
 
-## How
+# How
 
 The flow should go like this.
 
@@ -56,7 +56,7 @@ As easy as it sounds, in this example, we will create a new Vendor Account from 
 
 > *Given that, only `Vendor Account` and `Vendor Group` are chosen to be imported.*
 
-### **Step 1: Create a MS Form**
+## **Step 1: Create a MS Form**
 
 To do so, we will access [Microsoft Forms](https://forms.office.com/) and create a new form. To make the new form usable, we will create two questions asking for inputs of Vendor Account and Vendor Group.
 
@@ -75,7 +75,7 @@ Note all information on the form is customisable.
 
 ![Vendor Groups]({{site.url}}/assets/imagesposts/E1-2-VendorGroups.png "Vendor Groups"){:.border}
 
-### **Step 2: Create a MS Flow**
+## **Step 2: Create a MS Flow**
 
 To do so, we will access [Microsoft Power Automate](https://flow.microsoft.com/) and create a new flow. We will go with an `Automated` one in this case.
 
@@ -141,7 +141,7 @@ These fields should be required when creating a new Vendor Account on D365FO cli
 
 We are done here with the set up.
 
-### **Step 3: Testing out**
+## **Step 3: Testing out**
 
 On `Forms`, choose the form that we just created, click on `Preview` so we can submit a form response.
 
