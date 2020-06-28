@@ -112,7 +112,7 @@ And, when checking the Bank Account details, we would find.
 
 Now, to do so, we will add a new step right after the creation of VendTable record.
 
-![VendBank2]({site.url}/assets/imagesposts/E3-4-FLow-1.png "A new step")
+![VendBank3]({{site.url}}/assets/imagesposts/E3-4-FLow-1.png "A new step")
 
 - `Instance` = `Environment URL` (same as any other steps)
 - `Entity name` = `VendorBankAccounts` (check my post about good tips with Visual Studio to know how to find the Data Entity)
