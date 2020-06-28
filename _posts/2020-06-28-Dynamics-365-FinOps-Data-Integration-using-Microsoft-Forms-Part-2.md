@@ -75,7 +75,7 @@ Upon approval, the flow will finish its pending step and a new record will be cr
 
 ![Flow step 12]({{site.url}}/assets/imagesposts/E2-12-Flow-12.png "Flow finishes"){:.border}
 
-## **Example three:** From the created record in Vendors table, add related records in other tables
+# **Example three:** From the created record in Vendors table, add related records in other tables
 
 In the last example, we added an Approval step to the Flow which will allow users to give `Approve` or `Reject` action toward the request coming from the Form.
 
@@ -125,8 +125,7 @@ When saying "from the last step", I meant this.
 
 In MS FLow, any steps that are already executed will have outputs. We, in this step, are taking the `Supplier Account` from the last step of creating a new record in VendTable . This dynamic content was generated when the new record is created. 
 
-> ***Note 3-1***
->
+***Note 3-1***
 > *Keep in mind that if the last step is not "Creating a new record", chance is that you cannot take the output from it because there's simply none.*
 
 Click on `Show advanced options` so we can add more information to the Vendor Bank Account.
@@ -168,7 +167,7 @@ Results on D365FO client.
 
 There you go, simple integration between MS Forms, MS Automate and D365FO client. I am seeing that Microsoft is improving such by adding more actions on MS Automate. I believe we will be able to do many more jobs with the built-in utilities of MS Automate.
 
-## How to determine the Data Entity that should be used in the Power Automate
+# How to determine the Data Entity that should be used in the Power Automate
 
 The names of the target entity on `D365FO client` and being found in `Power Automate` should be different. You can always find them out by testing several import/export but, with the help of `Visual Studio`, you will be able to save a lot of time. This, however, requires a certain extent of experience working with data integration on D365FO.
 
