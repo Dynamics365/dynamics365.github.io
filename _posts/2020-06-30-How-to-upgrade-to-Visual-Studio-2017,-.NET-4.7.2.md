@@ -18,11 +18,11 @@ For your dev/test/build Tier1 VMs, Microsoft recommends just redeploying a new V
 
 If you cannot deploy new VMs, please follow below steps to update .NET runtime, VS 2017 before installing PU36/10.0.12 or higher, this will be applied for **cloud-hosted environment**
 
-#### 1. Download VS Professional 2017 15.9 [here](https://download.visualstudio.microsoft.com/download/pr/ac05c4f5-0da1-429f-8701-ce509ac69926/7b51a7b8db36f977745cf3e19ef1e9c62ebf29f704aebafce443626b779cb4f8/vs_Professional.exe) and install it
+### 1. Download VS Professional 2017 15.9 [here](https://download.visualstudio.microsoft.com/download/pr/ac05c4f5-0da1-429f-8701-ce509ac69926/7b51a7b8db36f977745cf3e19ef1e9c62ebf29f704aebafce443626b779cb4f8/vs_Professional.exe) and install it
 
-#### 2. The .NET runtime download is available [here](https://dotnet.microsoft.com/download/dotnet-framework/net472) by clicking on the _Download .NET Framework 4.7.2 Runtime_ and running the installation, restart required.
+### 2. The .NET runtime download is available [here](https://dotnet.microsoft.com/download/dotnet-framework/net472) by clicking on the _Download .NET Framework 4.7.2 Runtime_ and running the installation, restart required.
 
-#### 3. Go to Dynamics Lifecycle Services and download PU36/10.0.12 or any higher package which is a part of the Platform and application binary, the VSIX file is located in the DevToolsService\Scripts folder.
+### 3. Go to Dynamics Lifecycle Services and download PU36/10.0.12 or any higher package which is a part of the Platform and application binary, the VSIX file is located in the _DevToolsService\Scripts_ folder.
 
 ![Image]({{site.url}}/assets/imagesposts/How-to-upgrade-to-Visual-Studio-2017-1.png){:.border}
 
