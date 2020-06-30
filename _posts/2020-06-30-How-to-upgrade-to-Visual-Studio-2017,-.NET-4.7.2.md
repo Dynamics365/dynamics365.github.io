@@ -32,6 +32,7 @@ After the installation, open the VS2017 if you should see **Dynamics 365** menu 
 ![Image]({{site.url}}/assets/imagesposts/How-to-upgrade-to-Visual-Studio-2017-2.png){:.border}
 
 ### 4. If you try to access the client before applying the package you will get the error like below in event viewer and unable to access the environment, so you need to apply an update first.
+
 AX is shutting down due to an error. Serialization version mismatch detect, make sure the runtime dlls are in sync with the deployed metadata. Version of file '194'. Version of dll '193'.
 {:.error}
 
