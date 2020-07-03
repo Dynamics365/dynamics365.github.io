@@ -9,7 +9,6 @@ tags:
 author: Max Nguyen
 key: How-to-upgrade-to-Visual-Studio-2017,-.NET-4.7.2-for-PU36/10.0.12-and-higher
 cover: /assets/imagesposts/How-to-upgrade-to-Visual-Studio-2017-3.png
-
 ---
 
 For the upcoming Dynamics 365 Finance Updates, Visual Studio 2017 and .NET runtime 4.7.2 required for PU36/10.0.12 or higher; New VMs deployed with PU36/10.0.12 or higher will have Visual Studio 2017 as well as .NET runtime 4.7.2 already installed. 
