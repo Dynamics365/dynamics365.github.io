@@ -5,8 +5,8 @@ tags:
 author: Max Nguyen
 key: Framework-vs-Platform
 cover: /assets/images/test2.jpg
-published: true
-hidden: false
+published: false
+hidden: true
 ---
 
 ![Framework-vs-Platform]({{site.url}}/assets/imagesposts/Framework and Platform.png){:.border}
