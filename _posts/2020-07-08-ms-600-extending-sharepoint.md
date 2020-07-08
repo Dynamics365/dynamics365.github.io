@@ -8,8 +8,6 @@ cover: /assets/images/test2.jpg
 published: true
 hidden: true
 ---
-
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
