@@ -3,7 +3,7 @@
 title: Architecture overview Microsoft Dynamics AX 2012
 description: Architecture overview Microsoft Dynamics AX 2012
 author: Max Nguyen
-modified: 2014-12-05
+modified: 2013-01-01
 categories: [ax2012, general]
 tags: [architectural, axbuild, xpp]
 key: d365

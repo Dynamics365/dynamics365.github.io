@@ -3,8 +3,7 @@
 title: Start programming
 description: Start programming
 author: Max Nguyen
-modified: 2014-09-04
-categories: [life, general]
+modified: 2011-01-01
 tags: [fun]
 key: d365
 published: false
