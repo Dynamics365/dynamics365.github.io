@@ -5,7 +5,7 @@ tags:
 author: Max Nguyen
 key: Framework-vs-Platform
 cover: /assets/images/test2.jpg
-published: false
+published: true
 hidden: true
 ---
 
