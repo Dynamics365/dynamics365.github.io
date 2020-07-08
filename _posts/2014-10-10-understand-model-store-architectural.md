@@ -3,7 +3,7 @@
 title: Understand model store architectural in AX 2012
 description: Understand model store architectural in AX 2012
 author: Max Nguyen
-modified: 2014-12-16
+modified: 2014-10-10
 categories: [ax2012, trick, general]
 tags: [architectural]
 key: d365
