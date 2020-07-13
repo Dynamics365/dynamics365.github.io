@@ -9,7 +9,7 @@ key: 2019-08-05-database-sync-d365fo
 cover: /assets/images/test2.jpg
 ---
 
-You can either execute the script for *cloud-hosted*, *onebox VHD*, or *UAT* environment. It is not applied with **one-box Microsoft hosted** environment and **UAT self-service environment** which does not contain AOS servers.
+You can either execute the script for *cloud-hosted*, *onebox VHD*, or *UAT* environment. This is not applied with **one-box Microsoft hosted** environment.
 
 Open PowerShell, run following script
 
