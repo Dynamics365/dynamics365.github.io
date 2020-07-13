@@ -16,6 +16,8 @@ hidden: true
 5. In MIG, Create AxDB_New
 6. In MIG,resotre GOLD to AxDB_New
 7. AxDB_Gold to AxDB
+8. Start all the services and resett IIS in LCS
+9. DB Sync
 
 ```sql
 ALTER DATABASE AxDB SET Single_user With Rollback immediate
@@ -24,5 +26,4 @@ alter database AxDB_Orig SET MULTI_USER
 alter database AxDB_Gold Modify name = AxDB
 select * from [USERINFO] 
 ```
-Final step
->Start all the services and resett IIS in LCS
+
