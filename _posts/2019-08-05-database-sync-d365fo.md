@@ -9,17 +9,18 @@ key: 2019-08-05-database-sync-d365fo
 cover: /assets/images/test2.jpg
 ---
 
-You can either execute the script for *cloud-hosted*, *onebox VHD*, or *UAT* (Azure DB) environment.
+You can either execute the script for *cloud-hosted*, *onebox VHD*, or *UAT* environment. It is not applied with **one-box Microsoft hosted** environment and **UAT self-service environment** which does not contain AOS servers.
+
 Open PowerShell, run following script
 
 ```powershell
-K:\AOSService\webroot\bin\Microsoft.Dynamics.AX.Deployment.Setup.exe -bindir "K:\AosService\PackagesLocalDirectory" metadatadir "K:\AosService\PackagesLocalDirectory" -sqluser "axdbadmin" -sqlserver "." -sqldatabase "AxDB" -setupmode "sync" -syncmode "fullall" -isazuresql "false" -sqlpwd "************ -logfilename "C:\Temp\dbsync.log""
+K:\AOSService\webroot\bin\Microsoft.Dynamics.AX.Deployment.Setup.exe -bindir "K:\AosService\PackagesLocalDirectory" metadatadir "K:\AosService\PackagesLocalDirectory" -sqluser "axdbadmin" -sqlserver "." -sqldatabase "AxDB" -setupmode "sync" -syncmode "fullall" -isazuresql "false" -sqlpwd "************" -logfilename "C:\Temp\dbsync.log"
 ```
 
 For example
 
 ```powershell
-C:\AOSService\webroot\bin\Microsoft.Dynamics.AX.Deployment.Setup.exe -bindir "C:\AosService\PackagesLocalDirectory" metadatadir "C:\AosService\PackagesLocalDirectory" -sqluser "axdbadmin" -sqlserver "." -sqldatabase "AxDB" -setupmode "sync" -syncmode "fullall" -isazuresql "false" -sqlpwd "AOSWebSite@123 -logfilename "C:\Temp\dbsync.log""
+K:\AOSService\webroot\bin\Microsoft.Dynamics.AX.Deployment.Setup.exe -bindir "K:\AosService\PackagesLocalDirectory" metadatadir "K:\AosService\PackagesLocalDirectory" -sqluser "axdbadmin" -sqlserver "." -sqldatabase "AxDB" -setupmode "sync" -syncmode "fullall" -isazuresql "false" -sqlpwd "AOSWebSite@123" -logfilename "C:\Temp\dbsync.log"
 ```
 
-AX DB user you can get from LCS, if you want to sync Azure DB please change **-isazuresql** to True
+AX DB user you can get from LCS, if you want to sync Azure DB please change ```-isazuresql``` to *True*
