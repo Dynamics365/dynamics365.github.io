@@ -13,14 +13,26 @@ You can either execute the script for *cloud-hosted*, *onebox VHD*, or *UAT* env
 
 Open PowerShell, run following script
 
-```ps
-K:\AOSService\webroot\bin\Microsoft.Dynamics.AX.Deployment.Setup.exe -bindir "K:\AosService\PackagesLocalDirectory" metadatadir "K:\AosService\PackagesLocalDirectory" -sqluser "axdbadmin" -sqlserver "." -sqldatabase "AxDB" -setupmode "sync" -syncmode "fullall" -isazuresql "false" -sqlpwd "************" -logfilename "C:\Temp\dbsync.log"
+```powershell
+K:\AOSService\webroot\bin\Microsoft.Dynamics.AX.Deployment.Setup.exe 
+-bindir "K:\AosService\PackagesLocalDirectory" 
+metadatadir "K:\AosService\PackagesLocalDirectory" 
+-sqluser "axdbadmin" -sqlserver "." -sqldatabase "AxDB" 
+-setupmode "sync" -syncmode "fullall" 
+-isazuresql "false" -sqlpwd "************" 
+-logfilename "C:\Temp\dbsync.log"
 ```
 
 For example
 
-```ps
-K:\AOSService\webroot\bin\Microsoft.Dynamics.AX.Deployment.Setup.exe -bindir "K:\AosService\PackagesLocalDirectory" metadatadir "K:\AosService\PackagesLocalDirectory" -sqluser "axdbadmin" -sqlserver "." -sqldatabase "AxDB" -setupmode "sync" -syncmode "fullall" -isazuresql "false" -sqlpwd "AOSWebSite@123" -logfilename "C:\Temp\dbsync.log"
+```powershell
+K:\AOSService\webroot\bin\Microsoft.Dynamics.AX.Deployment.Setup.exe 
+-bindir "K:\AosService\PackagesLocalDirectory" 
+metadatadir "K:\AosService\PackagesLocalDirectory" 
+-sqluser "axdbadmin" -sqlserver "." -sqldatabase "AxDB" 
+-setupmode "sync" -syncmode "fullall" 
+-isazuresql "false" -sqlpwd "AOSWebSite@123" 
+-logfilename "C:\Temp\dbsync.log"
 ```
 
 AX DB user you can get from LCS, if you want to sync Azure DB please change ```-isazuresql``` to *True*
