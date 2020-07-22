@@ -18,11 +18,13 @@ titles:
 key: page-about
 ---
 
-A Developer in Dynamics Ax, Dynamics 365 for finance and operations, Azure, PowerApps.
+Professional Engineer and developer who focused on the Microsoft stack of technologies with significant experience with Dynamics 365 Finance, Supply Chain Management, Azure Cloud, and Azure DevOps.
 
-Here are some of my experience with Dynamics 365 for finance and operations
+For more than ten years, I have installed, configured, developed, and managed business-critical systems for plenty of companies across the APAC region. During that time, I have worked across many industries, including manufacturing, distribution, finance, and professional services.
 
-#### Dynamics 365 for finance and operations development skills: 
+# Dynamics 365 Finance, Supply Chain Management experience
+
+#### Development: 
   * Familiar with extensibility in Dynamics 365 for finance and operations (Class extensions, method wrapping/replacing and Chain of Command).
   * Strong X++ coding skills.
   * Workflow, batch job development.
@@ -34,7 +36,7 @@ Here are some of my experience with Dynamics 365 for finance and operations
   * Expert in debugging in DEV/UAT and using trace parser.
   * Project, model, package management.
 
-#### Dynamics 365 for finance and operations provisioning and operation skills:
+#### Provisioning and environment operation:
   * Ability to deploy On-premises version (have successfully deployed two on-premises environments).
   * Setup and provision Cloud-hosted environment include DEV and BUILD/TEST environment; implementation environment includes DEV, UAT sandbox, Production; VHD local development environment.
   * LCS configuration with Azure subscription, mapping BPM with Azure DevOps.
@@ -42,7 +44,7 @@ Here are some of my experience with Dynamics 365 for finance and operations
   * Apply packages, hotfixes, upgrading.
   * Refresh data From PROD to UAT/DEV, moving data across the environments.
 
-#### Dynamics 365 for finance and operations data management and integration skills:
+#### Data management and integration:
   * Building and using Aggregate Measurements, data entity, and Composite data entity development.
   * Using data management framework to import and export data.
   * Ability to use Bring your own database feature.
@@ -50,14 +52,14 @@ Here are some of my experience with Dynamics 365 for finance and operations
   * Data integration by using Common Data Service (PowerApps).
   * Ability to use Postman for integration testing.
 
-#### Dynamics 365 for finance and operations reporting skills:
+#### BI and Reporting:
   * Building and extending Aggregate measurement for PowerBI report.
   * Configure Power BI integration for workspaces.
   * Familiar with Financial report, generate or reset data mart.
   * Power BI integration with Entity store
   * Configure BYOD to connect with another reporting system.
 
-#### Dynamics 365 for finance and operations troubleshooting skills:
+#### Troubleshooting:
   * Reading Trace parser for X++ logic error or data inconsistency.
   * Using LCS to find expensive SQL queries for application hanging or slow
   * Ability to use Fiddler to troubleshoot authentication error client interaction.
@@ -65,17 +67,16 @@ Here are some of my experience with Dynamics 365 for finance and operations
   * PowerShell scripts debugging for deployment errors.
  
 
-#### If there is a customization, then should follow these things
+# Coding philosophy
   * Minimizing the footprint of changes (I know how painful is when merging code from different partners or upgrade or installing hot-fix).
   * Where to make the change (always at the highest level and in this order: class, table, form data source field/method, form control).
   * Using field groups (The reason this reduces footprint).
   * Upgrades and system maintainability.
   * Design for a service-oriented architecture.
   * Design for code reuse.
-  * Apply Dynamics AX design patterns.
-  * Apply Best practice.
+  * Apply Dynamics 365 design patterns and coding best practices.
 	
-#### The functions which I've been working with
+# The modules which I've been working with
 
   * **General Ledger**
 	* Financial Dimension
@@ -108,8 +109,6 @@ Here are some of my experience with Dynamics 365 for finance and operations
 	* Picking and packing
 	* Mobile devices
 
-Here are [my badges](https://www.youracclaim.com/users/nguyen-max). Thank you for reading.
-
-:)
+>Here are [my badges](https://www.youracclaim.com/users/nguyen-max).
 
 {% include author-links.html %}
