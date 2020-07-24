@@ -5,8 +5,8 @@ tags:
 author: Max Nguyen
 key: MS-600-Extending-Sharepoint
 cover: /assets/images/test2.jpg
-published: true
-hidden: true
+published: false
+# hidden: true
 ---
 <html>
 <head>
