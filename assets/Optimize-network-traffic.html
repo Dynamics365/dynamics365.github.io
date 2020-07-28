@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@5"></script><script src="https://cdn.jsdelivr.net/npm/markmap-lib@0.7.11/dist/browser/view.min.js"></script><script>((t,a,e,n)=>{const{Markmap:o,loadPlugins:s}=window.markmap;(a?a(s,e,n):Promise.resolve()).then(()=>{o.create("svg#mindmap",null,t)})})({"t":"root","d":0,"v":"","c":[{"t":"heading","d":1,"v":"1. Introduction","c":[{"t":"list_item","d":2,"v":"Explain how Microsoft Graph maintains resource health"},{"t":"list_item","d":2,"v":"Identify when Microsoft Graph throttles requests"},{"t":"list_item","d":2,"v":"Decide the appropriate pattern to address throttled requests"},{"t":"list_item","d":2,"v":"Create queries that mitigate throttling scenarios"}]},{"t":"heading","d":1,"v":"2. Understand throttling in Microsoft Graph","c":[{"t":"heading","d":2,"v":"2.1. Understand throttling in Microsoft Graph"},{"t":"heading","d":2,"v":"2.2. What happens when requests are throttled?","c":[{"t":"heading","d":3,"v":"2.2.1. Any future requests before the time period specified will continue to be throttled"},{"t":"heading","d":3,"v":"2.2.2. Not all requests are throttled when limits are exceeded"}]},{"t":"heading","d":2,"v":"2.3. Identifying throttled requests","c":[{"t":"bullet_list","d":3,"v":"","c":[{"t":"list_item","d":4,"v":"200: used when requesting a resource) or"},{"t":"list_item","d":4,"v":"201 and 204: used on write operations for creating, updating, or deleting resources"}]},{"t":"bullet_list","d":3,"v":"","c":[{"t":"list_item","d":4,"v":"400: bad request"},{"t":"list_item","d":4,"v":"401 and 403: usually a permission or auth issue"},{"t":"list_item","d":4,"v":"404: used for a not found request"}]},{"t":"heading","d":3,"v":"2.3.1. Throttled requests = HTTP 429"},{"t":"heading","d":3,"v":"2.3.2. Inspect the Retry-After HTTP header"}]},{"t":"heading","d":2,"v":"2.4. Explain common throttling scenarios","c":[{"t":"heading","d":3,"v":"2.4.1. Example throttling scenarios"}]}]},{"t":"heading","d":1,"v":"3. Exercise - Understand throttling in Microsoft Graph"},{"t":"heading","d":1,"v":"4. Avoid throttling &amp; implement throttling strategies","c":[{"t":"heading","d":2,"v":"4.1. Options for addressing throttling","c":[{"t":"heading","d":3,"v":"4.1.1. Consider how to avoid requests from being throttled"},{"t":"heading","d":3,"v":"4.1.2. Consider how to address when requests are throttled"}]},{"t":"heading","d":2,"v":"4.2. Avoid Common Throttling Scenarios","c":[{"t":"heading","d":3,"v":"4.2.1. Avoid requests from being throttled"},{"t":"heading","d":3,"v":"4.2.2. Strategies for avoiding requests from being throttled"}]},{"t":"heading","d":2,"v":"4.3. Implement throttling strategies","c":[{"t":"heading","d":3,"v":"4.3.1. Understand how to identify when requests are throttled"}]},{"t":"heading","d":2,"v":"4.4. HTTP header Retry-After"}]},{"t":"heading","d":1,"v":"5. Exercise - Avoid throttling &amp; implement throttling strategies"},{"t":"heading","d":1,"v":"6. Eliminate polling Microsoft Graph with delta query","c":[{"t":"heading","d":2,"v":"6.1. Avoid polling Microsoft Graph for changes"},{"t":"heading","d":2,"v":"6.2. Microsoft Graph: delta query","c":[{"t":"heading","d":3,"v":"6.2.1. Delta query supported by many Microsoft Graph resources"}]},{"t":"heading","d":2,"v":"6.3. Combine delta query with change notifications","c":[{"t":"heading","d":3,"v":"6.3.1. Microsoft Graph change notifications"},{"t":"heading","d":3,"v":"6.3.2. Recommendation: schedule one Delta Query requests on a long interval"}]}]},{"t":"heading","d":1,"v":"7. Exercise - Eliminate polling Microsoft Graph with delta query"}]})</script>
+</body>
+</html>
