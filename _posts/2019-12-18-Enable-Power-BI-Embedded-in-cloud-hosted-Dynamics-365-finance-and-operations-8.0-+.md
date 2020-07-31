@@ -128,13 +128,15 @@ Once the Progress is made, you can check the event message in the same form to m
 
 ![Image]({{site.url}}/assets/imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_3.png){:.border}
 
-## 5. PowerBI Embedded configuration
+## 5. PowerBI configuration (this is optional)
 
-The last step will be configuring power BI for the workspace; please follow the document [here](https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/analytics/configure-power-bi-integration)
+Configuring power BI for the workspace; please follow the document [here](https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/analytics/configure-power-bi-integration)
 
 This is what you should have after the setup
 
 ![Image]({{site.url}}/assets/imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_4.png){:.border}
+
+## Check the result
 
 If you want to check the result, go to *Workspaces > Customer credit and collections > Analytics all companies*
 
