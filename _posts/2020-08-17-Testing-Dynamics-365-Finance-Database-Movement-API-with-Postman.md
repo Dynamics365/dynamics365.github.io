@@ -28,24 +28,19 @@ The endpoint uses impersonation authentication base, please follow to [register 
 
 # 1. Postman environment setup
 
+*Open Postman -> manage environments -> Add*
+
+```text
 tenant_id: {tenant_id get from AAD}
-
 client_id: {get from the application that you have created before}
-
 client_secret: {get from the application that you have created before}
-
 username: {LCS user name with owner permission}
-
 password: {LCS user password}
-
 grant_type: password
-
 resource: https://lcsapi.lcs.dynamics.com
-
 projectId: {Your LCS Project ID}
-
 bearerToken: {this will be populated when authentication}
-
+```
 
 ![Postman environment setup]({{site.url}}/assets/imagesposts/Testing-Dynamics-365-Finance-Database-Movement-API-with-Postman_1.png){:.border}
 
