@@ -26,33 +26,42 @@ More supported actions will be added in later releases.
 The endpoint uses impersonation authentication base, please follow to [register a new application by using the Azure portal](https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/database/api/dbmovement-api-authentication#register-a-new-application-by-using-the-azure-portal)
 
 
-# Postman environment setup
+# 1. Postman environment setup
 
 tenant_id: {tenant_id get from AAD}
+
 client_id: {get from the application that you have created before}
+
 client_secret: {get from the application that you have created before}
+
 username: {LCS user name with owner permission}
+
 password: {LCS user password}
+
 grant_type: password
+
 resource: https://lcsapi.lcs.dynamics.com
+
 projectId: {Your LCS Project ID}
+
 bearerToken: {this will be populated when authentication}
 
-![Postman environment setup](Testing-Dynamics-365-Finance-Database-Movement-API-with-Postman_1.png){:.border}
 
-# Authentication with Postman
+![Postman environment setup]({{site.url}}/assets/imagesposts/Testing-Dynamics-365-Finance-Database-Movement-API-with-Postman_1.png){:.border}
+
+# 2. Authentication with Postman
 
 You get the authentication bearer with **POST** method and with https://login.microsoftonline.com/{{tenant_id}}/oauth2/token Endpoint.
 
 In the request Body, please do following:
 
-![Authentication with Postman](Testing-Dynamics-365-Finance-Database-Movement-API-with-Postman_2.png){:.border}
+![Authentication with Postman]({{site.url}}/assets/imagesposts/Testing-Dynamics-365-Finance-Database-Movement-API-with-Postman_2.png){:.border}
 
 Click **Send**, and you will have access token to start using the API.
 
-![token](Testing-Dynamics-365-Finance-Database-Movement-API-with-Postman_3.png){:.border}
+![token]({{site.url}}/assets/imagesposts/Testing-Dynamics-365-Finance-Database-Movement-API-with-Postman_3.png){:.border}
 
-# Cosnume the APIs with Postman
+# 3. Cosnume the APIs with Postman
 
 To call the Database Movement API, you attach the access token as a bearer token to the authorization header in your HTTP request. So in Postman, modify the headers tab like bellow
 
@@ -62,9 +71,9 @@ x-ms-version:'2017-09-15'
 Content-Type:application/json
 ```
 
-![Cosnume](Testing-Dynamics-365-Finance-Database-Movement-API-with-Postman_4.png){:.border}
+![Cosnume]({{site.url}}/assets/imagesposts/Testing-Dynamics-365-Finance-Database-Movement-API-with-Postman_4.png){:.border}
 
-## List database backups
+## 3.1. List database backups
 Let's test with List database API with **GET** method and the endpoint https://lcsapi.lcs.dynamics.com/databasemovement/v1/databases/project/{{projectId}}
 
 And we’ll get a JSON with a list of the DB backups on our LCS Asset Library:
@@ -93,7 +102,7 @@ And we’ll get a JSON with a list of the DB backups on our LCS Asset Library:
 }
 ```
 
-## Create database refresh
+## 3.2. Create database refresh
 
 POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/refresh/project/{projectId}/source/{sourceEnvironmentId}/target/{targetEnvironmentId}
 
@@ -106,7 +115,7 @@ POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/refresh/project/{projec
 }
 ```
 
-## Create a database export
+## 3.3. Create a database export
 
 POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/export/project/{projectId}/environment/{environmentId}/backupName/{backupName}
 
@@ -119,7 +128,7 @@ POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/export/project/{project
 }
 ```
 
-## Get operation activity status
+## 3.4. Get operation activity status
 
 GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/fetchstatus/project/{projectId}/environment/{environmentId}/operationactivity/{operationactivityId}
 
