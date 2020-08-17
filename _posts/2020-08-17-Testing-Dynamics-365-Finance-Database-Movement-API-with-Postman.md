@@ -69,7 +69,10 @@ Content-Type:application/json
 ![Cosnume]({{site.url}}/assets/imagesposts/Testing-Dynamics-365-Finance-Database-Movement-API-with-Postman_4.png){:.border}
 
 ## 3.1. List database backups
-Let's test with List database API with **GET** method and the endpoint https://lcsapi.lcs.dynamics.com/databasemovement/v1/databases/project/{{projectId}}
+
+```HTTP
+GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/databases/project/{{projectId}}
+```
 
 And we’ll get a JSON with a list of the DB backups on our LCS Asset Library:
 
@@ -99,7 +102,9 @@ And we’ll get a JSON with a list of the DB backups on our LCS Asset Library:
 
 ## 3.2. Create database refresh
 
+```HTTP
 POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/refresh/project/{projectId}/source/{sourceEnvironmentId}/target/{targetEnvironmentId}
+```
 
 ```json
 {
@@ -112,7 +117,9 @@ POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/refresh/project/{projec
 
 ## 3.3. Create a database export
 
+```
 POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/export/project/{projectId}/environment/{environmentId}/backupName/{backupName}
+```
 
 ```json
 {
@@ -125,7 +132,9 @@ POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/export/project/{project
 
 ## 3.4. Get operation activity status
 
+```
 GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/fetchstatus/project/{projectId}/environment/{environmentId}/operationactivity/{operationactivityId}
+```
 
 ```json
 {
