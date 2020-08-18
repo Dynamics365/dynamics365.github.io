@@ -23,7 +23,7 @@ what you can do with Database movement API so far:
 
 More supported actions will be added in later releases.
 
-The endpoint uses impersonation authentication base, please follow to [register a new application by using the Azure portal](https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/database/api/dbmovement-api-authentication#register-a-new-application-by-using-the-azure-portal)
+The endpoint uses **impersonation authentication** base, please follow to [register a new application by using the Azure portal](https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/database/api/dbmovement-api-authentication#register-a-new-application-by-using-the-azure-portal)
 
 
 # 1. Postman environment setup
@@ -46,7 +46,7 @@ bearerToken: {this will be populated when authentication}
 
 # 2. Authentication with Postman
 
-You get the authentication bearer with **POST** method and with https://login.microsoftonline.com/{{tenant_id}}/oauth2/token Endpoint.
+You get the authentication bearer with **POST** method and https://login.microsoftonline.com/{{tenant_id}}/oauth2/token endpoint.
 
 In the request Body, please do following:
 
@@ -70,7 +70,7 @@ Content-Type:application/json
 
 ## 3.1. List database backups
 
-```HTTP
+```
 GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/databases/project/{{projectId}}
 ```
 
@@ -102,7 +102,7 @@ And we’ll get a JSON with a list of the DB backups on our LCS Asset Library:
 
 ## 3.2. Create database refresh
 
-```HTTP
+```
 POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/refresh/project/{projectId}/source/{sourceEnvironmentId}/target/{targetEnvironmentId}
 ```
 
