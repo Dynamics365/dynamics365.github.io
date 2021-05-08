@@ -7,11 +7,12 @@ tags:
 - Git
 author: Max Nguyen
 key: Github-Git-Cheat-Sheet
-cover: /assets/imagesposts/How-to-upgrade-to-Visual-Studio-2017-3.png
+cover: /assets/imagesposts/github-git-cheat-sheet.png)
 ---
 
-![Postman environment setup]({{site.url}}/assets/imagesposts/github-git-cheat-sheet.pdf){:.border}
+<iframe src="https://drive.google.com/file/d/1m-ICdLA3Ohn8Jyb-cAhCabKQQIBiFAB6/preview" width="840" height="680"></iframe>
 
-//2021-04-01-github-git-cheat-sheet.md
+
+![Github Git Cheat Sheet]({{site.url}}/assets/imagesposts/github-git-cheat-sheet.png){:.border}
 
 
