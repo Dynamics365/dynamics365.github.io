@@ -9,7 +9,7 @@ tags:
 author: Max Nguyen
 key: AUTOMATE-YOUR-TESTS-FOR-DYNAMICS-365-FINANCE-AND-OPERATIONS
 cover: /assets/imagesposts/How-to-upgrade-to-Visual-Studio-2017-3.png
-published: false
+hidden: true
 ---
 
 

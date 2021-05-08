@@ -11,7 +11,7 @@ tags:
 author: Max Nguyen
 key: Dynamics-365-for-Finance-&-Operations-and-Azure-DevOps
 cover: /assets/imagesposts/How-to-upgrade-to-Visual-Studio-2017-3.png
-published: false
+hidden: true
 ---
 
 [](https://ariste.info/en/msdyn365-azure-devops-alm/#dynamics-365-for-finance-operations-and-azure-devops)**Dynamics 365 for Finance & Operations and Azure DevOps**
