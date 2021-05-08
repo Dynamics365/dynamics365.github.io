@@ -12,8 +12,6 @@ cover: /assets/imagesposts/How-to-upgrade-to-Visual-Studio-2017-3.png
 hidden: true
 ---
 
-
-
 A new article for you the community. More specifically, all project managers, functional and technical consultants, as well as customer-side decision-makers on the deployment of Dynamics 365 Finance and Operations.
 
 I told myself that it would be important to offer you a global article on all the testing capabilities (manual or automatic) for Dynamics 365 Finance and Operations. It is the result of quite a long work but which I hope will help you to improve your code delivery and upgrade processes.
