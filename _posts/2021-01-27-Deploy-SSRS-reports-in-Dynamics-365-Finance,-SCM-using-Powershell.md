@@ -1,5 +1,5 @@
 ---
-date: 2020-08-17 00:00:00+00:00
+date: 2021-01-17 00:00:00+00:00
 title: Deploy SSRS reports in Dynamics 365 Finance, SCM using Powershell
 tags:
 - SSRS
