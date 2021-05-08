@@ -33,15 +33,11 @@ To use all the features described in this guide we need to create an Azure DevOp
 
 You might or might not have to do this. If you or your customer already have an account, you can use it and just create a new project in it. Otherwise head to [https://dev.azure.com](https://dev.azure.com/) and create a new organization:
 
-![Azure DevOps sign up](./MSDyn365 & Azure DevOps ALM - ariste.info_files/AzureDevOpsSign.png.webp "MSDyn365 & Azure DevOps ALM 2")
-
 ![Azure DevOps sign up](https://static.ariste.info/wp-content/uploads/2020/05/AzureDevOpsSign.png.webp "MSDyn365 & Azure DevOps ALM 2")
 
 Azure DevOps sign up
 
 After creating it you need to create a new project with the following options:
-
-![Create Azure DevOps project](./MSDyn365 & Azure DevOps ALM - ariste.info_files/ProjType.png.webp "MSDyn365 & Azure DevOps ALM 3")
 
 ![Create Azure DevOps project](https://static.ariste.info/wp-content/uploads/2020/05/ProjType.png.webp "MSDyn365 & Azure DevOps ALM 3")
 
@@ -53,25 +49,17 @@ When a customer signs up for Finance and Operations the LCS project is of type �
 
 In any of both cases you need to go to “Project settings” and select the “Visual Studio Team Services” Tab. Scroll down and you should see two fields. Fill the field with your DevOps URL without the project part. If you got a https://dev.azure.com/YOUR\_ORG URL type you need to change it to https://YOUR\_ORG.visualstudio.com:
 
-![Azure DevOps setup on LCS](./MSDyn365 & Azure DevOps ALM - ariste.info_files/LCS1.png "MSDyn365 & Azure DevOps ALM 4")
-
 ![Azure DevOps setup on LCS](https://i0.wp.com/ariste.info/wp-content/uploads/2020/05/LCS1.png?fit=1024%2C462&ssl=1 "MSDyn365 & Azure DevOps ALM 4")
 
 Azure DevOps setup on LCS
 
 And to get the “Personal access token” we go back to our Azure DevOps project, click on the user settings icon, and then select “Personal access tokens”:
 
-![MSDyn365 & Azure DevOps ALM 1](./MSDyn365 & Azure DevOps ALM - ariste.info_files/Azure-DevOps-personal-token.png.webp "MSDyn365 & Azure DevOps ALM 5")
-
 ![MSDyn365 & Azure DevOps ALM 1](https://static.ariste.info/wp-content/uploads/2020/05/Azure-DevOps-personal-token.png.webp "MSDyn365 & Azure DevOps ALM 5")
 
 We add a new token, set its expiration and give it full access. Finally press the “Create” button and a new dialog will appear with your token, copy it, and paste it in LCS.
 
-![Azure DevOps personal token](./MSDyn365 & Azure DevOps ALM - ariste.info_files/Azure-DevOps-personal-token-2.png.webp "MSDyn365 & Azure DevOps ALM 6")
-
 ![Azure DevOps personal token](https://static.ariste.info/wp-content/uploads/2020/05/Azure-DevOps-personal-token-2.png.webp "MSDyn365 & Azure DevOps ALM 6")
-
-![Azure DevOps personal token](./MSDyn365 & Azure DevOps ALM - ariste.info_files/Azure-DevOps-personal-token-3.png.webp "MSDyn365 & Azure DevOps ALM 7")
 
 ![Azure DevOps personal token](https://static.ariste.info/wp-content/uploads/2020/05/Azure-DevOps-personal-token-3.png.webp "MSDyn365 & Azure DevOps ALM 7")
 
@@ -95,11 +83,7 @@ This VM is usually the dev box on Microsoft’s subscription but you can also us
 
 When this VM is deployed there’s two things happening: the basic source code structure and the default build definition are created.
 
-![MSDyn365 & Azure DevOps ALM 2](./MSDyn365 & Azure DevOps ALM - ariste.info_files/Azure-DevOps-source-control.png.webp "MSDyn365 & Azure DevOps ALM 8")
-
 ![MSDyn365 & Azure DevOps ALM 2](https://static.ariste.info/wp-content/uploads/2020/05/Azure-DevOps-source-control.png.webp "MSDyn365 & Azure DevOps ALM 8")
-
-![MSDyn365 & Azure DevOps ALM 3](./MSDyn365 & Azure DevOps ALM - ariste.info_files/Azure-DevOps-default-build-pipeline.png.webp "MSDyn365 & Azure DevOps ALM 9")
 
 ![MSDyn365 & Azure DevOps ALM 3](https://static.ariste.info/wp-content/uploads/2020/05/Azure-DevOps-default-build-pipeline.png.webp "MSDyn365 & Azure DevOps ALM 9")
 
@@ -107,25 +91,17 @@ When this VM is deployed there’s two things happening: the basic source code s
 
 We have the basics to start working. Log into your dev VM and start Visual Studio, we must map the Main folder to the development machine’s packages folder. Open the team explorer and select “Connect to a Project…”:
 
-![MSDyn365 & Azure DevOps ALM 4](./MSDyn365 & Azure DevOps ALM - ariste.info_files/Visual-Studio.png.webp "MSDyn365 & Azure DevOps ALM 10")
-
 ![MSDyn365 & Azure DevOps ALM 4](https://static.ariste.info/wp-content/uploads/2020/05/Visual-Studio.png.webp "MSDyn365 & Azure DevOps ALM 10")
 
 It will ask for your credentials and then show all projects available with the account you’ve used. Select the project we have created in the steps earlier and click on “Connect”:
-
-![MSDyn365 & Azure DevOps ALM 5](./MSDyn365 & Azure DevOps ALM - ariste.info_files/Visual-Studio-connect-DevOps.png.webp "MSDyn365 & Azure DevOps ALM 11")
 
 ![MSDyn365 & Azure DevOps ALM 5](https://static.ariste.info/wp-content/uploads/2020/05/Visual-Studio-connect-DevOps.png.webp "MSDyn365 & Azure DevOps ALM 11")
 
 Now open the “Source Control Explorer”, select the Main folder and click on the “Not mapped” text:
 
-![MSDyn365 & Azure DevOps ALM 6](./MSDyn365 & Azure DevOps ALM - ariste.info_files/Map.png.webp "MSDyn365 & Azure DevOps ALM 12")
-
 ![MSDyn365 & Azure DevOps ALM 6](https://static.ariste.info/wp-content/uploads/2020/05/Map.png.webp "MSDyn365 & Azure DevOps ALM 12")
 
 Map the Main folder to the K:\\AosService\\PackagesLocalDirectory folder on your service drive (this could be drive C if you’re using a local VM instead of a cloud-hosted environment):
-
-![MSDyn365 & Azure DevOps ALM 7](./MSDyn365 & Azure DevOps ALM - ariste.info_files/Map-to-PackagesLocalDirectory.png.webp "MSDyn365 & Azure DevOps ALM 13")
 
 ![MSDyn365 & Azure DevOps ALM 7](https://static.ariste.info/wp-content/uploads/2020/05/Map-to-PackagesLocalDirectory.png.webp "MSDyn365 & Azure DevOps ALM 13")
 
@@ -133,23 +109,15 @@ What we’ve done in this step is telling Visual Studio that what’s in our Azu
 
 The Main folder we have in our source control tree is a regular folder, but we can [convert it into a branch](https://docs.microsoft.com/en-us/azure/devops/repos/tfvc/branch-folders-files?view=azure-devops&WT.mc_id=DOP-MVP-5003976#convert-a-folder-to-a-branch) if we need it.
 
-![MSDyn365 & Azure DevOps ALM 8](./MSDyn365 & Azure DevOps ALM - ariste.info_files/2020-05-16-12_00_27.png.webp "MSDyn365 & Azure DevOps ALM 14")
-
 ![MSDyn365 & Azure DevOps ALM 8](https://static.ariste.info/wp-content/uploads/2020/05/2020-05-16-12_00_27.png.webp "MSDyn365 & Azure DevOps ALM 14")
-
-![MSDyn365 & Azure DevOps ALM 9](./MSDyn365 & Azure DevOps ALM - ariste.info_files/2020-05-16-12_00_45.png.webp "MSDyn365 & Azure DevOps ALM 15")
 
 ![MSDyn365 & Azure DevOps ALM 9](https://static.ariste.info/wp-content/uploads/2020/05/2020-05-16-12_00_45.png.webp "MSDyn365 & Azure DevOps ALM 15")
 
 In the image above, you can see the icon for Main changes when it’s converted to a branch. Branches allow us to perform some actions that aren’t available to folders. Some differences can be seen in the context menu:
 
-![Menú contextual carpeta](./MSDyn365 & Azure DevOps ALM - ariste.info_files/2019-02-11-14_13_11-ie-dev01dev.northeurope.cloudapp.azure_.com_61466-Remote-Desktop-Connection.png.webp "MSDyn365 & Azure DevOps ALM 16")
-
 ![Menú contextual carpeta](https://static.ariste.info/wp-content/uploads/2019/02/2019-02-11-14_13_11-ie-dev01dev.northeurope.cloudapp.azure_.com_61466-Remote-Desktop-Connection.png.webp "MSDyn365 & Azure DevOps ALM 16")
 
 Folder context menu
-
-![Menú contextual rama](./MSDyn365 & Azure DevOps ALM - ariste.info_files/2019-02-11-14_13_28-ie-dev01dev.northeurope.cloudapp.azure_.com_61466-Remote-Desktop-Connection.png.webp "MSDyn365 & Azure DevOps ALM 17")
 
 ![Menú contextual rama](https://static.ariste.info/wp-content/uploads/2019/02/2019-02-11-14_13_28-ie-dev01dev.northeurope.cloudapp.azure_.com_61466-Remote-Desktop-Connection.png.webp "MSDyn365 & Azure DevOps ALM 17")
 
@@ -157,19 +125,13 @@ Branch context menu
 
 For instance, branches can display the hierarchy of all the project branches (in this case it’s only Main and Dev so it’s quite simple).
 
-![Jerarquía de las ramas](./MSDyn365 & Azure DevOps ALM - ariste.info_files/2019-02-11-14_14_11-ie-dev01dev.northeurope.cloudapp.azure_.com_61466-Remote-Desktop-Connection.png.webp "MSDyn365 & Azure DevOps ALM 18")
-
 ![Jerarquía de las ramas](https://static.ariste.info/wp-content/uploads/2019/02/2019-02-11-14_14_11-ie-dev01dev.northeurope.cloudapp.azure_.com_61466-Remote-Desktop-Connection.png.webp "MSDyn365 & Azure DevOps ALM 18")
 
 Properties dialogs are different too. The folder one:
 
-![MSDyn365 & Azure DevOps ALM 10](./MSDyn365 & Azure DevOps ALM - ariste.info_files/2019-02-11-14_10_06-ie-dev01dev.northeurope.cloudapp.azure_.com_61466-Remote-Desktop-Connection.png.webp "MSDyn365 & Azure DevOps ALM 19")
-
 ![MSDyn365 & Azure DevOps ALM 10](https://static.ariste.info/wp-content/uploads/2019/02/2019-02-11-14_10_06-ie-dev01dev.northeurope.cloudapp.azure_.com_61466-Remote-Desktop-Connection.png.webp "MSDyn365 & Azure DevOps ALM 19")
 
 And the branch one, where we can see the different relationships between the other branches created from Main:
-
-![Propiedades de la rama](./MSDyn365 & Azure DevOps ALM - ariste.info_files/2019-02-11-14_09_23-ie-dev01dev.northeurope.cloudapp.azure_.com_61466-Remote-Desktop-Connection.png.webp "MSDyn365 & Azure DevOps ALM 20")
 
 ![Propiedades de la rama](https://static.ariste.info/wp-content/uploads/2019/02/2019-02-11-14_09_23-ie-dev01dev.northeurope.cloudapp.azure_.com_61466-Remote-Desktop-Connection.png.webp "MSDyn365 & Azure DevOps ALM 20")
 
@@ -216,13 +178,9 @@ Should your project/team use CI? Yes, yes, yes. This is one of the key feature o
 
 This is how a build definition for CI that will only compile our codebase looks like:
 
-![Definicion build continua](./MSDyn365 & Azure DevOps ALM - ariste.info_files/2019-02-20-15_06_43-AXZ-Dev-Continuous-Build-Azure-DevOps-Services.png.webp "MSDyn365 & Azure DevOps ALM 21")
-
 ![Definicion build continua](https://static.ariste.info/wp-content/uploads/2019/02/2019-02-20-15_06_43-AXZ-Dev-Continuous-Build-Azure-DevOps-Services.png.webp "MSDyn365 & Azure DevOps ALM 21")
 
 Only the prepare and build steps. Then we need to go to the “Triggers” tab and enable the CI option:
-
-![DevOps continuous integration](./MSDyn365 & Azure DevOps ALM - ariste.info_files/2019-02-20-15_07_54-AXZ-Dev-Continuous-Build-Azure-DevOps-Services.png.webp "MSDyn365 & Azure DevOps ALM 22")
 
 ![DevOps continuous integration](https://static.ariste.info/wp-content/uploads/2019/02/2019-02-20-15_07_54-AXZ-Dev-Continuous-Build-Azure-DevOps-Services.png.webp "MSDyn365 & Azure DevOps ALM 22")
 
@@ -260,8 +218,6 @@ This task will replace the _Generate packages_ from the current build definition
 
 ##### [](https://ariste.info/en/msdyn365-azure-devops-alm/#x-tools-path)X++ Tools Path
 
-![MSDyn365 & Azure DevOps ALM 11](./MSDyn365 & Azure DevOps ALM - ariste.info_files/2019-09-05-11_25_12-AXZ-Dev-Build-DP-test-new-Azure-DevOps-Services.png.webp "MSDyn365 & Azure DevOps ALM 24")
-
 ![MSDyn365 & Azure DevOps ALM 11](https://static.ariste.info/wp-content/uploads/2019/09/2019-09-05-11_25_12-AXZ-Dev-Build-DP-test-new-Azure-DevOps-Services.png.webp "MSDyn365 & Azure DevOps ALM 24")
 
 This is your build VM’s physical bin folder, the AosService folder is usually on the unit K for cloud-hosted VMs. I guess this will change when we go VM-less to do the builds.
@@ -270,15 +226,11 @@ This is your build VM’s physical bin folder, the AosService folder is usually 
 
 ##### [](https://ariste.info/en/msdyn365-azure-devops-alm/#location-of-the-x-binaries-to-package)Location of the X++ binaries to package
 
-![MSDyn365 & Azure DevOps ALM 12](./MSDyn365 & Azure DevOps ALM - ariste.info_files/2019-09-05-11_29_55-AXZ-Dev-Build-DP-test-new-Azure-DevOps-Services.png.webp "MSDyn365 & Azure DevOps ALM 25")
-
 ![MSDyn365 & Azure DevOps ALM 12](https://static.ariste.info/wp-content/uploads/2019/09/2019-09-05-11_29_55-AXZ-Dev-Build-DP-test-new-Azure-DevOps-Services.png.webp "MSDyn365 & Azure DevOps ALM 25")
 
 The task comes with this field filled in as _$(Build.BinariesDirectory)_ but this didn’t work out for our build definitions, maybe the variable isn’t set up on the proj file. After changing this to _$(Agent.BuildDirectory)\\Bin_ the package is generated.
 
 ##### [](https://ariste.info/en/msdyn365-azure-devops-alm/#filename-and-path-for-the-deployable-package)Filename and path for the deployable package
-
-![MSDyn365 & Azure DevOps ALM 13](./MSDyn365 & Azure DevOps ALM - ariste.info_files/2019-09-05-11_33_28-AXZ-Dev-Build-DP-test-new-Azure-DevOps-Services.png.webp "MSDyn365 & Azure DevOps ALM 26")
 
 ![MSDyn365 & Azure DevOps ALM 13](https://static.ariste.info/wp-content/uploads/2019/09/2019-09-05-11_33_28-AXZ-Dev-Build-DP-test-new-Azure-DevOps-Services.png.webp "MSDyn365 & Azure DevOps ALM 26")
 
@@ -295,8 +247,6 @@ The day we’ve been waiting for has come! The [Azure hosted builds](https://doc
 
 I’ve been able to write this because, thanks to [Antonio Gilabert](https://twitter.com/_Gilabert_), we’ve been testing this at [Axazure](https://www.axazure.com/) for a few months with access to the private preview. And of course thanks to Joris for inviting us to the preview!
 
-![Azure hosted build](./MSDyn365 & Azure DevOps ALM - ariste.info_files/AzureDevOpsPipeline-2.png "MSDyn365 & Azure DevOps ALM 27")
-
 ![Azure hosted build](https://i1.wp.com/ariste.info/wp-content/uploads/2020/05/AzureDevOpsPipeline-2.png?fit=702%2C1024&ssl=1 "MSDyn365 & Azure DevOps ALM 27")
 
 Riding the Azure Pipelines by [Caza Pelusas](https://cazapelusas.com/)
@@ -312,8 +262,6 @@ Remember **this is a public preview**. If you want to join the preview you first
 With the capacity to run an **extra** Azure-hosted build we get another agent to run a pipeline and can run multiple pipelines at the same time. But it **still won’t be parallel pipelines**, because we only get one VM-less agent. This means **we can run a self-hosted and azure hosted pipeline at the same time, but we cannot run two of the same type in parallel**. If we want that we need to [purchase extra agents](https://docs.microsoft.com/en-us/azure/devops/organizations/billing/buy-more-build-vs?view=azure-devops&WT.mc_id=DOP-MVP-5003976#microsoft-hosted-cicd).
 
 With a private Azure DevOps project we get 2GB of Artifacts space (we’ll see that later) and one self-hosted and one Microsoft hosted agent with 1800 free minutes:
-
-![08CEA665 618A 4F15 B9EC F86A405FA7D8](./MSDyn365 & Azure DevOps ALM - ariste.info_files/08CEA665-618A-4F15-B9EC-F86A405FA7D8.jpeg "MSDyn365 & Azure DevOps ALM 28")
 
 ![08CEA665 618A 4F15 B9EC F86A405FA7D8](https://i1.wp.com/ariste.info/wp-content/uploads/2020/04/08CEA665-618A-4F15-B9EC-F86A405FA7D8.jpeg?fit=909%2C1024&ssl=1 "MSDyn365 & Azure DevOps ALM 28")
 
@@ -342,8 +290,6 @@ To configure the Azure hosted build we need:
 *   Some patience to get everything running 🙂
 
 So the first step is going to the PEAP LCS’ Asset Library and downloading the 3 nuget packages:
-
-![Nugets for the Azure Hosted Build](./MSDyn365 & Azure DevOps ALM - ariste.info_files/2020-04-24-13_44_51.png.webp "MSDyn365 & Azure DevOps ALM 29")
 
 ![Nugets for the Azure Hosted Build](https://static.ariste.info/wp-content/uploads/2020/04/2020-04-24-13_44_51.png.webp "MSDyn365 & Azure DevOps ALM 29")
 
