@@ -102,8 +102,8 @@ When you have done all done 3 imports of the sample, let’s go in 1 by 1 if you
 
 * * *
 
-1.  PowerAutomate Sample - LCS API - Automatic refresh database
-    -----------------------------------------------------------
+2\. PowerAutomate Sample - LCS API - Automatic refresh database
+-----------------------------------------------------------
     
 
 ![Screenshot 2020-04-14_22-26-41-946.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1586896013101-8GJY6GRAGHKMM7W6WJWD/ke17ZwdGBToddI8pDm48kBOxagEjEBCBvT6-GFvbMGcUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYy7Mythp_T-mtop-vrsUOmeInPi9iDjx9w8K4ZfjXt2dh1GJzNteJnPTF_u_nDvtX17kI02e_3MP4SBpAf3TVYXCjLISwBs8eEdxAxTptZAUg/Screenshot+2020-04-14_22-26-41-946.png)
@@ -285,7 +285,7 @@ Here we are, finished for this first sample.
 
 * * *
 
-2\. PowerAutomate Sample - LCS API - Export database
+2\. LCS API - Export database
 ----------------------------------------------------
 
 You already know that we can export database also on the LCS Portal by manual action on a Sandbox instance. Of course, it can be good to do it like just after our previous sample because we have done a flow (DataALM) to refresh the production to an UAT instance. If you want to get the .bacpac (backup of SQL Azure) in order to deploy it (implied your production database) to a DEV environment. Maybe also because you want to archive it to a safe repository. So yes, the LCS API has already a method for that, that’s why I made this sample for you.
@@ -320,7 +320,7 @@ Finally the conditional split, you can change like before by whatever you want.
 
 * * *
 
-3\. PowerAutomate Sample - LCS API - Retrieve list of database backup
+3\. Retrieve list of database backup
 ---------------------------------------------------------------------
 
 Here, we will have the possibility to retrieve the list of the whole backup list in your LCS Asset Library. As you know, it’s the default storage, where all database backup are coming.
