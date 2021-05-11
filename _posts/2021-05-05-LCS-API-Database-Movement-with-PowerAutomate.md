@@ -102,7 +102,7 @@ When you have done all done 3 imports of the sample, let’s go in 1 by 1 if you
 
 * * *
 
-2\. PowerAutomate Sample - LCS API - Automatic refresh database
+1\. PowerAutomate Sample - LCS API - Automatic refresh database
 -----------------------------------------------------------
     
 
