@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>general on Dynamics 365 Finance Operations &amp; Power Platform</title>
+    <link>https://nuxulu.com/categories/general/</link>
+    <description>Recent content in general on Dynamics 365 Finance Operations &amp; Power Platform</description>
+    <image>
+      <url>https://nuxulu.com/47</url>
+      <link>https://nuxulu.com/47</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 08 Nov 2016 15:47:00 +0900</lastBuildDate><atom:link href="https://nuxulu.com/categories/general/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Understanding modifedField() Table method in DAX 2012</title>
+      <link>https://nuxulu.com/posts/2016-11-08-understanding_modifedfield_table_method_in_dax_2012/</link>
+      <pubDate>Tue, 08 Nov 2016 15:47:00 +0900</pubDate>
+      
+      <guid>https://nuxulu.com/posts/2016-11-08-understanding_modifedfield_table_method_in_dax_2012/</guid>
+      <description>&lt;p&gt;Dear all,&lt;/p&gt;
+&lt;p&gt;We use &lt;code&gt;modifiedField()&lt;/code&gt; method to perform any actions  after the field is modifed&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Ex:&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Create new table with 2 fields &lt;strong&gt;ItemId&lt;/strong&gt; and &lt;strong&gt;ItemNameDisplay&lt;/strong&gt;  from Extended Data Types node in AOT then Override &lt;code&gt;modifiedField()&lt;/code&gt; in Table&amp;rsquo;s method node, something likes:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;public &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;modifiedField&lt;/span&gt;(FieldId _fieldId)
+{
+    InventTable inventTable;
+    super(_fieldId);
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;switch&lt;/span&gt; (_fieldId)
+    {
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; fieldNum(IBD_Invent,itemid)&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;
+            this.ItemNameDisplay &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; inventTable&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;find(this.itemid).NameAlias;
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;break&lt;/span&gt;;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Evolution of programming languages</title>
+      <link>https://nuxulu.com/posts/2016-09-06-evolution-of-programming-languages/</link>
+      <pubDate>Tue, 06 Sep 2016 18:47:00 +0900</pubDate>
+      
+      <guid>https://nuxulu.com/posts/2016-09-06-evolution-of-programming-languages/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rename a Database in SQL Server</title>
+      <link>https://nuxulu.com/posts/2015-11-03-rename-a-database-in-sql-server/</link>
+      <pubDate>Tue, 03 Nov 2015 03:45:13 +0700</pubDate>
+      
+      <guid>https://nuxulu.com/posts/2015-11-03-rename-a-database-in-sql-server/</guid>
+      <description>Open Microsoft SQL Server Management Studio.
+  Connect to the server where in the DB you want to rename is located.
+  Modify the following script and run it
+  -- Replace all MyDBs with the name of the DB you want to change its name USE [MyDB]; -- Changing Physical names and paths -- Replace all NewMyDB with the new name you want to set for the DB -- Replace &amp;#39;C:.</description>
+    </item>
+    
+    <item>
+      <title>Understand model store architectural in AX 2012</title>
+      <link>https://nuxulu.com/posts/2014-10-10-understand-model-store-architectural/</link>
+      <pubDate>Fri, 10 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://nuxulu.com/posts/2014-10-10-understand-model-store-architectural/</guid>
+      <description>Understand model store architectural in AX 2012</description>
+    </item>
+    
+    <item>
+      <title>Architecture overview Microsoft Dynamics AX 2012</title>
+      <link>https://nuxulu.com/posts/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/</link>
+      <pubDate>Tue, 01 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://nuxulu.com/posts/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/</guid>
+      <description>Architecture overview Microsoft Dynamics AX 2012</description>
+    </item>
+    
+  </channel>
+</rss>

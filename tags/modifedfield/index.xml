@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>modifedField on Dynamics 365 Finance Operations &amp; Power Platform</title>
+    <link>https://nuxulu.com/tags/modifedfield/</link>
+    <description>Recent content in modifedField on Dynamics 365 Finance Operations &amp; Power Platform</description>
+    <image>
+      <url>https://nuxulu.com/47</url>
+      <link>https://nuxulu.com/47</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 08 Nov 2016 15:47:00 +0900</lastBuildDate><atom:link href="https://nuxulu.com/tags/modifedfield/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Understanding modifedField() Table method in DAX 2012</title>
+      <link>https://nuxulu.com/posts/2016-11-08-understanding_modifedfield_table_method_in_dax_2012/</link>
+      <pubDate>Tue, 08 Nov 2016 15:47:00 +0900</pubDate>
+      
+      <guid>https://nuxulu.com/posts/2016-11-08-understanding_modifedfield_table_method_in_dax_2012/</guid>
+      <description>&lt;p&gt;Dear all,&lt;/p&gt;
+&lt;p&gt;We use &lt;code&gt;modifiedField()&lt;/code&gt; method to perform any actions  after the field is modifed&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Ex:&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Create new table with 2 fields &lt;strong&gt;ItemId&lt;/strong&gt; and &lt;strong&gt;ItemNameDisplay&lt;/strong&gt;  from Extended Data Types node in AOT then Override &lt;code&gt;modifiedField()&lt;/code&gt; in Table&amp;rsquo;s method node, something likes:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;public &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;modifiedField&lt;/span&gt;(FieldId _fieldId)
+{
+    InventTable inventTable;
+    super(_fieldId);
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;switch&lt;/span&gt; (_fieldId)
+    {
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; fieldNum(IBD_Invent,itemid)&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;
+            this.ItemNameDisplay &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; inventTable&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;find(this.itemid).NameAlias;
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;break&lt;/span&gt;;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
