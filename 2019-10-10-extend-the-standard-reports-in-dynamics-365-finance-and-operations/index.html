@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noodp"/><title>Extend the standard reports in Dynamics 365 finance and operations | </title><meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content=""/>
+<meta name="twitter:title" content="Extend the standard reports in Dynamics 365 finance and operations"/>
+<meta name="twitter:description" content=""/><meta name="Description" content="Dynamics 365 Finance &amp; Operations and Power Platform"><meta property="og:title" content="Extend the standard reports in Dynamics 365 finance and operations" />
+<meta property="og:description" content="In this article, I will show the procedure for the SSRS Reports development and customization in Dynamics 365 finance and operations (Version 8.1 and above).
+The scenario is you would like to extend the customer account statement report with 2 main tasks
+ Create custom design for the report Expand the standard report data sets  Same with AX 2012 version, there is no change on how you developer a new SSRS report with query based and report data provider." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nuxulu.com/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/" /><meta property="og:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-10-10T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2019-10-10T00:00:00&#43;00:00" />
+
+<meta name="application-name" content="UBlogger">
+<meta name="apple-mobile-web-app-title" content="UBlogger"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/Icon/favicon.ico" type="image/x-icon"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://nuxulu.com/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/" /><script data-ad-client="pub-3534873375492458" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="f08c47fec0942fa0" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Extend the standard reports in Dynamics 365 finance and operations",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/nuxulu.com\/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations\/"
+        },"genre": "posts","keywords": "COC, Extension, SSRS","wordCount":  581 ,
+        "url": "https:\/\/nuxulu.com\/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations\/","datePublished": "2019-10-10T00:00:00+00:00","dateModified": "2019-10-10T00:00:00+00:00","description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Dynamics 365 &amp; Power Platform | NUXULU" class="header-logo logo-svg"><img loading="lazy" decoding="async"
+         src="/Icon/favicon-32x32.png"
+         alt="/Icon/favicon-32x32.png"
+         title="/Icon/favicon-32x32.png"
+    />Finance Operations &amp; Power Platform Archive</a>
+        </div>
+        <div class="menu">
+            <nav>
+                <ul class="menu-inner"><li>
+                        <a class="menu-item" href="/posts/"> Posts </a>
+                    </li><li>
+                        <a class="menu-item" href="/tags/"> Tags </a>
+                    </li><li>
+                        <a class="menu-item" href="/categories/"> Categories </a>
+                    </li><li>
+                        <a class="menu-item" href="/about/"> About </a>
+                    </li></ul>
+            </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Dynamics 365 &amp; Power Platform | NUXULU" class="header-logo"><img loading="lazy" decoding="async"
+         src="/Icon/favicon-32x32.png"
+         alt="/Icon/favicon-32x32.png"
+         title="/Icon/favicon-32x32.png"
+    />Finance Operations &amp; Power Platform Archive</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><nav>
+                <ul><li>
+                        <a class="menu-item" href="/posts/" title="">Posts</a>
+                    </li><li>
+                        <a class="menu-item" href="/tags/" title="">Tags</a>
+                    </li><li>
+                        <a class="menu-item" href="/categories/" title="">Categories</a>
+                    </li><li>
+                        <a class="menu-item" href="/about/" title="">About</a>
+                    </li></ul>
+            </nav>
+            <a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <span class="svg-icon icon-moon"></span>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+<div class="container content-article page-toc theme-classic"><div class="toc" id="toc-auto">
+            <div class="toc-title">Contents</div>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div>
+
+    <div class="header-post">
+
+        
+
+        
+        <div class="post-title">
+
+                <div class="post-all-meta">
+                    <nav class="breadcrumbs">
+    <ol>
+        <li><a href="/">Home </a></li><li>Extend the standard reports in Dynamics 365 finance and operations</li>
+    </ol>
+</nav>
+                    <h1 class="single-title flipInX">Extend the standard reports in Dynamics 365 finance and operations</h1><div class="post-meta">
+                        <div class="post-meta-line"><span class="post-meta-date">
+                                <i class="svg-icon icon-clock"></i><time class="timeago" datetime="2019-10-10">October 10, 2019</time>
+                            </span><span class="post-meta-words">
+                                <i class="svg-icon icon-pencil"></i>581 words
+                            </span>
+                            <span class="post-meta-reading">
+                                <i class="svg-icon icon-stopwatch"></i>3 minutes
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            </div>
+
+    <article class="single toc-start">
+
+        <div class="content-block content-block-first content-block-position">
+
+        <div class="post"><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-adding-a-new-field">1. Adding a new field</a></li>
+        <li><a href="#2-duplicate-the-report">2. Duplicate the report</a></li>
+        <li><a href="#3-modifythe-report-design-right-click-on-report-dataset-and-choose-restore-to-refresh-the-new-field">3. Modify the report design, right click on report dataset and choose restore to refresh the new field</a></li>
+        <li><a href="#4-create-a-new-extension-classthat-extends-the-standard-report-controller-class">4. Create a new Extension class that extends the standard report controller class.</a></li>
+        <li><a href="#5-create-new-report-handler-class">5. Create new report handler class</a></li>
+        <li><a href="#6-add-a-delegate-handler-method-to-start-to-use-your-custom-report">6. Add a delegate handler method to start to use your custom report.</a></li>
+        <li><a href="#7-create-extension-for-the-existing-menu-items">7. Create extension for the existing menu items</a></li>
+        <li><a href="#8-update-the-print-management-settings-to-use-the-custom-business-document">8. Update the Print management settings to use the custom business document</a></li>
+        <li><a href="#9-run-report-and-test-the-result">9. Run report and test the result</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><p>In this article, I will show the procedure for the SSRS Reports development and customization in Dynamics 365 finance and operations (Version 8.1 and above).</p>
+<p>The scenario is you would like to extend <strong>the customer account statement</strong> report with 2 main tasks</p>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/analytics/custom-designs-business-docs?toc=/dynamics365/commerce/toc.json" target="_blank" rel="noopener noreffer">Create custom design for the report</a></li>
+<li><a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/analytics/expand-app-suite-report-data-sets?toc=/dynamics365/commerce/toc.json" target="_blank" rel="noopener noreffer">Expand the standard report data sets</a></li>
+</ul>
+<p>Same with AX 2012 version, there is no change on how you developer a new SSRS report with query based and report data provider. But if you want to extend or modify the standard one you need to understand how to use extensions in general, Event handlers and Chain of Command.</p>
+<p>The steps</p>
+<h3 id="1-adding-a-new-field">1. Adding a new field</h3>
+<p>The main temp table is <strong>CustAccountStatementExtTmp</strong>, right click and create an extension; I&rsquo;m going to add a new string field <strong>MaxTxT</strong></p>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_1.png#center"><img src="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_1.png#center" alt=""></a>
+</figure>
+<h3 id="2-duplicate-the-report">2. Duplicate the report</h3>
+<p>Duplicate the <strong>CustAccountStatementExt</strong> report in <em>the Application explorer &gt; AOT &gt; Reports &gt; CustAccountStatementExt</em> as shown in below screen shot:</p>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_2.png#center"><img src="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_2.png#center" alt=""></a>
+</figure>
+<p>Rename the report and provide any appropriate name: <strong>MaxCustAccountStatementExt</strong></p>
+<h3 id="3-modifythe-report-design-right-click-on-report-dataset-and-choose-restore-to-refresh-the-new-field">3. Modify the report design, right click on report dataset and choose restore to refresh the new field</h3>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_3.png#center"><img src="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_3.png#center" alt=""></a>
+</figure>
+<p>Open report designer and add that field into a table</p>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_4.png#center"><img src="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_4.png#center" alt=""></a>
+</figure>
+<h3 id="4-create-a-new-extension-classthat-extends-the-standard-report-controller-class">4. Create a new Extension class that extends the standard report controller class.</h3>
+<p><em><strong>class MaxCustAccountStatementExtController_Ext extends CustAccountStatementExtController{}</strong></em></p>
+<p>{% highlight csharp %}
+//Add construct
+public static MaxCustAccountStatementExtController_Ext construct()
+{
+return new MaxCustAccountStatementExtController_Ext();
+}
+{% endhighlight %}</p>
+<p>Copy the main method from the standard controller class and add references to the new Controller class</p>
+<p>{% highlight csharp %}
+public static void main(Args _args)
+{
+SrsPrintMgmtFormLetterController controller = new MaxCustAccountStatementExtController_Ext();
+controller.parmReportName(PrintMgmtDocType::construct(PrintMgmtDocumentType::CustAccountStatement).getDefaultReportFormat());
+controller.parmArgs(_args);
+MaxCustAccountStatementExtController_Ext::startControllerOperation(controller, _args);
+}
+ 
+protected static void startControllerOperation(SrsPrintMgmtFormLetterController _controller, Args _args)
+{
+_controller.startOperation();
+}
+{% endhighlight %}</p>
+<p>Optional method, determine which default design for report</p>
+<p>{% highlight csharp %}
+protected void outputReport()
+{
+SRSCatalogItemName  reportDesign;
+reportDesign = ssrsReportStr(MaxCustAccountStatementExt,Report);
+this.parmReportName(reportDesign);
+this.parmReportContract().parmReportName(reportDesign);
+formletterReport.parmReportRun().settingDetail().parmReportFormatName(reportDesign);
+super();
+}
+{% endhighlight %}</p>
+<h3 id="5-create-new-report-handler-class">5. Create new report handler class</h3>
+<p><em><strong>class MaxCustAccountStatementHandler {}</strong></em></p>
+<p>We have two different ways to Populate the data in the Report handler class:</p>
+<ul>
+<li>Add a temp table Inserting event, row-by-row calculations.</li>
+</ul>
+<p>{% highlight csharp %}
+[DataEventHandlerAttribute(tableStr(CustAccountStatementExtTmp), DataEventType::Inserting)]
+public static void CustAccountStatementExtTmpInsertEvent(Common c, DataEventArgs e)
+{
+CustAccountStatementExtTmp    tempTable = c;
+tempTable.MaxTxT = &ldquo;Hello world&rdquo;;
+}
+{% endhighlight %}</p>
+<ul>
+<li>Add a data processing post-handler, inserting operations that use a single pass over the result set of the standard solution.</li>
+</ul>
+<p>{% highlight csharp %}
+[PostHandlerFor(classStr(CustAccountStatementExtDP), methodstr(CustAccountStatementExtDP, processReport))]
+public static void TmpTablePostHandler(XppPrePostArgs arguments)
+{
+CustAccountStatementExtDP dpInstance = arguments.getThis() as CustAccountStatementExtDP;
+CustAccountStatementExtTmp tmpTable = dpInstance.getCustAccountStatementExtTmp();
+ttsbegin;
+while select forUpdate tmpTable
+{
+tmpTable.MaxTxT = &ldquo;Hello world&rdquo;;
+tmpTable.update();
+}
+ttscommit;
+}
+{% endhighlight %}</p>
+<h3 id="6-add-a-delegate-handler-method-to-start-to-use-your-custom-report">6. Add a delegate handler method to start to use your custom report.</h3>
+<p>In this example, extend the <em><strong>getDefaultReportFormatDelegate</strong></em> method in the <em><strong>PrintMgtDocTypeHandlerExt</strong></em> class by using the following code.</p>
+<p>{% highlight csharp %}
+class MaxPrintMgtDocTypeHandlersExt
+{
+[SubscribesTo(classstr(PrintMgmtDocType), delegatestr(PrintMgmtDocType, getDefaultReportFormatDelegate))]
+public static void getDefaultReportFormatDelegate(PrintMgmtDocumentType _docType, EventHandlerResult _result)
+{
+switch (_docType)
+{
+case PrintMgmtDocumentType::CustAccountStatement:
+_result.result(ssrsReportStr(MaxCustAccountStatementExt, Report));
+break;
+}
+}
+}
+{% endhighlight %}</p>
+<h3 id="7-create-extension-for-the-existing-menu-items">7. Create extension for the existing menu items</h3>
+<p>Navigating to the <strong>CustAccountStatementExt</strong> output menu item and create extension.</p>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_5.png#center"><img src="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_5.png#center" alt=""></a>
+</figure>
+<p>Also make sure to set the value of the Object property to <strong>MaxCustAccountStatementExtController_Ext</strong> to redirect user navigation to the extended solution.</p>
+<p>That&rsquo;s all, this is what you should have</p>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_9.png#center"><img src="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_9.png#center" alt=""></a>
+</figure>
+<h3 id="8-update-the-print-management-settings-to-use-the-custom-business-document">8. Update the Print management settings to use the custom business document</h3>
+<p>Go to <em>Account payable &gt; Inquiries and reports &gt; Setup &gt; Forms &gt; Form setup</em>
+Click <strong>Print Management</strong>, find the document configuration settings, and then select the custom design</p>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_6.png#center"><img src="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_6.png#center" alt=""></a>
+</figure>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_7.png#center"><img src="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_7.png#center" alt=""></a>
+</figure>
+<h3 id="9-run-report-and-test-the-result">9. Run report and test the result</h3>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_8.png#center"><img src="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_8.png#center" alt=""></a>
+</figure></div>
+
+            <div class="post" style="padding-top: 0">
+
+
+<div class="post-share"><div class="share-link">
+        <a class="share-icon share-twitter" href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://nuxulu.com/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/" data-title="Extend the standard reports in Dynamics 365 finance and operations" data-hashtags="COC,Extension,SSRS"><span class="svg-social-icon icon-twitter"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-facebook" href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://nuxulu.com/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/" data-hashtag="COC"><span class="svg-social-icon icon-facebook"></span></a>
+    </div></div>
+<div class="post-tags"><a href="/tags/coc/" class="tag">COC</a><a href="/tags/extension/" class="tag">Extension</a><a href="/tags/ssrs/" class="tag">ssrs</a></div></div>
+        </div>
+    <div id="toc-final"></div>
+    </article><div class="page single comments content-block-position"></div></div>
+
+</main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Have a nice day!</div><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.83.1">Hugo</a> | Theme - <a href="https://ublogger.netlify.app/?utm_source=https://nuxulu.com&utm_medium=footer&utm_campaign=config&utm_term=2.0.1" target="_blank" title="uBlogger 2.0.1">uBlogger</a>
+                </div><div class="footer-line"><i class="svg-icon icon-copyright"></i><span>2013 - 2021</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="svg-icon icon-arrow-up"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="svg-icon icon-comments-fixed"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script src="/lib/sharer/sharer.min.js"></script><script src="/lib/katex/katex.min.js"></script><script src="/lib/katex/auto-render.min.js"></script><script src="/lib/katex/copy-tex.min.js"></script><script src="/lib/katex/mhchem.min.js"></script><script src="/lib/cookieconsent/cookieconsent.min.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30}};</script><script src="/js/theme.min.js"></script><script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	        ga('create', 'UA-57379422-3', 'auto');
+	        ga('set', 'anonymizeIp', true);
+	        ga('send', 'pageview');
+	    </script></body>
+</html>

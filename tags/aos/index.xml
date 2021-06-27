@@ -1,90 +1,81 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>aos on Dynamics 365 Finance Operations &amp; Power Platform</title>
-    <link>https://nuxulu.com/tags/aos/</link>
-    <description>Recent content in aos on Dynamics 365 Finance Operations &amp; Power Platform</description>
-    <image>
-      <url>https://nuxulu.com/47</url>
-      <link>https://nuxulu.com/47</link>
-    </image>
-    <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 17 Nov 2016 09:11:11 +0900</lastBuildDate><atom:link href="https://nuxulu.com/tags/aos/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Copy data between Microsoft Dynamics AX companies using DIXF In AX 2012 R3</title>
-      <link>https://nuxulu.com/posts/2016-11-23-copy-data-between-microsoft-dynamics-ax-companies-using-dixf-in-ax-2012-r3/</link>
-      <pubDate>Thu, 17 Nov 2016 09:11:11 +0900</pubDate>
-      
-      <guid>https://nuxulu.com/posts/2016-11-23-copy-data-between-microsoft-dynamics-ax-companies-using-dixf-in-ax-2012-r3/</guid>
-      <description>{%- include extensions/youtube.html id=&amp;lsquo;tL1ZMGNbYIo&amp;rsquo; -%}</description>
-    </item>
-    
-    <item>
-      <title>Step by Step How to build SSRS Report - Advanced RDP Class</title>
-      <link>https://nuxulu.com/posts/2016-11-23-step-by-step-how-to-build-ssrs-report-advanced-rdp-class/</link>
-      <pubDate>Thu, 17 Nov 2016 09:11:11 +0900</pubDate>
-      
-      <guid>https://nuxulu.com/posts/2016-11-23-step-by-step-how-to-build-ssrs-report-advanced-rdp-class/</guid>
-      <description>{%- include extensions/youtube.html id=&amp;lsquo;6B5cqeeNvH4&amp;rsquo; -%}</description>
-    </item>
-    
-    <item>
-      <title>Types of services in Microsoft Dynamics AX 2012</title>
-      <link>https://nuxulu.com/posts/2016-11-10-types-services-microsoft-dynamics-ax-2012/</link>
-      <pubDate>Thu, 10 Nov 2016 18:47:00 +0900</pubDate>
-      
-      <guid>https://nuxulu.com/posts/2016-11-10-types-services-microsoft-dynamics-ax-2012/</guid>
-      <description>&lt;h1 id=&#34;document-services&#34;&gt;Document services&lt;/h1&gt;
-&lt;p&gt;Document services use documents to represent business objects such as purchase and sales orders, customers, vendors, and so on.&lt;/p&gt;
-&lt;p&gt;A document service is composed of the following components:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Document query&lt;/strong&gt; : This is a query that is created in the &lt;strong&gt;Application Object Tree (AOT)&lt;/strong&gt; and contains all the tables that are related to the business object that you want to expose. Based on this query, the Document Service Generation Wizard can be used to generate the other artifacts that make up the document service.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Table AxBC classes&lt;/strong&gt; : An &lt;code&gt;AxBC&lt;/code&gt; class is a wrapper for a table and contains business logic that is needed for &lt;strong&gt;Create, Read, Update, Delete (CRUD)&lt;/strong&gt; operations.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Document class&lt;/strong&gt; : The purpose of the document class is to contain business logic that is associated with the creation and modification of the business entity itself. For example, the &lt;code&gt;AxdCustomer&lt;/code&gt; class could contain logic to handle party information of a customer.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Document service class&lt;/strong&gt; : This is the actual service implementation class and extends the &lt;code&gt;AifDocumentService&lt;/code&gt; class. This class implements the service operations that are published through the service contract.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;When creating document services, developers need to make sure &lt;strong&gt;that the business object is mapped correctly to the document query&lt;/strong&gt;. The document services framework will handle all other things such as the serialization and deserialization of XML, date effectiveness, and so on.&lt;/p&gt;
-&lt;p&gt;Document services can be deployed using the integration ports and all available adapters can be used.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>How to install two instances SSRS on one server</title>
-      <link>https://nuxulu.com/posts/2015-12-16-how-to-install-2-instances-ssrs-on-1-server/</link>
-      <pubDate>Wed, 16 Dec 2015 09:01:11 +0700</pubDate>
-      
-      <guid>https://nuxulu.com/posts/2015-12-16-how-to-install-2-instances-ssrs-on-1-server/</guid>
-      <description>&lt;h2 id=&#34;scenario&#34;&gt;Scenario:&lt;/h2&gt;
-&lt;p&gt;I have 2 AOS AX (maybe same in one server or different servers), but only one server for reporting server (I will install and configure multiple SRS instances in this server). Thing is how can we install and configure 2 SSRS instances on same server and running for 2 AOS.&lt;/p&gt;
-&lt;p&gt;easierly, please take a look the picture below&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://nuxulu.com/imagesposts/two_instances_SSRS_on_one_server_architechture.jpg&#34; alt=&#34;two_instances_SSRS_on_one_server_architechture&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;&lt;strong&gt;Figure 1&lt;/strong&gt;: Two SSRS instance are running same server.&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;problems&#34;&gt;Problems:&lt;/h2&gt;
-&lt;p&gt;First you need to install 2 SSRS instance in same server, and install &lt;code&gt;reporting service component&lt;/code&gt; for first AOS, this step is very simple. The problems come when we install second &lt;code&gt;reporting service component&lt;/code&gt; for second AOS.&lt;/p&gt;
-&lt;p&gt;Reporting service component uses &lt;strong&gt;business connector&lt;/strong&gt; to connect to AX, and it&amp;rsquo;s saved on configuration in Registry. When we install second &lt;code&gt;reporting service component&lt;/code&gt; it will through message that component already installed.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Caching form into AOS to increase performance for Dynamics AX</title>
-      <link>https://nuxulu.com/posts/2015-11-17-caching-form-into-aos-to-increase-performance-for-dynamics-ax/</link>
-      <pubDate>Tue, 17 Nov 2015 03:13:45 +0700</pubDate>
-      
-      <guid>https://nuxulu.com/posts/2015-11-17-caching-form-into-aos-to-increase-performance-for-dynamics-ax/</guid>
-      <description>Scenario:
-Normally when we open form for the first time in Dynamics AX, it will take sometimes to compilte and cache into AOS. That&amp;rsquo;s why at second time always faster. If we often restart AOS, how can we keep performance ?
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>aos - Tag - Dynamics 365 &amp; Power Platform | NUXULU</title>
+        <link>https://nuxulu.com/tags/aos/</link>
+        <description>aos - Tag - Dynamics 365 &amp; Power Platform | NUXULU</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com</managingEditor>
+            <webMaster>luan52@outlook.com</webMaster><lastBuildDate>Thu, 17 Nov 2016 09:11:11 &#43;0900</lastBuildDate><atom:link href="https://nuxulu.com/tags/aos/" rel="self" type="application/rss+xml" /><item>
+    <title>Copy data between Microsoft Dynamics AX companies using DIXF In AX 2012 R3</title>
+    <link>https://nuxulu.com/2016-11-23-copy-data-between-microsoft-dynamics-ax-companies-using-dixf-in-ax-2012-r3/</link>
+    <pubDate>Thu, 17 Nov 2016 09:11:11 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>https://nuxulu.com/2016-11-23-copy-data-between-microsoft-dynamics-ax-companies-using-dixf-in-ax-2012-r3/</guid>
+    <description><![CDATA[{%- include extensions/youtube.html id=&lsquo;tL1ZMGNbYIo&rsquo; -%}]]></description>
+</item><item>
+    <title>Step by Step How to build SSRS Report - Advanced RDP Class</title>
+    <link>https://nuxulu.com/2016-11-23-step-by-step-how-to-build-ssrs-report-advanced-rdp-class/</link>
+    <pubDate>Thu, 17 Nov 2016 09:11:11 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>https://nuxulu.com/2016-11-23-step-by-step-how-to-build-ssrs-report-advanced-rdp-class/</guid>
+    <description><![CDATA[{%- include extensions/youtube.html id=&lsquo;6B5cqeeNvH4&rsquo; -%}]]></description>
+</item><item>
+    <title>Types of services in Microsoft Dynamics AX 2012</title>
+    <link>https://nuxulu.com/2016-11-10-types-services-microsoft-dynamics-ax-2012/</link>
+    <pubDate>Thu, 10 Nov 2016 18:47:00 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>https://nuxulu.com/2016-11-10-types-services-microsoft-dynamics-ax-2012/</guid>
+    <description><![CDATA[<h1 id="document-services">Document services</h1>
+<p>Document services use documents to represent business objects such as purchase and sales orders, customers, vendors, and so on.</p>
+<p>A document service is composed of the following components:</p>
+<ul>
+<li><strong>Document query</strong> : This is a query that is created in the <strong>Application Object Tree (AOT)</strong> and contains all the tables that are related to the business object that you want to expose. Based on this query, the Document Service Generation Wizard can be used to generate the other artifacts that make up the document service.</li>
+<li><strong>Table AxBC classes</strong> : An <code>AxBC</code> class is a wrapper for a table and contains business logic that is needed for <strong>Create, Read, Update, Delete (CRUD)</strong> operations.</li>
+<li><strong>Document class</strong> : The purpose of the document class is to contain business logic that is associated with the creation and modification of the business entity itself. For example, the <code>AxdCustomer</code> class could contain logic to handle party information of a customer.</li>
+<li><strong>Document service class</strong> : This is the actual service implementation class and extends the <code>AifDocumentService</code> class. This class implements the service operations that are published through the service contract.</li>
+</ul>
+<p>When creating document services, developers need to make sure <strong>that the business object is mapped correctly to the document query</strong>. The document services framework will handle all other things such as the serialization and deserialization of XML, date effectiveness, and so on.</p>
+<p>Document services can be deployed using the integration ports and all available adapters can be used.</p>]]></description>
+</item><item>
+    <title>How to install two instances SSRS on one server</title>
+    <link>https://nuxulu.com/2015-12-16-how-to-install-2-instances-ssrs-on-1-server/</link>
+    <pubDate>Wed, 16 Dec 2015 09:01:11 &#43;0700</pubDate>
+    <author>Author</author>
+    <guid>https://nuxulu.com/2015-12-16-how-to-install-2-instances-ssrs-on-1-server/</guid>
+    <description><![CDATA[<h2 id="scenario">Scenario:</h2>
+<p>I have 2 AOS AX (maybe same in one server or different servers), but only one server for reporting server (I will install and configure multiple SRS instances in this server). Thing is how can we install and configure 2 SSRS instances on same server and running for 2 AOS.</p>
+<p>easierly, please take a look the picture below</p>
+<p>
+
+
+
+
+</p>
+<p><em><strong>Figure 1</strong>: Two SSRS instance are running same server.</em></p>
+<h2 id="problems">Problems:</h2>
+<p>First you need to install 2 SSRS instance in same server, and install <code>reporting service component</code> for first AOS, this step is very simple. The problems come when we install second <code>reporting service component</code> for second AOS.</p>
+<p>Reporting service component uses <strong>business connector</strong> to connect to AX, and it&rsquo;s saved on configuration in Registry. When we install second <code>reporting service component</code> it will through message that component already installed.</p>]]></description>
+</item><item>
+    <title>Caching form into AOS to increase performance for Dynamics AX</title>
+    <link>https://nuxulu.com/2015-11-17-caching-form-into-aos-to-increase-performance-for-dynamics-ax/</link>
+    <pubDate>Tue, 17 Nov 2015 03:13:45 &#43;0700</pubDate>
+    <author>Author</author>
+    <guid>https://nuxulu.com/2015-11-17-caching-form-into-aos-to-increase-performance-for-dynamics-ax/</guid>
+    <description><![CDATA[Scenario:
+Normally when we open form for the first time in Dynamics AX, it will take sometimes to compilte and cache into AOS. That&rsquo;s why at second time always faster. If we often restart AOS, how can we keep performance ?
 Solution:
 After restart AOS we can let some scripts run to open up some often used forms then cache to AOS, then close those forms.
-Here is the code</description>
-    </item>
-    
-    <item>
-      <title>AxBuild.exe for Parallel Compile on AOS</title>
-      <link>https://nuxulu.com/posts/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/</link>
-      <pubDate>Wed, 01 Jul 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://nuxulu.com/posts/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/</guid>
-      <description>AxBuild.exe for Parallel Compile on AOS</description>
-    </item>
-    
-  </channel>
+Here is the code]]></description>
+</item><item>
+    <title>AxBuild.exe for Parallel Compile on AOS</title>
+    <link>https://nuxulu.com/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/</link>
+    <pubDate>Wed, 01 Jul 2015 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://nuxulu.com/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/</guid>
+    <description><![CDATA[If you have only 10 mins to build ax, try this
+In AOS server, go to C:\Program Files\Microsoft Dynamics AX\60\Server\DAX\bin and open cmd from here then run this command
+{% highlight yaml %} axbuild.exe xppcompileall /s=01 /altbin=&ldquo;C:\Program Files (x86)\Microsoft Dynamics AX\60\Client\Bin&rdquo; {% endhighlight %}
+ Result
+ Once compile complete, you can import compile log file at C:\Program Files\Microsoft Dynamics AX\60\Server\DAX\log into compiler output of AX client
+ Reference from MSDN .]]></description>
+</item></channel>
 </rss>

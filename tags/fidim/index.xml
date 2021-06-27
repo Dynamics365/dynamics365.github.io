@@ -1,69 +1,61 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>fidim on Dynamics 365 Finance Operations &amp; Power Platform</title>
-    <link>https://nuxulu.com/tags/fidim/</link>
-    <description>Recent content in fidim on Dynamics 365 Finance Operations &amp; Power Platform</description>
-    <image>
-      <url>https://nuxulu.com/47</url>
-      <link>https://nuxulu.com/47</link>
-    </image>
-    <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 05 Jul 2016 18:47:00 +0900</lastBuildDate><atom:link href="https://nuxulu.com/tags/fidim/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Create record in DimensionAttributeValueCombination table manually.</title>
-      <link>https://nuxulu.com/posts/2016-07-05-create-record-in-dimensionattributevaluecombination-manually/</link>
-      <pubDate>Tue, 05 Jul 2016 18:47:00 +0900</pubDate>
-      
-      <guid>https://nuxulu.com/posts/2016-07-05-create-record-in-dimensionattributevaluecombination-manually/</guid>
-      <description>&lt;p&gt;Sometime we need this &lt;code&gt;RecId&lt;/code&gt; value in &lt;code&gt;DimansionAttributeValueCombination&lt;/code&gt; Table for some reasons likes putting new dimension in &lt;code&gt;LedgerDimension&lt;/code&gt; field in &lt;code&gt;LedgerJournalTrans&lt;/code&gt; Table, or somewhere else.&lt;/p&gt;
-&lt;p&gt;Suppose my Account structure likes: &lt;em&gt;&lt;strong&gt;MainAcct - Dept - Woker - SubAcct - Item&lt;/strong&gt;&lt;/em&gt;,
-you can custom base on your struture.&lt;/p&gt;
-&lt;p&gt;This code is for creating a record into &lt;code&gt;DimansionAttributeValueCombination&lt;/code&gt; in code and then get &lt;code&gt;RecID&lt;/code&gt; of this.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-c++&#34; data-lang=&#34;c++&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;createDimensionAttributeValueCombination&lt;/span&gt;(Args _args)
-{
-    DimensionAttributeValueContract     ValueContract;
-    DimensionAttributeValueCombination  davc;
-    MainAccount                         valueMainAccount;
-    DimensionStorage                    dimStorage;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>fidim - Tag - Dynamics 365 &amp; Power Platform | NUXULU</title>
+        <link>https://nuxulu.com/tags/fidim/</link>
+        <description>fidim - Tag - Dynamics 365 &amp; Power Platform | NUXULU</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com</managingEditor>
+            <webMaster>luan52@outlook.com</webMaster><lastBuildDate>Tue, 05 Jul 2016 18:47:00 &#43;0900</lastBuildDate><atom:link href="https://nuxulu.com/tags/fidim/" rel="self" type="application/rss+xml" /><item>
+    <title>Create record in DimensionAttributeValueCombination table manually.</title>
+    <link>https://nuxulu.com/2016-07-05-create-record-in-dimensionattributevaluecombination-manually/</link>
+    <pubDate>Tue, 05 Jul 2016 18:47:00 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>https://nuxulu.com/2016-07-05-create-record-in-dimensionattributevaluecombination-manually/</guid>
+    <description><![CDATA[<p>Sometime we need this <code>RecId</code> value in <code>DimansionAttributeValueCombination</code> Table for some reasons likes putting new dimension in <code>LedgerDimension</code> field in <code>LedgerJournalTrans</code> Table, or somewhere else.</p>
+<p>Suppose my Account structure likes: <em><strong>MainAcct - Dept - Woker - SubAcct - Item</strong></em>,
+you can custom base on your struture.</p>
+<p>This code is for creating a record into <code>DimansionAttributeValueCombination</code> in code and then get <code>RecID</code> of this.</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="k">static</span> <span class="kt">void</span> <span class="nf">createDimensionAttributeValueCombination</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">DimensionAttributeValueContract</span>     <span class="n">ValueContract</span><span class="p">;</span>
+    <span class="n">DimensionAttributeValueCombination</span>  <span class="n">davc</span><span class="p">;</span>
+    <span class="n">MainAccount</span>                         <span class="n">valueMainAccount</span><span class="p">;</span>
+    <span class="n">DimensionStorage</span>                    <span class="n">dimStorage</span><span class="p">;</span>
 
-    DimensionServiceProvider DimensionServiceProvider   &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; DimensionServiceProvider();
-    LedgerAccountContract LedgerAccountContract         &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; LedgerAccountContract();
-    List ListValueContract                              &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; List(Types&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;Class);
+    <span class="n">DimensionServiceProvider</span> <span class="n">DimensionServiceProvider</span>   <span class="o">=</span> <span class="k">new</span> <span class="n">DimensionServiceProvider</span><span class="p">();</span>
+    <span class="n">LedgerAccountContract</span> <span class="n">LedgerAccountContract</span>         <span class="o">=</span> <span class="k">new</span> <span class="n">LedgerAccountContract</span><span class="p">();</span>
+    <span class="n">List</span> <span class="n">ListValueContract</span>                              <span class="o">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="o">::</span><span class="n">Class</span><span class="p">);</span>
     
-    &lt;span style=&#34;color:#75715e&#34;&gt;// Get main account with structure : Mainacct - DE - woker - subacct - item
-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    valueMainAccount &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; MainAccount&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;findByMainAccountId(&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;910001&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;#39;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;//Get main account
-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
-    ValueContract &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; DimensionAttributeValueContract();
-    ValueContract.parmName(&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;#39;&lt;/span&gt;Department&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;#39;&lt;/span&gt;) ;
-    ValueContract.parmValue(&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;6020&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;#39;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;//Value for dimension Department
-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    ListValueContract.addEnd(ValueContract);
+    <span class="c1">// Get main account with structure : Mainacct - DE - woker - subacct - item
+</span><span class="c1"></span>    <span class="n">valueMainAccount</span> <span class="o">=</span> <span class="n">MainAccount</span><span class="o">::</span><span class="n">findByMainAccountId</span><span class="p">(</span><span class="err">&#39;</span><span class="mi">910001</span><span class="err">&#39;</span><span class="p">);</span> <span class="c1">//Get main account
+</span><span class="c1"></span>
+    <span class="n">ValueContract</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DimensionAttributeValueContract</span><span class="p">();</span>
+    <span class="n">ValueContract</span><span class="p">.</span><span class="n">parmName</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Department</span><span class="err">&#39;</span><span class="p">)</span> <span class="p">;</span>
+    <span class="n">ValueContract</span><span class="p">.</span><span class="n">parmValue</span><span class="p">(</span><span class="err">&#39;</span><span class="mi">6020</span><span class="err">&#39;</span><span class="p">);</span> <span class="c1">//Value for dimension Department
+</span><span class="c1"></span>    <span class="n">ListValueContract</span><span class="p">.</span><span class="n">addEnd</span><span class="p">(</span><span class="n">ValueContract</span><span class="p">);</span>
 
-    ValueContract &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; DimensionAttributeValueContract();
-    ValueContract.parmName(&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;#39;&lt;/span&gt;Worker&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;#39;&lt;/span&gt;) ;
-    ValueContract.parmValue(&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;000001&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;#39;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;//Value for dimension ExpenseCode
-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    ListValueContract.addEnd(ValueContract);
+    <span class="n">ValueContract</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DimensionAttributeValueContract</span><span class="p">();</span>
+    <span class="n">ValueContract</span><span class="p">.</span><span class="n">parmName</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Worker</span><span class="err">&#39;</span><span class="p">)</span> <span class="p">;</span>
+    <span class="n">ValueContract</span><span class="p">.</span><span class="n">parmValue</span><span class="p">(</span><span class="err">&#39;</span><span class="mo">000001</span><span class="err">&#39;</span><span class="p">);</span> <span class="c1">//Value for dimension ExpenseCode
+</span><span class="c1"></span>    <span class="n">ListValueContract</span><span class="p">.</span><span class="n">addEnd</span><span class="p">(</span><span class="n">ValueContract</span><span class="p">);</span>
 
-    ValueContract &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; DimensionAttributeValueContract();
-    ValueContract.parmName(&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;#39;&lt;/span&gt;SubAcct&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;#39;&lt;/span&gt;) ;
-    ValueContract.parmValue(&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;#39;교보생명&amp;#39;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;//Value for dimension Project
-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    ListValueContract.addEnd(ValueContract);
+    <span class="n">ValueContract</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DimensionAttributeValueContract</span><span class="p">();</span>
+    <span class="n">ValueContract</span><span class="p">.</span><span class="n">parmName</span><span class="p">(</span><span class="err">&#39;</span><span class="n">SubAcct</span><span class="err">&#39;</span><span class="p">)</span> <span class="p">;</span>
+    <span class="n">ValueContract</span><span class="p">.</span><span class="n">parmValue</span><span class="p">(</span><span class="err">&#39;교보생명&#39;</span><span class="p">);</span> <span class="c1">//Value for dimension Project
+</span><span class="c1"></span>    <span class="n">ListValueContract</span><span class="p">.</span><span class="n">addEnd</span><span class="p">(</span><span class="n">ValueContract</span><span class="p">);</span>
 
-    ValueContract &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; DimensionAttributeValueContract();
-    ValueContract.parmName(&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;#39;&lt;/span&gt;Item&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;#39;&lt;/span&gt;) ;
-    ValueContract.parmValue(&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;110329&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;#39;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;//Value for dimension Project
-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    ListValueContract.addEnd(ValueContract);
+    <span class="n">ValueContract</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DimensionAttributeValueContract</span><span class="p">();</span>
+    <span class="n">ValueContract</span><span class="p">.</span><span class="n">parmName</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Item</span><span class="err">&#39;</span><span class="p">)</span> <span class="p">;</span>
+    <span class="n">ValueContract</span><span class="p">.</span><span class="n">parmValue</span><span class="p">(</span><span class="err">&#39;</span><span class="mi">110329</span><span class="err">&#39;</span><span class="p">);</span> <span class="c1">//Value for dimension Project
+</span><span class="c1"></span>    <span class="n">ListValueContract</span><span class="p">.</span><span class="n">addEnd</span><span class="p">(</span><span class="n">ValueContract</span><span class="p">);</span>
 
-    LedgerAccountContract.parmMainAccount(valueMainAccount.MainAccountId);
-    LedgerAccountContract.parmValues(ListValueContract);
+    <span class="n">LedgerAccountContract</span><span class="p">.</span><span class="n">parmMainAccount</span><span class="p">(</span><span class="n">valueMainAccount</span><span class="p">.</span><span class="n">MainAccountId</span><span class="p">);</span>
+    <span class="n">LedgerAccountContract</span><span class="p">.</span><span class="n">parmValues</span><span class="p">(</span><span class="n">ListValueContract</span><span class="p">);</span>
 
-    &lt;span style=&#34;color:#75715e&#34;&gt;//if combination is not exist then create new one
-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    dimStorage &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; DimensionServiceProvider&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;buildDimensionStorageForLedgerAccount(LedgerAccountContract);
-    davc &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; DimensionAttributeValueCombination&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;find(dimStorage.save());
-    info(strFmt(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;RecId : %1 - DisplayValue : %2&amp;#34;&lt;/span&gt;, davc.RecId, davc.DisplayValue));
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
-    </item>
-    
-  </channel>
+    <span class="c1">//if combination is not exist then create new one
+</span><span class="c1"></span>    <span class="n">dimStorage</span> <span class="o">=</span> <span class="n">DimensionServiceProvider</span><span class="o">::</span><span class="n">buildDimensionStorageForLedgerAccount</span><span class="p">(</span><span class="n">LedgerAccountContract</span><span class="p">);</span>
+    <span class="n">davc</span> <span class="o">=</span> <span class="n">DimensionAttributeValueCombination</span><span class="o">::</span><span class="n">find</span><span class="p">(</span><span class="n">dimStorage</span><span class="p">.</span><span class="n">save</span><span class="p">());</span>
+    <span class="n">info</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;RecId : %1 - DisplayValue : %2&#34;</span><span class="p">,</span> <span class="n">davc</span><span class="p">.</span><span class="n">RecId</span><span class="p">,</span> <span class="n">davc</span><span class="p">.</span><span class="n">DisplayValue</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div>]]></description>
+</item></channel>
 </rss>

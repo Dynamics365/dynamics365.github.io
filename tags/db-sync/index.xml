@@ -1,26 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>DB sync on Dynamics 365 Finance Operations &amp; Power Platform</title>
-    <link>https://nuxulu.com/tags/db-sync/</link>
-    <description>Recent content in DB sync on Dynamics 365 Finance Operations &amp; Power Platform</description>
-    <image>
-      <url>https://nuxulu.com/47</url>
-      <link>https://nuxulu.com/47</link>
-    </image>
-    <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 10 May 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/db-sync/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Database Sync after data type on field has been changed</title>
-      <link>https://nuxulu.com/posts/2020-05-10-database-sync-after-data-type-on-field-has-been-changed/</link>
-      <pubDate>Sun, 10 May 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://nuxulu.com/posts/2020-05-10-database-sync-after-data-type-on-field-has-been-changed/</guid>
-      <description>You will got an error like this when doing Database Synchronization after changing the data type of the field on the table:
-InvalidOperationException: Table &amp;hellip; : Converting Field &amp;lsquo;..&amp;rsquo; of Type &amp;lsquo;..&amp;rsquo; to &amp;lsquo;..&amp;rsquo; is not support. Please drop the original field, sync the table and add new field with same name if needed. {:.error}
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>DB sync - Tag - Dynamics 365 &amp; Power Platform | NUXULU</title>
+        <link>https://nuxulu.com/tags/db-sync/</link>
+        <description>DB sync - Tag - Dynamics 365 &amp; Power Platform | NUXULU</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com</managingEditor>
+            <webMaster>luan52@outlook.com</webMaster><lastBuildDate>Sun, 10 May 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/db-sync/" rel="self" type="application/rss+xml" /><item>
+    <title>Database Sync after data type on field has been changed</title>
+    <link>https://nuxulu.com/2020-05-10-database-sync-after-data-type-on-field-has-been-changed/</link>
+    <pubDate>Sun, 10 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://nuxulu.com/2020-05-10-database-sync-after-data-type-on-field-has-been-changed/</guid>
+    <description><![CDATA[You will got an error like this when doing Database Synchronization after changing the data type of the field on the table:
+InvalidOperationException: Table &hellip; : Converting Field &lsquo;..&rsquo; of Type &lsquo;..&rsquo; to &lsquo;..&rsquo; is not support. Please drop the original field, sync the table and add new field with same name if needed. {:.error}
 Solution:
- Drop the table and delete references from SQLDictionary  DROP TABLE AXDB.dbo.NAMEOFTABLE DELETE FROM AXDB.</description>
-    </item>
-    
-  </channel>
+ Drop the table and delete references from SQLDictionary  DROPTABLEAXDB.dbo.NAMEOFTABLEDELETEFROMAXDB.dbo.SQLDICTIONARYWHERETABLEIDIN(SELECTTABLEIDFROMSQLDICTIONARYWHERENAME=&#39;NAMEOFTABLE&#39;ANDFIELDID=0) Restart IIS In VS 2015, run DB sync again.]]></description>
+</item></channel>
 </rss>

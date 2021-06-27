@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noodp"/><title>How to upgrade to Visual Studio 2017, .NET 4.7.2 for PU36/10.0.12 and higher | </title><meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content=""/>
+<meta name="twitter:title" content="How to upgrade to Visual Studio 2017, .NET 4.7.2 for PU36/10.0.12 and higher"/>
+<meta name="twitter:description" content=""/><meta name="Description" content="Dynamics 365 Finance &amp; Operations and Power Platform"><meta property="og:title" content="How to upgrade to Visual Studio 2017, .NET 4.7.2 for PU36/10.0.12 and higher" />
+<meta property="og:description" content="For the upcoming Dynamics 365 Finance Updates, Visual Studio 2017 and .NET runtime 4.7.2 required for PU36/10.0.12 or higher; New VMs deployed with PU36/10.0.12 or higher will have Visual Studio 2017 as well as .NET runtime 4.7.2 already installed.
+For your dev/test/build Tier1 VMs, Microsoft recommends just redeploying a new VM, and you will be all set!
+If you cannot deploy new VMs, please follow below steps to update .NET runtime, VS 2017 before installing PU36/10." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nuxulu.com/2020-06-30-how-to-upgrade-to-visual-studio-2017-.net-4.7.2/" /><meta property="og:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-06-30T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2020-06-30T00:00:00&#43;00:00" />
+
+<meta name="application-name" content="UBlogger">
+<meta name="apple-mobile-web-app-title" content="UBlogger"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/Icon/favicon.ico" type="image/x-icon"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://nuxulu.com/2020-06-30-how-to-upgrade-to-visual-studio-2017-.net-4.7.2/" /><script data-ad-client="pub-3534873375492458" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="f08c47fec0942fa0" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "How to upgrade to Visual Studio 2017, .NET 4.7.2 for PU36/10.0.12 and higher",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/nuxulu.com\/2020-06-30-how-to-upgrade-to-visual-studio-2017-.net-4.7.2\/"
+        },"genre": "posts","keywords": "Visual Studio 2017, .NET 4.7.2, PU36, app 10.0.12","wordCount":  301 ,
+        "url": "https:\/\/nuxulu.com\/2020-06-30-how-to-upgrade-to-visual-studio-2017-.net-4.7.2\/","datePublished": "2020-06-30T00:00:00+00:00","dateModified": "2020-06-30T00:00:00+00:00","description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Dynamics 365 &amp; Power Platform | NUXULU" class="header-logo logo-svg"><img loading="lazy" decoding="async"
+         src="/Icon/favicon-32x32.png"
+         alt="/Icon/favicon-32x32.png"
+         title="/Icon/favicon-32x32.png"
+    />Finance Operations &amp; Power Platform Archive</a>
+        </div>
+        <div class="menu">
+            <nav>
+                <ul class="menu-inner"><li>
+                        <a class="menu-item" href="/posts/"> Posts </a>
+                    </li><li>
+                        <a class="menu-item" href="/tags/"> Tags </a>
+                    </li><li>
+                        <a class="menu-item" href="/categories/"> Categories </a>
+                    </li><li>
+                        <a class="menu-item" href="/about/"> About </a>
+                    </li></ul>
+            </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Dynamics 365 &amp; Power Platform | NUXULU" class="header-logo"><img loading="lazy" decoding="async"
+         src="/Icon/favicon-32x32.png"
+         alt="/Icon/favicon-32x32.png"
+         title="/Icon/favicon-32x32.png"
+    />Finance Operations &amp; Power Platform Archive</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><nav>
+                <ul><li>
+                        <a class="menu-item" href="/posts/" title="">Posts</a>
+                    </li><li>
+                        <a class="menu-item" href="/tags/" title="">Tags</a>
+                    </li><li>
+                        <a class="menu-item" href="/categories/" title="">Categories</a>
+                    </li><li>
+                        <a class="menu-item" href="/about/" title="">About</a>
+                    </li></ul>
+            </nav>
+            <a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <span class="svg-icon icon-moon"></span>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+<div class="container content-article page-toc theme-classic"><div class="toc" id="toc-auto">
+            <div class="toc-title">Contents</div>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div>
+
+    <div class="header-post">
+
+        
+
+        
+        <div class="post-title">
+
+                <div class="post-all-meta">
+                    <nav class="breadcrumbs">
+    <ol>
+        <li><a href="/">Home </a></li><li>How to upgrade to Visual Studio 2017, .NET 4.7.2 for PU36/10.0.12 and higher</li>
+    </ol>
+</nav>
+                    <h1 class="single-title flipInX">How to upgrade to Visual Studio 2017, .NET 4.7.2 for PU36/10.0.12 and higher</h1><div class="post-meta">
+                        <div class="post-meta-line"><span class="post-meta-date">
+                                <i class="svg-icon icon-clock"></i><time class="timeago" datetime="2020-06-30">June 30, 2020</time>
+                            </span><span class="post-meta-words">
+                                <i class="svg-icon icon-pencil"></i>301 words
+                            </span>
+                            <span class="post-meta-reading">
+                                <i class="svg-icon icon-stopwatch"></i>2 minutes
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            </div>
+
+    <article class="single toc-start">
+
+        <div class="content-block content-block-first content-block-position">
+
+        <div class="post"><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-download-vs-professional-2017-159-herehttpsdownloadvisualstudiomicrosoftcomdownloadprac05c4f5-0da1-429f-8701-ce509ac699267b51a7b8db36f977745cf3e19ef1e9c62ebf29f704aebafce443626b779cb4f8vs_professionalexe-and-install-it">1. Download VS Professional 2017 15.9 <a href="https://download.visualstudio.microsoft.com/download/pr/ac05c4f5-0da1-429f-8701-ce509ac69926/7b51a7b8db36f977745cf3e19ef1e9c62ebf29f704aebafce443626b779cb4f8/vs_Professional.exe">here</a> and install it</a></li>
+        <li><a href="#2-the-net-runtime-download-is-available-herehttpsdotnetmicrosoftcomdownloaddotnet-frameworknet472-by-clicking-on-the-_download-net-framework-472-runtime_-and-running-the-installation-restart-required">2. The .NET runtime download is available <a href="https://dotnet.microsoft.com/download/dotnet-framework/net472">here</a> by clicking on the <em>Download .NET Framework 4.7.2 Runtime</em> and running the installation, restart required.</a></li>
+        <li><a href="#3-go-to-dynamics-lifecycle-services-and-download-pu3610012-or-any-higher-package-which-is-a-part-of-the-platform-and-application-binary-the-vsix-file-is-located-in-the-_devtoolsservicescripts_-folder">3. Go to Dynamics Lifecycle Services and download PU36/10.0.12 or any higher package which is a part of the Platform and application binary, the VSIX file is located in the <em>DevToolsService\Scripts</em> folder.</a></li>
+        <li><a href="#4-if-you-try-to-access-the-client-before-applying-the-package-you-will-get-the-error-like-below-in-event-viewer-and-unable-to-access-the-environment-so-you-need-to-apply-an-update-first">4. If you try to access the client before applying the package you will get the error like below in event viewer and unable to access the environment, so you need to apply an update first.</a></li>
+        <li><a href="#5-in-lcs-navigate-to-your-cloud-hosted-environment-and-apply-platform-and-application-binary-package-pu3610012-or-higher-after-completed-upgrading-you-will-be-able-to-access-the-environment-client">5. In LCS, navigate to your cloud-hosted environment, and apply Platform and application binary package PU36/10.0.12 or higher. After completed upgrading, you will be able to access the environment client.</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><p>For the upcoming Dynamics 365 Finance Updates, Visual Studio 2017 and .NET runtime 4.7.2 required for PU36/10.0.12 or higher; New VMs deployed with PU36/10.0.12 or higher will have Visual Studio 2017 as well as .NET runtime 4.7.2 already installed.</p>
+<p>For your dev/test/build Tier1 VMs, Microsoft recommends just redeploying a new VM, and you will be all set!</p>
+<p>If you cannot deploy new VMs, please follow below steps to update .NET runtime, VS 2017 before installing PU36/10.0.12 or higher, this will be applied for <strong>cloud-hosted environment</strong></p>
+<h3 id="1-download-vs-professional-2017-159-herehttpsdownloadvisualstudiomicrosoftcomdownloadprac05c4f5-0da1-429f-8701-ce509ac699267b51a7b8db36f977745cf3e19ef1e9c62ebf29f704aebafce443626b779cb4f8vs_professionalexe-and-install-it">1. Download VS Professional 2017 15.9 <a href="https://download.visualstudio.microsoft.com/download/pr/ac05c4f5-0da1-429f-8701-ce509ac69926/7b51a7b8db36f977745cf3e19ef1e9c62ebf29f704aebafce443626b779cb4f8/vs_Professional.exe" target="_blank" rel="noopener noreffer">here</a> and install it</h3>
+<h3 id="2-the-net-runtime-download-is-available-herehttpsdotnetmicrosoftcomdownloaddotnet-frameworknet472-by-clicking-on-the-_download-net-framework-472-runtime_-and-running-the-installation-restart-required">2. The .NET runtime download is available <a href="https://dotnet.microsoft.com/download/dotnet-framework/net472" target="_blank" rel="noopener noreffer">here</a> by clicking on the <em>Download .NET Framework 4.7.2 Runtime</em> and running the installation, restart required.</h3>
+<h3 id="3-go-to-dynamics-lifecycle-services-and-download-pu3610012-or-any-higher-package-which-is-a-part-of-the-platform-and-application-binary-the-vsix-file-is-located-in-the-_devtoolsservicescripts_-folder">3. Go to Dynamics Lifecycle Services and download PU36/10.0.12 or any higher package which is a part of the Platform and application binary, the VSIX file is located in the <em>DevToolsService\Scripts</em> folder.</h3>
+<p>
+
+
+
+
+<img loading="lazy" decoding="async"
+         src="/imagesposts/How-to-upgrade-to-Visual-Studio-2017-1.png#center"
+         alt="Image"
+         title="How-to-upgrade-to-Visual-Studio-2017-1.png#center"
+    />{:.border}</p>
+<p>You need to <code>install Microsoft.Dynamics.Framework.Tools.Installer</code> and then <code>Microsoft.Dynamics.Framework.Tools.InternalDevTools</code>.
+After the installation, open the VS2017 if you should see <strong>Dynamics 365</strong> menu extension like below</p>
+<p>
+
+
+
+
+<img loading="lazy" decoding="async"
+         src="/imagesposts/How-to-upgrade-to-Visual-Studio-2017-2.png#center"
+         alt="Image"
+         title="How-to-upgrade-to-Visual-Studio-2017-2.png#center"
+    />{:.border}</p>
+<h3 id="4-if-you-try-to-access-the-client-before-applying-the-package-you-will-get-the-error-like-below-in-event-viewer-and-unable-to-access-the-environment-so-you-need-to-apply-an-update-first">4. If you try to access the client before applying the package you will get the error like below in event viewer and unable to access the environment, so you need to apply an update first.</h3>
+<p>AX is shutting down due to an error. Serialization version mismatch detect, make sure the runtime dlls are in sync with the deployed metadata. Version of file &lsquo;194&rsquo;. Version of dll &lsquo;193&rsquo;.
+{:.error}</p>
+<h3 id="5-in-lcs-navigate-to-your-cloud-hosted-environment-and-apply-platform-and-application-binary-package-pu3610012-or-higher-after-completed-upgrading-you-will-be-able-to-access-the-environment-client">5. In LCS, navigate to your cloud-hosted environment, and apply Platform and application binary package PU36/10.0.12 or higher. After completed upgrading, you will be able to access the environment client.</h3>
+<p>Overall, there is no change in the compiler, metadata; this is only an update to the Visual Studio extensions and NET runtime for the tier1 VMs.</p>
+</div>
+
+            <div class="post" style="padding-top: 0">
+
+
+<div class="post-share"><div class="share-link">
+        <a class="share-icon share-twitter" href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://nuxulu.com/2020-06-30-how-to-upgrade-to-visual-studio-2017-.net-4.7.2/" data-title="How to upgrade to Visual Studio 2017, .NET 4.7.2 for PU36/10.0.12 and higher" data-hashtags="Visual Studio 2017,.NET 4.7.2,PU36,app 10.0.12"><span class="svg-social-icon icon-twitter"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-facebook" href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://nuxulu.com/2020-06-30-how-to-upgrade-to-visual-studio-2017-.net-4.7.2/" data-hashtag="Visual Studio 2017"><span class="svg-social-icon icon-facebook"></span></a>
+    </div></div>
+<div class="post-tags"><a href="/tags/visual-studio-2017/" class="tag">Visual Studio 2017</a><a href="/tags/.net-4.7.2/" class="tag">.NET 4.7.2</a><a href="/tags/pu36/" class="tag">PU36</a><a href="/tags/app-10.0.12/" class="tag">app 10.0.12</a></div></div>
+        </div>
+    <div id="toc-final"></div>
+    </article><div class="page single comments content-block-position"></div></div>
+
+</main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Have a nice day!</div><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.83.1">Hugo</a> | Theme - <a href="https://ublogger.netlify.app/?utm_source=https://nuxulu.com&utm_medium=footer&utm_campaign=config&utm_term=2.0.1" target="_blank" title="uBlogger 2.0.1">uBlogger</a>
+                </div><div class="footer-line"><i class="svg-icon icon-copyright"></i><span>2013 - 2021</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="svg-icon icon-arrow-up"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="svg-icon icon-comments-fixed"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script src="/lib/sharer/sharer.min.js"></script><script src="/lib/katex/katex.min.js"></script><script src="/lib/katex/auto-render.min.js"></script><script src="/lib/katex/copy-tex.min.js"></script><script src="/lib/katex/mhchem.min.js"></script><script src="/lib/cookieconsent/cookieconsent.min.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30}};</script><script src="/js/theme.min.js"></script><script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	        ga('create', 'UA-57379422-3', 'auto');
+	        ga('set', 'anonymizeIp', true);
+	        ga('send', 'pageview');
+	    </script></body>
+</html>
