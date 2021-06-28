@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noodp"/><title>Dynamics 365 FinOps Data Integration using Microsoft Forms (Part 1) | </title><meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content=""/>
+<meta name="twitter:title" content="Dynamics 365 FinOps Data Integration using Microsoft Forms (Part 1)"/>
+<meta name="twitter:description" content=""/><meta name="Description" content="Dynamics 365 Finance &amp; Operations and Power Platform"><meta property="og:title" content="Dynamics 365 FinOps Data Integration using Microsoft Forms (Part 1)" />
+<meta property="og:description" content="With any D365FO users, Data Management workspace and Data Entities should have become one of the most used and well-known tools in the system. We all agree how powerful such integration framework is, especially when it comes to a large number of records that we would need to import into different tables.
+The classic method that we have been utilizing is to include all source data in a single (or multiple, much depending on the purpose and order of data integration) Excel sheet, trigger an import execution, pass any validation layers that present and ultimately have the data available on D365FO." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nuxulu.com/posts/dynamics-365-finops-data-integration-using-microsoft-forms-part-1/" /><meta property="og:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-05-24T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2020-05-24T00:00:00&#43;00:00" />
+
+<meta name="application-name" content="UBlogger">
+<meta name="apple-mobile-web-app-title" content="UBlogger"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/Icon/favicon.ico" type="image/x-icon"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://nuxulu.com/posts/dynamics-365-finops-data-integration-using-microsoft-forms-part-1/" /><script data-ad-client="pub-3534873375492458" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><meta name="google-site-verification" content="f08c47fec0942fa0" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Dynamics 365 FinOps Data Integration using Microsoft Forms (Part 1)",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/nuxulu.com\/posts\/dynamics-365-finops-data-integration-using-microsoft-forms-part-1\/"
+        },"genre": "posts","keywords": "Microsoft Forms, Power Automate, PowerApps, Data Entities, integration framework","wordCount":  1234 ,
+        "url": "https:\/\/nuxulu.com\/posts\/dynamics-365-finops-data-integration-using-microsoft-forms-part-1\/","datePublished": "2020-05-24T00:00:00+00:00","dateModified": "2020-05-24T00:00:00+00:00","description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Dynamics 365 &amp; Power Platform | NUXULU" class="header-logo logo-svg"><img loading="lazy" decoding="async"
+         src="/Icon/favicon-32x32.png"
+         alt="/Icon/favicon-32x32.png"
+         title="/Icon/favicon-32x32.png"
+    />Finance Operations &amp; Power Platform Archive</a>
+        </div>
+        <div class="menu">
+            <nav>
+                <ul class="menu-inner"><li>
+                        <a class="menu-item" href="/posts/"> Posts </a>
+                    </li><li>
+                        <a class="menu-item" href="/tags/"> Tags </a>
+                    </li><li>
+                        <a class="menu-item" href="/categories/"> Categories </a>
+                    </li><li>
+                        <a class="menu-item" href="/about/"> About </a>
+                    </li></ul>
+            </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Dynamics 365 &amp; Power Platform | NUXULU" class="header-logo"><img loading="lazy" decoding="async"
+         src="/Icon/favicon-32x32.png"
+         alt="/Icon/favicon-32x32.png"
+         title="/Icon/favicon-32x32.png"
+    />Finance Operations &amp; Power Platform Archive</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><nav>
+                <ul><li>
+                        <a class="menu-item" href="/posts/" title="">Posts</a>
+                    </li><li>
+                        <a class="menu-item" href="/tags/" title="">Tags</a>
+                    </li><li>
+                        <a class="menu-item" href="/categories/" title="">Categories</a>
+                    </li><li>
+                        <a class="menu-item" href="/about/" title="">About</a>
+                    </li></ul>
+            </nav>
+            <a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <span class="svg-icon icon-moon"></span>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+<div class="container content-article page-toc theme-classic"><div class="toc" id="toc-auto">
+            <div class="toc-title">Contents</div>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div>
+
+    <div class="header-post">
+
+        
+
+        
+        <div class="post-title">
+
+                <div class="post-all-meta">
+                    <nav class="breadcrumbs">
+    <ol>
+        <li><a href="/">Home </a></li><li>Dynamics 365 FinOps Data Integration using Microsoft Forms (Part 1)</li>
+    </ol>
+</nav>
+                    <h1 class="single-title flipInX">Dynamics 365 FinOps Data Integration using Microsoft Forms (Part 1)</h1><div class="post-meta">
+                        <div class="post-meta-line"><span class="post-meta-date">
+                                <i class="svg-icon icon-clock"></i><time class="timeago" datetime="2020-05-24">May 24, 2020</time>
+                            </span><span class="post-meta-words">
+                                <i class="svg-icon icon-pencil"></i>1234 words
+                            </span>
+                            <span class="post-meta-reading">
+                                <i class="svg-icon icon-stopwatch"></i>6 minutes
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            </div>
+
+    <article class="single toc-start">
+
+        <div class="content-block content-block-first content-block-position">
+
+        <div class="post"><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#step-1-create-a-ms-form"><strong>Step 1: Create a MS Form</strong></a></li>
+    <li><a href="#step-2-create-a-ms-flow"><strong>Step 2: Create a MS Flow</strong></a></li>
+    <li><a href="#step-3-testing-out"><strong>Step 3: Testing out</strong></a></li>
+  </ul>
+</nav></div>
+            </div><p><em>With any D365FO users, Data Management workspace and Data Entities should have become one of the most used and well-known tools in the system. We all agree how powerful such integration framework is, especially when it comes to a large number of records that we would need to import into different tables.</em></p>
+<p><em>The classic method that we have been utilizing is to include all source data in a single (or multiple, much depending on the purpose and order of data integration) Excel sheet, trigger an import execution, pass any validation layers that present and ultimately have the data available on D365FO. Now, I would like to propose another method that might come useful in some circumstances: Using Microsoft Forms.</em></p>
+<p>
+
+
+
+
+<figure><a target="_blank" href="/imagesposts/Introduction.png#center" title="The trio" >
+        <img loading="lazy" decoding="async"
+            data-sizes="auto"
+             src="/imagesposts/Introduction.png#center"
+            alt="Introduction"
+        />
+    </a><figcaption class="image-caption">The trio</figcaption>
+</figure>{:.border}</p>
+<h1 id="when">When</h1>
+<p>This method should be at its finest when you are planning to outsource the input to any external users.</p>
+<p>Imagine you are a company who is using D365FO to leverage your daily work. You now want to add many local vendors to your system in form of new Vendor Accounts. It is fine to collect all information from them (i.e. Vendor Company’s name, their address, their contact details and so on), put everything in an Excel sheet and import it. Yet, chance is that it would take (a lot of) time for you to finish this task. You would then be very likely to try coming up with some methods to cut down time for it.</p>
+<p>That demand should raise two questions:</p>
+<ul>
+<li>How can we let the vendors enter their information by themselves?</li>
+<li>And, how can we then have all such information in our system?</li>
+</ul>
+<h1 id="what">What</h1>
+<p>What should be needed?</p>
+<ul>
+<li><strong><a href="https://forms.office.com/" target="_blank" rel="noopener noreffer">Microsoft Forms</a>:</strong> To establish a process in which you will publish a prepared form. Any vendors out there will have the access to it and they can fill any fields on in.</li>
+<li><strong><a href="https://flow.microsoft.com/" target="_blank" rel="noopener noreffer">Microsoft Power Automate aka. Microsoft Flow</a>:</strong> To set up a protocol to push the input information (form responses) to the target (D365FO Data Entities).</li>
+<li><em><strong>(Optional)</strong></em> <strong>Access to Visual Studio on your virtual machine:</strong> To help you determine the target Data Entities more easily and efficiently.</li>
+</ul>
+<h1 id="how">How</h1>
+<p>The flow should go like this.</p>
+<p>
+
+
+
+
+<figure><a target="_blank" href="/imagesposts/Biggest-Flow.png#center" title="The Biggest FLow" >
+        <img loading="lazy" decoding="async"
+            data-sizes="auto"
+             src="/imagesposts/Biggest-Flow.png#center"
+            alt="Biggest FLow"
+        />
+    </a><figcaption class="image-caption">The Biggest FLow</figcaption>
+</figure>{:.border}</p>
+<p>To make it short, when a response is submitted in Microsoft Form, the Flow in MS Power Automate is triggered automatically. An approval request will be sent to your Outlook mailbox and if it is approved, a new record will be created in the target data entity.</p>
+<p>Let go through three examples in the next articles in the series (from the simplest to a more complicated) so we will see the logic behind this process.</p>
+<p>As easy as it sounds, in this example, we will create a new Vendor Account from Microsoft Forms with only a small number of fields being populate.</p>
+<p><em><strong>Note</strong></em></p>
+<blockquote>
+<p><em>To help simplify the example, the number of fields is minimised. In other words, we will import just enough fields so the new Vendor Account is valid.</em></p>
+</blockquote>
+<blockquote>
+<p><em>Given that, only <code>Vendor Account</code> and <code>Vendor Group</code> are chosen to be imported.</em></p>
+</blockquote>
+<h2 id="step-1-create-a-ms-form"><strong>Step 1: Create a MS Form</strong></h2>
+<p>To do so, we will access <a href="https://forms.office.com/" target="_blank" rel="noopener noreffer">Microsoft Forms</a> and create a new form. To make the new form usable, we will create two questions asking for inputs of Vendor Account and Vendor Group.</p>
+<p>
+
+
+
+
+<figure><a target="_blank" href="/imagesposts/E1-1-NewForm.png#center" title="Example 1 Form" >
+        <img loading="lazy" decoding="async"
+            data-sizes="auto"
+             src="/imagesposts/E1-1-NewForm.png#center"
+            alt="Example 1 Form"
+        />
+    </a><figcaption class="image-caption">Example 1 Form</figcaption>
+</figure>{:.border}</p>
+<p>Note all information on the form is customisable.</p>
+<p><em><strong>Note 1-1</strong></em></p>
+<blockquote>
+<p><em>We can make the questions&hellip;any questions that suit the purpose of the form. Say, in reality, the question can be <code>&quot;What is your company's name?&quot;</code> if you want to send this form to any external vendor users. The question does not change the usability of the returned response&rsquo;s value. It can still be mapped to VendAccount not matter what the question is.</em></p>
+</blockquote>
+<p><em><strong>Note 1-2</strong></em></p>
+<blockquote>
+<p><em>The second question is being set in form of a Choice question. The given choices should match with available Vendor Group values found on your D365FO client. If this question is a Text one, chance is that its response might not match with any available Vendor Group values, thus, will return an error during Flow runtime.</em></p>
+</blockquote>
+<blockquote>
+<p><em>Vendor Groups can be found under <code>Account Payable &gt; Vendors &gt; Vendor Groups</code>. In this example, <code>TopVendor</code> and <code>Others</code> are two available Vendor Groups in my D365FO client.</em></p>
+</blockquote>
+<p>
+
+
+
+
+<figure><a target="_blank" href="/imagesposts/E1-2-VendorGroups.png#center" title="Vendor Groups" >
+        <img loading="lazy" decoding="async"
+            data-sizes="auto"
+             src="/imagesposts/E1-2-VendorGroups.png#center"
+            alt="Vendor Groups"
+        />
+    </a><figcaption class="image-caption">Vendor Groups</figcaption>
+</figure>{:.border}</p>
+<h2 id="step-2-create-a-ms-flow"><strong>Step 2: Create a MS Flow</strong></h2>
+<p>To do so, we will access <a href="https://flow.microsoft.com/" target="_blank" rel="noopener noreffer">Microsoft Power Automate</a> and create a new flow. We will go with an <code>Automated</code> one in this case.</p>
+<p>
+
+
+
+
+<figure><a target="_blank" href="/imagesposts/E1-3-Flow-1.png#center" title="Automated flow" >
+        <img loading="lazy" decoding="async"
+            data-sizes="auto"
+             src="/imagesposts/E1-3-Flow-1.png#center"
+            alt="Flow step 1"
+        />
+    </a><figcaption class="image-caption">Automated flow</figcaption>
+</figure>{:.border}</p>
+<p>Search for <code>form</code> and choose the trigger <code>When a new response is submitted</code>. Hit <code>Create</code> to create a new flow.</p>
+<p>
+
+
+
+
+<figure><a target="_blank" href="/imagesposts/E1-4-Flow-2.png#center" title="Form trigger" >
+        <img loading="lazy" decoding="async"
+            data-sizes="auto"
+             src="/imagesposts/E1-4-Flow-2.png#center"
+            alt="Flow step 2"
+        />
+    </a><figcaption class="image-caption">Form trigger</figcaption>
+</figure>{:.border}</p>
+<p>Choose the <code>form</code> that we just created using the dropdown list.</p>
+<p>
+
+
+
+
+<figure><a target="_blank" href="/imagesposts/E1-5-Flow-3.png#center" title="Choose form" >
+        <img loading="lazy" decoding="async"
+            data-sizes="auto"
+             src="/imagesposts/E1-5-Flow-3.png#center"
+            alt="Flow step 3"
+        />
+    </a><figcaption class="image-caption">Choose form</figcaption>
+</figure>{:.border}</p>
+<p>Press <code>New step</code>, search for <code>form</code> and go with <code>Get response details</code>.</p>
+<p>
+
+
+
+
+<figure><a target="_blank" href="/imagesposts/E1-6-Flow-4.png#center" title="New step: Get response details" >
+        <img loading="lazy" decoding="async"
+            data-sizes="auto"
+             src="/imagesposts/E1-6-Flow-4.png#center"
+            alt="FLow step 4"
+        />
+    </a><figcaption class="image-caption">New step: Get response details</figcaption>
+</figure>{:.border}</p>
+<p>In the new step, choose the <code>Form ID</code>. As soon as we move the cursor to the <code>Response ID</code> field, the <code>FLow</code> will suggest the <code>Dynamics content</code> that we can use. In this case, there should be only one dynamic content, which is <code>List of response notifications Response ID</code>. We will go with it by choosing it.</p>
+<p>
+
+
+
+
+<figure><a target="_blank" href="/imagesposts/E1-7-Flow-5.png#center" title="Get response details" >
+        <img loading="lazy" decoding="async"
+            data-sizes="auto"
+             src="/imagesposts/E1-7-Flow-5.png#center"
+            alt="FLow step 5"
+        />
+    </a><figcaption class="image-caption">Get response details</figcaption>
+</figure>{:.border}</p>
+<p>After doing so, the flow should look like this.</p>
+<p>
+
+
+
+
+<figure><a target="_blank" href="/imagesposts/E1-8-Flow-6.png#center" title="Form done" >
+        <img loading="lazy" decoding="async"
+            data-sizes="auto"
+             src="/imagesposts/E1-8-Flow-6.png#center"
+            alt="FLow step 6"
+        />
+    </a><figcaption class="image-caption">Form done</figcaption>
+</figure>{:.border}</p>
+<p>Now, the reponse details will be sent from the <code>Form</code> to the <code>Flow</code> when a new response is submitted. Next, we will set up the step to create a new Vendor Account.</p>
+<p>Create a new step, search for <code>dynamics</code> and go with <code>Dynamics 365 for Finance and Operations</code>.</p>
+<p>
+
+
+
+
+<figure><a target="_blank" href="/imagesposts/E1-9-Flow-7.png#center" title="Dynamics 365 FinOps" >
+        <img loading="lazy" decoding="async"
+            data-sizes="auto"
+             src="/imagesposts/E1-9-Flow-7.png#center"
+            alt="FLow step 7"
+        />
+    </a><figcaption class="image-caption">Dynamics 365 FinOps</figcaption>
+</figure>{:.border}</p>
+<p>Choose <code>Create record</code> action.</p>
+<p>
+
+
+
+
+<figure><a target="_blank" href="/imagesposts/E1-10-Flow-8.png#center" title="Create record action" >
+        <img loading="lazy" decoding="async"
+            data-sizes="auto"
+             src="/imagesposts/E1-10-Flow-8.png#center"
+            alt="FLow step 8"
+        />
+    </a><figcaption class="image-caption">Create record action</figcaption>
+</figure>{:.border}</p>
+<p>Choose the Dynamics 365 FinOps <code>Instance</code> from the dropdown list. If your client does not appear here, choose <code>Enter custom value</code>. For privacy, environments' name will be censored in our example.</p>
+<p>
+
+
+
+
+<figure><a target="_blank" href="/imagesposts/E1-11-Flow-9.png#center" title="Set D365FO instance" >
+        <img loading="lazy" decoding="async"
+            data-sizes="auto"
+             src="/imagesposts/E1-11-Flow-9.png#center"
+            alt="FLow step 9"
+        />
+    </a><figcaption class="image-caption">Set D365FO instance</figcaption>
+</figure>{:.border}</p>
+<p>The <code>Instance</code> should be the <code>link</code> to your D365FO client. Set <code>Entity name</code> VendorsV2.</p>
+<p>
+
+
+
+
+<figure><a target="_blank" href="/imagesposts/E1-12-Flow-10.png#center" title="Set Instance and Entity" >
+        <img loading="lazy" decoding="async"
+            data-sizes="auto"
+             src="/imagesposts/E1-12-Flow-10.png#center"
+            alt="FLow step 10"
+        />
+    </a><figcaption class="image-caption">Set Instance and Entity</figcaption>
+</figure>{:.border}</p>
+<p><em><strong>Note 1-3</strong></em></p>
+<blockquote>
+<p><em>Later in this series, we will see how to find the exact <code>Entity name</code> using <code>Visual Studio</code>. Also, we will see in which condition, the Entity can be used in <code>Power Automate</code>.</em></p>
+</blockquote>
+<p>Populate the fields that we want to import. In this example, we will populate only 3 fields: <code>Group (VendorGroupID)</code>, <code>Company (DataAreaId)</code> and <code>Supplier Account (VendorAccountNumber)</code>.</p>
+<p><code>Dynamic content</code> will be suggested automatically when the cursor is placed in each field.</p>
+<p>
+
+
+
+
+<figure><a target="_blank" href="/imagesposts/E1-13-Flow-11.png#center" title="Map Form fields with Automate fields" >
+        <img loading="lazy" decoding="async"
+            data-sizes="auto"
+             src="/imagesposts/E1-13-Flow-11.png#center"
+            alt="FLow step 11"
+        />
+    </a><figcaption class="image-caption">Map Form fields with Automate fields</figcaption>
+</figure>{:.border}</p>
+<p>We can map <code>Form fields</code> with <code>Automate fields</code> or <code>hardcode</code> in these fields:</p>
+<ul>
+<li><code>Group</code> = Response of <code>What is the Vendor Group?</code> question.</li>
+<li><code>Company</code> = <em>(hardcode)</em> <code>usmf</code>.</li>
+<li><code>Supplier Account</code> = Response of <code>What is the Vendor Account?</code> question.</li>
+<li><code>Name</code> = <code>Supplier Account</code> =  Response of <code>What is the Vendor Account?</code> question (<code>Show advanced option</code> on the Flow to find the field <code>Name (VendorOrganisationName)</code>).
+These fields should be required when creating a new Vendor Account on D365FO client.</li>
+</ul>
+<p>
+
+
+
+
+<figure><a target="_blank" href="/imagesposts/E1-14-Flow-12.png#center" title="Map Form fields with Automate fields" >
+        <img loading="lazy" decoding="async"
+            data-sizes="auto"
+             src="/imagesposts/E1-14-Flow-12.png#center"
+            alt="FLow step 12"
+        />
+    </a><figcaption class="image-caption">Map Form fields with Automate fields</figcaption>
+</figure>{:.border}</p>
+<p>We are done here with the set up.</p>
+<h2 id="step-3-testing-out"><strong>Step 3: Testing out</strong></h2>
+<p>On <code>Forms</code>, choose the form that we just created, click on <code>Preview</code> so we can submit a form response.</p>
+<p>
+
+
+
+
+<figure><a target="_blank" href="/imagesposts/E1-15-Flow-13.png#center" title="Map Form fields with Automate fields" >
+        <img loading="lazy" decoding="async"
+            data-sizes="auto"
+             src="/imagesposts/E1-15-Flow-13.png#center"
+            alt="FLow step 13"
+        />
+    </a><figcaption class="image-caption">Map Form fields with Automate fields</figcaption>
+</figure>{:.border}</p>
+<p>Check out <code>All Vendors (VendTableListPage)</code> on the client to find a new Vendor Account is created.</p>
+<p>
+
+
+
+
+<figure><a target="_blank" href="/imagesposts/E1-16-Flow-14.png#center" title="Map Form fields with Automate fields" >
+        <img loading="lazy" decoding="async"
+            data-sizes="auto"
+             src="/imagesposts/E1-16-Flow-14.png#center"
+            alt="FLow step 14"
+        />
+    </a><figcaption class="image-caption">Map Form fields with Automate fields</figcaption>
+</figure>{:.border}</p>
+<p><em><strong>Note 1-4</strong></em></p>
+<blockquote>
+<p><em>Use <code>Test</code> option in Power Automate to follow the process of the Flow. This, in other words, is so-called <code>&quot;Run Flow with Debug&quot;</code> option.</em></p>
+</blockquote>
+</div>
+
+            <div class="post" style="padding-top: 0">
+
+
+<div class="post-share"><div class="share-link">
+        <a class="share-icon share-twitter" href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://nuxulu.com/posts/dynamics-365-finops-data-integration-using-microsoft-forms-part-1/" data-title="Dynamics 365 FinOps Data Integration using Microsoft Forms (Part 1)" data-hashtags="Microsoft Forms,Power Automate,PowerApps,Data Entities,integration framework"><span class="svg-social-icon icon-twitter"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-facebook" href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://nuxulu.com/posts/dynamics-365-finops-data-integration-using-microsoft-forms-part-1/" data-hashtag="Microsoft Forms"><span class="svg-social-icon icon-facebook"></span></a>
+    </div></div>
+<div class="post-tags"><a href="/tags/microsoft-forms/" class="tag">Microsoft Forms</a><a href="/tags/power-automate/" class="tag">Power Automate</a><a href="/tags/powerapps/" class="tag">PowerApps</a><a href="/tags/data-entities/" class="tag">Data Entities</a><a href="/tags/integration-framework/" class="tag">integration framework</a></div></div>
+        </div>
+    <div id="toc-final"></div>
+    </article><div class="page single comments content-block-position"></div></div>
+
+</main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Have a nice day!</div><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.83.1">Hugo</a> | Theme - <a href="https://ublogger.netlify.app/?utm_source=https://nuxulu.com&utm_medium=footer&utm_campaign=config&utm_term=2.0.1" target="_blank" title="uBlogger 2.0.1">uBlogger</a>
+                </div><div class="footer-line"><i class="svg-icon icon-copyright"></i><span>2013 - 2021</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="svg-icon icon-arrow-up"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="svg-icon icon-comments-fixed"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script src="/js/theme.min.js"></script><script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	        ga('create', 'UA-57379422-3', 'auto');
+	        ga('set', 'anonymizeIp', true);
+	        ga('send', 'pageview');
+	    </script></body>
+</html>

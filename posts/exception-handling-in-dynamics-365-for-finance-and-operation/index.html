@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noodp"/><title>Exception Handling in Dynamics 365 For Finance and Operation | </title><meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content=""/>
+<meta name="twitter:title" content="Exception Handling in Dynamics 365 For Finance and Operation"/>
+<meta name="twitter:description" content=""/><meta name="Description" content="Dynamics 365 Finance &amp; Operations and Power Platform"><meta property="og:title" content="Exception Handling in Dynamics 365 For Finance and Operation" />
+<meta property="og:description" content="When we write a code, or make a customization to Dynamics 365 For Operation which is using X&#43;&#43; should make use of Exception Handling to provide some context for the message or a different more useful message. In this article, I will be exploring how I can come up with a uniform way to catch multiple types of exception that can be raised in X&#43;&#43;.
+1. Exception type
+There are many several types of exception and the type differs depending on what caused the error. Much of exception types are determined by the kernel and are not normally thrown by application code. All exception types, however, can be caught, and it is the developers’ responsibility to decide which exceptions need to be handled.
+The exception type is identified using the system-based enumeration called an exception. Because it is a system Enum, it cannot be modified, so users cannot add new exception types.
+The following table shows the exception literals that are the values of the Exception enumeration.
+
+  
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nuxulu.com/posts/exception-handling-in-dynamics-365-for-finance-and-operation/" /><meta property="og:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2017-08-07T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2017-08-07T00:00:00&#43;00:00" />
+
+<meta name="application-name" content="UBlogger">
+<meta name="apple-mobile-web-app-title" content="UBlogger"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/Icon/favicon.ico" type="image/x-icon"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://nuxulu.com/posts/exception-handling-in-dynamics-365-for-finance-and-operation/" /><script data-ad-client="pub-3534873375492458" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><meta name="google-site-verification" content="f08c47fec0942fa0" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Exception Handling in Dynamics 365 For Finance and Operation",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/nuxulu.com\/posts\/exception-handling-in-dynamics-365-for-finance-and-operation\/"
+        },"genre": "posts","keywords": "Exception Handling, Dynamics 365 for finance and operations, X\u002b\u002b","wordCount":  1228 ,
+        "url": "https:\/\/nuxulu.com\/posts\/exception-handling-in-dynamics-365-for-finance-and-operation\/","datePublished": "2017-08-07T00:00:00+00:00","dateModified": "2017-08-07T00:00:00+00:00","description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Dynamics 365 &amp; Power Platform | NUXULU" class="header-logo logo-svg"><img loading="lazy" decoding="async"
+         src="/Icon/favicon-32x32.png"
+         alt="/Icon/favicon-32x32.png"
+         title="/Icon/favicon-32x32.png"
+    />Finance Operations &amp; Power Platform Archive</a>
+        </div>
+        <div class="menu">
+            <nav>
+                <ul class="menu-inner"><li>
+                        <a class="menu-item" href="/posts/"> Posts </a>
+                    </li><li>
+                        <a class="menu-item" href="/tags/"> Tags </a>
+                    </li><li>
+                        <a class="menu-item" href="/categories/"> Categories </a>
+                    </li><li>
+                        <a class="menu-item" href="/about/"> About </a>
+                    </li></ul>
+            </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Dynamics 365 &amp; Power Platform | NUXULU" class="header-logo"><img loading="lazy" decoding="async"
+         src="/Icon/favicon-32x32.png"
+         alt="/Icon/favicon-32x32.png"
+         title="/Icon/favicon-32x32.png"
+    />Finance Operations &amp; Power Platform Archive</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><nav>
+                <ul><li>
+                        <a class="menu-item" href="/posts/" title="">Posts</a>
+                    </li><li>
+                        <a class="menu-item" href="/tags/" title="">Tags</a>
+                    </li><li>
+                        <a class="menu-item" href="/categories/" title="">Categories</a>
+                    </li><li>
+                        <a class="menu-item" href="/about/" title="">About</a>
+                    </li></ul>
+            </nav>
+            <a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <span class="svg-icon icon-moon"></span>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+<div class="container content-article page-toc theme-classic"><div class="toc" id="toc-auto">
+            <div class="toc-title">Contents</div>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div>
+
+    <div class="header-post">
+
+        
+
+        
+        <div class="post-title">
+
+                <div class="post-all-meta">
+                    <nav class="breadcrumbs">
+    <ol>
+        <li><a href="/">Home </a></li><li>Exception Handling in Dynamics 365 For Finance and Operation</li>
+    </ol>
+</nav>
+                    <h1 class="single-title flipInX">Exception Handling in Dynamics 365 For Finance and Operation</h1><div class="post-meta">
+                        <div class="post-meta-line"><span class="post-meta-date">
+                                <i class="svg-icon icon-clock"></i><time class="timeago" datetime="2017-08-07">August 7, 2017</time>
+                            </span><span class="post-meta-words">
+                                <i class="svg-icon icon-pencil"></i>1228 words
+                            </span>
+                            <span class="post-meta-reading">
+                                <i class="svg-icon icon-stopwatch"></i>6 minutes
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            </div>
+
+    <article class="single toc-start">
+
+        <div class="content-block content-block-first content-block-position">
+
+        <div class="post"><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-exception-type">1. Exception type</a></li>
+        <li><a href="#2-key-commands">2. Key commands</a></li>
+        <li><a href="#3-code-statement">3. Code Statement</a></li>
+        <li><a href="#4-optimistic-concurrency-exceptions">4. Optimistic Concurrency Exceptions</a></li>
+        <li><a href="#5-conclusion">5. Conclusion</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><p>When we write a code, or make a customization to Dynamics 365 For Operation which is using X++ should make use of Exception Handling to provide some context for the message or a different more useful message. In this article, I will be exploring how I can come up with a uniform way to catch multiple types of exception that can be raised in X++.</p>
+<h3 id="1-exception-type">1. Exception type</h3>
+<p>There are many several types of exception and the type differs depending on what caused the error. Much of exception types are determined by the kernel and are not normally thrown by application code. All <strong>exception types</strong>, however, can be caught, and it is the developers’ responsibility to decide which exceptions need to be handled.</p>
+<p>The exception type is identified using the system-based enumeration called an exception. Because it is a system Enum, it cannot be modified, so users cannot add new exception types.</p>
+<p>The following table shows the exception literals that are the values of the Exception enumeration.</p>
+<figure class='center '>
+  <a href="/imagesposts/2017-08-07_10h00_37.png#center"><img src="/imagesposts/2017-08-07_10h00_37.png#center" alt=""></a>
+</figure>
+<h3 id="2-key-commands">2. Key commands</h3>
+<p>The <strong>Try</strong> command signifies the start of a block of code that you want to control with the X++ exception handling system. Any exceptions that are thrown in that block of code can be caught and handled accordingly. The block of code inside the Try statement must be contained between brackets ( { } ).</p>
+<p><strong>Catch</strong> statements come after the block of code and define what code is executed when each exception is thrown.</p>
+<p>You do not have to define a catch statement for every possible exception; however, each try statement must have at least one catch statement.</p>
+<p>A <strong>Retry</strong> command tells the system to go back to the Try statement and attempt to execute the code again. Any data that was loaded before the Try command will remain as it was, but any data retrieved or modified after the Try statement will be refreshed.</p>
+<p>When a deadlock exception is thrown, all locks on tables that this process holds are released, which may allow the other process or processes that are also deadlocked to continue.</p>
+<p>By calling a retry, the process can attempt to update the record again and may now be able to complete. It is a best practice that a retry uses a counter so that the number of retries can be controlled, and a user does not become stuck in a loop.</p>
+<p>The <strong>final</strong> keyword is now available to follow the try and catch keywords. The semantics are identical to the semantics in C#. The statements provided in the final clause is executed irrespective of whether the try block threw any exceptions.</p>
+<h3 id="3-code-statement">3. Code Statement</h3>
+<p>We will use these lines of code example here for testing Exception handling</p>
+<p>{% highlight csharp %}
+class CustCreateCustomer
+{
+public static void main(Args _args)
+{
+CustCreateCustomer custCreateCustomer = new CustCreateCustomer();
+custCreateCustomer.run();
+}</p>
+<pre><code>public void run()
+{
+    Dialog          dlg = new Dialog(&quot;Create new customer&quot;);
+    DialogField     dlgCust;
+    DialogField     dlgGrp;
+    CustTable custTable;
+
+    dlgCust = dlg.addField(extendedTypeStr(CustVendAc), &quot;Customer account&quot;);
+    dlgGrp  = dlg.addField(extendedTypeStr(CustGroupId));
+    
+    if (dlg.run())
+    {
+        try
+        {
+            custTable.AccountNum    = dlgCust.value();
+            custTable.CustGroup     = dlgGrp.value();
+            if (!custTable.validateWrite())
+            {
+                throw error(&quot;Please enter all required fields.&quot;);
+            }
+            else
+            {
+                custTable.insert();
+            }
+        }
+        catch (Exception::Error)
+        {
+            error(&quot;An error occurred. Please try again&quot;);
+        }
+
+    }
+}
+</code></pre>
+<p>}
+{% endhighlight %}</p>
+<p>This code will try to create a customer after revived inputted value from users, this code also handling errors when user do not input enough information. A <code>Throw</code> statement is used to throw an error that can be caught by a Catch statement. When the system throws an exception <code>ttsabort</code> is called automatically, and so does not have to be called in a Catch statement.</p>
+<h3 id="4-optimistic-concurrency-exceptions">4. Optimistic Concurrency Exceptions</h3>
+<p>The <strong>optimistic concurrency check</strong> (OCC) is a performance enhancing function within Microsoft Dynamics 365 For Operation. It presumes that any record retrieved from the database is not updated until it is proven to be updated by the database. This means that fewer locks must be placed on records in the database. This allows for faster access for other users.</p>
+<p>This also means that one user can update a record after another user has retrieved it from the database. This can cause data inconsistency. If the second user then also tries to update the record, an <code>UpdateConflict</code> exception is thrown. The system does this by comparing the <code>recVersion</code> field on the record buffer at runtime and the actual record in the database. The <code>recVersion</code> field value is changed every time that an update is successfully made to a record.</p>
+<p>There are two main table update exceptions, <code>UpdateConflict</code> and <code>DeadLock</code>. An update conﬂict occurs due to the optimistic concurrency failing, whereas a deadlock is the classic database scenario where both transactions have each locked a table that the other needs.</p>
+<p><strong>Update conﬂicts</strong> are normally handled within the insert, delete, and update methods of a table. The <strong>BOM table</strong> is a good example of this. You may also hard to find many examples where this has been used. We use this pattern only if we deem it to be required. The code within the table&rsquo;s update method also updates other records, so it has been written to handle update conﬂicts.</p>
+<p>The following code is an example of how to handle the UpdateConflict exception that might be thrown.</p>
+<p>{% highlight csharp %}
+public void update()
+{
+#OCCRetryCount
+try
+{
+ttsbegin;
+// code that updates records in other tables
+super(); // do the update
+// other code that updates records in other tables
+ttscommit;
+}
+//Deadlock
+catch (Exception::Deadlock)
+{
+retry;
+}
+//UpdateConflict
+catch (Exception::UpdateConflict)
+{
+if (appl.ttsLevel() == 0)
+{
+if (xSession::currentRetryCount() &gt;= #RetryNum)
+{
+throw Exception::UpdateConflictNotRecovered;
+}
+else
+{
+retry;
+}
+}
+else
+{
+throw Exception::UpdateConflict;
+}
+}
+}
+{% endhighlight %}</p>
+<p>If a conflict due to OCC occurs, the system throws the <code>UpdateConflict</code> exception and it is caught by the catch statement.</p>
+<p>The other new element here is <code>ttsLevel</code>. Since transactions can be nested, we do want the exception to falling through to the parent transaction if one exists. If <code>ttsabort</code> is issued (directly or due to a throwing error) at any level, the whole transaction will be rolled back; we can&rsquo;t roll back just the level where the error is thrown.</p>
+<p>The code checks the current TTS level. If it is not Zero, in other words, it is still in a TTS transaction, it throws another <code>UpdateConflict</code> exception to the next Catch list of the next outer Try statement in scope. This continues until it is no longer inside a TTS transaction. We must make sure that when the code is retired, all data is refreshed.</p>
+<p>It is important that we don&rsquo;t retry indefinitely, as this may cause the client to hang. To control this, we use <code>xSession::currentRetryCount()</code> to get the number of retries and check this against the <code>#RetryNum</code> macro. The macro defines the standard number of retries deemed appropriate by Microsoft, which is five.
+then the <code>UpdateConflictNotRecovered</code> exception is thrown. This means the whole transaction is aborted and stops retrying.</p>
+<h3 id="5-conclusion">5. Conclusion</h3>
+<p>We do not, in any case, want an error to be thrown that stops the form from opening. Also, if there is an error, we need to decide whether the user actually needs to know that an error occurred. It may be enough for our purposes that the fields don&rsquo;t appear, and we can use the debugger to trace through the code to determine why.</p>
+<p>Thank you for reading!</p></div>
+
+            <div class="post" style="padding-top: 0">
+
+
+<div class="post-share"><div class="share-link">
+        <a class="share-icon share-twitter" href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://nuxulu.com/posts/exception-handling-in-dynamics-365-for-finance-and-operation/" data-title="Exception Handling in Dynamics 365 For Finance and Operation" data-hashtags="Exception Handling,Dynamics 365 for finance and operations,X&#43;&#43;"><span class="svg-social-icon icon-twitter"></span></a>
+    </div><div class="share-link">
+        <a class="share-icon share-facebook" href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://nuxulu.com/posts/exception-handling-in-dynamics-365-for-finance-and-operation/" data-hashtag="Exception Handling"><span class="svg-social-icon icon-facebook"></span></a>
+    </div></div>
+<div class="post-tags"><a href="/tags/exception-handling/" class="tag">Exception Handling</a><a href="/tags/dynamics-365-for-finance-and-operations/" class="tag">Dynamics 365 for finance and operations</a><a href="/tags/x&#43;&#43;/" class="tag">X&#43;&#43;</a></div></div>
+        </div>
+    <div id="toc-final"></div>
+    </article><div class="page single comments content-block-position"></div></div>
+
+</main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Have a nice day!</div><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.83.1">Hugo</a> | Theme - <a href="https://ublogger.netlify.app/?utm_source=https://nuxulu.com&utm_medium=footer&utm_campaign=config&utm_term=2.0.1" target="_blank" title="uBlogger 2.0.1">uBlogger</a>
+                </div><div class="footer-line"><i class="svg-icon icon-copyright"></i><span>2013 - 2021</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="svg-icon icon-arrow-up"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="svg-icon icon-comments-fixed"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script src="/js/theme.min.js"></script><script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	        ga('create', 'UA-57379422-3', 'auto');
+	        ga('set', 'anonymizeIp', true);
+	        ga('send', 'pageview');
+	    </script></body>
+</html>

@@ -6,10 +6,10 @@
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com</managingEditor>
             <webMaster>luan52@outlook.com</webMaster><lastBuildDate>Thu, 24 Nov 2016 08:22:39 &#43;0700</lastBuildDate><atom:link href="https://nuxulu.com/tags/operator/" rel="self" type="application/rss+xml" /><item>
     <title>The Type system of Dynamics AX 2012</title>
-    <link>https://nuxulu.com/2016-11-25-the-type-system-of-dynamics-ax-2012/</link>
+    <link>https://nuxulu.com/posts/the-type-system-of-dynamics-ax-2012/</link>
     <pubDate>Thu, 24 Nov 2016 08:22:39 &#43;0700</pubDate>
     <author>Author</author>
-    <guid>https://nuxulu.com/2016-11-25-the-type-system-of-dynamics-ax-2012/</guid>
+    <guid>https://nuxulu.com/posts/the-type-system-of-dynamics-ax-2012/</guid>
     <description><![CDATA[<p>The Microsoft Dynamics AX runtime manages the storage of <em>value type</em> data on the <strong>call stack</strong> and <em>reference type objects</em> on the <strong>memory heap</strong>.</p>
 <p><strong>The call stack</strong> is the memory structure that holds data about the active methods called during program execution. <strong>The memory heap</strong> is the memory area that allocates storage for objects that are destroyed automatically by the Microsoft Dynamics AX run-time.</p>
 <h2 id="value-types">Value types</h2>
@@ -22,19 +22,19 @@
 </ul>]]></description>
 </item><item>
     <title>DefaultValue ComboBox in Dynamics AX with X&#43;&#43;</title>
-    <link>https://nuxulu.com/2015-11-03-defaultvale-combobox-in-x/</link>
+    <link>https://nuxulu.com/posts/defaultvalue-combobox-in-dynamics-ax-with-x-/</link>
     <pubDate>Fri, 13 Nov 2015 06:57:46 &#43;0700</pubDate>
     <author>Author</author>
-    <guid>https://nuxulu.com/2015-11-03-defaultvale-combobox-in-x/</guid>
+    <guid>https://nuxulu.com/posts/defaultvalue-combobox-in-dynamics-ax-with-x-/</guid>
     <description><![CDATA[Beside modify metadata on form properties, as best practice we can use code like below to assign default value for combobox.
  You can use this code in the form&rsquo;s init method after super():  {% highlight csharp %} ComboBoxName.selection(ComboBoxName::DefaultValue); {% endhighlight %}
  If this is a table field we should you best practice overriding the initValue method in the table:  {% highlight csharp %} this.ComboBoxName = ComboBoxName::DefaultValue; {% endhighlight %}]]></description>
 </item><item>
     <title>HOW TO USE &#34;LIKE&#34; OPERATOR IN QUERYBUILDRANGE</title>
-    <link>https://nuxulu.com/2015-11-13-how-to-use-like-operator-in-querybuildrange/</link>
+    <link>https://nuxulu.com/posts/how-to-use-like-operator-in-querybuildrange/</link>
     <pubDate>Fri, 13 Nov 2015 06:57:46 &#43;0700</pubDate>
     <author>Author</author>
-    <guid>https://nuxulu.com/2015-11-13-how-to-use-like-operator-in-querybuildrange/</guid>
+    <guid>https://nuxulu.com/posts/how-to-use-like-operator-in-querybuildrange/</guid>
     <description><![CDATA[To make something as the LIKE operator in a query, just assign a value to the QueryRange including a wildcard.
 static void QueryBuildRange_Sample(Args _args) { Query query = new Query(); QueryRun queryRun; QueryBuildDataSource qbds; QueryBuildRange queryRange; CustTable custTable; qbds.addDataSource(tableNum(CustTable)); queryRange = qbds.addRange(fieldNum(CustTable, AccountNum)); queryRange.value(&#34;axd*&#34;); queryRun = new QueryRun(query); while(queryRun.next()) { custTable = queryRun.get(tableNum(CustTable)); print custTable.AccountNum; } pause; } ]]></description>
 </item></channel>
