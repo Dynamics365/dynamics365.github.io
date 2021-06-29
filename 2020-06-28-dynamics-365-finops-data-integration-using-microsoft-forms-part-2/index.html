@@ -6,14 +6,15 @@
 <meta name="twitter:image" content=""/>
 <meta name="twitter:title" content="Dynamics 365 FinOps Data Integration using Microsoft Forms (Part 2)"/>
 <meta name="twitter:description" content=""/><meta name="Description" content="Dynamics 365 Finance &amp; Operations and Power Platform"><meta property="og:title" content="Dynamics 365 FinOps Data Integration using Microsoft Forms (Part 2)" />
-<meta property="og:description" content="Example two: A new Forms response is submitted then Flow promts for an approval request before a new record is created in Vendors table In the last example, we created a simple Flow to create a new Vendor Account from submitted Forms responses. The process was made as simple as it could be: When a new Forms response if submitted, a new Vendor Account will be created on D365FO client." />
+<meta property="og:description" content="Example two: A new Forms response is submitted then Flow promts for an approval request before a new record is created in Vendors tableIn the last example, we created a simple Flow to create a new Vendor Account from submitted Forms responses. The process was made as simple as it could be: When a new Forms response if submitted, a new Vendor Account will be created on D365FO client.
+To make the process more reliable, we will now add an approval step to the Flow." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://nuxulu.com/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/" /><meta property="og:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-06-28T00:00:00&#43;00:00" />
 <meta property="article:modified_time" content="2020-06-28T00:00:00&#43;00:00" />
 
 <meta name="application-name" content="UBlogger">
-<meta name="apple-mobile-web-app-title" content="UBlogger"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/Icon/favicon.ico" type="image/x-icon"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://nuxulu.com/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/" /><script data-ad-client="pub-3534873375492458" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><meta name="google-site-verification" content="f08c47fec0942fa0" /><script type="application/ld+json">
+<meta name="apple-mobile-web-app-title" content="UBlogger"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/Icon/favicon.ico" type="image/x-icon"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://nuxulu.com/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/" /><script data-ad-client="pub-3534873375492458" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/lib/prismjs/prism.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><meta name="google-site-verification" content="f08c47fec0942fa0" /><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -22,7 +23,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/nuxulu.com\/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2\/"
-        },"genre": "posts","keywords": "Microsoft Forms, Power Automate, PowerApps, Data Entities, integration framework","wordCount":  1331 ,
+        },"genre": "posts","keywords": "Microsoft Forms, Power Automate, PowerApps, Data Entities, integration framework","wordCount":  1324 ,
         "url": "https:\/\/nuxulu.com\/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2\/","datePublished": "2020-06-28T00:00:00+00:00","dateModified": "2020-06-28T00:00:00+00:00",
         "publisher": {
             "@type": "Person",
@@ -36,27 +37,30 @@
     </script></head>
     <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
-        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="Dynamics 365 &amp; Power Platform | NUXULU" class="header-logo logo-svg"><img loading="lazy" decoding="async"
+        <div id="mask"></div><div class="wrapper"><header>
+    <div class="desktop header" id="header-desktop">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Dynamics 365 &amp; Power Platform | NUXULU" class="header-logo logo-svg"><img loading="lazy" decoding="async"
+         class="logo"
          src="/Icon/favicon-32x32.png"
          alt="/Icon/favicon-32x32.png"
          title="/Icon/favicon-32x32.png"
     /><span class="header-title-pre">  </span>Finance Operations &amp; Power Platform Archive</a>
-        </div>
-        <div class="menu">
-            <nav>
-                <ul class="menu-inner"><li>
-                        <a class="menu-item" href="/posts/"> Posts </a>
-                    </li><li>
-                        <a class="menu-item" href="/tags/"> Tags </a>
-                    </li><li>
-                        <a class="menu-item" href="/categories/"> Categories </a>
-                    </li><li>
-                        <a class="menu-item" href="/about/"> About </a>
-                    </li></ul>
-            </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+            </div>
+            <div class="menu">
+                <nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul class="menu-inner"><li>
+                            <a class="menu-item" href="/posts/"> Posts </a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/"> Tags </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/"> Categories </a>
+                        </li><li>
+                            <a class="menu-item" href="/about/"> About </a>
+                        </li></ul>
+                </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
                         <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
                             <span class="svg-icon icon-search"></span>
@@ -68,105 +72,111 @@
                             <span class="svg-icon icon-loading"></span>
                         </span>
                     </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                    <span class="svg-icon icon-moon"></span>
+                <span class="svg-icon icon-moon"></span>
                 </a>
             </div>
-    </div>
-</header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="Dynamics 365 &amp; Power Platform | NUXULU" class="header-logo"><img loading="lazy" decoding="async"
+        </div>
+    </div><div class="mobile header" id="header-mobile">
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="header-title">
+                    <a href="/" title="Dynamics 365 &amp; Power Platform | NUXULU" class="header-logo"><img loading="lazy" decoding="async"
+         class="logo"
          src="/Icon/favicon-32x32.png"
          alt="/Icon/favicon-32x32.png"
          title="/Icon/favicon-32x32.png"
     /><span class="header-title-pre">  </span>Finance Operations &amp; Power Platform Archive</a>
+                </div>
+                <div class="menu-toggle" id="menu-toggle-mobile">
+                    <span></span><span></span><span></span>
+                </div>
             </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
+            <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                        <div class="search mobile" id="search-mobile">
+                            <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                                <span class="svg-icon icon-search"></span>
+                            </a>
+                            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                                <span class="svg-icon icon-cancel"></span>
+                            </a>
+                            <span class="search-button search-loading" id="search-loading-mobile">
+                                <span class="svg-icon icon-loading"></span>
+                            </span>
+                        </div>
+                        <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                            Cancel
+                        </a>
+                    </div><nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul><li>
+                            <a class="menu-item" href="/posts/" title="">Posts</a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/" title="">Tags</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/" title="">Categories</a>
+                        </li><li>
+                            <a class="menu-item" href="/about/" title="">About</a>
+                        </li></ul>
+                </nav>
+                <a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <span class="svg-icon icon-moon"></span>
+                </a></div>
         </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
-                            <span class="svg-icon icon-search"></span>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
-                            <span class="svg-icon icon-cancel"></span>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <span class="svg-icon icon-loading"></span>
-                        </span>
-                    </div>
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
-                        Cancel
-                    </a>
-                </div><nav>
-                <ul><li>
-                        <a class="menu-item" href="/posts/" title="">Posts</a>
-                    </li><li>
-                        <a class="menu-item" href="/tags/" title="">Tags</a>
-                    </li><li>
-                        <a class="menu-item" href="/categories/" title="">Categories</a>
-                    </li><li>
-                        <a class="menu-item" href="/about/" title="">About</a>
-                    </li></ul>
-            </nav>
-            <a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                <span class="svg-icon icon-moon"></span>
-            </a></div>
-    </div>
-</header><div class="search-dropdown desktop">
+    </div><div class="search-dropdown desktop">
     <div id="search-dropdown-desktop"></div>
 </div>
 <div class="search-dropdown mobile">
     <div id="search-dropdown-mobile"></div>
-</div><main class="main">
+</div></header><main class="main">
 <div class="container content-article page-toc theme-classic"><div class="toc" id="toc-auto">
             <div class="toc-title">Contents</div>
             <div class="toc-content" id="toc-content-auto"></div>
         </div>
 
-    <div class="header-post">
+    
+    
+    <article>
+    
 
-        
+        <header class="header-post">
 
-        
-        <div class="post-title">
+            
 
-                <div class="post-all-meta">
-                    <nav class="breadcrumbs">
+            
+            <div class="post-title">
+
+                    <div class="post-all-meta">
+                        <nav class="breadcrumbs">
     <ol>
         <li><a href="/">Home </a></li><li>Dynamics 365 FinOps Data Integration using Microsoft Forms (Part 2)</li>
     </ol>
 </nav>
-                    <h1 class="single-title flipInX">Dynamics 365 FinOps Data Integration using Microsoft Forms (Part 2)</h1><div class="post-meta">
-                        <div class="post-meta-line"><span class="post-meta-date">
-                                <i class="svg-icon icon-clock"></i><time class="timeago" datetime="2020-06-28">June 28, 2020</time>
-                            </span><span class="post-meta-words">
-                                <i class="svg-icon icon-pencil"></i>1331 words
+                        <h1 class="single-title flipInX">Dynamics 365 FinOps Data Integration using Microsoft Forms (Part 2)</h1><div class="post-meta summary-post-meta"><span class="post-meta-date meta-item">
+                                <span class="svg-icon icon-clock"></span><time class="timeago" datetime="2020-06-28">June 28, 2020</time>
+                            </span><span class="post-meta-words meta-item">
+                                <span class="svg-icon icon-pencil"></span>1324 words
                             </span>
-                            <span class="post-meta-reading">
-                                <i class="svg-icon icon-stopwatch"></i>7 minutes
+                            <span class="post-meta-reading meta-item">
+                                <span class="svg-icon icon-stopwatch"></span>7 minutes
                             </span>
                         </div>
+
                     </div>
+
                 </div>
 
-            </div>
+                </header>
 
-            </div>
+        <div class="article-post toc-start">
 
-    <article class="single toc-start">
+            <div class="content-block content-block-first content-block-position">
 
-        <div class="content-block content-block-first content-block-position">
-
-        <div class="post"><div class="details toc" id="toc-static"  data-kept="">
-                <div class="details-summary toc-title">
-                    <span>Contents</span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+                <div class="post single"><div class="details toc" id="toc-static"  data-kept="">
+                        <div class="details-summary toc-title">
+                            <span>Contents</span>
+                        </div>
+                        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
     <li>
       <ul>
@@ -185,67 +195,65 @@
     </li>
   </ul>
 </nav></div>
-            </div><h1 id="example-two-a-new-forms-response-is-submitted-then-flow-promts-for-an-approval-request-before-a-new-record-is-created-in-vendors-table"><strong>Example two:</strong> A new Forms response is submitted then Flow promts for an approval request before a new record is created in Vendors table</h1>
-<p>In the last example, we created a simple Flow to create a new Vendor Account from submitted Forms responses. The process was made as simple as it could be: When a new Forms response if submitted, a new Vendor Account will be created on D365FO client.</p>
+                    </div><h1 id="example-two-a-new-forms-response-is-submitted-then-flow-promts-for-an-approval-request-before-a-new-record-is-created-in-vendors-table" class="headerLink"><a href="#example-two-a-new-forms-response-is-submitted-then-flow-promts-for-an-approval-request-before-a-new-record-is-created-in-vendors-table" class="header-mark"></a><strong>Example two:</strong> A new Forms response is submitted then Flow promts for an approval request before a new record is created in Vendors table</h1><p>In the last example, we created a simple Flow to create a new Vendor Account from submitted Forms responses. The process was made as simple as it could be: When a new Forms response if submitted, a new Vendor Account will be created on D365FO client.</p>
 <p>To make the process more reliable, we will now add an approval step to the Flow. It means before a new Vendor Account is created, the user will have the right to <code>Approve</code> or <code>Reject</code> the request.</p>
-<h3 id="step-1-add-a-new-step-to-the-flow"><strong>Step 1: Add a new step to the Flow</strong></h3>
-<p>The flow that we have is like this.</p>
+<h3 id="step-1-add-a-new-step-to-the-flow" class="headerLink"><a href="#step-1-add-a-new-step-to-the-flow" class="header-mark"></a><strong>Step 1: Add a new step to the Flow</strong></h3><p>The flow that we have is like this.</p>
 <p>
 
 
 
-
-<figure><a target="_blank" href="/imagesposts/E2-1-Flow-1.png#center" title="The old flow" >
+    
+<figure class="render-image"><a target="_blank" href="/imagesposts/E2-1-Flow-1.png#center" title="The old flow" >
         <img loading="lazy" decoding="async"
-            data-sizes="auto"
+             class="render-image"
              src="/imagesposts/E2-1-Flow-1.png#center"
             alt="Flow step 1"
         />
     </a><figcaption class="image-caption">The old flow</figcaption>
-</figure>{:.border}</p>
+    </figure>{:.border}</p>
 <p>We will add a step right before the new record is created.</p>
 <p>
 
 
 
-
-<figure><a target="_blank" href="/imagesposts/E2-2-Flow-2.png#center" title="Add a new step" >
+    
+<figure class="render-image"><a target="_blank" href="/imagesposts/E2-2-Flow-2.png#center" title="Add a new step" >
         <img loading="lazy" decoding="async"
-            data-sizes="auto"
+             class="render-image"
              src="/imagesposts/E2-2-Flow-2.png#center"
             alt="Flow step 2"
         />
     </a><figcaption class="image-caption">Add a new step</figcaption>
-</figure>{:.border}</p>
+    </figure>{:.border}</p>
 <p>We will go with <code>Approval &gt; Start and wait for an approval</code>.</p>
 <p>
 
 
 
-
-<figure><a target="_blank" href="/imagesposts/E2-3-Flow-3.png#center" title="Add approval request" >
+    
+<figure class="render-image"><a target="_blank" href="/imagesposts/E2-3-Flow-3.png#center" title="Add approval request" >
         <img loading="lazy" decoding="async"
-            data-sizes="auto"
+             class="render-image"
              src="/imagesposts/E2-3-Flow-3.png#center"
             alt="Flow step 3"
         />
     </a><figcaption class="image-caption">Add approval request</figcaption>
-</figure>{:.border}</p>
+    </figure>{:.border}</p>
 <p>This step will offer several types of approval in which the most common ones are <code>All users must approve</code> or <code>First approve/reject from any user</code>. To make it simple, we will go with <code>First approval</code> because in this example, we will have only one user.</p>
 <p>As straightforward as they seem, the fields explain themselves. We will start an approval request, set a title for it and assign it to a user (only users in the same organisation as you).</p>
 <p>
 
 
 
-
-<figure><a target="_blank" href="/imagesposts/E2-4-Flow-4.png#center" title="Single approval" >
+    
+<figure class="render-image"><a target="_blank" href="/imagesposts/E2-4-Flow-4.png#center" title="Single approval" >
         <img loading="lazy" decoding="async"
-            data-sizes="auto"
+             class="render-image"
              src="/imagesposts/E2-4-Flow-4.png#center"
             alt="Flow step 4"
         />
     </a><figcaption class="image-caption">Single approval</figcaption>
-</figure>{:.border}</p>
+    </figure>{:.border}</p>
 <p><em><strong>Note 2-1</strong></em></p>
 <blockquote>
 <p><em>Almost all fields including <code>Title</code>, <code>Details</code>, etc. are fully customisable by using <code>Dynamic content</code>.</em></p>
@@ -255,115 +263,113 @@
 
 
 
-
-<figure><a target="_blank" href="/imagesposts/E2-5-Flow-5.png#center" title="Revised flow" >
+    
+<figure class="render-image"><a target="_blank" href="/imagesposts/E2-5-Flow-5.png#center" title="Revised flow" >
         <img loading="lazy" decoding="async"
-            data-sizes="auto"
+             class="render-image"
              src="/imagesposts/E2-5-Flow-5.png#center"
             alt="Flow step 5"
         />
     </a><figcaption class="image-caption">Revised flow</figcaption>
-</figure>{:.border}</p>
-<h3 id="step-2-testing-out"><strong>Step 2: Testing out</strong></h3>
-<p>Trigger a <code>test</code> run of the flow.</p>
+    </figure>{:.border}</p>
+<h3 id="step-2-testing-out" class="headerLink"><a href="#step-2-testing-out" class="header-mark"></a><strong>Step 2: Testing out</strong></h3><p>Trigger a <code>test</code> run of the flow.</p>
 <p>
 
 
 
-
-<figure><a target="_blank" href="/imagesposts/E2-6-Flow-6.png#center" title="Test run" >
+    
+<figure class="render-image"><a target="_blank" href="/imagesposts/E2-6-Flow-6.png#center" title="Test run" >
         <img loading="lazy" decoding="async"
-            data-sizes="auto"
+             class="render-image"
              src="/imagesposts/E2-6-Flow-6.png#center"
             alt="Flow step 6"
         />
     </a><figcaption class="image-caption">Test run</figcaption>
-</figure>{:.border}</p>
+    </figure>{:.border}</p>
 <p>
 
 
 
-
-<figure><a target="_blank" href="/imagesposts/E2-7-Flow-7.png#center" title="Test run triggered" >
+    
+<figure class="render-image"><a target="_blank" href="/imagesposts/E2-7-Flow-7.png#center" title="Test run triggered" >
         <img loading="lazy" decoding="async"
-            data-sizes="auto"
+             class="render-image"
              src="/imagesposts/E2-7-Flow-7.png#center"
             alt="Flow step 7"
         />
     </a><figcaption class="image-caption">Test run triggered</figcaption>
-</figure>{:.border}</p>
+    </figure>{:.border}</p>
 <p>The <code>test</code> run is ready, waiting for the input from <code>MS Forms</code>.</p>
 <p>
 
 
 
-
-<figure><a target="_blank" href="/imagesposts/E2-8-Flow-8.png#center" title="Test run ready" >
+    
+<figure class="render-image"><a target="_blank" href="/imagesposts/E2-8-Flow-8.png#center" title="Test run ready" >
         <img loading="lazy" decoding="async"
-            data-sizes="auto"
+             class="render-image"
              src="/imagesposts/E2-8-Flow-8.png#center"
             alt="Flow step 8"
         />
     </a><figcaption class="image-caption">Test run ready</figcaption>
-</figure>{:.border}</p>
+    </figure>{:.border}</p>
 <p>Submit a new response.</p>
 <p>
 
 
 
-
-<figure><a target="_blank" href="/imagesposts/E2-9-Flow-9.png#center" title="Form new response" >
+    
+<figure class="render-image"><a target="_blank" href="/imagesposts/E2-9-Flow-9.png#center" title="Form new response" >
         <img loading="lazy" decoding="async"
-            data-sizes="auto"
+             class="render-image"
              src="/imagesposts/E2-9-Flow-9.png#center"
             alt="Flow step 9"
         />
     </a><figcaption class="image-caption">Form new response</figcaption>
-</figure>{:.border}</p>
+    </figure>{:.border}</p>
 <p>The flow will run. The process will show that an approval is being waited from the assigned user.</p>
 <p>
 
 
 
-
-<figure><a target="_blank" href="/imagesposts/E2-10-Flow-10.png#center" title="Waiting for an approval" >
+    
+<figure class="render-image"><a target="_blank" href="/imagesposts/E2-10-Flow-10.png#center" title="Waiting for an approval" >
         <img loading="lazy" decoding="async"
-            data-sizes="auto"
+             class="render-image"
              src="/imagesposts/E2-10-Flow-10.png#center"
             alt="Flow step 10"
         />
     </a><figcaption class="image-caption">Waiting for an approval</figcaption>
-</figure>{:.border}</p>
+    </figure>{:.border}</p>
 <p>An approval request will be sent to the mailbox of the assigned user. That user can check the request in <code>Office.com &gt; Outlook</code>.</p>
 <p>
 
 
 
-
-<figure><a target="_blank" href="/imagesposts/E2-11-Flow-11.png#center" title="Approval request" >
+    
+<figure class="render-image"><a target="_blank" href="/imagesposts/E2-11-Flow-11.png#center" title="Approval request" >
         <img loading="lazy" decoding="async"
-            data-sizes="auto"
+             class="render-image"
              src="/imagesposts/E2-11-Flow-11.png#center"
             alt="Flow step 11"
         />
     </a><figcaption class="image-caption">Approval request</figcaption>
-</figure>{:.border}</p>
+    </figure>{:.border}</p>
 <p>Upon approval, the flow will finish its pending step and a new record will be created.</p>
 <p>
 
 
 
-
-<figure><a target="_blank" href="/imagesposts/E2-12-Flow-12.png#center" title="Flow finishes" >
+    
+<figure class="render-image"><a target="_blank" href="/imagesposts/E2-12-Flow-12.png#center" title="Flow finishes" >
         <img loading="lazy" decoding="async"
-            data-sizes="auto"
+             class="render-image"
              src="/imagesposts/E2-12-Flow-12.png#center"
             alt="Flow step 12"
         />
     </a><figcaption class="image-caption">Flow finishes</figcaption>
-</figure>{:.border}</p>
-<h1 id="example-three-from-the-created-record-in-vendors-table-add-related-records-in-other-tables"><strong>Example three:</strong> From the created record in Vendors table, add related records in other tables</h1>
-<p>In the last example, we added an Approval step to the Flow which will allow users to give <code>Approve</code> or <code>Reject</code> action toward the request coming from the Form.</p>
+    </figure>{:.border}</p>
+<h1 id="example-three-from-the-created-record-in-vendors-table-add-related-records-in-other-tables" class="headerLink"><a href="#example-three-from-the-created-record-in-vendors-table-add-related-records-in-other-tables" class="header-mark"></a><strong>Example three:</strong> From the created record in Vendors table, add related records in other tables</h1><p>In the last example, we added an Approval step to the Flow which will allow users to give <code>Approve</code> or <code>Reject</code> action toward the request coming from the Form.</p>
 <p>We can actually utilise the Flow one step further: To create additional records on different tables that might depend on the created record in VendTable.</p>
 <p>To make it easier to understand, the process is like this:</p>
 <ul>
@@ -378,64 +384,63 @@
 </ul>
 <p>You can play around in Visual Studio to get used to looking for an Entity that might fulfil the requirements of your intergration. Check out the next part of this article to get some quick tips into that.</p>
 <p>Assuming that we now have a Flow as we configured in the last two examples, we can add some more steps like these underneath.</p>
-<h3 id="step-1-add-a-new-step-to-add-a-new-record-to-vendorbankaccounts-and-partycontacts"><strong>Step 1: Add a new step to add a new record to VendorBankAccounts and PartyContacts</strong></h3>
-<p>Given the case that we had a Vendor Account and Bank Account for that Vendor Account, the records would be like this.</p>
+<h3 id="step-1-add-a-new-step-to-add-a-new-record-to-vendorbankaccounts-and-partycontacts" class="headerLink"><a href="#step-1-add-a-new-step-to-add-a-new-record-to-vendorbankaccounts-and-partycontacts" class="header-mark"></a><strong>Step 1: Add a new step to add a new record to VendorBankAccounts and PartyContacts</strong></h3><p>Given the case that we had a Vendor Account and Bank Account for that Vendor Account, the records would be like this.</p>
 <p>
 
 
 
-
-<figure><a target="_blank" href="/imagesposts/E3-1-SSMSBank.png#center" title="Relation in SSMS" >
+    
+<figure class="render-image"><a target="_blank" href="/imagesposts/E3-1-SSMSBank.png#center" title="Relation in SSMS" >
         <img loading="lazy" decoding="async"
-            data-sizes="auto"
+             class="render-image"
              src="/imagesposts/E3-1-SSMSBank.png#center"
             alt="SSMSBank"
         />
     </a><figcaption class="image-caption">Relation in SSMS</figcaption>
-</figure></p>
+    </figure></p>
 <p>The relation should be: <code>VendTable.AccountNum</code> = <code>VendBankAccount.VendAccount</code></p>
 <p>On the client, the information should be illustrated like this.</p>
 <p>
 
 
 
-
-<figure><a target="_blank" href="/imagesposts/E3-2-VendBank1.png#center" title="Vendor Bank Account" >
+    
+<figure class="render-image"><a target="_blank" href="/imagesposts/E3-2-VendBank1.png#center" title="Vendor Bank Account" >
         <img loading="lazy" decoding="async"
-            data-sizes="auto"
+             class="render-image"
              src="/imagesposts/E3-2-VendBank1.png#center"
             alt="VendBank1"
         />
     </a><figcaption class="image-caption">Vendor Bank Account</figcaption>
-</figure></p>
+    </figure></p>
 <p>And, when checking the Bank Account details, we would find.</p>
 <p>
 
 
 
-
-<figure><a target="_blank" href="/imagesposts/E3-3-VenkBank2.png#center" title="Vendor Bank Details" >
+    
+<figure class="render-image"><a target="_blank" href="/imagesposts/E3-3-VenkBank2.png#center" title="Vendor Bank Details" >
         <img loading="lazy" decoding="async"
-            data-sizes="auto"
+             class="render-image"
              src="/imagesposts/E3-3-VenkBank2.png#center"
             alt="VendBank2"
         />
     </a><figcaption class="image-caption">Vendor Bank Details</figcaption>
-</figure></p>
+    </figure></p>
 <p>Now, to do so, we will add a new step right after the creation of VendTable record.</p>
 <p>
 
 
 
-
-<figure><a target="_blank" href="/imagesposts/E3-4-Flow-1.png#center" title="A new step" >
+    
+<figure class="render-image"><a target="_blank" href="/imagesposts/E3-4-Flow-1.png#center" title="A new step" >
         <img loading="lazy" decoding="async"
-            data-sizes="auto"
+             class="render-image"
              src="/imagesposts/E3-4-Flow-1.png#center"
             alt="VendBank3"
         />
     </a><figcaption class="image-caption">A new step</figcaption>
-</figure></p>
+    </figure></p>
 <ul>
 <li><code>Instance</code> = <code>Environment URL</code> (same as any other steps)</li>
 <li><code>Entity name</code> = <code>VendorBankAccounts</code> (check my post about good tips with Visual Studio to know how to find the Data Entity)</li>
@@ -447,15 +452,15 @@
 
 
 
-
-<figure><a target="_blank" href="/imagesposts/E3-5-Flow-2.png#center" title="Selecting Dynamic Content from former steps" >
+    
+<figure class="render-image"><a target="_blank" href="/imagesposts/E3-5-Flow-2.png#center" title="Selecting Dynamic Content from former steps" >
         <img loading="lazy" decoding="async"
-            data-sizes="auto"
+             class="render-image"
              src="/imagesposts/E3-5-Flow-2.png#center"
             alt="DynamicsContent"
         />
     </a><figcaption class="image-caption">Selecting Dynamic Content from former steps</figcaption>
-</figure></p>
+    </figure></p>
 <p>In MS FLow, any steps that are already executed will have outputs. We, in this step, are taking the <code>Supplier Account</code> from the last step of creating a new record in VendTable . This dynamic content was generated when the new record is created.</p>
 <p><em><strong>Note 3-1</strong></em></p>
 <blockquote>
@@ -466,15 +471,15 @@
 
 
 
-
-<figure><a target="_blank" href="/imagesposts/E3-6-Flow-3.png#center" title="Select Show advanced options" >
+    
+<figure class="render-image"><a target="_blank" href="/imagesposts/E3-6-Flow-3.png#center" title="Select Show advanced options" >
         <img loading="lazy" decoding="async"
-            data-sizes="auto"
+             class="render-image"
              src="/imagesposts/E3-6-Flow-3.png#center"
             alt="AdvancedOptions"
         />
     </a><figcaption class="image-caption">Select Show advanced options</figcaption>
-</figure></p>
+    </figure></p>
 <p>Add more details to the bank account:</p>
 <ul>
 <li><code>Name</code> = <code>Bank account name</code> chosen from the Form using Dynamic Content (we don&rsquo;t want to copy any more values from the VendTable record - we actually will specify a bank account name when composing a response on the Form)</li>
@@ -484,15 +489,15 @@
 
 
 
-
-<figure><a target="_blank" href="/imagesposts/E3-7-Flow-4.png#center" title="Add more details to bank account" >
+    
+<figure class="render-image"><a target="_blank" href="/imagesposts/E3-7-Flow-4.png#center" title="Add more details to bank account" >
         <img loading="lazy" decoding="async"
-            data-sizes="auto"
+             class="render-image"
              src="/imagesposts/E3-7-Flow-4.png#center"
             alt="BankDetails"
         />
     </a><figcaption class="image-caption">Add more details to bank account</figcaption>
-</figure></p>
+    </figure></p>
 <p>We finished with Vendor Bank Account.</p>
 <p>We will do just the same with the record in PartyContacts.</p>
 <ul>
@@ -504,141 +509,139 @@
 
 
 
-
-<figure><a target="_blank" href="/imagesposts/E3-8-Flow-5.png#center" title="Vendor Contact Details" >
+    
+<figure class="render-image"><a target="_blank" href="/imagesposts/E3-8-Flow-5.png#center" title="Vendor Contact Details" >
         <img loading="lazy" decoding="async"
-            data-sizes="auto"
+             class="render-image"
              src="/imagesposts/E3-8-Flow-5.png#center"
             alt="VendorContact"
         />
     </a><figcaption class="image-caption">Vendor Contact Details</figcaption>
-</figure></p>
-<h3 id="step-2-testing-out-1"><strong>Step 2: Testing out</strong></h3>
-<p>Form input.</p>
+    </figure></p>
+<h3 id="step-2-testing-out-1" class="headerLink"><a href="#step-2-testing-out-1" class="header-mark"></a><strong>Step 2: Testing out</strong></h3><p>Form input.</p>
 <p>
 
 
 
-
-<figure><a target="_blank" href="/imagesposts/E3-9-Flow-6.png#center" title="Company details" >
+    
+<figure class="render-image"><a target="_blank" href="/imagesposts/E3-9-Flow-6.png#center" title="Company details" >
         <img loading="lazy" decoding="async"
-            data-sizes="auto"
+             class="render-image"
              src="/imagesposts/E3-9-Flow-6.png#center"
             alt="FormInput1"
         />
     </a><figcaption class="image-caption">Company details</figcaption>
-</figure></p>
+    </figure></p>
 <p>
 
 
 
-
-<figure><a target="_blank" href="/imagesposts/E3-10-Flow-7.png#center" title="Bank details" >
+    
+<figure class="render-image"><a target="_blank" href="/imagesposts/E3-10-Flow-7.png#center" title="Bank details" >
         <img loading="lazy" decoding="async"
-            data-sizes="auto"
+             class="render-image"
              src="/imagesposts/E3-10-Flow-7.png#center"
             alt="FormInput2"
         />
     </a><figcaption class="image-caption">Bank details</figcaption>
-</figure></p>
+    </figure></p>
 <p>
 
 
 
-
-<figure><a target="_blank" href="/imagesposts/E3-11-Flow-8.png#center" title="Contact details" >
+    
+<figure class="render-image"><a target="_blank" href="/imagesposts/E3-11-Flow-8.png#center" title="Contact details" >
         <img loading="lazy" decoding="async"
-            data-sizes="auto"
+             class="render-image"
              src="/imagesposts/E3-11-Flow-8.png#center"
             alt="FormInput3"
         />
     </a><figcaption class="image-caption">Contact details</figcaption>
-</figure></p>
+    </figure></p>
 <p>Results on D365FO client.</p>
 <p>
 
 
 
-
-<figure><a target="_blank" href="/imagesposts/E3-12-Flow-9.png#center" title="Contact details" >
+    
+<figure class="render-image"><a target="_blank" href="/imagesposts/E3-12-Flow-9.png#center" title="Contact details" >
         <img loading="lazy" decoding="async"
-            data-sizes="auto"
+             class="render-image"
              src="/imagesposts/E3-12-Flow-9.png#center"
             alt="Result1"
         />
     </a><figcaption class="image-caption">Contact details</figcaption>
-</figure></p>
+    </figure></p>
 <p>
 
 
 
-
-<figure><a target="_blank" href="/imagesposts/E3-13-Flow-10.png#center" title="Bank account" >
+    
+<figure class="render-image"><a target="_blank" href="/imagesposts/E3-13-Flow-10.png#center" title="Bank account" >
         <img loading="lazy" decoding="async"
-            data-sizes="auto"
+             class="render-image"
              src="/imagesposts/E3-13-Flow-10.png#center"
             alt="Result2"
         />
     </a><figcaption class="image-caption">Bank account</figcaption>
-</figure></p>
+    </figure></p>
 <p>
 
 
 
-
-<figure><a target="_blank" href="/imagesposts/E3-14-Flow-11.png#center" title="Bank account details" >
+    
+<figure class="render-image"><a target="_blank" href="/imagesposts/E3-14-Flow-11.png#center" title="Bank account details" >
         <img loading="lazy" decoding="async"
-            data-sizes="auto"
+             class="render-image"
              src="/imagesposts/E3-14-Flow-11.png#center"
             alt="Result3"
         />
     </a><figcaption class="image-caption">Bank account details</figcaption>
-</figure></p>
+    </figure></p>
 <p>There you go, simple integration between MS Forms, MS Automate and D365FO client. I am seeing that Microsoft is improving such by adding more actions on MS Automate. I believe we will be able to do many more jobs with the built-in utilities of MS Automate.</p>
-<h1 id="how-to-determine-the-data-entity-that-should-be-used-in-the-power-automate">How to determine the Data Entity that should be used in the Power Automate</h1>
-<p>The names of the target entity on <code>D365FO client</code> and being found in <code>Power Automate</code> should be different. You can always find them out by testing several import/export but, with the help of <code>Visual Studio</code>, you will be able to save a lot of time. This, however, requires a certain extent of experience working with data integration on D365FO.</p>
+<h1 id="how-to-determine-the-data-entity-that-should-be-used-in-the-power-automate" class="headerLink"><a href="#how-to-determine-the-data-entity-that-should-be-used-in-the-power-automate" class="header-mark"></a>How to determine the Data Entity that should be used in the Power Automate</h1><p>The names of the target entity on <code>D365FO client</code> and being found in <code>Power Automate</code> should be different. You can always find them out by testing several import/export but, with the help of <code>Visual Studio</code>, you will be able to save a lot of time. This, however, requires a certain extent of experience working with data integration on D365FO.</p>
 <p>Given the case that we would like to import data to All Vendors, we will start our search in <code>Workspaces &gt; Data Management &gt; Data Entities</code>. Apply several filters here and there, and looking for potential ones that we usually do, we will finally end our search at the VendVendorV2Entity</p>
 <p>
 
 
 
-
-<figure><a target="_blank" href="/imagesposts/VS-1-Entity-1.png#center" title="Data Entities" >
+    
+<figure class="render-image"><a target="_blank" href="/imagesposts/VS-1-Entity-1.png#center" title="Data Entities" >
         <img loading="lazy" decoding="async"
-            data-sizes="auto"
+             class="render-image"
              src="/imagesposts/VS-1-Entity-1.png#center"
             alt="Data Entities"
         />
     </a><figcaption class="image-caption">Data Entities</figcaption>
-</figure>{:.border}</p>
+    </figure>{:.border}</p>
 <p>Making our way to <code>Visual Studio</code>, it is not a difficult task for us to find out the Entity.</p>
 <p>
 
 
 
-
-<figure><a target="_blank" href="/imagesposts/VS-2-Entity-2.png#center" title="VendVendorV2Entity" >
+    
+<figure class="render-image"><a target="_blank" href="/imagesposts/VS-2-Entity-2.png#center" title="VendVendorV2Entity" >
         <img loading="lazy" decoding="async"
-            data-sizes="auto"
+             class="render-image"
              src="/imagesposts/VS-2-Entity-2.png#center"
             alt="VendVendorV2Entity"
         />
     </a><figcaption class="image-caption">VendVendorV2Entity</figcaption>
-</figure>{:.border}</p>
+    </figure>{:.border}</p>
 <p>Check out the <code>Properties</code>, we will need to get details in the <code>Public</code> group.</p>
 <p>
 
 
 
-
-<figure><a target="_blank" href="/imagesposts/VS-3-Properties.png#center" title="Properties" >
+    
+<figure class="render-image"><a target="_blank" href="/imagesposts/VS-3-Properties.png#center" title="Properties" >
         <img loading="lazy" decoding="async"
-            data-sizes="auto"
+             class="render-image"
              src="/imagesposts/VS-3-Properties.png#center"
             alt="Properties"
         />
     </a><figcaption class="image-caption">Properties</figcaption>
-</figure>{:.border}</p>
+    </figure>{:.border}</p>
 <p>In <code>Public</code>:</p>
 <ul>
 <li>Is Public: If it is <code>Yes</code>, the entity can be found in Power Automate; otherwise, <code>No</code>.</li>
@@ -649,33 +652,32 @@
 
 
 
-
-<figure><a target="_blank" href="/imagesposts/E1-12-Flow-10.png#center" title="Info on Automate" >
+    
+<figure class="render-image"><a target="_blank" href="/imagesposts/E1-12-Flow-10.png#center" title="Info on Automate" >
         <img loading="lazy" decoding="async"
-            data-sizes="auto"
+             class="render-image"
              src="/imagesposts/E1-12-Flow-10.png#center"
             alt="Info on Automate"
         />
     </a><figcaption class="image-caption">Info on Automate</figcaption>
-</figure>{:.border}</p>
+    </figure>{:.border}</p>
 <p>Furthermore, by checking the <code>Entity</code>&rsquo;s fields, we can get the information of mapping between the <code>Entity</code> and the physical table <code>VendTable</code>.</p>
 <p>
 
 
 
-
-<figure><a target="_blank" href="/imagesposts/VS-4-EntityFields.png#center" title="Entity fields" >
+    
+<figure class="render-image"><a target="_blank" href="/imagesposts/VS-4-EntityFields.png#center" title="Entity fields" >
         <img loading="lazy" decoding="async"
-            data-sizes="auto"
+             class="render-image"
              src="/imagesposts/VS-4-EntityFields.png#center"
             alt="Entity fields"
         />
     </a><figcaption class="image-caption">Entity fields</figcaption>
-</figure>{:.border}</p>
+    </figure>{:.border}</p>
 <p>Give yourself some time to play around between <code>MS Forms</code>, <code>MS Automate</code> and <code>Visual Studio</code>. You will finally see the relations between them.</p>
-</div>
-
-            <div class="post" style="padding-top: 0">
+</div><footer>
+                        <div class="post">
 
 
 <div class="post-share"><div class="share-link">
@@ -683,22 +685,34 @@
     </div><div class="share-link">
         <a class="share-icon share-facebook" href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://nuxulu.com/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/" data-hashtag="Microsoft Forms"><span class="svg-social-icon icon-facebook"></span></a>
     </div></div>
+
+
+
+
+
+
 <div class="post-tags"><a href="/tags/microsoft-forms/" class="tag">Microsoft Forms</a><a href="/tags/power-automate/" class="tag">Power Automate</a><a href="/tags/powerapps/" class="tag">PowerApps</a><a href="/tags/data-entities/" class="tag">Data Entities</a><a href="/tags/integration-framework/" class="tag">integration framework</a></div></div>
+                </footer></div>
+
+        <div id="toc-final"></div>
         </div>
-    <div id="toc-final"></div>
-    </article><div class="page single comments content-block-position"></div></div>
+
+    
+    </article>
+    <section class="page single comments content-block-position">
+        <h1 class="display-hidden">Комментарии</h1></section></div>
 
 </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">Have a nice day!</div><div class="footer-line"><i class="svg-icon icon-copyright"></i><span>2013 - 2021</span><span class="author">&nbsp;<a href="https://nuxulu.com/about" target="_blank">Max</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+        <aside id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
                 <i class="svg-icon icon-arrow-up"></i>
             </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
                 <i class="svg-icon icon-comments-fixed"></i>
             </a>
-        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":30},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script src="/js/theme.min.js"></script><script>
+        </aside><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script src="/lib/prismjs/prism.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":30},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script src="/js/theme.min.js"></script><script>
                 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)

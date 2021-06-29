@@ -7,8 +7,7 @@
 <meta name="twitter:title" content="Expressions or Functions used in SSRS"/>
 <meta name="twitter:description" content=""/><meta name="Description" content="Dynamics 365 Finance &amp; Operations and Power Platform"><meta property="og:title" content="Expressions or Functions used in SSRS" />
 <meta property="og:description" content="Expressions are usually used for appearance of the data in a report, change properties of the fields, calculate some values and display them in a proper way, compares values between data of fields and then display them.
-Types of Expressions
-We have 3 types:
+Types of ExpressionsWe have 3 types:
 
 Globals
 Operators - Arithmetic, Comparison,Concatenation, Logical
@@ -21,7 +20,7 @@ We can see each and every one very deataily" />
 <meta property="article:modified_time" content="2016-10-07T00:00:00&#43;00:00" />
 
 <meta name="application-name" content="UBlogger">
-<meta name="apple-mobile-web-app-title" content="UBlogger"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/Icon/favicon.ico" type="image/x-icon"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://nuxulu.com/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs/" /><script data-ad-client="pub-3534873375492458" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><meta name="google-site-verification" content="f08c47fec0942fa0" /><script type="application/ld+json">
+<meta name="apple-mobile-web-app-title" content="UBlogger"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/Icon/favicon.ico" type="image/x-icon"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://nuxulu.com/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs/" /><script data-ad-client="pub-3534873375492458" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/lib/prismjs/prism.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><meta name="google-site-verification" content="f08c47fec0942fa0" /><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -30,7 +29,7 @@ We can see each and every one very deataily" />
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/nuxulu.com\/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs\/"
-        },"genre": "posts","wordCount":  1471 ,
+        },"genre": "posts","wordCount":  1454 ,
         "url": "https:\/\/nuxulu.com\/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs\/","datePublished": "2016-10-07T00:00:00+00:00","dateModified": "2016-10-07T00:00:00+00:00",
         "publisher": {
             "@type": "Person",
@@ -47,27 +46,30 @@ We can see each and every one very deataily" />
     </script></head>
     <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
-        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="Dynamics 365 &amp; Power Platform | NUXULU" class="header-logo logo-svg"><img loading="lazy" decoding="async"
+        <div id="mask"></div><div class="wrapper"><header>
+    <div class="desktop header" id="header-desktop">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Dynamics 365 &amp; Power Platform | NUXULU" class="header-logo logo-svg"><img loading="lazy" decoding="async"
+         class="logo"
          src="/Icon/favicon-32x32.png"
          alt="/Icon/favicon-32x32.png"
          title="/Icon/favicon-32x32.png"
     /><span class="header-title-pre">  </span>Finance Operations &amp; Power Platform Archive</a>
-        </div>
-        <div class="menu">
-            <nav>
-                <ul class="menu-inner"><li>
-                        <a class="menu-item" href="/posts/"> Posts </a>
-                    </li><li>
-                        <a class="menu-item" href="/tags/"> Tags </a>
-                    </li><li>
-                        <a class="menu-item" href="/categories/"> Categories </a>
-                    </li><li>
-                        <a class="menu-item" href="/about/"> About </a>
-                    </li></ul>
-            </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+            </div>
+            <div class="menu">
+                <nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul class="menu-inner"><li>
+                            <a class="menu-item" href="/posts/"> Posts </a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/"> Tags </a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/"> Categories </a>
+                        </li><li>
+                            <a class="menu-item" href="/about/"> About </a>
+                        </li></ul>
+                </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
                         <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
                             <span class="svg-icon icon-search"></span>
@@ -79,106 +81,112 @@ We can see each and every one very deataily" />
                             <span class="svg-icon icon-loading"></span>
                         </span>
                     </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                    <span class="svg-icon icon-moon"></span>
+                <span class="svg-icon icon-moon"></span>
                 </a>
             </div>
-    </div>
-</header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="Dynamics 365 &amp; Power Platform | NUXULU" class="header-logo"><img loading="lazy" decoding="async"
+        </div>
+    </div><div class="mobile header" id="header-mobile">
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="header-title">
+                    <a href="/" title="Dynamics 365 &amp; Power Platform | NUXULU" class="header-logo"><img loading="lazy" decoding="async"
+         class="logo"
          src="/Icon/favicon-32x32.png"
          alt="/Icon/favicon-32x32.png"
          title="/Icon/favicon-32x32.png"
     /><span class="header-title-pre">  </span>Finance Operations &amp; Power Platform Archive</a>
+                </div>
+                <div class="menu-toggle" id="menu-toggle-mobile">
+                    <span></span><span></span><span></span>
+                </div>
             </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
+            <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                        <div class="search mobile" id="search-mobile">
+                            <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                                <span class="svg-icon icon-search"></span>
+                            </a>
+                            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                                <span class="svg-icon icon-cancel"></span>
+                            </a>
+                            <span class="search-button search-loading" id="search-loading-mobile">
+                                <span class="svg-icon icon-loading"></span>
+                            </span>
+                        </div>
+                        <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                            Cancel
+                        </a>
+                    </div><nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul><li>
+                            <a class="menu-item" href="/posts/" title="">Posts</a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/" title="">Tags</a>
+                        </li><li>
+                            <a class="menu-item" href="/categories/" title="">Categories</a>
+                        </li><li>
+                            <a class="menu-item" href="/about/" title="">About</a>
+                        </li></ul>
+                </nav>
+                <a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <span class="svg-icon icon-moon"></span>
+                </a></div>
         </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
-                            <span class="svg-icon icon-search"></span>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
-                            <span class="svg-icon icon-cancel"></span>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <span class="svg-icon icon-loading"></span>
-                        </span>
-                    </div>
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
-                        Cancel
-                    </a>
-                </div><nav>
-                <ul><li>
-                        <a class="menu-item" href="/posts/" title="">Posts</a>
-                    </li><li>
-                        <a class="menu-item" href="/tags/" title="">Tags</a>
-                    </li><li>
-                        <a class="menu-item" href="/categories/" title="">Categories</a>
-                    </li><li>
-                        <a class="menu-item" href="/about/" title="">About</a>
-                    </li></ul>
-            </nav>
-            <a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                <span class="svg-icon icon-moon"></span>
-            </a></div>
-    </div>
-</header><div class="search-dropdown desktop">
+    </div><div class="search-dropdown desktop">
     <div id="search-dropdown-desktop"></div>
 </div>
 <div class="search-dropdown mobile">
     <div id="search-dropdown-mobile"></div>
-</div><main class="main">
+</div></header><main class="main">
 <div class="container content-article page-toc theme-classic"><div class="toc" id="toc-auto">
             <div class="toc-title">Contents</div>
             <div class="toc-content" id="toc-content-auto"></div>
         </div>
     
 
-    <div class="header-post">
+    
+    
+    <article>
+    
 
-        
+        <header class="header-post">
 
-        
-        <div class="post-title">
+            
 
-                <div class="post-all-meta">
-                    <nav class="breadcrumbs">
+            
+            <div class="post-title">
+
+                    <div class="post-all-meta">
+                        <nav class="breadcrumbs">
     <ol>
         <li><a href="/">Home </a></li><li>Expressions or Functions used in SSRS</li>
     </ol>
 </nav>
-                    <h1 class="single-title flipInX">Expressions or Functions used in SSRS</h1><div class="post-meta">
-                        <div class="post-meta-line"><span class="post-meta-date">
-                                <i class="svg-icon icon-clock"></i><time class="timeago" datetime="2016-10-07">October 7, 2016</time>
-                            </span><span class="post-meta-words">
-                                <i class="svg-icon icon-pencil"></i>1471 words
+                        <h1 class="single-title flipInX">Expressions or Functions used in SSRS</h1><div class="post-meta summary-post-meta"><span class="post-meta-date meta-item">
+                                <span class="svg-icon icon-clock"></span><time class="timeago" datetime="2016-10-07">October 7, 2016</time>
+                            </span><span class="post-meta-words meta-item">
+                                <span class="svg-icon icon-pencil"></span>1454 words
                             </span>
-                            <span class="post-meta-reading">
-                                <i class="svg-icon icon-stopwatch"></i>7 minutes
+                            <span class="post-meta-reading meta-item">
+                                <span class="svg-icon icon-stopwatch"></span>7 minutes
                             </span>
                         </div>
+
                     </div>
+
                 </div>
 
-            </div>
+                </header>
 
-            </div>
+        <div class="article-post toc-start">
 
-    <article class="single toc-start">
+            <div class="content-block content-block-first content-block-position">
 
-        <div class="content-block content-block-first content-block-position">
-
-        <div class="post"><div class="details toc" id="toc-static"  data-kept="">
-                <div class="details-summary toc-title">
-                    <span>Contents</span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+                <div class="post single"><div class="details toc" id="toc-static"  data-kept="">
+                        <div class="details-summary toc-title">
+                            <span>Contents</span>
+                        </div>
+                        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
     <li><a href="#1-globals">1. Globals</a></li>
     <li><a href="#2-operators">2. Operators</a>
@@ -204,25 +212,21 @@ We can see each and every one very deataily" />
     </li>
   </ul>
 </nav></div>
-            </div><p>Expressions are usually used for appearance of the data in a report, change properties of the fields, calculate some values and display them in a proper way, compares values between data of fields and then display them.</p>
-<h1 id="types-of-expressions">Types of Expressions</h1>
-<p>We have 3 types:</p>
+                    </div><p>Expressions are usually used for appearance of the data in a report, change properties of the fields, calculate some values and display them in a proper way, compares values between data of fields and then display them.</p>
+<h1 id="types-of-expressions" class="headerLink"><a href="#types-of-expressions" class="header-mark"></a>Types of Expressions</h1><p>We have 3 types:</p>
 <ul>
 <li>Globals</li>
 <li>Operators - Arithmetic, Comparison,Concatenation, Logical</li>
 <li>Common Functions - Text, Date &amp; Time, Math, Inspection, Program Flow, Aggregate, Financial, Conversion, Miscellaneous</li>
 </ul>
 <p>We can see each and every one very deataily</p>
-<h2 id="1-globals">1. Globals</h2>
-<p>Global expressions executes/works in Page Header and Footer parts only.</p>
+<h2 id="1-globals" class="headerLink"><a href="#1-globals" class="header-mark"></a>1. Globals</h2><p>Global expressions executes/works in Page Header and Footer parts only.</p>
 <p><strong>ExecutionTime</strong>  Shows date and time at when report executes<br>
 <strong>PageNumber</strong> shows page number of each and every page but allowed only in page header and footer<br>
 <strong>ReportName</strong>  displays name of the active report what name we have assigned to the active report<br>
 <strong>UserId</strong> shows current user name like <strong><em>company/userID</em></strong><br>
 <strong>Language</strong> displays language like US-English…</p>
-<h2 id="2-operators">2. Operators</h2>
-<h3 id="arithmetic">Arithmetic</h3>
-<p><code>^</code> power of<br>
+<h2 id="2-operators" class="headerLink"><a href="#2-operators" class="header-mark"></a>2. Operators</h2><h3 id="arithmetic" class="headerLink"><a href="#arithmetic" class="header-mark"></a>Arithmetic</h3><p><code>^</code> power of<br>
 <code>*</code>multiplication<br>
 <code>/</code> divides two numbers and returns a floating point result<br>
 <code>:</code> divides two numbers and returns a integer result<br>
@@ -230,22 +234,17 @@ We can see each and every one very deataily" />
 <code>adds</code> two numbers and concatenation for two strings<br>
 <code>-</code> subtraction and indicates negative value for numeric values</p>
 <!--more-->
-<h3 id="comparison">Comparison</h3>
-<p>Known operators : <code>&lt; &lt;= &gt; &gt;= &lt;&gt;</code><br>
+<h3 id="comparison" class="headerLink"><a href="#comparison" class="header-mark"></a>Comparison</h3><p>Known operators : <code>&lt; &lt;= &gt; &gt;= &lt;&gt;</code><br>
 <code>Like</code> compares two strings and return true if matched or else returns False.<br>
 <em>Ex:</em> <code>=Fields!Title.Value Like Fields!LoginID.Value</code></p>
 <p><code>Is</code> compare two object reference variables<br>
 <em>Ex:</em> <code>=Fields!Title.Value Is Null</code></p>
-<h3 id="concatenation">Concatenation</h3>
-<p><code>+</code> and <code>&amp;</code> symbols uses for concatenation</p>
-<h3 id="logical">Logical</h3>
-<p>Known: <code>And, Not, Or, Xor</code></p>
+<h3 id="concatenation" class="headerLink"><a href="#concatenation" class="header-mark"></a>Concatenation</h3><p><code>+</code> and <code>&amp;</code> symbols uses for concatenation</p>
+<h3 id="logical" class="headerLink"><a href="#logical" class="header-mark"></a>Logical</h3><p>Known: <code>And, Not, Or, Xor</code></p>
 <div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">firstname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Larry&#39;</span><span class="w"> </span><span class="n">XOR</span><span class="w"> </span><span class="n">lastname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Smith&#39;</span><span class="o">`</span><span class="w">
 </span></code></pre></div><p><code>AndAlso</code> First condition will check first and if it is true only, goes to next or else it won&rsquo;t need to check. Because our execution time is saving in a logical operation in which more conditions is combined using <code>AndAlso</code> function.<br>
 <code>OrElse</code> same like above</p>
-<h2 id="3-common-functions">3. Common Functions</h2>
-<h3 id="text"><strong>Text</strong></h3>
-<p><code>Asc, AscW</code> returns an integer value represents character code corresponding to a character.<br>
+<h2 id="3-common-functions" class="headerLink"><a href="#3-common-functions" class="header-mark"></a>3. Common Functions</h2><h3 id="text" class="headerLink"><a href="#text" class="header-mark"></a><strong>Text</strong></h3><p><code>Asc, AscW</code> returns an integer value represents character code corresponding to a character.<br>
 <code>Chr, chrw</code> returns the character associated with the specified character code<br>
 <code>Filter</code> =Filter(Fields!Title.Value,&ldquo;Pr&rdquo;,true,0)<br>
 <code>Format</code>=Format(Fields!Price.Value, &ldquo;#,##0.00&rdquo;), Format(Fields!Date.Value, &ldquo;yyyy-MM-dd&rdquo;)<br>
@@ -288,8 +287,7 @@ We can see each and every one very deataily" />
 <code>StrReverse</code> =StrReverse(Fields!Title.Value)<br>
 <code>Trim</code> =Trim(&rdquo; &ldquo;&amp; Fields!Title.Value &amp; &quot; &ldquo;)<br>
 <code>UCase</code> =Ucase(Fields!Title.Value)</p>
-<h3 id="date--time"><strong>Date &amp; Time</strong></h3>
-<p><code>CDate</code> Converts a object into date format<br>
+<h3 id="date--time" class="headerLink"><a href="#date--time" class="header-mark"></a><strong>Date &amp; Time</strong></h3><p><code>CDate</code> Converts a object into date format<br>
 =Format(CDate(Fields!BirthDate.Value),&ldquo;MMMM yyyy&rdquo;)<br>
 <code>DateAdd</code> Returns a datetime that is the result of adding the specified number of time interval units to the original datetime.<br>
 =dateadd(&ldquo;m&rdquo;,12,Fields!BirthDate.Value)<br>
@@ -336,8 +334,7 @@ Returns string value representing the current time of day according to your syst
 Returns name of the day of week<br>
 <code>Year</code> =year(Fields!BirthDate.Value)<br>
 Returns year of specified date</p>
-<h3 id="math">Math</h3>
-<p><code>Abs=Abs(-2.36)</code></p>
+<h3 id="math" class="headerLink"><a href="#math" class="header-mark"></a>Math</h3><p><code>Abs=Abs(-2.36)</code></p>
 <p>Returns the absolute value</p>
 <p><code>BigMul =BigMul(2,3)</code></p>
 <p>Returns multiplication value of two specified numbers</p>
@@ -373,8 +370,7 @@ Returns hyperbolic cos value</p>
 Returns the sin value</p>
 <p><code>Sinh=Sinh(Fields!EmployeeID.Value)</code>
 Returns the hyperbolic sin value</p>
-<h3 id="inspection">Inspection</h3>
-<p><code>IsArray =IsArray(Fields!EmployeeID.Value)</code></p>
+<h3 id="inspection" class="headerLink"><a href="#inspection" class="header-mark"></a>Inspection</h3><p><code>IsArray =IsArray(Fields!EmployeeID.Value)</code></p>
 <p>Returns a boolean value indicating whether the specified object is array or not</p>
 <p><code>IsDate =IsDate(Fields!BirthDate.Value)</code></p>
 <p>Returns a boolean value indicating whether the specified object is Date or not</p>
@@ -382,15 +378,13 @@ Returns the hyperbolic sin value</p>
 <p>Returns a boolean value depends on specified object is Nothing or not</p>
 <p><code>IsNumeric =IsNumeric(Fields!EmployeeID.Value)</code></p>
 <p>Returns a boolean value depends on specified object is Numeric value or not</p>
-<h3 id="program-flow">Program Flow</h3>
-<p><code>Choose =CHOOSE(3, &quot;Red&quot;, &quot;Yellow&quot;, &quot;Green&quot;, &quot;White&quot;)</code></p>
+<h3 id="program-flow" class="headerLink"><a href="#program-flow" class="header-mark"></a>Program Flow</h3><p><code>Choose =CHOOSE(3, &quot;Red&quot;, &quot;Yellow&quot;, &quot;Green&quot;, &quot;White&quot;)</code></p>
 <p>Returns a specific value using index in a list of arguments</p>
 <p><code>IIf =IIF(Fields!EmployeeID.Value&gt;10,&quot;Yes&quot;,&quot;No&quot;)</code></p>
 <p>Returns any one value depends on condition</p>
 <p><code>Switch =Switch(Fields!EmployeeID.Value&lt;10,&quot;Red&quot;,Fields!EmployeeID.Value&gt;10,&quot;Green&quot;)</code></p>
 <p>Evaluates list of expressions</p>
-<h3 id="aggregate">Aggregate</h3>
-<p><code>Avg =Avg(Fields!EmployeeID.Value)</code></p>
+<h3 id="aggregate" class="headerLink"><a href="#aggregate" class="header-mark"></a>Aggregate</h3><p><code>Avg =Avg(Fields!EmployeeID.Value)</code></p>
 <p>Returns average value for all specified values</p>
 <p><code>Count =Count(Fields!EmployeeID.Value)</code></p>
 <p>Returns count of all specified values</p>
@@ -419,8 +413,7 @@ Returns the hyperbolic sin value</p>
 <p><code>RunningValue =RunningValue(Fields!EmployeeID.Value,sum,nothing)</code></p>
 <p>Returns running aggregate of the specified
 expression</p>
-<h3 id="financial">Financial</h3>
-<p><code>DDB DDB</code> (Double Declining Balance) method computes depreciation of an asset for a specified period.</p>
+<h3 id="financial" class="headerLink"><a href="#financial" class="header-mark"></a>Financial</h3><p><code>DDB DDB</code> (Double Declining Balance) method computes depreciation of an asset for a specified period.</p>
 <p>Syntax: <code>DDB (Cost, Salvage, life, period, factor)</code></p>
 <p><code>FV FV</code> (Future Value) of an investment based on periodic, constant payments and a constant interest rate.</p>
 <p>Syntax: <code>FV (rate, nper, pmt, pv, type)</code></p>
@@ -446,8 +439,7 @@ expression</p>
 <p><code>SLN(cost,salvage,life)</code></p>
 <p>SYD Returns the sum-of-years' digits depreciation of an asset for a specified period.
 <code>SYD(cost,salvage,life,per)</code></p>
-<h3 id="conversion">Conversion</h3>
-<p><code>CBool</code> Convert to boolean</p>
+<h3 id="conversion" class="headerLink"><a href="#conversion" class="header-mark"></a>Conversion</h3><p><code>CBool</code> Convert to boolean</p>
 <p><code>CByte</code> Convert to byte</p>
 <p><code>CChar</code> Convert to char</p>
 <p><code>CDate</code> Convert to date</p>
@@ -469,11 +461,9 @@ expression</p>
 <p>Returns string value of a number</p>
 <p><code>Val =Val(&quot;32.43&quot;)</code></p>
 <p>Returns numeric value in string format</p>
-<h3 id="miscellaneous">Miscellaneous</h3>
-<p><code>Previous =Previous(Fields!EmployeeID.Value)</code></p>
-<p>Returns the previous value</p></div>
-
-            <div class="post" style="padding-top: 0">
+<h3 id="miscellaneous" class="headerLink"><a href="#miscellaneous" class="header-mark"></a>Miscellaneous</h3><p><code>Previous =Previous(Fields!EmployeeID.Value)</code></p>
+<p>Returns the previous value</p></div><footer>
+                        <div class="post">
 
 
 <div class="post-share"><div class="share-link">
@@ -482,28 +472,40 @@ expression</p>
         <a class="share-icon share-facebook" href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://nuxulu.com/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs/"><span class="svg-social-icon icon-facebook"></span></a>
     </div></div>
 
-<div class="footer-post-author">
+
+
+
+<div class="block-author">
     <div class="author-avatar"><a href="https://nuxulu.com/about" target="_blank"><img alt="Trusted user pc" src="/images/MaxN_Avatar.png"></a></div>
     <div class="author-info">
         <div class="name"><a href="https://nuxulu.com/about" target="_blank"></a></div>
         <div class="number-posts">Trusted user pc</span></div>
     </div>
-</div></div>
+</div>
+
+
+</div>
+                </footer></div>
+
+        <div id="toc-final"></div>
         </div>
-    <div id="toc-final"></div>
-    </article><div class="page single comments content-block-position"></div></div>
+
+    
+    </article>
+    <section class="page single comments content-block-position">
+        <h1 class="display-hidden">Комментарии</h1></section></div>
 
 </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">Have a nice day!</div><div class="footer-line"><i class="svg-icon icon-copyright"></i><span>2013 - 2021</span><span class="author">&nbsp;<a href="https://nuxulu.com/about" target="_blank">Max</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+        <aside id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
                 <i class="svg-icon icon-arrow-up"></i>
             </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
                 <i class="svg-icon icon-comments-fixed"></i>
             </a>
-        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":30},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script src="/js/theme.min.js"></script><script>
+        </aside><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script src="/lib/prismjs/prism.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":30},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script src="/js/theme.min.js"></script><script>
                 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
