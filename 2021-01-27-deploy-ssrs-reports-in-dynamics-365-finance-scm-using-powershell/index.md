@@ -3,6 +3,8 @@
 
 Open Windows PowerShell in Admin mode 
 
+<!--more-->
+
 Navigate to the PowerShell scripts
 
 ```ps

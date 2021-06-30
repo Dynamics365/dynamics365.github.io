@@ -1,4 +1,4 @@
-# Dynamics 365 for Finance & Operations and Azure DevOps
+# Dynamics 365 for Finance Operations and Azure DevOps
 
 
 [](https://ariste.info/en/msdyn365-azure-devops-alm/#dynamics-365-for-finance-operations-and-azure-devops)**Dynamics 365 for Finance & Operations and Azure DevOps**
