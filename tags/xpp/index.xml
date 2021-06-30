@@ -113,6 +113,20 @@ What if you want to calculate for all items:
 {% highlight csharp %} InventTable InventTable; InventSumRecalcItem InventSumRecalcItem;
 WHILE SELECT InventTable WHERE (InventTable.ItemType == ItemType::Item) || (InventTable.]]></description>
 </item><item>
+    <title>Useful functions to use in AX 2012</title>
+    <link>https://nuxulu.com/2016-12-30-useful-functions-to-use-in-ax-2012/</link>
+    <pubDate>Fri, 30 Dec 2016 00:00:00 &#43;0000</pubDate>
+    <author>maxnguyen</author>
+    <guid>https://nuxulu.com/2016-12-30-useful-functions-to-use-in-ax-2012/</guid>
+    <description><![CDATA[<p>Useful functions to use in AX 2012</p>]]></description>
+</item><item>
+    <title>Useful functions to use in AX 2012 part 2</title>
+    <link>https://nuxulu.com/2016-12-30-useful-functions-to-use-in-ax-2012-part2/</link>
+    <pubDate>Fri, 30 Dec 2016 00:00:00 &#43;0000</pubDate>
+    <author>maxnguyen</author>
+    <guid>https://nuxulu.com/2016-12-30-useful-functions-to-use-in-ax-2012-part2/</guid>
+    <description><![CDATA[<p>Useful functions to use in AX 2012 part 2</p>]]></description>
+</item><item>
     <title>CRUD Purchase Requisition using AIF in Dynamics AX 2012 R3</title>
     <link>https://nuxulu.com/2016-12-29-crud-purchase-requisition-using-aif-in-dynamics-ax-2012-r3/</link>
     <pubDate>Thu, 29 Dec 2016 00:00:00 &#43;0000</pubDate>
@@ -206,71 +220,5 @@ else
 
 </p>
 <p>Click <code>next</code> and then <code>Generate</code>.</p>]]></description>
-</item><item>
-    <title>Insert, update, Delete order line through AIF In AX 2012 R3</title>
-    <link>https://nuxulu.com/2016-12-28-insert-update-delete-order-line-through-aif-in-ax-2012-r3/</link>
-    <pubDate>Wed, 28 Dec 2016 00:00:00 &#43;0000</pubDate>
-    <author>maxnguyen</author>
-    <guid>https://nuxulu.com/2016-12-28-insert-update-delete-order-line-through-aif-in-ax-2012-r3/</guid>
-    <description><![CDATA[<p>In previous <a href="https://dynamics365.github.io/ax2012/integration/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3/" target="_blank" rel="noopener noreffer">post</a>, I already show how to create purchase order through AIF with <code>NETTCP</code> or <code>HTTP adapter</code>. In this post, we will get little deep more about action on line of order.</p>
-<p>The following code sample shows how to <code>insert</code>, <code>update</code>, <code>delete</code> a line of an existing purchase order through AIF, currently I’m using C#.NET console project for demo.</p>
-<p>As Partial update, we must include just the fields to change and any fields required by the document (you can check <code>Data policies</code> in AIF Service ports form for that).</p>
-<p>Also, notice how action properties are specified – no matter we do with the line, which means updating the order.</p>
-<p>I’m giving you an idea how it looks like, here is the code</p>
-<p><code>The first method will handle the key of AIF Service</code></p>
-<p>{% highlight csharp %}
-private static EntityKey[] EntityForPurchId(string purchId)
-{
-KeyField field = new KeyField()
-{
-Field = &ldquo;PurchId&rdquo;,
-Value = purchId
-};</p>
-<pre><code>EntityKey key = new EntityKey()
-{
-	KeyData = new[] { field }
-};
-
-return new[] { key };
-</code></pre>
-<p>}</p>
-<p>{% endhighlight %}</p>]]></description>
-</item><item>
-    <title>CRUD Items, products, products master dimension, variants using AIF in Dynamics AX 2012 R3</title>
-    <link>https://nuxulu.com/2016-12-27-crud-items-products-products-master-dimension-variants-using-aif-in-dynamics-ax-2012-r3/</link>
-    <pubDate>Tue, 27 Dec 2016 00:00:00 &#43;0000</pubDate>
-    <author>maxnguyen</author>
-    <guid>https://nuxulu.com/2016-12-27-crud-items-products-products-master-dimension-variants-using-aif-in-dynamics-ax-2012-r3/</guid>
-    <description><![CDATA[<h2 id="scenarios" class="headerLink"><a href="#scenarios" class="header-mark"></a>Scenarios:</h2><p>I’m trying to create <strong>product/master product</strong> in Dynamics AX using AIF inbound port, the AIF services consume by C#.NET.</p>
-<p>From AX 2012 R2, Item is replaced with Product. Item master was in Inventory Management Module, now there is a separate module for item/product creation <code>Product information Management</code>.</p>
-<p>Some definitions you should know
-There are two types of Products in 2012 they are:</p>
-<ol>
-<li>
-<p><strong>Product</strong></p>
-<p><em>Product information management/Common/Products/Products</em></p>
-</li>
-<li>
-<p><strong>Product Master</strong></p>
-<p><em>Product information management/Common/Products/Products master</em></p>
-<p>a. <strong>Variants:</strong></p>
-</li>
-</ol>
-<p>To create a product variant, you must define at least one product dimension for a product master. You can also rename dimensions.
-To create product variants, you must complete the following tasks:</p>
-<ul>
-<li>
-<p>Set up dimensions, such as size, color, and style.</p>
-</li>
-<li>
-<p>Set up variant groups.</p>
-</li>
-<li>
-<p>Assign variant groups to a retail hierarchy.</p>
-</li>
-<li>
-<p>Create a product master and variants.</p>
-</li>
-</ul>]]></description>
 </item></channel>
 </rss>

@@ -43,6 +43,20 @@ WHILE SELECT InventTable WHERE (InventTable.ItemType == ItemType::Item) || (Inve
 <p>Today, i will make a simple sample to show what is difference between them. You can download example project from <em><a href="https://1drv.ms/u/s!AuMuU-6qq5hxiYQLElp6RoLgmB_uIA" target="_blank" rel="noopener noreffer">here</a></em>.</p>
 <p>I have two table :</p>]]></description>
 </item><item>
+    <title>Useful functions to use in AX 2012</title>
+    <link>https://nuxulu.com/2016-12-30-useful-functions-to-use-in-ax-2012/</link>
+    <pubDate>Fri, 30 Dec 2016 00:00:00 &#43;0000</pubDate>
+    <author>maxnguyen</author>
+    <guid>https://nuxulu.com/2016-12-30-useful-functions-to-use-in-ax-2012/</guid>
+    <description><![CDATA[<p>Useful functions to use in AX 2012</p>]]></description>
+</item><item>
+    <title>Useful functions to use in AX 2012 part 2</title>
+    <link>https://nuxulu.com/2016-12-30-useful-functions-to-use-in-ax-2012-part2/</link>
+    <pubDate>Fri, 30 Dec 2016 00:00:00 &#43;0000</pubDate>
+    <author>maxnguyen</author>
+    <guid>https://nuxulu.com/2016-12-30-useful-functions-to-use-in-ax-2012-part2/</guid>
+    <description><![CDATA[<p>Useful functions to use in AX 2012 part 2</p>]]></description>
+</item><item>
     <title>CRUD Purchase Requisition using AIF in Dynamics AX 2012 R3</title>
     <link>https://nuxulu.com/2016-12-29-crud-purchase-requisition-using-aif-in-dynamics-ax-2012-r3/</link>
     <pubDate>Thu, 29 Dec 2016 00:00:00 &#43;0000</pubDate>
@@ -217,65 +231,5 @@ To create product variants, you must complete the following tasks:</p>
 <li><strong>The enumeration types</strong> are base enumerations and extended data types.</li>
 <li><strong>The collection types</strong> are the built-in array and container types.</li>
 </ul>]]></description>
-</item><item>
-    <title>Evolution of programming languages</title>
-    <link>https://nuxulu.com/2016-09-06-evolution-of-programming-languages/</link>
-    <pubDate>Tue, 06 Sep 2016 18:47:00 &#43;0900</pubDate>
-    <author>maxnguyen</author>
-    <guid>https://nuxulu.com/2016-09-06-evolution-of-programming-languages/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>Create record in DimensionAttributeValueCombination table manually.</title>
-    <link>https://nuxulu.com/2016-07-05-create-record-in-dimensionattributevaluecombination-manually/</link>
-    <pubDate>Tue, 05 Jul 2016 18:47:00 &#43;0900</pubDate>
-    <author>maxnguyen</author>
-    <guid>https://nuxulu.com/2016-07-05-create-record-in-dimensionattributevaluecombination-manually/</guid>
-    <description><![CDATA[<p>Sometime we need this <code>RecId</code> value in <code>DimansionAttributeValueCombination</code> Table for some reasons likes putting new dimension in <code>LedgerDimension</code> field in <code>LedgerJournalTrans</code> Table, or somewhere else.</p>
-<p>Suppose my Account structure likes: <em><strong>MainAcct - Dept - Woker - SubAcct - Item</strong></em>,
-you can custom base on your struture.</p>
-<p>This code is for creating a record into <code>DimansionAttributeValueCombination</code> in code and then get <code>RecID</code> of this.</p>
-<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="k">static</span> <span class="kt">void</span> <span class="nf">createDimensionAttributeValueCombination</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">DimensionAttributeValueContract</span>     <span class="n">ValueContract</span><span class="p">;</span>
-    <span class="n">DimensionAttributeValueCombination</span>  <span class="n">davc</span><span class="p">;</span>
-    <span class="n">MainAccount</span>                         <span class="n">valueMainAccount</span><span class="p">;</span>
-    <span class="n">DimensionStorage</span>                    <span class="n">dimStorage</span><span class="p">;</span>
-
-    <span class="n">DimensionServiceProvider</span> <span class="n">DimensionServiceProvider</span>   <span class="o">=</span> <span class="k">new</span> <span class="n">DimensionServiceProvider</span><span class="p">();</span>
-    <span class="n">LedgerAccountContract</span> <span class="n">LedgerAccountContract</span>         <span class="o">=</span> <span class="k">new</span> <span class="n">LedgerAccountContract</span><span class="p">();</span>
-    <span class="n">List</span> <span class="n">ListValueContract</span>                              <span class="o">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="o">::</span><span class="n">Class</span><span class="p">);</span>
-    
-    <span class="c1">// Get main account with structure : Mainacct - DE - woker - subacct - item
-</span><span class="c1"></span>    <span class="n">valueMainAccount</span> <span class="o">=</span> <span class="n">MainAccount</span><span class="o">::</span><span class="n">findByMainAccountId</span><span class="p">(</span><span class="err">&#39;</span><span class="mi">910001</span><span class="err">&#39;</span><span class="p">);</span> <span class="c1">//Get main account
-</span><span class="c1"></span>
-    <span class="n">ValueContract</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DimensionAttributeValueContract</span><span class="p">();</span>
-    <span class="n">ValueContract</span><span class="p">.</span><span class="n">parmName</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Department</span><span class="err">&#39;</span><span class="p">)</span> <span class="p">;</span>
-    <span class="n">ValueContract</span><span class="p">.</span><span class="n">parmValue</span><span class="p">(</span><span class="err">&#39;</span><span class="mi">6020</span><span class="err">&#39;</span><span class="p">);</span> <span class="c1">//Value for dimension Department
-</span><span class="c1"></span>    <span class="n">ListValueContract</span><span class="p">.</span><span class="n">addEnd</span><span class="p">(</span><span class="n">ValueContract</span><span class="p">);</span>
-
-    <span class="n">ValueContract</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DimensionAttributeValueContract</span><span class="p">();</span>
-    <span class="n">ValueContract</span><span class="p">.</span><span class="n">parmName</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Worker</span><span class="err">&#39;</span><span class="p">)</span> <span class="p">;</span>
-    <span class="n">ValueContract</span><span class="p">.</span><span class="n">parmValue</span><span class="p">(</span><span class="err">&#39;</span><span class="mo">000001</span><span class="err">&#39;</span><span class="p">);</span> <span class="c1">//Value for dimension ExpenseCode
-</span><span class="c1"></span>    <span class="n">ListValueContract</span><span class="p">.</span><span class="n">addEnd</span><span class="p">(</span><span class="n">ValueContract</span><span class="p">);</span>
-
-    <span class="n">ValueContract</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DimensionAttributeValueContract</span><span class="p">();</span>
-    <span class="n">ValueContract</span><span class="p">.</span><span class="n">parmName</span><span class="p">(</span><span class="err">&#39;</span><span class="n">SubAcct</span><span class="err">&#39;</span><span class="p">)</span> <span class="p">;</span>
-    <span class="n">ValueContract</span><span class="p">.</span><span class="n">parmValue</span><span class="p">(</span><span class="err">&#39;교보생명&#39;</span><span class="p">);</span> <span class="c1">//Value for dimension Project
-</span><span class="c1"></span>    <span class="n">ListValueContract</span><span class="p">.</span><span class="n">addEnd</span><span class="p">(</span><span class="n">ValueContract</span><span class="p">);</span>
-
-    <span class="n">ValueContract</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DimensionAttributeValueContract</span><span class="p">();</span>
-    <span class="n">ValueContract</span><span class="p">.</span><span class="n">parmName</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Item</span><span class="err">&#39;</span><span class="p">)</span> <span class="p">;</span>
-    <span class="n">ValueContract</span><span class="p">.</span><span class="n">parmValue</span><span class="p">(</span><span class="err">&#39;</span><span class="mi">110329</span><span class="err">&#39;</span><span class="p">);</span> <span class="c1">//Value for dimension Project
-</span><span class="c1"></span>    <span class="n">ListValueContract</span><span class="p">.</span><span class="n">addEnd</span><span class="p">(</span><span class="n">ValueContract</span><span class="p">);</span>
-
-    <span class="n">LedgerAccountContract</span><span class="p">.</span><span class="n">parmMainAccount</span><span class="p">(</span><span class="n">valueMainAccount</span><span class="p">.</span><span class="n">MainAccountId</span><span class="p">);</span>
-    <span class="n">LedgerAccountContract</span><span class="p">.</span><span class="n">parmValues</span><span class="p">(</span><span class="n">ListValueContract</span><span class="p">);</span>
-
-    <span class="c1">//if combination is not exist then create new one
-</span><span class="c1"></span>    <span class="n">dimStorage</span> <span class="o">=</span> <span class="n">DimensionServiceProvider</span><span class="o">::</span><span class="n">buildDimensionStorageForLedgerAccount</span><span class="p">(</span><span class="n">LedgerAccountContract</span><span class="p">);</span>
-    <span class="n">davc</span> <span class="o">=</span> <span class="n">DimensionAttributeValueCombination</span><span class="o">::</span><span class="n">find</span><span class="p">(</span><span class="n">dimStorage</span><span class="p">.</span><span class="n">save</span><span class="p">());</span>
-    <span class="n">info</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;RecId : %1 - DisplayValue : %2&#34;</span><span class="p">,</span> <span class="n">davc</span><span class="p">.</span><span class="n">RecId</span><span class="p">,</span> <span class="n">davc</span><span class="p">.</span><span class="n">DisplayValue</span><span class="p">));</span>
-<span class="p">}</span>
-</code></pre></div>]]></description>
 </item></channel>
 </rss>
