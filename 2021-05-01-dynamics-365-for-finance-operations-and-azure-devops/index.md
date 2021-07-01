@@ -20,13 +20,13 @@ To use all the features described in this guide we need to create an Azure DevOp
 
 You might or might not have to do this. If you or your customer already have an account, you can use it and just create a new project in it. Otherwise head to [https://dev.azure.com](https://dev.azure.com/) and create a new organization:
 
-![Azure DevOps sign up](https://static.ariste.info/wp-content/uploads/2020/05/AzureDevOpsSign.png#center.webp "MSDyn365 & Azure DevOps ALM 2")
+![Azure DevOps sign up](https://static.ariste.info/wp-content/uploads/2020/05/AzureDevOpsSign.png.webp "MSDyn365 & Azure DevOps ALM 2")
 
 Azure DevOps sign up
 
 After creating it you need to create a new project with the following options:
 
-![Create Azure DevOps project](https://static.ariste.info/wp-content/uploads/2020/05/ProjType.png#center.webp "MSDyn365 & Azure DevOps ALM 3")
+![Create Azure DevOps project](https://static.ariste.info/wp-content/uploads/2020/05/ProjType.png.webp "MSDyn365 & Azure DevOps ALM 3")
 
 Create Azure DevOps project
 
@@ -36,19 +36,19 @@ When a customer signs up for Finance and Operations the LCS project is of type �
 
 In any of both cases you need to go to “Project settings” and select the “Visual Studio Team Services” Tab. Scroll down and you should see two fields. Fill the field with your DevOps URL without the project part. If you got a https://dev.azure.com/YOUR\_ORG URL type you need to change it to https://YOUR\_ORG.visualstudio.com:
 
-![Azure DevOps setup on LCS](https://i0.wp.com/ariste.info/wp-content/uploads/2020/05/LCS1.png#center?fit=1024%2C462&ssl=1 "MSDyn365 & Azure DevOps ALM 4")
+![Azure DevOps setup on LCS](https://i0.wp.com/ariste.info/wp-content/uploads/2020/05/LCS1.png?fit=1024%2C462&ssl=1 "MSDyn365 & Azure DevOps ALM 4")
 
 Azure DevOps setup on LCS
 
 And to get the “Personal access token” we go back to our Azure DevOps project, click on the user settings icon, and then select “Personal access tokens”:
 
-![MSDyn365 & Azure DevOps ALM 1](https://static.ariste.info/wp-content/uploads/2020/05/Azure-DevOps-personal-token.png#center.webp "MSDyn365 & Azure DevOps ALM 5")
+![MSDyn365 & Azure DevOps ALM 1](https://static.ariste.info/wp-content/uploads/2020/05/Azure-DevOps-personal-token.png.webp "MSDyn365 & Azure DevOps ALM 5")
 
 We add a new token, set its expiration and give it full access. Finally press the “Create” button and a new dialog will appear with your token, copy it, and paste it in LCS.
 
-![Azure DevOps personal token](https://static.ariste.info/wp-content/uploads/2020/05/Azure-DevOps-personal-token-2.png#center.webp "MSDyn365 & Azure DevOps ALM 6")
+![Azure DevOps personal token](https://static.ariste.info/wp-content/uploads/2020/05/Azure-DevOps-personal-token-2.png.webp "MSDyn365 & Azure DevOps ALM 6")
 
-![Azure DevOps personal token](https://static.ariste.info/wp-content/uploads/2020/05/Azure-DevOps-personal-token-3.png#center.webp "MSDyn365 & Azure DevOps ALM 7")
+![Azure DevOps personal token](https://static.ariste.info/wp-content/uploads/2020/05/Azure-DevOps-personal-token-3.png.webp "MSDyn365 & Azure DevOps ALM 7")
 
 Back to LCS, once you’ve pasted the token press the “Continue” button. On the next step just select your project, press “Continue” and finally “Save” on the last step.
 
@@ -70,57 +70,57 @@ This VM is usually the dev box on Microsoft’s subscription but you can also us
 
 When this VM is deployed there’s two things happening: the basic source code structure and the default build definition are created.
 
-![MSDyn365 & Azure DevOps ALM 2](https://static.ariste.info/wp-content/uploads/2020/05/Azure-DevOps-source-control.png#center.webp "MSDyn365 & Azure DevOps ALM 8")
+![MSDyn365 & Azure DevOps ALM 2](https://static.ariste.info/wp-content/uploads/2020/05/Azure-DevOps-source-control.png.webp "MSDyn365 & Azure DevOps ALM 8")
 
-![MSDyn365 & Azure DevOps ALM 3](https://static.ariste.info/wp-content/uploads/2020/05/Azure-DevOps-default-build-pipeline.png#center.webp "MSDyn365 & Azure DevOps ALM 9")
+![MSDyn365 & Azure DevOps ALM 3](https://static.ariste.info/wp-content/uploads/2020/05/Azure-DevOps-default-build-pipeline.png.webp "MSDyn365 & Azure DevOps ALM 9")
 
 ### 0.1.4. [](https://ariste.info/en/msdyn365-azure-devops-alm/#visual-studio)Visual Studio
 
 We have the basics to start working. Log into your dev VM and start Visual Studio, we must map the Main folder to the development machine’s packages folder. Open the team explorer and select “Connect to a Project…”:
 
-![MSDyn365 & Azure DevOps ALM 4](https://static.ariste.info/wp-content/uploads/2020/05/Visual-Studio.png#center.webp "MSDyn365 & Azure DevOps ALM 10")
+![MSDyn365 & Azure DevOps ALM 4](https://static.ariste.info/wp-content/uploads/2020/05/Visual-Studio.png.webp "MSDyn365 & Azure DevOps ALM 10")
 
 It will ask for your credentials and then show all projects available with the account you’ve used. Select the project we have created in the steps earlier and click on “Connect”:
 
-![MSDyn365 & Azure DevOps ALM 5](https://static.ariste.info/wp-content/uploads/2020/05/Visual-Studio-connect-DevOps.png#center.webp "MSDyn365 & Azure DevOps ALM 11")
+![MSDyn365 & Azure DevOps ALM 5](https://static.ariste.info/wp-content/uploads/2020/05/Visual-Studio-connect-DevOps.png.webp "MSDyn365 & Azure DevOps ALM 11")
 
 Now open the “Source Control Explorer”, select the Main folder and click on the “Not mapped” text:
 
-![MSDyn365 & Azure DevOps ALM 6](https://static.ariste.info/wp-content/uploads/2020/05/Map.png#center.webp "MSDyn365 & Azure DevOps ALM 12")
+![MSDyn365 & Azure DevOps ALM 6](https://static.ariste.info/wp-content/uploads/2020/05/Map.png.webp "MSDyn365 & Azure DevOps ALM 12")
 
 Map the Main folder to the K:\\AosService\\PackagesLocalDirectory folder on your service drive (this could be drive C if you’re using a local VM instead of a cloud-hosted environment):
 
-![MSDyn365 & Azure DevOps ALM 7](https://static.ariste.info/wp-content/uploads/2020/05/Map-to-PackagesLocalDirectory.png#center.webp "MSDyn365 & Azure DevOps ALM 13")
+![MSDyn365 & Azure DevOps ALM 7](https://static.ariste.info/wp-content/uploads/2020/05/Map-to-PackagesLocalDirectory.png.webp "MSDyn365 & Azure DevOps ALM 13")
 
 What we’ve done in this step is telling Visual Studio that what’s in our Azure DevOps project, inside the Main folder, will go into the K:\\AosService\\PackagesLocalDirectory folder of our development VM.
 
 The Main folder we have in our source control tree is a regular folder, but we can [convert it into a branch](https://docs.microsoft.com/en-us/azure/devops/repos/tfvc/branch-folders-files?view=azure-devops&WT.mc_id=DOP-MVP-5003976#convert-a-folder-to-a-branch) if we need it.
 
-![MSDyn365 & Azure DevOps ALM 8](https://static.ariste.info/wp-content/uploads/2020/05/2020-05-16-12_00_27.png#center.webp "MSDyn365 & Azure DevOps ALM 14")
+![MSDyn365 & Azure DevOps ALM 8](https://static.ariste.info/wp-content/uploads/2020/05/2020-05-16-12_00_27.png.webp "MSDyn365 & Azure DevOps ALM 14")
 
-![MSDyn365 & Azure DevOps ALM 9](https://static.ariste.info/wp-content/uploads/2020/05/2020-05-16-12_00_45.png#center.webp "MSDyn365 & Azure DevOps ALM 15")
+![MSDyn365 & Azure DevOps ALM 9](https://static.ariste.info/wp-content/uploads/2020/05/2020-05-16-12_00_45.png.webp "MSDyn365 & Azure DevOps ALM 15")
 
 In the image above, you can see the icon for Main changes when it’s converted to a branch. Branches allow us to perform some actions that aren’t available to folders. Some differences can be seen in the context menu:
 
-![Menú contextual carpeta](https://static.ariste.info/wp-content/uploads/2019/02/2019-02-11-14_13_11-ie-dev01dev.northeurope.cloudapp.azure_.com_61466-Remote-Desktop-Connection.png#center.webp "MSDyn365 & Azure DevOps ALM 16")
+![Menú contextual carpeta](https://static.ariste.info/wp-content/uploads/2019/02/2019-02-11-14_13_11-ie-dev01dev.northeurope.cloudapp.azure_.com_61466-Remote-Desktop-Connection.png.webp "MSDyn365 & Azure DevOps ALM 16")
 
 Folder context menu
 
-![Menú contextual rama](https://static.ariste.info/wp-content/uploads/2019/02/2019-02-11-14_13_28-ie-dev01dev.northeurope.cloudapp.azure_.com_61466-Remote-Desktop-Connection.png#center.webp "MSDyn365 & Azure DevOps ALM 17")
+![Menú contextual rama](https://static.ariste.info/wp-content/uploads/2019/02/2019-02-11-14_13_28-ie-dev01dev.northeurope.cloudapp.azure_.com_61466-Remote-Desktop-Connection.png.webp "MSDyn365 & Azure DevOps ALM 17")
 
 Branch context menu
 
 For instance, branches can display the hierarchy of all the project branches (in this case it’s only Main and Dev so it’s quite simple).
 
-![Jerarquía de las ramas](https://static.ariste.info/wp-content/uploads/2019/02/2019-02-11-14_14_11-ie-dev01dev.northeurope.cloudapp.azure_.com_61466-Remote-Desktop-Connection.png#center.webp "MSDyn365 & Azure DevOps ALM 18")
+![Jerarquía de las ramas](https://static.ariste.info/wp-content/uploads/2019/02/2019-02-11-14_14_11-ie-dev01dev.northeurope.cloudapp.azure_.com_61466-Remote-Desktop-Connection.png.webp "MSDyn365 & Azure DevOps ALM 18")
 
 Properties dialogs are different too. The folder one:
 
-![MSDyn365 & Azure DevOps ALM 10](https://static.ariste.info/wp-content/uploads/2019/02/2019-02-11-14_10_06-ie-dev01dev.northeurope.cloudapp.azure_.com_61466-Remote-Desktop-Connection.png#center.webp "MSDyn365 & Azure DevOps ALM 19")
+![MSDyn365 & Azure DevOps ALM 10](https://static.ariste.info/wp-content/uploads/2019/02/2019-02-11-14_10_06-ie-dev01dev.northeurope.cloudapp.azure_.com_61466-Remote-Desktop-Connection.png.webp "MSDyn365 & Azure DevOps ALM 19")
 
 And the branch one, where we can see the different relationships between the other branches created from Main:
 
-![Propiedades de la rama](https://static.ariste.info/wp-content/uploads/2019/02/2019-02-11-14_09_23-ie-dev01dev.northeurope.cloudapp.azure_.com_61466-Remote-Desktop-Connection.png#center.webp "MSDyn365 & Azure DevOps ALM 20")
+![Propiedades de la rama](https://static.ariste.info/wp-content/uploads/2019/02/2019-02-11-14_09_23-ie-dev01dev.northeurope.cloudapp.azure_.com_61466-Remote-Desktop-Connection.png.webp "MSDyn365 & Azure DevOps ALM 20")
 
 This might be not that interesting or useful, but one of the things converting a folder into a branch is seeing where has a changeset been merge into.
 
@@ -165,11 +165,11 @@ Should your project/team use CI? Yes, yes, yes. This is one of the key feature o
 
 This is how a build definition for CI that will only compile our codebase looks like:
 
-![Definicion build continua](https://static.ariste.info/wp-content/uploads/2019/02/2019-02-20-15_06_43-AXZ-Dev-Continuous-Build-Azure-DevOps-Services.png#center.webp "MSDyn365 & Azure DevOps ALM 21")
+![Definicion build continua](https://static.ariste.info/wp-content/uploads/2019/02/2019-02-20-15_06_43-AXZ-Dev-Continuous-Build-Azure-DevOps-Services.png.webp "MSDyn365 & Azure DevOps ALM 21")
 
 Only the prepare and build steps. Then we need to go to the “Triggers” tab and enable the CI option:
 
-![DevOps continuous integration](https://static.ariste.info/wp-content/uploads/2019/02/2019-02-20-15_07_54-AXZ-Dev-Continuous-Build-Azure-DevOps-Services.png#center.webp "MSDyn365 & Azure DevOps ALM 22")
+![DevOps continuous integration](https://static.ariste.info/wp-content/uploads/2019/02/2019-02-20-15_07_54-AXZ-Dev-Continuous-Build-Azure-DevOps-Services.png.webp "MSDyn365 & Azure DevOps ALM 22")
 
 Right after each developer check-in, a build will be queued, and the code compiled. In case there’s a compilation error we’ll be notified about it. Of course, we all build the solutions before checking them in and don’t need this CI build. Right?
 
@@ -205,7 +205,7 @@ This task will replace the _Generate packages_ from the current build definition
 
 ##### 0.2.4.2.1. [](https://ariste.info/en/msdyn365-azure-devops-alm/#x-tools-path)X++ Tools Path
 
-![MSDyn365 & Azure DevOps ALM 11](https://static.ariste.info/wp-content/uploads/2019/09/2019-09-05-11_25_12-AXZ-Dev-Build-DP-test-new-Azure-DevOps-Services.png#center.webp "MSDyn365 & Azure DevOps ALM 24")
+![MSDyn365 & Azure DevOps ALM 11](https://static.ariste.info/wp-content/uploads/2019/09/2019-09-05-11_25_12-AXZ-Dev-Build-DP-test-new-Azure-DevOps-Services.png.webp "MSDyn365 & Azure DevOps ALM 24")
 
 This is your build VM’s physical bin folder, the AosService folder is usually on the unit K for cloud-hosted VMs. I guess this will change when we go VM-less to do the builds.
 
@@ -213,13 +213,13 @@ This is your build VM’s physical bin folder, the AosService folder is usually 
 
 ##### 0.2.4.2.2. [](https://ariste.info/en/msdyn365-azure-devops-alm/#location-of-the-x-binaries-to-package)Location of the X++ binaries to package
 
-![MSDyn365 & Azure DevOps ALM 12](https://static.ariste.info/wp-content/uploads/2019/09/2019-09-05-11_29_55-AXZ-Dev-Build-DP-test-new-Azure-DevOps-Services.png#center.webp "MSDyn365 & Azure DevOps ALM 25")
+![MSDyn365 & Azure DevOps ALM 12](https://static.ariste.info/wp-content/uploads/2019/09/2019-09-05-11_29_55-AXZ-Dev-Build-DP-test-new-Azure-DevOps-Services.png.webp "MSDyn365 & Azure DevOps ALM 25")
 
 The task comes with this field filled in as _$(Build.BinariesDirectory)_ but this didn’t work out for our build definitions, maybe the variable isn’t set up on the proj file. After changing this to _$(Agent.BuildDirectory)\\Bin_ the package is generated.
 
 ##### 0.2.4.2.3. [](https://ariste.info/en/msdyn365-azure-devops-alm/#filename-and-path-for-the-deployable-package)Filename and path for the deployable package
 
-![MSDyn365 & Azure DevOps ALM 13](https://static.ariste.info/wp-content/uploads/2019/09/2019-09-05-11_33_28-AXZ-Dev-Build-DP-test-new-Azure-DevOps-Services.png#center.webp "MSDyn365 & Azure DevOps ALM 26")
+![MSDyn365 & Azure DevOps ALM 13](https://static.ariste.info/wp-content/uploads/2019/09/2019-09-05-11_33_28-AXZ-Dev-Build-DP-test-new-Azure-DevOps-Services.png.webp "MSDyn365 & Azure DevOps ALM 26")
 
 The path on the image should be changed to _$(Build.ArtifactStagingDirectory)\\Packages\\AXDeployableRuntime\_$(Build.BuildNumber).zip_. You can leave it without the _Packages_ folder in the path, but if you do that you will need to change the _Path to Publish_ field in the _Publish Artifact: Package_ step of the definition.
 
@@ -234,7 +234,7 @@ The day we’ve been waiting for has come! The [Azure hosted builds](https://doc
 
 I’ve been able to write this because, thanks to [Antonio Gilabert](https://twitter.com/_Gilabert_), we’ve been testing this at [Axazure](https://www.axazure.com/) for a few months with access to the private preview. And of course thanks to Joris for inviting us to the preview!
 
-![Azure hosted build](https://i1.wp.com/ariste.info/wp-content/uploads/2020/05/AzureDevOpsPipeline-2.png#center?fit=702%2C1024&ssl=1 "MSDyn365 & Azure DevOps ALM 27")
+![Azure hosted build](https://i1.wp.com/ariste.info/wp-content/uploads/2020/05/AzureDevOpsPipeline-2.png?fit=702%2C1024&ssl=1 "MSDyn365 & Azure DevOps ALM 27")
 
 Riding the Azure Pipelines by [Caza Pelusas](https://cazapelusas.com/)
 
@@ -278,7 +278,7 @@ To configure the Azure hosted build we need:
 
 So the first step is going to the PEAP LCS’ Asset Library and downloading the 3 nuget packages:
 
-![Nugets for the Azure Hosted Build](https://static.ariste.info/wp-content/uploads/2020/04/2020-04-24-13_44_51.png#center.webp "MSDyn365 & Azure DevOps ALM 29")
+![Nugets for the Azure Hosted Build](https://static.ariste.info/wp-content/uploads/2020/04/2020-04-24-13_44_51.png.webp "MSDyn365 & Azure DevOps ALM 29")
 
 Nugets for the Azure Hosted Build
 
@@ -288,9 +288,9 @@ All of this can be done on your PC or in a dev VM, but you’ll need to add some
 
 Head to your Azure DevOps project and go to the Artifacts section. Here we’ll create a new feed and give it a name:
 
-![Azure DevOps artifact feed](https://static.ariste.info/wp-content/uploads/2020/04/2020-04-24-09_24_19.png#center.webp "MSDyn365 & Azure DevOps ALM 30")
+![Azure DevOps artifact feed](https://static.ariste.info/wp-content/uploads/2020/04/2020-04-24-09_24_19.png.webp "MSDyn365 & Azure DevOps ALM 30")
 
-![Azure DevOps artifact feed](https://static.ariste.info/wp-content/uploads/2020/04/2020-04-24-09_24_55.png#center.webp "MSDyn365 & Azure DevOps ALM 31")
+![Azure DevOps artifact feed](https://static.ariste.info/wp-content/uploads/2020/04/2020-04-24-09_24_55.png.webp "MSDyn365 & Azure DevOps ALM 31")
 
 You get 2GB for artifacts, the 3 nuget packages’ size is around 500MB, you should have no issues with space unless you have other artifacts in your project.
 
@@ -326,7 +326,7 @@ Of course, you need to change “AASBuild” for your artifact feed name. And we
 
 This new agent needs a solution to build our packages. This means we have to create an empty solution in Visual Studio and set the package of the project to our main package. Like this:
 
-![2020 04 24 14 20 58](https://static.ariste.info/wp-content/uploads/2020/04/2020-04-24-14_20_58.png#center.webp "MSDyn365 & Azure DevOps ALM 32")
+![2020 04 24 14 20 58](https://static.ariste.info/wp-content/uploads/2020/04/2020-04-24-14_20_58.png.webp "MSDyn365 & Azure DevOps ALM 32")
 
 Visual Studio solution
 
@@ -347,7 +347,7 @@ The version tag will depend on when you’re reading this, but the one above is 
 
 And, to end with this part, we need to add the solution, the nuget.config and the packages.config files to TFVC. This is what I’ve done:
 
-![2020 04 24 14 29 01](https://static.ariste.info/wp-content/uploads/2020/04/2020-04-24-14_29_01.png#center.webp "MSDyn365 & Azure DevOps ALM 33")
+![2020 04 24 14 29 01](https://static.ariste.info/wp-content/uploads/2020/04/2020-04-24-14_29_01.png.webp "MSDyn365 & Azure DevOps ALM 33")
 
 Azure DevOps
 
@@ -357,7 +357,7 @@ You can see I’ve created a Build folder in the root of my DevOps project. That
 
 Now we need to create a new pipeline, you can just import [this template](https://github.com/microsoft/Dynamics365-Xpp-Samples-Tools/blob/master/CI-CD/Pipeline-Samples/xpp-classic-ci.json) from the newly created [X++ (Dynamics 365) Samples and Tools Github project](https://github.com/microsoft/Dynamics365-Xpp-Samples-Tools). After importing the template we’ll modify it a bit. Initially, it will look like this:
 
-![2020 04 24 14 35 07 1](https://static.ariste.info/wp-content/uploads/2020/04/2020-04-24-14_35_07-1.png#center.webp "MSDyn365 & Azure DevOps ALM 34")
+![2020 04 24 14 35 07 1](https://static.ariste.info/wp-content/uploads/2020/04/2020-04-24-14_35_07-1.png.webp "MSDyn365 & Azure DevOps ALM 34")
 
 Azure hosted build: Default imported pipeline
 
@@ -365,13 +365,13 @@ As you can see the pipeline has all the steps needed to generate the DP, but som
 
 #### 0.3.6.1. [](https://ariste.info/en/msdyn365-azure-devops-alm/#pipeline-root)Pipeline root
 
-![2020 04 24 14 38 27](https://static.ariste.info/wp-content/uploads/2020/04/2020-04-24-14_38_27.png#center.webp "MSDyn365 & Azure DevOps ALM 35")
+![2020 04 24 14 38 27](https://static.ariste.info/wp-content/uploads/2020/04/2020-04-24-14_38_27.png.webp "MSDyn365 & Azure DevOps ALM 35")
 
 You need to select the Hosted Azure Pipelines for the Agent pool, and vs2017-win2016 as Agent Specification.
 
 #### 0.3.6.2. [](https://ariste.info/en/msdyn365-azure-devops-alm/#get-sources)Get sources
 
-![DevOps mappings](https://static.ariste.info/wp-content/uploads/2020/04/2020-04-24-14_42_07.png#center.webp "MSDyn365 & Azure DevOps ALM 36")
+![DevOps mappings](https://static.ariste.info/wp-content/uploads/2020/04/2020-04-24-14_42_07.png.webp "MSDyn365 & Azure DevOps ALM 36")
 
 Azure hosted build: Our mappings
 
@@ -381,7 +381,7 @@ I’ve mapped 2 things here: our codebase in the first mapping and the Build fol
 
 This step gets the nugets from our artifacts feeds and the installs to be used in each pipeline execution.
 
-![2020 04 25 12 41 47 1](https://static.ariste.info/wp-content/uploads/2020/04/2020-04-25-12_41_47-1.png#center.webp "MSDyn365 & Azure DevOps ALM 37")
+![2020 04 25 12 41 47 1](https://static.ariste.info/wp-content/uploads/2020/04/2020-04-25-12_41_47-1.png.webp "MSDyn365 & Azure DevOps ALM 37")
 
 Azure hosted build: nuget install
 
@@ -391,13 +391,13 @@ The command uses the config files we have uploaded to the Build folder, and as y
 
 This is one of the steps that are displaying issues even though I got the Dynamics 365 tools installed from the Azure DevOps marketplace. If you got it right you probably don’t need to change anything. If you have the same issue as me, just add a new step and select the “Update Model Version” task and change the fields so it looks like this:
 
-![Update Model Version](https://static.ariste.info/wp-content/uploads/2020/04/2020-04-24-14_53_56-1.png#center.webp "MSDyn365 & Azure DevOps ALM 38")
+![Update Model Version](https://static.ariste.info/wp-content/uploads/2020/04/2020-04-24-14_53_56-1.png.webp "MSDyn365 & Azure DevOps ALM 38")
 
 Azure hosted build: Update Model Version
 
 #### 0.3.6.5. [](https://ariste.info/en/msdyn365-azure-devops-alm/#build-solution)Build solution
 
-![MSDyn365 & Azure DevOps ALM 14](https://static.ariste.info/wp-content/uploads/2020/09/2020-09-25-09_33_56.png#center.webp "MSDyn365 & Azure DevOps ALM 39")
+![MSDyn365 & Azure DevOps ALM 14](https://static.ariste.info/wp-content/uploads/2020/09/2020-09-25-09_33_56.png.webp "MSDyn365 & Azure DevOps ALM 39")
 
 Build solution step
 
@@ -413,7 +413,7 @@ There could be an additional issue with the rnrproj files as [Josh Williams poin
 
 This is another one of the steps that are not loading correctly for me. Again, add it and change as needed:
 
-![2020 04 24 14 55 32](https://static.ariste.info/wp-content/uploads/2020/04/2020-04-24-14_55_32.png#center.webp "MSDyn365 & Azure DevOps ALM 40")
+![2020 04 24 14 55 32](https://static.ariste.info/wp-content/uploads/2020/04/2020-04-24-14_55_32.png.webp "MSDyn365 & Azure DevOps ALM 40")
 
 Azure hosted build: Create Deployable Package
 
@@ -421,7 +421,7 @@ Azure hosted build: Create Deployable Package
 
 Another step with issues. Do the same as with the others:
 
-![2020 04 24 14 57 35](https://static.ariste.info/wp-content/uploads/2020/04/2020-04-24-14_57_35.png#center.webp "MSDyn365 & Azure DevOps ALM 41")
+![2020 04 24 14 57 35](https://static.ariste.info/wp-content/uploads/2020/04/2020-04-24-14_57_35.png.webp "MSDyn365 & Azure DevOps ALM 41")
 
 Azure hosted build: Add Licenses to Deployable Package
 
@@ -461,7 +461,7 @@ The packages.config file will have an additional line for the Application Suite 
 
 We need to add a new variable to the pipeline variables called AppSuitePackage with the value Microsoft.Dynamics._AX.ApplicationSuite.DevALM.BuildXpp_.
 
-![New Azure DevOps pipeline variable](https://static.ariste.info/wp-content/uploads/2021/05/image-1024x664.png#center.webp "MSDyn365 & Azure DevOps ALM 42")
+![New Azure DevOps pipeline variable](https://static.ariste.info/wp-content/uploads/2021/05/image-1024x664.png.webp "MSDyn365 & Azure DevOps ALM 42")
 
 New Azure DevOps pipeline variable
 
@@ -478,7 +478,7 @@ The **[end of Tier-1 Microsoft-managed build VMs](https://ariste.info/en/2020/10
 
 **This post has been written thanks to [Joris de Gruyter](https://twitter.com/jorisdg)‘s session in the past [DynamicsCon](https://dynamicscon.com/)**: [Azure Devops Automation for Finance and Operations Like You’ve Never Seen!](https://www.youtube.com/watch?v=VIib-m6Q8LQ) And there’s also been some investigation and (a lot of) trial-and-error from my side until everything has been working.
 
-![Azure DevTest Labs](https://static.ariste.info/wp-content/uploads/2021/01/adtl-1024x1024.png#center.webp "MSDyn365 & Azure DevOps ALM 43")
+![Azure DevTest Labs](https://static.ariste.info/wp-content/uploads/2021/01/adtl-1024x1024.png.webp "MSDyn365 & Azure DevOps ALM 43")
 
 Configuring the build VM in Azure DevTest Labs
 
@@ -498,7 +498,7 @@ What will I show in this post? How to **prepare a Dynamics 365 Finance and Opera
 
 This is by far the most tedious part of all the process because you need to download 11 ZIP files from LCS’ Shared Asset Library, and we all know how fast things download from LCS.
 
-![LCS download speed](https://static.ariste.info/wp-content/uploads/2020/12/fast.png#center.webp "MSDyn365 & Azure DevOps ALM 44")
+![LCS download speed](https://static.ariste.info/wp-content/uploads/2020/12/fast.png.webp "MSDyn365 & Azure DevOps ALM 44")
 
 How is LCS download speed?
 
@@ -518,13 +518,13 @@ To do this part **you need an Azure account**. If you don’t have one you can [
 
 Search for DevTest Labs in the top bar and create a new DevTest Lab. Once it’s created open the details and you should see something like this:
 
-![Azure DevTest Labs](https://static.ariste.info/wp-content/uploads/2020/12/DevTest1.png#center.webp "MSDyn365 & Azure DevOps ALM 45")
+![Azure DevTest Labs](https://static.ariste.info/wp-content/uploads/2020/12/DevTest1.png.webp "MSDyn365 & Azure DevOps ALM 45")
 
 Azure DevTest Labs
 
 Click on the “Configuration and policies” menu item at the bottom of the list and scroll down in the menu until you see the “Virtual machine bases” section:
 
-![DevTest Labs custom VHD image](https://static.ariste.info/wp-content/uploads/2020/12/DevTest2.png#center.webp "MSDyn365 & Azure DevOps ALM 46")
+![DevTest Labs custom VHD image](https://static.ariste.info/wp-content/uploads/2020/12/DevTest2.png.webp "MSDyn365 & Azure DevOps ALM 46")
 
 DevTest Labs custom image
 
@@ -550,7 +550,7 @@ the LocalFilePath to your VHD.
 Add-AzureRmVhd \-Destination "https://YOURBLOB.blob.core.windows.net/uploads/tempImage.vhd?sv=2019-07-07&st=2020-12-27T09%3A08%3A26Z&se=2020-12-28T09%3A23%3A26Z&sr=b&sp=rcw&sig=YTeXpxpVEJdSM7KZle71w8NVw9oznNizSnYj8Q3hngI%3D" \-LocalFilePath "<Enter VHD location here>"
 ```
 
-![DevTest Labs custom image upload](https://static.ariste.info/wp-content/uploads/2020/12/DevTest3.png#center.webp "MSDyn365 & Azure DevOps ALM 47")
+![DevTest Labs custom image upload](https://static.ariste.info/wp-content/uploads/2020/12/DevTest3.png.webp "MSDyn365 & Azure DevOps ALM 47")
 
 DevTest Labs custom image upload
 
@@ -562,7 +562,7 @@ Any of these methods is good to upload the VHD and I don’t really know which o
 
 Once the VHD is uploaded open the “Custom images” option again and you should see the VHD in the drop-down:
 
-![DevTest Labs custom image](https://static.ariste.info/wp-content/uploads/2020/12/DevTest4.png#center.webp "MSDyn365 & Azure DevOps ALM 48")
+![DevTest Labs custom image](https://static.ariste.info/wp-content/uploads/2020/12/DevTest4.png.webp "MSDyn365 & Azure DevOps ALM 48")
 
 DevTest Labs custom image
 
@@ -576,7 +576,7 @@ We’ve got the essential, a VHD ready to be used as a base to create a virtual 
 
 Go back to your DevTest Labs overview page and click the “Add” button, on the “Choose base” page select the base you’ve just created, and on the next screen click on the “Add or Remove Artifacts” link:
 
-![Add artifacts to the VM](https://static.ariste.info/wp-content/uploads/2020/12/DevTest5.png#center.webp "MSDyn365 & Azure DevOps ALM 49")
+![Add artifacts to the VM](https://static.ariste.info/wp-content/uploads/2020/12/DevTest5.png.webp "MSDyn365 & Azure DevOps ALM 49")
 
 Add artifacts to the VM
 
@@ -604,7 +604,7 @@ The first one will load the functions and make them available in the command-lin
 
 Now we need to **add an artifact for the Azure DevOps agent service**. This will configure the agent service on the VM each time the VM is deployed. Search for “Azure Pipelines Agent” and click it. You will see this:
 
-![DevTest Labs Azure DevOps Agent](https://static.ariste.info/wp-content/uploads/2021/01/DevTest1-311x1024.png#center.webp "MSDyn365 & Azure DevOps ALM 50")
+![DevTest Labs Azure DevOps Agent](https://static.ariste.info/wp-content/uploads/2021/01/DevTest1-311x1024.png.webp "MSDyn365 & Azure DevOps ALM 50")
 
 DevTest Labs Azure DevOps Agent
 
@@ -634,7 +634,7 @@ SetupBuildAgent.ps1 \-VSO\_ProjectCollection "https://dev.azure.com/YOUR\_ORG" \
 
 Then go to the “Advanced Settings” tab and click the “**View ARM template**” button:
 
-![Get the ARM template](https://static.ariste.info/wp-content/uploads/2020/12/DevTest6.png#center.webp "MSDyn365 & Azure DevOps ALM 51")
+![Get the ARM template](https://static.ariste.info/wp-content/uploads/2020/12/DevTest6.png.webp "MSDyn365 & Azure DevOps ALM 51")
 
 Get the ARM template
 
@@ -1020,7 +1020,7 @@ Of course **you would never upload this template to Azure DevOps with a password
 
 OK, now grab that file and save it to your Azure DevOps repo. I’ve created a folder in my repo’s root called ARM where I’m saving all the ARM templates:
 
-![ARM templates on Azure DevOps](https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs2.png#center.webp "MSDyn365 & Azure DevOps ALM 52")
+![ARM templates on Azure DevOps](https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs2.png.webp "MSDyn365 & Azure DevOps ALM 52")
 
 ARM templates on Azure DevOps
 
@@ -1119,11 +1119,11 @@ This will generate a new image that you can use as a base image with all the cha
 
 We’re ready to setup our new build pipeline in Azure DevOps. This pipeline will consist of three steps: create a new VM, run all the build steps, and delete the VM:
 
-![MSDyn365 & Azure DevOps ALM 15](https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs4.png#center.webp "MSDyn365 & Azure DevOps ALM 53")
+![MSDyn365 & Azure DevOps ALM 15](https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs4.png.webp "MSDyn365 & Azure DevOps ALM 53")
 
 First of all check that your pipeline runs on Azure pipelines (aka Azure-hosted):
 
-![DevTest Labs Azure Pipelines](https://static.ariste.info/wp-content/uploads/2021/01/image-2.png#center.webp "MSDyn365 & Azure DevOps ALM 54")
+![DevTest Labs Azure Pipelines](https://static.ariste.info/wp-content/uploads/2021/01/image-2.png.webp "MSDyn365 & Azure DevOps ALM 54")
 
 DevTest Labs Azure Pipelines
 
@@ -1133,7 +1133,7 @@ The create and delete steps will run on the Azure Pipelines pool. The build step
 
 Create a new pipeline and choose the “Use the classic editor” option. Make sure you’ve selected TFVC as your source and click “Continue” and “Empty job”. Add a new task to the pipeline, look for “Azure DevTest Labs Create VM”. We just need to fill in the missing parameters with our subscription, lab, etc.
 
-![Create VM Azure DevTest Labs](https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs5.png#center.webp "MSDyn365 & Azure DevOps ALM 55")
+![Create VM Azure DevTest Labs](https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs5.png.webp "MSDyn365 & Azure DevOps ALM 55")
 
 Create VM Azure DevTest Labs
 
@@ -1143,7 +1143,7 @@ Remember this step must run on the Azure-hosted pipeline.
 
 This is an easy one. Just export a working pipeline and import it. And this step needs to run on your self-hosted pool:
 
-![Runs on self-hosted pool](https://static.ariste.info/wp-content/uploads/2021/01/image-3.png#center.webp "MSDyn365 & Azure DevOps ALM 56")
+![Runs on self-hosted pool](https://static.ariste.info/wp-content/uploads/2021/01/image-3.png.webp "MSDyn365 & Azure DevOps ALM 56")
 
 Runs on self-hosted pool
 
@@ -1151,7 +1151,7 @@ Runs on self-hosted pool
 
 You can replace the Database Sync task for a PowerShell script that will only sync the tables in your models:
 
-![SelectiveSync.ps1](https://static.ariste.info/wp-content/uploads/2021/01/image-9.png#center.webp "MSDyn365 & Azure DevOps ALM 57")
+![SelectiveSync.ps1](https://static.ariste.info/wp-content/uploads/2021/01/image-9.png.webp "MSDyn365 & Azure DevOps ALM 57")
 
 SelectiveSync.ps1
 
@@ -1181,7 +1181,7 @@ Publish-D365SsrsReport -Module YOUR\_MODULE -ReportName \*
 
 It’s almost the same as the create step, complete the subscription, lab and VM fields and done:
 
-![Delete VM](https://static.ariste.info/wp-content/uploads/2021/01/image.png#center.webp "MSDyn365 & Azure DevOps ALM 58")
+![Delete VM](https://static.ariste.info/wp-content/uploads/2021/01/image.png.webp "MSDyn365 & Azure DevOps ALM 58")
 
 Delete VM
 
@@ -1195,7 +1195,7 @@ When all three steps are configured we need to add dependencies and conditions t
 
 The build step depends on the create VM step, and will only run if the previous step succeeds:
 
-![Build step dependencies and conditions](https://static.ariste.info/wp-content/uploads/2021/01/image-4.png#center.webp "MSDyn365 & Azure DevOps ALM 59")
+![Build step dependencies and conditions](https://static.ariste.info/wp-content/uploads/2021/01/image-4.png.webp "MSDyn365 & Azure DevOps ALM 59")
 
 Build step dependencies and conditions
 
@@ -1203,7 +1203,7 @@ Build step dependencies and conditions
 
 The delete step depends on all previous steps and must run when the create VM step succeeds. If the create step fails there’s no VM and we don’t need to delete it:
 
-![Dependencies and conditions on delete VM step](https://static.ariste.info/wp-content/uploads/2021/01/image-5.png#center.webp "MSDyn365 & Azure DevOps ALM 60")
+![Dependencies and conditions on delete VM step](https://static.ariste.info/wp-content/uploads/2021/01/image-5.png.webp "MSDyn365 & Azure DevOps ALM 60")
 
 Dependencies and conditions on delete VM step
 
@@ -1215,11 +1215,11 @@ and(always(), eq(dependencies.Job\_1.status, 'Succeeded'))
 
 If you need to know your first step’s job name just export the pipeline to YAML and you’ll find it there:
 
-![Export pipeline to YAML](https://static.ariste.info/wp-content/uploads/2021/01/image-6.png#center.webp "MSDyn365 & Azure DevOps ALM 61")
+![Export pipeline to YAML](https://static.ariste.info/wp-content/uploads/2021/01/image-6.png.webp "MSDyn365 & Azure DevOps ALM 61")
 
 Export pipeline to YAML
 
-![Job name on YAML](https://static.ariste.info/wp-content/uploads/2021/01/image-7.png#center.webp "MSDyn365 & Azure DevOps ALM 62")
+![Job name on YAML](https://static.ariste.info/wp-content/uploads/2021/01/image-7.png.webp "MSDyn365 & Azure DevOps ALM 62")
 
 Job name on YAML
 
@@ -1229,7 +1229,7 @@ If this step fails when the pipeline is run, wait to delete the VM manually, fir
 
 And, I think, we’re done and ready to run our Azure DevTest Labs pipeline for Dynamics 365 Finance and Operations… click “Run pipeline” and wait…
 
-![MSDyn365 & Azure DevOps ALM 16](https://static.ariste.info/wp-content/uploads/2021/01/image-10-382x1024.png#center.webp "MSDyn365 & Azure DevOps ALM 63")
+![MSDyn365 & Azure DevOps ALM 16](https://static.ariste.info/wp-content/uploads/2021/01/image-10-382x1024.png.webp "MSDyn365 & Azure DevOps ALM 63")
 
 Tadaaaa!!
 
@@ -1239,7 +1239,7 @@ The pipeline from the image above is one with real code from a customer but I ca
 
 But for example this is a comparison I did:
 
-![Azure DevTest Labs B2ms vs B4ms](https://static.ariste.info/wp-content/uploads/2021/01/B2msVSB4ms.png#center.webp "MSDyn365 & Azure DevOps ALM 64")
+![Azure DevTest Labs B2ms vs B4ms](https://static.ariste.info/wp-content/uploads/2021/01/B2msVSB4ms.png.webp "MSDyn365 & Azure DevOps ALM 64")
 
 Azure DevTest Labs B2ms vs B4ms
 
@@ -1255,7 +1255,7 @@ This would leave us with a 35-40 minutes build.
 
 #### 0.4.10.1. [](https://ariste.info/en/msdyn365-azure-devops-alm/#comparison-1)Comparison 1
 
-![MSDyn365 & Azure DevOps ALM 18](https://static.ariste.info/wp-content/uploads/2021/01/Dtcomp1.png#center.webp "MSDyn365 & Azure DevOps ALM 66")
+![MSDyn365 & Azure DevOps ALM 18](https://static.ariste.info/wp-content/uploads/2021/01/Dtcomp1.png.webp "MSDyn365 & Azure DevOps ALM 66")
 
 No DB Sync
 
@@ -1263,7 +1263,7 @@ The image above shows a simple package being compiled, without any table, so the
 
 #### 0.4.10.2. [](https://ariste.info/en/msdyn365-azure-devops-alm/#comparison-2)Comparison 2
 
-![MSDyn365 & Azure DevOps ALM 19](https://static.ariste.info/wp-content/uploads/2021/01/Dtcomp2.png#center.webp "MSDyn365 & Azure DevOps ALM 67")
+![MSDyn365 & Azure DevOps ALM 19](https://static.ariste.info/wp-content/uploads/2021/01/Dtcomp2.png.webp "MSDyn365 & Azure DevOps ALM 67")
 
 Same code Full DB Sync
 
@@ -1271,7 +1271,7 @@ This one is compiling the same codebase but is doing a full DB sync. The sync ti
 
 #### 0.4.10.3. [](https://ariste.info/en/msdyn365-azure-devops-alm/#comparison-3)Comparison 3
 
-![MSDyn365 & Azure DevOps ALM 20](https://static.ariste.info/wp-content/uploads/2021/01/image-14.png#center.webp "MSDyn365 & Azure DevOps ALM 68")
+![MSDyn365 & Azure DevOps ALM 20](https://static.ariste.info/wp-content/uploads/2021/01/image-14.png.webp "MSDyn365 & Azure DevOps ALM 68")
 
 Real code + full sync
 
@@ -1314,13 +1314,13 @@ I’ve been trying this during the last days after a conversation on Yammer, and
 
 The build step of the pipeline invokes [msbuild.exe](https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild?view=vs-2019&WT.mc_id=DOP-MVP-5003976) which can build .NET code. If we check the logs of the build step we will see it:
 
-![msbuild.exe builds C# projects and our X++ ones too!](https://static.ariste.info/wp-content/uploads/2020/09/2020-09-29-13_03_44.png#center.webp "MSDyn365 & Azure DevOps ALM 69")
+![msbuild.exe builds C# projects and our X++ ones too!](https://static.ariste.info/wp-content/uploads/2020/09/2020-09-29-13_03_44.png.webp "MSDyn365 & Azure DevOps ALM 69")
 
 msbuild.exe builds C# projects and our X++ ones too!
 
 Remember that X++ is part of the .NET family after all… a second cousin or something like it.
 
-![MSDyn365 & Azure DevOps ALM 21](https://static.ariste.info/wp-content/uploads/2020/09/2020-09-29-13_21_54.png#center.webp "MSDyn365 & Azure DevOps ALM 70")
+![MSDyn365 & Azure DevOps ALM 21](https://static.ariste.info/wp-content/uploads/2020/09/2020-09-29-13_21_54.png.webp "MSDyn365 & Azure DevOps ALM 70")
 
 Build folder
 
@@ -1334,11 +1334,11 @@ By using a solution and pointing the build process to use it I also keep control
 
 Our first step will usually be creating a Finance and Operations project. Once it’s created we right-click on the solution and select “Add new project”. Then we select a Visual C# Class Library project:
 
-![MSDyn365 & Azure DevOps ALM 22](https://static.ariste.info/wp-content/uploads/2020/09/2020-09-30-12_51_37.png#center.webp "MSDyn365 & Azure DevOps ALM 71")
+![MSDyn365 & Azure DevOps ALM 22](https://static.ariste.info/wp-content/uploads/2020/09/2020-09-30-12_51_37.png.webp "MSDyn365 & Azure DevOps ALM 71")
 
 C# project in Dynamics 365
 
-![MSDyn365 & Azure DevOps ALM 23](https://static.ariste.info/wp-content/uploads/2020/09/2020-09-30-12_54_25.png#center.webp "MSDyn365 & Azure DevOps ALM 72")
+![MSDyn365 & Azure DevOps ALM 23](https://static.ariste.info/wp-content/uploads/2020/09/2020-09-30-12_54_25.png.webp "MSDyn365 & Azure DevOps ALM 72")
 
 Now we should have a solution with a FnO Project and a C# project (right image).
 
@@ -1366,19 +1366,19 @@ Now compile the C# project alone, not the whole solution. This will create the D
 
 Right click on the References node of the FnO project and select “Add Reference…”:
 
-![MSDyn365 & Azure DevOps ALM 24](https://static.ariste.info/wp-content/uploads/2020/09/2020-09-30-13_00_34.png#center.webp "MSDyn365 & Azure DevOps ALM 73")
+![MSDyn365 & Azure DevOps ALM 24](https://static.ariste.info/wp-content/uploads/2020/09/2020-09-30-13_00_34.png.webp "MSDyn365 & Azure DevOps ALM 73")
 
 Add reference to FnO project
 
 A window will open and you should see the C# project in the “Projects” tab:
 
-![MSDyn365 & Azure DevOps ALM 25](https://static.ariste.info/wp-content/uploads/2020/09/2020-09-30-13_01_58.png#center.webp "MSDyn365 & Azure DevOps ALM 74")
+![MSDyn365 & Azure DevOps ALM 25](https://static.ariste.info/wp-content/uploads/2020/09/2020-09-30-13_01_58.png.webp "MSDyn365 & Azure DevOps ALM 74")
 
 Add C# project reference to FnO project
 
 Select it and click the Ok button. That will add the C# project as a reference to our FnO project, but we still need to do something or this won’t compile in our pipeline. We have to manually add the reference to the project that has been created in the AOT. So, right-click on the reference and select “Add to source control”:
 
-![MSDyn365 & Azure DevOps ALM 26](https://static.ariste.info/wp-content/uploads/2020/09/2020-09-30-13_31_10.png#center.webp "MSDyn365 & Azure DevOps ALM 75")
+![MSDyn365 & Azure DevOps ALM 26](https://static.ariste.info/wp-content/uploads/2020/09/2020-09-30-13_31_10.png.webp "MSDyn365 & Azure DevOps ALM 75")
 
 Add the reference to source control
 
@@ -1420,7 +1420,7 @@ Add the solution to source control if you haven’t, make sure all the objects a
 
 If I go to my Azure DevOps repo we’ll see the following:
 
-![MSDyn365 & Azure DevOps ALM 27](https://static.ariste.info/wp-content/uploads/2020/09/2020-09-30-13_38_19.png#center.webp "MSDyn365 & Azure DevOps ALM 76")
+![MSDyn365 & Azure DevOps ALM 27](https://static.ariste.info/wp-content/uploads/2020/09/2020-09-30-13_38_19.png.webp "MSDyn365 & Azure DevOps ALM 76")
 
 Projects and objects
 
@@ -1428,7 +1428,7 @@ You can see I’ve checked-in the solution under the Build folder, as I said ear
 
 In my build pipeline I make sure I’m using this solution to build the code:
 
-![MSDyn365 & Azure DevOps ALM 28](https://static.ariste.info/wp-content/uploads/2020/09/2020-09-30-13_43_12.png#center.webp "MSDyn365 & Azure DevOps ALM 77")
+![MSDyn365 & Azure DevOps ALM 28](https://static.ariste.info/wp-content/uploads/2020/09/2020-09-30-13_43_12.png.webp "MSDyn365 & Azure DevOps ALM 77")
 
 Build Dynamics 365 solution
 
@@ -1440,7 +1440,7 @@ Copying file from "D:\\a\\9\\s\\Build\\AASBuildNetDemo\\AASBuildNetDemoLibrary\\
 
 And if you download the DP, unzip it, navigate to AOSService\\Packages\\files and unzip the file in there, then open the bin folder, you’ll see our library’s DLL there:
 
-![MSDyn365 & Azure DevOps ALM 29](https://static.ariste.info/wp-content/uploads/2020/09/2020-09-30-13_52_47.png#center.webp "MSDyn365 & Azure DevOps ALM 78")
+![MSDyn365 & Azure DevOps ALM 29](https://static.ariste.info/wp-content/uploads/2020/09/2020-09-30-13_52_47.png.webp "MSDyn365 & Azure DevOps ALM 78")
 
 Victory!
 
@@ -1476,15 +1476,15 @@ I recommend a service account to do this, with a non-expiring password and no MF
 
 The first step to take is creating an app registration on Azure Active Directory to upload the generated deployable package to LCS. Head to [Azure portal](https://portal.azure.com/)  and once logged in go to Azure ActiveDirectory, then App Registrations and create a new Native app:
 
-![MSDyn365 & Azure DevOps ALM 30](https://static.ariste.info/wp-content/uploads/2020/05/New-AAD-App.png#center.webp "MSDyn365 & Azure DevOps ALM 79")
+![MSDyn365 & Azure DevOps ALM 30](https://static.ariste.info/wp-content/uploads/2020/05/New-AAD-App.png.webp "MSDyn365 & Azure DevOps ALM 79")
 
 Next go to “Settings” and “Required permissions” to add the Dynamics Lifecycle Services API:
 
-![MSDyn365 & Azure DevOps ALM 31](https://static.ariste.info/wp-content/uploads/2020/05/Add-permission.png#center.webp "MSDyn365 & Azure DevOps ALM 80")
+![MSDyn365 & Azure DevOps ALM 31](https://static.ariste.info/wp-content/uploads/2020/05/Add-permission.png.webp "MSDyn365 & Azure DevOps ALM 80")
 
 In the dialog that will open change to the “APIs my organization uses” tab and select “Dynamics Lifecycle Services”:
 
-![MSDyn365 & Azure DevOps ALM 32](https://static.ariste.info/wp-content/uploads/2020/05/LCS.png#center.webp "MSDyn365 & Azure DevOps ALM 81")
+![MSDyn365 & Azure DevOps ALM 32](https://static.ariste.info/wp-content/uploads/2020/05/LCS.png.webp "MSDyn365 & Azure DevOps ALM 81")
 
 Select the only available permission in the next screen and click on the “Add permissions” button. Finally press the “Grant admin consent” button to apply the changes. This last step can be easily forgotten and the package upload to LCS cannot be done if not granted. Once done take note of the Application ID, we’ll use it later.
 
@@ -1494,7 +1494,7 @@ Go to Azure DevOps, and to Pipelines -> Releases to create the new release. Sele
 
 On the artifact box select the build which will be used for this release definition:
 
-![New release](https://static.ariste.info/wp-content/uploads/2019/02/Captura-de-pantalla-2019-02-03-a-les-0.33.40-1024x467.png#center.webp "MSDyn365 & Azure DevOps ALM 82")
+![New release](https://static.ariste.info/wp-content/uploads/2019/02/Captura-de-pantalla-2019-02-03-a-les-0.33.40-1024x467.png.webp "MSDyn365 & Azure DevOps ALM 82")
 
 Pick the build definition you want to use for the release in “Source”, “Latest” in “Default version” and push “Add”.
 
@@ -1502,19 +1502,19 @@ Pick the build definition you want to use for the release in “Source”, “La
 
 The next step we’ll take is adding a Task with the release pipeline for Dynamics. Go to the Tasks tab and press the plus button. A list with extension will appear, look for “Dynamics 365 Unified Operations Tools”:
 
-![Dynamics 365 Unified Operations Tools](https://static.ariste.info/wp-content/uploads/2019/02/Captura-de-pantalla-2019-02-03-a-les-0.39.39-1024x279.png#center.webp "MSDyn365 & Azure DevOps ALM 83")
+![Dynamics 365 Unified Operations Tools](https://static.ariste.info/wp-content/uploads/2019/02/Captura-de-pantalla-2019-02-03-a-les-0.39.39-1024x279.png.webp "MSDyn365 & Azure DevOps ALM 83")
 
 If the extension hasn’t been added previously it can be done in this screen. **In order to add it, the user used to create the release must have admin rights on the Azure DevOps account, not only in the project in which we’re creating the pipeline**.
 
-When the task is created we need to fill some parameters:![Release Dynamics Operations](./MSDyn365 & Azure DevOps ALM - ariste.info_files/Captura-de-pantalla-2019-02-03-a-les-0.43.11-1024x508.png#center.webp "MSDyn365 & Azure DevOps ALM 84")
+When the task is created we need to fill some parameters:![Release Dynamics Operations](./MSDyn365 & Azure DevOps ALM - ariste.info_files/Captura-de-pantalla-2019-02-03-a-les-0.43.11-1024x508.png.webp "MSDyn365 & Azure DevOps ALM 84")
 
-![Release Dynamics Operations](https://static.ariste.info/wp-content/uploads/2019/02/Captura-de-pantalla-2019-02-03-a-les-0.43.11-1024x508.png#center.webp "MSDyn365 & Azure DevOps ALM 84")
+![Release Dynamics Operations](https://static.ariste.info/wp-content/uploads/2019/02/Captura-de-pantalla-2019-02-03-a-les-0.43.11-1024x508.png.webp "MSDyn365 & Azure DevOps ALM 84")
 
 #### 0.6.3.2. [](https://ariste.info/en/msdyn365-azure-devops-alm/#apply-deployable-package)Apply deployable package
 
 This step is finally available for self-service environments! If you already set this for a regular environment you can still change the task to the new version.
 
-![Azure DevOps asset deployment](https://static.ariste.info/wp-content/uploads/2020/09/2020-09-04-10_55_48.png#center.webp "MSDyn365 & Azure DevOps ALM 85")
+![Azure DevOps asset deployment](https://static.ariste.info/wp-content/uploads/2020/09/2020-09-04-10_55_48.png.webp "MSDyn365 & Azure DevOps ALM 85")
 
 Azure DevOps asset deployment
 
@@ -1522,13 +1522,13 @@ The new task version 1 works for both type of environments: Microsoft managed (r
 
 What’s different in task version 1? I guess that some work behind it that we don’t see to make it support self-service, but in the UI we only see a new field called “_Name for the update_“.
 
-![MSDyn365 & Azure DevOps ALM 33](https://static.ariste.info/wp-content/uploads/2020/09/2020-09-04-10_59_39.png#center.webp "MSDyn365 & Azure DevOps ALM 86")
+![MSDyn365 & Azure DevOps ALM 33](https://static.ariste.info/wp-content/uploads/2020/09/2020-09-04-10_59_39.png.webp "MSDyn365 & Azure DevOps ALM 86")
 
 Name for the update field
 
 This field is needed only for the self-service environments deployments, it will be ignored for regular ones, and corresponds to the field with the same name that appears on LCS when we apply an update to a sandbox environment:
 
-![MSDyn365 & Azure DevOps ALM 34](https://static.ariste.info/wp-content/uploads/2020/09/2020-09-04-11_05_10.png#center.webp "MSDyn365 & Azure DevOps ALM 87")
+![MSDyn365 & Azure DevOps ALM 34](https://static.ariste.info/wp-content/uploads/2020/09/2020-09-04-11_05_10.png.webp "MSDyn365 & Azure DevOps ALM 87")
 
 Name for this update in LCS
 
@@ -1538,7 +1538,7 @@ The default field’s value is the variable $(Release.ReleaseName) that is the n
 
 The first step in the task is setting up the link to LCS using the AAD app we created before. Press New and let’s fill the fields in the following screen:
 
-![MSDyn365 & Azure DevOps ALM 35](https://static.ariste.info/wp-content/uploads/2020/05/LCS-in-Azure-DevOps.png#center.webp "MSDyn365 & Azure DevOps ALM 88")
+![MSDyn365 & Azure DevOps ALM 35](https://static.ariste.info/wp-content/uploads/2020/05/LCS-in-Azure-DevOps.png.webp "MSDyn365 & Azure DevOps ALM 88")
 
 It’s only necessary to fill in the connection name, username, password (from the user and Application (Client) ID fields. Use the App ID we got in the first step for the App ID field. The endpoint fields should be automatically filled in. Finally, press OK and the LCS connection is ready.
 
@@ -1546,21 +1546,21 @@ In the LCS Project Id field, use the ID from the LCS project URL, for example in
 
 Press the button next to “File to upload” and select the deployable package file generated by the build:
 
-![DP Generado](https://static.ariste.info/wp-content/uploads/2019/02/Captura-de-pantalla-2019-02-03-a-les-0.53.30.png#center.webp "MSDyn365 & Azure DevOps ALM 89")
+![DP Generado](https://static.ariste.info/wp-content/uploads/2019/02/Captura-de-pantalla-2019-02-03-a-les-0.53.30.png.webp "MSDyn365 & Azure DevOps ALM 89")
 
 If the build definition hasn’t been modified, the output DP will have a name like AXDeployableRuntime\_VERSION\_BUILDNUMBER.zip. Change the fixed Build Number for the DevOps variable $(Build.BuildNumber) like in the image below:
 
-![BUildNumber](https://static.ariste.info/wp-content/uploads/2019/02/Captura-de-pantalla-2019-02-03-a-les-0.56.20-1024x87.png#center.webp "MSDyn365 & Azure DevOps ALM 90")
+![BUildNumber](https://static.ariste.info/wp-content/uploads/2019/02/Captura-de-pantalla-2019-02-03-a-les-0.56.20-1024x87.png.webp "MSDyn365 & Azure DevOps ALM 90")
 
 The package name and description in LCS are defined in “LCS Asset Name” and “LCS Asset Description”. For these fields, Azure DevOps’ [build variables](https://docs.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&WT.mc_id=DOP-MVP-5003976) and [release variables](https://docs.microsoft.com/en-us/azure/devops/pipelines/release/variables?view=azure-devops&tabs=batch&WT.mc_id=DOP-MVP-5003976#default-variables) can be used. Use whatever fits your project, for example a prefix to distinguish between prod and pre-prod packages followed by $(Build.BuildNumber), will upload the DP to LCS with a name like Prod 2019.1.29.1, using the date as a DP name.
 
 Save the task and release definition and let’s test it. In the Releases select the one we have just created and press the “Create a release” button, in the dialog just press OK. The release will start and, if everything is OK we’ll see the DP in LCS when it finishes:
 
-![LCS Asset Library](https://static.ariste.info/wp-content/uploads/2019/02/Captura-de-pantalla-2019-02-03-a-les-1.05.05.png#center.webp "MSDyn365 & Azure DevOps ALM 91")
+![LCS Asset Library](https://static.ariste.info/wp-content/uploads/2019/02/Captura-de-pantalla-2019-02-03-a-les-1.05.05.png.webp "MSDyn365 & Azure DevOps ALM 91")
 
 The release part can be automated, just press the lightning button on the artifact and enable the trigger:
 
-![Release trigger](https://static.ariste.info/wp-content/uploads/2019/02/Captura-de-pantalla-2019-02-03-a-les-1.08.21.png#center.webp "MSDyn365 & Azure DevOps ALM 92")
+![Release trigger](https://static.ariste.info/wp-content/uploads/2019/02/Captura-de-pantalla-2019-02-03-a-les-1.08.21.png.webp "MSDyn365 & Azure DevOps ALM 92")
 
 And that’s all! Now the build and the releases are both configured. Once the deployment package is published the CI scenario will be complete.
 
@@ -1574,7 +1574,7 @@ I’ve already explained in the past how to automate the builds, create the [CI 
 
 In the build definition go to the “Triggers” tab and enable a scheduled build:
 
-![MSDyn365 & Azure DevOps ALM 36](https://static.ariste.info/wp-content/uploads/2019/10/2019-10-26-11_05_38-AXZ-Main-Build-DP-Daily-16.30-Azure-DevOps-Services.png#center.webp "MSDyn365 & Azure DevOps ALM 93")
+![MSDyn365 & Azure DevOps ALM 36](https://static.ariste.info/wp-content/uploads/2019/10/2019-10-26-11_05_38-AXZ-Main-Build-DP-Daily-16.30-Azure-DevOps-Services.png.webp "MSDyn365 & Azure DevOps ALM 93")
 
 This will automatically trigger the build at the time and days you select. In the example image, every weekday at 16.30h a new build will be launched. **But** everyday? Nope! What the “Only schedule builds if the source or pipeline has changed” checkbox below the time selector makes is **only triggering the build if there’s been any change to the codebase**, meaning that if there’s no changeset checked-in during that day no build will be triggered.
 
@@ -1583,15 +1583,15 @@ This will automatically trigger the build at the time and days you select. In th
 
 First step done, let’s see what can we do with the releases:
 
-![MSDyn365 & Azure DevOps ALM 37](https://static.ariste.info/wp-content/uploads/2019/10/2019-10-26-11_14_04-AXZ-Prod-Release-Daily-16.30-Pipelines.png#center.webp "MSDyn365 & Azure DevOps ALM 94")
+![MSDyn365 & Azure DevOps ALM 37](https://static.ariste.info/wp-content/uploads/2019/10/2019-10-26-11_14_04-AXZ-Prod-Release-Daily-16.30-Pipelines.png.webp "MSDyn365 & Azure DevOps ALM 94")
 
 The release pipeline in the image above is the one that launches after the build I’ve created in the first step. For this pipeline I’ve added the following:
 
-![MSDyn365 & Azure DevOps ALM 38](https://static.ariste.info/wp-content/uploads/2019/10/2019-10-26-11_16_53-AXZ-Prod-Release-Daily-16.30-Pipelines.png#center.webp "MSDyn365 & Azure DevOps ALM 95")
+![MSDyn365 & Azure DevOps ALM 38](https://static.ariste.info/wp-content/uploads/2019/10/2019-10-26-11_16_53-AXZ-Prod-Release-Daily-16.30-Pipelines.png.webp "MSDyn365 & Azure DevOps ALM 95")
 
 The continuous deployment trigger has been enabled, meaning that after the build finishes this release will be automatically run. No need to define a schedule but you could also do that.
 
-![MSDyn365 & Azure DevOps ALM 39](https://static.ariste.info/wp-content/uploads/2019/10/2019-10-26-11_20_35-AXZ-Prod-Release-Daily-16.30-Pipelines.png#center.webp "MSDyn365 & Azure DevOps ALM 96")
+![MSDyn365 & Azure DevOps ALM 39](https://static.ariste.info/wp-content/uploads/2019/10/2019-10-26-11_20_35-AXZ-Prod-Release-Daily-16.30-Pipelines.png.webp "MSDyn365 & Azure DevOps ALM 96")
 
 As you can see, the schedule screen is exactly the same as in the builds, even the changed pipeline checkbox is there.  You can use any of these two approaches, CD or scheduled release, it’s up to your project or team needs.
 
@@ -1602,11 +1602,11 @@ With these two small steps you can have your full CI and CD strategy automatized
 
 If you don’t like not knowing if an environment is being updated… well **that’s IMPOSSIBLE** because LCS will SPAM you to make sure you know what’s going on. But if you don’t want to be completely replaced by robots you can add approvals to your release flow:
 
-![MSDyn365 & Azure DevOps ALM 40](https://static.ariste.info/wp-content/uploads/2019/10/2019-10-27-09_59_15-AXZ-Prod-Release-Daily-16.30-Pipelines.png#center.webp "MSDyn365 & Azure DevOps ALM 97")
+![MSDyn365 & Azure DevOps ALM 40](https://static.ariste.info/wp-content/uploads/2019/10/2019-10-27-09_59_15-AXZ-Prod-Release-Daily-16.30-Pipelines.png.webp "MSDyn365 & Azure DevOps ALM 97")
 
 Clicking the left lightning + person button on your release you can set the approvers, a person or a group (which is quite practical), and the kind of approval (all or single approver) and the timeout. You will also receive an email with a link to the approval form:
 
-![MSDyn365 & Azure DevOps ALM 41](https://static.ariste.info/wp-content/uploads/2019/10/2019-10-27-09_52_47-AXZ-Dev-Release-Daily-16.30-Release-41-Pipelines.png#center.webp "MSDyn365 & Azure DevOps ALM 98")
+![MSDyn365 & Azure DevOps ALM 41](https://static.ariste.info/wp-content/uploads/2019/10/2019-10-27-09_52_47-AXZ-Dev-Release-Daily-16.30-Release-41-Pipelines.png.webp "MSDyn365 & Azure DevOps ALM 98")
 
 And you can also postpone the deployment! [Everything is awesome!](https://www.youtube.com/watch?v=StTqXEQ2l-Y)  
 
@@ -1615,7 +1615,7 @@ And you can also postpone the deployment! [Everything is awesome!](https://www.y
 
 A little tip. Imagine you have the following release:
 
-![MSDyn365 & Azure DevOps ALM 42](https://static.ariste.info/wp-content/uploads/2019/10/2019-10-27-11_09_39-AXZ-Golden-Release-Daily-16.30-Pipelines.png#center.webp "MSDyn365 & Azure DevOps ALM 99")
+![MSDyn365 & Azure DevOps ALM 42](https://static.ariste.info/wp-content/uploads/2019/10/2019-10-27-11_09_39-AXZ-Golden-Release-Daily-16.30-Pipelines.png.webp "MSDyn365 & Azure DevOps ALM 99")
 
 This will update 3 environments, but will also upload the same Deployable Package three times to LCS. Wouldn’t it be nice to have a single upload and that all the deployments used that file? Yes, but we can’t pass the output variable from the upload to other stages 🙁 Yes that’s unfortunately right. But we can do something with a little help from our friend Powershell!
 
@@ -1624,11 +1624,11 @@ This will update 3 environments, but will also upload the same Deployable Packag
 
 What we need to do is create a variable in the release definition and set its scope to “Release”:
 
-![MSDyn365 & Azure DevOps ALM 43](https://static.ariste.info/wp-content/uploads/2019/10/2019-10-27-11_14_57-AXZ-Dev-Release-Daily-16.30-Pipelines.png#center.webp "MSDyn365 & Azure DevOps ALM 100")
+![MSDyn365 & Azure DevOps ALM 43](https://static.ariste.info/wp-content/uploads/2019/10/2019-10-27-11_14_57-AXZ-Dev-Release-Daily-16.30-Pipelines.png.webp "MSDyn365 & Azure DevOps ALM 100")
 
 Then, **for each stage**, we need to enable this checkbox in the agent job:
 
-![MSDyn365 & Azure DevOps ALM 44](https://static.ariste.info/wp-content/uploads/2019/10/2019-10-27-11_26_29-AXZ-Dev-Release-Daily-16.30-Pipelines.png#center.webp "MSDyn365 & Azure DevOps ALM 101")
+![MSDyn365 & Azure DevOps ALM 44](https://static.ariste.info/wp-content/uploads/2019/10/2019-10-27-11_26_29-AXZ-Dev-Release-Daily-16.30-Pipelines.png.webp "MSDyn365 & Azure DevOps ALM 101")
 
 I explain later why we’re enabling this. We now only need to update this variable after uploading the DP to LCS. Add an inline Powershell step after the upload one and do this:
 
@@ -1693,13 +1693,13 @@ And you’re done. This script uses Azure DevOps’ REST API to update the varia
 
 Now, in the deploy stages you need to retrieve your variable’s value in the following way:
 
-![MSDyn365 & Azure DevOps ALM 45](https://static.ariste.info/wp-content/uploads/2019/10/2019-10-27-11_21_02-AXZ-Dev-Release-Daily-16.30-Pipelines.png#center.webp "MSDyn365 & Azure DevOps ALM 102")
+![MSDyn365 & Azure DevOps ALM 45](https://static.ariste.info/wp-content/uploads/2019/10/2019-10-27-11_21_02-AXZ-Dev-Release-Daily-16.30-Pipelines.png.webp "MSDyn365 & Azure DevOps ALM 102")
 
 **Don’t forget the ( ) or it won’t work!**
 
 And with these small changes you can have a release like this:
 
-![MSDyn365 & Azure DevOps ALM 46](https://static.ariste.info/wp-content/uploads/2019/10/pipelines.png#center.webp "MSDyn365 & Azure DevOps ALM 103")
+![MSDyn365 & Azure DevOps ALM 46](https://static.ariste.info/wp-content/uploads/2019/10/pipelines.png.webp "MSDyn365 & Azure DevOps ALM 103")
 
 With a single DP upload to LCS and multiple deployments using the file uploaded in the first stage. With approvals, and delays, and emails, and everything!
 
@@ -1789,11 +1789,11 @@ If it’s successful the response will be a 200 OK.
 
 Adding this to an Azure DevOps pipeline is no mistery. Select and edit your pipeline, I’m doing it on a nigthly build (it’s called continuous but it’s not…) that runs after the environment has been updated with code, and add a new PowerShell task:
 
-![MSDyn365 & Azure DevOps ALM 47](https://static.ariste.info/wp-content/uploads/2020/01/2020-01-26-19_33_00-AXZ-Dev-Continuous-Build-Azure-DevOps-Services.png#center.webp "MSDyn365 & Azure DevOps ALM 104")
+![MSDyn365 & Azure DevOps ALM 47](https://static.ariste.info/wp-content/uploads/2020/01/2020-01-26-19_33_00-AXZ-Dev-Continuous-Build-Azure-DevOps-Services.png.webp "MSDyn365 & Azure DevOps ALM 104")
 
 Select the task and change it to “Inline”:
 
-![MSDyn365 & Azure DevOps ALM 48](https://static.ariste.info/wp-content/uploads/2020/01/2020-01-26-19_24_42-AXZ-Prod-Release-Daily-18h-Pipelines.png#center.webp "MSDyn365 & Azure DevOps ALM 105")
+![MSDyn365 & Azure DevOps ALM 48](https://static.ariste.info/wp-content/uploads/2020/01/2020-01-26-19_24_42-AXZ-Prod-Release-Daily-18h-Pipelines.png.webp "MSDyn365 & Azure DevOps ALM 105")
 
 Then just paste the script we’ve created in the Script field and done! You’ll get a refresh after the tests!
 
@@ -1809,7 +1809,7 @@ Thanks to [Mötz’s comment](https://ariste.info/en/2020/01/calling-the-lcs-dat
 
 Make sure that in your Azure Active Directory app registration you’ve selected “Treat application as a public client” under Authentication:
 
-![MSDyn365 & Azure DevOps ALM 49](https://static.ariste.info/wp-content/uploads/2020/01/2020-02-06-15_56_47-LCSDBAPIPreview-Authentication-Microsoft-Azure.png#center.webp "MSDyn365 & Azure DevOps ALM 106")
+![MSDyn365 & Azure DevOps ALM 49](https://static.ariste.info/wp-content/uploads/2020/01/2020-02-06-15_56_47-LCSDBAPIPreview-Authentication-Microsoft-Azure.png.webp "MSDyn365 & Azure DevOps ALM 106")
 
 #### 2.1.4.2. [](https://ariste.info/en/msdyn365-azure-devops-alm/#the-task)The task
 
@@ -1940,7 +1940,7 @@ Import-D365Bacpac \-ImportModeTier1 \-BacpacFile $downloadPath \-NewDatabaseName
 
 #### 2.2.3.4. [](https://ariste.info/en/msdyn365-azure-devops-alm/#using-it-in-an-azure-devops-pipeline)Using it in an Azure DevOps pipeline
 
-![Azure DevOps pipeline](https://static.ariste.info/wp-content/uploads/2020/04/2020-04-19-13_04_40.png#center.webp "MSDyn365 & Azure DevOps ALM 108")
+![Azure DevOps pipeline](https://static.ariste.info/wp-content/uploads/2020/04/2020-04-19-13_04_40.png.webp "MSDyn365 & Azure DevOps ALM 108")
 
 Azure DevOps pipeline
 
@@ -1987,7 +1987,7 @@ Go to your Azure subscription and look for Key Vaults in the top search bar. If 
 
 In the Key Vault page click on “Create key vault” and fill the fields
 
-![MSDyn365 & Azure DevOps ALM 50](https://static.ariste.info/wp-content/uploads/2020/02/2020-02-08-13_54_14-Create-key-vault-Microsoft-Azure.png#center.webp "MSDyn365 & Azure DevOps ALM 109")
+![MSDyn365 & Azure DevOps ALM 50](https://static.ariste.info/wp-content/uploads/2020/02/2020-02-08-13_54_14-Create-key-vault-Microsoft-Azure.png.webp "MSDyn365 & Azure DevOps ALM 109")
 
 You can go through other tabs but I will just click “Review & Create” to create the vault.
 
@@ -1995,11 +1995,11 @@ You can go through other tabs but I will just click “Review & Create” to cre
 
 Now go to Azure DevOps and create a new pipeline or edit an existing one. Add a task to the agent job and look for azure key vault:
 
-![MSDyn365 & Azure DevOps ALM 51](https://static.ariste.info/wp-content/uploads/2020/02/2020-02-08-13_57_08-New-release-pipeline-Pipelines.png#center.webp "MSDyn365 & Azure DevOps ALM 110")
+![MSDyn365 & Azure DevOps ALM 51](https://static.ariste.info/wp-content/uploads/2020/02/2020-02-08-13_57_08-New-release-pipeline-Pipelines.png.webp "MSDyn365 & Azure DevOps ALM 110")
 
 It’s possible that you might need to get the task from the marketplace first, if so remember you need to have enough right on the organization and not only the AZDO project you’re in. Now go to the task and select your subscription:
 
-![MSDyn365 & Azure DevOps ALM 52](https://static.ariste.info/wp-content/uploads/2020/02/2020-02-08-14_00_18-New-release-pipeline-Pipelines.png#center.webp "MSDyn365 & Azure DevOps ALM 111")
+![MSDyn365 & Azure DevOps ALM 52](https://static.ariste.info/wp-content/uploads/2020/02/2020-02-08-14_00_18-New-release-pipeline-Pipelines.png.webp "MSDyn365 & Azure DevOps ALM 111")
 
 Once selected click the “Authorize” button. **This will create a service principal in your subscription**, we’ll use it later. After authorizing you just need to select the key vault you’ve created in the first step. And back to Azure.
 
@@ -2007,27 +2007,27 @@ Once selected click the “Authorize” button. **This will create a service pri
 
 Go to your key vault, “Access policies” and click “Add Access Policy”:
 
-![MSDyn365 & Azure DevOps ALM 53](https://static.ariste.info/wp-content/uploads/2020/02/2020-02-08-14_05_51-aaristeDevOps-Access-policies-Microsoft-Azure.png#center.webp "MSDyn365 & Azure DevOps ALM 112")
+![MSDyn365 & Azure DevOps ALM 53](https://static.ariste.info/wp-content/uploads/2020/02/2020-02-08-14_05_51-aaristeDevOps-Access-policies-Microsoft-Azure.png.webp "MSDyn365 & Azure DevOps ALM 112")
 
 When we authorized the task to access our Azure subscription it created a service principal now we need to select it to **list and get the secrets** to be able to use them in our pipeline. Click on “Select principal”:
 
-![MSDyn365 & Azure DevOps ALM 54](https://static.ariste.info/wp-content/uploads/2020/02/2020-02-08-14_08_17-Add-access-policy-Microsoft-Azure.png#center.webp "MSDyn365 & Azure DevOps ALM 113")
+![MSDyn365 & Azure DevOps ALM 54](https://static.ariste.info/wp-content/uploads/2020/02/2020-02-08-14_08_17-Add-access-policy-Microsoft-Azure.png.webp "MSDyn365 & Azure DevOps ALM 113")
 
 In the search bar type your subscription’s name, the principal should start with it and end with the same ID of your subscription. Select it and click the “Select” button at the bottom:
 
-![MSDyn365 & Azure DevOps ALM 55](https://static.ariste.info/wp-content/uploads/2020/02/2020-02-08-14_10_21-axz-dev01dev.northeurope.cloudapp.azure_.com_61012-Remote-Desktop-Connection.png#center.webp "MSDyn365 & Azure DevOps ALM 114")
+![MSDyn365 & Azure DevOps ALM 55](https://static.ariste.info/wp-content/uploads/2020/02/2020-02-08-14_10_21-axz-dev01dev.northeurope.cloudapp.azure_.com_61012-Remote-Desktop-Connection.png.webp "MSDyn365 & Azure DevOps ALM 114")
 
 Now click on the “Secret permissions” lookup and under “Secret Management Operations” select Get and List:
 
-![MSDyn365 & Azure DevOps ALM 56](https://static.ariste.info/wp-content/uploads/2020/02/2020-02-08-14_12_13-Add-access-policy-Microsoft-Azure.png#center.webp "MSDyn365 & Azure DevOps ALM 115")
+![MSDyn365 & Azure DevOps ALM 56](https://static.ariste.info/wp-content/uploads/2020/02/2020-02-08-14_12_13-Add-access-policy-Microsoft-Azure.png.webp "MSDyn365 & Azure DevOps ALM 115")
 
 If you want to also use certificates or keys you should do the same. Finally click the “Add” button and **don’t forget to click “Save”!!** Otherwise nothing will be saved:
 
-![MSDyn365 & Azure DevOps ALM 57](https://static.ariste.info/wp-content/uploads/2020/02/2020-02-08-14_13_42-aaristeDevOps-Access-policies-Microsoft-Azure.png#center.webp "MSDyn365 & Azure DevOps ALM 116")
+![MSDyn365 & Azure DevOps ALM 57](https://static.ariste.info/wp-content/uploads/2020/02/2020-02-08-14_13_42-aaristeDevOps-Access-policies-Microsoft-Azure.png.webp "MSDyn365 & Azure DevOps ALM 116")
 
 Now we can create a secret in the key vault. Go to secrets and click on “Generate/Import”, complete the fields and finally click on the “Create” button:
 
-![MSDyn365 & Azure DevOps ALM 58](https://static.ariste.info/wp-content/uploads/2020/02/2020-02-08-14_15_55-Create-a-secret-Microsoft-Azure.png#center.webp "MSDyn365 & Azure DevOps ALM 117")
+![MSDyn365 & Azure DevOps ALM 58](https://static.ariste.info/wp-content/uploads/2020/02/2020-02-08-14_15_55-Create-a-secret-Microsoft-Azure.png.webp "MSDyn365 & Azure DevOps ALM 117")
 
 ### 4.1.4. [](https://ariste.info/en/msdyn365-azure-devops-alm/#using-the-secrets-in-your-pipelines)Using the secrets in your pipelines
 
@@ -2046,11 +2046,11 @@ As you can see now even the AAD App Id is masked.
 
 What the Azure Key Vault task does is getting the secrets from Azure and storing them in variables when the pipeline runs:
 
-![MSDyn365 & Azure DevOps ALM 59](https://static.ariste.info/wp-content/uploads/2020/02/2020-02-08-14_23_26-New-release-pipeline-1-Release-1-Pipelines.png#center.webp "MSDyn365 & Azure DevOps ALM 118")
+![MSDyn365 & Azure DevOps ALM 59](https://static.ariste.info/wp-content/uploads/2020/02/2020-02-08-14_23_26-New-release-pipeline-1-Release-1-Pipelines.png.webp "MSDyn365 & Azure DevOps ALM 118")
 
 Then we can access it’s value with the $(variableName) notation in the PowerShell script. If you try to print the secrets’ values using the Write-Host command all you’ll get will be three asterisks, so you can see that using the Key Vault is more than safe. If we check the result of running the Get-D365LcsDatabaseBackups command we’ll see how good is this:
 
-![MSDyn365 & Azure DevOps ALM 60](https://static.ariste.info/wp-content/uploads/2020/02/2020-02-08-14_28_01-New-release-pipeline-1-Release-1-Pipelines.png#center.webp "MSDyn365 & Azure DevOps ALM 119")
+![MSDyn365 & Azure DevOps ALM 60](https://static.ariste.info/wp-content/uploads/2020/02/2020-02-08-14_28_01-New-release-pipeline-1-Release-1-Pipelines.png.webp "MSDyn365 & Azure DevOps ALM 119")
 
 The ProjectId value **is not printed because it was one of our secret values**!
 

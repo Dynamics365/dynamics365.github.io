@@ -12,7 +12,7 @@ You also need to add required permissions for Dynamics 365 finance and operation
 
 This is what you should have
 
-![Image](/imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_1.png#center){:.border}
+![Image](/imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_1.png)
 
 # 2. Register your external application
 
@@ -45,11 +45,11 @@ There are 2 ways to fix it
 
 The simplest way to fix is add TempFilePath, ensure that you have write permission for this path, this is what you got
 
-![Image](/imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_2.png#center){:.border}
+![Image](/imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_2.png)
 
 Save the **ODataClient.tt** and there will be **Test1.xml** file created to store metadata, there should be a bug while generating the xml file, one more step you need to do is replace the double quote to single quote (a global replace of "" with " ), and this is what you have 
 
-![Image](/imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_3.png#center){:.border}
+![Image](/imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_3.png)
 You can build the project without problem.
 
 ### b. Remove unused entities
@@ -99,7 +99,7 @@ foreach (IEdmEntitySet entitySet in container.EntitySets())
 
 Under AuthenticationUtility project, you need to modify ClientConfiguration.cs follow, you can get all related information for the first step.
 
-![Image](/imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_4.png#center){:.border}
+![Image](/imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_4.png)
  
 From now, you can freely test the integrations under **ODataConsoleApplication** project.
 If you are testing with a custom data entity and you get this error 

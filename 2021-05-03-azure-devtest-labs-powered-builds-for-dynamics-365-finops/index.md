@@ -2,7 +2,7 @@
 
 **This post has been written thanks to [Joris de Gruyter](https://twitter.com/jorisdg)‘s session in the past [DynamicsCon](https://dynamicscon.com/)**: [Azure Devops Automation for Finance and Operations Like You’ve Never Seen!](https://www.youtube.com/watch?v=VIib-m6Q8LQ) And there’s also been some investigation and (a lot of) trial-and-error from my side until everything has been working.
 
-![Azure DevTest Labs](https://static.ariste.info/wp-content/uploads/2021/01/adtl-1024x1024.png#center "Azure DevTest Labs powered builds for Dynamics 365 FnO 1")
+![Azure DevTest Labs](https://static.ariste.info/wp-content/uploads/2021/01/adtl-1024x1024.png "Azure DevTest Labs powered builds for Dynamics 365 FnO 1")
 
 Configuring the build VM in Azure DevTest Labs
 
@@ -25,7 +25,7 @@ What will I show in this post? How to **prepare a Dynamics 365 Finance and Opera
 
 This is by far the most tedious part of all the process because you need to download 11 ZIP files from LCS’ Shared Asset Library, and we all know how fast things download from LCS.
 
-![LCS download speed](https://static.ariste.info/wp-content/uploads/2020/12/fast.png#center "Azure DevTest Labs powered builds for Dynamics 365 FnO 2")
+![LCS download speed](https://static.ariste.info/wp-content/uploads/2020/12/fast.png "Azure DevTest Labs powered builds for Dynamics 365 FnO 2")
 
 How is LCS download speed?
 
@@ -46,13 +46,13 @@ To do this part **you need an Azure account**. If you don’t have one you can [
 
 Search for DevTest Labs in the top bar and create a new DevTest Lab. Once it’s created open the details and you should see something like this:
 
-![Azure DevTest Labs](https://static.ariste.info/wp-content/uploads/2020/12/DevTest1.png#center "Azure DevTest Labs powered builds for Dynamics 365 FnO 3")
+![Azure DevTest Labs](https://static.ariste.info/wp-content/uploads/2020/12/DevTest1.png "Azure DevTest Labs powered builds for Dynamics 365 FnO 3")
 
 Azure DevTest Labs
 
 Click on the “Configuration and policies” menu item at the bottom of the list and scroll down in the menu until you see the “Virtual machine bases” section:
 
-![DevTest Labs custom VHD image](https://static.ariste.info/wp-content/uploads/2020/12/DevTest2.png#center "Azure DevTest Labs powered builds for Dynamics 365 FnO 4")
+![DevTest Labs custom VHD image](https://static.ariste.info/wp-content/uploads/2020/12/DevTest2.png "Azure DevTest Labs powered builds for Dynamics 365 FnO 4")
 
 DevTest Labs custom image
 
@@ -74,7 +74,7 @@ the LocalFilePath to your VHD.
 Add-AzureRmVhd \-Destination "https://YOURBLOB.blob.core.windows.net/uploads/tempImage.vhd?sv=2019-07-07&st=2020-12-27T09%3A08%3A26Z&se=2020-12-28T09%3A23%3A26Z&sr=b&sp=rcw&sig=YTeXpxpVEJdSM7KZle71w8NVw9oznNizSnYj8Q3hngI%3D" \-LocalFilePath "<Enter VHD location here>"
 ```
 
-![DevTest Labs custom image upload](https://static.ariste.info/wp-content/uploads/2020/12/DevTest3.png#center "Azure DevTest Labs powered builds for Dynamics 365 FnO 5")
+![DevTest Labs custom image upload](https://static.ariste.info/wp-content/uploads/2020/12/DevTest3.png "Azure DevTest Labs powered builds for Dynamics 365 FnO 5")
 
 DevTest Labs custom image upload
 
@@ -86,7 +86,7 @@ Any of these methods is good to upload the VHD and I don’t really know which o
 
 Once the VHD is uploaded open the “Custom images” option again and you should see the VHD in the drop-down:
 
-![DevTest Labs custom image](https://static.ariste.info/wp-content/uploads/2020/12/DevTest4.png#center "Azure DevTest Labs powered builds for Dynamics 365 FnO 6")
+![DevTest Labs custom image](https://static.ariste.info/wp-content/uploads/2020/12/DevTest4.png "Azure DevTest Labs powered builds for Dynamics 365 FnO 6")
 
 DevTest Labs custom image
 
@@ -101,7 +101,7 @@ We’ve got the essential, a VHD ready to be used as a base to create a virtual 
 
 Go back to your DevTest Labs overview page and click the “Add” button, on the “Choose base” page select the base you’ve just created, and on the next screen click on the “Add or Remove Artifacts” link:
 
-![Add artifacts to the VM](https://static.ariste.info/wp-content/uploads/2020/12/DevTest5.png#center "Azure DevTest Labs powered builds for Dynamics 365 FnO 7")
+![Add artifacts to the VM](https://static.ariste.info/wp-content/uploads/2020/12/DevTest5.png "Azure DevTest Labs powered builds for Dynamics 365 FnO 7")
 
 Add artifacts to the VM
 
@@ -127,7 +127,7 @@ The first one will load the functions and make them available in the command-lin
 
 Now we need to **add an artifact for the Azure DevOps agent service**. This will configure the agent service on the VM each time the VM is deployed. Search for “Azure Pipelines Agent” and click it. You will see this:
 
-![DevTest Labs Azure DevOps Agent](https://static.ariste.info/wp-content/uploads/2021/01/DevTest1-311x1024.png#center "Azure DevTest Labs powered builds for Dynamics 365 FnO 8")
+![DevTest Labs Azure DevOps Agent](https://static.ariste.info/wp-content/uploads/2021/01/DevTest1-311x1024.png "Azure DevTest Labs powered builds for Dynamics 365 FnO 8")
 
 DevTest Labs Azure DevOps Agent
 
@@ -157,7 +157,7 @@ SetupBuildAgent.ps1 \-VSO\_ProjectCollection "https://dev.azure.com/YOUR\_ORG" \
 
 Then go to the “Advanced Settings” tab and click the “**View ARM template**” button:
 
-![Get the ARM template](https://static.ariste.info/wp-content/uploads/2020/12/DevTest6.png#center "Azure DevTest Labs powered builds for Dynamics 365 FnO 9")
+![Get the ARM template](https://static.ariste.info/wp-content/uploads/2020/12/DevTest6.png "Azure DevTest Labs powered builds for Dynamics 365 FnO 9")
 
 Get the ARM template
 
@@ -546,7 +546,7 @@ Of course **you would never upload this template to Azure DevOps with a password
 
 OK, now grab that file and save it to your Azure DevOps repo. I’ve created a folder in my repo’s root called ARM where I’m saving all the ARM templates:
 
-![ARM templates on Azure DevOps](https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs2.png#center "Azure DevTest Labs powered builds for Dynamics 365 FnO 10")
+![ARM templates on Azure DevOps](https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs2.png "Azure DevTest Labs powered builds for Dynamics 365 FnO 10")
 
 ARM templates on Azure DevOps
 
@@ -659,11 +659,11 @@ This will generate a new image that you can use as a base image with all the cha
 
 We’re ready to setup our new build pipeline in Azure DevOps. This pipeline will consist of three steps: create a new VM, run all the build steps, and delete the VM:
 
-![Azure DevTest Labs powered builds for Dynamics 365 FnO 1](https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs4.png#center "Azure DevTest Labs powered builds for Dynamics 365 FnO 11")
+![Azure DevTest Labs powered builds for Dynamics 365 FnO 1](https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs4.png "Azure DevTest Labs powered builds for Dynamics 365 FnO 11")
 
 First of all check that your pipeline runs on Azure pipelines (aka Azure-hosted):
 
-![DevTest Labs Azure Pipelines](https://static.ariste.info/wp-content/uploads/2021/01/image-2.png#center "Azure DevTest Labs powered builds for Dynamics 365 FnO 12")
+![DevTest Labs Azure Pipelines](https://static.ariste.info/wp-content/uploads/2021/01/image-2.png "Azure DevTest Labs powered builds for Dynamics 365 FnO 12")
 
 DevTest Labs Azure Pipelines
 
@@ -673,7 +673,7 @@ The create and delete steps will run on the Azure Pipelines pool. The build step
 
 Create a new pipeline and choose the “Use the classic editor” option. Make sure you’ve selected TFVC as your source and click “Continue” and “Empty job”. Add a new task to the pipeline, look for “Azure DevTest Labs Create VM”. We just need to fill in the missing parameters with our subscription, lab, etc.
 
-![Create VM Azure DevTest Labs](https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs5.png#center "Azure DevTest Labs powered builds for Dynamics 365 FnO 13")
+![Create VM Azure DevTest Labs](https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs5.png "Azure DevTest Labs powered builds for Dynamics 365 FnO 13")
 
 Create VM Azure DevTest Labs
 
@@ -683,7 +683,7 @@ Remember this step must run on the Azure-hosted pipeline.
 
 This is an easy one. Just export a working pipeline and import it. And this step needs to run on your self-hosted pool:
 
-![Runs on self-hosted pool](https://static.ariste.info/wp-content/uploads/2021/01/image-3.png#center "Azure DevTest Labs powered builds for Dynamics 365 FnO 14")
+![Runs on self-hosted pool](https://static.ariste.info/wp-content/uploads/2021/01/image-3.png "Azure DevTest Labs powered builds for Dynamics 365 FnO 14")
 
 Runs on self-hosted pool
 
@@ -691,7 +691,7 @@ Runs on self-hosted pool
 
 You can replace the Database Sync task for a PowerShell script that will only sync the tables in your models:
 
-![SelectiveSync.ps1](https://static.ariste.info/wp-content/uploads/2021/01/image-9.png#center "Azure DevTest Labs powered builds for Dynamics 365 FnO 15")
+![SelectiveSync.ps1](https://static.ariste.info/wp-content/uploads/2021/01/image-9.png "Azure DevTest Labs powered builds for Dynamics 365 FnO 15")
 
 SelectiveSync.ps1
 
@@ -721,7 +721,7 @@ Publish-D365SsrsReport \-Module YOUR\_MODULE \-ReportName \*
 
 It’s almost the same as the create step, complete the subscription, lab and VM fields and done:
 
-![Delete VM](https://static.ariste.info/wp-content/uploads/2021/01/image.png#center "Azure DevTest Labs powered builds for Dynamics 365 FnO 16")
+![Delete VM](https://static.ariste.info/wp-content/uploads/2021/01/image.png "Azure DevTest Labs powered builds for Dynamics 365 FnO 16")
 
 Delete VM
 
@@ -735,7 +735,7 @@ When all three steps are configured we need to add dependencies and conditions t
 
 The build step depends on the create VM step, and will only run if the previous step succeeds:
 
-![Build step dependencies and conditions](https://static.ariste.info/wp-content/uploads/2021/01/image-4.png#center "Azure DevTest Labs powered builds for Dynamics 365 FnO 17")
+![Build step dependencies and conditions](https://static.ariste.info/wp-content/uploads/2021/01/image-4.png "Azure DevTest Labs powered builds for Dynamics 365 FnO 17")
 
 Build step dependencies and conditions
 
@@ -743,7 +743,7 @@ Build step dependencies and conditions
 
 The delete step depends on all previous steps and must run when the create VM step succeeds. If the create step fails there’s no VM and we don’t need to delete it:
 
-![Dependencies and conditions on delete VM step](https://static.ariste.info/wp-content/uploads/2021/01/image-5.png#center "Azure DevTest Labs powered builds for Dynamics 365 FnO 18")
+![Dependencies and conditions on delete VM step](https://static.ariste.info/wp-content/uploads/2021/01/image-5.png "Azure DevTest Labs powered builds for Dynamics 365 FnO 18")
 
 Dependencies and conditions on delete VM step
 
@@ -755,11 +755,11 @@ and(always(), eq(dependencies.Job\_1.status, 'Succeeded'))
 
 If you need to know your first step’s job name just export the pipeline to YAML and you’ll find it there:
 
-![Export pipeline to YAML](https://static.ariste.info/wp-content/uploads/2021/01/image-6.png#center "Azure DevTest Labs powered builds for Dynamics 365 FnO 19")
+![Export pipeline to YAML](https://static.ariste.info/wp-content/uploads/2021/01/image-6.png "Azure DevTest Labs powered builds for Dynamics 365 FnO 19")
 
 Export pipeline to YAML
 
-![Job name on YAML](https://static.ariste.info/wp-content/uploads/2021/01/image-7.png#center "Azure DevTest Labs powered builds for Dynamics 365 FnO 20")
+![Job name on YAML](https://static.ariste.info/wp-content/uploads/2021/01/image-7.png "Azure DevTest Labs powered builds for Dynamics 365 FnO 20")
 
 Job name on YAML
 
@@ -770,7 +770,7 @@ If this step fails when the pipeline is run, wait to delete the VM manually, fir
 
 And, I think, we’re done and ready to run our Azure DevTest Labs pipeline for Dynamics 365 Finance and Operations… click “Run pipeline” and wait…
 
-![Azure DevTest Labs powered builds for Dynamics 365 FnO 2](https://static.ariste.info/wp-content/uploads/2021/01/image-10-382x1024.png#center "Azure DevTest Labs powered builds for Dynamics 365 FnO 21")
+![Azure DevTest Labs powered builds for Dynamics 365 FnO 2](https://static.ariste.info/wp-content/uploads/2021/01/image-10-382x1024.png "Azure DevTest Labs powered builds for Dynamics 365 FnO 21")
 
 Tadaaaa!!
 
@@ -781,7 +781,7 @@ The pipeline from the image above is one with real code from a customer but I ca
 
 But for example this is a comparison I did:
 
-![Azure DevTest Labs B2ms vs B4ms](https://static.ariste.info/wp-content/uploads/2021/01/B2msVSB4ms.png#center "Azure DevTest Labs powered builds for Dynamics 365 FnO 22")
+![Azure DevTest Labs B2ms vs B4ms](https://static.ariste.info/wp-content/uploads/2021/01/B2msVSB4ms.png "Azure DevTest Labs powered builds for Dynamics 365 FnO 22")
 
 Azure DevTest Labs B2ms vs B4ms
 
@@ -797,7 +797,7 @@ This would leave us with a 35-40 minutes build.
 
 ### [](https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#comparison-1)Comparison 1
 
-![Azure DevTest Labs powered builds for Dynamics 365 FnO 4](https://static.ariste.info/wp-content/uploads/2021/01/Dtcomp1.png#center "Azure DevTest Labs powered builds for Dynamics 365 FnO 24")
+![Azure DevTest Labs powered builds for Dynamics 365 FnO 4](https://static.ariste.info/wp-content/uploads/2021/01/Dtcomp1.png "Azure DevTest Labs powered builds for Dynamics 365 FnO 24")
 
 No DB Sync
 
@@ -805,7 +805,7 @@ The image above shows a simple package being compiled, without any table, so the
 
 ### [](https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#comparison-2)Comparison 2
 
-![Azure DevTest Labs powered builds for Dynamics 365 FnO 5](https://static.ariste.info/wp-content/uploads/2021/01/Dtcomp2.png#center "Azure DevTest Labs powered builds for Dynamics 365 FnO 25")
+![Azure DevTest Labs powered builds for Dynamics 365 FnO 5](https://static.ariste.info/wp-content/uploads/2021/01/Dtcomp2.png "Azure DevTest Labs powered builds for Dynamics 365 FnO 25")
 
 Same code Full DB Sync
 
@@ -813,7 +813,7 @@ This one is compiling the same codebase but is doing a full DB sync. The sync ti
 
 ### [](https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#comparison-3)Comparison 3
 
-![Azure DevTest Labs powered builds for Dynamics 365 FnO 6](https://static.ariste.info/wp-content/uploads/2021/01/image-14.png#center "Azure DevTest Labs powered builds for Dynamics 365 FnO 26")
+![Azure DevTest Labs powered builds for Dynamics 365 FnO 6](https://static.ariste.info/wp-content/uploads/2021/01/image-14.png "Azure DevTest Labs powered builds for Dynamics 365 FnO 26")
 
 Real code + full sync
 

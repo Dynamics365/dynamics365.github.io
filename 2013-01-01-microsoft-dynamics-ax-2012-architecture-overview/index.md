@@ -46,7 +46,7 @@ When you customize the Microsoft Dynamics AX program, you can take advantage of 
 
 The following table describes the application object layers in Microsoft Dynamics AX 2012:
 
-![](/imagesposts/Layer.png#center)
+![](/imagesposts/Layer.png)
 
 ## Client architecture
 
@@ -84,7 +84,7 @@ The client communicates with various Microsoft Dynamics AX components in the fol
 
 * Similarly, the AIF response postprocessor, if it is configured, can intercept the outbound response messages for custom post-processing, such as message transforms or value substitutions. The AIF response postprocessor then returns the response to the client.
 
-![](/imagesposts/WCF_architecture.png#center)
+![](/imagesposts/WCF_architecture.png)
 
 ## Enterprise Portal architecture
 
@@ -116,6 +116,6 @@ The following diagram shows the Microsoft SQL Server Analysis Services cubes tha
 
 The following diagram illustrates the architecture of the reporting functionality in Microsoft Dynamics AX.
 
-![](/imagesposts/reporting_architecture.png#center)
+![](/imagesposts/reporting_architecture.png)
 
 Thank you for reading!

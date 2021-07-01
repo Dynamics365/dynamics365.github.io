@@ -35,14 +35,14 @@ This basically listens the JSON messages from Business events and display the Js
 
 From the Azure function you can get the HTTPs endpoint, save it for later reference.
 
-![Image](/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_1.png#center){:.border}
+![Image](/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_1.png)
 
 ## 2. Application registration int AAD
 
 We need an application to authenticate with FinOps and Azure function HTTPs. 
 Go to *Azure portal > AAD > App registrations > New registration*
 
-![Image](/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_2.png#center){:.border}
+![Image](/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_2.png)
 
   * Name of the application.
   * Depend on you have multitenant or not
@@ -52,13 +52,13 @@ Go to *Azure portal > AAD > App registrations > New registration*
 
 Go to the newly created application > API permissions and adding permission as below
 
-![Image](/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_3.png#center){:.border}
+![Image](/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_3.png)
 
 ### Secrets
 
 Go to Certificates & secrets menu item and create a new client secret
 
-![Image](/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_4.png#center){:.border}
+![Image](/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_4.png)
 
 After this you will have **Application Id and Application Secret**, save it for later.
 
@@ -66,23 +66,23 @@ After this you will have **Application Id and Application Secret**, save it for 
 
 In Azure portal create a new keyVault to store the HTTPs endpoint URL information
 
-![Image](/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_5.png#center){:.border}
+![Image](/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_5.png)
 
 ### Access policy
 
 Click next to create access policy (you also can set up this later after creating Key Vault)
 
-![Image](/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_6.png#center){:.border}
+![Image](/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_6.png)
 
 Select all the permissions in Key, Secret and Certificate, In select principal choose the application you have created before.
 
-![Image](/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_7.png#center){:.border}
+![Image](/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_7.png)
 
 ### Key Vault secret
 
 Go to the newly *created Key vault > secrets > generate a new one*
 
-![Image](/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_8.png#center){:.border}
+![Image](/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_8.png)
 
 Value is the endpoint URL for D365 to call the one we got from the first step.
 After this step you will have the Key vault DNS name *https://maxfokeyvault.vault.azure.net/* and Key Vault secret name *D365VaultSecretName*
@@ -94,12 +94,12 @@ Go to *System administrator > Business events > Business events catalog*, Click 
 
 Click on **Business events catalog**, look for business event Id *CustFreeTextInvoicePostedBusinessEvent*, check the record and click **Active**; from there choose legal entity and the Endpoint that we have just created.
 
-![Image](/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_9.png#center){:.border}
+![Image](/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_9.png)
 
 After that, if you check on **Active events tab**, there will be a new record created.
 That's it, now I will create a free text invoice and post it, this is what I got from the console log in Azure.
 
-![Image](/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_10.png#center){:.border}
+![Image](/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_10.png)
 
 With the JSON messages, you can deserialize it and save to Cosmos DB or do whatever in Azure function.
 
@@ -108,9 +108,9 @@ With the JSON messages, you can deserialize it and save to Cosmos DB or do whate
 Before PU26, Business event run in batch, following menu *System admin > Business events > Start business events batch job*
 
 
-![Image](/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_11.png#center){:.border}
-![Image](/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_12.png#center){:.border}
-![Image](/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_13.png#center){:.border}
+![Image](/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_11.png)
+![Image](/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_12.png)
+![Image](/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_13.png)
 
 In **BusinessEventsParameters**, the value will be ```Enabled = 0 , BatchEnabled = 1```. 
 

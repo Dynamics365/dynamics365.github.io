@@ -6,7 +6,7 @@
 The standard solution comes with many **out-of-the-box entities** available to synchronize. This has been one of the great improvements since Dual-write was made available in preview, when [Juanan](https://jatomas.com/) and I [demoed it in the 2019 Dynamics Saturday in Madrid](https://www.youtube.com/watch?v=z_dLGDF7Ci0).
 
 
-![Dual write](https://static.ariste.info/wp-content/uploads/2021/03/DW-1024x1024.png#center "Develop custom Data Entities for Dual-write 1")
+![Dual write](https://static.ariste.info/wp-content/uploads/2021/03/DW-1024x1024.png "Develop custom Data Entities for Dual-write 1")
 
 This is how Dual write really works
 
@@ -34,7 +34,7 @@ In Visual Studio we need to create the entity from our table. I’ve created a n
 Next, we create the data entity and make sure we’re marking the “**Enable data management capabilities**” checkbox:
 
 
-![Dynamics 365 Finance and Operations Data entity wizard](https://static.ariste.info/wp-content/uploads/2021/03/DW1.png#center "Develop custom Data Entities for Dual-write 2")
+![Dynamics 365 Finance and Operations Data entity wizard](https://static.ariste.info/wp-content/uploads/2021/03/DW1.png "Develop custom Data Entities for Dual-write 2")
 
 Enable data management capabilities must be checked
 
@@ -45,7 +45,7 @@ If the entity doesn’t have data management enabled it won’t be displayed in 
 
 Now we need to create a table in our Dataverse environment. This table must have at least some of the fields we want to synchronize to Dataverse **AND** a company field. **The [company](https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/dual-write/company-data?WT.mc_id=BA-MVP-5003976) concept doesn’t exist in Dataverse/CRM** but thanks to the OOB mappings and [Initial Sync](https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/dual-write/initial-sync-guidance?WT.mc_id=BA-MVP-5003976) we can solve this with just a few clicks and will have a company table in Dataverse with all our FnO legal entities.
 
-![Company field related to table company](https://static.ariste.info/wp-content/uploads/2021/03/DW2.png#center "Develop custom Data Entities for Dual-write 3")
+![Company field related to table company](https://static.ariste.info/wp-content/uploads/2021/03/DW2.png "Develop custom Data Entities for Dual-write 3")
 
 Company field related to table company
 
@@ -58,19 +58,19 @@ As I said, if we don’t create this field we won-t be able to setup Dual-write 
 
 Our table and data entity are ready, and now **we need to [create a mapping](https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/dual-write/enable-entity-map?WT.mc_id=BA-MVP-5003976) between them** in the Dual-write workspace in FnO. Click the “Add table map” button:
 
-![Dynamics 365 Dual-write add table map](https://static.ariste.info/wp-content/uploads/2021/03/DW3.png#center "Develop custom Data Entities for Dual-write 4")
+![Dynamics 365 Dual-write add table map](https://static.ariste.info/wp-content/uploads/2021/03/DW3.png "Develop custom Data Entities for Dual-write 4")
 
 Dynamics 365 Dual-write add table map
 
 A new dialog will open and we need to select the FnO entity and the Dataverse table:
 
-![Entity map](https://static.ariste.info/wp-content/uploads/2021/03/DW4-edited.png#center "Develop custom Data Entities for Dual-write 5")
+![Entity map](https://static.ariste.info/wp-content/uploads/2021/03/DW4-edited.png "Develop custom Data Entities for Dual-write 5")
 
 Entity map
 
 Select the entity and table we’ve created and click save. Then we can define the field mapping:
 
-![Dynamics 365 Dual-write field maps](https://static.ariste.info/wp-content/uploads/2021/03/DW13-1024x629.png#center "Develop custom Data Entities for Dual-write 6")
+![Dynamics 365 Dual-write field maps](https://static.ariste.info/wp-content/uploads/2021/03/DW13-1024x629.png "Develop custom Data Entities for Dual-write 6")
 
 Dynamics 365 Dual-write field maps
 
@@ -85,7 +85,7 @@ Or we can also get an error regarding a missing integration key for the company 
 
 Go back to the main Dual-write form and click on the “Integration key” button:
 
-![Dual/write integration key](https://static.ariste.info/wp-content/uploads/2021/03/DW7.png#center "Develop custom Data Entities for Dual-write 7")
+![Dual/write integration key](https://static.ariste.info/wp-content/uploads/2021/03/DW7.png "Develop custom Data Entities for Dual-write 7")
 
 Dual-write integration key
 
@@ -93,13 +93,13 @@ The integration key will be **the same as the FnO data entity key, plus the comp
 
 The integration key for our custom Dual-write mapping will look like this:
 
-![Dual/write integration key](https://static.ariste.info/wp-content/uploads/2021/03/DW11.png#center "Develop custom Data Entities for Dual-write 8")
+![Dual/write integration key](https://static.ariste.info/wp-content/uploads/2021/03/DW11.png "Develop custom Data Entities for Dual-write 8")
 
 Dual/write integration key
 
 Remember we’ve added the company field to our Dataverse table? You can see in the image above that the field includes the relation to the Company table in Dataverse. We won’t be able to save the field mapping if we create the key using our Dataverse table’s company field instead of its Company table relation, like this:
 
-![Dual/write integration key](https://static.ariste.info/wp-content/uploads/2021/03/DW9.png#center "Develop custom Data Entities for Dual-write 9")
+![Dual/write integration key](https://static.ariste.info/wp-content/uploads/2021/03/DW9.png "Develop custom Data Entities for Dual-write 9")
 
 Dual/write integration key
 
@@ -110,25 +110,25 @@ See the difference? In the first image the field reads _c008\_company.cdm\_compa
 
 The table and field mappings are ready, just click run and go create a new book in the FnO form:
 
-![Finance and Operations form](https://static.ariste.info/wp-content/uploads/2021/03/DW14.png#center "Develop custom Data Entities for Dual-write 10")
+![Finance and Operations form](https://static.ariste.info/wp-content/uploads/2021/03/DW14.png "Develop custom Data Entities for Dual-write 10")
 
 Finance and Operations form
 
 Then we go to our Dataverse table and check its data…
 
-![Dataverse table data](https://static.ariste.info/wp-content/uploads/2021/03/DW15.png#center "Develop custom Data Entities for Dual-write 11")
+![Dataverse table data](https://static.ariste.info/wp-content/uploads/2021/03/DW15.png "Develop custom Data Entities for Dual-write 11")
 
 Dataverse table data
 
 It’s there! And of course it’s working in both directions. If I create a record in Dataverse it’ll be created in FnO too. I’ll use the Excel add-in to add a new book:
 
-![Dataverse Excel add-in](https://static.ariste.info/wp-content/uploads/2021/03/DW16.png#center "Develop custom Data Entities for Dual-write 12")
+![Dataverse Excel add-in](https://static.ariste.info/wp-content/uploads/2021/03/DW16.png "Develop custom Data Entities for Dual-write 12")
 
 Dataverse Excel add-in
 
 And after refreshing the form in FnO we can see it there too:
 
-![Develop custom Data Entities for Dual-write 1](https://static.ariste.info/wp-content/uploads/2021/03/DW17.png#center "Develop custom Data Entities for Dual-write 13")
+![Develop custom Data Entities for Dual-write 1](https://static.ariste.info/wp-content/uploads/2021/03/DW17.png "Develop custom Data Entities for Dual-write 13")
 
 This is a really simple example of how we can create a custom table, use it in a data entity and then use this entity in our dual-write setup. It’s something that can be easily done but we need to **remember the “company thing”**, otherwise this will never work!
 

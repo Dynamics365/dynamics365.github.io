@@ -61,9 +61,9 @@ While the functional validation of an ERP application can’t be fully data agno
     *   If you are checking a customer balance or budget check, save the value first and then add your transaction value to validate the expected result instead of validating a fixed expected value.
         
 
-![rsat-data-agnostic-testing-01.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587332348623-GGBMM6240KC2RLYZBIGC/ke17ZwdGBToddI8pDm48kMo2oFNaRhep3CETKsVD6FdZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpzVaYBSdEGKX3Z2Ji0rkewp53JitqEEk_iHjARLo0MODrVv31zgdOUs4syoHnmwl8Q/rsat-data-agnostic-testing-01.png#center)
+![rsat-data-agnostic-testing-01.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587332348623-GGBMM6240KC2RLYZBIGC/ke17ZwdGBToddI8pDm48kMo2oFNaRhep3CETKsVD6FdZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpzVaYBSdEGKX3Z2Ji0rkewp53JitqEEk_iHjARLo0MODrVv31zgdOUs4syoHnmwl8Q/rsat-data-agnostic-testing-01.png)
 
-![rsat-data-agnostic-testing-01.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/rsat-data-agnostic-testing-01.png#center)
+![rsat-data-agnostic-testing-01.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/rsat-data-agnostic-testing-01.png)
 
 * * *
 
@@ -78,22 +78,22 @@ So, go to your LCS project first. I will assume also that you have already conne
 
 You can after go to the Business Process Modeler part.
 
-![Screenshot 2020-04-20_21-19-53-857.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587410442388-5WZ982QLN9R2HK4W6YIW/ke17ZwdGBToddI8pDm48kFOp38lKI3QVVd-xz559hkcUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcTTkQvpthtDvCyJAFbXpEjQkgZ_egD7MGsUHwYPYusIhQwPe4WxjleEbImOF0bCaG/Screenshot+2020-04-20_21-19-53-857.png#center)
+![Screenshot 2020-04-20_21-19-53-857.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587410442388-5WZ982QLN9R2HK4W6YIW/ke17ZwdGBToddI8pDm48kFOp38lKI3QVVd-xz559hkcUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcTTkQvpthtDvCyJAFbXpEjQkgZ_egD7MGsUHwYPYusIhQwPe4WxjleEbImOF0bCaG/Screenshot+2020-04-20_21-19-53-857.png)
 
-![Screenshot 2020-04-20_21-19-53-857.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_21-19-53-857.png#center)
+![Screenshot 2020-04-20_21-19-53-857.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_21-19-53-857.png)
 
   
 As you will notice here, you have your own BPM and also some done by Microsoft. Of course, in your own company/customer, it’s somehow complicated to have a standard & global but it will be helpful to check the Microsoft BPM to see how it works.
 
-![Screenshot 2020-04-20_21-21-34-605.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587410731693-0THZOUXOO30S0SDL69CA/ke17ZwdGBToddI8pDm48kN5bZgWCJOZ4UwIbBmGbvz8UqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYwL8IeDg6_3B-BRuF4nNrNcQkVuAT7tdErd0wQFEGFSnCudTIVYgJWnHjFLX87nlS5kFl2zekI1Fx0swwzFdQIZf24zI4Q-L3HBwzaE6nkd_w/Screenshot+2020-04-20_21-21-34-605.png#center)
+![Screenshot 2020-04-20_21-21-34-605.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587410731693-0THZOUXOO30S0SDL69CA/ke17ZwdGBToddI8pDm48kN5bZgWCJOZ4UwIbBmGbvz8UqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYwL8IeDg6_3B-BRuF4nNrNcQkVuAT7tdErd0wQFEGFSnCudTIVYgJWnHjFLX87nlS5kFl2zekI1Fx0swwzFdQIZf24zI4Q-L3HBwzaE6nkd_w/Screenshot+2020-04-20_21-21-34-605.png)
 
-![Screenshot 2020-04-20_21-21-34-605.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_21-21-34-605.png#center)
+![Screenshot 2020-04-20_21-21-34-605.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_21-21-34-605.png)
 
 On my side I will create a complete new one to handle testing purpose. “Normally” before a GoLive it’s a task very highly recommended to do with your Key Users, Project Manager and Functional Consultant.
 
-![Screenshot 2020-04-20_21-25-13-784.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587410780368-HMWNF598Q6ZDM7NSZTLE/ke17ZwdGBToddI8pDm48kMx751RqM_9w3VYV6TtzURh7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0kBIzfKk1xe2aJwtZsm5jqRp0CnJLxJ58VFKG2vfrmyriAM3z7WlT24aIpyOc28GRg/Screenshot+2020-04-20_21-25-13-784.png#center)
+![Screenshot 2020-04-20_21-25-13-784.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587410780368-HMWNF598Q6ZDM7NSZTLE/ke17ZwdGBToddI8pDm48kMx751RqM_9w3VYV6TtzURh7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0kBIzfKk1xe2aJwtZsm5jqRp0CnJLxJ58VFKG2vfrmyriAM3z7WlT24aIpyOc28GRg/Screenshot+2020-04-20_21-25-13-784.png)
 
-![Screenshot 2020-04-20_21-25-13-784.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_21-25-13-784.png#center)
+![Screenshot 2020-04-20_21-25-13-784.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_21-25-13-784.png)
 
 So as you can see, I’ve created a very basic one, just for an example. My process is only to model my customer creation process.
 
@@ -114,25 +114,25 @@ Go like in an UAT instance, where you have some DEMO data in it or maybe already
 
 When you are in FinOps, go to the top right !
 
-![Screenshot 2020-04-20_21-43-54-968.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587411848037-RZ3R28K5VEC81PL9673S/ke17ZwdGBToddI8pDm48kD5VYYvKcT-R-nHRtxVVsw9Zw-zPPgdn4jUwVcJE1ZvWEtT5uBSRWt4vQZAgTJucoTqqXjS3CfNDSuuf31e0tVE88cbCSReamZczIfd1QtgG1jMFzXi9AgLsC_rQtkLeZj-3CTWZQ124CTRPXn-dnvM/Screenshot+2020-04-20_21-43-54-968.png#center)
+![Screenshot 2020-04-20_21-43-54-968.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587411848037-RZ3R28K5VEC81PL9673S/ke17ZwdGBToddI8pDm48kD5VYYvKcT-R-nHRtxVVsw9Zw-zPPgdn4jUwVcJE1ZvWEtT5uBSRWt4vQZAgTJucoTqqXjS3CfNDSuuf31e0tVE88cbCSReamZczIfd1QtgG1jMFzXi9AgLsC_rQtkLeZj-3CTWZQ124CTRPXn-dnvM/Screenshot+2020-04-20_21-43-54-968.png)
 
-![Screenshot 2020-04-20_21-43-54-968.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_21-43-54-968.png#center)
+![Screenshot 2020-04-20_21-43-54-968.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_21-43-54-968.png)
 
 Click on “Create recording”
 
 Give it a name and description if you want. (good if you have multiple different type of flows to create a customer) - activate take screenshots option if you also intend to generate documentation, in addition to being able to recover the trace file for automated tests.
 
-![Screenshot 2020-04-20_21-48-41-193.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587412276501-A24NMEGQH8TLQE5CFJ7Z/ke17ZwdGBToddI8pDm48kMdG36Wab3YeVnq8__O4gpJZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpzxjTVrOcfhmB267ug3qlsmtVegmw6FxsAWPAayk_XXWwvKjodss21d9xgoHIdT-pA/Screenshot+2020-04-20_21-48-41-193.png#center)
+![Screenshot 2020-04-20_21-48-41-193.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587412276501-A24NMEGQH8TLQE5CFJ7Z/ke17ZwdGBToddI8pDm48kMdG36Wab3YeVnq8__O4gpJZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpzxjTVrOcfhmB267ug3qlsmtVegmw6FxsAWPAayk_XXWwvKjodss21d9xgoHIdT-pA/Screenshot+2020-04-20_21-48-41-193.png)
 
-![Screenshot 2020-04-20_21-48-41-193.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_21-48-41-193.png#center)
+![Screenshot 2020-04-20_21-48-41-193.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_21-48-41-193.png)
 
 Well, next, you need to do your process :)
 
 After end your task recorder, and keep in a safe place your .AXTR files ; like in a Sharepoint folder.
 
-![Screenshot 2020-04-20_21-54-08-943.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587412564336-W395Q1EZWXXO1P36CHEG/ke17ZwdGBToddI8pDm48kM_h-J2QWxBfivtQ0d30sbMUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8GRo6ASst2s6pLvNAu_PZdK7fG-WDrcZT3BusQ57y9oewMS1m91ndvXUVpVpqAXy7Ma31gESfx6Z3MWorx7aAS0/Screenshot+2020-04-20_21-54-08-943.png#center)
+![Screenshot 2020-04-20_21-54-08-943.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587412564336-W395Q1EZWXXO1P36CHEG/ke17ZwdGBToddI8pDm48kM_h-J2QWxBfivtQ0d30sbMUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8GRo6ASst2s6pLvNAu_PZdK7fG-WDrcZT3BusQ57y9oewMS1m91ndvXUVpVpqAXy7Ma31gESfx6Z3MWorx7aAS0/Screenshot+2020-04-20_21-54-08-943.png)
 
-![Screenshot 2020-04-20_21-54-08-943.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_21-54-08-943.png#center)
+![Screenshot 2020-04-20_21-54-08-943.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_21-54-08-943.png)
 
 **Keep in mind that Task Records will need to be adjust in your lifecycle of your project, maybe if you change your process or maybe because you have added a new custom field.**  
 And here are few more best practices :
@@ -157,17 +157,17 @@ Saying that, let’s go again in our BPM library that we have created earlier. W
 
 For that, just click on upload.  
 
-![Screenshot 2020-04-20_22-01-29-423.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587412909221-V5A4UU4NUJS2NKB1NI9M/ke17ZwdGBToddI8pDm48kPf0vW68QdB7OgWk2WnYPE57gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UXXz2C_GG8RCMBj0cgOAL37a71c7VBldkGpAXjUl8z5spC969RuPXvt2ZwyzUXQf7Q/Screenshot+2020-04-20_22-01-29-423.png#center)
+![Screenshot 2020-04-20_22-01-29-423.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587412909221-V5A4UU4NUJS2NKB1NI9M/ke17ZwdGBToddI8pDm48kPf0vW68QdB7OgWk2WnYPE57gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UXXz2C_GG8RCMBj0cgOAL37a71c7VBldkGpAXjUl8z5spC969RuPXvt2ZwyzUXQf7Q/Screenshot+2020-04-20_22-01-29-423.png)
 
-![Screenshot 2020-04-20_22-01-29-423.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_22-01-29-423.png#center)
+![Screenshot 2020-04-20_22-01-29-423.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_22-01-29-423.png)
 
 Now we will sync it directly to our AzureDevOps Project, to create all our test plan and create every unit test case for every process that you have attached a task recorder file.
 
 You will need to click on the 3 dots, right after the Collapse button and click on the two like me :
 
-![Screenshot 2020-04-20_22-03-46-975.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587413064126-KEPIN4IPJFCLSG4K2JRW/ke17ZwdGBToddI8pDm48kFoE2TQ6B0h4430aY4pFJ_tZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIPmS97EvE3DMzmDlTQ7QUTaenPoKL_aBu1BDPJunoiVg/Screenshot+2020-04-20_22-03-46-975.png#center)
+![Screenshot 2020-04-20_22-03-46-975.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587413064126-KEPIN4IPJFCLSG4K2JRW/ke17ZwdGBToddI8pDm48kFoE2TQ6B0h4430aY4pFJ_tZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIPmS97EvE3DMzmDlTQ7QUTaenPoKL_aBu1BDPJunoiVg/Screenshot+2020-04-20_22-03-46-975.png)
 
-![Screenshot 2020-04-20_22-03-46-975.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_22-03-46-975.png#center)
+![Screenshot 2020-04-20_22-03-46-975.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_22-03-46-975.png)
 
 Now you can go to your Azure DevOps / VSTS tenant.
 
@@ -179,15 +179,15 @@ It will be also here that you can see Chart, progression testing report, based o
 
 Attach like me the test cases that are normally been in VSTS, since you have synced in LCS before in the BPM.
 
-![Screenshot 2020-04-20_22-13-33-236.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587413627880-T4ML01PZP0REC1IGEZIB/ke17ZwdGBToddI8pDm48kIh7Tc64H97usHr-xULEPzMUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYwL8IeDg6_3B-BRuF4nNrNcQkVuAT7tdErd0wQFEGFSnLE-OtbA_Ov1e1cUNsgsLbzvGPd5w0dX4yB_tk0MPX8Fb5cm_bGBpquh7jB7UWWyXw/Screenshot+2020-04-20_22-13-33-236.png#center)
+![Screenshot 2020-04-20_22-13-33-236.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587413627880-T4ML01PZP0REC1IGEZIB/ke17ZwdGBToddI8pDm48kIh7Tc64H97usHr-xULEPzMUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYwL8IeDg6_3B-BRuF4nNrNcQkVuAT7tdErd0wQFEGFSnLE-OtbA_Ov1e1cUNsgsLbzvGPd5w0dX4yB_tk0MPX8Fb5cm_bGBpquh7jB7UWWyXw/Screenshot+2020-04-20_22-13-33-236.png)
 
-![Screenshot 2020-04-20_22-13-33-236.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_22-13-33-236.png#center)
+![Screenshot 2020-04-20_22-13-33-236.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_22-13-33-236.png)
 
 You will see in a test case, like the Customer flow that I’ve done before some informations. The tag “LCS:TestCases” in order to quickly see all synced tests with BPM in LCS. You will see every steps actions, and in attachment you will have the .AXTR file needed for automate the test with RSAT after.
 
-![Screenshot 2020-04-20_22-17-06-855.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587413839607-69HABW9UEGGHJ1AOIX8A/ke17ZwdGBToddI8pDm48kMxcG0IExh--WxzpkRgCK8kUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYwL8IeDg6_3B-BRuF4nNrNcQkVuAT7tdErd0wQFEGFSnACZ8DzcvSL2CGaqcb2zJfJxOO8S0E_1IigijB4_gJqZPxNWsU7-Ftt5oyTwJlXfmQ/Screenshot+2020-04-20_22-17-06-855.png#center)
+![Screenshot 2020-04-20_22-17-06-855.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587413839607-69HABW9UEGGHJ1AOIX8A/ke17ZwdGBToddI8pDm48kMxcG0IExh--WxzpkRgCK8kUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYwL8IeDg6_3B-BRuF4nNrNcQkVuAT7tdErd0wQFEGFSnACZ8DzcvSL2CGaqcb2zJfJxOO8S0E_1IigijB4_gJqZPxNWsU7-Ftt5oyTwJlXfmQ/Screenshot+2020-04-20_22-17-06-855.png)
 
-![Screenshot 2020-04-20_22-17-06-855.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_22-17-06-855.png#center)
+![Screenshot 2020-04-20_22-17-06-855.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_22-17-06-855.png)
 
 * * *
 
@@ -202,9 +202,9 @@ RSAT is fully integrated with Microsoft Azure DevOps for test execution, reporti
 
 RSAT usage is described here in this schema :
 
-![end-to-end.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587418937828-LODFMN18JDT5C9W58OGJ/ke17ZwdGBToddI8pDm48kLYKXKHRktXcq-N6k1IDIxEUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYy7Mythp_T-mtop-vrsUOmeInPi9iDjx9w8K4ZfjXt2dluKPZoPbXJeCMQnWJ5wLN7w-84gilVaAiyNEB0bvuCWCjLISwBs8eEdxAxTptZAUg/end-to-end.png#center)
+![end-to-end.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587418937828-LODFMN18JDT5C9W58OGJ/ke17ZwdGBToddI8pDm48kLYKXKHRktXcq-N6k1IDIxEUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYy7Mythp_T-mtop-vrsUOmeInPi9iDjx9w8K4ZfjXt2dluKPZoPbXJeCMQnWJ5wLN7w-84gilVaAiyNEB0bvuCWCjLISwBs8eEdxAxTptZAUg/end-to-end.png)
 
-![end-to-end.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/end-to-end.png#center)
+![end-to-end.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/end-to-end.png)
 
 First, you will need to install it :)
 
@@ -214,27 +214,27 @@ Windows 10 and needed also Excel app.
 
 But before going to RSAT directly, go back to your Azure DevOps, you will need a Personal Access Token.
 
-![Sans titre.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587419873591-FBKG0U00CDNSEX1LLXHE/ke17ZwdGBToddI8pDm48kN9pu7RPYxRB7TaL8tuc5iBZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIW4dfKkW9eBPcapIY2NzTqIRq-Y5q872Fa4ByvrG.png#center/Sans+titre.png#center)
+![Sans titre.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587419873591-FBKG0U00CDNSEX1LLXHE/ke17ZwdGBToddI8pDm48kN9pu7RPYxRB7TaL8tuc5iBZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIW4dfKkW9eBPcapIY2NzTqIRq-Y5q872Fa4ByvrG.png/Sans+titre.png)
 
-![Sans titre.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Sans+titre.png#center)
+![Sans titre.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Sans+titre.png)
 
-![Screenshot 2020-04-20_23-51-45-050.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587419916146-O6RVCKHRDLZRGW17EIF2/ke17ZwdGBToddI8pDm48kGd3Y0PUHdz42VR16pNrk5wUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYy7Mythp_T-mtop-vrsUOmeInPi9iDjx9w8K4ZfjXt2drXrG-eCPfcNJrfr3bSseU77m0pW8sjhPPRdH-BqfSAfCjLISwBs8eEdxAxTptZAUg/Screenshot+2020-04-20_23-51-45-050.png#center)
+![Screenshot 2020-04-20_23-51-45-050.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587419916146-O6RVCKHRDLZRGW17EIF2/ke17ZwdGBToddI8pDm48kGd3Y0PUHdz42VR16pNrk5wUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYy7Mythp_T-mtop-vrsUOmeInPi9iDjx9w8K4ZfjXt2drXrG-eCPfcNJrfr3bSseU77m0pW8sjhPPRdH-BqfSAfCjLISwBs8eEdxAxTptZAUg/Screenshot+2020-04-20_23-51-45-050.png)
 
-![Screenshot 2020-04-20_23-51-45-050.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_23-51-45-050.png#center)
+![Screenshot 2020-04-20_23-51-45-050.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_23-51-45-050.png)
 
 Create a new one for RSAT, and make him as expiration date in 1 year, to be safe :)
 
 After you need to configure it, to link of course on which environment you need to do your automate testing and. also the Azure DevOps project in which you have setup all test cases.
 
-![RSAT-1.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587419964576-CQCUASBUNABMHFCXADJB/ke17ZwdGBToddI8pDm48kIP_GdbA7XrSuQjbiSF68z1Zw-zPPgdn4jUwVcJE1ZvWEtT5uBSRWt4vQZAgTJucoTqqXjS3CfNDSuuf31e0tVGsZfKXdzgqR6l_s6sG3TyHzp8cISuhYtjr4xTqK-6DEJuG45vQwBxdpDrCGUSSl5w/RSAT-1.png#center)
+![RSAT-1.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587419964576-CQCUASBUNABMHFCXADJB/ke17ZwdGBToddI8pDm48kIP_GdbA7XrSuQjbiSF68z1Zw-zPPgdn4jUwVcJE1ZvWEtT5uBSRWt4vQZAgTJucoTqqXjS3CfNDSuuf31e0tVGsZfKXdzgqR6l_s6sG3TyHzp8cISuhYtjr4xTqK-6DEJuG45vQwBxdpDrCGUSSl5w/RSAT-1.png)
 
-![RSAT-1.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/RSAT-1.png#center)
+![RSAT-1.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/RSAT-1.png)
 
 Change your Azure DevOps URL, put your Personal Access Token generated before, you will now use your Project and the Test Plan created in Azure DevOps before.
 
-![RSAT-2.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587420106026-9F6LQXFYYSC25FTRZ9B5/ke17ZwdGBToddI8pDm48kBJd1flZ3m1dQkVCCqJKfjAUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKch4LLz7u81zdvJV_LiVZOngehF5Nk0RkMwCKm4dF55fkBIjY3jbOcBwB5OiMSAIdT/RSAT-2.png#center)
+![RSAT-2.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587420106026-9F6LQXFYYSC25FTRZ9B5/ke17ZwdGBToddI8pDm48kBJd1flZ3m1dQkVCCqJKfjAUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKch4LLz7u81zdvJV_LiVZOngehF5Nk0RkMwCKm4dF55fkBIjY3jbOcBwB5OiMSAIdT/RSAT-2.png)
 
-![RSAT-2.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/RSAT-2.png#center)
+![RSAT-2.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/RSAT-2.png)
 
 After it’s a little more complicated.
 
@@ -242,9 +242,9 @@ Put your hostname, the URL of your FinOps instance without HTTPS.
 
 For the SOAP Hostname, it’s the same but with **aossoap** between the firstpart of your hostname and .sandbox part. Like me below :
 
-![RSAT-3.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587420244950-PIZFJ1GFU5UW43UZHNTE/ke17ZwdGBToddI8pDm48kNMig4wQ14-IHOXb0vj8KNBZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIMDA8O-NWvBnQOfngVy4LWiCM7ISZCy7S-oWj2oZJ4VU/RSAT-3.png#center)
+![RSAT-3.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587420244950-PIZFJ1GFU5UW43UZHNTE/ke17ZwdGBToddI8pDm48kNMig4wQ14-IHOXb0vj8KNBZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIMDA8O-NWvBnQOfngVy4LWiCM7ISZCy7S-oWj2oZJ4VU/RSAT-3.png)
 
-![RSAT-3.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/RSAT-3.png#center)
+![RSAT-3.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/RSAT-3.png)
 
 Put your admin user name email address. The account that will launch every test in your instance. And the company name / legal entity. Keep in mind that we can change on every test the legal entity in a parameter file.
 
@@ -266,29 +266,29 @@ In the wif.config located in K:\\AosService\\WebRoot
 Save a Working Directory folder and also Default Browser to Google Chrome. Don’t forget after configuration to click on Save As, in order to save the configuration and maybe share it for other consultants in your project.  
 Load your test plan and click after on Generate Test Execution and Parameters files.
 
-![RSAT-3.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587421233339-IRKXAM2K3W7X09MXJKMC/ke17ZwdGBToddI8pDm48kNtJohiWGu7qrUanJCxUpYZZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIeuzTwte2uipQtPAih4BjH6_M-Z3F3RqeHjMkFWd9EiU/RSAT-3.png#center)
+![RSAT-3.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587421233339-IRKXAM2K3W7X09MXJKMC/ke17ZwdGBToddI8pDm48kNtJohiWGu7qrUanJCxUpYZZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIeuzTwte2uipQtPAih4BjH6_M-Z3F3RqeHjMkFWd9EiU/RSAT-3.png)
 
-![RSAT-3.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/RSAT-3(1).png#center)
+![RSAT-3.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/RSAT-3(1).png)
 
-![You need to have all your test cases here and now you can check on each the Parameter files and change everything needed.](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587421269952-QVQKA63YBCJVHJGNEATL/ke17ZwdGBToddI8pDm48kOxKQu92YIRb02hJUxhveKl7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1USNu5lvd_fY4DFceG4CBLYVJeCQAOqiS8zrm1SYAHE_AP7cJNZlDXbgJNE9ef52e8w/RSAT-4.png#center)
+![You need to have all your test cases here and now you can check on each the Parameter files and change everything needed.](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587421269952-QVQKA63YBCJVHJGNEATL/ke17ZwdGBToddI8pDm48kOxKQu92YIRb02hJUxhveKl7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1USNu5lvd_fY4DFceG4CBLYVJeCQAOqiS8zrm1SYAHE_AP7cJNZlDXbgJNE9ef52e8w/RSAT-4.png)
 
-![You need to have all your test cases here and now you can check on each the Parameter files and change everything needed.](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/RSAT-4.png#center)
+![You need to have all your test cases here and now you can check on each the Parameter files and change everything needed.](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/RSAT-4.png)
 
 You need to have all your test cases here and now you can check on each the Parameter files and change everything needed.
 
-![RSAT-5.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587421400995-VWFUEHBAXSBIOOF0UTFG/ke17ZwdGBToddI8pDm48kD55Xg60Iu-qPz8TdaTIRUB7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1USgBFiv-QW-Nt70QPJXHexQZsyvJ68ce6dAy_t0Pe9iIJvwGh1qtNWvMhYKnvaKhbA/RSAT-5.png#center)
+![RSAT-5.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587421400995-VWFUEHBAXSBIOOF0UTFG/ke17ZwdGBToddI8pDm48kD55Xg60Iu-qPz8TdaTIRUB7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1USgBFiv-QW-Nt70QPJXHexQZsyvJ68ce6dAy_t0Pe9iIJvwGh1qtNWvMhYKnvaKhbA/RSAT-5.png)
 
-![RSAT-6.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587421400651-P801WOJ630ABZSBW3SY4/ke17ZwdGBToddI8pDm48kPzbhu-KzV3RwwFKEqQMr9R7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QHyNOqBUUEtDDsRWrJLTm-T5H2ObAtnfa5PvPlCic1Jpc4qhP3KsacZQxrbiLNAw_g4qaUA-1atQkAMlxGoPA/RSAT-6.png#center)
+![RSAT-6.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587421400651-P801WOJ630ABZSBW3SY4/ke17ZwdGBToddI8pDm48kPzbhu-KzV3RwwFKEqQMr9R7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QHyNOqBUUEtDDsRWrJLTm-T5H2ObAtnfa5PvPlCic1Jpc4qhP3KsacZQxrbiLNAw_g4qaUA-1atQkAMlxGoPA/RSAT-6.png)
 
-![RSAT-7.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587421401567-HUTX1OVCKINV3QLWFX4N/ke17ZwdGBToddI8pDm48kKgNBWVuV9waZQMfx3ebUGR7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QHyNOqBUUEtDDsRWrJLTm8xZ7GFA6Utp-YIo88jNkLXzbep55TkNgZZCfKdF06F0Rz4vu439378Eh1ipxiN8m/RSAT-7.png#center)
+![RSAT-7.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587421401567-HUTX1OVCKINV3QLWFX4N/ke17ZwdGBToddI8pDm48kKgNBWVuV9waZQMfx3ebUGR7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QHyNOqBUUEtDDsRWrJLTm8xZ7GFA6Utp-YIo88jNkLXzbep55TkNgZZCfKdF06F0Rz4vu439378Eh1ipxiN8m/RSAT-7.png)
 
-![RSAT-5.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/RSAT-5.png#center)![RSAT-6.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/RSAT-6.png#center)![RSAT-7.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/RSAT-7.png#center)
+![RSAT-5.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/RSAT-5.png)![RSAT-6.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/RSAT-6.png)![RSAT-7.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/RSAT-7.png)
 
 You can pick one, like the Customer RSAT process. And click on “RUN” ; before a small warning , click on YES.
 
-![RSAT-8.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587421449318-GG1YEKLT0F0O3Q0V1GU4/ke17ZwdGBToddI8pDm48kNnmJjoqWSPQsycqP5SdAB5Zw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PI4eEyyNZKSX8GcS5-Itj27MpG9nwaNzjGjkk4xf1Nro8/RSAT-8.png#center)
+![RSAT-8.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587421449318-GG1YEKLT0F0O3Q0V1GU4/ke17ZwdGBToddI8pDm48kNnmJjoqWSPQsycqP5SdAB5Zw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PI4eEyyNZKSX8GcS5-Itj27MpG9nwaNzjGjkk4xf1Nro8/RSAT-8.png)
 
-![RSAT-8.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/RSAT-8.png#center)
+![RSAT-8.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/RSAT-8.png)
 
 Normally, Google Chrome will launch automatically and test everything without any actions on your hand !!
 
@@ -300,38 +300,38 @@ But the best way is after to upload the result directly on Azure DevOps. So that
 
 For that, click on Upload part and “all modified automation files”
 
-![RSAT-9.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587421725744-U4F5O9MHM1RCQ719QEG1/ke17ZwdGBToddI8pDm48kCilVmaBqfdwMN8gxdFX4m5Zw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIs_Q2Hu2Fi0tIdmbSDzWmzztGkT-UJu7SIF2-7TQ1vGI/RSAT-9.png#center)
+![RSAT-9.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587421725744-U4F5O9MHM1RCQ719QEG1/ke17ZwdGBToddI8pDm48kCilVmaBqfdwMN8gxdFX4m5Zw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIs_Q2Hu2Fi0tIdmbSDzWmzztGkT-UJu7SIF2-7TQ1vGI/RSAT-9.png)
 
-![RSAT-9.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/RSAT-9.png#center)
+![RSAT-9.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/RSAT-9.png)
 
 Now go to your Azure DevOps Test Plan.
 
 You can see all Recent test runs
 
-![Screenshot 2020-04-21_00-30-44-231.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587421971652-E92NL6MVCFKNUA5NW9Y7/ke17ZwdGBToddI8pDm48kBOpWS5gX6INY-PUGzxr2FIUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYwL8IeDg6_3B-BRuF4nNrNcQkVuAT7tdErd0wQFEGFSnGZIEpBabk_LqqiIQbmBMLjD-FIRsvB4suMknYKStT68oFoAC5Ip_lNIcer8VrtvQw/Screenshot+2020-04-21_00-30-44-231.png#center)
+![Screenshot 2020-04-21_00-30-44-231.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587421971652-E92NL6MVCFKNUA5NW9Y7/ke17ZwdGBToddI8pDm48kBOpWS5gX6INY-PUGzxr2FIUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYwL8IeDg6_3B-BRuF4nNrNcQkVuAT7tdErd0wQFEGFSnGZIEpBabk_LqqiIQbmBMLjD-FIRsvB4suMknYKStT68oFoAC5Ip_lNIcer8VrtvQw/Screenshot+2020-04-21_00-30-44-231.png)
 
-![Screenshot 2020-04-21_00-30-44-231.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-21_00-30-44-231.png#center)
+![Screenshot 2020-04-21_00-30-44-231.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-21_00-30-44-231.png)
 
 If we go to the one of RSAT that goes well.
 
-![Screenshot 2020-04-21_00-32-06-314.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587422193157-ZLPY10FNOMWW89J35BEA/ke17ZwdGBToddI8pDm48kEM_QJaVtoFPCPYWjJwP2IB7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0oo6a4sN_893sD4JAjJ8gmwhKXUcyPrL5HrgFT4ulzQ3pshJxhrxVBFFbZw3SCeaKA/Screenshot+2020-04-21_00-32-06-314.png#center)
+![Screenshot 2020-04-21_00-32-06-314.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587422193157-ZLPY10FNOMWW89J35BEA/ke17ZwdGBToddI8pDm48kEM_QJaVtoFPCPYWjJwP2IB7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0oo6a4sN_893sD4JAjJ8gmwhKXUcyPrL5HrgFT4ulzQ3pshJxhrxVBFFbZw3SCeaKA/Screenshot+2020-04-21_00-32-06-314.png)
 
-![Screenshot 2020-04-21_00-32-06-314.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-21_00-32-06-314.png#center)
+![Screenshot 2020-04-21_00-32-06-314.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-21_00-32-06-314.png)
 
 You can have all the Log needed, tracked by RSAT.
 
 On something that went wrong… but in unit test with SysTestFramework that we will see after, the developer can have the .AXTR file generated for her/him.  
 Also we can generate automatically a Bug/Work Item based on a failed test and alert me :)
 
-![Screenshot 2020-04-21_00-31-37-242.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587422283018-SBWKPEWR5NLUY5BKZWUW/ke17ZwdGBToddI8pDm48kEF1__AY92MCJeQymbAUHhJ7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0jPA-99fl4QCEe6PK9TQA1XbWhsbBDYRXp-kDVybjnv6MXXYDU8sdpXxqISVQy3_Cg/Screenshot+2020-04-21_00-31-37-242.png#center)
+![Screenshot 2020-04-21_00-31-37-242.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587422283018-SBWKPEWR5NLUY5BKZWUW/ke17ZwdGBToddI8pDm48kEF1__AY92MCJeQymbAUHhJ7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0jPA-99fl4QCEe6PK9TQA1XbWhsbBDYRXp-kDVybjnv6MXXYDU8sdpXxqISVQy3_Cg/Screenshot+2020-04-21_00-31-37-242.png)
 
-![Screenshot 2020-04-21_00-31-37-242.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-21_00-31-37-242.png#center)
+![Screenshot 2020-04-21_00-31-37-242.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-21_00-31-37-242.png)
 
 For Project Manager, we have also a report that we can change if you want !
 
-![Screenshot 2020-04-21_00-33-18-567.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587422416505-F243EX24ZVHFANU5FBNO/ke17ZwdGBToddI8pDm48kMHpjW2eaAUwoWU-AGjAYKh7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0sLG3COZnet_e0tFwRthez7oFq5PMBbUYQIypw0sbdQllYiesJ7e-zzBF5z7joF09A/Screenshot+2020-04-21_00-33-18-567.png#center)
+![Screenshot 2020-04-21_00-33-18-567.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587422416505-F243EX24ZVHFANU5FBNO/ke17ZwdGBToddI8pDm48kMHpjW2eaAUwoWU-AGjAYKh7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0sLG3COZnet_e0tFwRthez7oFq5PMBbUYQIypw0sbdQllYiesJ7e-zzBF5z7joF09A/Screenshot+2020-04-21_00-33-18-567.png)
 
-![Screenshot 2020-04-21_00-33-18-567.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-21_00-33-18-567.png#center)
+![Screenshot 2020-04-21_00-33-18-567.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-21_00-33-18-567.png)
 
   
 To conclude RSAT, yes we can deeper. I don’t have setup this kind of thing in this example, but you can of course :
@@ -345,15 +345,15 @@ To conclude RSAT, yes we can deeper. I don’t have setup this kind of thing in 
 *   Validate expected values : An important component of a test case is validation of expected values. You can define validation parameters during the authoring of your test cases using Task Recorder. While recording, right-click on a control and select **CurrentValue** under the **Task Recorder > Validate** menu. This action becomes a validation step that you can use with the Regression suite automation tool. The control value will become a validation variable in the automatically generated Excel parameters file. The menu item is shown in the following image.
     
 
-![When RSAT generates the Excel parameter file for a test case, validation steps are added as shown in the image below. You can enter the expected value to use during execution of the test case.](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587422647772-YNSLU1Y289ZQ90RH6IHP/ke17ZwdGBToddI8pDm48kKJ0b6qf28Ar7saf6glsNddZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpwQVHs1bt435D36HnxtOpzJmlitV8IfkpXgQTe4sgyk3FssXVwl5tlbct2h4goZrjI/validate-test-case.png#center)
+![When RSAT generates the Excel parameter file for a test case, validation steps are added as shown in the image below. You can enter the expected value to use during execution of the test case.](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587422647772-YNSLU1Y289ZQ90RH6IHP/ke17ZwdGBToddI8pDm48kKJ0b6qf28Ar7saf6glsNddZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpwQVHs1bt435D36HnxtOpzJmlitV8IfkpXgQTe4sgyk3FssXVwl5tlbct2h4goZrjI/validate-test-case.png)
 
-![When RSAT generates the Excel parameter file for a test case, validation steps are added as shown in the image below. You can enter the expected value to use during execution of the test case.](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/validate-test-case.png#center)
+![When RSAT generates the Excel parameter file for a test case, validation steps are added as shown in the image below. You can enter the expected value to use during execution of the test case.](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/validate-test-case.png)
 
 When RSAT generates the Excel parameter file for a test case, validation steps are added as shown in the image below. You can enter the expected value to use during execution of the test case.
 
-![rsat-validate-variables.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587422691431-TG82USFR6QG5G08NK9XW/ke17ZwdGBToddI8pDm48kOdlrrKiscqQdW1VaxnwY4RZw-zPPgdn4jUwVcJE1ZvWEtT5uBSRWt4vQZAgTJucoTqqXjS3CfNDSuuf31e0tVFYkVxfQemEU_p1ZD1YKKQ49Bimi2EHDYkMvY4ZZEoCsaEcAfnVBrEqrgp1UxUHGkY/rsat-validate-variables.png#center)
+![rsat-validate-variables.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587422691431-TG82USFR6QG5G08NK9XW/ke17ZwdGBToddI8pDm48kOdlrrKiscqQdW1VaxnwY4RZw-zPPgdn4jUwVcJE1ZvWEtT5uBSRWt4vQZAgTJucoTqqXjS3CfNDSuuf31e0tVFYkVxfQemEU_p1ZD1YKKQ49Bimi2EHDYkMvY4ZZEoCsaEcAfnVBrEqrgp1UxUHGkY/rsat-validate-variables.png)
 
-![rsat-validate-variables.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/rsat-validate-variables.png#center)
+![rsat-validate-variables.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/rsat-validate-variables.png)
 
 [Learn more RSAT](https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/perf-test/rsat/rsat-validate-expected?WT.mc_id=BA-MVP-5003744)
 
@@ -362,9 +362,9 @@ When RSAT generates the Excel parameter file for a test case, validation steps a
 **3/ SysTestFramework and ATL : Acceptance test library**
 ---------------------------------------------------------
 
-![54.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587414152757-21MAX75GVHI5LJD78FT5/ke17ZwdGBToddI8pDm48kLROaCskEsHFnCsBUuA_tlFZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PI1w5ynUc_FMWV9hJxizWJvxDFsMrOBfl-eUoWmXIOIBw/54.png#center)
+![54.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587414152757-21MAX75GVHI5LJD78FT5/ke17ZwdGBToddI8pDm48kLROaCskEsHFnCsBUuA_tlFZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PI1w5ynUc_FMWV9hJxizWJvxDFsMrOBfl-eUoWmXIOIBw/54.png)
 
-![54.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/54.png#center)
+![54.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/54.png)
 
 **Key concepts**
 ----------------
@@ -386,29 +386,29 @@ Clearly this part is mostly for developers, but I think it’s useful also for p
 
 So, first best practice, before going to start writing tests, you will need a new model for that ! To achieve that, go to your Visual Studio and create a new one like me :
 
-![Screenshot 2020-04-20_22-43-39-536.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587415637068-0FKRB4HWSFR2L8WV123E/ke17ZwdGBToddI8pDm48kDEcEnbyLA63zdjdlV1fdokUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcw0F4rPp0H3WBw8PffFab6eITZYfiXLCtMD192KCnEYx-fI40WFTZQ4_0HHLRF9zR/Screenshot+2020-04-20_22-43-39-536.png#center)
+![Screenshot 2020-04-20_22-43-39-536.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587415637068-0FKRB4HWSFR2L8WV123E/ke17ZwdGBToddI8pDm48kDEcEnbyLA63zdjdlV1fdokUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcw0F4rPp0H3WBw8PffFab6eITZYfiXLCtMD192KCnEYx-fI40WFTZQ4_0HHLRF9zR/Screenshot+2020-04-20_22-43-39-536.png)
 
-![Screenshot 2020-04-20_22-43-39-536.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_22-43-39-536.png#center)
+![Screenshot 2020-04-20_22-43-39-536.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_22-43-39-536.png)
 
 Important after, select your reference package. Like me, I select my main package of custom codes - solution to TEST
 
-![Screenshot 2020-04-20_22-44-11-534.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587415731082-TL1NV2T3J1D80PB4BNZY/ke17ZwdGBToddI8pDm48kCYvPX0Z5HAmhqlhNGaEIRkUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcuGfH6zwfSQOmgE4fsamHBSnpVCihkmQDDa-g930GyqND8AcEA0Ug7TzJGB4MX3Bo/Screenshot+2020-04-20_22-44-11-534.png#center)
+![Screenshot 2020-04-20_22-44-11-534.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587415731082-TL1NV2T3J1D80PB4BNZY/ke17ZwdGBToddI8pDm48kCYvPX0Z5HAmhqlhNGaEIRkUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcuGfH6zwfSQOmgE4fsamHBSnpVCihkmQDDa-g930GyqND8AcEA0Ug7TzJGB4MX3Bo/Screenshot+2020-04-20_22-44-11-534.png)
 
-![Screenshot 2020-04-20_22-44-11-534.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_22-44-11-534.png#center)
+![Screenshot 2020-04-20_22-44-11-534.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_22-44-11-534.png)
 
 Check : Create new project, it will here where you will place all your unit tests - and don’t of course make it as the default model for new projects.
 
-![Screenshot 2020-04-20_22-44-49-881.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587415783679-TFGGTB0X2OZJ8RSWGZXD/ke17ZwdGBToddI8pDm48kHsGnMx4wT-y1fCT6VpdvsYUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcM1696AgC5JGPlezsD-0FIRtTJo9h-uRmIJJOcAmTkD7ymgKIWojEpYXRHqCPHbAP/Screenshot+2020-04-20_22-44-49-881.png#center)
+![Screenshot 2020-04-20_22-44-49-881.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587415783679-TFGGTB0X2OZJ8RSWGZXD/ke17ZwdGBToddI8pDm48kHsGnMx4wT-y1fCT6VpdvsYUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcM1696AgC5JGPlezsD-0FIRtTJo9h-uRmIJJOcAmTkD7ymgKIWojEpYXRHqCPHbAP/Screenshot+2020-04-20_22-44-49-881.png)
 
-![Screenshot 2020-04-20_22-44-49-881.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_22-44-49-881.png#center)
+![Screenshot 2020-04-20_22-44-49-881.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_22-44-49-881.png)
 
 After the model is created, change the reference packages, to include **ALL FormsAdaptators models,** and the main one : **Test essentials model** !
 
 Also put your main VS project as the Startup object !
 
-![Screenshot 2020-04-20_22-46-10-271.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587415884450-9P1NVH04KJN3IGLC4DGS/ke17ZwdGBToddI8pDm48kNwm83ZvMUFfcWryQH8O4okUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYy7Mythp_T-mtop-vrsUOmeInPi9iDjx9w8K4ZfjXt2dp8eNt11yG2YtmampLwmCKqR3IRkeUwhvUVwGHkr6ZJ7CjLISwBs8eEdxAxTptZAUg/Screenshot+2020-04-20_22-46-10-271.png#center)
+![Screenshot 2020-04-20_22-46-10-271.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587415884450-9P1NVH04KJN3IGLC4DGS/ke17ZwdGBToddI8pDm48kNwm83ZvMUFfcWryQH8O4okUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYy7Mythp_T-mtop-vrsUOmeInPi9iDjx9w8K4ZfjXt2dp8eNt11yG2YtmampLwmCKqR3IRkeUwhvUVwGHkr6ZJ7CjLISwBs8eEdxAxTptZAUg/Screenshot+2020-04-20_22-46-10-271.png)
 
-![Screenshot 2020-04-20_22-46-10-271.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_22-46-10-271.png#center)
+![Screenshot 2020-04-20_22-46-10-271.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_22-46-10-271.png)
 
 So now, you have your TEST model, all referenced packages included, include your main one of course. You can now built custom test unit code with SysTestFramework;
 
@@ -416,16 +416,16 @@ On my side, I will use the Task Recorder Add-in in VS, but of course, **you can 
 
 To generate test class automatically, click on Addins / Import Task Recording
 
-![Screenshot 2020-04-20_22-56-02-444.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587416180025-HVOEWOWL5AQYHRA63STO/ke17ZwdGBToddI8pDm48kBsHSxqOcMHU36uZNb3JfKd7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UV1R-WiEHlb1fRP-OXotl3Usiey8TgDH-txyey2gZ1Xv7zs2yPjc1ECvpa5Zm_kMqw/Screenshot+2020-04-20_22-56-02-444.png#center)
+![Screenshot 2020-04-20_22-56-02-444.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587416180025-HVOEWOWL5AQYHRA63STO/ke17ZwdGBToddI8pDm48kBsHSxqOcMHU36uZNb3JfKd7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UV1R-WiEHlb1fRP-OXotl3Usiey8TgDH-txyey2gZ1Xv7zs2yPjc1ECvpa5Zm_kMqw/Screenshot+2020-04-20_22-56-02-444.png)
 
-![Screenshot 2020-04-20_22-56-02-444.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_22-56-02-444.png#center)
+![Screenshot 2020-04-20_22-56-02-444.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_22-56-02-444.png)
 
 Import the file that you have in the AzureDevOps Unit Test case that we see before (like me : Recording.xml) : as you can see BPM / LCS and Azure DevOps is not only for RSAT !  
 Select of course your new model for testing purpose.
 
-![Screenshot 2020-04-20_23-01-07-796.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587416505894-41HOE52LNY9L8HDYRRNX/ke17ZwdGBToddI8pDm48kMrk5qpoWAbmrXnx9KGXZv9Zw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIP5Y1JdatR6plaiEEYNtHAownhAbfAgRj6nP0jeiOiH4/Screenshot+2020-04-20_23-01-07-796.png#center)
+![Screenshot 2020-04-20_23-01-07-796.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587416505894-41HOE52LNY9L8HDYRRNX/ke17ZwdGBToddI8pDm48kMrk5qpoWAbmrXnx9KGXZv9Zw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIP5Y1JdatR6plaiEEYNtHAownhAbfAgRj6nP0jeiOiH4/Screenshot+2020-04-20_23-01-07-796.png)
 
-![Screenshot 2020-04-20_23-01-07-796.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_23-01-07-796.png#center)
+![Screenshot 2020-04-20_23-01-07-796.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_23-01-07-796.png)
 
 You will have a new generate class, like me
 
@@ -433,15 +433,15 @@ Change just the top of the class, like adding a SysTestCategory, it will be help
 
 This class is of course simulate each UI testing, as well as data / business process testing.
 
-![Screenshot 2020-04-20_23-03-17-041.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587416720490-2MFEDKA715XWARGWIP6Z/ke17ZwdGBToddI8pDm48kArbkFmpIj5INRey4wl7TJx7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UY5pxqYqUilPr908wrOgSL3JzsUfE7ALBafa0wo7CCOS7zs2yPjc1ECvpa5Zm_kMqw/Screenshot+2020-04-20_23-03-17-041.png#center)
+![Screenshot 2020-04-20_23-03-17-041.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587416720490-2MFEDKA715XWARGWIP6Z/ke17ZwdGBToddI8pDm48kArbkFmpIj5INRey4wl7TJx7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UY5pxqYqUilPr908wrOgSL3JzsUfE7ALBafa0wo7CCOS7zs2yPjc1ECvpa5Zm_kMqw/Screenshot+2020-04-20_23-03-17-041.png)
 
-![Screenshot 2020-04-20_23-03-17-041.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_23-03-17-041.png#center)
+![Screenshot 2020-04-20_23-03-17-041.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_23-03-17-041.png)
 
 You can of course directly after run & check if your TEST is OK in your DEV environment by going in the Test Explorer view.
 
-![Screenshot 2020-04-20_23-04-06-977.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587416829150-NYB853R1JTDT0K1GU1MX/ke17ZwdGBToddI8pDm48kM1O1CUFCN78Q8dkdco4rQpZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpxOyK1luL83U4IILw0TigbmJi-9hxum1xAdPsllQ_7lHCJXf2ah7drENBuKMhd9Kc0/Screenshot+2020-04-20_23-04-06-977.png#center)
+![Screenshot 2020-04-20_23-04-06-977.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587416829150-NYB853R1JTDT0K1GU1MX/ke17ZwdGBToddI8pDm48kM1O1CUFCN78Q8dkdco4rQpZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpxOyK1luL83U4IILw0TigbmJi-9hxum1xAdPsllQ_7lHCJXf2ah7drENBuKMhd9Kc0/Screenshot+2020-04-20_23-04-06-977.png)
 
-![Screenshot 2020-04-20_23-04-06-977.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_23-04-06-977.png#center)
+![Screenshot 2020-04-20_23-04-06-977.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_23-04-06-977.png)
 
 This test can be now included in your version control to be used as the BUILD pipeline step in order to automatically runs every night all your SysTest Framework test.
 
@@ -476,21 +476,21 @@ Now go to your AzureDevOps project, on the BUILD pipeline part. We will change t
 
 On my side, I’ve got a BUILD Main, only one. So of course, change & adapt on your needs. Enable the 3 tasks at the end : **Test Setup, Execute and End Tests.**
 
-![Screenshot 2020-04-20_23-22-37-415.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587418028427-GS8XFJQANVGY4B2FNZ70/ke17ZwdGBToddI8pDm48kPV_qnE4tBRcCSnqtN8uGiF7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QHyNOqBUUEtDDsRWrJLTma7zep8-VRTmjYiDphuiSo0fEbKDTcNAUJYIGgLV0blOn_xbeuD5YHNveO2_f6HK1/Screenshot+2020-04-20_23-22-37-415.png#center)
+![Screenshot 2020-04-20_23-22-37-415.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587418028427-GS8XFJQANVGY4B2FNZ70/ke17ZwdGBToddI8pDm48kPV_qnE4tBRcCSnqtN8uGiF7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QHyNOqBUUEtDDsRWrJLTma7zep8-VRTmjYiDphuiSo0fEbKDTcNAUJYIGgLV0blOn_xbeuD5YHNveO2_f6HK1/Screenshot+2020-04-20_23-22-37-415.png)
 
-![Screenshot 2020-04-20_23-22-37-415.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_23-22-37-415.png#center)
+![Screenshot 2020-04-20_23-22-37-415.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_23-22-37-415.png)
 
 For these 3 steps, don’t need to change large setup, Just use Task version 2.\* and the only change is on the Variable part, to include the SysTestCategory that I had before, remember :) also added my main model.dll that host all my test class.
 
-![Screenshot 2020-04-20_23-22-51-535.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587418181700-9XIESISVHVHGV63MQCMA/ke17ZwdGBToddI8pDm48kFFB8yMcgIBeD7EpD7jfT9t7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UX2vc1I2UAy32OiM19p40Azc4errXLDjDyxKZ5hzo9EOZtJ3qR9G2BYeA0wOAaeYNg/Screenshot+2020-04-20_23-22-51-535.png#center)
+![Screenshot 2020-04-20_23-22-51-535.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587418181700-9XIESISVHVHGV63MQCMA/ke17ZwdGBToddI8pDm48kFFB8yMcgIBeD7EpD7jfT9t7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UX2vc1I2UAy32OiM19p40Azc4errXLDjDyxKZ5hzo9EOZtJ3qR9G2BYeA0wOAaeYNg/Screenshot+2020-04-20_23-22-51-535.png)
 
-![Screenshot 2020-04-20_23-23-24-739.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587418182136-UAZO8NUGFSEZEMNSNHKD/ke17ZwdGBToddI8pDm48kCByG4_B6_-8fJ31ZyGXi017gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UaBIzwzWq-r6fr7zEKELrq1qNGe3yJ8TK2Q6PJMW2FWf3WUfc_ZsVm9Mi1E6FasEnQ/Screenshot+2020-04-20_23-23-24-739.png#center)
+![Screenshot 2020-04-20_23-23-24-739.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587418182136-UAZO8NUGFSEZEMNSNHKD/ke17ZwdGBToddI8pDm48kCByG4_B6_-8fJ31ZyGXi017gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UaBIzwzWq-r6fr7zEKELrq1qNGe3yJ8TK2Q6PJMW2FWf3WUfc_ZsVm9Mi1E6FasEnQ/Screenshot+2020-04-20_23-23-24-739.png)
 
-![Screenshot 2020-04-20_23-23-38-414.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587418183181-VLMND01BKO8QOTAUBNZZ/ke17ZwdGBToddI8pDm48kNd9z0MwgN8XfZNHY_d9Al97gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1Ue74T3P0FDZe6h_h-Q9EBTJmZ2jSPYxiyQqaQb5p-WKhbSexTd1-frD7527z4SM9QQ/Screenshot+2020-04-20_23-23-38-414.png#center)
+![Screenshot 2020-04-20_23-23-38-414.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587418183181-VLMND01BKO8QOTAUBNZZ/ke17ZwdGBToddI8pDm48kNd9z0MwgN8XfZNHY_d9Al97gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1Ue74T3P0FDZe6h_h-Q9EBTJmZ2jSPYxiyQqaQb5p-WKhbSexTd1-frD7527z4SM9QQ/Screenshot+2020-04-20_23-23-38-414.png)
 
-![Screenshot 2020-04-20_23-24-24-388.png#center](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587418184040-P78JXCIEFTK164SEVWLF/ke17ZwdGBToddI8pDm48kJ_CmNmnnvQECgcR2OT1mrx7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0kwsEKcmM5zBs3WNR9NCFsCcIIOt6Wb6IL8JIFI1IXU2g_mJvftJio5T9j_2hsiTHA/Screenshot+2020-04-20_23-24-24-388.png#center)
+![Screenshot 2020-04-20_23-24-24-388.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587418184040-P78JXCIEFTK164SEVWLF/ke17ZwdGBToddI8pDm48kJ_CmNmnnvQECgcR2OT1mrx7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0kwsEKcmM5zBs3WNR9NCFsCcIIOt6Wb6IL8JIFI1IXU2g_mJvftJio5T9j_2hsiTHA/Screenshot+2020-04-20_23-24-24-388.png)
 
-![Screenshot 2020-04-20_23-22-51-535.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_23-22-51-535.png#center)![Screenshot 2020-04-20_23-23-24-739.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_23-23-24-739.png#center)![Screenshot 2020-04-20_23-23-38-414.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_23-23-38-414.png#center)![Screenshot 2020-04-20_23-24-24-388.png#center](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_23-24-24-388.png#center)
+![Screenshot 2020-04-20_23-22-51-535.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_23-22-51-535.png)![Screenshot 2020-04-20_23-23-24-739.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_23-23-24-739.png)![Screenshot 2020-04-20_23-23-38-414.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_23-23-38-414.png)![Screenshot 2020-04-20_23-24-24-388.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/Screenshot+2020-04-20_23-24-24-388.png)
 
   
 So here we are you are a Pro of Automate testing in Dynamics 365 Finance and Operations.

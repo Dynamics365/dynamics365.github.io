@@ -38,7 +38,7 @@ Reporting service component uses **business connector** to connect to AX, and it
 
 After this, remember restart reporting services.
 
-![how-to-install-2-instances-ssrs-on-1-server-6](/imagesposts/how-to-install-2-instances-ssrs-on-1-server-6.png#center)
+![how-to-install-2-instances-ssrs-on-1-server-6](/imagesposts/how-to-install-2-instances-ssrs-on-1-server-6.png)
 
 From now on, you can run 2 AX reporting instance in same server.
 

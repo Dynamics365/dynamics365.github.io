@@ -23,7 +23,7 @@ The classic method that we have been utilizing is to include all source data in 
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/nuxulu.com\/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1\/"
-        },"genre": "posts","keywords": "Microsoft Forms, Power Automate, PowerApps, Data Entities, integration framework","wordCount":  1228 ,
+        },"genre": "posts","keywords": "Microsoft Forms, Power Automate, PowerApps, Data Entities, integration framework","wordCount":  1210 ,
         "url": "https:\/\/nuxulu.com\/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1\/","datePublished": "2020-05-24T00:00:00+00:00","dateModified": "2020-05-24T00:00:00+00:00",
         "publisher": {
             "@type": "Person",
@@ -155,7 +155,7 @@ The classic method that we have been utilizing is to include all source data in 
                         <h1 class="single-title flipInX">Dynamics 365 FinOps Data Integration using Microsoft Forms (Part 1)</h1><div class="post-meta summary-post-meta"><span class="post-meta-date meta-item">
                                 <span class="svg-icon icon-clock"></span><time class="timeago" datetime="2020-05-24">May 24, 2020</time>
                             </span><span class="post-meta-words meta-item">
-                                <span class="svg-icon icon-pencil"></span>1228 words
+                                <span class="svg-icon icon-pencil"></span>1210 words
                             </span>
                             <span class="post-meta-reading meta-item">
                                 <span class="svg-icon icon-stopwatch"></span>6 minutes
@@ -190,14 +190,14 @@ The classic method that we have been utilizing is to include all source data in 
 
 
 
-<figure class="render-image"><a target="_blank" href="/imagesposts/Introduction.png#center" title="The trio" >
+<figure class="render-image"><a target="_blank" href="/imagesposts/Introduction.png" title="The trio" >
         <img loading="lazy" decoding="async"
              class="render-image"
-             src="/imagesposts/Introduction.png#center"
+             src="/imagesposts/Introduction.png"
             alt="Introduction"
         />
     </a><figcaption class="image-caption">The trio</figcaption>
-</figure>{:.border}</p>
+</figure></p>
 <h1 id="when" class="headerLink"><a href="#when" class="header-mark"></a>When</h1><p>This method should be at its finest when you are planning to outsource the input to any external users.</p>
 <p>Imagine you are a company who is using D365FO to leverage your daily work. You now want to add many local vendors to your system in form of new Vendor Accounts. It is fine to collect all information from them (i.e. Vendor Company’s name, their address, their contact details and so on), put everything in an Excel sheet and import it. Yet, chance is that it would take (a lot of) time for you to finish this task. You would then be very likely to try coming up with some methods to cut down time for it.</p>
 <p>That demand should raise two questions:</p>
@@ -217,14 +217,14 @@ The classic method that we have been utilizing is to include all source data in 
 
 
 
-<figure class="render-image"><a target="_blank" href="/imagesposts/Biggest-Flow.png#center" title="The Biggest FLow" >
+<figure class="render-image"><a target="_blank" href="/imagesposts/Biggest-Flow.png" title="The Biggest FLow" >
         <img loading="lazy" decoding="async"
              class="render-image"
-             src="/imagesposts/Biggest-Flow.png#center"
+             src="/imagesposts/Biggest-Flow.png"
             alt="Biggest FLow"
         />
     </a><figcaption class="image-caption">The Biggest FLow</figcaption>
-</figure>{:.border}</p>
+</figure></p>
 <p>To make it short, when a response is submitted in Microsoft Form, the Flow in MS Power Automate is triggered automatically. An approval request will be sent to your Outlook mailbox and if it is approved, a new record will be created in the target data entity.</p>
 <p>Let go through three examples in the next articles in the series (from the simplest to a more complicated) so we will see the logic behind this process.</p>
 <p>As easy as it sounds, in this example, we will create a new Vendor Account from Microsoft Forms with only a small number of fields being populate.</p>
@@ -241,14 +241,14 @@ The classic method that we have been utilizing is to include all source data in 
 
 
 
-<figure class="render-image"><a target="_blank" href="/imagesposts/E1-1-NewForm.png#center" title="Example 1 Form" >
+<figure class="render-image"><a target="_blank" href="/imagesposts/E1-1-NewForm.png" title="Example 1 Form" >
         <img loading="lazy" decoding="async"
              class="render-image"
-             src="/imagesposts/E1-1-NewForm.png#center"
+             src="/imagesposts/E1-1-NewForm.png"
             alt="Example 1 Form"
         />
     </a><figcaption class="image-caption">Example 1 Form</figcaption>
-</figure>{:.border}</p>
+</figure></p>
 <p>Note all information on the form is customisable.</p>
 <p><em><strong>Note 1-1</strong></em></p>
 <blockquote>
@@ -266,98 +266,98 @@ The classic method that we have been utilizing is to include all source data in 
 
 
 
-<figure class="render-image"><a target="_blank" href="/imagesposts/E1-2-VendorGroups.png#center" title="Vendor Groups" >
+<figure class="render-image"><a target="_blank" href="/imagesposts/E1-2-VendorGroups.png" title="Vendor Groups" >
         <img loading="lazy" decoding="async"
              class="render-image"
-             src="/imagesposts/E1-2-VendorGroups.png#center"
+             src="/imagesposts/E1-2-VendorGroups.png"
             alt="Vendor Groups"
         />
     </a><figcaption class="image-caption">Vendor Groups</figcaption>
-</figure>{:.border}</p>
+</figure></p>
 <h2 id="step-2-create-a-ms-flow" class="headerLink"><a href="#step-2-create-a-ms-flow" class="header-mark"></a><strong>Step 2: Create a MS Flow</strong></h2><p>To do so, we will access <a href="https://flow.microsoft.com/" target="_blank" rel="noopener noreffer">Microsoft Power Automate</a> and create a new flow. We will go with an <code>Automated</code> one in this case.</p>
 <p>
 
 
 
 
-<figure class="render-image"><a target="_blank" href="/imagesposts/E1-3-Flow-1.png#center" title="Automated flow" >
+<figure class="render-image"><a target="_blank" href="/imagesposts/E1-3-Flow-1.png" title="Automated flow" >
         <img loading="lazy" decoding="async"
              class="render-image"
-             src="/imagesposts/E1-3-Flow-1.png#center"
+             src="/imagesposts/E1-3-Flow-1.png"
             alt="Flow step 1"
         />
     </a><figcaption class="image-caption">Automated flow</figcaption>
-</figure>{:.border}</p>
+</figure></p>
 <p>Search for <code>form</code> and choose the trigger <code>When a new response is submitted</code>. Hit <code>Create</code> to create a new flow.</p>
 <p>
 
 
 
 
-<figure class="render-image"><a target="_blank" href="/imagesposts/E1-4-Flow-2.png#center" title="Form trigger" >
+<figure class="render-image"><a target="_blank" href="/imagesposts/E1-4-Flow-2.png" title="Form trigger" >
         <img loading="lazy" decoding="async"
              class="render-image"
-             src="/imagesposts/E1-4-Flow-2.png#center"
+             src="/imagesposts/E1-4-Flow-2.png"
             alt="Flow step 2"
         />
     </a><figcaption class="image-caption">Form trigger</figcaption>
-</figure>{:.border}</p>
+</figure></p>
 <p>Choose the <code>form</code> that we just created using the dropdown list.</p>
 <p>
 
 
 
 
-<figure class="render-image"><a target="_blank" href="/imagesposts/E1-5-Flow-3.png#center" title="Choose form" >
+<figure class="render-image"><a target="_blank" href="/imagesposts/E1-5-Flow-3.png" title="Choose form" >
         <img loading="lazy" decoding="async"
              class="render-image"
-             src="/imagesposts/E1-5-Flow-3.png#center"
+             src="/imagesposts/E1-5-Flow-3.png"
             alt="Flow step 3"
         />
     </a><figcaption class="image-caption">Choose form</figcaption>
-</figure>{:.border}</p>
+</figure></p>
 <p>Press <code>New step</code>, search for <code>form</code> and go with <code>Get response details</code>.</p>
 <p>
 
 
 
 
-<figure class="render-image"><a target="_blank" href="/imagesposts/E1-6-Flow-4.png#center" title="New step: Get response details" >
+<figure class="render-image"><a target="_blank" href="/imagesposts/E1-6-Flow-4.png" title="New step: Get response details" >
         <img loading="lazy" decoding="async"
              class="render-image"
-             src="/imagesposts/E1-6-Flow-4.png#center"
+             src="/imagesposts/E1-6-Flow-4.png"
             alt="FLow step 4"
         />
     </a><figcaption class="image-caption">New step: Get response details</figcaption>
-</figure>{:.border}</p>
+</figure></p>
 <p>In the new step, choose the <code>Form ID</code>. As soon as we move the cursor to the <code>Response ID</code> field, the <code>FLow</code> will suggest the <code>Dynamics content</code> that we can use. In this case, there should be only one dynamic content, which is <code>List of response notifications Response ID</code>. We will go with it by choosing it.</p>
 <p>
 
 
 
 
-<figure class="render-image"><a target="_blank" href="/imagesposts/E1-7-Flow-5.png#center" title="Get response details" >
+<figure class="render-image"><a target="_blank" href="/imagesposts/E1-7-Flow-5.png" title="Get response details" >
         <img loading="lazy" decoding="async"
              class="render-image"
-             src="/imagesposts/E1-7-Flow-5.png#center"
+             src="/imagesposts/E1-7-Flow-5.png"
             alt="FLow step 5"
         />
     </a><figcaption class="image-caption">Get response details</figcaption>
-</figure>{:.border}</p>
+</figure></p>
 <p>After doing so, the flow should look like this.</p>
 <p>
 
 
 
 
-<figure class="render-image"><a target="_blank" href="/imagesposts/E1-8-Flow-6.png#center" title="Form done" >
+<figure class="render-image"><a target="_blank" href="/imagesposts/E1-8-Flow-6.png" title="Form done" >
         <img loading="lazy" decoding="async"
              class="render-image"
-             src="/imagesposts/E1-8-Flow-6.png#center"
+             src="/imagesposts/E1-8-Flow-6.png"
             alt="FLow step 6"
         />
     </a><figcaption class="image-caption">Form done</figcaption>
-</figure>{:.border}</p>
+</figure></p>
 <p>Now, the reponse details will be sent from the <code>Form</code> to the <code>Flow</code> when a new response is submitted. Next, we will set up the step to create a new Vendor Account.</p>
 <p>Create a new step, search for <code>dynamics</code> and go with <code>Dynamics 365 for Finance and Operations</code>.</p>
 <p>
@@ -365,56 +365,56 @@ The classic method that we have been utilizing is to include all source data in 
 
 
 
-<figure class="render-image"><a target="_blank" href="/imagesposts/E1-9-Flow-7.png#center" title="Dynamics 365 FinOps" >
+<figure class="render-image"><a target="_blank" href="/imagesposts/E1-9-Flow-7.png" title="Dynamics 365 FinOps" >
         <img loading="lazy" decoding="async"
              class="render-image"
-             src="/imagesposts/E1-9-Flow-7.png#center"
+             src="/imagesposts/E1-9-Flow-7.png"
             alt="FLow step 7"
         />
     </a><figcaption class="image-caption">Dynamics 365 FinOps</figcaption>
-</figure>{:.border}</p>
+</figure></p>
 <p>Choose <code>Create record</code> action.</p>
 <p>
 
 
 
 
-<figure class="render-image"><a target="_blank" href="/imagesposts/E1-10-Flow-8.png#center" title="Create record action" >
+<figure class="render-image"><a target="_blank" href="/imagesposts/E1-10-Flow-8.png" title="Create record action" >
         <img loading="lazy" decoding="async"
              class="render-image"
-             src="/imagesposts/E1-10-Flow-8.png#center"
+             src="/imagesposts/E1-10-Flow-8.png"
             alt="FLow step 8"
         />
     </a><figcaption class="image-caption">Create record action</figcaption>
-</figure>{:.border}</p>
+</figure></p>
 <p>Choose the Dynamics 365 FinOps <code>Instance</code> from the dropdown list. If your client does not appear here, choose <code>Enter custom value</code>. For privacy, environments' name will be censored in our example.</p>
 <p>
 
 
 
 
-<figure class="render-image"><a target="_blank" href="/imagesposts/E1-11-Flow-9.png#center" title="Set D365FO instance" >
+<figure class="render-image"><a target="_blank" href="/imagesposts/E1-11-Flow-9.png" title="Set D365FO instance" >
         <img loading="lazy" decoding="async"
              class="render-image"
-             src="/imagesposts/E1-11-Flow-9.png#center"
+             src="/imagesposts/E1-11-Flow-9.png"
             alt="FLow step 9"
         />
     </a><figcaption class="image-caption">Set D365FO instance</figcaption>
-</figure>{:.border}</p>
+</figure></p>
 <p>The <code>Instance</code> should be the <code>link</code> to your D365FO client. Set <code>Entity name</code> VendorsV2.</p>
 <p>
 
 
 
 
-<figure class="render-image"><a target="_blank" href="/imagesposts/E1-12-Flow-10.png#center" title="Set Instance and Entity" >
+<figure class="render-image"><a target="_blank" href="/imagesposts/E1-12-Flow-10.png" title="Set Instance and Entity" >
         <img loading="lazy" decoding="async"
              class="render-image"
-             src="/imagesposts/E1-12-Flow-10.png#center"
+             src="/imagesposts/E1-12-Flow-10.png"
             alt="FLow step 10"
         />
     </a><figcaption class="image-caption">Set Instance and Entity</figcaption>
-</figure>{:.border}</p>
+</figure></p>
 <p><em><strong>Note 1-3</strong></em></p>
 <blockquote>
 <p><em>Later in this series, we will see how to find the exact <code>Entity name</code> using <code>Visual Studio</code>. Also, we will see in which condition, the Entity can be used in <code>Power Automate</code>.</em></p>
@@ -426,14 +426,14 @@ The classic method that we have been utilizing is to include all source data in 
 
 
 
-<figure class="render-image"><a target="_blank" href="/imagesposts/E1-13-Flow-11.png#center" title="Map Form fields with Automate fields" >
+<figure class="render-image"><a target="_blank" href="/imagesposts/E1-13-Flow-11.png" title="Map Form fields with Automate fields" >
         <img loading="lazy" decoding="async"
              class="render-image"
-             src="/imagesposts/E1-13-Flow-11.png#center"
+             src="/imagesposts/E1-13-Flow-11.png"
             alt="FLow step 11"
         />
     </a><figcaption class="image-caption">Map Form fields with Automate fields</figcaption>
-</figure>{:.border}</p>
+</figure></p>
 <p>We can map <code>Form fields</code> with <code>Automate fields</code> or <code>hardcode</code> in these fields:</p>
 <ul>
 <li><code>Group</code> = Response of <code>What is the Vendor Group?</code> question.</li>
@@ -447,14 +447,14 @@ These fields should be required when creating a new Vendor Account on D365FO cli
 
 
 
-<figure class="render-image"><a target="_blank" href="/imagesposts/E1-14-Flow-12.png#center" title="Map Form fields with Automate fields" >
+<figure class="render-image"><a target="_blank" href="/imagesposts/E1-14-Flow-12.png" title="Map Form fields with Automate fields" >
         <img loading="lazy" decoding="async"
              class="render-image"
-             src="/imagesposts/E1-14-Flow-12.png#center"
+             src="/imagesposts/E1-14-Flow-12.png"
             alt="FLow step 12"
         />
     </a><figcaption class="image-caption">Map Form fields with Automate fields</figcaption>
-</figure>{:.border}</p>
+</figure></p>
 <p>We are done here with the set up.</p>
 <h2 id="step-3-testing-out" class="headerLink"><a href="#step-3-testing-out" class="header-mark"></a><strong>Step 3: Testing out</strong></h2><p>On <code>Forms</code>, choose the form that we just created, click on <code>Preview</code> so we can submit a form response.</p>
 <p>
@@ -462,28 +462,28 @@ These fields should be required when creating a new Vendor Account on D365FO cli
 
 
 
-<figure class="render-image"><a target="_blank" href="/imagesposts/E1-15-Flow-13.png#center" title="Map Form fields with Automate fields" >
+<figure class="render-image"><a target="_blank" href="/imagesposts/E1-15-Flow-13.png" title="Map Form fields with Automate fields" >
         <img loading="lazy" decoding="async"
              class="render-image"
-             src="/imagesposts/E1-15-Flow-13.png#center"
+             src="/imagesposts/E1-15-Flow-13.png"
             alt="FLow step 13"
         />
     </a><figcaption class="image-caption">Map Form fields with Automate fields</figcaption>
-</figure>{:.border}</p>
+</figure></p>
 <p>Check out <code>All Vendors (VendTableListPage)</code> on the client to find a new Vendor Account is created.</p>
 <p>
 
 
 
 
-<figure class="render-image"><a target="_blank" href="/imagesposts/E1-16-Flow-14.png#center" title="Map Form fields with Automate fields" >
+<figure class="render-image"><a target="_blank" href="/imagesposts/E1-16-Flow-14.png" title="Map Form fields with Automate fields" >
         <img loading="lazy" decoding="async"
              class="render-image"
-             src="/imagesposts/E1-16-Flow-14.png#center"
+             src="/imagesposts/E1-16-Flow-14.png"
             alt="FLow step 14"
         />
     </a><figcaption class="image-caption">Map Form fields with Automate fields</figcaption>
-</figure>{:.border}</p>
+</figure></p>
 <p><em><strong>Note 1-4</strong></em></p>
 <blockquote>
 <p><em>Use <code>Test</code> option in Power Automate to follow the process of the Flow. This, in other words, is so-called <code>&quot;Run Flow with Debug&quot;</code> option.</em></p>
@@ -545,7 +545,7 @@ These fields should be required when creating a new Vendor Account on D365FO cli
             </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
                 <i class="svg-icon icon-comments-fixed"></i>
             </a>
-        </aside><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="/drawio.css"><script src="https://https-dynamics365-github-io.disqus.com/embed.js" defer></script><script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":500},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script src="/js/theme.min.js"></script><script>
+        </aside><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><link rel="stylesheet" href="/drawio.css"><script src="https://https-dynamics365-github-io.disqus.com/embed.js" defer></script><script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":500},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script src="/js/theme.min.js"></script><script>
                 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)

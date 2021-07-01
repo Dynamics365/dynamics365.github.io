@@ -2,7 +2,7 @@
 
 
 <figure class='center '>
-  <a href="/imagesposts/number-sequence-overview.png#center"><img src="/imagesposts/number-sequence-overview.png#center" alt=""></a>
+  <a href="/imagesposts/number-sequence-overview.png"><img src="/imagesposts/number-sequence-overview.png" alt=""></a>
 </figure>
 
 For this demo, I will create New module along with NumberSequence, about creating Number Sequence *without* module you also use same steps just leave some steps base on Design picture above.
@@ -160,7 +160,7 @@ Note This form can only be used for references that have a scope of DataArea. Th
 The data source of Parameters form likes picture below, you can also refer to `CustParameters` form for design.
 
 <figure class='center '>
-  <a href="/imagesposts/ContosoParameters.png#center"><img src="/imagesposts/ContosoParameters.png#center" alt=""></a>
+  <a href="/imagesposts/ContosoParameters.png"><img src="/imagesposts/ContosoParameters.png" alt=""></a>
 </figure>
 
 Code example for form methods:

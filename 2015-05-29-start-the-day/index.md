@@ -3,5 +3,5 @@
 
 Just dont follow them, think your self
 
-![start the day](/imagesposts/start-the-day.png#center)
+![start the day](/imagesposts/start-the-day.png)
 

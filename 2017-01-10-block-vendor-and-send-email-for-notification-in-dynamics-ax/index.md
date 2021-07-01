@@ -7,7 +7,7 @@ Main requirements is Using batch to find and block vendor base on last transacti
 
 For set up email, we need Go to AX `System administrator > Setup > E-mail parameters`
 
-![](/imagesposts/Email-parameters.png#center)
+![](/imagesposts/Email-parameters.png)
 
 <!--more-->
 

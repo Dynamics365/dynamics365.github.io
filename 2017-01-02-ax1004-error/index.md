@@ -5,7 +5,7 @@ I got this error at version Dynamics 2012 R3 CU9, SQL Server 2014, Windows Serve
 
 Those kind of errors will come when you move report from Dev Server to Live Server, even compilation in *DP Class, Query, Contract, table* … without any error
 
-![Image](/imagesposts/AX1004-error.png#center "Image_rounded"){:.rounded}
+![Image](/imagesposts/AX1004-error.png "Image_rounded"){:.rounded}
 
 <span style="color: red">AX1004: Reference System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 was not a valid model assembly.</span>
 

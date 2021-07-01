@@ -14,13 +14,13 @@ For basic setting up Dynamics 365 for finance and operations and Postman please 
 
 This is a result
 <figure class='center'>
-  <a href="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_1.png#center"><img src="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_1.png#center" alt=""></a>
+  <a href="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_1.png"><img src="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_1.png" alt=""></a>
 </figure>
 
 ### 2. Create a new POST request in Postman with header
 
 <figure class='center'>
-  <a href="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_2.png#center"><img src="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_2.png#center" alt=""></a>
+  <a href="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_2.png"><img src="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_2.png" alt=""></a>
 </figure>
 
 ***URL: {{resource}}/data/$batch***
@@ -31,7 +31,7 @@ This is a result
 I will place 2 records for customer groups
 
 <figure class='center'>
-  <a href="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_3.png#center"><img src="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_3.png#center" alt=""></a>
+  <a href="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_3.png"><img src="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_3.png" alt=""></a>
 </figure>
 
 Full text here
@@ -75,7 +75,7 @@ OData-MaxVersion: 4.0
 Click send and this is what you got from response
 
 <figure class='center'>
-  <a href="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_4.png#center"><img src="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_4.png#center" alt=""></a>
+  <a href="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_4.png"><img src="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_4.png" alt=""></a>
 </figure>
 
 Full Response
@@ -139,7 +139,7 @@ OData-Version: 4.0
 Check the data in Dynamics 365 for finance and operations 
 
 <figure class='center'>
-  <a href="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_5.png#center"><img src="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_5.png#center" alt=""></a>
+  <a href="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_5.png"><img src="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_5.png" alt=""></a>
 </figure>
 
 Thank you for reading.

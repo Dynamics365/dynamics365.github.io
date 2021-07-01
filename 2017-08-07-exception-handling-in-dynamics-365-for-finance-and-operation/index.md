@@ -11,7 +11,7 @@ The exception type is identified using the system-based enumeration called an ex
 The following table shows the exception literals that are the values of the Exception enumeration.
 
 <figure class='center '>
-  <a href="/imagesposts/2017-08-07_10h00_37.png#center"><img src="/imagesposts/2017-08-07_10h00_37.png#center" alt=""></a>
+  <a href="/imagesposts/2017-08-07_10h00_37.png"><img src="/imagesposts/2017-08-07_10h00_37.png" alt=""></a>
 </figure>
 
 <!--more-->

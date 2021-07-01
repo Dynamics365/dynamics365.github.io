@@ -123,7 +123,7 @@ catch (Exception e)
 
 Here is what we got
 
-![](/imagesposts/AIF-Custom-response-value-in-Dynamics-AX-2012-R3.png#center)
+![](/imagesposts/AIF-Custom-response-value-in-Dynamics-AX-2012-R3.png)
 
 Just remember this one just for AIF Document Standard, for AIF custom service we do another way I will so in next post.
 

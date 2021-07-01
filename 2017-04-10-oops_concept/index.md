@@ -104,7 +104,7 @@ namespace ConsoleApplication1
 {% endhighlight %}
 
 <figure class='center '>
-  <a href="/imagesposts/basic-c-oop-concept_1.png#center"><img src="/imagesposts/basic-c-oop-concept_1.png#center" alt=""></a>
+  <a href="/imagesposts/basic-c-oop-concept_1.png"><img src="/imagesposts/basic-c-oop-concept_1.png" alt=""></a>
 </figure>
 
 In Above example program I have declared two variables inside a class. In main method I have created object for class. Here we can see using the object we can access the variable of a class and display the output.
@@ -140,7 +140,7 @@ class a
 {% endhighlight %}
 
 <figure class='center '>
-  <a href="/imagesposts/basic-c-oop-concept_2.png#center"><img src="/imagesposts/basic-c-oop-concept_2.png#center" alt=""></a>
+  <a href="/imagesposts/basic-c-oop-concept_2.png"><img src="/imagesposts/basic-c-oop-concept_2.png" alt=""></a>
 </figure>
 
 > Most of developers were wondering about what is the difference between the Method and Function, both Methods and Functions are the same. Here in my article, I will use Method instead of functions. However, there is one difference in Methods and Functions, In OOP Languages like `C#, Java` etc. We use the term Method while the non-OOP programming like `C` etc. we use the term Function.
@@ -275,7 +275,7 @@ class ShanuHouseClass
 The Output of above class is here:
 
 <figure class='center '>
-  <a href="/imagesposts/basic-c-oop-concept_3.png#center"><img src="/imagesposts/basic-c-oop-concept_3.png#center" alt=""></a>
+  <a href="/imagesposts/basic-c-oop-concept_3.png"><img src="/imagesposts/basic-c-oop-concept_3.png" alt=""></a>
 </figure>
 
 ### 5. Access Modifiers
@@ -318,7 +318,7 @@ class Modifiers
 {% endhighlight %}
 
 <figure class='center '>
-  <a href="/imagesposts/basic-c-oop-concept_4.png#center"><img src="/imagesposts/basic-c-oop-concept_4.png#center" alt=""></a>
+  <a href="/imagesposts/basic-c-oop-concept_4.png"><img src="/imagesposts/basic-c-oop-concept_4.png" alt=""></a>
 </figure>
 
   * `Protected`
@@ -368,7 +368,7 @@ class ShanuHouseClass
 {% endhighlight %}
 
 <figure class='center '>
-  <a href="/imagesposts/basic-c-oop-concept_5.png#center"><img src="/imagesposts/basic-c-oop-concept_5.png#center" alt=""></a>
+  <a href="/imagesposts/basic-c-oop-concept_5.png"><img src="/imagesposts/basic-c-oop-concept_5.png" alt=""></a>
 </figure>
 
 >The main and major things we need to know in OOP concept are Encapsulation, Abstraction,Polymorphism and Inheritance. We will discuss them in detail in this article.
@@ -424,7 +424,7 @@ public class HouseServerntClass
 {% endhighlight %}
 
 <figure class='center '>
-  <a href="/imagesposts/basic-c-oop-concept_6.png#center"><img src="/imagesposts/basic-c-oop-concept_6.png#center" alt=""></a>
+  <a href="/imagesposts/basic-c-oop-concept_6.png"><img src="/imagesposts/basic-c-oop-concept_6.png" alt=""></a>
 </figure>
 
 ### 8. Inheritance
@@ -462,7 +462,7 @@ public class DerivedClass : baseClass
 The Error is:
 
 <figure class='center '>
-  <a href="/imagesposts/basic-c-oop-concept_7.png#center"><img src="/imagesposts/basic-c-oop-concept_7.png#center" alt=""></a>
+  <a href="/imagesposts/basic-c-oop-concept_7.png"><img src="/imagesposts/basic-c-oop-concept_7.png" alt=""></a>
 </figure>
 
 >Some time users might be not clear of what Base class is and what Derived class is. Base class is the super class and derived class is the classes which inherit the base class.
@@ -470,7 +470,7 @@ The Error is:
 Here we can see a simple Inheritance where the base class is the `GuestVist` and derived class is the `HouseOwnerClass`. Here `HouseOwnerClass` class inherits the base class of `GuestVist`
 
 <figure class='center '>
-  <a href="/imagesposts/basic-c-oop-concept_8.png#center"><img src="/imagesposts/basic-c-oop-concept_8.png#center" alt=""></a>
+  <a href="/imagesposts/basic-c-oop-concept_8.png"><img src="/imagesposts/basic-c-oop-concept_8.png" alt=""></a>
 </figure>
 
   * **Multi level Inheritance**
@@ -510,7 +510,7 @@ public class DerivedClass2 : DerivedClass1
 {% endhighlight %}
 
 <figure class='center '>
-  <a href="/imagesposts/basic-c-oop-concept_9.png#center"><img src="/imagesposts/basic-c-oop-concept_9.png#center" alt=""></a>
+  <a href="/imagesposts/basic-c-oop-concept_9.png"><img src="/imagesposts/basic-c-oop-concept_9.png" alt=""></a>
 </figure>
 
   * **Multiple Inheritance**
@@ -524,7 +524,7 @@ Now suppose for our house both Guest and Friend have visited. For this, we write
 When I write the Multiple Inheritance in C #, it will display the warning message during our code and execute our program. 
 See the below image which shows the Warning error message while I write Multiple Inheritance.
 <figure class='center '>
-  <a href="/imagesposts/basic-c-oop-concept_10.png#center"><img src="/imagesposts/basic-c-oop-concept_10.png#center" alt=""></a>
+  <a href="/imagesposts/basic-c-oop-concept_10.png"><img src="/imagesposts/basic-c-oop-concept_10.png" alt=""></a>
 </figure>
 
 	* Then how can we use the Multiple Inheritance
@@ -564,7 +564,7 @@ class HouseOwnerClass
 {% endhighlight %}
 
 <figure class='center '>
-  <a href="/imagesposts/basic-c-oop-concept_11.png#center"><img src="/imagesposts/basic-c-oop-concept_11.png#center" alt=""></a>
+  <a href="/imagesposts/basic-c-oop-concept_11.png"><img src="/imagesposts/basic-c-oop-concept_11.png" alt=""></a>
 </figure>
 
   * **Method Overriding**
@@ -584,7 +584,7 @@ The Abstract class will be as a super class for all our class. Abstract class ca
 Here we can see an error warning message as “An instance of an abstract class cannot be created” when I try to create an object for my abstract class.
 
 <figure class='center '>
-  <a href="/imagesposts/basic-c-oop-concept_12.png#center"><img src="/imagesposts/basic-c-oop-concept_12.png#center" alt=""></a>
+  <a href="/imagesposts/basic-c-oop-concept_12.png"><img src="/imagesposts/basic-c-oop-concept_12.png" alt=""></a>
 </figure>
 
 Abstract class can have both Abstract Method and normal Method. In Abstract Class at least one Abstract Method should be declared. In addition, derived class should override the abstract method. To access the abstract method we should use the “override” keyword in our derived class.
@@ -594,7 +594,7 @@ Abstract class can have both Abstract Method and normal Method. In Abstract Clas
 Here we can see an abstract class has an abstract method, But the abstract method is not override in the derived class. See the below image for the warning message displaying as class must implement the abstract member.
 
 <figure class='center '>
-  <a href="/imagesposts/basic-c-oop-concept_13.png#center"><img src="/imagesposts/basic-c-oop-concept_13.png#center" alt=""></a>
+  <a href="/imagesposts/basic-c-oop-concept_13.png"><img src="/imagesposts/basic-c-oop-concept_13.png" alt=""></a>
 </figure>
 
 Here we can see an example of Abstract Class and for Abstract Method in detail.
@@ -632,7 +632,7 @@ public class A : GuestVist
 {% endhighlight %}
 
 <figure class='center '>
-  <a href="/imagesposts/basic-c-oop-concept_14.png#center"><img src="/imagesposts/basic-c-oop-concept_14.png#center" alt=""></a>
+  <a href="/imagesposts/basic-c-oop-concept_14.png"><img src="/imagesposts/basic-c-oop-concept_14.png" alt=""></a>
 </figure>
 
 ### 11. Virtual Class/Method
@@ -687,7 +687,7 @@ class AbstractHouseClass : GuestVist
 {% endhighlight %}
 
 <figure class='center '>
-  <a href="/imagesposts/basic-c-oop-concept_15.png#center"><img src="/imagesposts/basic-c-oop-concept_15.png#center" alt=""></a>
+  <a href="/imagesposts/basic-c-oop-concept_15.png"><img src="/imagesposts/basic-c-oop-concept_15.png" alt=""></a>
 </figure>
 
 ### 12. Sealed Class/Method
@@ -703,7 +703,7 @@ Sealed class can be declared using the keyword Sealed. If one class is declared 
 Let’s see an example when I try to inherit my sealed class from my derived class. It shows me the below warning message.
 
 <figure class='center '>
-  <a href="/imagesposts/basic-c-oop-concept_16.png#center"><img src="/imagesposts/basic-c-oop-concept_16.png#center" alt=""></a>
+  <a href="/imagesposts/basic-c-oop-concept_16.png"><img src="/imagesposts/basic-c-oop-concept_16.png" alt=""></a>
 </figure>
 
 Here we can see an example program of Sealed Class.
@@ -758,7 +758,7 @@ Let’s take our same sealed class Example for our static Class and method.
 Let’s see an example when I try to inherit my static class from my derived class. It shows me the below warning message.
 
 <figure class='center '>
-  <a href="/imagesposts/basic-c-oop-concept_17.png#center"><img src="/imagesposts/basic-c-oop-concept_17.png#center" alt=""></a>
+  <a href="/imagesposts/basic-c-oop-concept_17.png"><img src="/imagesposts/basic-c-oop-concept_17.png" alt=""></a>
 </figure>
 
   * What will happen when we declare non-Static method in a Static class?
@@ -766,7 +766,7 @@ Let’s see an example when I try to inherit my static class from my derived cla
 Let’s see an example when I try to create a non-Static method at my Static Class.
 
 <figure class='center '>
-  <a href="/imagesposts/basic-c-oop-concept_18.png#center"><img src="/imagesposts/basic-c-oop-concept_18.png#center" alt=""></a>
+  <a href="/imagesposts/basic-c-oop-concept_18.png"><img src="/imagesposts/basic-c-oop-concept_18.png" alt=""></a>
 </figure>
 
   * What will happen when we create an object for the Static class?
@@ -774,7 +774,7 @@ Let’s see an example when I try to create a non-Static method at my Static Cla
 Let’s see an example when I try to create an object for my Static Class.
 
 <figure class='center '>
-  <a href="/imagesposts/basic-c-oop-concept_19.png#center"><img src="/imagesposts/basic-c-oop-concept_19.png#center" alt=""></a>
+  <a href="/imagesposts/basic-c-oop-concept_19.png"><img src="/imagesposts/basic-c-oop-concept_19.png" alt=""></a>
 </figure>
 
 When we run the program we get the error message as *Can not create an instance of a static class*
@@ -834,7 +834,7 @@ class StaticmethodClass
 {% endhighlight %}
 
 <figure class='center '>
-  <a href="/imagesposts/basic-c-oop-concept_20.png#center"><img src="/imagesposts/basic-c-oop-concept_20.png#center" alt=""></a>
+  <a href="/imagesposts/basic-c-oop-concept_20.png"><img src="/imagesposts/basic-c-oop-concept_20.png" alt=""></a>
 </figure>
 
 ### 14. Interface
@@ -879,7 +879,7 @@ class HouseOwnerClass : GuestInterface, FriendsandRelationsInterface
 {% endhighlight %}
 
 <figure class='center '>
-  <a href="/imagesposts/basic-c-oop-concept_21.png#center"><img src="/imagesposts/basic-c-oop-concept_21.png#center" alt=""></a>
+  <a href="/imagesposts/basic-c-oop-concept_21.png"><img src="/imagesposts/basic-c-oop-concept_21.png" alt=""></a>
 </figure>
 
 In some cases we need to have certain methods which will be used in many derived classes. Each derived can implement different functionality for those Methods. In These cases, we can use the Interface.

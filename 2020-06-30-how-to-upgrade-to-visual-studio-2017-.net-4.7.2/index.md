@@ -13,12 +13,12 @@ If you cannot deploy new VMs, please follow below steps to update .NET runtime, 
 
 ### 3. Go to Dynamics Lifecycle Services and download PU36/10.0.12 or any higher package which is a part of the Platform and application binary, the VSIX file is located in the _DevToolsService\Scripts_ folder.
 
-![Image](/imagesposts/How-to-upgrade-to-Visual-Studio-2017-1.png#center){:.border}
+![Image](/imagesposts/How-to-upgrade-to-Visual-Studio-2017-1.png)
 
 You need to ```install Microsoft.Dynamics.Framework.Tools.Installer``` and then ```Microsoft.Dynamics.Framework.Tools.InternalDevTools```.
 After the installation, open the VS2017 if you should see **Dynamics 365** menu extension like below
 
-![Image](/imagesposts/How-to-upgrade-to-Visual-Studio-2017-2.png#center){:.border}
+![Image](/imagesposts/How-to-upgrade-to-Visual-Studio-2017-2.png)
 
 ### 4. If you try to access the client before applying the package you will get the error like below in event viewer and unable to access the environment, so you need to apply an update first.
 

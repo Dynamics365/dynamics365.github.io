@@ -79,7 +79,7 @@ Here is the Json file contains the parameters for ```assignUserToCompany``` meth
 ```
 Click **Send** and you will get your logic executed.
 
-![Image](/imagesposts/2021-05-25-All-about-Odata-actions-in-Dynamics-365-Finance-And-Operations_1.png#center)
+![Image](/imagesposts/2021-05-25-All-about-Odata-actions-in-Dynamics-365-Finance-And-Operations_1.png)
 
 ### 2.1.2. Let's try with the second example
 
@@ -118,13 +118,13 @@ The result
 
 Create a simple Power Automate with Dynamics 365 Finance & Operations connector, to consume Odata actions we use "Execute action" action following
 
-![Image](/imagesposts/2021-05-25-All-about-Odata-actions-in-Dynamics-365-Finance-And-Operations_2.png#center)
+![Image](/imagesposts/2021-05-25-All-about-Odata-actions-in-Dynamics-365-Finance-And-Operations_2.png)
 
 ### 2.2.2. With the second example
 
 when specify `action` in `Execute action`, Dynamics 365 Finance & Operations connector understand that this needs an instance
 
-![Image](/imagesposts/2021-05-25-All-about-Odata-actions-in-Dynamics-365-Finance-And-Operations_3.png#center)
+![Image](/imagesposts/2021-05-25-All-about-Odata-actions-in-Dynamics-365-Finance-And-Operations_3.png)
 
 # 3. More
 
