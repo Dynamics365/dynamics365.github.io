@@ -1,10 +1,9 @@
-# HOW TO USE "LIKE" OPERATOR IN QUERYBUILDRANGE
+# HOW TO USE "LIKE" OPERATOR IN QueryBuildRange
 
 
 To make something as the `LIKE` operator in a query, just assign a value to the QueryRange including a wildcard.
 
-
-```csharp
+```cs
 static void QueryBuildRange_Sample(Args _args)
 {
     Query                       query = new Query();

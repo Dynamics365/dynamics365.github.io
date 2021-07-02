@@ -19,6 +19,14 @@
 <li><strong>The collection types</strong> are the built-in array and container types.</li>
 </ul>]]></description>
 </item><item>
+    <title>HOW TO USE &#34;LIKE&#34; OPERATOR IN QueryBuildRange</title>
+    <link>https://nuxulu.com/2015-11-13-how-to-use-like-operator-in-querybuildrange/</link>
+    <pubDate>Fri, 13 Nov 2015 00:00:00 &#43;0000</pubDate>
+    <author>maxnguyen</author>
+    <guid>https://nuxulu.com/2015-11-13-how-to-use-like-operator-in-querybuildrange/</guid>
+    <description><![CDATA[To make something as the LIKE operator in a query, just assign a value to the QueryRange including a wildcard.
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23  static void QueryBuildRange_Sample(Args _args) { Query query = new Query(); QueryRun queryRun; QueryBuildDataSource qbds; QueryBuildRange queryRange; CustTable custTable; qbds.addDataSource(tableNum(CustTable)); queryRange = qbds.addRange(fieldNum(CustTable, AccountNum)); queryRange.value(&#34;axd*&#34;); queryRun = new QueryRun(query); while(queryRun.]]></description>
+</item><item>
     <title>DefaultValue ComboBox in Dynamics AX with X&#43;&#43;</title>
     <link>https://nuxulu.com/2015-11-03-defaultvale-combobox-in-x/</link>
     <pubDate>Fri, 13 Nov 2015 06:57:46 &#43;0700</pubDate>
@@ -27,13 +35,5 @@
     <description><![CDATA[Beside modify metadata on form properties, as best practice we can use code like below to assign default value for combobox.
  You can use this code in the form&rsquo;s init method after super():  {% highlight csharp %} ComboBoxName.selection(ComboBoxName::DefaultValue); {% endhighlight %}
  If this is a table field we should you best practice overriding the initValue method in the table:  {% highlight csharp %} this.ComboBoxName = ComboBoxName::DefaultValue; {% endhighlight %}]]></description>
-</item><item>
-    <title>HOW TO USE &#34;LIKE&#34; OPERATOR IN QUERYBUILDRANGE</title>
-    <link>https://nuxulu.com/2015-11-13-how-to-use-like-operator-in-querybuildrange/</link>
-    <pubDate>Fri, 13 Nov 2015 06:57:46 &#43;0700</pubDate>
-    <author>maxnguyen</author>
-    <guid>https://nuxulu.com/2015-11-13-how-to-use-like-operator-in-querybuildrange/</guid>
-    <description><![CDATA[To make something as the LIKE operator in a query, just assign a value to the QueryRange including a wildcard.
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23  static void QueryBuildRange_Sample(Args _args) { Query query = new Query(); QueryRun queryRun; QueryBuildDataSource qbds; QueryBuildRange queryRange; CustTable custTable; qbds.addDataSource(tableNum(CustTable)); queryRange = qbds.addRange(fieldNum(CustTable, AccountNum)); queryRange.value(&#34;axd*&#34;); queryRun = new QueryRun(query); while(queryRun.]]></description>
 </item></channel>
 </rss>
