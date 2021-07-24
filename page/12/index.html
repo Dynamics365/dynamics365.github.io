@@ -129,122 +129,6 @@
 <article itemscope itemtype="http://schema.org/Article">
     <div class="summary summary-animation" style="margin-bottom:0">
         <header><div style="padding-top: 20px;padding-left: 20px;padding-right: 20px;"><h2 class="summary-title" itemprop="name headline">
-                    <a href="/2015-08-04-web-services-on-iis-exception-has-been-thrown-by-the-target-of-an-invocation-ax-installation/" target="_blank">Web Services on IIS - Exception has been thrown by the target of an invocation</a>
-                </h2><div class="post-meta summary-post-meta"><span class="meta-item post-author"><a href="https://nuxulu.com/about" title="Author" target="_blank" rel="noopener noreffer author" class="author"><span class="svg-icon icon-user"></span>Max Nguyen</a></span><span class="meta-item post-publish"><span class="svg-icon icon-clock"></span><time class="timeago" datetime="2015-08-04">August 4, 2015</time></span></div></div>
-        </header>
-
-        <div class="article-text"><div class="content summary-content"><p>When I try to install Web Services on IIS for Retails POS Component, and I got the problem.</p>
-<p>This scenario shouldn&rsquo;t be common in a production environment, but, it is indeed quite common in a VM machine (I&rsquo;m using virtual machine Hyper-V on Windows 8.1)</p>
-<p>
-
-
-
-
-<img loading="lazy" decoding="async"
-         class="render-image"
-         src="/imagesposts/web-services-on-iis-exception_1.png"
-         alt="/imagesposts/web-services-on-iis-exception_1.png"
-         title="web-services-on-iis-exception_1.png"
-    /></p></div></div>
-    </div>
-
-    <div class="post-tags-summary-under-footer"><footer>
-            <div class="post-tags-summary-under-footer-display" ><a class="post-tag-summary" href="/tags/error/" style="">error</a><a class="post-tag-summary" href="/tags/ssrs/" style="">ssrs</a></div>
-        </footer></div>
-</article>
-
-<article itemscope itemtype="http://schema.org/Article">
-    <div class="summary summary-animation" style="margin-bottom:0">
-        <header><div style="padding-top: 20px;padding-left: 20px;padding-right: 20px;"><h2 class="summary-title" itemprop="name headline">
-                    <a href="/2015-07-02-modify-microsoft-dynamics-ax-2012-r3-ssrs-configurations/" target="_blank">Modify Microsoft Dynamics AX 2012 R3 SSRS configurations using PowerShell</a>
-                </h2><div class="post-meta summary-post-meta"><span class="meta-item post-category">
-                            <a href="/categories/ax2012/"><span class="svg-icon icon-folder"></span>ax2012</a>&nbsp;<a href="/categories/trick/"><span class="svg-icon icon-folder"></span>trick</a>&nbsp;<a href="/categories/ssrs/"><span class="svg-icon icon-folder"></span>ssrs</a>
-                    </span><span class="meta-item post-author"><a href="https://nuxulu.com/about" title="Author" target="_blank" rel="noopener noreffer author" class="author"><span class="svg-icon icon-user"></span>Max Nguyen</a></span><span class="meta-item post-publish"><span class="svg-icon icon-clock"></span><time class="timeago" datetime="2015-07-02">July 2, 2015</time></span></div></div>
-        </header>
-
-        <div class="article-text"><div class="content summary-content"><p><code>reportManagerWebConfig.ps1</code></p>
-<p>{% highlight powershell %}
-#Modify the Report Server Web.config file. ie replace MSRS11.VAS with your folder name
-Set-ExecutionPolicy Unrestricted
-$webConfig = &ldquo;C:Program FilesMicrosoft SQL ServerMSRS11.VASReporting ServicesReportManagerWeb.config&rdquo;
-$currentDate = (get-date).tostring(&ldquo;mm_dd_yyyy-hh_mm_s&rdquo;) # month_day_year - hours_mins_seconds
-$backup = $webConfig + &ldquo;_$currentDate&rdquo;
-$doc = new-object System.Xml.XmlDocument
-$doc.Load($webConfig)
-#save a backup copy
-$doc.Save($backup)
-Write-Host &ldquo;Backup saved as &quot; + $backup
-$node = $doc.get_DocumentElement().&ldquo;system.web&rdquo;.httpRuntime
-$attribute = $doc.CreateAttribute(&ldquo;maxRequestLength&rdquo;)
-$attribute.set_Value(&ldquo;100000&rdquo;)
-$node.SetAttributeNode($attribute )
-$doc.Save($webConfig)
-Write-Host &ldquo;1) Modified the Report Manager Web.config file&rdquo;
-{% endhighlight %}</p></div></div>
-    </div>
-
-    <div class="post-tags-summary-under-footer"></div>
-</article>
-
-<article itemscope itemtype="http://schema.org/Article">
-    <div class="summary summary-animation" style="margin-bottom:0">
-        <header><div style="padding-top: 20px;padding-left: 20px;padding-right: 20px;"><h2 class="summary-title" itemprop="name headline">
-                    <a href="/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/" target="_blank">AxBuild.exe for Parallel Compile on AOS</a>
-                </h2><div class="post-meta summary-post-meta"><span class="meta-item post-category">
-                            <a href="/categories/ax2012/"><span class="svg-icon icon-folder"></span>ax2012</a>&nbsp;<a href="/categories/trick/"><span class="svg-icon icon-folder"></span>trick</a>
-                    </span><span class="meta-item post-author"><a href="https://nuxulu.com/about" title="Author" target="_blank" rel="noopener noreffer author" class="author"><span class="svg-icon icon-user"></span>Max Nguyen</a></span><span class="meta-item post-publish"><span class="svg-icon icon-clock"></span><time class="timeago" datetime="2015-07-01">July 1, 2015</time></span></div></div>
-        </header>
-
-        <div class="article-text"><div class="content summary-content">If you have only 10 mins to build ax, try this
-In AOS server, go to C:\Program Files\Microsoft Dynamics AX\60\Server\DAX\bin and open cmd from here then run this command
-{% highlight yaml %} axbuild.exe xppcompileall /s=01 /altbin=&ldquo;C:\Program Files (x86)\Microsoft Dynamics AX\60\Client\Bin&rdquo; {% endhighlight %}
-Result
-Once compile complete, you can import compile log file at C:\Program Files\Microsoft Dynamics AX\60\Server\DAX\log into compiler output of AX client
-Reference from MSDN .</div></div>
-    </div>
-
-    <div class="post-tags-summary-under-footer"><footer>
-            <div class="post-tags-summary-under-footer-display" ><a class="post-tag-summary" href="/tags/axbuild/" style="">axbuild</a><a class="post-tag-summary" href="/tags/trick/" style="">trick</a><a class="post-tag-summary" href="/tags/aos/" style="">aos</a></div>
-        </footer></div>
-</article>
-
-<article itemscope itemtype="http://schema.org/Article">
-    <div class="summary summary-animation" style="margin-bottom:0">
-        <header><div style="padding-top: 20px;padding-left: 20px;padding-right: 20px;"><h2 class="summary-title" itemprop="name headline">
-                    <a href="/2015-06-09-list-page-interaction-class/" target="_blank">List Page Interaction Class</a>
-                </h2><div class="post-meta summary-post-meta"><span class="meta-item post-category">
-                            <a href="/categories/ax2012/"><span class="svg-icon icon-folder"></span>ax2012</a>
-                    </span><span class="meta-item post-author"><a href="https://nuxulu.com/about" title="Author" target="_blank" rel="noopener noreffer author" class="author"><span class="svg-icon icon-user"></span>Max Nguyen</a></span><span class="meta-item post-publish"><span class="svg-icon icon-clock"></span><time class="timeago" datetime="2015-07-01">July 1, 2015</time></span></div></div>
-        </header>
-
-        <div class="article-text"><div class="content summary-content"><p>Form interaction classes that allow user interface control logic to be shared across forms. For instance, controlling which buttons are available to a list page and the associated detail form.</p>
-<p>The interaction classes are extending a base ListPageInteraction class. This has some methods supported by the kernel to interact e.g. with initializations of the list page form. Other classes can be build stand alone to execute e.g. a batch process or represent a web service or posting classes.</p>
-<p>Form interaction classes are not mandatory for list pages but should be used on data entry forms that require logic. This ensures consistency and allows easier maintenance of logic.</p>
-<p>This class inherits <code>from SysListPageInteractionBase</code>, here is some methods we need to know</p>
-<ul>
-<li>
-<p><strong>initializing</strong>: Called when the form is initializing – Similar to the form init method</p>
-</li>
-<li>
-<p><strong>intializeQuery</strong>: Also called when the form is initializing – Similar to the datasource init method.</p>
-</li>
-<li>
-<p><strong>selectionChanged</strong>: Called when the active record changes – Similar to the datasource active method.</p>
-</li>
-<li>
-<p><strong>setButtonEnabled</strong>: Should be overridden to dynamically enable/disable buttons based on the current selection. This is called from the selectionChanged method.</p>
-</li>
-</ul></div></div>
-    </div>
-
-    <div class="post-tags-summary-under-footer"><footer>
-            <div class="post-tags-summary-under-footer-display" ><a class="post-tag-summary" href="/tags/trick/" style="">trick</a><a class="post-tag-summary" href="/tags/interaction/" style="">Interaction</a></div>
-        </footer></div>
-</article>
-
-<article itemscope itemtype="http://schema.org/Article">
-    <div class="summary summary-animation" style="margin-bottom:0">
-        <header><div style="padding-top: 20px;padding-left: 20px;padding-right: 20px;"><h2 class="summary-title" itemprop="name headline">
                     <a href="/2015-05-29-start-the-day/" target="_blank">Start the day</a>
                 </h2><div class="post-meta summary-post-meta"><span class="meta-item post-category">
                             <a href="/categories/life/"><span class="svg-icon icon-folder"></span>life</a>
@@ -278,6 +162,94 @@ ResultSetMetaData resultSetMetaData;Counter counter;str sql;SqlStatementExecu
 
     <div class="post-tags-summary-under-footer"><footer>
             <div class="post-tags-summary-under-footer-display" ><a class="post-tag-summary" href="/tags/trick/" style="">trick</a><a class="post-tag-summary" href="/tags/xpp/" style="">xpp</a><a class="post-tag-summary" href="/tags/programming/" style="">programming</a></div>
+        </footer></div>
+</article>
+
+<article itemscope itemtype="http://schema.org/Article">
+    <div class="summary summary-animation" style="margin-bottom:0">
+        <header><div style="padding-top: 20px;padding-left: 20px;padding-right: 20px;"><h2 class="summary-title" itemprop="name headline">
+                    <a href="/2015-05-13-how-to-deploy-all-the-reports-in-ax2012-by-using-management-shell/" target="_blank">How to deploy all the reports in AX2012 by using Management Shell</a>
+                </h2><div class="post-meta summary-post-meta"><span class="meta-item post-category">
+                            <a href="/categories/ax2012/"><span class="svg-icon icon-folder"></span>ax2012</a>&nbsp;<a href="/categories/ssrs/"><span class="svg-icon icon-folder"></span>ssrs</a>
+                    </span><span class="meta-item post-author"><a href="https://nuxulu.com/about" title="Author" target="_blank" rel="noopener noreffer author" class="author"><span class="svg-icon icon-user"></span>Max Nguyen</a></span><span class="meta-item post-publish"><span class="svg-icon icon-clock"></span><time class="timeago" datetime="2015-05-13">May 13, 2015</time></span></div></div>
+        </header>
+
+        <div class="article-text"><div class="content summary-content">Login to the AX AOS server and follow below steps.
+  Click Start &gt; Administrative Tools.
+  Right-click the Microsoft Dynamics AX 2012 Management Shell option.
+  Click Run as administrator.
+  Go to PowerShell command prompt and run with command
+Publish-AXReport –ReportName *
+Wait up to getting Deployment successful message in command prompt.</div></div>
+    </div>
+
+    <div class="post-tags-summary-under-footer"><footer>
+            <div class="post-tags-summary-under-footer-display" ><a class="post-tag-summary" href="/tags/trick/" style="">trick</a><a class="post-tag-summary" href="/tags/ssrs/" style="">ssrs</a></div>
+        </footer></div>
+</article>
+
+<article itemscope itemtype="http://schema.org/Article">
+    <div class="summary summary-animation" style="margin-bottom:0">
+        <header><div style="padding-top: 20px;padding-left: 20px;padding-right: 20px;"><h2 class="summary-title" itemprop="name headline">
+                    <a href="/2015-05-12-execute-stored-procedure-from-x-code/" target="_blank">Execute Stored Procedure from X&#43;&#43; code</a>
+                </h2><div class="post-meta summary-post-meta"><span class="meta-item post-category">
+                            <a href="/categories/ax2012/"><span class="svg-icon icon-folder"></span>ax2012</a>&nbsp;<a href="/categories/trick/"><span class="svg-icon icon-folder"></span>trick</a>
+                    </span><span class="meta-item post-author"><a href="https://nuxulu.com/about" title="Author" target="_blank" rel="noopener noreffer author" class="author"><span class="svg-icon icon-user"></span>Max Nguyen</a></span><span class="meta-item post-publish"><span class="svg-icon icon-clock"></span><time class="timeago" datetime="2015-05-12">May 12, 2015</time></span></div></div>
+        </header>
+
+        <div class="article-text"><div class="content summary-content">To execute a stored procedure from X++ use the Server method, the Client method does not have permissions. you don’t require any special privileges or permissions to execute a stored procedure. if used other then Server method, a message should appear like this Request for the permission of type SqlStatementExecutePermission failed.
+{% highlight csharp %} public static void main(AssemblyLoadEventArgs _args) { Connection con = new Connection(); Statement stmt = new Con.</div></div>
+    </div>
+
+    <div class="post-tags-summary-under-footer"><footer>
+            <div class="post-tags-summary-under-footer-display" ><a class="post-tag-summary" href="/tags/trick/" style="">trick</a><a class="post-tag-summary" href="/tags/xpp/" style="">xpp</a><a class="post-tag-summary" href="/tags/programming/" style="">programming</a></div>
+        </footer></div>
+</article>
+
+<article itemscope itemtype="http://schema.org/Article">
+    <div class="summary summary-animation" style="margin-bottom:0">
+        <header><div style="padding-top: 20px;padding-left: 20px;padding-right: 20px;"><h2 class="summary-title" itemprop="name headline">
+                    <a href="/2015-05-08-infographic-tieu-tien-khon-ngoan-theo-quy-tac-6-chiec-lo/" target="_blank">Infographic Tiêu tiền khôn ngoan theo quy tắc 6 chiếc lọ</a>
+                </h2><div class="post-meta summary-post-meta"><span class="meta-item post-category">
+                            <a href="/categories/general/"><span class="svg-icon icon-folder"></span>general</a>&nbsp;<a href="/categories/life/"><span class="svg-icon icon-folder"></span>life</a>
+                    </span><span class="meta-item post-author"><a href="https://nuxulu.com/about" title="Author" target="_blank" rel="noopener noreffer author" class="author"><span class="svg-icon icon-user"></span>Max Nguyen</a></span><span class="meta-item post-publish"><span class="svg-icon icon-clock"></span><time class="timeago" datetime="2015-05-08">May 8, 2015</time></span></div></div>
+        </header>
+
+        <div class="article-text"><div class="content summary-content"></div></div>
+    </div>
+
+    <div class="post-tags-summary-under-footer"><footer>
+            <div class="post-tags-summary-under-footer-display" ><a class="post-tag-summary" href="/tags/fun/" style="">fun</a></div>
+        </footer></div>
+</article>
+
+<article itemscope itemtype="http://schema.org/Article">
+    <div class="summary summary-animation" style="margin-bottom:0">
+        <header><div style="padding-top: 20px;padding-left: 20px;padding-right: 20px;"><h2 class="summary-title" itemprop="name headline">
+                    <a href="/2015-04-13-common-prefix-dyanmics-ax-2012/" target="_blank">Common prefies Dyanmics AX 2012</a>
+                </h2><div class="post-meta summary-post-meta"><span class="meta-item post-category">
+                            <a href="/categories/ax2012/"><span class="svg-icon icon-folder"></span>ax2012</a>&nbsp;<a href="/categories/trick/"><span class="svg-icon icon-folder"></span>trick</a>
+                    </span><span class="meta-item post-author"><a href="https://nuxulu.com/about" title="Author" target="_blank" rel="noopener noreffer author" class="author"><span class="svg-icon icon-user"></span>Max Nguyen</a></span><span class="meta-item post-publish"><span class="svg-icon icon-clock"></span><time class="timeago" datetime="2015-04-13">April 13, 2015</time></span></div></div>
+        </header>
+
+        <div class="article-text"><div class="content summary-content">When creating new elements, ensure that you follow the recommended naming conventions. Any future development and maintenance will be much easier.
+Ax Microsoft Dynamics AX typed data source
+Axd Microsoft Dynamics AX business document
+Asset Asset management
+BOM Bill of material
+COS Cost accounting
+Cust Customer
+Dir Directory, global address book
+EcoRes Economic resources
+HRM/HCM Human resources
+Invent Inventory management
+JMG Shop flor control
+KM Knowledge management
+Ledger General ledger</div></div>
+    </div>
+
+    <div class="post-tags-summary-under-footer"><footer>
+            <div class="post-tags-summary-under-footer-display" ><a class="post-tag-summary" href="/tags/trick/" style="">trick</a></div>
         </footer></div>
 </article>
 
