@@ -12,8 +12,8 @@ what you can do with Database movement API so far:
 The endpoint uses impersonation authentication base, please follow to register a new application by using the Azure portal" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://nuxulu.com/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/" /><meta property="og:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2020-08-17T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2020-08-17T00:00:00&#43;00:00" />
+<meta property="article:published_time" content="2020-08-17T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-08-17T00:00:00+00:00" />
 
 <meta name="application-name" content="Finance Operations | Power Platform">
 <meta name="apple-mobile-web-app-title" content="Finance Operations | Power Platform"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/Icon/favicon.ico" type="image/x-icon"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://nuxulu.com/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/" /><script data-ad-client="pub-3534873375492458" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><meta name="google-site-verification" content="f08c47fec0942fa0" /><script type="application/ld+json">
@@ -203,7 +203,7 @@ The endpoint uses impersonation authentication base, please follow to register a
 <h1 id="1-postman-environment-setup" class="headerLink"><a href="#1-postman-environment-setup" class="header-mark"></a>1. Postman environment setup</h1><p><em>Open Postman -&gt; manage environments -&gt; Add</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -214,7 +214,7 @@ The endpoint uses impersonation authentication base, please follow to register a
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-text" data-lang="text">tenant_id: {tenant_id get from AAD}
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">tenant_id: {tenant_id get from AAD}
 client_id: {get from the application that you have created before}
 client_secret: {get from the application that you have created before}
 username: {LCS user name with owner permission}
@@ -236,7 +236,7 @@ bearerToken: {this will be populated when authentication}
          alt="Postman environment setup"
          title="Testing-Dynamics-365-Finance-Database-Movement-API-with-Postman_1.png"
     /></p>
-<h1 id="2-authentication-with-postman" class="headerLink"><a href="#2-authentication-with-postman" class="header-mark"></a>2. Authentication with Postman</h1><p>You get the authentication bearer with <strong>POST</strong> method and <a href="https://login.microsoftonline.com/%7B%7Btenant_id%7D%7D/oauth2/token">https://login.microsoftonline.com/{{tenant_id}}/oauth2/token</a> endpoint.</p>
+<h1 id="2-authentication-with-postman" class="headerLink"><a href="#2-authentication-with-postman" class="header-mark"></a>2. Authentication with Postman</h1><p>You get the authentication bearer with <strong>POST</strong> method and <a href="https://login.microsoftonline.com/%7b%7btenant_id%7d%7d/oauth2/token" target="_blank" rel="noopener noreffer">https://login.microsoftonline.com/{{tenant_id}}/oauth2/token</a> endpoint.</p>
 <p>In the request Body, please do following:</p>
 <p>
 
@@ -264,12 +264,12 @@ bearerToken: {this will be populated when authentication}
 <h1 id="3-cosnume-the-apis-with-postman" class="headerLink"><a href="#3-cosnume-the-apis-with-postman" class="header-mark"></a>3. Cosnume the APIs with Postman</h1><p>To call the Database Movement API, you attach the access token as a bearer token to the authorization header in your HTTP request. So in Postman, modify the headers tab like bellow</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">Authorization:Bearer {{bearerToken}}
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Authorization:Bearer {{bearerToken}}
 x-ms-version:&#39;2017-09-15&#39;
 Content-Type:application/json
 </code></pre></td></tr></table>
@@ -287,16 +287,16 @@ Content-Type:application/json
     /></p>
 <h2 id="31-list-database-backups" class="headerLink"><a href="#31-list-database-backups" class="header-mark"></a>3.1. List database backups</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/databases/project/{{projectId}}
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/databases/project/{{projectId}}
 </code></pre></td></tr></table>
 </div>
 </div><p>And we’ll get a JSON with a list of the DB backups on our LCS Asset Library:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -319,7 +319,7 @@ Content-Type:application/json
 </span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
     <span class="nt">&#34;DatabaseAssets&#34;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
             <span class="nt">&#34;Id&#34;</span><span class="p">:</span> <span class="s2">&#34;12314234-862e-4a6a-800d-0c64e982284a&#34;</span><span class="p">,</span>
@@ -344,15 +344,15 @@ Content-Type:application/json
 </div>
 </div><h2 id="32-create-database-refresh" class="headerLink"><a href="#32-create-database-refresh" class="header-mark"></a>3.2. Create database refresh</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/refresh/project/{projectId}/source/{sourceEnvironmentId}/target/{targetEnvironmentId}
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/refresh/project/{projectId}/source/{sourceEnvironmentId}/target/{targetEnvironmentId}
 </code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -360,7 +360,7 @@ Content-Type:application/json
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
     <span class="nt">&#34;IsSuccess&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="nt">&#34;OperationActivityId&#34;</span><span class="p">:</span> <span class="s2">&#34;55eb4327-9346-4c7b-82bd-fe8ef15112c6&#34;</span><span class="p">,</span>
     <span class="nt">&#34;ErrorMessage&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
@@ -370,15 +370,15 @@ Content-Type:application/json
 </div>
 </div><h2 id="33-create-a-database-export" class="headerLink"><a href="#33-create-a-database-export" class="header-mark"></a>3.3. Create a database export</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/export/project/{projectId}/environment/{environmentId}/backupName/{backupName}
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/export/project/{projectId}/environment/{environmentId}/backupName/{backupName}
 </code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -386,7 +386,7 @@ Content-Type:application/json
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
     <span class="nt">&#34;IsSuccess&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="nt">&#34;OperationActivityId&#34;</span><span class="p">:</span> <span class="s2">&#34;55eb4327-9346-4c7b-82bd-fe8ef15112c6&#34;</span><span class="p">,</span>
     <span class="nt">&#34;ErrorMessage&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
@@ -396,15 +396,15 @@ Content-Type:application/json
 </div>
 </div><h2 id="34-get-operation-activity-status" class="headerLink"><a href="#34-get-operation-activity-status" class="header-mark"></a>3.4. Get operation activity status</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/fetchstatus/project/{projectId}/environment/{environmentId}/operationactivity/{operationactivityId}
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/fetchstatus/project/{projectId}/environment/{environmentId}/operationactivity/{operationactivityId}
 </code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -417,7 +417,7 @@ Content-Type:application/json
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
     <span class="nt">&#34;IsSuccess&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="nt">&#34;OperationActivityId&#34;</span><span class="p">:</span> <span class="s2">&#34;6a90b45f-1764-4077-b924-3f4671540237&#34;</span><span class="p">,</span>
     <span class="nt">&#34;ErrorMessage&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>

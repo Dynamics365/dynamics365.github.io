@@ -9,8 +9,8 @@
 <meta property="og:description" content="Dynamics 365 for Finance Operations and Azure DevOps" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://nuxulu.com/2021-05-01-dynamics-365-for-finance-operations-and-azure-devops/" /><meta property="og:image" content="https://nuxulu.com/2021-05-01-dynamics-365-for-finance-operations-and-azure-devops/AzureDevOpsSign.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-05-01T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2021-06-25T00:00:00&#43;00:00" />
+<meta property="article:published_time" content="2021-05-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-06-25T00:00:00+00:00" />
 
 <meta name="application-name" content="Finance Operations | Power Platform">
 <meta name="apple-mobile-web-app-title" content="Finance Operations | Power Platform"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/Icon/favicon.ico" type="image/x-icon"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://nuxulu.com/2021-05-01-dynamics-365-for-finance-operations-and-azure-devops/" /><script data-ad-client="pub-3534873375492458" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><meta name="google-site-verification" content="f08c47fec0942fa0" /><script type="application/ld+json">
@@ -455,7 +455,7 @@
 <p>Create Azure DevOps project</p>
 <p>Press the “Create project” button and you’re done. Now let’s connect this Azure DevOps project to our LCS project.</p>
 <p>When a customer signs up for Finance and Operations the LCS project is of type “Implementation project” is created automatically. Your customers need to invite you to their project. If you’re an ISV you can use the “Migrate, create solutions, and learn” projects.</p>
-<p>In any of both cases you need to go to “Project settings” and select the “Visual Studio Team Services” Tab. Scroll down and you should see two fields. Fill the field with your DevOps URL without the project part. If you got a <a href="https://dev.azure.com/YOUR">https://dev.azure.com/YOUR</a>_ORG URL type you need to change it to https://YOUR_ORG.visualstudio.com:</p>
+<p>In any of both cases you need to go to “Project settings” and select the “Visual Studio Team Services” Tab. Scroll down and you should see two fields. Fill the field with your DevOps URL without the project part. If you got a <a href="https://dev.azure.com/YOUR" target="_blank" rel="noopener noreffer">https://dev.azure.com/YOUR</a>_ORG URL type you need to change it to https://YOUR_ORG.visualstudio.com:</p>
 <p>
 
 
@@ -915,7 +915,7 @@
 <p>Create a new file called <em>nuget.config</em> in the same folder where you’ve downloaded the nugets. It will have the content you can see in the “Connect to feed” page, something like this:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -924,7 +924,7 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version\=&#34;1.0&#34; encoding\=&#34;utf-8&#34;?&gt;</span>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version\=&#34;1.0&#34; encoding\=&#34;utf-8&#34;?&gt;</span>
 <span class="nt">&lt;configuration</span><span class="err">\</span><span class="nt">&gt;</span>
  <span class="nt">&lt;packageSources</span><span class="err">\</span><span class="nt">&gt;</span>
  <span class="nt">&lt;clear</span> <span class="err">/\</span><span class="nt">&gt;</span>
@@ -937,10 +937,10 @@
 <p>And finally, we’ll push (upload) the nugets to our artifacts feed. We have to do this for each one of the 3 nugets we’ve downloaded:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">nuget</span><span class="p">.</span><span class="n">exe</span> <span class="n">push</span> <span class="n">-Source</span> <span class="s2">&#34;AASBuild&#34;</span> <span class="n">-ApiKey</span> <span class="n">az</span> <span class="p">&lt;</span><span class="n">packagePath</span><span class="p">&gt;</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">nuget</span><span class="p">.</span><span class="n">exe</span> <span class="n">push</span> <span class="n">-Source</span> <span class="s2">&#34;AASBuild&#34;</span> <span class="n">-ApiKey</span> <span class="n">az</span> <span class="p">&lt;</span><span class="n">packagePath</span><span class="p">&gt;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>You’ll get prompted for the user. Remember it needs to have enough rights on the project.</p>
@@ -964,7 +964,7 @@
 <p>We have to create another file called <em>packages.config</em> with the following content:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -972,7 +972,7 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version\=&#34;1.0&#34; encoding\=&#34;utf-8&#34;?&gt;</span>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version\=&#34;1.0&#34; encoding\=&#34;utf-8&#34;?&gt;</span>
 <span class="nt">&lt;packages&gt;</span>
  <span class="nt">&lt;package</span> <span class="err">id\=&#34;Microsoft.Dynamics.AX.Platform.DevALM.BuildXpp&#34;</span> <span class="err">version\=&#34;7.0.5644.16778&#34;</span> <span class="err">targetFramework\=&#34;net40&#34;</span> <span class="nt">/&gt;</span>
  <span class="nt">&lt;package</span> <span class="err">id\=&#34;Microsoft.Dynamics.AX.Application.DevALM.BuildXpp&#34;</span> <span class="err">version\=&#34;10.0.464.13&#34;</span> <span class="err">targetFramework\=&#34;net40&#34;</span> <span class="nt">/&gt;</span>
@@ -1129,7 +1129,7 @@
 0.3.7.1. <h4 id="0371-httpsaristeinfoenmsdyn365-azure-devops-almpackages-configpackagesconfig" class="headerLink"><a href="#0371-httpsaristeinfoenmsdyn365-azure-devops-almpackages-configpackagesconfig" class="header-mark"></a><a href="https://ariste.info/en/msdyn365-azure-devops-alm/#packages-config" target="_blank" rel="noopener noreffer"></a>packages.config</h4><p>The packages.config file will have an additional line for the Application Suite NuGet.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1144,7 +1144,7 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version\=&#34;1.0&#34; encoding\=&#34;utf-8&#34;?&gt;</span>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version\=&#34;1.0&#34; encoding\=&#34;utf-8&#34;?&gt;</span>
 
 <span class="nt">&lt;packages</span><span class="err">\</span><span class="nt">&gt;</span>
 
@@ -1177,10 +1177,10 @@
 <p>And then use it in the build step and change it to:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">/</span><span class="n">p:BuildTasksDirectory</span><span class="p">\=</span><span class="s2">&#34;</span><span class="p">$(</span><span class="n">NugetsPath</span><span class="p">)</span><span class="s2">\\</span><span class="p">$(</span><span class="n">ToolsPackage</span><span class="p">)</span><span class="s2">\\DevAlm&#34;</span> <span class="p">/</span><span class="n">p:MetadataDirectory</span><span class="p">\=</span><span class="s2">&#34;</span><span class="p">$(</span><span class="n">MetadataPath</span><span class="p">)</span><span class="s2">&#34;</span> <span class="p">/</span><span class="n">p:FrameworkDirectory</span><span class="p">\=</span><span class="s2">&#34;</span><span class="p">$(</span><span class="n">NuGetsPath</span><span class="p">)</span><span class="s2">\\</span><span class="p">$(</span><span class="n">ToolsPackage</span><span class="p">)</span><span class="s2">&#34;</span> <span class="p">/</span><span class="n">p:ReferenceFolder</span><span class="p">\=</span><span class="s2">&#34;</span><span class="p">$(</span><span class="n">NuGetsPath</span><span class="p">)</span><span class="s2">\\</span><span class="p">$(</span><span class="n">PlatPackage</span><span class="p">)</span><span class="s2">\\ref\\net40;</span><span class="p">$(</span><span class="n">NuGetsPath</span><span class="p">)</span><span class="s2">\\</span><span class="p">$(</span><span class="n">AppPackage</span><span class="p">)</span><span class="s2">\\ref\\net40;</span><span class="p">$(</span><span class="n">MetadataPath</span><span class="p">)</span><span class="s2">;</span><span class="p">$(</span><span class="n">Build</span><span class="p">.</span><span class="n">BinariesDirectory</span><span class="p">)</span><span class="s2">;</span><span class="p">$(</span><span class="n">NuGetsPath</span><span class="p">)</span><span class="s2">\\</span><span class="p">$(</span><span class="n">AppSuitePackage</span><span class="p">)</span><span class="s2">\\ref\\net40&#34;</span> <span class="p">/</span><span class="n">p:ReferencePath</span><span class="p">\=</span><span class="s2">&#34;</span><span class="p">$(</span><span class="n">NuGetsPath</span><span class="p">)</span><span class="s2">\\</span><span class="p">$(</span><span class="n">ToolsPackage</span><span class="p">)</span><span class="s2">&#34;</span> <span class="p">/</span><span class="n">p:OutputDirectory</span><span class="p">\=</span><span class="s2">&#34;</span><span class="p">$(</span><span class="n">Build</span><span class="p">.</span><span class="n">BinariesDirectory</span><span class="p">)</span><span class="s2">&#34;</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">/</span><span class="n">p:BuildTasksDirectory</span><span class="p">\=</span><span class="s2">&#34;</span><span class="p">$(</span><span class="n">NugetsPath</span><span class="p">)</span><span class="s2">\\</span><span class="p">$(</span><span class="n">ToolsPackage</span><span class="p">)</span><span class="s2">\\DevAlm&#34;</span> <span class="p">/</span><span class="n">p:MetadataDirectory</span><span class="p">\=</span><span class="s2">&#34;</span><span class="p">$(</span><span class="n">MetadataPath</span><span class="p">)</span><span class="s2">&#34;</span> <span class="p">/</span><span class="n">p:FrameworkDirectory</span><span class="p">\=</span><span class="s2">&#34;</span><span class="p">$(</span><span class="n">NuGetsPath</span><span class="p">)</span><span class="s2">\\</span><span class="p">$(</span><span class="n">ToolsPackage</span><span class="p">)</span><span class="s2">&#34;</span> <span class="p">/</span><span class="n">p:ReferenceFolder</span><span class="p">\=</span><span class="s2">&#34;</span><span class="p">$(</span><span class="n">NuGetsPath</span><span class="p">)</span><span class="s2">\\</span><span class="p">$(</span><span class="n">PlatPackage</span><span class="p">)</span><span class="s2">\\ref\\net40;</span><span class="p">$(</span><span class="n">NuGetsPath</span><span class="p">)</span><span class="s2">\\</span><span class="p">$(</span><span class="n">AppPackage</span><span class="p">)</span><span class="s2">\\ref\\net40;</span><span class="p">$(</span><span class="n">MetadataPath</span><span class="p">)</span><span class="s2">;</span><span class="p">$(</span><span class="n">Build</span><span class="p">.</span><span class="n">BinariesDirectory</span><span class="p">)</span><span class="s2">;</span><span class="p">$(</span><span class="n">NuGetsPath</span><span class="p">)</span><span class="s2">\\</span><span class="p">$(</span><span class="n">AppSuitePackage</span><span class="p">)</span><span class="s2">\\ref\\net40&#34;</span> <span class="p">/</span><span class="n">p:ReferencePath</span><span class="p">\=</span><span class="s2">&#34;</span><span class="p">$(</span><span class="n">NuGetsPath</span><span class="p">)</span><span class="s2">\\</span><span class="p">$(</span><span class="n">ToolsPackage</span><span class="p">)</span><span class="s2">&#34;</span> <span class="p">/</span><span class="n">p:OutputDirectory</span><span class="p">\=</span><span class="s2">&#34;</span><span class="p">$(</span><span class="n">Build</span><span class="p">.</span><span class="n">BinariesDirectory</span><span class="p">)</span><span class="s2">&#34;</span>
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="httpsaristeinfoenmsdyn365-azure-devops-almazure-devtest-labs-powered-buildsazure-devtest-labs-powered-builds" class="headerLink"><a href="#httpsaristeinfoenmsdyn365-azure-devops-almazure-devtest-labs-powered-buildsazure-devtest-labs-powered-builds" class="header-mark"></a><a href="https://ariste.info/en/msdyn365-azure-devops-alm/#azure-devtest-labs-powered-builds" target="_blank" rel="noopener noreffer"></a>Azure DevTest Labs powered builds</h2><p>The <strong><a href="https://ariste.info/en/2020/10/tier-1-microsoft-managed-removed/" target="_blank" rel="noopener noreffer">end of Tier-1 Microsoft-managed build VMs</a> is near</strong>, and this will leave us without the capacity to synchronize the DB or run tests in a pipeline, unless we deploy a new build VM in our, or our customer’s, Azure subscription. Of course, there might be a cost concern with it, and there’s where <strong>Azure DevTest Labs</strong> can help us!</p>
@@ -1222,10 +1222,10 @@
 <p>Once you’ve unzipped the VHD you need to change it from Dynamic to Fixed using this PowerShell command:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Convert-VHD</span> <span class="err">–</span><span class="n">Path</span> <span class="n">VHDLOCATION</span><span class="p">.</span><span class="n">vhd</span> <span class="err">–</span><span class="n">DestinationPath</span> <span class="n">NEWVHD</span><span class="p">.</span><span class="n">vhd</span> <span class="err">–</span><span class="n">VHDType</span> <span class="n">Fixed</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Convert-VHD</span> <span class="err">–</span><span class="n">Path</span> <span class="n">VHDLOCATION</span><span class="p">.</span><span class="n">vhd</span> <span class="err">–</span><span class="n">DestinationPath</span> <span class="n">NEWVHD</span><span class="p">.</span><span class="n">vhd</span> <span class="err">–</span><span class="n">VHDType</span> <span class="n">Fixed</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>The reason is <strong>you can’t create an Azure VM from a dynamically-sized VHD</strong>. And it took me several attempts to notice this 🙂</p>
@@ -1263,12 +1263,12 @@
 <p>And now comes the second funniest part of the process: <strong>we need to upload the 130GB VHD image to a blob storage account</strong>! So, click the “Add” button on top and in the new dialog that will open click the “Upload a VHD using PowerShell”. This will generate a PowerShell script to upload the VHD to the DevTest Labs blob. For example:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell">
 <span class="cm">&lt;# Generated script to upload a local VHD to Azure. WARNING: The destination will be publicly available for 24 hours, after which it will expire. Ensure you complete your upload by then. Run the following command in a Azure PowerShell console after entering the LocalFilePath to your VHD. #&gt;</span> 
 <span class="nb">Add-AzureRmVhd</span> <span class="n">-Destination</span> <span class="s2">&#34;https://YOURBLOB.blob.core.windows.net/uploads/tempImage.vhd?sv=2019-07-07&amp;st=2020-12-27T09%3A08%3A26Z&amp;se=2020-12-28T09%3A23%3A26Z&amp;sr=b&amp;sp=rcw&amp;sig=YTeXpxpVEJdSM7KZle71w8NVw9oznNizSnYj8Q3hngI%3D&#34;</span> <span class="n">-LocalFilePath</span> <span class="s2">&#34;&lt;Enter VHD location here&gt;&#34;</span>
 </code></pre></td></tr></table>
@@ -1280,10 +1280,10 @@
 <p>the LocalFilePath to your VHD.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Add-AzureRmVhd</span> <span class="p">\</span><span class="n">-Destination</span> <span class="s2">&#34;https://YOURBLOB.blob.core.windows.net/uploads/tempImage.vhd?sv=2019-07-07&amp;st=2020-12-27T09%3A08%3A26Z&amp;se=2020-12-28T09%3A23%3A26Z&amp;sr=b&amp;sp=rcw&amp;sig=YTeXpxpVEJdSM7KZle71w8NVw9oznNizSnYj8Q3hngI%3D&#34;</span> <span class="p">\</span><span class="n">-LocalFilePath</span> <span class="s2">&#34;&lt;Enter VHD location here&gt;&#34;</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Add-AzureRmVhd</span> <span class="p">\</span><span class="n">-Destination</span> <span class="s2">&#34;https://YOURBLOB.blob.core.windows.net/uploads/tempImage.vhd?sv=2019-07-07&amp;st=2020-12-27T09%3A08%3A26Z&amp;se=2020-12-28T09%3A23%3A26Z&amp;sr=b&amp;sp=rcw&amp;sig=YTeXpxpVEJdSM7KZle71w8NVw9oznNizSnYj8Q3hngI%3D&#34;</span> <span class="p">\</span><span class="n">-LocalFilePath</span> <span class="s2">&#34;&lt;Enter VHD location here&gt;&#34;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>
@@ -1342,14 +1342,14 @@
 <p>The first thing we need to do is running some PowerShell scripts that create registry entries and environment variables in the VM, go to C:\DynamicsSDK and run these:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Import-Module</span> <span class="p">$(</span><span class="nb">Join-Path</span> <span class="p">\</span><span class="n">-Path</span> <span class="s2">&#34;C:\\DynamicsSDK&#34;</span> <span class="p">\</span><span class="n">-ChildPath</span> <span class="s2">&#34;DynamicsSDKCommon.psm1&#34;</span><span class="p">)</span> <span class="p">\</span><span class="n">-Function</span> <span class="s2">&#34;Write-Message&#34;</span><span class="p">,</span> <span class="s2">&#34;Set-AX7SdkRegistryValues&#34;</span><span class="p">,</span> <span class="s2">&#34;Set-AX7SdkEnvironmentVariables&#34;</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Import-Module</span> <span class="p">$(</span><span class="nb">Join-Path</span> <span class="p">\</span><span class="n">-Path</span> <span class="s2">&#34;C:\\DynamicsSDK&#34;</span> <span class="p">\</span><span class="n">-ChildPath</span> <span class="s2">&#34;DynamicsSDKCommon.psm1&#34;</span><span class="p">)</span> <span class="p">\</span><span class="n">-Function</span> <span class="s2">&#34;Write-Message&#34;</span><span class="p">,</span> <span class="s2">&#34;Set-AX7SdkRegistryValues&#34;</span><span class="p">,</span> <span class="s2">&#34;Set-AX7SdkEnvironmentVariables&#34;</span>
 
 <span class="n">Set</span><span class="p">\</span><span class="n">-AX7SdkEnvironmentVariables</span> <span class="p">\</span><span class="n">-DynamicsSDK</span> <span class="s2">&#34;C:\\DynamicsSDK&#34;</span>
 
@@ -1373,7 +1373,7 @@
 </figure></p>
 <p>DevTest Labs Azure DevOps Agent</p>
 <p>We need to fill some information:</p>
-<p>On “<strong>Azure DevOps Organization Name</strong>” you need to provide the name of your organization. For example if your AZDO URL is <a href="https://dev.azure.com/blackbeltcorp">https://dev.azure.com/blackbeltcorp</a> you need to use blackbeltcorp.</p>
+<p>On “<strong>Azure DevOps Organization Name</strong>” you need to provide the name of your organization. For example if your AZDO URL is <a href="https://dev.azure.com/blackbeltcorp" target="_blank" rel="noopener noreffer">https://dev.azure.com/blackbeltcorp</a> you need to use blackbeltcorp.</p>
 <p>On “<strong>AZDO Personal Access Token</strong>” you need to provide a token generated from AZDO.</p>
 <p>On “<strong>Agent Name</strong>” give your agent a name, like DevTestAgent. And on “Agent Pool” a name for your pool, a new like DevTestPool or an existing one as Default.</p>
 <p>On “<strong>Account Name</strong>” use the same user that we’ll use in our pipeline later. Remember this. And on “<strong>Account Password</strong>” its password. Using secrets with a KeyVault is better, but I won’t explain this here.</p>
@@ -1381,10 +1381,10 @@
 0.4.5.1.2. <h5 id="04512-httpsaristeinfoenmsdyn365-azure-devops-almoption-b-configure-azure-devops-agent-in-the-vmoption-b-configure-azure-devops-agent-in-the-vm" class="headerLink"><a href="#04512-httpsaristeinfoenmsdyn365-azure-devops-almoption-b-configure-azure-devops-agent-in-the-vmoption-b-configure-azure-devops-agent-in-the-vm" class="header-mark"></a><a href="https://ariste.info/en/msdyn365-azure-devops-alm/#option-b-configure-azure-devops-agent-in-the-vm" target="_blank" rel="noopener noreffer"></a>Option B: Configure Azure DevOps Agent in the VM</h5><p>To do this you have to create a VM from the base image you created before and then go to C:\DynamicsSDK and run the SetupBuildAgent script with the needed parameters:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">SetupBuildAgent</span><span class="p">.</span><span class="n">ps1</span> <span class="p">\</span><span class="n">-VSO</span><span class="p">\</span><span class="n">_ProjectCollection</span> <span class="s2">&#34;https://dev.azure.com/YOUR\_ORG&#34;</span> <span class="p">\</span><span class="n">-ServiceAccountName</span> <span class="s2">&#34;myUser&#34;</span> <span class="p">\</span><span class="n">-ServiceAccountPassword</span> <span class="s2">&#34;mYPassword&#34;</span> <span class="p">\</span><span class="n">-AgentName</span> <span class="s2">&#34;DevTestAgent&#34;</span> <span class="p">\</span><span class="n">-AgentPoolName</span> <span class="s2">&#34;DevTestPool&#34;</span> <span class="p">\</span><span class="n">-VSOAccessToken</span> <span class="s2">&#34;YOUR\_VSTS\_TOKEN&#34;</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">SetupBuildAgent</span><span class="p">.</span><span class="n">ps1</span> <span class="p">\</span><span class="n">-VSO</span><span class="p">\</span><span class="n">_ProjectCollection</span> <span class="s2">&#34;https://dev.azure.com/YOUR\_ORG&#34;</span> <span class="p">\</span><span class="n">-ServiceAccountName</span> <span class="s2">&#34;myUser&#34;</span> <span class="p">\</span><span class="n">-ServiceAccountPassword</span> <span class="s2">&#34;mYPassword&#34;</span> <span class="p">\</span><span class="n">-AgentName</span> <span class="s2">&#34;DevTestAgent&#34;</span> <span class="p">\</span><span class="n">-AgentPoolName</span> <span class="s2">&#34;DevTestPool&#34;</span> <span class="p">\</span><span class="n">-VSOAccessToken</span> <span class="s2">&#34;YOUR\_VSTS\_TOKEN&#34;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>WARNING</strong>: If you choose option B you must create a new base image from the VM where you’ve run the script. Then repeat the WinRM steps to generate the new ARM template which we’ll see next.</p>
@@ -1406,7 +1406,7 @@
 <p>This will display the ARM template to create the VM from our pipeline. It’s something like this:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -1759,7 +1759,7 @@
 </span><span class="lnt">351
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
 
  <span class="nt">&#34;$schema&#34;</span><span class="p">:</span> <span class="s2">&#34;https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json&#34;</span><span class="p">,</span>
 
@@ -2124,13 +2124,13 @@
 <p>To do it faster and for demo purposes I’m using a plain text password in the ARM template, changing the password node to something like this:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;password&#34;</span><span class="err">:</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;password&#34;</span><span class="err">:</span> <span class="p">{</span>
  <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
  <span class="nt">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s2">&#34;yourPassword&#34;</span>
  <span class="p">}</span><span class="err">,</span>
@@ -2160,10 +2160,10 @@
 0.4.6.3. <h4 id="0463-httpsaristeinfoenmsdyn365-azure-devops-almprepare-ssrs-optionalprepare-ssrs-optional" class="headerLink"><a href="#0463-httpsaristeinfoenmsdyn365-azure-devops-almprepare-ssrs-optionalprepare-ssrs-optional" class="header-mark"></a><a href="https://ariste.info/en/msdyn365-azure-devops-alm/#prepare-ssrs-optional" target="_blank" rel="noopener noreffer"></a>Prepare SSRS (optional)</h4><p>If you want to deploy reports as part of your build pipeline you need to go to SSMS again (and as an Admin again), and open a new query in the reporting DB to execute the following query:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">exec</span><span class="w"> </span><span class="n">DeleteEncryptedContent</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">exec</span><span class="w"> </span><span class="n">DeleteEncryptedContent</span><span class="w">
 </span></code></pre></td></tr></table>
 </div>
 </div>0.4.6.4. <h4 id="0464-httpsaristeinfoenmsdyn365-azure-devops-almpowershell-scriptspowershell-scripts" class="headerLink"><a href="#0464-httpsaristeinfoenmsdyn365-azure-devops-almpowershell-scriptspowershell-scripts" class="header-mark"></a><a href="https://ariste.info/en/msdyn365-azure-devops-alm/#powershell-scripts" target="_blank" rel="noopener noreffer"></a>PowerShell Scripts</h4><p>The default build definition that runs on a build VM uses several PowerShell scripts to run some tasks. I’m adding an additional script called PrepareForAgent.</p>
@@ -2173,7 +2173,7 @@
 <p>So open the script, go to line 696 and look for this piece of code:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2200,7 +2200,7 @@
 </span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="c"># Create packages backup (if it does not exist).</span>
+<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="c"># Create packages backup (if it does not exist).</span>
 
 <span class="nv">$NewBackupCreated</span> <span class="p">\=</span> <span class="nb">Backup-AX7Packages</span> <span class="p">\</span><span class="n">-BackupPath</span> <span class="nv">$PackagesBackupPath</span> <span class="p">\</span><span class="n">-DeploymentPackagesPath</span> <span class="nv">$DeploymentPackagesPath</span> <span class="p">\</span><span class="n">-LogLocation</span> <span class="nv">$LogLocation</span>
 
@@ -2230,13 +2230,13 @@
 </div><p>We need to modify it until we end up with this:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="k">if</span> <span class="p">(</span><span class="nv">$DatabaseBackupToRestore</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="k">if</span> <span class="p">(</span><span class="nv">$DatabaseBackupToRestore</span><span class="p">)</span>
 <span class="p">{</span>
  <span class="nb">Restore-AX7Database</span> <span class="p">\</span><span class="n">-DatabaseBackupToRestore</span> <span class="nv">$DatabaseBackupToRestore</span>
 <span class="p">}</span>
@@ -2246,10 +2246,10 @@
 0.4.6.5. <a href="https://ariste.info/en/msdyn365-azure-devops-alm/#optional-but-recommended-install-d365fo-tools" target="_blank" rel="noopener noreffer"></a><strong>Optional (but recommended)</strong>: install <h4 id="0465-httpsaristeinfoenmsdyn365-azure-devops-almoptional-but-recommended-install-d365fo-toolsoptional-but-recommended-install-d365fotoolshttpsgithubcomd365collaboratived365fotools" class="headerLink"><a href="#0465-httpsaristeinfoenmsdyn365-azure-devops-almoptional-but-recommended-install-d365fo-toolsoptional-but-recommended-install-d365fotoolshttpsgithubcomd365collaboratived365fotools" class="header-mark"></a><a href="https://github.com/d365collaborative/d365fo.tools" target="_blank" rel="noopener noreffer">d365fo.tools</a></h4><p>Just run this:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">d365fo</span><span class="p">.</span><span class="n">tools</span>
+<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">d365fo</span><span class="p">.</span><span class="n">tools</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>We can use the tools to do a module sync, partial sync or deploy just our reports instead of all.</p>
@@ -2336,20 +2336,20 @@
 <p>Add a new PowerShell task, select Inline Script and this is the command:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="nb">Invoke-D365DbSyncModule</span> <span class="n">-Module</span> <span class="s2">&#34;Module1&#34;</span><span class="p">,</span> <span class="s2">&#34;Module2&#34;</span> <span class="n">-ShowOriginalProgress</span> <span class="n">-Verbose</span>
+<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="nb">Invoke-D365DbSyncModule</span> <span class="n">-Module</span> <span class="s2">&#34;Module1&#34;</span><span class="p">,</span> <span class="s2">&#34;Module2&#34;</span> <span class="n">-ShowOriginalProgress</span> <span class="n">-Verbose</span>
 </code></pre></td></tr></table>
 </div>
 </div>0.4.8.2.3. <h5 id="04823-httpsaristeinfoenmsdyn365-azure-devops-almoptional-use-d365fo-tools-to-deploy-ssrs-reportsoptional-use-d365fotools-to-deploy-ssrs-reports" class="headerLink"><a href="#04823-httpsaristeinfoenmsdyn365-azure-devops-almoptional-use-d365fo-tools-to-deploy-ssrs-reportsoptional-use-d365fotools-to-deploy-ssrs-reports" class="header-mark"></a><a href="https://ariste.info/en/msdyn365-azure-devops-alm/#optional-use-d365fo-tools-to-deploy-ssrs-reports" target="_blank" rel="noopener noreffer"></a>Optional: use d365fo.tools to deploy SSRS reports</h5><p>If you really want to add the report deployment step to your pipeline you can save some more extra time using <a href="https://github.com/d365collaborative/d365fo.tools" target="_blank" rel="noopener noreffer">d365fo.tools</a> and just deploy the reports in your models like we’ve done with the DB sync.</p>
 <p>Run this in a new PowerShell task to do it:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="nb">Publish-D365SsrsReport</span> <span class="n">-Module</span> <span class="n">YOUR</span><span class="p">\</span><span class="n">_MODULE</span> <span class="n">-ReportName</span> <span class="p">\*</span>
+<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="nb">Publish-D365SsrsReport</span> <span class="n">-Module</span> <span class="n">YOUR</span><span class="p">\</span><span class="n">_MODULE</span> <span class="n">-ReportName</span> <span class="p">\*</span>
 </code></pre></td></tr></table>
 </div>
 </div>0.4.8.3. <h4 id="0483-httpsaristeinfoenmsdyn365-azure-devops-almdelete-azure-devtest-labs-vmdelete-azure-devtest-labs-vm" class="headerLink"><a href="#0483-httpsaristeinfoenmsdyn365-azure-devops-almdelete-azure-devtest-labs-vmdelete-azure-devtest-labs-vm" class="header-mark"></a><a href="https://ariste.info/en/msdyn365-azure-devops-alm/#delete-azure-devtest-labs-vm" target="_blank" rel="noopener noreffer"></a>Delete Azure DevTest Labs VM</h4><p>It’s almost the same as the create step, complete the subscription, lab and VM fields and done:</p>
@@ -2402,10 +2402,10 @@
 <p>This is the custom condition we’ll use:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cs" data-lang="cs"><span class="n">and</span><span class="p">(</span><span class="n">always</span><span class="p">(),</span> <span class="n">eq</span><span class="p">(</span><span class="n">dependencies</span><span class="p">.</span><span class="n">Job</span><span class="err">\</span><span class="m">_1.</span><span class="n">status</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Succeeded</span><span class="err">&#39;</span><span class="p">))</span>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="n">and</span><span class="p">(</span><span class="n">always</span><span class="p">(),</span> <span class="n">eq</span><span class="p">(</span><span class="n">dependencies</span><span class="p">.</span><span class="n">Job</span><span class="err">\</span><span class="m">_1.</span><span class="n">status</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Succeeded</span><span class="err">&#39;</span><span class="p">))</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>If you need to know your first step’s job name just export the pipeline to YAML and you’ll find it there:</p>
@@ -2613,7 +2613,7 @@
 <p>To demo this I’ll create a class called Calculator with a single method that accepts two decimal values as parameters and returns it’s sum. An add method.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2630,7 +2630,7 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cs" data-lang="cs"><span class="k">public</span> <span class="k">class</span> <span class="nc">Calculator</span> <span class="p">{</span> <span class="k">public</span> <span class="kt">decimal</span> <span class="n">Add</span><span class="p">(</span><span class="kt">decimal</span> <span class="n">a</span><span class="p">,</span> <span class="kt">decimal</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span> <span class="p">+</span> <span class="n">b</span><span class="p">;</span> <span class="p">}</span> <span class="p">}</span>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="k">public</span> <span class="k">class</span> <span class="nc">Calculator</span> <span class="p">{</span> <span class="k">public</span> <span class="kt">decimal</span> <span class="n">Add</span><span class="p">(</span><span class="kt">decimal</span> <span class="n">a</span><span class="p">,</span> <span class="kt">decimal</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span> <span class="p">+</span> <span class="n">b</span><span class="p">;</span> <span class="p">}</span> <span class="p">}</span>
 
 <span class="k">public</span> <span class="k">class</span> <span class="nc">Calculator</span>
 
@@ -2696,7 +2696,7 @@
 <p>In the FnO project add a Runnable Class, we’ll call the C# library there:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -2725,7 +2725,7 @@
 </span><span class="lnt">27
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cs" data-lang="cs"><span class="k">using</span> <span class="nn">AASBuildNetDemoLibrary</span><span class="p">;</span> 
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="k">using</span> <span class="nn">AASBuildNetDemoLibrary</span><span class="p">;</span> 
 <span class="k">class</span> <span class="nc">AASBuildNetTest</span> 
 <span class="p">{</span> 
     <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="err">\</span><span class="m">_</span><span class="n">args</span><span class="p">)</span> 
@@ -2789,10 +2789,10 @@
 <p>Run the pipeline and when it’s done you can check the build step and you’ll see a line that reads:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Copying</span> <span class="n">file</span> <span class="n">from</span> <span class="s2">&#34;D:\\a\\9\\s\\Build\\AASBuildNetDemo\\AASBuildNetDemoLibrary\\bin\\Debug\\AASBuildNetDemoLibrary.dll&#34;</span> <span class="n">to</span> <span class="s2">&#34;D:\\a\\9\\b\\AASDemo\\bin\\AASBuildNetDemoLibrary.dll&#34;</span><span class="p">.</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Copying</span> <span class="n">file</span> <span class="n">from</span> <span class="s2">&#34;D:\\a\\9\\s\\Build\\AASBuildNetDemo\\AASBuildNetDemoLibrary\\bin\\Debug\\AASBuildNetDemoLibrary.dll&#34;</span> <span class="n">to</span> <span class="s2">&#34;D:\\a\\9\\b\\AASDemo\\bin\\AASBuildNetDemoLibrary.dll&#34;</span><span class="p">.</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>And if you download the DP, unzip it, navigate to AOSService\Packages\files and unzip the file in there, then open the bin folder, you’ll see our library’s DLL there:</p>
@@ -2974,7 +2974,7 @@
     </a><figcaption class="image-caption">MSDyn365 & Azure DevOps ALM 88</figcaption>
 </figure></p>
 <p>It’s only necessary to fill in the connection name, username, password (from the user and Application (Client) ID fields. Use the App ID we got in the first step for the App ID field. The endpoint fields should be automatically filled in. Finally, press OK and the LCS connection is ready.</p>
-<p>In the LCS Project Id field, use the ID from the LCS project URL, for example in <a href="https://lcs.dynamics.com/V2/ProjectOverview/1234567">https://lcs.dynamics.com/V2/ProjectOverview/1234567</a> the project is is 1234567.</p>
+<p>In the LCS Project Id field, use the ID from the LCS project URL, for example in <a href="https://lcs.dynamics.com/V2/ProjectOverview/1234567" target="_blank" rel="noopener noreffer">https://lcs.dynamics.com/V2/ProjectOverview/1234567</a> the project is is 1234567.</p>
 <p>Press the button next to “File to upload” and select the deployable package file generated by the build:</p>
 <p>
 
@@ -3168,7 +3168,7 @@
 <p>I explain later why we’re enabling this. We now only need to update this variable after uploading the DP to LCS. Add an inline Powershell step after the upload one and do this:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -3219,7 +3219,7 @@
 </span><span class="lnt">49
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cs" data-lang="cs"><span class="err">#</span> <span class="n">Populate</span> <span class="n">store</span> <span class="k">value</span> <span class="n">to</span> <span class="n">update</span> <span class="n">pipeline</span>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="err">#</span> <span class="n">Populate</span> <span class="n">store</span> <span class="k">value</span> <span class="n">to</span> <span class="n">update</span> <span class="n">pipeline</span>
 
 <span class="err">$</span><span class="n">assetId</span><span class="err">\</span><span class="p">=</span> <span class="s">&#34;$(GoldenUpload.FileAssetId)&#34;</span>
 
@@ -3311,7 +3311,7 @@
 2.1.2. <h3 id="212-httpsaristeinfoenmsdyn365-azure-devops-almcalling-the-apicalling-the-api" class="headerLink"><a href="#212-httpsaristeinfoenmsdyn365-azure-devops-almcalling-the-apicalling-the-api" class="header-mark"></a><a href="https://ariste.info/en/msdyn365-azure-devops-alm/#calling-the-api" target="_blank" rel="noopener noreffer"></a>Calling the API</h3><p>I’ll use PowerShell to call the API from a pipeline. PowerShell has a command called <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-restmethod?view=powershell-7&amp;WT.mc_id=DOP-MVP-5003976" target="_blank" rel="noopener noreffer">Invoke-RestMethod</a> that makes HTTP/HTTPS requests. It’s really easy and we just need to do the same we did to call the API in my post.</p>
 2.1.2.1. <h4 id="2121-httpsaristeinfoenmsdyn365-azure-devops-almgetting-the-tokengetting-the-token" class="headerLink"><a href="#2121-httpsaristeinfoenmsdyn365-azure-devops-almgetting-the-tokengetting-the-token" class="header-mark"></a><a href="https://ariste.info/en/msdyn365-azure-devops-alm/#getting-the-token" target="_blank" rel="noopener noreffer"></a>Getting the token</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -3344,7 +3344,7 @@
 </span><span class="lnt">31
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cs" data-lang="cs"><span class="err">$</span><span class="n">projectId</span> <span class="err">\</span><span class="p">=</span> <span class="s">&#34;1234567&#34;</span>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="err">$</span><span class="n">projectId</span> <span class="err">\</span><span class="p">=</span> <span class="s">&#34;1234567&#34;</span>
 
 <span class="err">$</span><span class="n">tokenUrl</span> <span class="err">\</span><span class="p">=</span> <span class="s">&#34;https://login.microsoftonline.com/common/oauth2/token&#34;</span>
 
@@ -3380,7 +3380,7 @@
 </div><p>To get the token we’ll use this script. Just change the variables for the ones of your project, AAD App registration, user (remember it needs access to the preview) and password and run it. If everything is OK you’ll get the JSON response in the $tokenResponse variable and from there you can get the token’s value using dot notation.</p>
 2.1.2.2. <h4 id="2122-httpsaristeinfoenmsdyn365-azure-devops-almrequesting-the-db-refreshrequesting-the-db-refresh" class="headerLink"><a href="#2122-httpsaristeinfoenmsdyn365-azure-devops-almrequesting-the-db-refreshrequesting-the-db-refresh" class="header-mark"></a><a href="https://ariste.info/en/msdyn365-azure-devops-alm/#requesting-the-db-refresh" target="_blank" rel="noopener noreffer"></a>Requesting the DB refresh</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -3401,7 +3401,7 @@
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cs" data-lang="cs"><span class="err">$</span><span class="n">projectId</span> <span class="err">\</span><span class="p">=</span> <span class="s">&#34;1234567&#34;</span>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="err">$</span><span class="n">projectId</span> <span class="err">\</span><span class="p">=</span> <span class="s">&#34;1234567&#34;</span>
 
 <span class="err">$</span><span class="n">sourceEnvironmentId</span> <span class="err">\</span><span class="p">=</span> <span class="s">&#34;fad26410-03cd-4c3e-89b8-85d2bddc4933&#34;</span>
 
@@ -3473,7 +3473,7 @@
 2.1.4.2. <h4 id="2142-httpsaristeinfoenmsdyn365-azure-devops-almthe-taskthe-task" class="headerLink"><a href="#2142-httpsaristeinfoenmsdyn365-azure-devops-almthe-taskthe-task" class="header-mark"></a><a href="https://ariste.info/en/msdyn365-azure-devops-alm/#the-task" target="_blank" rel="noopener noreffer"></a>The task</h4><p>First we need to install d365fo.tools and then we can use its commands to call the LCS API:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -3484,7 +3484,7 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Install</span><span class="p">\</span><span class="n">-PackageProvider</span> <span class="n">nuget</span> <span class="p">\</span><span class="n">-Scope</span> <span class="n">CurrentUser</span> <span class="p">\</span><span class="n">-Force</span> <span class="p">\</span><span class="n">-Confirm</span><span class="err">:</span><span class="nv">$false</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Install</span><span class="p">\</span><span class="n">-PackageProvider</span> <span class="n">nuget</span> <span class="p">\</span><span class="n">-Scope</span> <span class="n">CurrentUser</span> <span class="p">\</span><span class="n">-Force</span> <span class="p">\</span><span class="n">-Confirm</span><span class="err">:</span><span class="nv">$false</span>
 
 <span class="n">Install</span><span class="p">\</span><span class="n">-Module</span> <span class="p">\</span><span class="n">-Name</span> <span class="n">AZ</span> <span class="p">\</span><span class="n">-AllowClobber</span> <span class="p">\</span><span class="n">-Scope</span> <span class="n">CurrentUser</span> <span class="p">\</span><span class="n">-Force</span> <span class="p">\</span><span class="n">-Confirm</span><span class="err">:</span><span class="nv">$False</span> <span class="p">\</span><span class="n">-SkipPublisherCheck</span>
 
@@ -3537,7 +3537,7 @@
 2.2.3.1. <h4 id="2231-httpsaristeinfoenmsdyn365-azure-devops-almrefresh-databaserefresh-database" class="headerLink"><a href="#2231-httpsaristeinfoenmsdyn365-azure-devops-almrefresh-databaserefresh-database" class="header-mark"></a><a href="https://ariste.info/en/msdyn365-azure-devops-alm/#refresh-database" target="_blank" rel="noopener noreffer"></a>Refresh database</h4><p>This will refresh the prod environmnet to a Tier 2+:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -3554,7 +3554,7 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$clientId</span> <span class="p">\=</span> <span class="s2">&#34;ab12345-6220-4566-896a-19a4ad41783f&#34;</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$clientId</span> <span class="p">\=</span> <span class="s2">&#34;ab12345-6220-4566-896a-19a4ad41783f&#34;</span>
 
 <span class="nv">$userName</span> <span class="p">\=</span> <span class="s2">&#34;admin@tenant&#34;</span>
 
@@ -3574,7 +3574,7 @@
 </div>2.2.3.2. <h4 id="2232-httpsaristeinfoenmsdyn365-azure-devops-almexport-databaseexport-database" class="headerLink"><a href="#2232-httpsaristeinfoenmsdyn365-azure-devops-almexport-databaseexport-database" class="header-mark"></a><a href="https://ariste.info/en/msdyn365-azure-devops-alm/#export-database" target="_blank" rel="noopener noreffer"></a>Export database</h4><p>This part will trigger the bacpac export from the Tier 2+ environment which we’ve just refreshed:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -3583,7 +3583,7 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$sourceEnvId</span> <span class="p">\=</span> <span class="s2">&#34;958bc863-f089-4811-abbd-c1190917eaae&#34;</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$sourceEnvId</span> <span class="p">\=</span> <span class="s2">&#34;958bc863-f089-4811-abbd-c1190917eaae&#34;</span>
 
 <span class="nv">$targetEnvId</span> <span class="p">\=</span> <span class="s2">&#34;13aa6872-c13b-4ea3-81cd-2d26fa72ec5e&#34;</span>
 
@@ -3595,7 +3595,7 @@
 </div>2.2.3.3. <h4 id="2233-httpsaristeinfoenmsdyn365-azure-devops-almrestore-bacpacrestore-bacpac" class="headerLink"><a href="#2233-httpsaristeinfoenmsdyn365-azure-devops-almrestore-bacpacrestore-bacpac" class="header-mark"></a><a href="https://ariste.info/en/msdyn365-azure-devops-alm/#restore-bacpac" target="_blank" rel="noopener noreffer"></a>Restore bacpac</h4><p>And the final step will download the bacpac and restore it to a new database:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -3614,7 +3614,7 @@
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$currentDate</span> <span class="p">\=</span> <span class="nb">Get-Date</span> <span class="p">\</span><span class="n">-Format</span> <span class="n">yyyymmdd</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$currentDate</span> <span class="p">\=</span> <span class="nb">Get-Date</span> <span class="p">\</span><span class="n">-Format</span> <span class="n">yyyymmdd</span>
 
 <span class="nv">$bacpacName</span> <span class="p">\=</span> <span class="s2">&#34;UAT{0}&#34;</span> <span class="p">\</span><span class="o">-f</span> <span class="nv">$currentDate</span>
 
@@ -3652,10 +3652,10 @@
 <p>Refreshing the database takes some time and exporting it too. You need to find a way to control the status of the operations. The LCS DB API offers an operation you can use to get the status of the ongoing operation. Using d365fo.tools:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-D365LcsDatabaseRefreshStatus</span> <span class="p">\</span><span class="n">-OperationActivityId</span> <span class="n">123456789</span> <span class="p">\</span><span class="n">-EnvironmentId</span> <span class="s2">&#34;99ac6587-c13b-4ea3-81cd-2d26fa72ec5e&#34;</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-D365LcsDatabaseRefreshStatus</span> <span class="p">\</span><span class="n">-OperationActivityId</span> <span class="n">123456789</span> <span class="p">\</span><span class="n">-EnvironmentId</span> <span class="s2">&#34;99ac6587-c13b-4ea3-81cd-2d26fa72ec5e&#34;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>You can choose to control that inside your Powershell scripts, but if we use the agent on the build VM that means we cannot use it for anything else until everything is done.</p>
@@ -3798,7 +3798,7 @@
 4.1.4. <h3 id="414-httpsaristeinfoenmsdyn365-azure-devops-almusing-the-secrets-in-your-pipelinesusing-the-secrets-in-your-pipelines" class="headerLink"><a href="#414-httpsaristeinfoenmsdyn365-azure-devops-almusing-the-secrets-in-your-pipelinesusing-the-secrets-in-your-pipelines" class="header-mark"></a><a href="https://ariste.info/en/msdyn365-azure-devops-alm/#using-the-secrets-in-your-pipelines" target="_blank" rel="noopener noreffer"></a>Using the secrets in your pipelines</h3><p>We’re ready to use the secret in our pipeline. I will add a PowerShell task to call the LCS DB API using d365fo.tools but I’ll change all the variables to the secrets:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -3806,7 +3806,7 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># Write your PowerShell commands here.</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># Write your PowerShell commands here.</span>
 <span class="n">Install</span><span class="p">\</span><span class="n">-PackageProvider</span> <span class="n">nuget</span> <span class="p">\</span><span class="n">-Scope</span> <span class="n">CurrentUser</span> <span class="p">\</span><span class="n">-Force</span> <span class="p">\</span><span class="n">-Confirm</span><span class="err">:</span><span class="nv">$false</span>
 <span class="n">Install</span><span class="p">\</span><span class="n">-Module</span> <span class="p">\</span><span class="n">-Name</span> <span class="n">AZ</span> <span class="p">\</span><span class="n">-AllowClobber</span> <span class="p">\</span><span class="n">-Scope</span> <span class="n">CurrentUser</span> <span class="p">\</span><span class="n">-Force</span> <span class="p">\</span><span class="n">-Confirm</span><span class="err">:</span><span class="nv">$False</span> <span class="p">\</span><span class="n">-SkipPublisherCheck</span>
 <span class="n">Install</span><span class="p">\</span><span class="n">-Module</span> <span class="p">\</span><span class="n">-Name</span> <span class="n">d365fo</span><span class="p">.</span><span class="n">tools</span> <span class="p">\</span><span class="n">-AllowClobber</span> <span class="p">\</span><span class="n">-Scope</span> <span class="n">CurrentUser</span> <span class="p">\</span><span class="n">-Force</span> <span class="p">\</span><span class="n">-Confirm</span><span class="err">:</span><span class="nv">$false</span>

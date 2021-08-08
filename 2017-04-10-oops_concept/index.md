@@ -41,12 +41,13 @@ _**Class and objects are the base concept of OOP – Object Oriented Programming
 
 Class should be started with the Keyword class and next we give the name for our class we can give any meaning full name as Class Name, next we will have the Open and close brackets.
 
-{% highlight csharp %}
+```cs
 using System;
 public class ClassA
 {
 }
-{% endhighlight %}
+```
+
 
 ### 2. Object
 
@@ -54,7 +55,7 @@ As we have already seen that, **House Owner** will access and use all the **Room
 
 `objHouseOwner` is the Object for a class which will be used to access all variable and Method of a class.
 
-{% highlight csharp %}
+```cs
 namespace ConsoleApplication1
 {
     class Program
@@ -65,7 +66,7 @@ namespace ConsoleApplication1
         }
     }
 }
-{% endhighlight %}
+```
 
 ### 3. Variable
 
@@ -83,7 +84,7 @@ By default the Access-Modifiers are by private, we can also use public to variab
 
 Example of Variable:
 
-{% highlight csharp %}
+```cs
 namespace ConsoleApplication1
 {
     // Example Program 
@@ -101,7 +102,7 @@ namespace ConsoleApplication1
         }
     }
 }
-{% endhighlight %}
+```
 
 <figure class='center '>
   <a href="/imagesposts/basic-c-oop-concept_1.png"><img src="/imagesposts/basic-c-oop-concept_1.png" alt=""></a>
@@ -115,7 +116,7 @@ Main Method is the default Method of C#, where every console and windows applica
 
 Method is a group of code statement .Now here we can see the above example program with method.
 
-{% highlight csharp %}
+```cs
 class ShanuHouseClass
 {
     public int noOfTV = 2;
@@ -137,7 +138,7 @@ class a
         a.myFirstMethod();
     }
 }
-{% endhighlight %}
+```
 
 <figure class='center '>
   <a href="/imagesposts/basic-c-oop-concept_2.png"><img src="/imagesposts/basic-c-oop-concept_2.png" alt=""></a>
@@ -164,7 +165,7 @@ _**Here is an example of Method:**_
   * **Method with Void Type**:
 Void is a keyword which will not return any data from the Method, for example we can see the below Method with void Type, here in this method we display all our output using the `Console.WriteLine` and have used the `Console.ReadLine());` to get the Input. This Method has all Input and Output Operation but this method don’t return any value.
   
-{% highlight csharp %}
+```cs
 // Function with void and no parameter  -- here void means no return type        
 public void veranda()
 {
@@ -173,12 +174,12 @@ public void veranda()
 	NoofChair = Convert.ToInt32(Console.ReadLine());
 	Console.WriteLine("I have total " + NoofChair + " Chairs in my Veranda");
 }
-{% endhighlight %}
+```
 
   * **Method with Return Type**:
 Method with return type will return some result, which can be used in our program, for example, here we have Method TVNAME with return Type as `String`. We can say in our home we might have a TV in our LivingROOM and in the parent’s bedroom and also in kids bedroom .We might have different TV brand in each room, suppose if we want to know each room TV Brand Name then we need to enter the same code 3 times. Instead of writing the same code again, we can use a method with Return Type.
   
-{% highlight csharp %}
+```cs
 // Function with Return type as String        
 public string TVNAME()
 {
@@ -187,32 +188,32 @@ public string TVNAME()
 	YOURTVName = Console.ReadLine(); 
 	return YOURTVName;
 }
-{% endhighlight %}
+```
 
  * **Method with Parameter-List**:
 So far, we have seen methods without arguments. Arguments are used to pass some data to the Method to do our process in a better way. For example, we can say we want to do a painting, to our bedrooms. We need to get the opinions of all the member of the house in order to know there choices of color for each bedroom, we can pass the member Name and their favorite color as parameter to a Method.
 
-{% highlight csharp %}
+```cs
 //Function with parameter    
 public void BedRoom(String nameandColor)
 {
 	Console.WriteLine(nameandColor);
 }
-{% endhighlight %}
+```
 
 Same Method name with different arguments are called as Method over loading, here we can see below .Both Method has the same name but it has different arguments.
 
-{% highlight csharp %}
+```cs
 // Same Function Name with Different Paramenter        
 public void BedRoom(String MemberName, String Color)
 {
 	Console.WriteLine(MemberName + " Like " + Color + "Color");
 }
-{% endhighlight %}
+```
 
 The Complete Class with Main Method Example:
 
-{% highlight csharp %}
+```cs
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -271,7 +272,7 @@ class ShanuHouseClass
         Console.ReadLine();
     }
 }
-{% endhighlight %}
+```
 The Output of above class is here:
 
 <figure class='center '>
@@ -291,7 +292,7 @@ House Owners are public to the class where they can access all classes related t
   
 Access limit of variable or method is within a project. For example let’s consider in our project we have more than one class and we have declared a variable as internal in one class. Let’s see an example program for internal variable.
 
-{% highlight csharp %}
+```cs
 class Modifiers
 {
     public class sampleInternalClass
@@ -315,7 +316,7 @@ class Modifiers
         }
     }
 }
-{% endhighlight %}
+```
 
 <figure class='center '>
   <a href="/imagesposts/basic-c-oop-concept_4.png"><img src="/imagesposts/basic-c-oop-concept_4.png" alt=""></a>
@@ -328,7 +329,7 @@ Only the main class and derived class can have access of protected variable or m
   
 Protected Internal variable or Method has limitation with in a project of class or Derived class. Here is a sample program for Protect Internal Variable .In this example I have used the Inheritance .we will see in detail about Inheritance more detail in this article.
 
-{% highlight csharp %}
+```cs
 public class sampleProtectedInternalClass
 {
     protected internal String myprotectedInternal = "Iam Protected Internal Variable";
@@ -365,7 +366,7 @@ class ShanuHouseClass
             Console.ReadLine();
     }
 }
-{% endhighlight %}
+```
 
 <figure class='center '>
   <a href="/imagesposts/basic-c-oop-concept_5.png"><img src="/imagesposts/basic-c-oop-concept_5.png" alt=""></a>
@@ -381,7 +382,7 @@ For example, we have two Classes the first one is `Houseclass` and the other cla
 
 Here we can see all the variables are wrap into a class where `houseSecurityClass` is set as public, so the `Houseclass` can access that, but `houseClass` has both Public and private variable where the private variable of a class cannot be accessed outside of the class.
 
-{% highlight csharp %}
+```cs
 //Encapsulation in OOP
 public class houseSecurityClass
 {
@@ -391,13 +392,13 @@ public class Houseclass
 {
     private int noofLockerinHosue = 2; public string OwnerName = String.Empty;
 }
-{% endhighlight %}
+```
 
 ### 7. Abstraction
 
 Abstraction is to show and share some common information to the user. Let’s take our House example, in our house we will have servant, servants can go to all rooms and do cleaning and other works. The house owner can give full rights or some partial rights to the servant for accessing his house. Here we can see an example program as private declared variables and Methods are not shared with servant but the public variable and Methods are shared with servant.
 
-{% highlight csharp %}
+```cs
 public class HouseServerntClass
 {
     private int SaftyLoackerKeyNo = 10001;
@@ -421,7 +422,7 @@ public class HouseServerntClass
         Console.ReadLine();
     }
 }
-{% endhighlight %}
+```
 
 <figure class='center '>
   <a href="/imagesposts/basic-c-oop-concept_6.png"><img src="/imagesposts/basic-c-oop-concept_6.png" alt=""></a>
@@ -435,7 +436,7 @@ Inheritance is used to reuse the code. In Protected Internal Access modifier sec
 
 With one Base class and one derived Class for example.
 
-{% highlight csharp %}
+```cs
 public class baseClass
 {
     private void privateMethod()
@@ -457,7 +458,7 @@ public class DerivedClass : baseClass
         obj.privateMethod();
     }
 }
-{% endhighlight %}
+```
 
 The Error is:
 
@@ -477,7 +478,7 @@ Here we can see a simple Inheritance where the base class is the `GuestVist` and
   
 With more than one Derived Class for example. Here we can see an example first base class is derived in **DerivedClass1** and then the **DerivedClass1** is derived in **DerivedClass2** .Now from **DerivedClass2** we can access both **baseClass** and **DerivedClass1** variable and methods.
 
-{% highlight csharp %}
+```cs
 public class baseClass
 {
     private void privateMethod()
@@ -507,7 +508,7 @@ public class DerivedClass2 : DerivedClass1
         //obj.privateMethod(); 
     }
 }
-{% endhighlight %}
+```
 
 <figure class='center '>
   <a href="/imagesposts/basic-c-oop-concept_9.png"><img src="/imagesposts/basic-c-oop-concept_9.png" alt=""></a>
@@ -539,7 +540,7 @@ Ploy means more than one form. In the beginning of the Article at Method Section
 Method overloading are nothing but same Method name will be used for more than one method with different Argument.
 Here is an example program for the Method Overloading. As we can see here Method name `BedRoom` has been used for two Method but the parameter for both methods are different.
 
-{% highlight csharp %}
+```cs
 class HouseOwnerClass
 {
     //Function with parameter        
@@ -561,7 +562,7 @@ class HouseOwnerClass
         Console.ReadLine();
     }
 }
-{% endhighlight %}
+```
 
 <figure class='center '>
   <a href="/imagesposts/basic-c-oop-concept_11.png"><img src="/imagesposts/basic-c-oop-concept_11.png" alt=""></a>
@@ -600,7 +601,7 @@ Here we can see an abstract class has an abstract method, But the abstract metho
 Here we can see an example of Abstract Class and for Abstract Method in detail.
 In this example, we can see an abstract class, which has normal Method and Abstract Method. Abstract Methods; do not have body part in Abstract Class, which means we can only declare an Abstract Method at Abstract Class, There should be minimum one Abstract Method in an Abstract Class.
 
-{% highlight csharp %}
+```cs
 public abstract class GuestVist
 {
     public void Guestwelcomemessage()
@@ -629,7 +630,7 @@ public class A : GuestVist
         Console.ReadLine();
     }
 }
-{% endhighlight %}
+```
 
 <figure class='center '>
   <a href="/imagesposts/basic-c-oop-concept_14.png"><img src="/imagesposts/basic-c-oop-concept_14.png" alt=""></a>
@@ -653,7 +654,7 @@ See the example program below. Here we have both Abstract Method and Virtual Met
 
 In Abstract class, the virtual method says as total five guests but in the derived Class program, the message was override as 20 guests. See the final output in below. Guess what will be displayed for Virtual Method? Will the result be 5 Guests or 20 Guests check for the output below the program.
 
-{% highlight csharp %}
+```cs
 public abstract class GuestVist
 {
     public abstract void purposeofVisit();
@@ -684,7 +685,7 @@ class AbstractHouseClass : GuestVist
         Console.ReadLine();
     }
 }
-{% endhighlight %}
+```
 
 <figure class='center '>
   <a href="/imagesposts/basic-c-oop-concept_15.png"><img src="/imagesposts/basic-c-oop-concept_15.png" alt=""></a>
@@ -708,7 +709,7 @@ Let’s see an example when I try to inherit my sealed class from my derived cla
 
 Here we can see an example program of Sealed Class.
 
-{% highlight csharp %}
+```cs
 public sealed class OwnerofficialRoom
 {
     public void AllMyPersonalItems()
@@ -725,7 +726,7 @@ class HouseSealedClass
         Console.ReadLine();
     }
 }
-{% endhighlight %}
+```
 
 **Sealed Method**: 
 
@@ -784,7 +785,7 @@ When we run the program we get the error message as *Can not create an instance 
 It’s simple just we can use the **ClassName.Variable or Method Name** for example `OwnerofficialRoom.AllMyPersonalItems();`
 See the below example with Static class
 
-{% highlight csharp %}
+```cs
 public static class OwnerofficialRoom
 {
     public static void AllMyPersonalItems()
@@ -800,14 +801,14 @@ class HouseStaticClass
         Console.ReadLine();
     }
 }
-{% endhighlight %}
+```
 
   * Is that possible to create a Static Method in non-Static Class?
   
 The answer is yes. We can create a Static Method to the non Static class. No need to create an object to access the static method in non-static class. We can directly use the class name to access the Static method.
 See the below example with Static method in non-static Class.
 
-{% highlight csharp %}
+```cs
 public class OwnerofficialRoom
 {
     public static void AllMyPersonalItems()
@@ -831,7 +832,7 @@ class StaticmethodClass
         Console.ReadLine();
     }
 }
-{% endhighlight %}
+```
 
 <figure class='center '>
   <a href="/imagesposts/basic-c-oop-concept_20.png"><img src="/imagesposts/basic-c-oop-concept_20.png" alt=""></a>
@@ -845,7 +846,7 @@ See the below Example program for an Interface. All the methods of Interface hav
 
 This below program is an example for multiple inheritance using Interface.
 
-{% highlight csharp %}
+```cs
 interface GuestInterface { void GuestWelcomeMessage(); void NoofGuestes();    }
 interface FriendsandRelationsInterface { void friendwelcomemessage(); void FriendName();}
 class HouseOwnerClass : GuestInterface, FriendsandRelationsInterface
@@ -876,7 +877,7 @@ class HouseOwnerClass : GuestInterface, FriendsandRelationsInterface
         Console.ReadLine();
     }
 }
-{% endhighlight %}
+```
 
 <figure class='center '>
   <a href="/imagesposts/basic-c-oop-concept_21.png"><img src="/imagesposts/basic-c-oop-concept_21.png" alt=""></a>

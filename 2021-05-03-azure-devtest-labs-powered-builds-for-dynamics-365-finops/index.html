@@ -12,8 +12,8 @@ Configuring the build VM in Azure DevTest Labs
 If you want to know more about builds, releases, and the Dev ALM of Dynamics 365 you can read my full guide on MSDyn365 &amp; Azure DevOps ALM." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://nuxulu.com/2021-05-03-azure-devtest-labs-powered-builds-for-dynamics-365-finops/" /><meta property="og:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-05-03T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2021-05-03T00:00:00&#43;00:00" />
+<meta property="article:published_time" content="2021-05-03T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-05-03T00:00:00+00:00" />
 
 <meta name="application-name" content="Finance Operations | Power Platform">
 <meta name="apple-mobile-web-app-title" content="Finance Operations | Power Platform"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/Icon/favicon.ico" type="image/x-icon"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://nuxulu.com/2021-05-03-azure-devtest-labs-powered-builds-for-dynamics-365-finops/" /><script data-ad-client="pub-3534873375492458" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><meta name="google-site-verification" content="f08c47fec0942fa0" /><script type="application/ld+json">
@@ -279,10 +279,10 @@ If you want to know more about builds, releases, and the Dev ALM of Dynamics 365
 <p>Once you’ve unzipped the VHD you need to change it from Dynamic to Fixed using this PowerShell command:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="nb">Convert-VHD</span> <span class="err">–</span><span class="n">Path</span> <span class="n">VHDLOCATION</span><span class="p">.</span><span class="n">vhd</span> <span class="err">–</span><span class="n">DestinationPath</span> <span class="n">NEWVHD</span><span class="p">.</span><span class="n">vhd</span> <span class="err">–</span><span class="n">VHDType</span> <span class="n">Fixed</span>
+<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="nb">Convert-VHD</span> <span class="err">–</span><span class="n">Path</span> <span class="n">VHDLOCATION</span><span class="p">.</span><span class="n">vhd</span> <span class="err">–</span><span class="n">DestinationPath</span> <span class="n">NEWVHD</span><span class="p">.</span><span class="n">vhd</span> <span class="err">–</span><span class="n">VHDType</span> <span class="n">Fixed</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>The reason is <strong>you can’t create an Azure VM from a dynamically-sized VHD</strong>. And it took me several attempts to notice this 🙂</p>
@@ -320,7 +320,7 @@ If you want to know more about builds, releases, and the Dev ALM of Dynamics 365
 <p>And now comes the second funniest part of the process: <strong>we need to upload the 130GB VHD image to a blob storage account</strong>! So, click the “Add” button on top and in the new dialog that will open click the “Upload a VHD using PowerShell”. This will generate a PowerShell script to upload the VHD to the DevTest Labs blob. For example:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -335,7 +335,7 @@ If you want to know more about builds, releases, and the Dev ALM of Dynamics 365
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="cm">&lt;#
+<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="cm">&lt;#
 </span><span class="cm">Generated script to upload a local VHD to Azure.
 </span><span class="cm">
 </span><span class="cm">WARNING: The destination will be publicly available for 24 hours, after which it will expire.
@@ -406,12 +406,12 @@ If you want to know more about builds, releases, and the Dev ALM of Dynamics 365
 <p>The first thing we need to do is running some PowerShell scripts that create registry entries and environment variables in the VM, go to C:\DynamicsSDK and run these:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="nb">Import-Module</span> <span class="p">$(</span><span class="nb">Join-Path</span> <span class="p">\</span><span class="n">-Path</span> <span class="s2">&#34;C:\\DynamicsSDK&#34;</span> <span class="p">\</span><span class="n">-ChildPath</span> <span class="s2">&#34;DynamicsSDKCommon.psm1&#34;</span><span class="p">)</span> <span class="p">\</span><span class="n">-Function</span> <span class="s2">&#34;Write-Message&#34;</span><span class="p">,</span> <span class="s2">&#34;Set-AX7SdkRegistryValues&#34;</span><span class="p">,</span> <span class="s2">&#34;Set-AX7SdkEnvironmentVariables&#34;</span>
+<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="nb">Import-Module</span> <span class="p">$(</span><span class="nb">Join-Path</span> <span class="p">\</span><span class="n">-Path</span> <span class="s2">&#34;C:\\DynamicsSDK&#34;</span> <span class="p">\</span><span class="n">-ChildPath</span> <span class="s2">&#34;DynamicsSDKCommon.psm1&#34;</span><span class="p">)</span> <span class="p">\</span><span class="n">-Function</span> <span class="s2">&#34;Write-Message&#34;</span><span class="p">,</span> <span class="s2">&#34;Set-AX7SdkRegistryValues&#34;</span><span class="p">,</span> <span class="s2">&#34;Set-AX7SdkEnvironmentVariables&#34;</span>
 <span class="n">Set</span><span class="p">\</span><span class="n">-AX7SdkEnvironmentVariables</span> <span class="p">\</span><span class="n">-DynamicsSDK</span> <span class="s2">&#34;C:\\DynamicsSDK&#34;</span>
 <span class="n">Set</span><span class="p">\</span><span class="n">-AX7SdkRegistryValues</span> <span class="p">\</span><span class="n">-DynamicsSDK</span> <span class="s2">&#34;c:\\DynamicsSDK&#34;</span> <span class="p">\</span><span class="n">-TeamFoundationServerUrl</span> <span class="s2">&#34;https://dev.azure.com/YOUR\_ORG&#34;</span> <span class="p">\</span><span class="n">-AosWebsiteName</span> <span class="nv">$AosWebsiteName</span> <span class="s2">&#34;AosService&#34;</span>
 </code></pre></td></tr></table>
@@ -433,7 +433,7 @@ If you want to know more about builds, releases, and the Dev ALM of Dynamics 365
 </figure></p>
 <p>DevTest Labs Azure DevOps Agent</p>
 <p>We need to fill some information:</p>
-<p>On “<strong>Azure DevOps Organization Name</strong>” you need to provide the name of your organization. For example if your AZDO URL is <a href="https://dev.azure.com/blackbeltcorp">https://dev.azure.com/blackbeltcorp</a> you need to use blackbeltcorp.</p>
+<p>On “<strong>Azure DevOps Organization Name</strong>” you need to provide the name of your organization. For example if your AZDO URL is <a href="https://dev.azure.com/blackbeltcorp" target="_blank" rel="noopener noreffer">https://dev.azure.com/blackbeltcorp</a> you need to use blackbeltcorp.</p>
 <p>On “<strong>AZDO Personal Access Token</strong>” you need to provide a token generated from AZDO.</p>
 <p>On “<strong>Agent Name</strong>” give your agent a name, like DevTestAgent. And on “Agent Pool” a name for your pool, a new like DevTestPool or an existing one as Default.</p>
 <p>On “<strong>Account Name</strong>” use the same user that we’ll use in our pipeline later. Remember this. And on “<strong>Account Password</strong>” its password. Using secrets with a KeyVault is better, but I won’t explain this here.</p>
@@ -441,10 +441,10 @@ If you want to know more about builds, releases, and the Dev ALM of Dynamics 365
 <h3 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooption-b-configure-azure-devops-agent-in-the-vmoption-b-configure-azure-devops-agent-in-the-vm" class="headerLink"><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooption-b-configure-azure-devops-agent-in-the-vmoption-b-configure-azure-devops-agent-in-the-vm" class="header-mark"></a><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#option-b-configure-azure-devops-agent-in-the-vm" target="_blank" rel="noopener noreffer"></a>Option B: Configure Azure DevOps Agent in the VM</h3><p>To do this you have to create a VM from the base image you created before and then go to C:\DynamicsSDK and run the SetupBuildAgent script with the needed parameters:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="n">SetupBuildAgent</span><span class="p">.</span><span class="n">ps1</span> <span class="p">\</span><span class="n">-VSO</span><span class="p">\</span><span class="n">_ProjectCollection</span> <span class="s2">&#34;https://dev.azure.com/YOUR\_ORG&#34;</span> <span class="p">\</span><span class="n">-ServiceAccountName</span> <span class="s2">&#34;myUser&#34;</span> <span class="p">\</span><span class="n">-ServiceAccountPassword</span> <span class="s2">&#34;mYPassword&#34;</span> <span class="p">\</span><span class="n">-AgentName</span> <span class="s2">&#34;DevTestAgent&#34;</span> <span class="p">\</span><span class="n">-AgentPoolName</span> <span class="s2">&#34;DevTestPool&#34;</span> <span class="p">\</span><span class="n">-VSOAccessToken</span> <span class="s2">&#34;YOUR\_VSTS\_TOKEN&#34;</span>
+<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="n">SetupBuildAgent</span><span class="p">.</span><span class="n">ps1</span> <span class="p">\</span><span class="n">-VSO</span><span class="p">\</span><span class="n">_ProjectCollection</span> <span class="s2">&#34;https://dev.azure.com/YOUR\_ORG&#34;</span> <span class="p">\</span><span class="n">-ServiceAccountName</span> <span class="s2">&#34;myUser&#34;</span> <span class="p">\</span><span class="n">-ServiceAccountPassword</span> <span class="s2">&#34;mYPassword&#34;</span> <span class="p">\</span><span class="n">-AgentName</span> <span class="s2">&#34;DevTestAgent&#34;</span> <span class="p">\</span><span class="n">-AgentPoolName</span> <span class="s2">&#34;DevTestPool&#34;</span> <span class="p">\</span><span class="n">-VSOAccessToken</span> <span class="s2">&#34;YOUR\_VSTS\_TOKEN&#34;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>WARNING</strong>: If you choose option B you must create a new base image from the VM where you’ve run the script. Then repeat the WinRM steps to generate the new ARM template which we’ll see next.</p>
@@ -466,7 +466,7 @@ If you want to know more about builds, releases, and the Dev ALM of Dynamics 365
 <p>This will display the ARM template to create the VM from our pipeline. It’s something like this:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -819,7 +819,7 @@ If you want to know more about builds, releases, and the Dev ALM of Dynamics 365
 </span><span class="lnt">351
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cs" data-lang="cs"><span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="p">{</span>
 
  <span class="s">&#34;$schema&#34;</span><span class="p">:</span> <span class="s">&#34;https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json&#34;</span><span class="p">,</span>
 
@@ -1184,7 +1184,7 @@ If you want to know more about builds, releases, and the Dev ALM of Dynamics 365
 <p>To do it faster and for demo purposes I’m using a plain text password in the ARM template, changing the password node to something like this:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1193,7 +1193,7 @@ If you want to know more about builds, releases, and the Dev ALM of Dynamics 365
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;password&#34;</span><span class="err">:</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;password&#34;</span><span class="err">:</span> <span class="p">{</span>
 
  <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
 
@@ -1226,10 +1226,10 @@ If you want to know more about builds, releases, and the Dev ALM of Dynamics 365
 <h3 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnoprepare-ssrs-optionalprepare-ssrs-optional" class="headerLink"><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnoprepare-ssrs-optionalprepare-ssrs-optional" class="header-mark"></a><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#prepare-ssrs-optional" target="_blank" rel="noopener noreffer"></a>Prepare SSRS (optional)</h3><p>If you want to deploy reports as part of your build pipeline you need to go to SSMS again (and as an Admin again), and open a new query in the reporting DB to execute the following query:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">exec</span><span class="w"> </span><span class="n">DeleteEncryptedContent</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">exec</span><span class="w"> </span><span class="n">DeleteEncryptedContent</span><span class="w">
 </span></code></pre></td></tr></table>
 </div>
 </div><h3 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnopowershell-scriptspowershell-scripts" class="headerLink"><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnopowershell-scriptspowershell-scripts" class="header-mark"></a><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#powershell-scripts" target="_blank" rel="noopener noreffer"></a>PowerShell Scripts</h3><p>The default build definition that runs on a build VM uses several PowerShell scripts to run some tasks. I’m adding an additional script called PrepareForAgent.</p>
@@ -1239,7 +1239,7 @@ If you want to know more about builds, releases, and the Dev ALM of Dynamics 365
 <p>So open the script, go to line 696 and look for this piece of code:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1274,7 +1274,7 @@ If you want to know more about builds, releases, and the Dev ALM of Dynamics 365
 </span><span class="lnt">33
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">\</span><span class="c"># Create packages backup (if it does not exist).</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">\</span><span class="c"># Create packages backup (if it does not exist).</span>
 
 <span class="nv">$NewBackupCreated</span> <span class="p">\=</span> <span class="nb">Backup-AX7Packages</span> <span class="p">\</span><span class="n">-BackupPath</span> <span class="nv">$PackagesBackupPath</span> <span class="p">\</span><span class="n">-DeploymentPackagesPath</span> <span class="nv">$DeploymentPackagesPath</span> <span class="p">\</span><span class="n">-LogLocation</span> <span class="nv">$LogLocation</span>
 
@@ -1312,7 +1312,7 @@ If you want to know more about builds, releases, and the Dev ALM of Dynamics 365
 </div><p>We need to modify it until we end up with this:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -1321,7 +1321,7 @@ If you want to know more about builds, releases, and the Dev ALM of Dynamics 365
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="k">if</span> <span class="p">(</span><span class="nv">$DatabaseBackupToRestore</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="k">if</span> <span class="p">(</span><span class="nv">$DatabaseBackupToRestore</span><span class="p">)</span>
 
 <span class="p">{</span>
 
@@ -1334,10 +1334,10 @@ If you want to know more about builds, releases, and the Dev ALM of Dynamics 365
 <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#optional-but-recommended-install-d365fo-tools" target="_blank" rel="noopener noreffer"></a><strong>Optional (but recommended)</strong>: install <h3 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooptional-but-recommended-install-d365fo-toolsoptional-but-recommended-install-d365fotoolshttpsgithubcomd365collaboratived365fotools" class="headerLink"><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooptional-but-recommended-install-d365fo-toolsoptional-but-recommended-install-d365fotoolshttpsgithubcomd365collaboratived365fotools" class="header-mark"></a><a href="https://github.com/d365collaborative/d365fo.tools" target="_blank" rel="noopener noreffer">d365fo.tools</a></h3><p>Just run this:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="nb">Install-Module</span> <span class="p">\</span><span class="n">-Name</span> <span class="n">d365fo</span><span class="p">.</span><span class="n">tools</span>
+<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="nb">Install-Module</span> <span class="p">\</span><span class="n">-Name</span> <span class="n">d365fo</span><span class="p">.</span><span class="n">tools</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>We can use the tools to do a module sync, partial sync or deploy just our reports instead of all.</p>
@@ -1424,20 +1424,20 @@ If you want to know more about builds, releases, and the Dev ALM of Dynamics 365
 <p>Add a new PowerShell task, select Inline Script and this is the command:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="nb">Invoke-D365DbSyncModule</span> <span class="p">\</span><span class="n">-Module</span> <span class="s2">&#34;Module1&#34;</span><span class="p">,</span> <span class="s2">&#34;Module2&#34;</span> <span class="p">\</span><span class="n">-ShowOriginalProgress</span> <span class="p">\</span><span class="n">-Verbose</span>
+<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="nb">Invoke-D365DbSyncModule</span> <span class="p">\</span><span class="n">-Module</span> <span class="s2">&#34;Module1&#34;</span><span class="p">,</span> <span class="s2">&#34;Module2&#34;</span> <span class="p">\</span><span class="n">-ShowOriginalProgress</span> <span class="p">\</span><span class="n">-Verbose</span>
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooptional-use-d365fo-tools-to-deploy-ssrs-reportsoptional-use-d365fotools-to-deploy-ssrs-reports" class="headerLink"><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooptional-use-d365fo-tools-to-deploy-ssrs-reportsoptional-use-d365fotools-to-deploy-ssrs-reports" class="header-mark"></a><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#optional-use-d365fo-tools-to-deploy-ssrs-reports" target="_blank" rel="noopener noreffer"></a>Optional: use d365fo.tools to deploy SSRS reports</h4><p>If you really want to add the report deployment step to your pipeline you can save some more extra time using <a href="https://github.com/d365collaborative/d365fo.tools" target="_blank" rel="noopener noreffer">d365fo.tools</a> and just deploy the reports in your models like we’ve done with the DB sync.</p>
 <p>Run this in a new PowerShell task to do it:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="nb">Publish-D365SsrsReport</span> <span class="p">\</span><span class="n">-Module</span> <span class="n">YOUR</span><span class="p">\</span><span class="n">_MODULE</span> <span class="p">\</span><span class="n">-ReportName</span> <span class="p">\*</span>
+<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="nb">Publish-D365SsrsReport</span> <span class="p">\</span><span class="n">-Module</span> <span class="n">YOUR</span><span class="p">\</span><span class="n">_MODULE</span> <span class="p">\</span><span class="n">-ReportName</span> <span class="p">\*</span>
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnodelete-azure-devtest-labs-vmdelete-azure-devtest-labs-vm" class="headerLink"><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnodelete-azure-devtest-labs-vmdelete-azure-devtest-labs-vm" class="header-mark"></a><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#delete-azure-devtest-labs-vm" target="_blank" rel="noopener noreffer"></a>Delete Azure DevTest Labs VM</h3><p>It’s almost the same as the create step, complete the subscription, lab and VM fields and done:</p>
@@ -1490,10 +1490,10 @@ If you want to know more about builds, releases, and the Dev ALM of Dynamics 365
 <p>This is the custom condition we’ll use:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">and(always(), eq(dependencies.Job\_1.status, &#39;Succeeded&#39;))
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">and(always(), eq(dependencies.Job\_1.status, &#39;Succeeded&#39;))
 </code></pre></td></tr></table>
 </div>
 </div><p>If you need to know your first step’s job name just export the pipeline to YAML and you’ll find it there:</p>
