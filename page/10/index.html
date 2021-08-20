@@ -129,29 +129,6 @@
 <article itemscope itemtype="http://schema.org/Article">
     <div class="summary summary-animation" style="margin-bottom:0">
         <header><div style="padding-top: 20px;padding-left: 20px;padding-right: 20px;"><h2 class="summary-title" itemprop="name headline">
-                    <a href="/2016-01-07-link-type-and-join-types-in-ax-2012/" target="_blank">Link Type and Join Types in ax 2012</a>
-                </h2><div class="post-meta summary-post-meta"><span class="meta-item post-category">
-                            <a href="/categories/ax2012/"><span class="svg-icon icon-folder"></span>ax2012</a>
-                    </span><span class="meta-item post-author"><a href="https://nuxulu.com/about" title="Author" target="_blank" rel="noopener noreffer author" class="author"><span class="svg-icon icon-user"></span>Max Nguyen</a></span><span class="meta-item post-publish"><span class="svg-icon icon-clock"></span><time class="timeago" datetime="2016-01-07">January 7, 2016</time></span></div></div>
-        </header>
-
-        <div class="article-text"><div class="content summary-content"><h1 id="link-type" class="headerLink"><a href="#link-type" class="header-mark"></a>Link Type:</h1><p><strong>Active</strong>: 
-<code>Parent and child</code> data source is updated immediately when a new record in the parent data source is selected. Continuous updates consume lots of resources consuming.</p>
-<p><strong>Delayed</strong>:
-<code>Parent and child</code> A pause is inserted before linked child data sources are updated. This enables faster navigation in the parent data source because the records from child data sources are not updated immediately.</p>
-<p>For example, you can scroll a list of orders where you do not want to review the lines associated with the order until you stop scrolling.</p>
-<p><strong>Passive</strong>: <code>Parent and child</code> Linked child data sources are not updated automatically. Updates of the child data source must be programmed on the <code>active()</code> method of the master data source.</p>
-<h1 id="join-types" class="headerLink"><a href="#join-types" class="header-mark"></a>Join Types:</h1><p><strong>InnerJoin</strong> <code>Combined data source</code> select the record from the main table that matches records in the joined table and vice versa.</p></div></div>
-    </div>
-
-    <div class="post-tags-summary-under-footer"><footer>
-            <div class="post-tags-summary-under-footer-display" ><a class="post-tag-summary" href="/tags/trick/" style="">trick</a><a class="post-tag-summary" href="/tags/linktype/" style="">linktype</a><a class="post-tag-summary" href="/tags/jointype/" style="">jointype</a></div>
-        </footer></div>
-</article>
-
-<article itemscope itemtype="http://schema.org/Article">
-    <div class="summary summary-animation" style="margin-bottom:0">
-        <header><div style="padding-top: 20px;padding-left: 20px;padding-right: 20px;"><h2 class="summary-title" itemprop="name headline">
                     <a href="/2015-12-30-how-to-use-operator-in-querybuildrange/" target="_blank">How to use operator &#34;or&#34; in QueryBuildRange</a>
                 </h2><div class="post-meta summary-post-meta"><span class="meta-item post-category">
                             <a href="/categories/ax2012/"><span class="svg-icon icon-folder"></span>ax2012</a>
@@ -263,6 +240,24 @@ Here is the code</div></div>
         </footer></div>
 </article>
 
+<article itemscope itemtype="http://schema.org/Article">
+    <div class="summary summary-animation" style="margin-bottom:0">
+        <header><div style="padding-top: 20px;padding-left: 20px;padding-right: 20px;"><h2 class="summary-title" itemprop="name headline">
+                    <a href="/2015-11-13-how-to-use-like-operator-in-querybuildrange/" target="_blank">HOW TO USE &#34;LIKE&#34; OPERATOR IN QueryBuildRange</a>
+                </h2><div class="post-meta summary-post-meta"><span class="meta-item post-category">
+                            <a href="/categories/ax-2012/"><span class="svg-icon icon-folder"></span>AX 2012</a>&nbsp;<a href="/categories/query/"><span class="svg-icon icon-folder"></span>Query</a>
+                    </span><span class="meta-item post-author"><a href="https://nuxulu.com/about" title="Author" target="_blank" rel="noopener noreffer author" class="author"><span class="svg-icon icon-user"></span>Max Nguyen</a></span><span class="meta-item post-publish"><span class="svg-icon icon-clock"></span><time class="timeago" datetime="2015-11-13">November 13, 2015</time></span></div></div>
+        </header>
+
+        <div class="article-text"><div class="content summary-content">To make something as the LIKE operator in a query, just assign a value to the QueryRange including a wildcard.
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23  static void QueryBuildRange_Sample(Args _args) { Query query = new Query(); QueryRun queryRun; QueryBuildDataSource qbds; QueryBuildRange queryRange; CustTable custTable; qbds.addDataSource(tableNum(CustTable)); queryRange = qbds.addRange(fieldNum(CustTable, AccountNum)); queryRange.value(&#34;axd*&#34;); queryRun = new QueryRun(query); while(queryRun.</div></div>
+    </div>
+
+    <div class="post-tags-summary-under-footer"><footer>
+            <div class="post-tags-summary-under-footer-display" ><a class="post-tag-summary" href="/tags/operator/" style="">operator</a><a class="post-tag-summary" href="/tags/programming/" style="">programming</a><a class="post-tag-summary" href="/tags/querybuildrange/" style="">QueryBuildRange</a></div>
+        </footer></div>
+</article>
+
 <footer>
     <nav>
         <h3 class="display-hidden">Пагинация</h3>
@@ -293,10 +288,8 @@ Here is the code</div></div>
                         <a href="/page/12/">12</a>
                     </span>
             </li><li class="page-item ">
-                <span class="page-link" aria-hidden="true">&hellip;</span>
-            </li><li class="page-item ">
                     <span class="page-link">
-                        <a href="/page/14/">14</a>
+                        <a href="/page/13/">13</a>
                     </span>
             </li></ul>
     </nav>
