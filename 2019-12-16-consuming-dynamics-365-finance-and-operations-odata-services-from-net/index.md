@@ -36,8 +36,7 @@ You've now finished setting up the prerequisites. After the external application
 
 If you save the ODataClient.tt file, it will generate Odata proxies and classes. From PU12 onward, there are so many entities so you will get an error after compiling 
 
-Combined length of user strings used by the program exceeds allowed limit. Try to decrease use of string literals.
-{:.error}
+`Combined length of user strings used by the program exceeds allowed limit. Try to decrease use of string literals.`
 
 There are 2 ways to fix it
 
@@ -58,7 +57,7 @@ Another work-around that works too, edit the ODataClient.ttinclude so that it pa
 
 * Original code:
 
-{% highlight csharp %}
+```c#
 foreach (IEdmEntitySet entitySet in container.EntitySets())
 {
     IEdmEntityType entitySetElementType = entitySet.EntityType();
@@ -70,11 +69,11 @@ foreach (IEdmEntitySet entitySet in container.EntitySets())
         camelCaseEntitySetName = Customization.CustomizeNaming(camelCaseEntitySetName);
     }
 }
-{% endhighlight %}
+```
 
 * Modified code:
 
-{% highlight csharp %}
+```c#
 foreach (IEdmEntitySet entitySet in container.EntitySets())
 {
     IEdmEntityType entitySetElementType = entitySet.EntityType();
@@ -93,7 +92,7 @@ foreach (IEdmEntitySet entitySet in container.EntitySets())
       }
     }
 }
-{% endhighlight %}
+```
 
 # 4. Authentication configuration
 
@@ -104,8 +103,7 @@ Under AuthenticationUtility project, you need to modify ClientConfiguration.cs f
 From now, you can freely test the integrations under **ODataConsoleApplication** project.
 If you are testing with a custom data entity and you get this error 
 
-System.ArgumentOutOfRangeException : Length cannot be less than zero.
-{:.error}
+`System.ArgumentOutOfRangeException : Length cannot be less than zero.`
 
 Please check this [post](https://nuxulu.com/2019/12/17/Dynamics-365-finance-and-operations-ODATA-consuming-Length-cannot-be-less-than-zero.html).
 

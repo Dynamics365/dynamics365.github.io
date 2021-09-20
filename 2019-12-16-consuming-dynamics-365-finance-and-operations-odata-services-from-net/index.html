@@ -27,7 +27,7 @@ This is what you should have
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/nuxulu.com\/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net\/"
-        },"genre": "posts","keywords": "Postman, OData, BATCH, integration, .NET","wordCount":  602 ,
+        },"genre": "posts","keywords": "Postman, OData, BATCH, integration, .NET","wordCount":  615 ,
         "url": "https:\/\/nuxulu.com\/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net\/","datePublished": "2019-12-16T00:00:00+00:00","dateModified": "2019-12-16T00:00:00+00:00",
         "publisher": {
             "@type": "Person",
@@ -163,7 +163,7 @@ This is what you should have
                         <h1 class="single-title flipInX">Consuming Dynamics 365 Finance and Operations OData services from .NET</h1><div class="post-meta summary-post-meta"><span class="post-meta-date meta-item">
                                 <span class="svg-icon icon-clock"></span><time class="timeago" datetime="2019-12-16">December 16, 2019</time>
                             </span><span class="post-meta-words meta-item">
-                                <span class="svg-icon icon-pencil"></span>602 words
+                                <span class="svg-icon icon-pencil"></span>615 words
                             </span>
                             <span class="post-meta-reading meta-item">
                                 <span class="svg-icon icon-stopwatch"></span>3 minutes
@@ -234,8 +234,7 @@ This is what you should have
 <li>Open <strong>ODataClient.tt</strong>, in MetadataDocumentUri add <em>&ldquo;https://<yourEnvironment>.cloudax.dynamics.com/data/$metadata&rdquo;</em></li>
 </ul>
 <p>If you save the ODataClient.tt file, it will generate Odata proxies and classes. From PU12 onward, there are so many entities so you will get an error after compiling</p>
-<p>Combined length of user strings used by the program exceeds allowed limit. Try to decrease use of string literals.
-{:.error}</p>
+<p><code>Combined length of user strings used by the program exceeds allowed limit. Try to decrease use of string literals.</code></p>
 <p>There are 2 ways to fix it</p>
 <h3 id="a-using-temporary-file" class="headerLink"><a href="#a-using-temporary-file" class="header-mark"></a>a. Using temporary file</h3><p>The simplest way to fix is add TempFilePath, ensure that you have write permission for this path, this is what you got</p>
 <p>
@@ -266,43 +265,80 @@ You can build the project without problem.</p>
 <ul>
 <li>Original code:</li>
 </ul>
-<p>{% highlight csharp %}
-foreach (IEdmEntitySet entitySet in container.EntitySets())
-{
-IEdmEntityType entitySetElementType = entitySet.EntityType();
-string entitySetElementTypeName = GetElementTypeName(entitySetElementType, container);</p>
-<pre><code>string camelCaseEntitySetName = entitySet.Name;
-if (this.context.EnableNamingAlias)
-{
-    camelCaseEntitySetName = Customization.CustomizeNaming(camelCaseEntitySetName);
-}
-</code></pre>
-<p>}
-{% endhighlight %}</p>
-<ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="k">foreach</span> <span class="p">(</span><span class="n">IEdmEntitySet</span> <span class="n">entitySet</span> <span class="k">in</span> <span class="n">container</span><span class="p">.</span><span class="n">EntitySets</span><span class="p">())</span>
+<span class="p">{</span>
+    <span class="n">IEdmEntityType</span> <span class="n">entitySetElementType</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">EntityType</span><span class="p">();</span>
+    <span class="kt">string</span> <span class="n">entitySetElementTypeName</span> <span class="p">=</span> <span class="n">GetElementTypeName</span><span class="p">(</span><span class="n">entitySetElementType</span><span class="p">,</span> <span class="n">container</span><span class="p">);</span>
+
+    <span class="kt">string</span> <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">EnableNamingAlias</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">Customization</span><span class="p">.</span><span class="n">CustomizeNaming</span><span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>Modified code:</li>
 </ul>
-<p>{% highlight csharp %}
-foreach (IEdmEntitySet entitySet in container.EntitySets())
-{
-IEdmEntityType entitySetElementType = entitySet.EntityType();
-string entitySetElementTypeName = GetElementTypeName(entitySetElementType, container);</p>
-<pre><code>string camelCaseEntitySetName = entitySet.Name;
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="k">foreach</span> <span class="p">(</span><span class="n">IEdmEntitySet</span> <span class="n">entitySet</span> <span class="k">in</span> <span class="n">container</span><span class="p">.</span><span class="n">EntitySets</span><span class="p">())</span>
+<span class="p">{</span>
+    <span class="n">IEdmEntityType</span> <span class="n">entitySetElementType</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">EntityType</span><span class="p">();</span>
+    <span class="kt">string</span> <span class="n">entitySetElementTypeName</span> <span class="p">=</span> <span class="n">GetElementTypeName</span><span class="p">(</span><span class="n">entitySetElementType</span><span class="p">,</span> <span class="n">container</span><span class="p">);</span>
 
-//start of manual fix 
-//only process entity names that containin a specific string, to reduce the string size
-if (((camelCaseEntitySetName.Contains(&quot;CUST&quot;)) || (camelCaseEntitySetName.Contains(&quot;VEND&quot;))) || (camelCaseEntitySetName.Contains(&quot;SALES&quot;)))
-{
-  // emd of manual fix
-  if (this.context.EnableNamingAlias)
-  {
-      camelCaseEntitySetName = Customization.CustomizeNaming(camelCaseEntitySetName);
-  }
-}
-</code></pre>
-<p>}
-{% endhighlight %}</p>
-<h1 id="4-authentication-configuration" class="headerLink"><a href="#4-authentication-configuration" class="header-mark"></a>4. Authentication configuration</h1><p>Under AuthenticationUtility project, you need to modify ClientConfiguration.cs follow, you can get all related information for the first step.</p>
+    <span class="kt">string</span> <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
+
+    <span class="c1">//start of manual fix 
+</span><span class="c1"></span>    <span class="c1">//only process entity names that containin a specific string, to reduce the string size
+</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(((</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;CUST&#34;</span><span class="p">))</span> <span class="p">||</span> <span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;VEND&#34;</span><span class="p">)))</span> <span class="p">||</span> <span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;SALES&#34;</span><span class="p">)))</span>
+    <span class="p">{</span>
+      <span class="c1">// emd of manual fix
+</span><span class="c1"></span>      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">EnableNamingAlias</span><span class="p">)</span>
+      <span class="p">{</span>
+          <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">Customization</span><span class="p">.</span><span class="n">CustomizeNaming</span><span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="4-authentication-configuration" class="headerLink"><a href="#4-authentication-configuration" class="header-mark"></a>4. Authentication configuration</h1><p>Under AuthenticationUtility project, you need to modify ClientConfiguration.cs follow, you can get all related information for the first step.</p>
 <p>
 
 
@@ -316,8 +352,7 @@ if (((camelCaseEntitySetName.Contains(&quot;CUST&quot;)) || (camelCaseEntitySetN
     /></p>
 <p>From now, you can freely test the integrations under <strong>ODataConsoleApplication</strong> project.
 If you are testing with a custom data entity and you get this error</p>
-<p>System.ArgumentOutOfRangeException : Length cannot be less than zero.
-{:.error}</p>
+<p><code>System.ArgumentOutOfRangeException : Length cannot be less than zero.</code></p>
 <p>Please check this <a href="https://nuxulu.com/2019/12/17/Dynamics-365-finance-and-operations-ODATA-consuming-Length-cannot-be-less-than-zero.html" target="_blank" rel="noopener noreffer">post</a>.</p>
 <p>Thank you for reading.</p>
 </div><footer>
