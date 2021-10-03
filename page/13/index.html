@@ -135,95 +135,9 @@
                     </span><span class="meta-item post-author"><a href="https://nuxulu.com/about" title="Author" target="_blank" rel="noopener noreffer author" class="author"><span class="svg-icon icon-user"></span>Max Nguyen</a></span><span class="meta-item post-publish"><span class="svg-icon icon-clock"></span><time class="timeago" datetime="2015-02-04">February 4, 2015</time></span></div></div>
         </header>
 
-        <div class="article-text"><div class="content summary-content"><p>In this post let&rsquo;s explore creating XML using X++ code in Dynamics AX.</p>
-<p>The following example shows how to create and write data to an XML file by using the <code>XmlDocument</code>, <code>XmlElement</code>, and <code>XmlWriter</code> classes. It loops through all of the records in the <code>CarTable</code> and find all the fields in the table automatically by using the <code>DictTable</code> and <code>DictField</code> classes.</p>
-<p>{% highlight csharp %}
-static void WriteXml(Args _args)
-{</p>
-<pre><code>XmlDocument xmlDoc;
-XmlElement xmlRoot;
-XmlElement xmlField;
-XmlElement xmlRecord;
-XMLWriter xmlWriter;
-
-CarTable carTable;
-DictTable dTable = new DictTable(tablenum(CarTable));
-DictField dField;
-int i, fieldId;
-str value;
-; 
-
-#CarsXmlTags 
-
-// Create a new object of the XmlDocument class
-xmlDoc = XmlDocument::newBlank();
-
-// Create the root node
-xmlRoot = xmlDoc.createElement(#CarRootNode);
-
-// Loop through all the records in the carTable
-while select carTable
-{
-    // Create a XmlElement (record) to hold the
-    // contents of the current record.
-    xmlRecord = xmlDoc.createElement(#CarRecords);
-    // Loop through all the fields in the record
-
-    for (i=1; i&lt;=dTable.fieldCnt(); i++)
-    {
-        // Get the fieldId from the field-count
-        fieldId = dTable.fieldCnt2Id(i);
-        
-        // Find the DictField object that matches the fieldId
-        dField = dTable.fieldObject(fieldId);
-        
-        // Skip system fields
-        if (dField.isSystem())
-        continue;
-
-        // Create a new XmlElement (field) and
-        // have the name equal to the name of the
-        // dictField
-        xmlField = xmlDoc.createElement(dField.name());
-        
-        // Convert values to string. I have just added
-        // a couple of conversion as an example.
-        // Use tableName.(fieldId) instead of fieldname
-        // to get the content of the field.
-        switch (dField.baseType())
-        {
-            case Types::Int64 :
-                value = int642str(carTable.(fieldId));
-            break;
-            case Types::Integer :
-                value = int2str(carTable.(fieldId));
-            break;
-            default :
-                value = carTable.(fieldId);
-            break;
-        }
-
-        // Set the innerText of the XmlElement (field)
-        // to the value from the table
-        xmlField.innerText(value);
-         
-        // Append the field as a child node to the record
-        xmlRecord.appendChild(xmlField);
-    }
-     // Add the record as a child node to the root
-    xmlRoot.appendChild(xmlRecord);
-}
-// Add the root to the XmlDocument
-xmlDoc.appendChild(xmlRoot);
-// Create a new object of the XmlWriter class
-// in order to be able to write the xml to a file
-xmlWriter = XMLWriter::newFile(@&quot;c:tempcars.xml&quot;);
-// Write the content of the XmlDocument to the
-// file as specified by the XmlWriter
-xmlDoc.writeTo(xmlWriter);
-</code></pre>
-<p>}
-{% endhighlight %}</p></div></div>
+        <div class="article-text"><div class="content summary-content">In this post let&rsquo;s explore creating XML using X++ code in Dynamics AX.
+The following example shows how to create and write data to an XML file by using the XmlDocument, XmlElement, and XmlWriter classes. It loops through all of the records in the CarTable and find all the fields in the table automatically by using the DictTable and DictField classes.
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85  static void WriteXml(Args _args) { XmlDocument xmlDoc; XmlElement xmlRoot; XmlElement xmlField; XmlElement xmlRecord; XMLWriter xmlWriter; CarTable carTable; DictTable dTable = new DictTable(tablenum(CarTable)); DictField dField; int i, fieldId; str value; ; #CarsXmlTags // Create a new object of the XmlDocument class  xmlDoc = XmlDocument::newBlank(); // Create the root node  xmlRoot = xmlDoc.</div></div>
     </div>
 
     <div class="post-tags-summary-under-footer"><footer>
@@ -276,21 +190,8 @@ Layer and model information are integral parts of the store. The AOS has access 
                     </span><span class="meta-item post-author"><a href="https://nuxulu.com/about" title="Author" target="_blank" rel="noopener noreffer author" class="author"><span class="svg-icon icon-user"></span>Max Nguyen</a></span><span class="meta-item post-publish"><span class="svg-icon icon-clock"></span><time class="timeago" datetime="2013-01-01">January 1, 2013</time></span></div></div>
         </header>
 
-        <div class="article-text"><div class="content summary-content"><blockquote>
-<p>Understanding the internal architecture of Microsoft Dynamics AX 2012 can help you make decision when planning and developing a Microsoft Dynamics AX 2012 system. Here are some pointers on DAX 2012 architecture primarily for DAX 2012 architects &amp; solution developers. This topic provides a high-level overview of the system architecture of Microsoft Dynamics AX.</p>
-</blockquote>
-<h2 id="system-architecture" class="headerLink"><a href="#system-architecture" class="header-mark"></a>System architecture</h2><p>This diagram provides a high-level over of a Microsoft Dynamics AX 2012 system with all components installed, and describes how communications flow between the components.</p>
-<p>
-
-
-
-
-<img loading="lazy" decoding="async"
-         class="render-image"
-         src="/imagesposts/AXSystemArchitechture.gif"
-         alt="/imagesposts/AXSystemArchitechture.gif"
-         title="AXSystemArchitechture.gif"
-    /></p></div></div>
+        <div class="article-text"><div class="content summary-content">Understanding the internal architecture of Microsoft Dynamics AX 2012 can help you make decision when planning and developing a Microsoft Dynamics AX 2012 system. Here are some pointers on DAX 2012 architecture primarily for DAX 2012 architects &amp; solution developers. This topic provides a high-level overview of the system architecture of Microsoft Dynamics AX.
+ System architectureThis diagram provides a high-level over of a Microsoft Dynamics AX 2012 system with all components installed, and describes how communications flow between the components.</div></div>
     </div>
 
     <div class="post-tags-summary-under-footer"><footer>

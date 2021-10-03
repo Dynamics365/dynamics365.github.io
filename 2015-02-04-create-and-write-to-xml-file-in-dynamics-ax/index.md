@@ -4,7 +4,7 @@ In this post let's explore creating XML using X++ code in Dynamics AX.
 
 The following example shows how to create and write data to an XML file by using the `XmlDocument`, `XmlElement`, and `XmlWriter` classes. It loops through all of the records in the `CarTable` and find all the fields in the table automatically by using the `DictTable` and `DictField` classes.
 
-{% highlight csharp %}
+```C#
 static void WriteXml(Args _args)
 {
 
@@ -90,31 +90,29 @@ static void WriteXml(Args _args)
     // file as specified by the XmlWriter
     xmlDoc.writeTo(xmlWriter);
 }
-{% endhighlight %}
-<!--more-->
+```
+
 The file that is created looks like the one in the following screenshot(only first part of the file is shown):
 
 ![](/imagesposts/create-and-write-to-xml-file-in-dynamics-ax_1.png)
 
 As you can see, this file is based on a standard XML format with tags and values only. You can, however, use tag attributes as well. To put the values from the table into tag attributes instead of their own tags, simply change the following code snippet in the example above
 
-{% highlight csharp %}
-
+```C#
 // Set the innerText of the XmlElement (field)
 // to the value from the table
 xmlField.innerText(value);
 
 // Append the field as a child node to the record
 xmlRecord.appendChild(xmlField);
-
-{% endhighlight %}
+```
 
 With these lines:
 
-{% highlight csharp %}
+```C#
 // Add the attribute to the record
 xmlRecord.setAttribute(dField.name(), value);
-{% endhighlight %}
+```
 
 The file that is created now looks like the one in the following screenshot: 
 

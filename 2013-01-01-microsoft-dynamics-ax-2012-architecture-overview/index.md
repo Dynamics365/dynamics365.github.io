@@ -8,7 +8,7 @@
 This diagram provides a high-level over of a Microsoft Dynamics AX 2012 system with all components installed, and describes how communications flow between the components. 
 
 ![](/imagesposts/AXSystemArchitechture.gif)
-<!--more-->
+
 ### 1. Application Object Server (AOS) architecture
 
 This diagram describes the functionality within the AOS Windows service, and describes how communications flow within it.
