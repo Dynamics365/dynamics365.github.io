@@ -1,0 +1,92 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+    <channel>
+        <title>trick - Tag - Dynamics 365 &amp; Power Platform | nuxulu.com</title>
+        <link>https://nuxulu.com/tags/trick/</link>
+        <description>trick - Tag - Dynamics 365 &amp; Power Platform | nuxulu.com</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Mon, 02 Jan 2017 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/trick/" rel="self" type="application/rss+xml" /><item>
+    <title>Recalculate InventSum in Dynamics AX</title>
+    <link>https://nuxulu.com/2017-01-02-recalculate-inventsum/</link>
+    <pubDate>Mon, 02 Jan 2017 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2017-01-02-recalculate-inventsum/</guid>
+    <description><![CDATA[InventSum is needed to recalculate sometimes. We should use InventSumRecalcItem class in Dynamics AX.
+1 2 3 4 5  InventSumRecalcItem InventSumRecalcItem; ; InventSumRecalcItem = new InventSumRecalcItem(&#34;ITEM001&#34;, true, checkfix::fix); InventSumRecalcItem.updatenow();   First parameter : ItemId
+Second parameter : Show errors
+Third parameter : Fix or only check
+What if you want to calculate for all items:
+1 2 3 4 5 6 7 8 9  InventTable InventTable; InventSumRecalcItem InventSumRecalcItem; WHILE SELECT InventTable WHERE (InventTable.]]></description>
+</item><item>
+    <title>Using Methods in Table Filters &amp; Query Ranges in Dynamics AX 2012</title>
+    <link>https://nuxulu.com/2017-01-02-using-methods-in-table-filters-query-ranges-in-dynamics-ax-2012/</link>
+    <pubDate>Mon, 02 Jan 2017 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2017-01-02-using-methods-in-table-filters-query-ranges-in-dynamics-ax-2012/</guid>
+    <description><![CDATA[<p>In Dynamics AX, there is a class called <code>SysQueryRangeUtil</code> that can be utilized in both query ranges and table filters. Using methods from this class allow you to be very precise about what dates you want to use in reports or for filtering your data.</p>
+<p>Let’s say you have a report that you always want to run to see orders with shipping dates of the next day. It is possible to do so by using one of the methods from the <code>SysQueryRangeUtil</code>. The use of the letter <strong>&rsquo;t'</strong> will work for today’s date, but when you try to add days to it, it doesn’t work in reports. Instead, I will use the <code>currentdate()</code> method and add <code>1</code> to it.</p>
+<blockquote>
+<p>All methods &amp; expressions must be surrounded by parentheses as shown below.</p>
+</blockquote>
+<p></p>]]></description>
+</item><item>
+    <title>Copy data between Microsoft Dynamics AX companies using DIXF In AX 2012 R3</title>
+    <link>https://nuxulu.com/2016-11-23-copy-data-between-microsoft-dynamics-ax-companies-using-dixf-in-ax-2012-r3/</link>
+    <pubDate>Thu, 17 Nov 2016 09:11:11 &#43;0900</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2016-11-23-copy-data-between-microsoft-dynamics-ax-companies-using-dixf-in-ax-2012-r3/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Step by Step How to build SSRS Report - Advanced RDP Class</title>
+    <link>https://nuxulu.com/2016-11-23-step-by-step-how-to-build-ssrs-report-advanced-rdp-class/</link>
+    <pubDate>Thu, 17 Nov 2016 09:11:11 &#43;0900</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2016-11-23-step-by-step-how-to-build-ssrs-report-advanced-rdp-class/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Microsoft AX 2012 Test Data Transfer Tool</title>
+    <link>https://nuxulu.com/2016-11-08-microsoft_dyanmics_ax_2012_test_data_transfer_tool/</link>
+    <pubDate>Tue, 08 Nov 2016 18:47:00 &#43;0900</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2016-11-08-microsoft_dyanmics_ax_2012_test_data_transfer_tool/</guid>
+    <description><![CDATA[<h2 id="summary">SUMMARY</h2>
+<p>Tool can be used for two different purposes. One is to install <strong>demo data</strong> and other one is elaborated as below. Customers often need to have a production dataset to use when building and validating customizations in <strong>non-production</strong> environments.</p>
+<p><code>The Microsoft Dynamics AX 2012 Test Data Transfer Tool (beta)</code> is a tool that helps move data between from production to non-production environments or from non-production environments to production environments to make a new production environment. But you must be careful becasue the tool imports data table by table and deletes the data in the table before importing. Hence it is highly advised against running the tool for import in production environments.</p>]]></description>
+</item><item>
+    <title>Link Type and Join Types in ax 2012</title>
+    <link>https://nuxulu.com/2016-01-07-link-type-and-join-types-in-ax-2012/</link>
+    <pubDate>Thu, 07 Jan 2016 04:39:12 &#43;0700</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2016-01-07-link-type-and-join-types-in-ax-2012/</guid>
+    <description><![CDATA[<h1 id="link-type">Link Type:</h1>
+<p><strong>Active</strong>:
+<code>Parent and child</code> data source is updated immediately when a new record in the parent data source is selected. Continuous updates consume lots of resources consuming.</p>
+<p><strong>Delayed</strong>:
+<code>Parent and child</code> A pause is inserted before linked child data sources are updated. This enables faster navigation in the parent data source because the records from child data sources are not updated immediately.</p>
+<p>For example, you can scroll a list of orders where you do not want to review the lines associated with the order until you stop scrolling.</p>
+<p><strong>Passive</strong>: <code>Parent and child</code> Linked child data sources are not updated automatically. Updates of the child data source must be programmed on the <code>active()</code> method of the master data source.</p>
+<h1 id="join-types">Join Types:</h1>
+<p><strong>InnerJoin</strong> <code>Combined data source</code> select the record from the main table that matches records in the joined table and vice versa.</p>]]></description>
+</item><item>
+    <title>How to use operator &#34;or&#34; in QueryBuildRange</title>
+    <link>https://nuxulu.com/2015-12-30-how-to-use-operator-in-querybuildrange/</link>
+    <pubDate>Wed, 30 Dec 2015 04:23:09 &#43;0700</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2015-12-30-how-to-use-operator-in-querybuildrange/</guid>
+    <description><![CDATA[This blog post is show how to apply OR conditions in query build ranges in a simple way on same field in a table. Let&rsquo;s see the simple query :
+1  select*fromCustTablewhereAccountNum==&#39;2001&#39;||AccountNum==&#39;2002&#39;  We can find out solutions on MSDN by using expression in query ranges, but as it has lot of specifications which needs to be followed. However there is a simple way to do it :
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  static void Job12(Args _args) { CustTable cust; Query query = new Query(); QueryBuildDataSource qbds; QueryBuildRange queryRange1, queryRange2; ; qbds = query.]]></description>
+</item><item>
+    <title>How to install two instances SSRS on one server</title>
+    <link>https://nuxulu.com/2015-12-16-how-to-install-2-instances-ssrs-on-1-server/</link>
+    <pubDate>Wed, 16 Dec 2015 09:01:11 &#43;0700</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2015-12-16-how-to-install-2-instances-ssrs-on-1-server/</guid>
+    <description><![CDATA[<h2 id="scenario">Scenario:</h2>
+<p>I have 2 AOS AX (maybe same in one server or different servers), but only one server for reporting server (I will install and configure multiple SRS instances in this server). Thing is how can we install and configure 2 SSRS instances on same server and running for 2 AOS.</p>
+<p>easierly, please take a look the picture below</p>
+<p></p>
+<p><em><strong>Figure 1</strong>: Two SSRS instance are running same server.</em></p>
+<h2 id="problems">Problems:</h2>
+<p>First you need to install 2 SSRS instance in same server, and install <code>reporting service component</code> for first AOS, this step is very simple. The problems come when we install second <code>reporting service component</code> for second AOS.</p>
+<p>Reporting service component uses <strong>business connector</strong> to connect to AX, and it&rsquo;s saved on configuration in Registry. When we install second <code>reporting service component</code> it will through message that component already installed.</p>]]></description>
+</item><item>
+    <title>Caching form into AOS to increase performance for Dynamics AX</title>
+    <link>https://nuxulu.com/2015-11-17-caching-form-into-aos-to-increase-performance-for-dynamics-ax/</link>
+    <pubDate>Tue, 17 Nov 2015 03:13:45 &#43;0700</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2015-11-17-caching-form-into-aos-to-increase-performance-for-dynamics-ax/</guid>
+    <description><![CDATA[Scenario:
+Normally when we open form for the first time in Dynamics AX, it will take sometimes to compilte and cache into AOS. That&rsquo;s why at second time always faster. If we often restart AOS, how can we keep performance ?
+Solution:
+After restart AOS we can let some scripts run to open up some often used forms then cache to AOS, then close those forms.
+Here is the code]]></description>
+</item><item>
+    <title>DefaultValue ComboBox in Dynamics AX with X&#43;&#43;</title>
+    <link>https://nuxulu.com/2015-11-03-defaultvale-combobox-in-x/</link>
+    <pubDate>Fri, 13 Nov 2015 06:57:46 &#43;0700</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2015-11-03-defaultvale-combobox-in-x/</guid>
+    <description><![CDATA[Beside modify metadata on form properties, as best practice we can use code like below to assign default value for combobox.
+ You can use this code in the form&rsquo;s init method after super():  1  ComboBoxName.selection(ComboBoxName::DefaultValue);    If this is a table field we should you best practice overriding the initValue method in the table:  1  this.ComboBoxName = ComboBoxName::DefaultValue;    Override initValue in the form&rsquo;s datasource only if it should be a specific behaviour in this form only.]]></description>
+</item></channel>
+</rss>

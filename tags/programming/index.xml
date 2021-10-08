@@ -1,0 +1,280 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+    <channel>
+        <title>programming - Tag - Dynamics 365 &amp; Power Platform | nuxulu.com</title>
+        <link>https://nuxulu.com/tags/programming/</link>
+        <description>programming - Tag - Dynamics 365 &amp; Power Platform | nuxulu.com</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Thu, 19 Jan 2017 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/programming/" rel="self" type="application/rss+xml" /><item>
+    <title>Number sequence farmework overview in Dynamics AX 2012</title>
+    <link>https://nuxulu.com/2017-01-19-number-sequence-farmework-in-dynamics-ax-2012/</link>
+    <pubDate>Thu, 19 Jan 2017 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2017-01-19-number-sequence-farmework-in-dynamics-ax-2012/</guid>
+    <description><![CDATA[<figure class='center '>
+  <a href="/imagesposts/number-sequence-overview.png"></a>
+</figure>
+<p>For this demo, I will create New module along with NumberSequence, about creating Number Sequence <em>without</em> module you also use same steps just leave some steps base on Design picture above.</p>
+<h2 id="etd">ETD</h2>
+<p>Create ETD <code>ContosoId</code> extends <code>num</code> datatype.</p>
+<h2 id="table">Table</h2>
+<p>Create <code>Contoso</code> Table with <code>ContosoId</code> field.</p>
+<h2 id="enum">Enum</h2>
+<p>Create a new enum value <code>Contoso</code> in BaseEnum <code>NumberSeqModule</code>.</p>
+<p>This value will be used to link number sequence to the module and to restrict displayed number sequence by module in Form.</p>]]></description>
+</item><item>
+    <title>Recalculate InventSum in Dynamics AX</title>
+    <link>https://nuxulu.com/2017-01-02-recalculate-inventsum/</link>
+    <pubDate>Mon, 02 Jan 2017 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2017-01-02-recalculate-inventsum/</guid>
+    <description><![CDATA[InventSum is needed to recalculate sometimes. We should use InventSumRecalcItem class in Dynamics AX.
+1 2 3 4 5  InventSumRecalcItem InventSumRecalcItem; ; InventSumRecalcItem = new InventSumRecalcItem(&#34;ITEM001&#34;, true, checkfix::fix); InventSumRecalcItem.updatenow();   First parameter : ItemId
+Second parameter : Show errors
+Third parameter : Fix or only check
+What if you want to calculate for all items:
+1 2 3 4 5 6 7 8 9  InventTable InventTable; InventSumRecalcItem InventSumRecalcItem; WHILE SELECT InventTable WHERE (InventTable.]]></description>
+</item><item>
+    <title>Useful functions to use in AX 2012</title>
+    <link>https://nuxulu.com/2016-12-30-useful-functions-to-use-in-ax-2012/</link>
+    <pubDate>Fri, 30 Dec 2016 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2016-12-30-useful-functions-to-use-in-ax-2012/</guid>
+    <description><![CDATA[<p>Useful functions to use in AX 2012</p>]]></description>
+</item><item>
+    <title>Useful functions to use in AX 2012 part 2</title>
+    <link>https://nuxulu.com/2016-12-30-useful-functions-to-use-in-ax-2012-part2/</link>
+    <pubDate>Fri, 30 Dec 2016 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2016-12-30-useful-functions-to-use-in-ax-2012-part2/</guid>
+    <description><![CDATA[<p>Useful functions to use in AX 2012 part 2</p>]]></description>
+</item><item>
+    <title>CRUD Purchase Requisition using AIF in Dynamics AX 2012 R3</title>
+    <link>https://nuxulu.com/2016-12-29-crud-purchase-requisition-using-aif-in-dynamics-ax-2012-r3/</link>
+    <pubDate>Thu, 29 Dec 2016 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2016-12-29-crud-purchase-requisition-using-aif-in-dynamics-ax-2012-r3/</guid>
+    <description><![CDATA[<p>The workflow process moves purchase requisitions through the review process, from an initial status of <strong>Draft</strong> to a final status of <strong>Approved</strong>. When a purchase requisition is submitted for review, the workflow process is started. After a purchase requisition is approved, a purchase order can be generated for the purchase requisition lines and submitted to the vendor for order fulfillment.</p>
+<p>We will use AIF standard service for import PR from outside, service name <code>PurchReqImportService</code>.</p>
+<p>in <code>AxPurchReqTable</code> class and <code>setPurchReqId()</code> method</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">protected</span> <span class="k">void</span> <span class="n">setPurchReqId</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">NumberSequenceReference</span> <span class="n">numberSequenceReference</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isMethodExecuted</span><span class="p">(</span><span class="n">funcName</span><span class="p">()))</span>
+    <span class="p">{</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isFieldSetExternally</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span> <span class="n">PurchReqId</span><span class="p">)))</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isSetMethodsCalledFromSave</span><span class="p">())</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(!</span><span class="k">this</span><span class="p">.</span><span class="n">purchReqTable</span><span class="p">())</span>
+            <span class="p">{</span>
+                <span class="n">numberSequenceReference</span> <span class="p">=</span> <span class="n">PurchReqTable</span><span class="p">::</span><span class="n">numRefPurchReqId</span><span class="p">();</span>
+                <span class="k">this</span><span class="p">.</span><span class="n">checkNumber</span><span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">.</span><span class="n">numberSequenceTable</span><span class="p">(),</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span><span class="n">PurchReqId</span><span class="p">),</span><span class="k">this</span><span class="p">.</span><span class="n">parmPurchReqId</span><span class="p">());</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">.</span><span class="n">NumberSequenceId</span> <span class="p">&amp;&amp;</span> <span class="n">numberSequenceReference</span><span class="p">.</span><span class="n">numberSequenceTable</span><span class="p">().</span><span class="n">Continuous</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">NumberSeq</span><span class="p">::</span><span class="n">newReserveNum</span><span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">).</span><span class="n">reserve</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">parmPurchReqId</span><span class="p">());</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isFieldSet</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span> <span class="n">PurchReqId</span><span class="p">)))</span>
+        <span class="p">{</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(!</span><span class="k">this</span><span class="p">.</span><span class="n">parmPurchReqId</span><span class="p">())</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isSetMethodsCalledFromSave</span><span class="p">())</span>
+            <span class="p">{</span>
+                <span class="c1">//this.parmPurchReqId(NumberSeq::newGetNum(PurchParameters::numRefPurchReqId()).num());
+</span><span class="c1"></span>                <span class="n">numberSequenceReference</span> <span class="p">=</span> <span class="n">PurchReqTable</span><span class="p">::</span><span class="n">numRefPurchReqId</span><span class="p">();</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="k">this</span><span class="p">.</span><span class="n">setField</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span> <span class="n">PurchReqId</span><span class="p">),</span> <span class="n">NumberSeq</span><span class="p">::</span><span class="n">newGetNum</span><span class="p">(</span><span class="n">PurchParameters</span><span class="p">::</span><span class="n">numRefPurchReqId</span><span class="p">()).</span><span class="n">num</span><span class="p">());</span>
+                <span class="p">}</span>
+                <span class="k">else</span>
+                <span class="p">{</span>
+                    <span class="k">this</span><span class="p">.</span><span class="n">setField</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span> <span class="n">PurchReqId</span><span class="p">),</span> <span class="k">this</span><span class="p">.</span><span class="n">parmExternalSourceID</span><span class="p">());</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>Base on this method, you could know how System get PurchReqId.</p>]]></description>
+</item><item>
+    <title>CRUD Purchase order using AIF in Dynamics AX 2012 R3</title>
+    <link>https://nuxulu.com/2016-12-28-crud-purchase-order-using-aif-in-dynamics-ax-2012-r3/</link>
+    <pubDate>Wed, 28 Dec 2016 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2016-12-28-crud-purchase-order-using-aif-in-dynamics-ax-2012-r3/</guid>
+    <description><![CDATA[<p>Due to Purchase order doesn’t have Standard document service so we have to create new Document service for that using AIF wizards.</p>
+<p>I’m using AIF document service with <code>NETTCP</code> or <code>HTTP</code> Adapter to Create Purchase order service, here is steps</p>
+<h2 id="create-query">Create Query</h2>
+<p>with three <strong>datasouce</strong> (<code>PurchTable, PurchLine, InventDim</code>) likes below</p>
+<p></p>
+<blockquote>
+<p>As best practice for Document service, name of query should be start with Axd* prefix.</p>
+</blockquote>
+<h2 id="using-aif-wizards">Using AIF Wizards</h2>
+<p>In AX development environment, go to <em>Tools &gt; Wizards &gt; AIF document service wizards</em></p>
+<p></p>
+<p>Choose recent created query and click <strong>next</strong>.</p>
+<h2 id="create-service-operation-and-axbc-class">Create Service operation and <code>AxBC class</code></h2>
+<p></p>
+<p>Click <code>next</code> and then <code>Generate</code>.</p>]]></description>
+</item><item>
+    <title>Insert, update, Delete order line through AIF In AX 2012 R3</title>
+    <link>https://nuxulu.com/2016-12-28-insert-update-delete-order-line-through-aif-in-ax-2012-r3/</link>
+    <pubDate>Wed, 28 Dec 2016 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2016-12-28-insert-update-delete-order-line-through-aif-in-ax-2012-r3/</guid>
+    <description><![CDATA[<p>In previous <a href="https://dynamics365.github.io/ax2012/integration/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3/" target="_blank" rel="noopener noreferrer">post</a>, I already show how to create purchase order through AIF with <code>NETTCP</code> or <code>HTTP adapter</code>. In this post, we will get little deep more about action on line of order.</p>
+<p>The following code sample shows how to <code>insert</code>, <code>update</code>, <code>delete</code> a line of an existing purchase order through AIF, currently I’m using C#.NET console project for demo.</p>
+<p>As Partial update, we must include just the fields to change and any fields required by the document (you can check <code>Data policies</code> in AIF Service ports form for that).</p>
+<p>Also, notice how action properties are specified – no matter we do with the line, which means updating the order.</p>
+<p>I’m giving you an idea how it looks like, here is the code</p>
+<p><code>The first method will handle the key of AIF Service</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">private</span> <span class="k">static</span> <span class="n">EntityKey</span><span class="p">[]</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="kt">string</span> <span class="n">purchId</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">KeyField</span> <span class="n">field</span> <span class="p">=</span> <span class="k">new</span> <span class="n">KeyField</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">Field</span> <span class="p">=</span> <span class="s">&#34;PurchId&#34;</span><span class="p">,</span>
+		<span class="n">Value</span> <span class="p">=</span> <span class="n">purchId</span>
+	<span class="p">};</span>
+
+	<span class="n">EntityKey</span> <span class="n">key</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EntityKey</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">KeyData</span> <span class="p">=</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">field</span> <span class="p">}</span>
+	<span class="p">};</span>
+
+	<span class="k">return</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">key</span> <span class="p">};</span>
+<span class="p">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div>]]></description>
+</item><item>
+    <title>CRUD Items, products, products master dimension, variants using AIF in Dynamics AX 2012 R3</title>
+    <link>https://nuxulu.com/2016-12-27-crud-items-products-products-master-dimension-variants-using-aif-in-dynamics-ax-2012-r3/</link>
+    <pubDate>Tue, 27 Dec 2016 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2016-12-27-crud-items-products-products-master-dimension-variants-using-aif-in-dynamics-ax-2012-r3/</guid>
+    <description><![CDATA[<h2 id="scenarios">Scenarios:</h2>
+<p>I’m trying to create <strong>product/master product</strong> in Dynamics AX using AIF inbound port, the AIF services consume by C#.NET.</p>
+<p>From AX 2012 R2, Item is replaced with Product. Item master was in Inventory Management Module, now there is a separate module for item/product creation <code>Product information Management</code>.</p>
+<p>Some definitions you should know
+There are two types of Products in 2012 they are:</p>
+<ol>
+<li>
+<p><strong>Product</strong></p>
+<p><em>Product information management/Common/Products/Products</em></p>
+</li>
+<li>
+<p><strong>Product Master</strong></p>
+<p><em>Product information management/Common/Products/Products master</em></p>
+<p>a. <strong>Variants:</strong></p>
+</li>
+</ol>
+<p>To create a product variant, you must define at least one product dimension for a product master. You can also rename dimensions.
+To create product variants, you must complete the following tasks:</p>
+<ul>
+<li>
+<p>Set up dimensions, such as size, color, and style.</p>
+</li>
+<li>
+<p>Set up variant groups.</p>
+</li>
+<li>
+<p>Assign variant groups to a retail hierarchy.</p>
+</li>
+<li>
+<p>Create a product master and variants.</p>
+</li>
+</ul>]]></description>
+</item><item>
+    <title>The Type system of Dynamics AX 2012</title>
+    <link>https://nuxulu.com/2016-11-25-the-type-system-of-dynamics-ax-2012/</link>
+    <pubDate>Thu, 24 Nov 2016 08:22:39 &#43;0700</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2016-11-25-the-type-system-of-dynamics-ax-2012/</guid>
+    <description><![CDATA[<p>The Microsoft Dynamics AX runtime manages the storage of <em>value type</em> data on the <strong>call stack</strong> and <em>reference type objects</em> on the <strong>memory heap</strong>.</p>
+<p><strong>The call stack</strong> is the memory structure that holds data about the active methods called during program execution. <strong>The memory heap</strong> is the memory area that allocates storage for objects that are destroyed automatically by the Microsoft Dynamics AX run-time.</p>
+<h2 id="value-types">Value types</h2>
+<p>Value types include the built-in <code>primitive types, extended data types, enumeration types, and built-in collection types</code>.</p>
+<ul>
+<li><strong>The primitive types</strong> are boolean, int, int64, real, date, utcDateTime, timeofday, str, and guid.</li>
+<li><strong>The extended data types</strong> are specialized primitive types and specialized base enumerations.</li>
+<li><strong>The enumeration types</strong> are base enumerations and extended data types.</li>
+<li><strong>The collection types</strong> are the built-in array and container types.</li>
+</ul>]]></description>
+</item><item>
+    <title>Evolution of programming languages</title>
+    <link>https://nuxulu.com/2016-09-06-evolution-of-programming-languages/</link>
+    <pubDate>Tue, 06 Sep 2016 18:47:00 &#43;0900</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2016-09-06-evolution-of-programming-languages/</guid>
+    <description><![CDATA[]]></description>
+</item></channel>
+</rss>

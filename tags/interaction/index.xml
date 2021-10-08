@@ -1,0 +1,30 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+    <channel>
+        <title>Interaction - Tag - Dynamics 365 &amp; Power Platform | nuxulu.com</title>
+        <link>https://nuxulu.com/tags/interaction/</link>
+        <description>Interaction - Tag - Dynamics 365 &amp; Power Platform | nuxulu.com</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Wed, 01 Jul 2015 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/interaction/" rel="self" type="application/rss+xml" /><item>
+    <title>List Page Interaction Class</title>
+    <link>https://nuxulu.com/2015-06-09-list-page-interaction-class/</link>
+    <pubDate>Wed, 01 Jul 2015 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2015-06-09-list-page-interaction-class/</guid>
+    <description><![CDATA[<p>Form interaction classes that allow user interface control logic to be shared across forms. For instance, controlling which buttons are available to a list page and the associated detail form.</p>
+<p>The interaction classes are extending a base ListPageInteraction class. This has some methods supported by the kernel to interact e.g. with initializations of the list page form. Other classes can be build stand alone to execute e.g. a batch process or represent a web service or posting classes.</p>
+<p>Form interaction classes are not mandatory for list pages but should be used on data entry forms that require logic. This ensures consistency and allows easier maintenance of logic.</p>
+<p>This class inherits <code>from SysListPageInteractionBase</code>, here is some methods we need to know</p>
+<ul>
+<li>
+<p><strong>initializing</strong>: Called when the form is initializing – Similar to the form init method</p>
+</li>
+<li>
+<p><strong>intializeQuery</strong>: Also called when the form is initializing – Similar to the datasource init method.</p>
+</li>
+<li>
+<p><strong>selectionChanged</strong>: Called when the active record changes – Similar to the datasource active method.</p>
+</li>
+<li>
+<p><strong>setButtonEnabled</strong>: Should be overridden to dynamically enable/disable buttons based on the current selection. This is called from the selectionChanged method.</p>
+</li>
+</ul>]]></description>
+</item></channel>
+</rss>
