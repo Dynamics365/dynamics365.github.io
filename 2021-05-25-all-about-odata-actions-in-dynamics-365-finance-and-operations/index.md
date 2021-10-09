@@ -53,7 +53,7 @@ public class AutomationDataEntity extends common
 
 In this example, the ```SysODataActionAttribute``` class decorates the ```assginUserToCompany``` method that is exposed as an action. The first argument of the attribute is the publicly exposed name of the action, and the second argument indicates whether this action need an entity instance or not. If you set the second argument to *false*, the method has to be `static`.
 
->You might need reset IIS service to update Odata endpoint.
+> You might need reset IIS service to update Odata endpoint.
 
 # 2. Test Entity Odata actions with Postman and Power Automate
 
@@ -67,6 +67,7 @@ Specify Odata endpoint request with POST method into Postman application
 ```markdown
 [finopsURL]/data/AutomationDatas/Microsoft.Dynamics.DataEntities.assignUserToCompany
 ```
+
 [finopsURL] = https://[yourenvironment].cloudax.dynamics.com
 
 Here is the Json file contains the parameters for ```assignUserToCompany``` method
@@ -77,6 +78,7 @@ Here is the Json file contains the parameters for ```assignUserToCompany``` meth
     "_company":"USMF"
 }
 ```
+
 Click **Send** and you will get your logic executed.
 
 ![Image](2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations_1.png "all-about-odata-actions-in-dynamics-365-finance-and-operations")
@@ -88,6 +90,7 @@ Everything should be remain the same, you just need to change the method to `Ret
 ```markdown
 [finopsURL]/data/AutomationDatas/Microsoft.Dynamics.DataEntities.ReturnRental
 ```
+
 Click **Send** and you will get an error
 
 ```json
@@ -96,7 +99,7 @@ Click **Send** and you will get an error
 }
 ```
 
-The reason is that you set the second argument to `true`, that means you need an instance for `AutomationDatas` entity before you can use `ReturnRental` method. 
+The reason is that you set the second argument to `true`, that means you need an instance for `AutomationDatas` entity before you can use `ReturnRental` method.
 My entity created based on `CustGroup` table, so to get an instance I need `DataAreaId` and `CustGroupID`. The correct endpoint should be
 
 ```markdown
@@ -149,7 +152,7 @@ SysODataCollectionAttribute("InventSiteIdList", Types::String),
 SysODataCollectionAttribute("return", Types::String)]
 public static str GetColorsByAvailability(List InventSiteIdList)
 {
-    str	strCommaSeperated;
+    str strCommaSeperated;
     List list = new List(Types::String);
     ListEnumerator  ListEnumerator;
     ListEnumerator = InventSiteIdList.getEnumerator();
