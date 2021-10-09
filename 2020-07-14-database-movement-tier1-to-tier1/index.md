@@ -18,5 +18,3 @@ alter database AxDB_Orig SET MULTI_USER
 alter database AxDB_Gold Modify name = AxDB
 select * from [USERINFO] 
 ```
-
-

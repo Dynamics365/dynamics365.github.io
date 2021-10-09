@@ -72,7 +72,7 @@ system wide ignore pattern for all local repositories
 
 ## 5. Synchronize changes
 
-Synchronize your local repository with the remote repository on GitHub.com
+> Synchronize your local repository with the remote repository on GitHub.com
 
 `$ git fetch`
 
@@ -92,15 +92,13 @@ Updates your current local working branch with all new commits from the correspo
 
 ## 6. Make changes
 
-Show modified files in working directory, staged for your next commit
-
 `git status`
 
-Browse and inspect the evolution of project files
+Show modified files in working directory, staged for your next commit
 
 `$ git log`
 
-Lists version history for the current branch
+Browse and inspect the evolution of project files
 
 `$ git log --follow [file]`
 
@@ -108,11 +106,11 @@ Lists version history for a file, beyond renames (works only for a single file)
 
 `$ git diff [first-branch]...[second-branch]`
 
-Diff of what is staged but not yet committed
+Shows content differences between two branches
 
 `git diff --staged`
 
-Shows content differences between two branches
+Diff of what is staged but not yet committed
 
 `$ git show [commit]`
 
@@ -132,21 +130,21 @@ Records file snapshots permanently in version history
 Temporarily store modified, tracked files in order to change branches
 {{< /admonition >}}
 
-Save modified and staged changes
-
 `git stash`
 
-List stack-order of stashed file changes
+Save modified and staged changes
 
 `git stash list`
 
-Write working from top of stash stack
+List stack-order of stashed file changes
 
 `git stash pop`
 
-Discard the changes from top of stash stack
+Write working from top of stash stack
 
 `git stash drop`
+
+Discard the changes from top of stash stack
 
 ## 8. Redo commits
 
@@ -164,21 +162,21 @@ Discards all history and changes back to the specified commit
 
 ## 9. Search
 
-A text search on all files in the directory:
-
 `$ git grep "hello"`
 
-In any version of a text search:
+A text search on all files in the directory
 
 `$ git grep "hello" v2.5`
 
-Show commits that introduced a specific keyword
+In any version of a text search:
 
 `$ git log -s 'keyword'`
 
-Show commits that introduced a specific keyword (using a regular expression)
+Show commits that introduced a specific keyword
 
 `$ git log -S 'keyword' --pickaxe-regex`
+
+Show commits that introduced a specific keyword (using a regular expression)
 
 ## 9. Github flow
 
@@ -188,12 +186,13 @@ Show commits that introduced a specific keyword (using a regular expression)
 
 ## 10. Glossary
 
--   **git**: an open source, distributed version-control system
--   **GitHub**: a platform for hosting and collaborating on Git repositories
--   **commit**: a Git object, a snapshot of your entire repository compressed into a SHA
--   **branch**: a lightweight movable pointer to a commit
--   **clone**: a local version of a repository, including all commits and branches
--   **remote**: a common repository on GitHub that all team members use to exchange their changes
--   **fork**: a copy of a repository on GitHub owned by a different user
--   **pull request**: a place to compare and discuss the differences introduced on a branch with reviews, comments, integrated tests, and more
--   **HEAD**: representing your current working directory, the HEAD pointer can be moved to different branches, tags, or commits when using `git switch`
+- **git**: an open source, distributed version-control system
+- **GitHub**: a platform for hosting and collaborating on Git repositories
+- **commit**: a Git object, a snapshot of your entire repository compressed into a SHA
+- **branch**: a lightweight movable pointer to a commit
+- **clone**: a local version of a repository, including all commits and branches
+- **remote**: a common repository on GitHub that all team members use to exchange their changes
+- **fork**: a copy of a repository on GitHub owned by a different user
+- **pull request**: a place to compare and discuss the differences introduced on a branch with reviews, comments, integrated tests, and more
+- **HEAD**: representing your current working directory, the HEAD pointer can be moved to different branches, tags, or commits when using `git switch`
+

@@ -1,4 +1,4 @@
-# Create Purchase Orders - Confirm - Product receipt - Post PO using X++ - FinOps
+# Create Purchase Orders - Confirm - Product receipt - Post using X++ in Dynamics 365 Finance & Operations
 
 
 > The script will work for Dynamics 365 Finance & Operations version

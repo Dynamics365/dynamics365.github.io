@@ -44,7 +44,7 @@
 
     ```AzureStorageEmulator.exe start```
 
-    > If you got an error **_Port conflict with existing application_**, please check this [post](https://nuxulu.com/2020/04/05/Azure-Storage-Emulator-Port-conflict-with-existing-application.html).
+    > If you got an error **_Port conflict with existing application_**, please check this [post](../2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/).
 
   * This command verifies that the emulator is running.
 
