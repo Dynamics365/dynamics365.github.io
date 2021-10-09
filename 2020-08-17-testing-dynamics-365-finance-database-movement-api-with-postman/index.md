@@ -30,7 +30,7 @@ projectId: {Your LCS Project ID}
 bearerToken: {this will be populated when authentication}
 ```
 
-![Postman environment setup](Testing-Dynamics-365-Finance-Database-Movement-API-with-Postman_1.png "Postman environment setup")
+![Postman environment setup](testing-dynamics-365-finance-database-movement-api-with-postman_1.png "Postman environment setup")
 
 ## 2. Authentication with Postman
 
@@ -38,11 +38,11 @@ You get the authentication bearer with **POST** method and https://login.microso
 
 In the request Body, please do following:
 
-![Authentication with Postman](Testing-Dynamics-365-Finance-Database-Movement-API-with-Postman_2.png "Authentication with Postman")
+![Authentication with Postman](testing-dynamics-365-finance-database-movement-api-with-postman_2.png "Authentication with Postman")
 
 Click **Send**, and you will have access token to start using the API.
 
-![token](Testing-Dynamics-365-Finance-Database-Movement-API-with-Postman_3.png "token")
+![token](testing-dynamics-365-finance-database-movement-api-with-postman_3.png "token")
 
 ## 3. Cosnume the APIs with Postman
 
@@ -54,7 +54,7 @@ x-ms-version:'2017-09-15'
 Content-Type:application/json
 ```
 
-![Cosnume](Testing-Dynamics-365-Finance-Database-Movement-API-with-Postman_4.png "Cosnume")
+![Cosnume](testing-dynamics-365-finance-database-movement-api-with-postman_4.png "Cosnume")
 
 ### 3.1. List database backups
 
