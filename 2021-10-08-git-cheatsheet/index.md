@@ -1,9 +1,9 @@
 # Git & Github cheatsheet
 
 
-## Install
+## 1. Install
 
-Configure user information for all local repositories
+>Configure user information for all local repositories
 
 `$ git config --global user.name "[name]"`
 
@@ -17,11 +17,11 @@ Sets the email you want attached to your commit transactions
 
 Enables helpful colorization of command line output
 
-## Branches
+## 2. Branches
 
-![Image](/imagesposts/braching.png)
+![braching](/imagesposts/braching.png "Branching")
 
-Branches are an important part of working with Git. Any commits you make will be made on the branch you’re currently “checked out” to. Use `git status` to see which branch that is.
+>Branches are an important part of working with Git. Any commits you make will be made on the branch you’re currently “checked out” to. Use `git status` to see which branch that is.
 
 `$ git branch [branch-name]`
 
@@ -39,9 +39,9 @@ Combines the specified branch’s history into the current branch. This is usual
 
 Deletes the specified branch
 
-## Create repositories
+## 3. Create repositories
 
-A new repository can either be created locally, or an existing repository can be cloned. When a repository was initialized locally, you have to push it to GitHub afterwards.
+>A new repository can either be created locally, or an existing repository can be cloned. When a repository was initialized locally, you have to push it to GitHub afterwards.
 
 `$ git init`
 
@@ -55,11 +55,22 @@ Specifies the remote repository for your local repository. The url points to a r
 
 Clone (download) a repository that already exists on GitHub, including all of the files, branches, and commits
 
-## The .gitignore file
+## 4. The .gitignore file
 
 Sometimes it may be a good idea to exclude files from being tracked with Git. This is typically done in a special file named `.gitignore`. You can find helpful templates for `.gitignore` files at [github.com/github/gitignore](https://github.com/github/gitignore).
 
-## Synchronize changes
+`logs/
+*.notes
+pattern*/`
+
+Save a file with desired patterns as .gitignore with either direct string
+matches or wildcard globs.
+
+`git config --global core.excludesfile [file]`
+
+system wide ignore pattern for all local repositories
+
+## 5. Synchronize changes
 
 Synchronize your local repository with the remote repository on GitHub.com
 
@@ -79,7 +90,11 @@ Uploads all local branch commits to GitHub
 
 Updates your current local working branch with all new commits from the corresponding remote branch on GitHub. `git pull` is a combination of `git fetch` and `git merge`
 
-## Make changes
+## 6. Make changes
+
+Show modified files in working directory, staged for your next commit
+
+`git status`
 
 Browse and inspect the evolution of project files
 
@@ -92,6 +107,10 @@ Lists version history for the current branch
 Lists version history for a file, beyond renames (works only for a single file)
 
 `$ git diff [first-branch]...[second-branch]`
+
+Diff of what is staged but not yet committed
+
+`git diff --staged`
 
 Shows content differences between two branches
 
@@ -107,7 +126,29 @@ Snapshots the file in preparation for versioning
 
 Records file snapshots permanently in version history
 
-## Redo commits
+## 7. Temporary commits
+
+{{< admonition tip >}}
+Temporarily store modified, tracked files in order to change branches
+{{< /admonition >}}
+
+Save modified and staged changes
+
+`git stash`
+
+List stack-order of stashed file changes
+
+`git stash list`
+
+Write working from top of stash stack
+
+`git stash pop`
+
+Discard the changes from top of stash stack
+
+`git stash drop`
+
+## 8. Redo commits
 
 Erase mistakes and craft replacement history
 
@@ -121,7 +162,31 @@ Discards all history and changes back to the specified commit
 
 > CAUTION! Changing history can have nasty side effects. If you need to change commits that exist on GitHub (the remote), proceed with caution. If you need help, reach out at [github.community](https://github.community/) or contact support.
 
-## Glossary
+## 9. Search
+
+A text search on all files in the directory:
+
+`$ git grep "hello"`
+
+In any version of a text search:
+
+`$ git grep "hello" v2.5`
+
+Show commits that introduced a specific keyword
+
+`$ git log -s 'keyword'`
+
+Show commits that introduced a specific keyword (using a regular expression)
+
+`$ git log -S 'keyword' --pickaxe-regex`
+
+## 9. Github flow
+
+![Git flow](Github-flow.png "Git flow")
+
+![The zoo of working areas](The-zoo-of-working-areas.png "The zoo of working areas")
+
+## 10. Glossary
 
 -   **git**: an open source, distributed version-control system
 -   **GitHub**: a platform for hosting and collaborating on Git repositories

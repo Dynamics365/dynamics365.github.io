@@ -1,17 +1,22 @@
-# Office client customization with add-ins
+# Extend Microsoft 365 with office add-ins
 
 
-# 1. Introduction to Office client customization with add-ins
+{{< admonition >}}
+Introduction to Office client customization with add-ins
 
 - Explain how Office add-ins extend and customize Office applications
 - Describe the development tooling, APIs, and deployment of Office add-ins
 - Understand how to incorporate data with Microsoft Graph and extend Office applications with add-ins using the Office UI Fabric
 
-# 2. Understand Office add-ins fundamentals
+{{< /admonition >}}
 
-## 2.1. Understand task pane and content add-ins
+<!--more-->
 
-### 2.1.1. Task pane add-ins
+# 1. Understand Office add-ins fundamentals
+
+## 1.1. Understand task pane and content add-ins
+
+### 1.1.1. Task pane add-ins
 
 Task pane add-ins allow user interaction through a panel displayed within an Office application. Through the task pane interface, you can enable the user to modify documents or emails, view data from a data source, and more. In the following image, the task pane is the panel that's displayed to the right of the document.
 
@@ -41,7 +46,7 @@ To configure an add-in for **Outlook**, set the ```xsi:type``` attribute to ```M
 </OfficeApp>
 ```
 
-### 2.1.2. Content add-ins
+### 1.1.2. Content add-ins
 
 Content add-ins can be used to insert an object into an Excel spreadsheet or PowerPoint presentation. That object can be a web-based data visualization, media, or other external content. In the following image, the content add-in is displayed near the center of the document.
 
@@ -57,7 +62,7 @@ To configure an add-in as a **content add-in**, set the ```xsi:type``` attribute
 </OfficeApp>
 ```
 
-## 2.2. Understand Office add-ins dialogs
+## 1.2. Understand Office add-ins dialogs
 
 - Sign into an integrated service (for example, authenticate with Microsoft Account, Google, or Facebook).
 - Confirm the user's action.
@@ -65,7 +70,7 @@ To configure an add-in as a **content add-in**, set the ```xsi:type``` attribute
 
 ![Dialog displayed in an Office application](https://docs.microsoft.com/en-us/learn/m365-developer/intro-office-add-ins/media/02-overview-with-app-dialog.png)
 
-## 2.3. Understand Office add-ins custom functions
+## 1.3. Understand Office add-ins custom functions
 
 Office add-ins enable you to create custom JavaScript or TypeScript functions that can be accessed like built-in Excel functions such as ```SUM()```.
 
@@ -85,7 +90,7 @@ function sphereVolume(radius) {
   return Math.pow(radius, 3) * 4 * Math.PI / 3;
 }
 ```
-### 2.3.1. Where can you use custom functions?
+### 1.3.1. Where can you use custom functions?
 
 Custom functions are available in Excel on the following platforms.
 
@@ -93,7 +98,7 @@ Custom functions are available in Excel on the following platforms.
 - Mac (connected to an Office 365 subscription)
 - Web browser
 
-### 2.3.2. Define the custom function add-in type
+### 1.3.2. Define the custom function add-in type
 
 To configure an add-in to contain custom functions, the key settings in the manifest are as follows for Excel add-ins.
 
@@ -121,11 +126,11 @@ To configure an add-in to contain custom functions, the key settings in the mani
 </OfficeApp>
 ```
 
-## 2.4. Understand add-in commands
+## 1.4. Understand add-in commands
 
 Add-in commands are UI elements that extend the Office UI and start actions in your add-in (button on the ribbon or an item to a context menu).
 
-### 2.4.1. Add-in commands in Excel, Word, PowerPoint, and OneNote
+### 1.4.1. Add-in commands in Excel, Word, PowerPoint, and OneNote
 
 You can configure an add-in so that a user can run it by selecting:
 
@@ -142,7 +147,7 @@ The following image shows three add-in commands (custom buttons) added to the **
 
 ![Add-in commands in Excel on Windows](https://docs.microsoft.com/en-us/learn/m365-developer/intro-office-add-ins/media/02-add-in-commands.png)
 
-### 2.4.2. Add-in commands in Outlook
+### 1.4.2. Add-in commands in Outlook
 
 You can configure an add-in so that a user can run it by selecting a button in the Office ribbon or command overflow menu when the user is:
 
@@ -159,7 +164,7 @@ The following images show three add-in commands (custom buttons) added to the **
 
 ![Add-in commands in Outlook on Windows](https://docs.microsoft.com/en-us/learn/m365-developer/intro-office-add-ins/media/02-commands-normal-collapsed.png)
 
-### 2.4.3. Where can you use add-in commands?
+### 1.4.3. Where can you use add-in commands?
 
 Add-in commands are available in Excel, Outlook, OneNote, PowerPoint, and Word as shown in the following table.
 
@@ -177,11 +182,11 @@ Add-in commands are available in Excel, Outlook, OneNote, PowerPoint, and Word a
 | web browser | Not applicable       | Not applicable                       | Available in all supported Office applications                                                                                                                |
     
 
-## 2.5. Understand the purpose of the add-in manifest
+## 1.5. Understand the purpose of the add-in manifest
 
 An Office add-in's XML manifest file defines the settings and capabilities of the add-in. You can configure it to control how your add-in is rendered and behaves in the targeted Office applications.
 
-### 2.5.1. What the manifest defines
+### 1.5.1. What the manifest defines
 
 - Add-in metadata (for example, ID, version, description, display name, default locale)
 - Information about how the add-in integrates with Office (for example, target applications, custom functionality, add-in commands)
@@ -190,7 +195,7 @@ An Office add-in's XML manifest file defines the settings and capabilities of th
 - Dimensions of the add-in (for example, default dimensions for content add-ins, requested height for Outlook add-ins)
 - Rules that specify when the add-in should activate in a message or appointment (Outlook only)
 
-### 2.5.2. How the manifest is used
+### 1.5.2. How the manifest is used
 
 - The Office applications where your add-in runs use information from the manifest to render add-in UI and wire up custom buttons or menu entries.
 - If you publish your add-in to AppSource:
@@ -199,11 +204,11 @@ An Office add-in's XML manifest file defines the settings and capabilities of th
 
 
 
-# 3. Understand Office JavaScript APIs
+# 2. Understand Office JavaScript APIs
 
 In this unit, you'll explore the Office add-ins programming model, developer tools, and the capabilities of the Office JavaScript APIs for Excel, Outlook, and Word.
 
-## 3.1. Understand the Office add-ins programming model
+## 2.1. Understand the Office add-ins programming model
 
 The Office add-in programming model relies on two JavaScript object models:
 
@@ -215,7 +220,7 @@ The Office add-in programming model relies on two JavaScript object models:
 
 Custom functions use a slightly different programming model and will be covered in a later unit.
 
-### 3.1.1. Office JavaScript API requirement sets
+### 2.1.1. Office JavaScript API requirement sets
 
 Depending on the version of Office and platform it runs on, there are different APIs and features supported for your add-in. For example, Office 2016 supports more capabilities than Office 2013. To handle this situation, we provide requirement sets to help you determine whether an Office host supports the capabilities you need in your Office add-in.
 
@@ -229,7 +234,7 @@ if (Office.context.requirements.isSetSupported(RequirementSetName, MinimumVersio
 }
 ```
 
-### 3.1.2. Using Office JavaScript APIs
+### 2.1.2. Using Office JavaScript APIs
 
 To use these APIs, reference them on the Office.js content delivery network (CDN), typically by adding one of the following code statements to your page's ```<head>``` tag.
 
@@ -251,7 +256,7 @@ Office.onReady(function() {
 });
 ```
 
-### 3.1.3. Making asynchronous calls using proxy objects
+### 2.1.3. Making asynchronous calls using proxy objects
 
 When you work with a document, requested read or write actions are batched up using a proxy object. Your API calls don't actually read or update the underlying document until you call the ```sync()``` method.
 
@@ -277,14 +282,14 @@ Excel.run(function (context) {
 });
 ```
 
-## 3.2. Understand Office add-ins developer tools
+## 2.2. Understand Office add-ins developer tools
 
 - Yeoman generator for Office add-ins
 - Visual Studio
 - Script Lab
 - Manifest validator
 
-### 3.2.1. Yeoman generator for Office add-ins
+### 2.2.1. Yeoman generator for Office add-ins
 You can create an Office add-in by using the Yeoman generator for Office add-ins or Visual Studio. The Yeoman generator for Office add-ins can be used to create a Node.js Office add-in project that can be managed with Visual Studio Code or any other editor.
 You can choose to create the project using HTML, CSS, and JavaScript, or using Angular or React. TypeScript is also an option.
 
@@ -298,16 +303,16 @@ To create an Office add-in project with the Yeoman generator, complete the follo
 
 ```yo office```
 
-### 3.2.2. Visual Studio
+### 2.2.2. Visual Studio
 Visual Studio can be used to create Office add-ins for Excel, Word, PowerPoint, or Outlook. An Office add-in project gets created as part of a Visual Studio solution, which means you can use Visual Studio features like selecting Start or choosing F5 to automatically run your add-in locally on IIS. Office add-in projects that you create with Visual Studio use HTML, CSS, and JavaScript.
 
-### 3.2.3. Explore the APIs using Script Lab
+### 2.2.3. Explore the APIs using Script Lab
 
 Script Lab is an add-in that enables you to run Office JavaScript snippets while you're working in an Office program such as Excel or Word. It's available for free via AppSource. In Script Lab, you can access a library of built-in samples to quickly try out APIs or even use a sample as the starting point for your own code.
 
 [![Script Lab.](https://docs.microsoft.com/en-us/learn/m365-developer/intro-office-add-ins/media/03-screenshot-wide-youtube.png)](https://aka.ms/scriptlabvideo)
 
-### 3.2.4. Validating an Office add-in's manifest file
+### 2.2.4. Validating an Office add-in's manifest file
 
 The Office add-ins manifest validator examines your add-in's manifest file to determine if it's correct and complete. If you created your add-in project using the Yeoman generator for Office add-ins (version 1.1.17 or later), you can validate the manifest by running the following command in the root directory of the project.
 
@@ -320,13 +325,13 @@ If you didn't use the Yeoman generator to create your add-in project, you can va
 
 ```npx office-addin-manifest validate {{MANIFEST_FILE}}```
 
-## 3.3. Understand the capabilities of the Excel JavaScript API
+## 2.3. Understand the capabilities of the Excel JavaScript API
 
-## 3.4. Understand the capabilities of the Outlook JavaScript API
+## 2.4. Understand the capabilities of the Outlook JavaScript API
 
 The Outlook JavaScript APIs give your add-ins access to the user's mailbox, messages, and appointments in Outlook. An Outlook add-in can get the content and properties of a message or appointment. An add-in can also manage the content, formatting, and structure of a message or appointment that is being composed.
 
-### 3.4.1. Object model
+### 2.4.1. Object model
 
 To understand the Outlook APIs, first see how the main components of a mailbox relate to each other.
 
@@ -340,9 +345,9 @@ Using the Outlook APIs, you can manage many properties of an email or appointmen
 | Message             | Read Compose                        |
 | Appointment/meeting | Attendee (read) Organizer (compose) |
 
-### 3.4.2. Key features
+### 2.4.2. Key features
 
-#### 3.4.2.1. Authentication
+#### 2.4.2.1. Authentication
 
 Your Outlook add-in can access information from anywhere on the Internet. A few examples include the server that hosts the add-in, your internal network, or elsewhere in the cloud. If that information is protected, your add-in needs a way to authenticate your user. Outlook add-ins provide a number of different methods to authenticate, depending on your specific scenario.
 
@@ -352,7 +357,7 @@ Your Outlook add-in can access information from anywhere on the Internet. A few 
 | OAuth2 access tokens          | Needs access to a third-party service outside of your control.                                             |
 | Callback tokens               | Needs access to the user's mailbox from your server.                                                       |
 
-#### 3.4.2.2. Contextual add-ins
+#### 2.4.2.2. Contextual add-ins
 
 Contextual add-ins are Outlook add-ins that activate based on text in a message or appointment. You may have seen the default contextual add-ins in Outlook, such as Bing Maps or Suggested Meetings. Using contextual add-ins, a user can initiate tasks related to a message without leaving the message itself, which results in an easier and richer user experience.
 
@@ -387,7 +392,7 @@ After a contextual add-in is associated with an account, it will automatically s
 
 A user launches a contextual add-in through text, either a known entity or a developer's regular expression. Typically, a user identifies a contextual add-in because the entity is highlighted.
 
-#### 3.4.2.3. Module add-ins
+#### 2.4.2.3. Module add-ins
 
 Module add-ins appear in the Outlook navigation bar, right alongside mail, tasks, and calendars. You can use all of the features of the Outlook JavaScript API in your add-in, and create command buttons in the Outlook ribbon so the user can interact with the add-in content.
 
@@ -465,7 +470,7 @@ To make a module add-in, include the module extension point in your add-in's man
 </VersionOverrides>
 ```
 
-#### 3.4.2.4. Getting started developing Outlook add-ins
+#### 2.4.2.4. Getting started developing Outlook add-ins
 
 To develop an Outlook add-in, use:
 
@@ -474,11 +479,11 @@ To develop an Outlook add-in, use:
 
 You can use a template as your base then add your functionality.
 
-## 3.5. Understand the capabilities of the Word JavaScript API
+## 2.5. Understand the capabilities of the Word JavaScript API
 
 The Word JavaScript APIs give your add-ins access to Word documents. A Word add-in can manage the content, formatting, and structure of a document.
 
-### 3.5.1. Object model
+### 2.5.1. Object model
 
 To understand the Word APIs, you must see how the main components of a document relate to each other.
 
@@ -491,11 +496,11 @@ To understand the Word APIs, you must see how the main components of a document 
   - Objects like images and lists
 - A Section gives access to its body, headers, and footers.
 
-### 3.5.2. Key scenarios
+### 2.5.2. Key scenarios
 
 >You can apply simple formatting to an entire existing document using the Office.js APIs. However, if you wish to apply complex formatting or use rich content objects, you can use Office Open XML (OOXML) to create these effects. Examples of capabilities in OOXML include applying drop shadows to text or pictures, coercing text boxes into shapes, and inserting Excel charts as live charts in Word documents. Because this is a more advanced skill, we will not cover this subject in its entirety but mention it for developers who are familiar with OOXML.
 
-#### 3.5.2.1. Working with document text
+#### 2.5.2.1. Working with document text
 
 Word add-ins use the ```Office.onReady()``` event handler to start. If the add-in targets Word 2016 or later, it calls the ```Word.run()``` method to run Word **JavaScript APIs**. The add-in must pass a function to ```Word.run()``` that expects a context object to be passed as the parameter. The context object allows the add-in to interact with the Word document. You can use the context object to create any needed proxy objects for the Word document and load the proxies with any properties you wish to use. You can also program actions to run using those properties. As always, a ```context.sync()``` command then synchronizes the state between the proxy objects and objects in the Word document.
 
@@ -522,7 +527,7 @@ Word.run(function (context) {
 })
 ```
 
-#### 3.5.2.2. Search
+#### 2.5.2.2. Search
 
 You can use the APIs to search the document for text that meets your criteria. You can also scope your search to certain types of content, for example, paragraphs or tables.
 
@@ -562,7 +567,7 @@ Word.run(function (context) {
 });
 ```
 
-### 3.5.3. Getting started developing Word add-ins
+### 2.5.3. Getting started developing Word add-ins
 
 To develop a Word add-in, use:
 
@@ -571,11 +576,11 @@ To develop a Word add-in, use:
 - 
 If you want to explore the APIs more, the Script Lab add-in is recommended. There, you'll see many TypeScript and JavaScript snippets and be able to experiment with Word documents without creating an entire add-in.
 
-## 3.6. Understand the capabilities of custom functions
+## 2.6. Understand the capabilities of custom functions
 
 Custom functions have several unique capabilities and restrictions because they run in a separate runtime from other add-in interactions, like task panes.
 
-### 3.6.1. Custom function capabilities
+### 2.6.1. Custom function capabilities
 
 You can create custom JavaScript or TypeScript functions that can be accessed like built-in Excel functions such as SUM(). You can also create streaming custom functions, which return a value based on a timer. For example, you can update the current time value in a cell every second. You can make network calls from custom functions as well.
 
@@ -604,7 +609,7 @@ The JSDoc tags in the code comments are used to generate a JSON metadata file th
 
 >The comment description "Adds two numbers." is also added to the JSON Metadata file for Excel to display when the user is viewing your custom function.
 
-### 3.6.2. Custom function runtime restrictions
+### 2.6.2. Custom function runtime restrictions
 
 The custom function runtime only runs JavaScript. There's no document object model (DOM) or local storage, as you would find in a browser-based JavaScript runtime environment. This means you can't load any libraries that use the DOM, such as jQuery. Also, you can't access the Office.js API to interact with the document like you can from a task pane. Instead, the custom functions runtime is optimized for tasks such as performing rapid calculations and generally doesn't need to use some of the Office.js APIs such as formatting tools in Excel.
 
@@ -616,13 +621,13 @@ Custom functions have a webpage that loads the custom functions runtime. Since t
 
 Typically custom functions are combined with a task pane in the same add-in. If you create your add-in project using the Yeoman generator for Office add-ins, the project will have a webpage for the custom functions, and a web page with UI for the task pane.
 
-### 3.6.3. Using storage API to communicate with the task pane
+### 2.6.3. Using storage API to communicate with the task pane
 
 Custom function code and task pane code (which uses Office.js) can't call or communicate directly with each other. But you can use a storage API that allows them to share data. A common scenario for using the storage API is when the add-in needs to share a security token for accessing a secure network resource. The user might first call a custom function that requires them to be signed in. After authentication, it receives the security token. Then it shares the security token using the storage API so that later, when the user opens the task pane, the task pane doesn't need to sign them in again.
 
 Alternatively, the user might open the task pane first. In this case, the task pane will sign in the user and share the security token through the storage API. When a custom function is used later, the custom function can get the security token through the storage API.
 
-#### 3.6.3.1. Storage API example
+#### 2.6.3.1. Storage API example
 
 ```js
 /**
@@ -649,7 +654,7 @@ function getValue(key) {
 }
 ```
 
-### 3.6.4. Dialog API
+### 2.6.4. Dialog API
 
 Custom functions have their own dialog API since they can't access the Office.js API. However, the functionality is similar. The most common scenario is to launch a dialog to sign in a user and receive a security token.
 
@@ -659,15 +664,15 @@ The following code sample shows how to display a web dialog from a custom functi
 OfficeRuntime.displayWebDialog('https://myDomain/myDialog.html', {height: 30, width: 20});
 ```
 
-### 3.6.5. Creating a custom functions project
+### 2.6.5. Creating a custom functions project
 
 You can create a custom functions project by using the Yeoman generator for Office add-ins. Run ```yo office``` to start the generator, then choose the **Excel Custom Functions add-in project** option. Once created, your project will contain a **/src/taskpane/** folder for the task pane source files, and a **/src/functions** folder for the custom function source files.
 
-# 4. Understand how to customize Office add-ins
+# 3. Understand how to customize Office add-ins
 
 Customize Office add-ins using persisted state, Office UI Fabric, and Microsoft Graph.
 
-## 4.1. Understand the options for persisting state and settings
+## 3.1. Understand the options for persisting state and settings
 The Office add-ins platform provides several ways for your add-in to persist state and settings. Your options depend on the Office applications you plan to support and on the type of add-in you plan to develop.
 
 The Office JavaScript API provides objects for your add-in to save state across user sessions. The following table lists the options, along with the supported add-in types and Office host applications.
@@ -685,14 +690,14 @@ The Office JavaScript API provides objects for your add-in to save state across 
 | Android     | Not applicable       | connected to Office 365 subscription | Only available in Outlook                                                                                                                                     |
 | web browser | Not applicable       | Not applicable                       | Available in all supported Office applications
 
-## 4.2. Understand Office UI Fabric in Office add-ins         
+## 3.2. Understand Office UI Fabric in Office add-ins         
 
 As you build your add-in, you have many UI design factors to consider. The Office UI Fabric provides elements that adhere to Office branding so your add-in looks like a natural extension of Office.
 
 - **Fabric Core** - Provides basic elements like font, icons, and color
 - **Fabric React** components - Includes Fabric Core elements and adds input, navigation, and notification components, among others
 
-### 4.2.1. Fabric Core
+### 3.2.1. Fabric Core
 
 Fabric Core provides basic design elements that reflect or sync with Office branding.
 
@@ -708,7 +713,7 @@ You can then use Fabric icons, fonts, and colors. The following example shows ho
 <i class="ms-Icon ms-font-xl ms-Icon--Table ms-fontColor-themePrimary"></i>
 ```
 
-### 4.2.2. Fabric components
+### 3.2.2. Fabric components
 
 Fabric React provides UX components for input, navigation, notification, and other categories. It builds on and includes Fabric Core.
 
@@ -727,7 +732,7 @@ Recommended components you can use in your add-in are as follows:
 
 >You can use the Yeoman generator for Office add-ins to create a project that references Fabric React. An available project type is Office add-in Task Pane project using React framework.
 
-## 4.3. Understand when and how to use Microsoft Graph in Office add-ins
+## 3.3. Understand when and how to use Microsoft Graph in Office add-ins
 
 Your add-in can connect to Microsoft Graph and access the user's data so they can accomplish more useful and productive scenarios. Example tasks are:
 
@@ -735,7 +740,7 @@ Your add-in can connect to Microsoft Graph and access the user's data so they ca
 - Fetch email attachments
 - Get the user's profile
 
-### 4.3.1. Why use Microsoft Graph
+### 3.3.1. Why use Microsoft Graph
 Microsoft Graph REST APIs provide a way for your add-in to access the user's data in services like:
 
 - Azure Active Directory
@@ -746,7 +751,7 @@ Microsoft Graph REST APIs provide a way for your add-in to access the user's dat
 
 ![Microsoft Graph](https://docs.microsoft.com/en-us/learn/m365-developer/intro-office-add-ins/media/04-microsoft-graph.png)
 
-### 4.3.2. How to authorize to Microsoft Graph
+### 3.3.2. How to authorize to Microsoft Graph
 
 * **Authentication**
 The add-in can get an access token from Azure Active Directory (AAD) when the user has signed in. AAD doesn't allow its sign-in page to open in an iframe, and the add-in task pane is an iframe when the add-in is launched in Office on the Web. So, use the Office JavaScript Dialog API to display the AAD login form. If your add-in includes custom functions that need authorization to Microsoft Graph, use the custom functions Dialog API to display the login form.
@@ -761,9 +766,9 @@ Depending on your development choices, you can use one of the following librarie
   - Your server-side is node.js-based: use Passport Azure AD
   - Your add-in uses Implicit flow: use msal.js
 
-# Understand testing, debugging, and deployment options for Office add-ins
+# 4. Understand testing, debugging, and deployment options for Office add-ins
 
-## Choose the best deployment option for your Office add-in
+## 4.1. Choose the best deployment option for your Office add-in
 
 | Consider...                           | Examples                                          |
 |---------------------------------------|---------------------------------------------------|
@@ -773,7 +778,7 @@ Depending on your development choices, you can use one of the following librarie
 | Target platforms                      | Windows, Mac                                      |
 | Scope of user base                    | your organization, general public                 |
 
-### Deployment options
+### 4.1.1. Deployment options
 
 | Option                 | Description                                                         | Best when...                                                                                                                                                                   |
 |------------------------|---------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -784,9 +789,9 @@ Depending on your development choices, you can use one of the following librarie
 | Exchange server        | Distribute add-in to users via Exchange.                            | Outlook add-in ready for use in an organization whose environment doesn't use Azure Active Directory identity service                                                          |
 | Network share          | Make add-in available to network users via a shared folder.         | Add-in development and users are on Windows                                                                                                                                    |
 
-## Understand testing and debugging concepts for Office add-ins
+## 4.2. Understand testing and debugging concepts for Office add-ins
 
-### Sideload your add-in
+### 4.2.1. Sideload your add-in
 
 You can locally install (sideload) your add-in for testing and debugging on Windows, Mac, and in a web browser. You can also sideload your Excel or Word add-in on an iPad. Use Node.js, Internet Information Services (IIS), or another preferred means to web host your add-in on your development machine.
 
@@ -794,14 +799,14 @@ If you create your project using the Yeoman generator for Office add-ins, you ca
 
 If you create your project using Visual Studio (VS), you can run the project in VS debug mode and it will automatically sideload to Excel on Windows.
 
-### Debug your add-in
+### 4.2.2. Debug your add-in
 
 - A web browser with the browser's built-in developer tools
 - Visual Studio, provided you prepared your add-in using this IDE
 - Visual Studio Code for custom functions projects only
 - Runtime logging on Windows and Mac
 
-### Windows
+### 4.2.3. Windows
 
 On Windows 10, the tool you use depends on if the add-in is running in Microsoft Edge or Internet Explorer. Your add-in is running in Internet Explorer 11 unless it meets the following criteria to be running in Microsoft Edge.
 
@@ -819,6 +824,6 @@ An available option to debug task pane add-ins in Office 2016 or later is to att
 
 If the Personality menu isn't present or you're already using Visual Studio (VS), you can use Attach to Process in VS to debug the add-in in Microsoft Edge or Internet Explorer as applicable.
 
-### Mac
+### 4.2.4. Mac
 
 For your sideloaded task pane and content add-ins, you can use the Safari Web Inspector on macOS High Sierra and Office version 16.9.1 (build 18012504) or later. 
