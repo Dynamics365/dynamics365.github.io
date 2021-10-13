@@ -5,19 +5,18 @@
 
 ## System architecture
 
-This diagram provides a high-level over of a Microsoft Dynamics AX 2012 system with all components installed, and describes how communications flow between the components. 
+This diagram provides a high-level over of a Microsoft Dynamics AX 2012 system with all components installed, and describes how communications flow between the components.
 
-![](/imagesposts/AXSystemArchitechture.gif)
+![AXSystemArchitechture](AXSystemArchitechture.gif "AXSystemArchitechture")
 
 ### 1. Application Object Server (AOS) architecture
 
 This diagram describes the functionality within the AOS Windows service, and describes how communications flow within it.
 
-![](/imagesposts/AOSWindowsService.gif)
+![AOSWindowsService](AOSWindowsService.gif "AOSWindowsService")
 
 **Note**: Clients communicate with an AOS by using remote procedure calls (RPCs), Windows Communication Foundation (WCF), or AOS services. In previous releases, other components and third-party programs could communicate with an AOS by using either .NET Business Connector or Application Integration Framework (AIF). For this release, we recommend that third-party programs use AOS services to communicate with AOS.
 
-	
 ### 2. Business Connector architecture
 
 The differences between the client kernel as it runs on a standard client and a Business Connector client are:
@@ -28,13 +27,11 @@ The differences between the client kernel as it runs on a standard client and a 
 
 This diagram describes the architecture of the Business Connector version of the client kernel, and describes how communications flow within it.
 
-![](/imagesposts/Business_Connector_Client.gif)
-
+!["Business_Connector_Client"](Business_Connector_Client.gif "Business_Connector_Client")
 
 ### 3. Application file server architecture
 
-![](/imagesposts/App_file_server_architechture.gif)
-
+!["App_file_server_architechture"](App_file_server_architechture.gif "App_file_server_architechture")
 
 ## Model store architecture
 
@@ -42,21 +39,21 @@ Microsoft Dynamics AX contains sixteen layers. Each layer consists of one or mor
 
 When you customize the Microsoft Dynamics AX program, you can take advantage of the capabilities of models.
 
-![](/imagesposts/Model_store_architecture.gif)
+![](Model_store_architecture.gif)
 
 The following table describes the application object layers in Microsoft Dynamics AX 2012:
 
-![](/imagesposts/Layer.png)
+![](Layer.png)
 
 ## Client architecture
 
 This diagram describes the functionality within the client, and describes how communications flow within it.
 
-![](/imagesposts/Client_architecture.gif)
+![](Client_architecture.gif)
 
 ## Client/server communication
 
-![](/imagesposts/ClientServer_communication.gif)
+![](ClientServer_communication.gif)
 
 The client communicates with various Microsoft Dynamics AX components in the following ways:
 
@@ -84,19 +81,19 @@ The client communicates with various Microsoft Dynamics AX components in the fol
 
 * Similarly, the AIF response postprocessor, if it is configured, can intercept the outbound response messages for custom post-processing, such as message transforms or value substitutions. The AIF response postprocessor then returns the response to the client.
 
-![](/imagesposts/WCF_architecture.png)
+![](WCF_architecture.png)
 
 ## Enterprise Portal architecture
 
 This diagram provides a logical overview of a Microsoft Dynamics AX 2012 system with an Enterprise Portal server, and also describes the various components of the Enterprise Portal architecture.
 
-![](/imagesposts/EP_Architecture.gif)
+![](EP_Architecture.gif)
 
 ## Security architecture
 
 This following diagram provides a high-level overview of the security architecture of Microsoft Dynamics AX 2012.
 
-![](/imagesposts/Security_architecture.gif)
+![](Security_architecture.gif)
 
 ## Workflow system architecture
 
@@ -104,18 +101,18 @@ This following diagram provides a high-level overview of the security architectu
 
 * The workflow infrastructure consists of two components that are hosted on Application Object Server (AOS): the X++ workflow run-time and the managed workflow run-time.
 
-![](/imagesposts/Workflow_system_arcitechture (1).gif)
+![](Workflow_system_arcitechture (1).gif)
 
 ## Analytic architecture
 
 The following diagram shows the Microsoft SQL Server Analysis Services cubes that are included with Microsoft Dynamics AX, and the components that are used to access them.
 
-![](/imagesposts/Analytic_architecture.gif)
+![](Analytic_architecture.gif)
 
 ## Reporting architecture
 
 The following diagram illustrates the architecture of the reporting functionality in Microsoft Dynamics AX.
 
-![](/imagesposts/reporting_architecture.png)
+![](reporting_architecture.png)
 
 Thank you for reading!

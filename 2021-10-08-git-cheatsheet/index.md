@@ -17,6 +17,8 @@ Sets the email you want attached to your commit transactions
 
 Enables helpful colorization of command line output
 
+
+
 ## 2. Branches
 
 ![braching](/imagesposts/braching.png "Branching")
@@ -123,6 +125,14 @@ Snapshots the file in preparation for versioning
 `$ git commit -m "[descriptive message]"`
 
 Records file snapshots permanently in version history
+
+`git commit -am "Your commit message"`
+
+Combine `add` and `commit` for tracked files
+
+`git config --global alias.ac '!git add -A && git commit -m'`
+
+Create a new command, eg combine `add` and `commit` in to `ac` command
 
 ## 7. Temporary commits
 

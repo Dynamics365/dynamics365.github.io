@@ -3,7 +3,7 @@
 
 I don’t know exactly how I ended up where I am. I mean, programming, and lovin’ it. Even if I’m not so good.
 
-![helloworld](/imagesposts/helloworld.png)
+![helloworld](helloworld.png "helloworld")
 
 I’ve heard a thousand of guys telling stories like: “When I was twelve my parents bought me my first computer and I started learning on my own.” or “I won a programming contest when I was in highschool”. Great. Well done. I’ve never noticed about what coding was until I was eighteen, when I had to decide what to study at the University.
 

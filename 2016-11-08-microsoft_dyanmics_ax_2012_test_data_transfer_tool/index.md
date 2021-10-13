@@ -7,8 +7,6 @@ Tool can be used for two different purposes. One is to install **demo data** and
 
 `The Microsoft Dynamics AX 2012 Test Data Transfer Tool (beta)` is a tool that helps move data between from production to non-production environments or from non-production environments to production environments to make a new production environment. But you must be careful becasue the tool imports data table by table and deletes the data in the table before importing. Hence it is highly advised against running the tool for import in production environments.
 
-<!--more-->
-
 ## BENEFITS
 
 * Export and import data outside AX, without running an AOS instance.
@@ -49,7 +47,7 @@ Tool can be used for two different purposes. One is to install **demo data** and
 
 10. Now, Live (Golden) environment's data will be exported. Prepare a file to export live(Golden) data on Live SQL Server. For instance `C:\DC_EXPORT`
 
-11. Type the following command in command line and initiate the exportation process:  
+11. Type the following command in command line and initiate the exportation process:
 `DP.exe EXPORT Directory>> Database name>> Server>>`  
 `DP.exe EXPORT C:\DC_EXPORT "MicrosoftDynamicsAX" "ServerName"`
 
@@ -63,5 +61,3 @@ Tool can be used for two different purposes. One is to install **demo data** and
 15. Start DEV AOS service.
 
 *Note*: DP.exe EXPORT/IMPORT commands must be run from the related directories
-
-

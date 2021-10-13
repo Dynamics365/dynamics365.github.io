@@ -1,0 +1,249 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+    <channel>
+        <title>performance - Tag - Dynamics 365 &amp; Power Platform | nuxulu.com</title>
+        <link>https://nuxulu.com/tags/performance/</link>
+        <description>performance - Tag - Dynamics 365 &amp; Power Platform | nuxulu.com</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Thu, 12 Feb 2015 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/performance/" rel="self" type="application/rss+xml" /><item>
+    <title>X&#43;&#43; Performance tips</title>
+    <link>https://nuxulu.com/2015-02-12-x-performance-tips/</link>
+    <pubDate>Thu, 12 Feb 2015 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2015-02-12-x-performance-tips/</guid>
+    <description><![CDATA[<h3 id="tip-1-measure-execution-time-of-your-code">Tip 1: Measure execution time of your code</h3>
+<p>Measuring is knowing. Before you start changing code, make sure you have a set of data you can keep reusing for your tests. Measure the performance of your code on that data after each change in code so you know the impact of your changes.</p>
+<p>One way to do this is by using the <code>Winapi::getTickCount()</code> or <code>WinApiServer::getTickCount()</code> if your code runs on server method.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">static</span> <span class="k">void</span> <span class="n">KlForTickCountSample</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">ticks</span><span class="p">;</span>
+    <span class="p">;</span>
+    <span class="c1">// get the tickcount before the process starts
+</span><span class="c1"></span>    <span class="n">ticks</span> <span class="p">=</span> <span class="n">winapi</span><span class="p">::</span><span class="n">getTickCount</span><span class="p">();</span>
+    
+    <span class="c1">// start the process
+</span><span class="c1"></span>    <span class="n">sleep</span><span class="p">(</span><span class="m">2000</span><span class="p">);</span> <span class="c1">// simulate 2 seconds of processing
+</span><span class="c1"></span>    
+    <span class="c1">// compare tickcount
+</span><span class="c1"></span>    <span class="n">ticks</span> <span class="p">=</span> <span class="n">winapi</span><span class="p">::</span><span class="n">getTickCount</span><span class="p">()</span> <span class="err">–</span> <span class="n">ticks</span><span class="p">;</span>
+    
+    <span class="c1">// display result
+</span><span class="c1"></span>    <span class="n">info</span><span class="p">(</span><span class="n">strfmt</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Number</span> <span class="n">of</span> <span class="n">ticks</span><span class="p">:</span> <span class="p">%</span><span class="m">1</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">ticks</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="tip-2-limit-the-number-of-loops">Tip 2: limit the number of loops</h3>
+<p>A LOT of time goes into loops. If you have a performance problem, start looking for loops. Code can run really fast, but it can get slow when it is executed too many time, eg, in a loop.</p>
+<h3 id="tip-3-avoid-if-in-while-select">Tip 3: avoid <code>if</code> in <code>while select</code></h3>
+<p>When there is a <code>if</code> in a <code>while select</code>, see if you can rewrite it a a where statement in your select. Don’t be affraid use a join either. Consider the following example:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">static</span> <span class="k">void</span> <span class="n">KlForIfInLoop</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">VendTable</span> <span class="n">vendTable</span><span class="p">;</span>
+    <span class="p">;</span>
+    <span class="c1">// usually slower
+</span><span class="c1"></span>    <span class="k">while</span> <span class="k">select</span> <span class="n">vendTable</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">vendTable</span><span class="p">.</span><span class="n">VendGroup</span> <span class="p">==</span> <span class="err">&#39;</span><span class="n">VG1</span><span class="err">&#39;</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">info</span><span class="p">(</span><span class="n">vendTable</span><span class="p">.</span><span class="n">AccountNum</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// usually faster
+</span><span class="c1"></span>    <span class="k">while</span> <span class="k">select</span> <span class="n">vendTable</span>
+    <span class="k">where</span> <span class="n">vendTable</span><span class="p">.</span><span class="n">VendGroup</span> <span class="p">==</span> <span class="err">&#39;</span><span class="n">VG1</span><span class="err">&#39;</span>
+    <span class="p">{</span>
+        <span class="n">info</span><span class="p">(</span><span class="n">vendTable</span><span class="p">.</span><span class="n">AccountNum</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="tip-4-avoid-double-use-of-table-methods">Tip 4: avoid double use of table methods</h3>
+<p>Using table methods a lot can get really slow if you do it wrong. Consider the following example:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">static</span> <span class="k">void</span> <span class="n">klForTableMethodsSlow</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">SalesLine</span> <span class="n">salesLine</span><span class="p">;</span>
+    <span class="n">InventDim</span> <span class="n">inventDim</span><span class="p">;</span>
+    <span class="p">;</span>
+    
+    <span class="c1">// select a salesline
+</span><span class="c1"></span>    <span class="k">select</span> <span class="n">firstonly</span> <span class="n">salesLine</span><span class="p">;</span>
+    
+    <span class="n">inventDim</span><span class="p">.</span><span class="n">InventColorId</span> <span class="p">=</span> <span class="n">salesLine</span><span class="p">.</span><span class="n">inventDim</span><span class="p">().</span><span class="n">InventColorId</span><span class="p">;</span>
+    <span class="n">inventDim</span><span class="p">.</span><span class="n">InventSizeId</span>  <span class="p">=</span> <span class="n">salesLine</span><span class="p">.</span><span class="n">inventDim</span><span class="p">().</span><span class="n">InventSizeId</span><span class="p">;</span>
+    <span class="n">inventDim</span><span class="p">.</span><span class="n">inventBatchId</span> <span class="p">=</span> <span class="n">salesLine</span><span class="p">.</span><span class="n">inventDim</span><span class="p">().</span><span class="n">inventBatchId</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>This example code looks nice, but there’s a problem. <code>The salesLine.inventDim()</code> method contains the following:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="n">InventDim</span> <span class="n">inventDim</span><span class="p">(</span><span class="n">boolean</span>  <span class="m">_f</span><span class="n">orUpdate</span> <span class="p">=</span> <span class="k">false</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">InventDim</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">InventDimId</span><span class="p">,</span> <span class="m">_f</span><span class="n">orUpdate</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>This means that the <code>invendDim</code> record is read three times from the database. It is better to declare the <code>inventDim</code> record locally and only retrieve it once:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">static</span> <span class="k">void</span> <span class="n">klForTableMethodsFast</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">SalesLine</span> <span class="n">salesLine</span><span class="p">;</span>
+    <span class="n">InventDim</span> <span class="n">inventDim</span><span class="p">;</span>
+    <span class="n">InventDim</span> <span class="n">inventDimLoc</span><span class="p">;</span>
+    <span class="p">;</span>
+    
+    <span class="c1">// select a salesline
+</span><span class="c1"></span>    <span class="k">select</span> <span class="n">firstonly</span> <span class="n">salesLine</span><span class="p">;</span>
+    
+    <span class="n">inventDimLoc</span> <span class="p">=</span> <span class="n">salesLine</span><span class="p">.</span><span class="n">inventDim</span><span class="p">();</span>
+    
+    <span class="n">inventDim</span><span class="p">.</span><span class="n">InventColorId</span> <span class="p">=</span> <span class="n">inventDimLoc</span><span class="p">.</span><span class="n">InventColorId</span><span class="p">;</span>
+    <span class="n">inventDim</span><span class="p">.</span><span class="n">InventSizeId</span>  <span class="p">=</span> <span class="n">inventDimLoc</span><span class="p">.</span><span class="n">InventSizeId</span><span class="p">;</span>
+    <span class="n">inventDim</span><span class="p">.</span><span class="n">inventBatchId</span> <span class="p">=</span> <span class="n">inventDimLoc</span><span class="p">.</span><span class="n">inventBatchId</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="tip-5-dont-put-too-much-code-on-tables">Tip 5: Don’t put too much code on tables</h3>
+<p>Code on tables is usually fast, but things can get slow if you use it to much. Say you have a table with an <code>InventDimId</code> field. If you have 5 methods that need the <code>InventDim</code> record, because you don’t have a classDeclaration method on your table, you need to call this function 5 times, once in every method:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="n">InventDim</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">inventDim</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>When you put these methods on a class, you could optimise it by fetching the record only once and storing it in the <code>classDeclaration</code>, or better, passing it as a parameter to your methods. An other example is fetching parameters from parameter tables, eg <code>InventParameters::find()</code>. On a table, you have to fetch it each time you call a method. In a class, you would probably optimize your code to only fetch the parameter record once.</p>
+<h3 id="tip-6-use-the-fastest-code">Tip 6: Use the fastest code</h3>
+<p>For some tasks, there is <strong>special code</strong> that is faster than the code you would normally write. For example:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="c1">// slower
+</span><span class="c1"></span><span class="k">while</span> <span class="k">select</span> <span class="n">forupdate</span> <span class="n">custTable</span>
+<span class="k">where</span> <span class="n">custTable</span><span class="p">.</span><span class="n">custGroup</span> <span class="p">==</span> <span class="err">&#39;</span><span class="n">TST</span><span class="err">&#39;</span>
+<span class="p">{</span>
+    <span class="n">custTable</span><span class="p">.</span><span class="n">delete</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="c1">// faster
+</span><span class="c1"></span><span class="n">delete_from</span> <span class="n">custTable</span>
+<span class="k">where</span> <span class="n">custTable</span><span class="p">.</span><span class="n">custGroup</span> <span class="p">==</span> <span class="err">&#39;</span><span class="n">TST</span><span class="err">&#39;</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The same applies to update_recordset for updating records. Also, when adding values to the end of a container</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="n">cont</span> <span class="p">+=</span> <span class="s">&#34;a value&#34;</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>is faster than</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="n">cont</span> <span class="p">=</span> <span class="n">conins</span><span class="p">(</span><span class="n">cont</span><span class="p">,</span> <span class="n">conlen</span><span class="p">(</span><span class="n">cont</span><span class="p">),</span> <span class="s">&#34;a value&#34;</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="tip-7-every-optimization-counts">Tip 7: Every optimization counts</h3>
+<p>Remember that every optimization you do to you code counts, even if it’s a little one. Small performance tweaks can have a huge effect once you process large quantities of data. So don’t be lazy, and optimize.</p>
+<p>Share from <a href="http://www.artofcreation.be/" target="_blank" rel="noopener noreferrer">http://www.artofcreation.be/</a></p>]]></description>
+</item></channel>
+</rss>

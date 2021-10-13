@@ -10,43 +10,927 @@
     <pubDate>Sat, 25 Jan 2020 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2020-01-25-create-po-confirm-receipt-post/</guid>
     <description><![CDATA[<blockquote>
 <p>The script will work for Dynamics 365 Finance &amp; Operations version</p>
-</blockquote>]]></description>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="k">class</span> <span class="nc">MaxGeneratePO</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="c1">// number of purchase orders
+</span><span class="c1"></span>        <span class="n">NumberSeq</span> <span class="n">numberSeq</span><span class="p">;</span>
+        <span class="n">PurchTable</span> <span class="n">purchTable</span><span class="p">;</span>
+        <span class="n">PurchLine</span> <span class="n">purchLine</span><span class="p">;</span>
+        <span class="n">InventDim</span> <span class="n">inventDim</span><span class="p">;</span>
+
+        <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="p">&lt;=</span> <span class="m">3</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">ttsBegin</span><span class="p">;</span>
+            <span class="n">MaxGeneratePO</span> <span class="n">createPO</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MaxGeneratePO</span><span class="p">();</span>
+            <span class="n">numberSeq</span> <span class="p">=</span> <span class="n">NumberSeq</span><span class="p">::</span><span class="n">newGetNum</span><span class="p">(</span><span class="n">PurchParameters</span><span class="p">::</span><span class="n">numRefPurchId</span><span class="p">());</span>
+            <span class="n">numberSeq</span><span class="p">.</span><span class="n">used</span><span class="p">();</span>
+            <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span> <span class="p">=</span> <span class="n">numberSeq</span><span class="p">.</span><span class="n">num</span><span class="p">();</span>
+            <span class="n">purchTable</span><span class="p">.</span><span class="n">initValue</span><span class="p">();</span>
+            <span class="n">purchTable</span><span class="p">.</span><span class="n">initFromVendTable</span><span class="p">(</span><span class="n">VendTable</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="err">&#39;</span><span class="n">US</span><span class="p">-</span><span class="m">101</span><span class="err">&#39;</span><span class="p">));</span>
+
+            <span class="k">if</span> <span class="p">(!</span><span class="n">purchTable</span><span class="p">.</span><span class="n">validateWrite</span><span class="p">())</span>
+            <span class="p">{</span>
+                <span class="k">throw</span> <span class="n">Exception</span><span class="p">::</span><span class="n">Error</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="n">purchTable</span><span class="p">.</span><span class="n">insert</span><span class="p">();</span>
+            <span class="n">inventDim</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+            <span class="n">purchLine</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+            <span class="n">purchLine</span><span class="p">.</span><span class="n">initValue</span><span class="p">();</span>
+
+            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchId</span> <span class="p">=</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">;</span>
+            <span class="n">purchLine</span><span class="p">.</span><span class="n">ItemId</span> <span class="p">=</span> <span class="err">&#39;</span><span class="n">D0002</span><span class="err">&#39;</span><span class="p">;</span>
+            <span class="n">inventDim</span><span class="p">.</span><span class="n">InventSiteId</span> <span class="p">=</span> <span class="s">&#34;1&#34;</span><span class="p">;</span>
+            <span class="n">inventDim</span><span class="p">.</span><span class="n">InventLocationId</span> <span class="p">=</span> <span class="s">&#34;11&#34;</span><span class="p">;</span>
+            <span class="n">purchLine</span><span class="p">.</span><span class="n">InventDimId</span><span class="p">=</span><span class="n">InventDim</span><span class="p">::</span><span class="n">findOrCreate</span><span class="p">(</span><span class="n">inventDim</span><span class="p">).</span><span class="n">inventDimId</span> <span class="p">;</span>
+            <span class="n">purchLine</span><span class="p">.</span><span class="n">createLine</span><span class="p">(</span><span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+
+            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchQty</span> <span class="p">=</span> <span class="m">5</span><span class="p">;</span>
+            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchUnit</span> <span class="p">=</span> <span class="s">&#34;ea&#34;</span><span class="p">;</span>
+            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchPrice</span> <span class="p">=</span> <span class="n">createPO</span><span class="p">.</span><span class="n">randomAmount</span><span class="p">();</span> <span class="c1">// get random amount nubmer
+</span><span class="c1"></span>            <span class="n">purchLine</span><span class="p">.</span><span class="n">LineAmount</span> <span class="p">=</span> <span class="n">purchLine</span><span class="p">.</span><span class="n">calcLineAmount</span><span class="p">();</span>
+            <span class="n">purchLine</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
+            
+            <span class="c1">//PO confirm
+</span><span class="c1"></span>            <span class="n">PurchFormLetter</span> <span class="n">purchFormLetter</span><span class="p">;</span>
+            <span class="n">PurchFormLetter</span> <span class="n">purchFormLetterPack</span><span class="p">;</span>
+            <span class="n">purchFormLetter</span> <span class="p">=</span> <span class="n">PurchFormLetter</span><span class="p">::</span><span class="n">construct</span><span class="p">(</span><span class="n">DocumentStatus</span><span class="p">::</span><span class="n">PurchaseOrder</span><span class="p">);</span>
+            <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">purchTable</span><span class="p">,</span>
+                                <span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;ConNum_%1&#34;</span><span class="p">,</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">),</span>
+                                <span class="n">systemDateGet</span><span class="p">(),</span>
+                                <span class="n">PurchUpdate</span><span class="p">::</span><span class="n">All</span><span class="p">,</span>
+                                <span class="n">AccountOrder</span><span class="p">::</span><span class="n">None</span><span class="p">,</span>
+                                <span class="n">NoYes</span><span class="p">::</span><span class="n">No</span><span class="p">,</span>
+                                <span class="n">NoYes</span><span class="p">::</span><span class="n">no</span><span class="p">);</span>
+            <span class="c1">//Product receipt
+</span><span class="c1"></span>            <span class="n">createPO</span><span class="p">.</span><span class="n">proceed</span><span class="p">(</span><span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">,</span> <span class="n">purchLine</span><span class="p">.</span><span class="n">ItemId</span><span class="p">,</span><span class="n">purchLine</span><span class="p">.</span><span class="n">InventDimId</span><span class="p">,</span><span class="n">purchLine</span><span class="p">.</span><span class="n">PurchQty</span><span class="p">,</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;RptNum_%1&#34;</span><span class="p">,</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">));</span>
+            <span class="c1">//Post PO
+</span><span class="c1"></span>            <span class="n">createPO</span><span class="p">.</span><span class="n">postPOInvoice</span><span class="p">(</span><span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">,</span> <span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;RptNum_%1&#34;</span><span class="p">,</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">));</span>
+
+            <span class="n">info</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;Purchase order &#39;%1&#39; has been created&#34;</span><span class="p">,</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">));</span>
+            <span class="n">ttsCommit</span><span class="p">;</span>
+            <span class="n">i</span><span class="p">++;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="n">boolean</span> <span class="n">proceed</span><span class="p">(</span><span class="n">PurchId</span> <span class="m">_</span><span class="n">purchId</span><span class="p">,</span> <span class="n">ItemId</span> <span class="m">_</span><span class="n">itemId</span><span class="p">,</span><span class="n">inventDimId</span> <span class="m">_</span><span class="n">inventDimId</span><span class="p">,</span> <span class="n">PurchQty</span> <span class="m">_</span><span class="n">qty</span><span class="p">,</span> <span class="n">PackingSlipId</span> <span class="m">_</span><span class="n">productReceiptNumber</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span>
+            <span class="k">this</span><span class="p">.</span><span class="n">generateProductReceipt</span><span class="p">(</span><span class="m">_</span><span class="n">purchId</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">addToPurchLineList</span><span class="p">(</span><span class="m">_</span><span class="n">purchId</span><span class="p">,</span> <span class="m">_</span><span class="n">itemId</span><span class="p">,</span> <span class="m">_</span><span class="n">inventDimId</span><span class="p">,</span> <span class="m">_</span><span class="n">qty</span><span class="p">),</span> <span class="m">_</span><span class="n">productReceiptNumber</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="n">boolean</span> <span class="n">generateProductReceipt</span><span class="p">(</span><span class="n">PurchId</span> <span class="m">_</span><span class="n">purchId</span><span class="p">,</span> <span class="n">List</span> <span class="m">_</span><span class="n">purchLineList</span><span class="p">,</span> <span class="n">PackingSlipId</span> <span class="m">_</span><span class="n">productReceiptNumber</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">boolean</span> <span class="n">ret</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+        <span class="n">PurchFormLetter</span> <span class="n">purchFromLetter</span><span class="p">;</span>
+        <span class="n">PurchTable</span> <span class="n">purchTable</span> <span class="p">=</span> <span class="n">PurchTable</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="m">_</span><span class="n">purchId</span><span class="p">);</span>
+
+        <span class="k">try</span>
+        <span class="p">{</span>
+            <span class="n">ttsbegin</span><span class="p">;</span>
+            <span class="n">purchFromLetter</span> <span class="p">=</span> <span class="n">PurchFormLetter</span><span class="p">::</span><span class="n">construct</span><span class="p">(</span><span class="n">DocumentStatus</span><span class="p">::</span><span class="n">PackingSlip</span><span class="p">);</span>
+            <span class="n">purchFromLetter</span><span class="p">.</span><span class="n">createFromLines</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+            <span class="n">purchFromLetter</span><span class="p">.</span><span class="n">parmLineList</span><span class="p">(</span><span class="m">_</span><span class="n">purchLineList</span><span class="p">.</span><span class="n">pack</span><span class="p">());</span>
+            <span class="n">purchFromLetter</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">purchTable</span><span class="p">,</span> <span class="m">_</span><span class="n">productReceiptNumber</span><span class="p">,</span>
+                                <span class="n">DateTimeUtil</span><span class="p">::</span><span class="n">getToday</span><span class="p">(</span><span class="n">DateTimeUtil</span><span class="p">::</span><span class="n">getUserPreferredTimeZone</span><span class="p">()),</span>
+                                <span class="n">PurchUpdate</span><span class="p">::</span><span class="n">All</span><span class="p">);</span>
+            <span class="n">ttscommit</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">catch</span>
+        <span class="p">{</span>
+            <span class="n">ret</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="n">List</span> <span class="n">addToPurchLineList</span><span class="p">(</span><span class="n">PurchId</span> <span class="m">_</span><span class="n">purchId</span><span class="p">,</span> <span class="n">ItemId</span> <span class="m">_</span><span class="n">itemId</span><span class="p">,</span><span class="n">inventDimId</span> <span class="m">_</span><span class="n">inventDimId</span><span class="p">,</span> <span class="n">PurchQty</span> <span class="m">_</span><span class="n">qty</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">List</span> <span class="n">purchLineList</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Record</span><span class="p">);</span>
+        <span class="n">PurchLine</span> <span class="n">purchLine</span> <span class="p">=</span> <span class="n">PurchLine</span><span class="p">::</span><span class="n">findItemIdInventDimId</span><span class="p">(</span><span class="m">_</span><span class="n">purchId</span><span class="p">,</span> <span class="m">_</span><span class="n">itemId</span><span class="p">,</span> <span class="m">_</span><span class="n">inventDimId</span><span class="p">);</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="n">purchLine</span> <span class="p">&amp;&amp;</span> <span class="m">_</span><span class="n">qty</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchReceivedNow</span> <span class="p">=</span> <span class="m">_</span><span class="n">qty</span><span class="p">;</span>
+            <span class="n">purchline</span><span class="p">.</span><span class="n">modifiedField</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchLine</span><span class="p">,</span> <span class="n">PurchReceivedNow</span><span class="p">));</span>
+            <span class="n">purchLineList</span><span class="p">.</span><span class="n">addEnd</span><span class="p">(</span><span class="n">purchLine</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">purchLineList</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="n">postPOInvoice</span><span class="p">(</span><span class="n">PurchId</span> <span class="n">purchId</span><span class="p">,</span> <span class="n">PackingSlipId</span> <span class="n">packingSlipId</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">TmpFrmVirtual</span>               <span class="n">tmpFrmVirtualVend</span><span class="p">;</span>
+        <span class="n">PurchFormLetter_Invoice</span>     <span class="n">purchFormLetter</span><span class="p">;</span>
+        <span class="n">VendPackingSlipJour</span>         <span class="n">vendPackingSlipJour</span><span class="p">;</span>
+        <span class="n">SysQueryRun</span>                 <span class="n">chooseLinesQuery</span><span class="p">;</span>
+        <span class="n">SysQueryRun</span>                 <span class="n">chooseLinesPendingInvoiceQuery</span><span class="p">;</span>
+        <span class="n">container</span>                   <span class="n">conTmpFrmVirtual</span><span class="p">;</span>
+        <span class="n">List</span>                        <span class="n">selectedList</span>    <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Record</span><span class="p">);</span>
+
+        <span class="k">select</span> <span class="n">firstonly</span> <span class="n">vendPackingSlipJour</span>
+                    <span class="k">where</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">PurchId</span> <span class="p">==</span> <span class="n">purchId</span>
+            <span class="p">&amp;&amp;</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">PackingSlipId</span> <span class="p">==</span> <span class="n">packingSlipId</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">vendPackingSlipJour</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">TableNum</span>  <span class="p">=</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">TableId</span><span class="p">;</span>
+            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">RecordNo</span>  <span class="p">=</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">RecId</span><span class="p">;</span>
+            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">NoYes</span>     <span class="p">=</span> <span class="n">NoYes</span><span class="p">::</span><span class="n">Yes</span><span class="p">;</span>
+            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">Id</span>        <span class="p">=</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">PurchId</span><span class="p">;</span>
+            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">insert</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="n">chooseLinesQuery</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SysQueryRun</span><span class="p">(</span><span class="n">queryStr</span><span class="p">(</span><span class="n">PurchUpdate</span><span class="p">));</span>
+        <span class="n">chooseLinesQuery</span><span class="p">.</span><span class="n">query</span><span class="p">().</span><span class="n">addDataSource</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">VendInvoiceInfoTable</span><span class="p">)).</span><span class="n">enabled</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+
+        <span class="c1">// chooseLinesPendingInvoiceQuery needs to be initialized, although it will not be used
+</span><span class="c1"></span>        <span class="n">chooseLinesPendingInvoiceQuery</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SysQueryRun</span><span class="p">(</span><span class="n">queryStr</span><span class="p">(</span><span class="n">PurchUpdatePendingInvoice</span><span class="p">));</span>
+        <span class="n">chooseLinesPendingInvoiceQuery</span><span class="p">.</span><span class="n">query</span><span class="p">().</span><span class="n">dataSourceTable</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">PurchTable</span><span class="p">)).</span><span class="n">addRange</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchTable</span><span class="p">,</span><span class="n">PurchId</span><span class="p">)).</span><span class="k">value</span><span class="p">(</span><span class="n">queryValue</span><span class="p">(</span><span class="err">&#39;&#39;</span><span class="p">));</span>
+           
+        <span class="n">purchFormLetter</span> <span class="p">=</span> <span class="n">PurchFormLetter</span><span class="p">::</span><span class="n">construct</span><span class="p">(</span><span class="n">DocumentStatus</span><span class="p">::</span><span class="n">Invoice</span><span class="p">);</span>
+        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">chooseLinesQuery</span> <span class="p">(</span><span class="n">chooseLinesQuery</span><span class="p">);</span>
+        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">parmQueryChooseLinesPendingInvoice</span><span class="p">(</span><span class="n">chooseLinesPendingInvoiceQuery</span><span class="p">);</span>
+        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">purchTable</span> <span class="p">(</span><span class="n">PurchTable</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="n">PurchId</span><span class="p">));</span>
+        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">transDate</span> <span class="p">(</span><span class="n">systemDateGet</span><span class="p">());</span>
+        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">parmParmTableNum</span> <span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;%1&#34;</span><span class="p">,</span><span class="n">packingSlipId</span><span class="p">));</span> <span class="c1">//This is invoice number
+</span><span class="c1"></span>        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">printFormLetter</span> <span class="p">(</span><span class="n">NoYes</span><span class="p">::</span><span class="n">No</span><span class="p">);</span>
+        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">sumBy</span> <span class="p">(</span><span class="n">AccountOrder</span><span class="p">::</span><span class="n">Auto</span><span class="p">);</span>
+        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">specQty</span> <span class="p">(</span><span class="n">PurchUpdate</span><span class="p">::</span><span class="n">PackingSlip</span><span class="p">);</span>
+      
+        <span class="k">while</span> <span class="k">select</span> <span class="n">tmpFrmVirtualVend</span>
+        <span class="p">{</span>
+            <span class="n">selectedList</span><span class="p">.</span><span class="n">addEnd</span><span class="p">(</span><span class="n">tmpFrmVirtualVend</span><span class="p">);</span>
+            <span class="n">conTmpFrmVirtual</span> <span class="p">=</span> <span class="n">selectedList</span><span class="p">.</span><span class="n">pack</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">selectFromJournal</span><span class="p">(</span><span class="n">conTmpFrmVirtual</span><span class="p">);</span>
+        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">reArrangeNow</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">randomAmount</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">RandomGenerate</span> <span class="n">randomGenerate</span><span class="p">;</span>
+        <span class="n">randomGenerate</span> <span class="p">=</span> <span class="n">RandomGenerate</span><span class="p">::</span><span class="n">construct</span><span class="p">();</span>
+        <span class="n">randomGenerate</span><span class="p">.</span><span class="n">parmSeed</span><span class="p">(</span><span class="k">new</span> <span class="n">Random</span><span class="p">().</span><span class="n">nextInt</span><span class="p">());</span>
+        <span class="k">return</span> <span class="n">RandomGenerate</span><span class="p">.</span><span class="n">randomInt</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="m">800</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Thank you for reading.</p>]]></description>
 </item><item>
     <title>Dynamics 365 finance and operations ODATA consuming - Length cannot be less than zero</title>
     <link>https://nuxulu.com/2019-12-17-dynamics-365-finance-and-operations-odata-consuming-length-cannot-be-less-than-zero/</link>
     <pubDate>Tue, 17 Dec 2019 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2019-12-17-dynamics-365-finance-and-operations-odata-consuming-length-cannot-be-less-than-zero/</guid>
-    <description><![CDATA[When you consume a custom data entity, you get an error
-errorSystem.ArgumentOutOfRangeException : Length cannot be less than zero” and it works fine for standard data entities. {:.error}
-The reason is the temporary XML file where the metadata stored which mismatches with the metadata from https://&lt;yourenvironment&gt;.cloudax.dynamics.com/data/$metadata
-You can follow this post to understand how to create the XML file.
-If you try to regenerate the metadata by saving the ODataClient.tt file, the XML will be accumulated, and the error keeps happening.]]></description>
+    <description><![CDATA[<p>When you consume a custom data entity, you get an error</p>
+<p>errorSystem.ArgumentOutOfRangeException : Length cannot be less than zero” and it works fine for standard data entities.
+{:.error}</p>
+<p></p>
+<p>The reason is the temporary XML file where the metadata stored which mismatches with the metadata from <code>https://&lt;yourenvironment&gt;.cloudax.dynamics.com/data/$metadata</code></p>
+<p>You can follow this <a href="https://nuxulu.com/2019/12/16/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET.html" target="_blank" rel="noopener noreferrer">post</a> to understand how to create the XML file.</p>
+<p>If you try to regenerate the metadata by saving the <strong>ODataClient.tt</strong> file, the XML will be accumulated, and the error keeps happening.
+The resolution here is simply delete it and regenerate metadata again by saving the <strong>ODataClient.tt</strong> file</p>
+<p></p>
+<p>Thank you for reading.</p>
+]]></description>
 </item><item>
     <title>Enable Power BI Embedded in cloud hosted Dynamics 365 finance and operations 8.0 &#43;</title>
     <link>https://nuxulu.com/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/</link>
     <pubDate>Tue, 17 Dec 2019 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/</guid>
-    <description><![CDATA[In this article, we will go through how to enable Power BI embedded in Dynamics 365 finance and operations version 10 in a cloud-hosted environment (customer managed). From the previous version of FinOps, Power BI embedded uses workspace collections at Azure to display the report, since the workspace collections have been deprecated, Microsoft also disables power BI embedded in cloud-hosted environments. You can only enable Power BI embedded in multiple boxes environments like UAT and production.]]></description>
+    <description><![CDATA[<p>In this article, we will go through how to enable Power BI embedded in Dynamics 365 finance and operations version 10 in a cloud-hosted environment (customer managed). From the previous version of FinOps, Power BI embedded uses workspace collections at Azure to display the report, since the workspace collections have been deprecated, Microsoft also disables power BI embedded in cloud-hosted environments. You can only enable Power BI embedded in multiple boxes environments like UAT and production.</p>
+<h2 id="1-create-workspace-collections">1. Create workspace collections</h2>
+<p>Although the workspace collections have been deprecated, it does not show in the Azure portal and you could not create it by using the Azure portal, but you can create and manage by using Azure CLI.</p>
+<p>Open PowerShell and run following</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">//</span> <span class="n">Allow</span> <span class="n">policy</span>
+<span class="nb">set-executionpolicy</span> <span class="n">remotesigned</span>
+
+<span class="p">//</span><span class="n">Install</span> <span class="n">AzureRM</span>
+<span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">AzureRM</span> <span class="n">-AllowClobber</span>
+
+<span class="p">//</span> <span class="n">Login</span> <span class="n">to</span> <span class="n">Azure</span> <span class="n">using</span> <span class="n">credentials</span>
+<span class="nb">Login-AzureRmAccount</span>
+
+<span class="p">//</span> <span class="nb">select </span><span class="n">the</span> <span class="n">subscription</span> <span class="n">ID</span>
+<span class="nb">Select-AzureRmSubscription</span> <span class="n">-SubscriptionId</span> <span class="nv">$subscriptionId</span>
+
+<span class="nv">$ResourceGroupName</span> <span class="p">=</span> <span class="err">“</span><span class="n">MaxWorkspaceCollections</span><span class="err">”</span>
+<span class="nv">$Location</span> <span class="p">=</span> <span class="s2">&#34;Southeast Asia&#34;</span>
+
+<span class="p">//</span> <span class="n">Create</span> <span class="n">workspace</span> <span class="n">collections</span>
+<span class="nb">New-AzPowerBIWorkspaceCollection</span> <span class="n">-ResourceGroupName</span> <span class="nv">$ResourceGroupName</span> <span class="n">-WorkspaceCollectionName</span> <span class="nv">$WorkSpaceCollectionName</span> <span class="n">-Location</span> <span class="nv">$Location</span>
+
+<span class="p">//</span> <span class="n">Obtain</span> <span class="n">the</span> <span class="n">access</span> <span class="n">keys</span>
+<span class="nb">Get-AzPowerBIWorkspaceCollection</span> <span class="n">-ResourceGroupName</span> <span class="nv">$ResourceGroupName</span> <span class="n">-name</span> <span class="s2">&#34;&lt;yourWorkspacename&gt;&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="2-create-axwd-azure-sql-database">2. Create AxWD Azure SQL Database</h2>
+<p>We must use the Azure SQL Database for the AxDW in Dynamics 365 finance and operations cloud-hosted environment.
+Please follow <a href="https://docs.microsoft.com/en-us/azure/sql-database/sql-database-single-database-get-started?tabs=azure-portal" target="_blank" rel="noopener noreferrer">this document to create Azure SQL DB</a>.</p>
+<p>We need at least <strong>5 GB storage for Database</strong>, for Pricing tier, I will recommend using from S1, and name the database AxDB</p>
+<p>This is my DB property</p>
+<p></p>
+<p>I’m using Premium tier because I want to use <strong>the Columnstore Clustered indexes</strong> in Database; it helps performance a little bit faster.
+Once you have the Azure SQL Database, we can use SSMS to connect to the database and create a user for that DB. You need to get <strong>the user and password information in LCS</strong>, where the cloud-hosted provisioned.</p>
+<p></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="n">Use</span><span class="w"> </span><span class="n">Master</span><span class="w">
+</span><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="n">LOGIN</span><span class="w"> </span><span class="n">axdwadmin</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">PASSWORD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span><span class="w"> 
+</span><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="n">LOGIN</span><span class="w"> </span><span class="n">axdwruntimeuser</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">PASSWORD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="n">Use</span><span class="w"> </span><span class="n">AxDw</span><span class="w">
+</span><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">axdwadmin</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">LOGIN</span><span class="w"> </span><span class="n">axdwadmin</span><span class="p">;</span><span class="w"> 
+</span><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">axdwruntimeuser</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">LOGIN</span><span class="w"> </span><span class="n">axdwruntimeuser</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">ROLE</span><span class="w"> </span><span class="n">db_owner</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="n">MEMBER</span><span class="w"> </span><span class="n">axdwadmin</span><span class="p">;</span><span class="w"> 
+</span><span class="w"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">ROLE</span><span class="w"> </span><span class="n">db_datareader</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="n">MEMBER</span><span class="w"> </span><span class="n">axdwruntimeuser</span><span class="p">;</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="3-configuring-to-enable-analytical-workspaces-and-reports">3. Configuring to enable Analytical Workspaces and Reports</h2>
+<p>What you are having now</p>
+<p>Power BI Embedded Service details from step 1</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">Workspace Collection Name: The name of the Workspace Collection created when deploying the Power BI Embedded Service
+Access Key1:  The secret key #1 used to access the Power BI Embedded service
+Access Key2:  The secret key #2 used to access the Power BI Embedded service
+</code></pre></td></tr></table>
+</div>
+</div><p>Entity Store Database Service details from step 2</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">Database name:  AxDW
+Server name:  Azure SQL Server name (*.database.windows.net)
+Server admin login:  Username supplied in the SQL Server settings
+Password:  Account password supplied when configuring SQL Server
+</code></pre></td></tr></table>
+</div>
+</div><p>Run Notepad in <strong>administrator</strong> mode, open web.config from <em>K:\AOSService\webroot</em> in Dynamics 365 for finance and operations environment.</p>
+<p>Update the configuration settings:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;BiReporting.DW&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Database name]&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;BiReporting.DWServer&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Server name]&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;BiReporting.DWRuntimeUser&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Server Admin login]&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;BiReporting.DWRuntimePwd&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Password]&#34;</span> <span class="p">/&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Update the Power BI Embedded Service configuration settings:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.AccessKey&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Access Key1]&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.AccessKey2&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Access Key2]&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.ApiUrl&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;https://api.powerbi.com&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.IsPowerBIEmbeddedEnabled&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;true&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.WorkspaceCollectionName&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Workspace Collection Name]&#34;</span> <span class="p">/&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>After that, you need to restart IIS and Dynamics 365 for finance and operations batch service</p>
+<h2 id="4-refresh-data-entity-store-to-axdw">4. Refresh data entity store to AxDW</h2>
+<p>In Dynamics 365 for finance and operations, navigate to <em>System administration &gt; Setup &gt; Entity Store</em>, select all the <strong>entity store</strong>, and click refresh.</p>
+<p>Allow this process to complete in the background (~5 - 10mins).  You can monitor the status of the background process using the Batch jobs.</p>
+<p>Once the Progress is made, you can check the event message in the same form to make sure the refreshing working properly</p>
+<p></p>
+<h2 id="5-powerbi-configuration-this-is-optional">5. PowerBI configuration (this is optional)</h2>
+<p>Configuring power BI for the workspace; please follow the document <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/analytics/configure-power-bi-integration" target="_blank" rel="noopener noreferrer">here</a></p>
+<p>This is what you should have after the setup</p>
+<p></p>
+<h2 id="check-the-result">Check the result</h2>
+<p>If you want to check the result, go to <em>Workspaces &gt; Customer credit and collections &gt; Analytics all companies</em></p>
+<p></p>
+<p>Thank you for reading.</p>
+]]></description>
 </item><item>
     <title>Consuming Dynamics 365 Finance and Operations OData services from .NET</title>
     <link>https://nuxulu.com/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/</link>
     <pubDate>Mon, 16 Dec 2019 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/</guid>
-    <description><![CDATA[1. Authentication We need an authentication to connect Dynamics 365 finance and operations from .Net application by using service principal.
-How to create an app registration in Azure https://docs.microsoft.com/en-us/azure/active-directory/develop/app-registrations-training-guide-for-app-registrations-legacy-users
-You also need to add required permissions for Dynamics 365 finance and operations, please follow
-https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/services-home-page#register-a-web-application-with-aad
-This is what you should have
-2. Register your external application a. In the FinOps application, go to System administration &gt; Setup &gt; Azure Active Directory applications.]]></description>
+    <description><![CDATA[<h1 id="1-authentication">1. Authentication</h1>
+<p>We need an authentication to connect Dynamics 365 finance and operations from .Net application by using service principal.</p>
+<p>How to create an app registration in Azure <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/app-registrations-training-guide-for-app-registrations-legacy-users" target="_blank" rel="noopener noreferrer">https://docs.microsoft.com/en-us/azure/active-directory/develop/app-registrations-training-guide-for-app-registrations-legacy-users</a></p>
+<p>You also need to add required permissions for Dynamics 365 finance and operations, please follow<br>
+<a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/services-home-page#register-a-web-application-with-aad" target="_blank" rel="noopener noreferrer">https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/services-home-page#register-a-web-application-with-aad</a></p>
+<p>This is what you should have</p>
+<p></p>
+<h1 id="2-register-your-external-application">2. Register your external application</h1>
+<h3 id="a-in-the-finops-application-go-to-system-administration--setup--azure-active-directory-applications">a. In the FinOps application, go to <strong>System administration &gt; Setup &gt; Azure Active Directory applications</strong>.</h3>
+<h3 id="bselect-new">b.	Select <strong>New</strong>.</h3>
+<h3 id="cfill-in-the-fields-for-the-new-record">c.	Fill in the fields for the new record:</h3>
+<ul>
+<li>In the <strong>Client Id</strong> field, enter the application ID that you registered in Azure AD.</li>
+<li>In the <strong>Name field</strong>, enter a name for the application.</li>
+<li>In the <strong>User ID field</strong>, select an appropriate service account user ID. For this example, we have selected the Admin user. However, as a better practice, you should provision a dedicated service account that has the correct permissions for the operations that must be performed. When you&rsquo;ve finished, select <strong>Save</strong>.</li>
+</ul>
+<p>You&rsquo;ve now finished setting up the prerequisites. After the external application retrieves an Azure AD authentication token, it should now be able to use the token in an authorization HTTP header to make subsequent service calls via OData or SOAP, for example.</p>
+<h1 id="3-odata-client-configuration">3. OData client configuration</h1>
+<ul>
+<li>Download the project here <a href="https://github.com/microsoft/Dynamics-AX-Integration" target="_blank" rel="noopener noreferrer">https://github.com/microsoft/Dynamics-AX-Integration</a></li>
+<li>Open <strong>ServiceSamples</strong> solution.</li>
+<li>We cannot use existing proxies and classes, so I need to regenerate them again. Under ODataUtility project, delete <strong>ODataClient.tt</strong> and <strong>ODataClient.ttinclude</strong>.</li>
+<li>To regenerate Odata client, right click on <em>ODataUtility project &gt; Add &gt; New item</em>, search for OData in Online and rename it to <strong>ODataClient.tt</strong>.</li>
+<li>Open <strong>ODataClient.tt</strong>, in MetadataDocumentUri add <em>&ldquo;https://<yourEnvironment>.cloudax.dynamics.com/data/$metadata&rdquo;</em></li>
+</ul>
+<p>If you save the ODataClient.tt file, it will generate Odata proxies and classes. From PU12 onward, there are so many entities so you will get an error after compiling</p>
+<p><code>Combined length of user strings used by the program exceeds allowed limit. Try to decrease use of string literals.</code></p>
+<p>There are 2 ways to fix it</p>
+<h3 id="a-using-temporary-file">a. Using temporary file</h3>
+<p>The simplest way to fix is add TempFilePath, ensure that you have write permission for this path, this is what you got</p>
+<p></p>
+<p>Save the <strong>ODataClient.tt</strong> and there will be <strong>Test1.xml</strong> file created to store metadata, there should be a bug while generating the xml file, one more step you need to do is replace the double quote to single quote (a global replace of &quot;&quot; with &quot; ), and this is what you have</p>
+<p>
+You can build the project without problem.</p>
+<h3 id="b-remove-unused-entities">b. Remove unused entities</h3>
+<p>Another work-around that works too, edit the ODataClient.ttinclude so that it parses only some of the entities that you want to use, this reducing the error. For instance, change the following foreach statement</p>
+<ul>
+<li>Original code:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="k">foreach</span> <span class="p">(</span><span class="n">IEdmEntitySet</span> <span class="n">entitySet</span> <span class="k">in</span> <span class="n">container</span><span class="p">.</span><span class="n">EntitySets</span><span class="p">())</span>
+<span class="p">{</span>
+    <span class="n">IEdmEntityType</span> <span class="n">entitySetElementType</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">EntityType</span><span class="p">();</span>
+    <span class="kt">string</span> <span class="n">entitySetElementTypeName</span> <span class="p">=</span> <span class="n">GetElementTypeName</span><span class="p">(</span><span class="n">entitySetElementType</span><span class="p">,</span> <span class="n">container</span><span class="p">);</span>
+
+    <span class="kt">string</span> <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">EnableNamingAlias</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">Customization</span><span class="p">.</span><span class="n">CustomizeNaming</span><span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Modified code:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="k">foreach</span> <span class="p">(</span><span class="n">IEdmEntitySet</span> <span class="n">entitySet</span> <span class="k">in</span> <span class="n">container</span><span class="p">.</span><span class="n">EntitySets</span><span class="p">())</span>
+<span class="p">{</span>
+    <span class="n">IEdmEntityType</span> <span class="n">entitySetElementType</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">EntityType</span><span class="p">();</span>
+    <span class="kt">string</span> <span class="n">entitySetElementTypeName</span> <span class="p">=</span> <span class="n">GetElementTypeName</span><span class="p">(</span><span class="n">entitySetElementType</span><span class="p">,</span> <span class="n">container</span><span class="p">);</span>
+
+    <span class="kt">string</span> <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
+
+    <span class="c1">//start of manual fix 
+</span><span class="c1"></span>    <span class="c1">//only process entity names that containin a specific string, to reduce the string size
+</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(((</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;CUST&#34;</span><span class="p">))</span> <span class="p">||</span> <span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;VEND&#34;</span><span class="p">)))</span> <span class="p">||</span> <span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;SALES&#34;</span><span class="p">)))</span>
+    <span class="p">{</span>
+      <span class="c1">// emd of manual fix
+</span><span class="c1"></span>      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">EnableNamingAlias</span><span class="p">)</span>
+      <span class="p">{</span>
+          <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">Customization</span><span class="p">.</span><span class="n">CustomizeNaming</span><span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="4-authentication-configuration">4. Authentication configuration</h1>
+<p>Under AuthenticationUtility project, you need to modify ClientConfiguration.cs follow, you can get all related information for the first step.</p>
+<p></p>
+<p>From now, you can freely test the integrations under <strong>ODataConsoleApplication</strong> project.
+If you are testing with a custom data entity and you get this error</p>
+<p><code>System.ArgumentOutOfRangeException : Length cannot be less than zero.</code></p>
+<p>Please check this <a href="https://nuxulu.com/2019/12/17/Dynamics-365-finance-and-operations-ODATA-consuming-Length-cannot-be-less-than-zero.html" target="_blank" rel="noopener noreferrer">post</a>.</p>
+<p>Thank you for reading.</p>
+]]></description>
 </item><item>
     <title>Business events and HTTPs endpoint</title>
     <link>https://nuxulu.com/2019-11-05-business-events-and-https-endpoint/</link>
     <pubDate>Tue, 05 Nov 2019 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2019-11-05-business-events-and-https-endpoint/</guid>
-    <description><![CDATA[In Dynamics 365 finance and operations, Business events provide a mechanism that lets external systems receive notifications from FinOps applications. In this way, the systems can perform business actions in response to business events.
-There are 3 types of business events: Application business events, Workflow business events, and Alerts as business events. You can also implement a new business event.
-Business events can be consumed using Microsoft Flow and Azure messaging services, and we use endpoint to manage the destinations for sending business events to, Microsoft supports many endpoints: Azure Service Bus Queue, Azure Service Bus Topic, Azure Event Grid, Azure Event Hub, HTTPS, Microsoft Flow.]]></description>
+    <description><![CDATA[<p>In Dynamics 365 finance and operations, Business events provide a mechanism that lets external systems receive notifications from FinOps applications. In this way, the systems can perform business actions in response to business events.</p>
+<p>There are 3 types of business events: <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/business-events/app-business-events" target="_blank" rel="noopener noreferrer">Application business events</a>, <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/business-events/business-events-workflow" target="_blank" rel="noopener noreferrer">Workflow business events</a>, and <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/business-events/alerts-business-events" target="_blank" rel="noopener noreferrer">Alerts as business events</a>. You can also implement <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/business-events/business-events-dev-doc" target="_blank" rel="noopener noreferrer">a new business event</a>.</p>
+<p>Business events can be consumed using Microsoft Flow and Azure messaging services, and we use endpoint to manage the destinations for sending business events to, Microsoft supports many endpoints: Azure Service Bus Queue, Azure Service Bus Topic, Azure Event Grid, Azure Event Hub, HTTPS, Microsoft Flow.
+In this article I will show how to send business event to HTTPs endpoint that leveraging on Azure functions.</p>
+<p>The scenario: Once a free text invoice is posted, Business event will be triggered and send messages to the HTTPs endpoint.</p>
+<h2 id="1-https-and-azure-function">1. HTTPs and Azure function</h2>
+<p>Ideally, I will create a new Azure function which has HTTPs endpoint to subscribe the business events in FinOps.
+To create Azure function please follow this <a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-azure-function" target="_blank" rel="noopener noreferrer">https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-azure-function</a></p>
+<p>Here is the simple line of code</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">System.Net</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Microsoft.AspNetCore.Mvc</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Microsoft.Extensions.Primitives</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Newtonsoft.Json</span><span class="p">;</span>
+<span class="k">public</span> <span class="k">static</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">IActionResult</span><span class="p">&gt;</span> <span class="n">Run</span><span class="p">(</span><span class="n">HttpRequest</span> <span class="n">req</span><span class="p">,</span> <span class="n">ILogger</span> <span class="n">log</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">log</span><span class="p">.</span><span class="n">LogInformation</span><span class="p">(</span><span class="s">&#34;Dynamics 365 finance and operations notifications&#34;</span><span class="p">);</span>
+  <span class="kt">string</span> <span class="n">requestBody</span> <span class="p">=</span> <span class="k">await</span> <span class="k">new</span> <span class="n">StreamReader</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">Body</span><span class="p">).</span><span class="n">ReadToEndAsync</span><span class="p">();</span>
+  <span class="n">log</span><span class="p">.</span><span class="n">LogInformation</span><span class="p">(</span><span class="n">requestBody</span><span class="p">);</span>
+  <span class="k">return</span> <span class="p">(</span><span class="n">ActionResult</span><span class="p">)</span><span class="k">new</span> <span class="n">OkObjectResult</span><span class="p">(</span><span class="s">$&#34;Hello world&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>This basically listens the JSON messages from Business events and display the Json message at Console.</p>
+<p>From the Azure function you can get the HTTPs endpoint, save it for later reference.</p>
+<p></p>
+<h2 id="2-application-registration-int-aad">2. Application registration int AAD</h2>
+<p>We need an application to authenticate with FinOps and Azure function HTTPs.
+Go to <em>Azure portal &gt; AAD &gt; App registrations &gt; New registration</em></p>
+<p></p>
+<ul>
+<li>Name of the application.</li>
+<li>Depend on you have multitenant or not</li>
+<li>Dynamics 365 finance and operations URL</li>
+</ul>
+<h3 id="api-permissions">API Permissions</h3>
+<p>Go to the newly created application &gt; API permissions and adding permission as below</p>
+<p></p>
+<h3 id="secrets">Secrets</h3>
+<p>Go to Certificates &amp; secrets menu item and create a new client secret</p>
+<p></p>
+<p>After this you will have <strong>Application Id and Application Secret</strong>, save it for later.</p>
+<h2 id="3-key-vaults">3. Key Vaults</h2>
+<p>In Azure portal create a new keyVault to store the HTTPs endpoint URL information</p>
+<p></p>
+<h3 id="access-policy">Access policy</h3>
+<p>Click next to create access policy (you also can set up this later after creating Key Vault)</p>
+<p></p>
+<p>Select all the permissions in Key, Secret and Certificate, In select principal choose the application you have created before.</p>
+<p></p>
+<h3 id="key-vault-secret">Key Vault secret</h3>
+<p>Go to the newly <em>created Key vault &gt; secrets &gt; generate a new one</em></p>
+<p></p>
+<p>Value is the endpoint URL for D365 to call the one we got from the first step.
+After this step you will have the Key vault DNS name <em><a href="https://maxfokeyvault.vault.azure.net/" target="_blank" rel="noopener noreferrer">https://maxfokeyvault.vault.azure.net/</a></em> and Key Vault secret name <em>D365VaultSecretName</em>
+That information will be needed for Business events configuration in Dynamics 365 finance and operations</p>
+<h2 id="4-creating-https-endpoint">4. Creating HTTPs endpoint</h2>
+<p>Go to <em>System administrator &gt; Business events &gt; Business events catalog</em>, Click on <strong>Endpoints</strong> in <strong>Endpoint type</strong> choose <em>HTTPS</em> and <strong>click Next</strong>. Fill all the required information that you got from above steps.</p>
+<p>Click on <strong>Business events catalog</strong>, look for business event Id <em>CustFreeTextInvoicePostedBusinessEvent</em>, check the record and click <strong>Active</strong>; from there choose legal entity and the Endpoint that we have just created.</p>
+<p></p>
+<p>After that, if you check on <strong>Active events tab</strong>, there will be a new record created.
+That&rsquo;s it, now I will create a free text invoice and post it, this is what I got from the console log in Azure.</p>
+<p></p>
+<p>With the JSON messages, you can deserialize it and save to Cosmos DB or do whatever in Azure function.</p>
+<h2 id="5-about-platform-changes">5. About platform changes</h2>
+<p>Before PU26, Business event run in batch, following menu <em>System admin &gt; Business events &gt; Start business events batch job</em></p>
+<p>
+
+</p>
+<p>In <strong>BusinessEventsParameters</strong>, the value will be <code>Enabled = 0 , BatchEnabled = 1</code>.</p>
+<p>After PU26, the sending business events will be triggered directly from FinOps, you won&rsquo;t find the menu System admin &gt; Business events &gt; Start business events batch job</p>
+<p>In <strong>BusinessEventsParameters</strong>, the value will be <code>Enabled = 1 , BatchEnabled = 0</code>.
+If you have just upgraded from PU26 to higher version, the Business events are not getting triggered because the value might not be changed in <strong>BusinessEventsParameters</strong> and there is no batch. You should check this table according to the situation.</p>
+<p>Thank you for reading.</p>
+]]></description>
 </item><item>
     <title>Insert multiple records in single request using Odata from Postman</title>
     <link>https://nuxulu.com/2019-10-15-insert-multiple-records-in-single-request-using-odata-from-postman/</link>
     <pubDate>Tue, 15 Oct 2019 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2019-10-15-insert-multiple-records-in-single-request-using-odata-from-postman/</guid>
-    <description><![CDATA[Got inspired by this topic, I&rsquo;d like to write this article to show you how to post multiple records in single request by using Postman.
-Generally, batch requests are supported in the OData service, The easiest way is you can use the C# code approach from github and the excel add-ins in Dynamics 365 for finance and operations use Odata batch to communicate in a single request but how can we leverage it in Postman.]]></description>
+    <description><![CDATA[<p>Got inspired by <a href="https://community.dynamics.com/365/financeandoperations/f/dynamics-365-for-finance-and-operations-forum/286810/inserting-multiple-records-via-odata-from-postman" target="_blank" rel="noopener noreferrer">this topic</a>, I&rsquo;d like to write this article to show you how to post multiple records in single request by using Postman.</p>
+<p>Generally, batch requests are supported in the <a href="https://docs.oasis-open.org/odata/odata/v4.0/errata02/os/complete/part1-protocol/odata-v4.0-errata02-os-part1-protocol-complete.html#_Toc406398359" target="_blank" rel="noopener noreferrer">OData service</a>, The easiest way is you can use the C# code approach from <a href="https://github.com/Microsoft/Dynamics-AX-Integration/tree/master/ServiceSamples/ODataConsoleApplication" target="_blank" rel="noopener noreferrer">github</a> and the excel add-ins in Dynamics 365 for finance and operations use Odata batch to communicate in a single request but how can we leverage it in Postman.</p>
+<p>Using Excel add-in then add 2 customer groups records and submit to Dynamics 365 for finance and operations, while you are doing that using <a href="https://www.telerik.com/fiddler" target="_blank" rel="noopener noreferrer">fiddler</a> on the same box to see how the odata batch framework works.
+This can be done from POSTMAN too and you need to use header and body as you see in Fiddler.</p>
+<p>For basic setting up Dynamics 365 for finance and operations and Postman please follow <a href="https://docs.microsoft.com/en-us/dynamics365/unified-operations/dev-itpro/data-entities/third-party-service-test" target="_blank" rel="noopener noreferrer">this offical document</a></p>
+<h3 id="1-get-dynamics-365-for-finance-and-operations-authorization">1. Get Dynamics 365 for finance and operations authorization</h3>
+<p>This is a result</p>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_1.png"></a>
+</figure>
+<h3 id="2-create-a-new-post-request-in-postman-with-header">2. Create a new POST request in Postman with header</h3>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_2.png"></a>
+</figure>
+<p><em><strong>URL: {{resource}}/data/$batch</strong></em>
+<em><strong>Content-Type: multipart/mixed;boundary=batch_d63a-e9be-2927</strong></em></p>
+<h3 id="3-modify-the-body-in-postman">3. Modify the Body in Postman</h3>
+<p>I will place 2 records for customer groups</p>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_3.png"></a>
+</figure>
+<p>Full text here</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">--batch_d63a-e9be-2927
+Content-Type: multipart/mixed; boundary=changeset_2499-90ab-7b93
+
+--changeset_2499-90ab-7b93
+Content-Type: application/http
+Content-Transfer-Encoding: binary
+
+POST CustomerGroups?cross-company=true HTTP/1.1
+Content-ID: 1
+Accept: application/json;q=0.9, */*;q=0.1
+OData-Version: 4.0
+Content-Type: application/json
+OData-MaxVersion: 4.0
+
+{&#34;CustomerGroupId&#34;:&#34;1060&#34;,&#34;Description&#34;:&#34;Wholesales customers&#34;,&#34;PaymentTermId&#34;:&#34;Net30&#34;,&#34;IsSalesTaxIncludedInPrice&#34;:&#34;No&#34;,&#34;dataAreaId&#34;:&#34;usmf&#34;}
+--changeset_2499-90ab-7b93--
+
+--batch_d63a-e9be-2927
+Content-Type: multipart/mixed; boundary=changeset_b573-33b2-85ff
+
+--changeset_b573-33b2-85ff
+Content-Type: application/http
+Content-Transfer-Encoding: binary
+
+POST CustomerGroups?cross-company=true HTTP/1.1
+Content-ID: 2
+Accept: application/json;q=0.9, */*;q=0.1
+OData-Version: 4.0
+Content-Type: application/json
+OData-MaxVersion: 4.0
+
+{&#34;CustomerGroupId&#34;:&#34;1070&#34;,&#34;Description&#34;:&#34;Wholesales customers1&#34;,&#34;PaymentTermId&#34;:&#34;Net30&#34;,&#34;IsSalesTaxIncludedInPrice&#34;:&#34;No&#34;,&#34;dataAreaId&#34;:&#34;usmf&#34;}
+--changeset_b573-33b2-85ff--
+</code></pre></td></tr></table>
+</div>
+</div><p>Click send and this is what you got from response</p>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_4.png"></a>
+</figure>
+<p>Full Response</p>
+<p>{% highlight json %}
+&ndash;batchresponse_45e87829-5a26-480e-8aaa-8a08c7a82c60
+Content-Type: multipart/mixed; boundary=changesetresponse_27ed7621-d939-40b7-9f8b-be0421ff0cea
+&ndash;changesetresponse_27ed7621-d939-40b7-9f8b-be0421ff0cea
+Content-Type: application/http
+Content-Transfer-Encoding: binary
+Content-ID: 1
+HTTP/1.1 201 Created
+ETag: W/&ldquo;JzEsNjg3MTk0Nzk4MzUn&rdquo;
+Location: https: //fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/CustomerGroups(dataAreaId=&lsquo;usmf&rsquo;,CustomerGroupId=&lsquo;1060&rsquo;)
+Content-Type: application/json; odata.metadata=minimal
+OData-Version: 4.0
+{
+&ldquo;@odata.context&rdquo;: &ldquo;<a href="https://fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/$metadata#CustomerGroups/$entity%22," target="_blank" rel="noopener noreferrer">https://fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/$metadata#CustomerGroups/$entity",</a>
+&ldquo;@odata.etag&rdquo;: &ldquo;W/&quot;JzEsNjg3MTk0Nzk4MzUn&quot;&rdquo;,
+&ldquo;dataAreaId&rdquo;: &ldquo;usmf&rdquo;,
+&ldquo;CustomerGroupId&rdquo;: &ldquo;1060&rdquo;,
+&ldquo;ClearingPeriodPaymentTermName&rdquo;: &ldquo;&rdquo;,
+&ldquo;DefaultDimensionDisplayValue&rdquo;: &ldquo;&rdquo;,
+&ldquo;CustomerAccountNumberSequence&rdquo;: &ldquo;&rdquo;,
+&ldquo;IsSalesTaxIncludedInPrice&rdquo;: &ldquo;No&rdquo;,
+&ldquo;Description&rdquo;: &ldquo;Wholesales customers&rdquo;,
+&ldquo;WriteOffReason&rdquo;: &ldquo;&rdquo;,
+&ldquo;PaymentTermId&rdquo;: &ldquo;Net30&rdquo;,
+&ldquo;TaxGroupId&rdquo;: &quot;&rdquo;
+}
+&ndash;changesetresponse_27ed7621-d939-40b7-9f8b-be0421ff0cea&ndash;
+&ndash;batchresponse_45e87829-5a26-480e-8aaa-8a08c7a82c60
+Content-Type: multipart/mixed; boundary=changesetresponse_541a7d21-af21-4d66-b410-fb4165599b54
+&ndash;changesetresponse_541a7d21-af21-4d66-b410-fb4165599b54
+Content-Type: application/http
+Content-Transfer-Encoding: binary
+Content-ID: 2
+HTTP/1.1 201 Created
+ETag: W/&ldquo;JzEsNjg3MTk0Nzk4MzYn&rdquo;
+Location: https: //fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/CustomerGroups(dataAreaId=&lsquo;usmf&rsquo;,CustomerGroupId=&lsquo;1070&rsquo;)
+Content-Type: application/json; odata.metadata=minimal
+OData-Version: 4.0
+{
+&ldquo;@odata.context&rdquo;: &ldquo;<a href="https://fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/$metadata#CustomerGroups/$entity%22," target="_blank" rel="noopener noreferrer">https://fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/$metadata#CustomerGroups/$entity",</a>
+&ldquo;@odata.etag&rdquo;: &ldquo;W/&quot;JzEsNjg3MTk0Nzk4MzYn&quot;&rdquo;,
+&ldquo;dataAreaId&rdquo;: &ldquo;usmf&rdquo;,
+&ldquo;CustomerGroupId&rdquo;: &ldquo;1070&rdquo;,
+&ldquo;ClearingPeriodPaymentTermName&rdquo;: &ldquo;&rdquo;,
+&ldquo;DefaultDimensionDisplayValue&rdquo;: &ldquo;&rdquo;,
+&ldquo;CustomerAccountNumberSequence&rdquo;: &ldquo;&rdquo;,
+&ldquo;IsSalesTaxIncludedInPrice&rdquo;: &ldquo;No&rdquo;,
+&ldquo;Description&rdquo;: &ldquo;Wholesales customers1&rdquo;,
+&ldquo;WriteOffReason&rdquo;: &ldquo;&rdquo;,
+&ldquo;PaymentTermId&rdquo;: &ldquo;Net30&rdquo;,
+&ldquo;TaxGroupId&rdquo;: &quot;&rdquo;
+}
+&ndash;changesetresponse_541a7d21-af21-4d66-b410-fb4165599b54&ndash;
+&ndash;batchresponse_45e87829-5a26-480e-8aaa-8a08c7a82c60&ndash;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">
+Check the data in Dynamics 365 for finance and operations 
+
+&lt;figure class=&#39;center&#39;&gt;
+  &lt;a href=&#34;https://nuxulu.com/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_5.png&#34;&gt;&lt;img src=&#34;https://nuxulu.com/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_5.png&#34; alt=&#34;&#34;&gt;&lt;/a&gt;
+&lt;/figure&gt;
+
+Thank you for reading.
+</code></pre></td></tr></table>
+</div>
+</div>]]></description>
 </item></channel>
 </rss>

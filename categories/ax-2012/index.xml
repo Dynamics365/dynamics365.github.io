@@ -38,19 +38,96 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>If it cause error, message would return like this</p>
-<p></p>]]></description>
+<p></p>
+<p>If you want to know more details, you have to go In Dynamics ax <strong>AIF Exceptions form</strong> then check</p>
+<p></p>
+<p>It&rsquo;s quite hard for 3rd party developer, especially they don&rsquo;t have right to access AX server.</p>
+<p>Anyway, we can get meaningful error message by doing below steps</p>
+<ul>
+<li>Check that box in AIF inbound ports</li>
+</ul>
+<p></p>
+<ul>
+<li>Use <code>FaultException</code> class to get message</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">try</span>
+<span class="p">{</span>
+	<span class="n">client</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">contract</span><span class="p">);</span>
+	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;items registed on Trans Id: &#34;</span> <span class="p">+</span> <span class="n">contract</span><span class="p">.</span><span class="n">InventTransId</span> <span class="p">+</span> <span class="s">&#34; with &#34;</span> <span class="p">+</span> <span class="n">contract</span><span class="p">.</span><span class="n">Qty</span> <span class="p">+</span> <span class="s">&#34; quantities.&#34;</span><span class="p">);</span>
+	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+
+<span class="p">}</span>
+<span class="k">catch</span> <span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">ServiceModel</span><span class="p">.</span><span class="n">FaultException</span><span class="p">&lt;</span><span class="n">ItemsRegistration</span><span class="p">.</span><span class="n">RegRef</span><span class="p">.</span><span class="n">AifFault</span><span class="p">&gt;</span> <span class="n">aifFault</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="c1">//FaultMessageList[] list = aifFault.Detail.FaultMessageListArray[0];
+</span><span class="c1"></span>	<span class="n">InfologMessage</span><span class="p">[]</span> <span class="n">list</span> <span class="p">=</span> <span class="n">aifFault</span><span class="p">.</span><span class="n">Detail</span><span class="p">.</span><span class="n">InfologMessageList</span><span class="p">;</span>
+
+	<span class="k">foreach</span> <span class="p">(</span><span class="n">InfologMessage</span> <span class="n">message</span> <span class="k">in</span> <span class="n">list</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="n">Message</span><span class="p">);</span>
+
+	<span class="p">}</span>
+	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>what we got</p>
+<p></p>
+<p>Thank you for reading.</p>]]></description>
 </item><item>
     <title>How to create HTTP adapter port</title>
     <link>https://nuxulu.com/2017-01-12-how-to-create-http-adapter-port/</link>
     <pubDate>Thu, 12 Jan 2017 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2017-01-12-how-to-create-http-adapter-port/</guid>
     <description><![CDATA[<p>We normally use <code>NETTCP</code> adapter for .NET system, It going to very easy to consume by.</p>
 <p>As my experience, if we use <code>NETTCP</code> adapter for consuming by Java system, we will need add some extension or 3rd party due to binding and mismatch schema and of course client doesn’t want to do that either me.</p>
-<p>So, my solution is creating HTTP adapter for Java, you can also use .NET system to consume HTTP adapter without any problems</p>]]></description>
+<p>So, my solution is creating HTTP adapter for Java, you can also use .NET system to consume HTTP adapter without any problems</p>
+<h3 id="how-to-do">How to do</h3>
+<ul>
+<li>You need to make sure install web services component on Internet Information Services (IIS) and verify that the default website is working.</li>
+</ul>
+<p></p>
+<ul>
+<li>In AX, under System administrator &gt; Services and AIF &gt; Web sites, open from a create new record follow information</li>
+</ul>
+<p>Name: <code>DynamicsAXAif60</code>
+Virtual directory share path: <code>\\YourServerName\MicrosoftDynamicsAXAif60</code>
+URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
+<ul>
+<li>From now on, you can create AIF inbound port with <strong>HTTP adapter</strong>.</li>
+</ul>
+<p></p>
+<p>After you&rsquo;ve actived the services, that Port will deployed under <code>DynamicsAXAif60</code> folder in IIS.</p>
+<p>Thank you for reading.</p>]]></description>
 </item><item>
     <title>Response in AIF custom service class</title>
     <link>https://nuxulu.com/2017-01-12-respone-in-aif-custom-service-class/</link>
     <pubDate>Thu, 12 Jan 2017 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2017-01-12-respone-in-aif-custom-service-class/</guid>
-    <description><![CDATA[<p>At the previous <a href="http://nuxulu.com/ax2012/trick/tools/integration/AIF-Custom-response-value-in-Dynamics-AX-2012-R3/" target="_blank" rel="noopener noreferrer">post</a> I already show how to customize Response Value list in AIF Document standard service, today we will talk about response in Custom AIF service class.</p>
+    <description><![CDATA[<p>At the previous <a href="../2017-01-11-aif-custom-response-value-in-dynamics-ax-2012-r3" rel="">post</a> I already show how to customize Response Value list in AIF Document standard service, today we will talk about response in Custom AIF service class.</p>
 <p>We already know for Custom AIF service we actually need 2 classes, one is <code>contract</code> for data input and one is <code>service</code> to process a logic. With <code>Response</code> class, it&rsquo;s literally same with <code>contract</code> class. They both hold parm value.</p>
 <ul>
 <li>
@@ -61,7 +138,176 @@
 </li>
 </ul>
 <h3 id="scenario">Scenario</h3>
-<p>I want to get <code>HcmPersonnelNumberId</code> and <code>HcmWorkerName</code> of current userID on C#.NET application.</p>]]></description>
+<p>I want to get <code>HcmPersonnelNumberId</code> and <code>HcmWorkerName</code> of current userID on C#.NET application.</p>
+<h3 id="solution">Solution</h3>
+<ul>
+<li>
+<p>Write Custom AIF service to get Worker information, and then public this service.</p>
+</li>
+<li>
+<p>Write C#.NET console to consume that service.</p>
+</li>
+</ul>
+<h3 id="walkthrough">Walkthrough</h3>
+<h4 id="response-class">Response class</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="na">[DataContractAttribute]</span>
+<span class="k">class</span> <span class="nc">MaxWorkerResponse</span>
+<span class="p">{</span>
+    <span class="n">str</span>     <span class="n">gId</span><span class="p">;</span>
+    <span class="n">str</span>     <span class="n">gName</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>two value that I want to return is <code>HcmPersonnelNumberId</code> and <code>HcmWorkerName</code>, I will store it in 2 parms method</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="na">[DataMemberAttribute(&#39;HcmWorkerName&#39;)]</span>
+<span class="k">public</span> <span class="n">HcmWorkerName</span> <span class="n">parmName</span><span class="p">(</span><span class="n">HcmWorkerName</span> <span class="m">_</span><span class="n">name</span> <span class="p">=</span> <span class="n">gName</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">gName</span> <span class="p">=</span> <span class="m">_</span><span class="n">name</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="n">gName</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="na">
+</span><span class="na">[DataMemberAttribute(&#39;HcmPersonnelNumberId&#39;)]</span>
+<span class="k">public</span> <span class="n">HcmPersonnelNumberId</span> <span class="n">parmId</span><span class="p">(</span><span class="n">HcmPersonnelNumberId</span> <span class="m">_</span><span class="n">id</span> <span class="p">=</span> <span class="n">gId</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">gId</span> <span class="p">=</span> <span class="m">_</span><span class="n">id</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="n">gId</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="service-class">Service class</h4>
+<p>Create <code>MaxPRService</code> Class, This class consume through service that need to be extend <code>SysOperationServiceBase</code> class</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">class</span> <span class="nc">MaxPRService</span> <span class="n">extends</span> <span class="n">SysOperationServiceBase</span>
+<span class="p">{</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Main logic</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="na">[SysEntryPointAttribute(true),
+</span><span class="na">AifCollectionTypeAttribute(&#39;return&#39;, Types::String)]</span>
+<span class="k">public</span> <span class="n">MaxWorkerResponse</span> <span class="n">getEmployee</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">HcmWorkerRecId</span>          <span class="n">workerRecId</span><span class="p">;</span>
+    <span class="n">HcmPersonnelNumberId</span>    <span class="n">personnelNumber</span><span class="p">;</span>
+    <span class="n">HcmWorkerName</span>           <span class="n">name</span><span class="p">;</span>
+    <span class="n">MaxWorkerResponse</span>       <span class="n">response</span><span class="p">;</span>
+
+    <span class="n">workerRecId</span> <span class="p">=</span> <span class="n">DirPersonUser</span><span class="p">::</span><span class="n">currentWorker</span><span class="p">();</span>
+    <span class="n">personnelNumber</span> <span class="p">=</span> <span class="n">HcmWorker</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="n">workerRecId</span><span class="p">).</span><span class="n">PersonnelNumber</span><span class="p">;</span>
+    <span class="n">name</span> <span class="p">=</span> <span class="n">HcmWorker</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="n">workerRecId</span><span class="p">).</span><span class="n">name</span><span class="p">();</span>
+    
+    <span class="n">response</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MaxWorkerResponse</span><span class="p">();</span>
+    
+    <span class="n">response</span><span class="p">.</span><span class="n">parmId</span><span class="p">(</span><span class="n">personnelNumber</span><span class="p">);</span>
+    <span class="n">response</span><span class="p">.</span><span class="n">parmName</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+    
+    <span class="k">return</span> <span class="n">response</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="create-service">Create service</h4>
+<p>In AOT create new service and add recent created class to that Service, in operations node add <code>getEmployee</code> method, you will get something likes</p>
+<p></p>
+<p>Then right click service &gt; Add-ins &gt; Register Service.</p>
+<p>go to AIF inbound form to create new service and add <code>getEmployee</code> operation to that service then Active.</p>
+<h4 id="consume-service">Consume service</h4>
+<p>Add recent WSDL URI <code>http://WINSERVER:8104/DynamicsAx/Services/MaxPurchReqGeneral</code> into Service reference in C# Console project</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">CallContext</span> <span class="n">context</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;USMF&#34;</span><span class="p">,</span>
+		<span class="n">Language</span> <span class="p">=</span> <span class="s">&#34;EN-US&#34;</span><span class="p">,</span>
+	<span class="p">};</span>
+	
+	<span class="n">MaxPRServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MaxPRServiceClient</span><span class="p">();</span>
+	<span class="n">MaxWorkerResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">getEmployee</span><span class="p">(</span><span class="n">context</span><span class="p">);</span>
+	
+	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">HcmWorkerName</span> <span class="p">+</span> <span class="s">&#34;, &#34;</span> <span class="p">+</span> <span class="n">response</span><span class="p">.</span><span class="n">HcmPersonnelNumberId</span><span class="p">);</span>
+	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Thank you for reading.</p>]]></description>
 </item><item>
     <title>AIF Custom response value in Dynamics AX 2012 R3</title>
     <link>https://nuxulu.com/2017-01-11-aif-custom-response-value-in-dynamics-ax-2012-r3/</link>
@@ -104,7 +350,173 @@
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>So, how about customer wants another meaning value beside <code>SalesID</code> likes <code>InventTransId</code> information in <code>SalesLine</code> table or another tables base on your requirement. To do that, we need to customize this method.</p>]]></description>
+</div><p>So, how about customer wants another meaning value beside <code>SalesID</code> likes <code>InventTransId</code> information in <code>SalesLine</code> table or another tables base on your requirement. To do that, we need to customize this method.</p>
+<h3 id="how-to-do">How to do</h3>
+<p>I will use <code>Map</code> and <code>MapEnumerator</code> classes (Please refer MSDN to understand these class), this is steps:</p>
+<ol>
+<li>We get the <code>SalesId</code> from the original <code>entityKeyList</code> and add into <code>Map</code>.</li>
+<li>add <code>Map</code> to <code>MapEnumerator</code>.</li>
+<li>Use <code>SalesId</code> to find the sales line. (<code>mapEnumerator.currentValue()</code> can get current <code>SalesID</code>).</li>
+<li>Create a new <code>entityKey</code> and insert the sales line information to this <code>entityKey</code>.</li>
+<li>add back <code>entityKey</code> to <code>entityKeyList</code></li>
+</ol>
+<p>From here in <code>entityKeyList</code> will store information of <code>SalesID</code> and List fields of <code>SalesLine</code> table.</p>
+<p>Here is the code for <code>createList</code> method, beside <code>SalesId</code> I will try to get <code>InventTransId</code> in <code>SalesLine</code> Table</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#">
+<span class="k">public</span> <span class="n">AifEntityKeyList</span> <span class="n">createList</span><span class="p">(</span>
+    <span class="n">AifDocumentXml</span>                  <span class="m">_</span><span class="n">xml</span><span class="p">,</span>
+    <span class="n">AifEndpointActionPolicyInfo</span>     <span class="m">_</span><span class="n">actionPolicyInfo</span><span class="p">,</span>
+    <span class="n">AifConstraintListCollection</span>     <span class="m">_</span><span class="n">constraintListCollection</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">AifEntityKeyList</span> <span class="n">aifEntityKeyList</span><span class="p">;</span>
+    
+    <span class="n">SalesId</span>                         <span class="n">salesId</span><span class="p">;</span>
+    <span class="n">SalesLine</span>                       <span class="n">salesLine</span><span class="p">;</span>
+    <span class="n">AifEntityKey</span>                    <span class="n">entityKey</span><span class="p">;</span>
+    <span class="n">AifEntityKey</span>                    <span class="n">salesEntityKey</span><span class="p">;</span>
+    <span class="n">Map</span>                             <span class="n">keyDataMap</span><span class="p">;</span>
+    <span class="n">Map</span>                             <span class="n">salesOrderMap</span><span class="p">;</span>
+    <span class="n">MapEnumerator</span>                   <span class="n">mapEnumerator</span><span class="p">;</span>
+
+    <span class="n">aifEntityKeyList</span> <span class="p">=</span> <span class="n">super</span><span class="p">(</span><span class="m">_</span><span class="n">xml</span><span class="p">,</span> <span class="m">_</span><span class="n">actionPolicyInfo</span><span class="p">,</span> <span class="m">_</span><span class="n">constraintListCollection</span><span class="p">);</span>
+
+    <span class="c1">// Sales orders are committed - master planning explosion can be executed and confirmed dates be set
+</span><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="n">postSalesOrderCreation</span><span class="p">(</span><span class="n">aifEntityKeyList</span><span class="p">);</span>
+
+    <span class="n">entityKey</span>       <span class="p">=</span> <span class="n">aifEntityKeyList</span><span class="p">.</span><span class="n">getEntityKey</span><span class="p">(</span><span class="m">1</span><span class="p">);</span>
+    <span class="n">keyDataMap</span>      <span class="p">=</span> <span class="n">entityKey</span><span class="p">.</span><span class="n">parmKeyDataMap</span><span class="p">();</span>
+    <span class="n">mapEnumerator</span>   <span class="p">=</span> <span class="n">keyDataMap</span><span class="p">.</span><span class="n">getEnumerator</span><span class="p">();</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">mapEnumerator</span><span class="p">.</span><span class="n">moveNext</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="n">salesId</span> <span class="p">=</span> <span class="n">mapEnumerator</span><span class="p">.</span><span class="n">currentValue</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">salesId</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">while</span> <span class="k">select</span> <span class="n">InventTransId</span><span class="p">,</span> <span class="n">RecId</span> <span class="k">from</span> <span class="n">salesLine</span>
+                <span class="k">where</span> <span class="n">salesLine</span><span class="p">.</span><span class="n">SalesId</span> <span class="p">==</span> <span class="n">salesId</span>
+            <span class="p">{</span>
+                <span class="n">salesEntityKey</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AifEntityKey</span><span class="p">();</span>
+                <span class="n">salesOrderMap</span>  <span class="p">=</span> <span class="k">new</span> <span class="n">Map</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Types</span><span class="p">::</span><span class="n">Container</span><span class="p">);</span>
+                <span class="n">salesEntityKey</span><span class="p">.</span><span class="n">parmTableId</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">SalesLine</span><span class="p">));</span>
+                <span class="n">salesEntityKey</span><span class="p">.</span><span class="n">parmRecId</span><span class="p">(</span><span class="n">salesLine</span><span class="p">.</span><span class="n">RecId</span><span class="p">);</span>
+                <span class="n">salesOrderMap</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">SalesLine</span><span class="p">,</span> <span class="n">InventTransId</span><span class="p">),</span> <span class="p">[</span><span class="n">salesLine</span><span class="p">.</span><span class="n">InventTransId</span><span class="p">]);</span>
+                <span class="n">salesEntityKey</span><span class="p">.</span><span class="n">parmKeyDataMap</span><span class="p">(</span><span class="n">salesOrderMap</span><span class="p">);</span>
+                <span class="n">aifEntityKeyList</span><span class="p">.</span><span class="n">addEntityKey</span><span class="p">(</span><span class="n">salesEntityKey</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">aifEntityKeyList</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>Code in C#.NET to get list key</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#">
+<span class="n">SalesOrderServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SalesOrderServiceClient</span><span class="p">();</span>
+<span class="k">try</span>
+<span class="p">{</span>
+	<span class="n">EntityKey</span><span class="p">[]</span> <span class="n">salesOrderCreatedEntity</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">salesOrder</span><span class="p">);</span>
+	<span class="c1">//EntityKey salesOrderCreated = (EntityKey)salesOrderCreatedEntity.GetValue(0);
+</span><span class="c1"></span>
+	<span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">IEnumerator</span> <span class="n">enumerator</span> <span class="p">=</span> <span class="n">salesOrderCreatedEntity</span><span class="p">.</span><span class="n">GetEnumerator</span><span class="p">();</span>
+
+	<span class="k">while</span> <span class="p">(</span><span class="n">enumerator</span><span class="p">.</span><span class="n">MoveNext</span><span class="p">())</span>
+	<span class="p">{</span>
+		<span class="n">EntityKey</span> <span class="n">salesOrderCreated</span> <span class="p">=</span> <span class="p">(</span><span class="n">EntityKey</span><span class="p">)</span><span class="n">enumerator</span><span class="p">.</span><span class="n">Current</span><span class="p">;</span>
+		<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">salesOrderCreated</span><span class="p">.</span><span class="n">KeyData</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">Field</span><span class="p">);</span>
+		<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">salesOrderCreated</span><span class="p">.</span><span class="n">KeyData</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">Value</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="c1">//Console.WriteLine(&#34;The sales order created has a Sales ID of &#34; + salesOrderCreated.KeyData[0].Value);
+</span><span class="c1"></span>	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
+	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Here is what we got</p>
+<p></p>
+<p>Just remember this one just for AIF Document Standard, for AIF custom service we do another way I will so in next post.</p>
+<p>Thank you for reading.</p>]]></description>
 </item><item>
     <title>How to block vendor and send email for notification.</title>
     <link>https://nuxulu.com/2017-01-10-block-vendor-and-send-email-for-notification-in-dynamics-ax/</link>
@@ -112,21 +524,167 @@
     <description><![CDATA[<p>Main requirements is Using batch to find and block vendor base on last transaction condition and notify for them by emails.</p>
 <h3 id="set-up-e-mail-parameters">Set up E-mail parameters</h3>
 <p>For set up email, we need Go to AX <code>System administrator &gt; Setup &gt; E-mail parameters</code></p>
-<p></p>]]></description>
-</item><item>
-    <title>Difference between QueryFilter and QueryBuildRrange</title>
-    <link>https://nuxulu.com/2017-01-01-difference-between-queryfilter-and-querybuildrange/</link>
-    <pubDate>Sun, 01 Jan 2017 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2017-01-01-difference-between-queryfilter-and-querybuildrange/</guid>
-    <description><![CDATA[<p>In Dynamics AX, we have two way to filter the result set of records in joined query is using <code>QueryFilter</code> class and <code>QueryBuildRange</code> class.</p>
-<p>So what&rsquo;s difference between them? when do we use <code>QueryFilter</code> class? When do we use <code>QueryBuildRange</code> class?</p>
-<p>Today, i will make a simple sample to show what is difference between them.</p>]]></description>
-</item><item>
-    <title>CRUD Purchase Requisition using AIF in Dynamics AX 2012 R3</title>
-    <link>https://nuxulu.com/2016-12-29-crud-purchase-requisition-using-aif-in-dynamics-ax-2012-r3/</link>
-    <pubDate>Thu, 29 Dec 2016 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2016-12-29-crud-purchase-requisition-using-aif-in-dynamics-ax-2012-r3/</guid>
-    <description><![CDATA[<p>The workflow process moves purchase requisitions through the review process, from an initial status of <strong>Draft</strong> to a final status of <strong>Approved</strong>. When a purchase requisition is submitted for review, the workflow process is started. After a purchase requisition is approved, a purchase order can be generated for the purchase requisition lines and submitted to the vendor for order fulfillment.</p>
-<p>We will use AIF standard service for import PR from outside, service name <code>PurchReqImportService</code>.</p>
-<p>in <code>AxPurchReqTable</code> class and <code>setPurchReqId()</code> method</p>
+<p></p>
+<h3 id="vendor-emails">Vendor emails</h3>
+<p>Vendor emails locate on <code>LogisticsElectronicAddress.Locator</code>, <code>partyTable.PrimaryContactEmail</code>, <code>partyLocation.Location</code>, please take a look on this job to find how to update Vendor emails and you also could see the relations more clearly.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">static</span> <span class="k">void</span> <span class="n">UpdateVendorEmail</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">VendTable</span>                   <span class="n">vendTable</span><span class="p">;</span>
+    <span class="n">LogisticsElectronicAddress</span>  <span class="n">electronicAddress</span><span class="p">;</span>
+    <span class="n">DirPartyTable</span>               <span class="n">partyTable</span><span class="p">;</span>
+    <span class="n">DirPartyLocation</span>            <span class="n">partyLocation</span><span class="p">;</span>
+
+    <span class="n">electronicAddress</span><span class="p">.</span><span class="n">initValue</span><span class="p">();</span>
+    <span class="n">electronicAddress</span><span class="p">.</span><span class="n">Type</span> <span class="p">=</span> <span class="n">LogisticsElectronicAddressMethodType</span><span class="p">::</span><span class="n">Email</span><span class="p">;</span>
+    <span class="n">electronicAddress</span><span class="p">.</span><span class="n">Description</span> <span class="p">=</span> <span class="s">&#34;Max Nguyen&#34;</span><span class="p">;</span>
+    <span class="n">electronicAddress</span><span class="p">.</span><span class="n">Locator</span>     <span class="p">=</span> <span class="s">&#34;luan52@outlook.com&#34;</span><span class="p">;</span>
+    <span class="n">electronicAddress</span><span class="p">.</span><span class="n">IsPrimary</span>   <span class="p">=</span> <span class="n">NoYes</span><span class="p">::</span><span class="n">Yes</span><span class="p">;</span>
+    <span class="n">electronicAddress</span><span class="p">.</span><span class="n">insert</span><span class="p">();</span>
+
+    <span class="k">while</span> <span class="k">select</span> <span class="n">forUpdate</span> <span class="n">partyTable</span>
+        <span class="n">exists</span> <span class="k">join</span> <span class="n">vendTable</span>
+            <span class="k">where</span> <span class="n">vendTable</span><span class="p">.</span><span class="n">Party</span> <span class="p">==</span> <span class="n">partyTable</span><span class="p">.</span><span class="n">RecId</span>
+    <span class="p">{</span>
+        <span class="n">ttsBegin</span><span class="p">;</span>
+        <span class="n">partyTable</span><span class="p">.</span><span class="n">PrimaryContactEmail</span> <span class="p">=</span> <span class="n">electronicAddress</span><span class="p">.</span><span class="n">RecId</span><span class="p">;</span>
+        <span class="n">partyTable</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
+        <span class="n">ttsCommit</span><span class="p">;</span>
+
+        <span class="k">select</span> <span class="n">firstOnly</span> <span class="n">forupdate</span> <span class="n">partyLocation</span>
+            <span class="k">where</span> <span class="n">partyLocation</span><span class="p">.</span><span class="n">Party</span> <span class="p">==</span> <span class="n">partyTable</span><span class="p">.</span><span class="n">RecId</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">partyLocation</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">ttsBegin</span><span class="p">;</span>
+            <span class="n">partyLocation</span><span class="p">.</span><span class="n">Location</span> <span class="p">=</span> <span class="n">electronicAddress</span><span class="p">.</span><span class="n">Location</span><span class="p">;</span>
+            <span class="n">partyLocation</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
+            <span class="n">ttsCommit</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="n">partyLocation</span><span class="p">.</span><span class="n">initValue</span><span class="p">();</span>
+            <span class="n">partyLocation</span><span class="p">.</span><span class="n">Location</span> <span class="p">=</span> <span class="n">electronicAddress</span><span class="p">.</span><span class="n">Location</span><span class="p">;</span>
+            <span class="n">partyLocation</span><span class="p">.</span><span class="n">Party</span>     <span class="p">=</span> <span class="n">partyTable</span><span class="p">.</span><span class="n">RecId</span><span class="p">;</span>
+            <span class="n">partyLocation</span><span class="p">.</span><span class="n">insert</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="batch-class">Batch class</h3>
+<p>Main logic here is find Vend accounts are not exist in <code>VendTrans</code> table with condition <code>endTrans.TransDate &gt;= beginDate</code>, and <code>beginDate</code> count from today <code>systemDateGet()</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">class</span> <span class="nc">Max_VendorBlockedBatch</span> <span class="n">extends</span> <span class="n">RunBaseBatch</span>
+<span class="p">{</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Get the date before 6 months from today</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="n">TransDate</span> <span class="n">getBeginDate</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">TransDate</span>   <span class="n">beginDate</span><span class="p">;</span>
+    <span class="n">TransDate</span>   <span class="n">currentDate</span><span class="p">;</span>
+    <span class="n">Months</span>      <span class="n">month</span><span class="p">;</span>
+    <span class="n">YearBase</span>    <span class="n">years</span><span class="p">;</span>
+    <span class="n">Day</span>         <span class="n">day</span><span class="p">;</span>
+
+    <span class="n">currentDate</span> <span class="p">=</span> <span class="n">systemDateGet</span><span class="p">();</span>
+    <span class="n">day</span>         <span class="p">=</span> <span class="n">dayOfMth</span><span class="p">(</span><span class="n">currentDate</span><span class="p">);</span>
+    <span class="n">month</span>       <span class="p">=</span> <span class="n">mthOfYr</span><span class="p">(</span><span class="n">currentDate</span><span class="p">);</span>
+    <span class="n">years</span>       <span class="p">=</span> <span class="n">year</span><span class="p">(</span><span class="n">currentDate</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">month</span> <span class="p">&lt;</span> <span class="m">6</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">beginDate</span> <span class="p">=</span> <span class="n">mkDate</span><span class="p">(</span><span class="n">day</span><span class="p">,</span> <span class="m">12</span> <span class="p">-</span> <span class="p">(</span><span class="m">6</span> <span class="p">-</span> <span class="n">month</span><span class="p">)</span> <span class="p">+</span> <span class="m">1</span><span class="p">,</span> <span class="n">years</span> <span class="p">-</span> <span class="m">1</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="n">beginDate</span> <span class="p">=</span> <span class="n">mkDate</span><span class="p">(</span><span class="n">day</span><span class="p">,</span> <span class="n">month</span> <span class="p">-</span> <span class="m">6</span> <span class="p">+</span> <span class="m">1</span><span class="p">,</span> <span class="n">years</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">beginDate</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Send E-mail</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -179,90 +737,123 @@
 </span><span class="lnt">48
 </span><span class="lnt">49
 </span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">protected</span> <span class="k">void</span> <span class="n">setPurchReqId</span><span class="p">()</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#">
+<span class="k">public</span> <span class="k">void</span> <span class="n">sendEmail</span><span class="p">(</span><span class="n">AccountNum</span> <span class="m">_</span><span class="n">vendor</span><span class="p">,</span> <span class="n">str</span> <span class="m">_</span><span class="n">recipient</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="n">NumberSequenceReference</span> <span class="n">numberSequenceReference</span><span class="p">;</span>
+    <span class="n">str</span>                                     <span class="n">sender</span>  <span class="p">=</span> <span class="err">&#39;</span><span class="n">sender@email</span><span class="p">.</span><span class="n">com</span><span class="err">&#39;</span><span class="p">;</span>
+    <span class="n">str</span>                                     <span class="n">subject</span> <span class="p">=</span> <span class="err">&#39;</span><span class="n">Account</span> <span class="n">blocked</span><span class="err">&#39;</span><span class="p">;</span>
+    <span class="n">str</span>                                     <span class="n">body</span>    <span class="p">=</span> <span class="err">&#39;</span><span class="n">Your</span> <span class="n">account</span> <span class="k">is</span> <span class="n">blocked</span> <span class="n">due</span> <span class="n">to</span> <span class="n">last</span> <span class="n">transaction</span><span class="err">&#39;</span><span class="p">;</span>
+    <span class="n">List</span>                                    <span class="n">toList</span><span class="p">;</span>
+    <span class="n">ListEnumerator</span>                          <span class="n">le</span><span class="p">;</span>
+    <span class="n">Set</span>                                     <span class="n">permissionSet</span><span class="p">;</span>
+    <span class="n">System</span><span class="p">.</span><span class="n">Exception</span>                        <span class="n">e</span><span class="p">;</span>
+    <span class="n">str</span>                                     <span class="n">mailServer</span><span class="p">;</span>
+    <span class="kt">int</span>                                     <span class="n">mailServerPort</span><span class="p">;</span>
+    <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">SmtpClient</span>              <span class="n">mailClient</span><span class="p">;</span>
+    <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailMessage</span>             <span class="n">mailMessage</span><span class="p">;</span>
+    <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailAddress</span>             <span class="n">mailFrom</span><span class="p">;</span>
+    <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailAddress</span>             <span class="n">mailTo</span><span class="p">;</span>
+    <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailAddressCollection</span>   <span class="n">mailToCollection</span><span class="p">;</span>
+ 
+    <span class="k">try</span>
+    <span class="p">{</span>
+        <span class="n">toList</span> <span class="p">=</span> <span class="n">strSplit</span><span class="p">(</span><span class="m">_</span><span class="n">recipient</span><span class="p">,</span> <span class="sc">&#39;;&#39;</span><span class="p">);</span>
+         
+        <span class="n">permissionSet</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Set</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Class</span><span class="p">);</span>
+        <span class="n">permissionSet</span><span class="p">.</span><span class="k">add</span><span class="p">(</span><span class="k">new</span> <span class="n">InteropPermission</span><span class="p">(</span><span class="n">InteropKind</span><span class="p">::</span><span class="n">ClrInterop</span><span class="p">));</span>
+        <span class="n">CodeAccessPermission</span><span class="p">::</span><span class="n">assertMultiple</span><span class="p">(</span><span class="n">permissionSet</span><span class="p">);</span>
+ 
+        <span class="n">mailServer</span>      <span class="p">=</span> <span class="n">SysEmaiLParameters</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="k">false</span><span class="p">).</span><span class="n">SMTPRelayServerName</span><span class="p">;</span>
+        <span class="n">mailServerPort</span>  <span class="p">=</span> <span class="n">SysEmaiLParameters</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="k">false</span><span class="p">).</span><span class="n">SMTPPortNumber</span><span class="p">;</span>
+        <span class="n">mailClient</span>      <span class="p">=</span> <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">SmtpClient</span><span class="p">(</span><span class="n">mailServer</span><span class="p">,</span> <span class="n">mailServerPort</span><span class="p">);</span>
+ 
+        <span class="n">le</span> <span class="p">=</span> <span class="n">toList</span><span class="p">.</span><span class="n">getEnumerator</span><span class="p">();</span>
+        <span class="n">le</span><span class="p">.</span><span class="n">moveNext</span><span class="p">();</span>
+         
+        <span class="n">mailFrom</span>    <span class="p">=</span> <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailAddress</span><span class="p">(</span><span class="n">sender</span><span class="p">);</span>
+        <span class="n">mailTo</span>      <span class="p">=</span> <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailAddress</span><span class="p">(</span><span class="n">strLTrim</span><span class="p">(</span><span class="n">strRTrim</span><span class="p">(</span><span class="n">le</span><span class="p">.</span><span class="n">current</span><span class="p">())));</span>
+        <span class="n">mailMessage</span> <span class="p">=</span> <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailMessage</span><span class="p">(</span><span class="n">mailFrom</span><span class="p">,</span> <span class="n">mailTo</span><span class="p">);</span>     
 
-    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isMethodExecuted</span><span class="p">(</span><span class="n">funcName</span><span class="p">()))</span>
-    <span class="p">{</span>
-        <span class="k">return</span><span class="p">;</span>
-    <span class="p">}</span>
+        <span class="n">mailToCollection</span> <span class="p">=</span> <span class="n">mailMessage</span><span class="p">.</span><span class="n">get_To</span><span class="p">();</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">le</span><span class="p">.</span><span class="n">moveNext</span><span class="p">())</span>
+        <span class="p">{</span>
+            <span class="n">mailToCollection</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">strLTrim</span><span class="p">(</span><span class="n">strRTrim</span><span class="p">(</span><span class="n">le</span><span class="p">.</span><span class="n">current</span><span class="p">())));</span>
+        <span class="p">}</span>
+         
+        <span class="n">mailMessage</span><span class="p">.</span><span class="n">set_Priority</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailPriority</span><span class="p">::</span><span class="n">High</span><span class="p">);</span>
+        <span class="n">mailMessage</span><span class="p">.</span><span class="n">set_Subject</span><span class="p">(</span><span class="n">subject</span><span class="p">);</span>
+        <span class="n">mailMessage</span><span class="p">.</span><span class="n">set_Body</span><span class="p">(</span><span class="n">body</span><span class="p">);</span>
+ 
+        <span class="n">mailClient</span><span class="p">.</span><span class="n">Send</span><span class="p">(</span><span class="n">mailMessage</span><span class="p">);</span>
+        <span class="n">mailMessage</span><span class="p">.</span><span class="n">Dispose</span><span class="p">();</span>
+ 
+        <span class="n">CodeAccessPermission</span><span class="p">::</span><span class="n">revertAssert</span><span class="p">();</span> 
+        <span class="n">info</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Email</span> <span class="n">was</span> <span class="n">sent</span> <span class="n">to</span> <span class="n">vendor</span> <span class="p">%</span><span class="m">1.</span><span class="err">&#39;</span><span class="p">,</span> <span class="m">_</span><span class="n">vendor</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span><span class="p">::</span><span class="n">CLRError</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">e</span> <span class="p">=</span> <span class="n">ClrInterop</span><span class="p">::</span><span class="n">getLastException</span><span class="p">();</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">info</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">get_Message</span><span class="p">());</span>
+            <span class="n">e</span> <span class="p">=</span> <span class="n">e</span><span class="p">.</span><span class="n">get_InnerException</span><span class="p">();</span>
+        <span class="p">}</span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isFieldSetExternally</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span> <span class="n">PurchReqId</span><span class="p">)))</span>
-    <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isSetMethodsCalledFromSave</span><span class="p">())</span>
-        <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(!</span><span class="k">this</span><span class="p">.</span><span class="n">purchReqTable</span><span class="p">())</span>
-            <span class="p">{</span>
-                <span class="n">numberSequenceReference</span> <span class="p">=</span> <span class="n">PurchReqTable</span><span class="p">::</span><span class="n">numRefPurchReqId</span><span class="p">();</span>
-                <span class="k">this</span><span class="p">.</span><span class="n">checkNumber</span><span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">.</span><span class="n">numberSequenceTable</span><span class="p">(),</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span><span class="n">PurchReqId</span><span class="p">),</span><span class="k">this</span><span class="p">.</span><span class="n">parmPurchReqId</span><span class="p">());</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">.</span><span class="n">NumberSequenceId</span> <span class="p">&amp;&amp;</span> <span class="n">numberSequenceReference</span><span class="p">.</span><span class="n">numberSequenceTable</span><span class="p">().</span><span class="n">Continuous</span><span class="p">)</span>
-                <span class="p">{</span>
-                    <span class="n">NumberSeq</span><span class="p">::</span><span class="n">newReserveNum</span><span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">).</span><span class="n">reserve</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">parmPurchReqId</span><span class="p">());</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">else</span>
-    <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isFieldSet</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span> <span class="n">PurchReqId</span><span class="p">)))</span>
-        <span class="p">{</span>
-            <span class="k">return</span><span class="p">;</span>
-        <span class="p">}</span>
-
-        <span class="k">if</span> <span class="p">(!</span><span class="k">this</span><span class="p">.</span><span class="n">parmPurchReqId</span><span class="p">())</span>
-        <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isSetMethodsCalledFromSave</span><span class="p">())</span>
-            <span class="p">{</span>
-                <span class="c1">//this.parmPurchReqId(NumberSeq::newGetNum(PurchParameters::numRefPurchReqId()).num());
-</span><span class="c1"></span>                <span class="n">numberSequenceReference</span> <span class="p">=</span> <span class="n">PurchReqTable</span><span class="p">::</span><span class="n">numRefPurchReqId</span><span class="p">();</span>
-                <span class="k">if</span><span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">)</span>
-                <span class="p">{</span>
-                    <span class="k">this</span><span class="p">.</span><span class="n">setField</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span> <span class="n">PurchReqId</span><span class="p">),</span> <span class="n">NumberSeq</span><span class="p">::</span><span class="n">newGetNum</span><span class="p">(</span><span class="n">PurchParameters</span><span class="p">::</span><span class="n">numRefPurchReqId</span><span class="p">()).</span><span class="n">num</span><span class="p">());</span>
-                <span class="p">}</span>
-                <span class="k">else</span>
-                <span class="p">{</span>
-                    <span class="k">this</span><span class="p">.</span><span class="n">setField</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span> <span class="n">PurchReqId</span><span class="p">),</span> <span class="k">this</span><span class="p">.</span><span class="n">parmExternalSourceID</span><span class="p">());</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
+        <span class="n">CodeAccessPermission</span><span class="p">::</span><span class="n">revertAssert</span><span class="p">();</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 
 </code></pre></td></tr></table>
 </div>
-</div><p>Base on this method, you could know how System get PurchReqId.</p>]]></description>
-</item><item>
-    <title>CRUD Purchase order using AIF in Dynamics AX 2012 R3</title>
-    <link>https://nuxulu.com/2016-12-28-crud-purchase-order-using-aif-in-dynamics-ax-2012-r3/</link>
-    <pubDate>Wed, 28 Dec 2016 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2016-12-28-crud-purchase-order-using-aif-in-dynamics-ax-2012-r3/</guid>
-    <description><![CDATA[<p>Due to Purchase order doesn’t have Standard document service so we have to create new Document service for that using AIF wizards.</p>
-<p>I’m using AIF document service with <code>NETTCP</code> or <code>HTTP</code> Adapter to Create Purchase order service, here is steps</p>
-<h2 id="create-query">Create Query</h2>
-<p>with three <strong>datasouce</strong> (<code>PurchTable, PurchLine, InventDim</code>) likes below</p>
-<p></p>
-<blockquote>
-<p>As best practice for Document service, name of query should be start with Axd* prefix.</p>
-</blockquote>
-<h2 id="using-aif-wizards">Using AIF Wizards</h2>
-<p>In AX development environment, go to <em>Tools &gt; Wizards &gt; AIF document service wizards</em></p>
-<p></p>
-<p>Choose recent created query and click <strong>next</strong>.</p>
-<h2 id="create-service-operation-and-axbc-class">Create Service operation and <code>AxBC class</code></h2>
-<p></p>
-<p>Click <code>next</code> and then <code>Generate</code>.</p>]]></description>
-</item><item>
-    <title>Insert, update, Delete order line through AIF In AX 2012 R3</title>
-    <link>https://nuxulu.com/2016-12-28-insert-update-delete-order-line-through-aif-in-ax-2012-r3/</link>
-    <pubDate>Wed, 28 Dec 2016 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2016-12-28-insert-update-delete-order-line-through-aif-in-ax-2012-r3/</guid>
-    <description><![CDATA[<p>In previous <a href="https://dynamics365.github.io/ax2012/integration/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3/" target="_blank" rel="noopener noreferrer">post</a>, I already show how to create purchase order through AIF with <code>NETTCP</code> or <code>HTTP adapter</code>. In this post, we will get little deep more about action on line of order.</p>
-<p>The following code sample shows how to <code>insert</code>, <code>update</code>, <code>delete</code> a line of an existing purchase order through AIF, currently I’m using C#.NET console project for demo.</p>
-<p>As Partial update, we must include just the fields to change and any fields required by the document (you can check <code>Data policies</code> in AIF Service ports form for that).</p>
-<p>Also, notice how action properties are specified – no matter we do with the line, which means updating the order.</p>
-<p>I’m giving you an idea how it looks like, here is the code</p>
-<p><code>The first method will handle the key of AIF Service</code></p>
+</div><p>Initializes a new instance of the <em><c>Batch</c></em> class.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">static</span> <span class="n">MAX_VendorBlockedBatch</span> <span class="n">construct</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">MAX_VendorBlockedBatch</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Gets description of the dialog.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">static</span> <span class="n">ClassDescription</span> <span class="n">description</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="err">&#39;</span><span class="n">Vendor</span> <span class="n">blocked</span> <span class="n">batch</span><span class="err">&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Find the vendor without transaction and disable, then send email to vendor</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -281,62 +872,294 @@
 </span><span class="lnt">14
 </span><span class="lnt">15
 </span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">private</span> <span class="k">static</span> <span class="n">EntityKey</span><span class="p">[]</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="kt">string</span> <span class="n">purchId</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">void</span> <span class="n">run</span><span class="p">()</span>
 <span class="p">{</span>
-	<span class="n">KeyField</span> <span class="n">field</span> <span class="p">=</span> <span class="k">new</span> <span class="n">KeyField</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">Field</span> <span class="p">=</span> <span class="s">&#34;PurchId&#34;</span><span class="p">,</span>
-		<span class="n">Value</span> <span class="p">=</span> <span class="n">purchId</span>
-	<span class="p">};</span>
+    <span class="n">VendTrans</span>   <span class="n">vendTrans</span><span class="p">;</span>
+    <span class="n">VendTable</span>   <span class="n">vendTable</span><span class="p">;</span>
+    <span class="n">TransDate</span>   <span class="n">beginDate</span><span class="p">;</span>
+    <span class="n">Email</span>       <span class="n">email</span><span class="p">;</span>
+    <span class="kt">int</span>         <span class="n">i</span><span class="p">;</span>
 
-	<span class="n">EntityKey</span> <span class="n">key</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EntityKey</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">KeyData</span> <span class="p">=</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">field</span> <span class="p">}</span>
-	<span class="p">};</span>
+    <span class="k">try</span>
+    <span class="p">{</span>
+        <span class="n">beginDate</span> <span class="p">=</span> <span class="k">this</span><span class="p">.</span><span class="n">getBeginDate</span><span class="p">();</span>
+        <span class="k">while</span> <span class="k">select</span> <span class="n">forUpdate</span> <span class="n">AccountNum</span><span class="p">,</span> <span class="n">Party</span> <span class="k">from</span> <span class="n">vendTable</span>
+            <span class="n">Notexists</span> <span class="k">join</span> <span class="n">vendTrans</span>
+            <span class="k">where</span> <span class="n">vendTrans</span><span class="p">.</span><span class="n">AccountNum</span> <span class="p">==</span> <span class="n">vendTable</span><span class="p">.</span><span class="n">AccountNum</span>
+                <span class="p">&amp;&amp;</span> <span class="n">vendTrans</span><span class="p">.</span><span class="n">TransDate</span> <span class="p">&gt;=</span> <span class="n">beginDate</span>
+        <span class="p">{</span>
+            <span class="c1">//Set the vendor blocked
+</span><span class="c1"></span>            <span class="n">ttsBegin</span><span class="p">;</span>
+            <span class="n">vendTable</span><span class="p">.</span><span class="n">Blocked</span> <span class="p">=</span> <span class="n">CustVendorBlocked</span><span class="p">::</span><span class="n">All</span><span class="p">;</span>
+            <span class="n">vendTable</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
+            <span class="n">ttsCommit</span><span class="p">;</span>
 
-	<span class="k">return</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">key</span> <span class="p">};</span>
+            <span class="c1">//Send E-mail to vendor
+</span><span class="c1"></span>            <span class="n">email</span> <span class="p">=</span> <span class="n">vendTable</span><span class="p">.</span><span class="n">email</span><span class="p">();</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">email</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="n">sendEmail</span><span class="p">(</span><span class="n">vendTable</span><span class="p">.</span><span class="n">AccountNum</span><span class="p">,</span> <span class="n">email</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="n">warning</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="err">&#39;</span><span class="n">The</span> <span class="n">vendor</span> <span class="p">%</span><span class="m">1</span> <span class="n">did</span> <span class="n">not</span> <span class="n">have</span> <span class="n">E</span><span class="p">-</span><span class="n">mail</span> <span class="n">address</span><span class="p">.</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">vendTable</span><span class="p">.</span><span class="n">AccountNum</span><span class="p">));</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span><span class="p">::</span><span class="n">Deadlock</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">retry</span><span class="p">;</span>
+    <span class="p">}</span>
 <span class="p">}</span>
-
 </code></pre></td></tr></table>
 </div>
-</div>]]></description>
+</div><p>Provides an enter point for the <c>Batch</c> class.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">MAX_VendorBlockedBatch</span> <span class="n">vendorBlockedBatch</span> <span class="p">=</span> <span class="n">MAX_VendorBlockedBatch</span><span class="p">::</span><span class="n">construct</span><span class="p">();</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">vendorBlockedBatch</span><span class="p">.</span><span class="n">prompt</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="n">vendorBlockedBatch</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>From here you can run class and set up recurrence for batch job.</p>
+<p>Thank you for reading!</p>]]></description>
 </item><item>
-    <title>CRUD Items, products, products master dimension, variants using AIF in Dynamics AX 2012 R3</title>
-    <link>https://nuxulu.com/2016-12-27-crud-items-products-products-master-dimension-variants-using-aif-in-dynamics-ax-2012-r3/</link>
-    <pubDate>Tue, 27 Dec 2016 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2016-12-27-crud-items-products-products-master-dimension-variants-using-aif-in-dynamics-ax-2012-r3/</guid>
-    <description><![CDATA[<h2 id="scenarios">Scenarios:</h2>
-<p>I’m trying to create <strong>product/master product</strong> in Dynamics AX using AIF inbound port, the AIF services consume by C#.NET.</p>
-<p>From AX 2012 R2, Item is replaced with Product. Item master was in Inventory Management Module, now there is a separate module for item/product creation <code>Product information Management</code>.</p>
-<p>Some definitions you should know
-There are two types of Products in 2012 they are:</p>
-<ol>
+    <title>Simple summary Keys are in Dynamics AX</title>
+    <link>https://nuxulu.com/2017-01-03-simple-custom-serivce-in-ax-r3/</link>
+    <pubDate>Tue, 03 Jan 2017 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2017-01-03-simple-custom-serivce-in-ax-r3/</guid>
+    <description><![CDATA[<ul>
 <li>
-<p><strong>Product</strong></p>
-<p><em>Product information management/Common/Products/Products</em></p>
+<p>There is a maximum of one <code>Primary Key</code> per table, whereas a table can have several <code>alternate keys</code>. The <code>primary key</code> is usually the type of key that other tables, called child tables, refer to when a <code>foreign key</code> field in those other tables need a relational identifier.</p>
 </li>
 <li>
-<p><strong>Product Master</strong></p>
-<p><em>Product information management/Common/Products/Products master</em></p>
-<p>a. <strong>Variants:</strong></p>
-</li>
-</ol>
-<p>To create a product variant, you must define at least one product dimension for a product master. You can also rename dimensions.
-To create product variants, you must complete the following tasks:</p>
-<ul>
-<li>
-<p>Set up dimensions, such as size, color, and style.</p>
+<p>For new tables the default is a <code>primary key</code> based on the <code>RecId</code> field , incremented number or a completely meaningless number that is generated by the system <code>surrogate key</code>.</p>
 </li>
 <li>
-<p>Set up variant groups.</p>
+<p><code>Alternate key</code> can be chosen as the <code>Replacement Key</code> of a table that can display on forms instead of a meaningless numeric <code>primary key</code> value. Each table can have a maximum of one <code>replacement key</code>.</p>
 </li>
 <li>
-<p>Assign variant groups to a retail hierarchy.</p>
+<p><code>Natural key</code> has meaning to people. Most <code>replacement keys</code> are <code>natural keys</code>.</p>
 </li>
 <li>
-<p>Create a product master and variants.</p>
+<p>Relations represents a <code>foreign key</code>.</p>
 </li>
-</ul>]]></description>
+</ul>
+<p>Thank you for reading!</p>
+]]></description>
+</item><item>
+    <title>AX1004 error in Dynamics AX</title>
+    <link>https://nuxulu.com/2017-01-02-ax1004-error/</link>
+    <pubDate>Mon, 02 Jan 2017 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2017-01-02-ax1004-error/</guid>
+    <description><![CDATA[<p>I got this error at version Dynamics 2012 R3 CU9, SQL Server 2014, Windows Server 2012 R2.</p>
+<p>Those kind of errors will come when you move report from Dev Server to Live Server, even compilation in <em>DP Class, Query, Contract, table</em> … without any error</p>
+<p><figure><a class="lightgallery" href="/imagesposts/AX1004-error.png" title="Image" data-thumbnail="/imagesposts/AX1004-error.png" data-sub-html="<h2>Image_rounded</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Image_rounded</figcaption>
+    </figure>{:.rounded}</p>
+<p><span style="color: red">AX1004: Reference System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 was not a valid model assembly.</span></p>
+<p><span style="color: red">MSB3644: The reference assemblies for framework “.NETFramework,Version=v4.0” were not found. To resolve this, install the SDK or Targeting Pack for this framework version or retarget your application to a version of the framework for which you have the SDK </span></p>
+<h3 id="cause">Cause</h3>
+<p>There is no reference Assemblies Version 4.0  under <code>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework</code> on Windows Server 2012 R2 (only Version 4.5 it have)</p>
+<h3 id="solution">Solution</h3>
+<p>Copy those Assemblies from your any where (Windows 7,8,10) to Server</p>
+<p>Restore and compile again.</p>
+<p>Thank you for reading!</p>
+]]></description>
+</item><item>
+    <title>Recalculate InventSum in Dynamics AX</title>
+    <link>https://nuxulu.com/2017-01-02-recalculate-inventsum/</link>
+    <pubDate>Mon, 02 Jan 2017 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2017-01-02-recalculate-inventsum/</guid>
+    <description><![CDATA[<p><code>InventSum</code> is needed to recalculate sometimes. We should use <code>InventSumRecalcItem</code> class in Dynamics AX.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#">
+<span class="n">InventSumRecalcItem</span> <span class="n">InventSumRecalcItem</span><span class="p">;</span>
+<span class="p">;</span>
+<span class="n">InventSumRecalcItem</span> <span class="p">=</span> <span class="k">new</span> <span class="n">InventSumRecalcItem</span><span class="p">(</span><span class="s">&#34;ITEM001&#34;</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="n">checkfix</span><span class="p">::</span><span class="n">fix</span><span class="p">);</span>
+<span class="n">InventSumRecalcItem</span><span class="p">.</span><span class="n">updatenow</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>First parameter : <code>ItemId</code></p>
+<p>Second parameter : <code>Show errors</code></p>
+<p>Third parameter : <code>Fix or only check</code></p>
+<p>What if you want to calculate for all items:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="n">InventTable</span> <span class="n">InventTable</span><span class="p">;</span>
+<span class="n">InventSumRecalcItem</span> <span class="n">InventSumRecalcItem</span><span class="p">;</span>
+
+<span class="n">WHILE</span> <span class="n">SELECT</span> <span class="n">InventTable</span>
+	<span class="n">WHERE</span> <span class="p">(</span><span class="n">InventTable</span><span class="p">.</span><span class="n">ItemType</span> <span class="p">==</span> <span class="n">ItemType</span><span class="p">::</span><span class="n">Item</span><span class="p">)</span> <span class="p">||</span> <span class="p">(</span><span class="n">InventTable</span><span class="p">.</span><span class="n">ItemType</span> <span class="p">==</span> <span class="n">ItemType</span><span class="p">::</span><span class="n">BOM</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">InventSumRecalcItem</span> <span class="p">=</span> <span class="k">new</span> <span class="n">InventSumRecalcItem</span><span class="p">(</span><span class="n">InventTable</span><span class="p">.</span><span class="n">ItemId</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="n">checkfix</span><span class="p">::</span><span class="n">fix</span><span class="p">);</span>
+		<span class="n">InventSumRecalcItem</span><span class="p">.</span><span class="n">updatenow</span><span class="p">();</span>
+	<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Thank you for reading!</p>
+]]></description>
+</item><item>
+    <title>Simple summary Keys are in Dynamics AX</title>
+    <link>https://nuxulu.com/2017-01-02-simple-summary-keys-are-in-dynamics-ax/</link>
+    <pubDate>Mon, 02 Jan 2017 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2017-01-02-simple-summary-keys-are-in-dynamics-ax/</guid>
+    <description><![CDATA[<ul>
+<li>
+<p>There is a maximum of one <code>Primary Key</code> per table, whereas a table can have several <code>alternate keys</code>. The <code>primary key</code> is usually the type of key that other tables, called child tables, refer to when a <code>foreign key</code> field in those other tables need a relational identifier.</p>
+</li>
+<li>
+<p>For new tables the default is a <code>primary key</code> based on the <code>RecId</code> field , incremented number or a completely meaningless number that is generated by the system <code>surrogate key</code>.</p>
+</li>
+<li>
+<p>As <strong>The RecId data type</strong>, <code>surrogate keys</code> exist on a primary key table. As <strong>The RefRecId ETD</strong>, surrogate foreign keys exist on a foreign key table (Ex: <code>Party</code> field is on <code>CustTable</code> Table).</p>
+</li>
+<li>
+<p><code>Alternate key</code> can be chosen as the <code>Replacement Key</code> of a table that can display on forms instead of a meaningless numeric <code>primary key</code> value. Each table can have a maximum of one <code>replacement key</code>.</p>
+</li>
+<li>
+<p><code>Natural key</code> has meaning to people. A set of fields that uniquely identify a record and would have formed the primary key of the table, if not for the existence of a <code>surrogate key</code>.</p>
+</li>
+<li>
+<p>Relations represents a <code>foreign key</code>.</p>
+</li>
+</ul>
+<p>Thank you for reading!</p>
+]]></description>
+</item><item>
+    <title>Using Methods in Table Filters &amp; Query Ranges in Dynamics AX 2012</title>
+    <link>https://nuxulu.com/2017-01-02-using-methods-in-table-filters-query-ranges-in-dynamics-ax-2012/</link>
+    <pubDate>Mon, 02 Jan 2017 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2017-01-02-using-methods-in-table-filters-query-ranges-in-dynamics-ax-2012/</guid>
+    <description><![CDATA[<p>In Dynamics AX, there is a class called <code>SysQueryRangeUtil</code> that can be utilized in both query ranges and table filters. Using methods from this class allow you to be very precise about what dates you want to use in reports or for filtering your data.</p>
+<p>Let’s say you have a report that you always want to run to see orders with shipping dates of the next day. It is possible to do so by using one of the methods from the <code>SysQueryRangeUtil</code>. The use of the letter <strong>&rsquo;t'</strong> will work for today’s date, but when you try to add days to it, it doesn’t work in reports. Instead, I will use the <code>currentdate()</code> method and add <code>1</code> to it.</p>
+<blockquote>
+<p>All methods &amp; expressions must be surrounded by parentheses as shown below.</p>
+</blockquote>
+<p></p>
+<p><em>Filtering the requested ship dates in an AX query for tomorrow <code>(current day() + 1)</code></em></p>
+<p>On any form with a grid, you filter your data by pressing <strong><em>Ctrl+G</em></strong>.</p>
+<p>If I were to want to see open customer invoices from the last 90 days, I would filter my <strong>open customer invoices form</strong> and use the method <code>(dayRange(-90,0))</code>. The first number represents how many months backward from this month, and the second represents how many months forward. The same sorts of things can be done for the <code>monthRange()</code>, <code>yearRange()</code>, and <code>dateRange()</code> methods. The best part about this is that you can of course save these filters to create views that you might use on a daily basis.</p>
+<p></p>
+<p>If you are creating your query ranges in code, these methods can also be utilized whenever you are setting them. Definitely be sure to check out the <code>SysQueryRangeUtil</code> class as there are many more methods to use.</p>
+<p>Here is some methods you can use:</p>
+<p>{% highlight html %}
+currentCustomerAccount()</p>
+<p>currentVendorAccount()</p>
+<p>currentUserId()</p>
+<p>currentDate()</p>
+<p>dateRange()</p>
+<p>day()</p>
+<p>dayRange()</p>
+<p>greaterThanDate()</p>
+<p>greaterThanUtcDate()</p>
+<p>greaterThanUtcNow()</p>
+<p>lessthanDate()</p>
+<p>lessthanUtcDate()</p>
+<p>lessthanUtcNow()</p>
+<p>monthRange()</p>
+<p>yearRange()</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">
+&gt; for example:
+
+{% highlight html %}
+(dayRange(-30,0)) – Results in a date range for the last 30 days: &#34;26-01-2017&#34;..&#34;25-02-2017&#34;
+
+(day(-1)) – Results in yesterday&#39;s date: 24-02-2017
+
+(day(0)) – Results in today&#39;s date: 25-02-2017
+
+(day(1)) – Results in tomorrow&#39;s date: 26-02-2017
+
+(greaterThanDate(2)) – Results in every date after today plus 2: &gt; 27-02-2017
+
+(lessThanDate(-1)) – Results in every date of today minus 1: &lt; 24-02-2017
+
+(monthRange(0,2)) – Results in first day till the last day of the month&#39;s choosen (0 = current month): &#34;01-02-2017&#34;..&#34;30-04-2017&#34;
+
+(yearRange(-1,-1)) – Results in first day till the last day of the chosen year: &#34;01-01-2017&#34;..&#34;31-12-2017&#34;
+</code></pre></td></tr></table>
+</div>
+</div><p>Thank you for reading!</p>]]></description>
 </item></channel>
 </rss>

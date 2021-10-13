@@ -6,11 +6,9 @@ Sometime we need this `RecId` value in `DimansionAttributeValueCombination` Tabl
 Suppose my Account structure likes: _**MainAcct - Dept - Woker - SubAcct - Item**_,
 you can custom base on your struture.
 
-
 This code is for creating a record into `DimansionAttributeValueCombination` in code and then get `RecID` of this. 
 
- 
-```c++
+```c#
 static void createDimensionAttributeValueCombination(Args _args)
 {
     DimensionAttributeValueContract     ValueContract;
@@ -54,10 +52,10 @@ static void createDimensionAttributeValueCombination(Args _args)
     info(strFmt("RecId : %1 - DisplayValue : %2", davc.RecId, davc.DisplayValue));
 }
 ```
-<!--more-->
+
 or you can use this way
 
-```csharp
+```c#
 static void createDimension(Args _args)
 {
     Struct      struct = new Struct();
@@ -87,6 +85,4 @@ static void createDimension(Args _args)
 
 }
 ```
-
-
 

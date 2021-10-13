@@ -1,5 +1,6 @@
 # Recalculate InventSum in Dynamics AX
 
+ 
 
 `InventSum` is needed to recalculate sometimes. We should use `InventSumRecalcItem` class in Dynamics AX.
 

@@ -8,10 +8,16 @@
     <title>Dynamics 365 finance and operations ODATA consuming - Length cannot be less than zero</title>
     <link>https://nuxulu.com/2019-12-17-dynamics-365-finance-and-operations-odata-consuming-length-cannot-be-less-than-zero/</link>
     <pubDate>Tue, 17 Dec 2019 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2019-12-17-dynamics-365-finance-and-operations-odata-consuming-length-cannot-be-less-than-zero/</guid>
-    <description><![CDATA[When you consume a custom data entity, you get an error
-errorSystem.ArgumentOutOfRangeException : Length cannot be less than zero” and it works fine for standard data entities. {:.error}
-The reason is the temporary XML file where the metadata stored which mismatches with the metadata from https://&lt;yourenvironment&gt;.cloudax.dynamics.com/data/$metadata
-You can follow this post to understand how to create the XML file.
-If you try to regenerate the metadata by saving the ODataClient.tt file, the XML will be accumulated, and the error keeps happening.]]></description>
+    <description><![CDATA[<p>When you consume a custom data entity, you get an error</p>
+<p>errorSystem.ArgumentOutOfRangeException : Length cannot be less than zero” and it works fine for standard data entities.
+{:.error}</p>
+<p></p>
+<p>The reason is the temporary XML file where the metadata stored which mismatches with the metadata from <code>https://&lt;yourenvironment&gt;.cloudax.dynamics.com/data/$metadata</code></p>
+<p>You can follow this <a href="https://nuxulu.com/2019/12/16/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET.html" target="_blank" rel="noopener noreferrer">post</a> to understand how to create the XML file.</p>
+<p>If you try to regenerate the metadata by saving the <strong>ODataClient.tt</strong> file, the XML will be accumulated, and the error keeps happening.
+The resolution here is simply delete it and regenerate metadata again by saving the <strong>ODataClient.tt</strong> file</p>
+<p></p>
+<p>Thank you for reading.</p>
+]]></description>
 </item></channel>
 </rss>

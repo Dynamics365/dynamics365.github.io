@@ -40,6 +40,24 @@
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
+</div><p>the <code>modifiedField()</code> method is located on tables and it is called by a form (or a dataset) when any field is changed. It has field ID as a parameter and therefore it is very easy to write code reacting to a change of a particular field. It is so easy that the <code>modifiedField()</code> method is often used even in such cases, when it really shouldn’t be used.</p>
+<p>If you want to get previous field value in the <code>modifiedField()</code> for comparative purpose, you can use <code>this.orig()</code> method:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">public</span> <span class="kt">void</span> <span class="nf">modifiedField</span><span class="p">(</span><span class="n">fieldId</span> <span class="n">_fieldId</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">super</span><span class="p">(</span><span class="n">_fieldId</span><span class="p">);</span>
+    <span class="n">info</span><span class="p">(</span><span class="n">strfmt</span><span class="p">(</span><span class="s">&#34;Field number %1 changed from %2 to %3&#34;</span><span class="p">,</span><span class="n">_fieldId</span><span class="p">,</span><span class="n">this</span><span class="p">.</span><span class="n">orig</span><span class="p">().(</span><span class="n">_fieldId</span><span class="p">),</span><span class="n">this</span><span class="p">.(</span><span class="n">_fieldId</span><span class="p">)));</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
 </div>]]></description>
 </item></channel>
 </rss>
