@@ -39,21 +39,21 @@ Microsoft Dynamics AX contains sixteen layers. Each layer consists of one or mor
 
 When you customize the Microsoft Dynamics AX program, you can take advantage of the capabilities of models.
 
-![](Model_store_architecture.gif)
+!["Model_store_architecture"](Model_store_architecture.gif "Model_store_architecture")
 
 The following table describes the application object layers in Microsoft Dynamics AX 2012:
 
-![](Layer.png)
+!["Layer"](Layer.png)
 
 ## Client architecture
 
 This diagram describes the functionality within the client, and describes how communications flow within it.
 
-![](Client_architecture.gif)
+!["Client_architecture"](Client_architecture.gif)
 
 ## Client/server communication
 
-![](ClientServer_communication.gif)
+!["ClientServer_communication"](ClientServer_communication.gif)
 
 The client communicates with various Microsoft Dynamics AX components in the following ways:
 
@@ -67,7 +67,7 @@ The client communicates with various Microsoft Dynamics AX components in the fol
 
 * The client provides a Help viewer, which is an application that displays context-sensitive Help topics. The Help topics are retrieved from a Help server that is located on-premises.
 
-* The client also provides Role Centers, or role-based home pages, for users. Role Centers provide role-specific tasks, activities, alerts, reports, and business intelligence that help users increase their productivity. To interact with the Role Centers that are provided by Enterprise Portal and hosted on Internet Information Services (IIS), the client uses a browser control. 
+* The client also provides Role Centers, or role-based home pages, for users. Role Centers provide role-specific tasks, activities, alerts, reports, and business intelligence that help users increase their productivity. To interact with the Role Centers that are provided by Enterprise Portal and hosted on Internet Information Services (IIS), the client uses a browser control.
 
 ## Services and AIF architecture
 
@@ -81,19 +81,19 @@ The client communicates with various Microsoft Dynamics AX components in the fol
 
 * Similarly, the AIF response postprocessor, if it is configured, can intercept the outbound response messages for custom post-processing, such as message transforms or value substitutions. The AIF response postprocessor then returns the response to the client.
 
-![](WCF_architecture.png)
+!["WCF_architecture"](WCF_architecture.png)
 
 ## Enterprise Portal architecture
 
 This diagram provides a logical overview of a Microsoft Dynamics AX 2012 system with an Enterprise Portal server, and also describes the various components of the Enterprise Portal architecture.
 
-![](EP_Architecture.gif)
+!["EP_Architecture"](EP_Architecture.gif)
 
 ## Security architecture
 
 This following diagram provides a high-level overview of the security architecture of Microsoft Dynamics AX 2012.
 
-![](Security_architecture.gif)
+!["Security_architecture"](Security_architecture.gif)
 
 ## Workflow system architecture
 
@@ -107,12 +107,12 @@ This following diagram provides a high-level overview of the security architectu
 
 The following diagram shows the Microsoft SQL Server Analysis Services cubes that are included with Microsoft Dynamics AX, and the components that are used to access them.
 
-![](Analytic_architecture.gif)
+!["Analytic_architecture"](Analytic_architecture.gif)
 
 ## Reporting architecture
 
 The following diagram illustrates the architecture of the reporting functionality in Microsoft Dynamics AX.
 
-![](reporting_architecture.png)
+!["reporting_architecture"](reporting_architecture.png)
 
 Thank you for reading!
