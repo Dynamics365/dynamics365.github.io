@@ -25,7 +25,7 @@ static void KlForTickCountSample(Args _args)
     info(strfmt('Number of ticks: %1', ticks));
 }
 ```
-<!--more-->
+
 ### Tip 2: limit the number of loops
 
 A LOT of time goes into loops. If you have a performance problem, start looking for loops. Code can run really fast, but it can get slow when it is executed too many time, eg, in a loop.
@@ -76,7 +76,6 @@ static void klForTableMethodsSlow(Args _args)
     inventDim.inventBatchId = salesLine.inventDim().inventBatchId;
 }
 ```
-
 
 This example code looks nice, but there’s a problem. `The salesLine.inventDim()` method contains the following:
 
@@ -134,21 +133,20 @@ delete_from custTable
 where custTable.custGroup == 'TST';
 ```
 
-The same applies to update_recordset for updating records. Also, when adding values to the end of a container 
+The same applies to update_recordset for updating records. Also, when adding values to the end of a container
+
 ```C#
 cont += "a value";
 ```
 
- is faster than 
- 
+is faster than
+
  ```C#
  cont = conins(cont, conlen(cont), "a value");
  ```
- 
- 
+
 ### Tip 7: Every optimization counts
- 
+
 Remember that every optimization you do to you code counts, even if it’s a little one. Small performance tweaks can have a huge effect once you process large quantities of data. So don’t be lazy, and optimize.
 
-
-Share from http://www.artofcreation.be/
+Coppied from http://www.artofcreation.be/

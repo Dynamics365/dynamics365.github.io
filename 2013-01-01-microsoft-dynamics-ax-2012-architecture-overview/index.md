@@ -43,21 +43,21 @@ When you customize the Microsoft Dynamics AX program, you can take advantage of 
 
 The following table describes the application object layers in Microsoft Dynamics AX 2012:
 
-!["Layer"](Layer.png)
+!["Layer"](Layer.png "Layer")
 
 ## Client architecture
 
 This diagram describes the functionality within the client, and describes how communications flow within it.
 
-!["Client_architecture"](Client_architecture.gif)
+!["Client_architecture"](Client_architecture.gif "Client_architecture")
 
 ## Client/server communication
 
-!["ClientServer_communication"](ClientServer_communication.gif)
+!["ClientServer_communication"](ClientServer_communication.gif "ClientServer_communication")
 
 The client communicates with various Microsoft Dynamics AX components in the following ways:
 
-* The client uses the remote procedure call (RPC) protocol to communicate with Application Object Server (AOS). The client never accesses the database or metadata directly. AOS sends the application objects and data to the client. 
+* The client uses the remote procedure call (RPC) protocol to communicate with Application Object Server (AOS). The client never accesses the database or metadata directly. AOS sends the application objects and data to the client.
 
 * The data layer that the client uses is based on data sources that are specified in metadata for forms and queries. In addition, any X++ code that is required to retrieve data can use the built-in language support to query and adjust data.
 
@@ -81,19 +81,19 @@ The client communicates with various Microsoft Dynamics AX components in the fol
 
 * Similarly, the AIF response postprocessor, if it is configured, can intercept the outbound response messages for custom post-processing, such as message transforms or value substitutions. The AIF response postprocessor then returns the response to the client.
 
-!["WCF_architecture"](WCF_architecture.png)
+!["WCF_architecture"](WCF_architecture.png "WCF_architecture")
 
 ## Enterprise Portal architecture
 
 This diagram provides a logical overview of a Microsoft Dynamics AX 2012 system with an Enterprise Portal server, and also describes the various components of the Enterprise Portal architecture.
 
-!["EP_Architecture"](EP_Architecture.gif)
+!["EP_Architecture"](EP_Architecture.gif "EP_Architecture")
 
 ## Security architecture
 
 This following diagram provides a high-level overview of the security architecture of Microsoft Dynamics AX 2012.
 
-!["Security_architecture"](Security_architecture.gif)
+!["Security_architecture"](Security_architecture.gif "Security_architecture")
 
 ## Workflow system architecture
 
@@ -107,12 +107,12 @@ This following diagram provides a high-level overview of the security architectu
 
 The following diagram shows the Microsoft SQL Server Analysis Services cubes that are included with Microsoft Dynamics AX, and the components that are used to access them.
 
-!["Analytic_architecture"](Analytic_architecture.gif)
+!["Analytic_architecture"](Analytic_architecture.gif "Analytic_architecture")
 
 ## Reporting architecture
 
 The following diagram illustrates the architecture of the reporting functionality in Microsoft Dynamics AX.
 
-!["reporting_architecture"](reporting_architecture.png)
+!["reporting_architecture"](reporting_architecture.png "reporting_architecture")
 
-Thank you for reading!
+Thank you for reading.

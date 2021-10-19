@@ -4,7 +4,39 @@
         <link>https://nuxulu.com/tags/architectural/</link>
         <description>architectural - Tag - Dynamics 365 &amp; Power Platform | nuxulu.com</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
-            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Tue, 01 Jan 2013 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/architectural/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Fri, 10 Oct 2014 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/architectural/" rel="self" type="application/rss+xml" /><item>
+    <title>Understand model store architectural in AX 2012</title>
+    <link>https://nuxulu.com/2014-10-10-understand-model-store-architectural/</link>
+    <pubDate>Fri, 10 Oct 2014 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2014-10-10-understand-model-store-architectural/</guid>
+    <description><![CDATA[<p>The model store is the portion of the Microsoft Dynamics AX database where all Microsoft Dynamics AX application elements are stored, including customization. <strong>The model store replaces the AOD (application object definition)</strong> files used in previous releases of Microsoft Dynamics AX (I mean from 4.0 to 2009).</p>
+<p><strong>Layer and model information are integral parts of the store</strong>. The AOS has access to the model store, handles layer-flattening, and provides model data to all the Microsoft Dynamics AX sub-systems, such as form- and report-rendering and X++ code.</p>
+<p><figure><a class="lightgallery" href="/2014-10-10-understand-model-store-architectural/model_layer_elements.jpg" title="model_layer_elements" data-thumbnail="/2014-10-10-understand-model-store-architectural/model_layer_elements.jpg" data-sub-html="<h2>model_layer_elements</h2><p>model_layer_elements</p>">
+        
+    </a><figcaption class="image-caption">model_layer_elements</figcaption>
+    </figure></p>
+<p>Microsoft Dynamics AX contains sixteen layers. Each layer consists of one or more logical parts called models. A system generated model exists for each layer.</p>
+<p>For example, the VAR Model is the system generated model for the VAR layer. You can use the system generated models to install and start working with the base Microsoft Dynamics AX system. You can leverage the capabilities of models, and tools and functionality that support the models, during customization of the Microsoft Dynamics AX application.</p>
+<p><figure><a class="lightgallery" href="/2014-10-10-understand-model-store-architectural/understand-model-store-architectural.jpg" title="&amp;ldquo;understand-model-store-architectural&amp;rdquo;" data-thumbnail="/2014-10-10-understand-model-store-architectural/understand-model-store-architectural.jpg" data-sub-html="<h2>understand-model-store-architectural</h2><p>&amp;ldquo;understand-model-store-architectural&amp;rdquo;</p>">
+        
+    </a><figcaption class="image-caption">understand-model-store-architectural</figcaption>
+    </figure></p>
+<ul>
+<li>
+<p>The model store is the portion of the Microsoft Dynamics AX database where all Microsoft Dynamics AX application elements are stored, including customization.</p>
+</li>
+<li>
+<p>The model store replaces the AOD files used in previous releases of Microsoft Dynamics AX. It can be managed through the AXUtil command line utility, or by using Windows PowerShell.</p>
+</li>
+<li>
+<p>The baseline model store database holds model store tables for the previous version of metadata. Use it only during an upgrade.</p>
+</li>
+<li>
+<p>The baseline model store is similar to the old folder in previous releases of Microsoft Dynamics AX.</p>
+</li>
+</ul>
+<p>Thank you for reading.</p>
+]]></description>
+</item><item>
     <title>Architecture overview Microsoft Dynamics AX 2012</title>
     <link>https://nuxulu.com/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/</link>
     <pubDate>Tue, 01 Jan 2013 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/</guid>
@@ -52,12 +84,21 @@
     </a><figcaption class="image-caption">Model_store_architecture</figcaption>
     </figure></p>
 <p>The following table describes the application object layers in Microsoft Dynamics AX 2012:</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Layer.png" title="&amp;ldquo;Layer&amp;rdquo;" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Layer.png" data-sub-html="<h2>Layer</h2><p>&amp;ldquo;Layer&amp;rdquo;</p>">
+        
+    </a><figcaption class="image-caption">Layer</figcaption>
+    </figure></p>
 <h2 id="client-architecture">Client architecture</h2>
 <p>This diagram describes the functionality within the client, and describes how communications flow within it.</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Client_architecture.gif" title="&amp;ldquo;Client_architecture&amp;rdquo;" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Client_architecture.gif" data-sub-html="<h2>Client_architecture</h2><p>&amp;ldquo;Client_architecture&amp;rdquo;</p>">
+        
+    </a><figcaption class="image-caption">Client_architecture</figcaption>
+    </figure></p>
 <h2 id="clientserver-communication">Client/server communication</h2>
-<p></p>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/ClientServer_communication.gif" title="&amp;ldquo;ClientServer_communication&amp;rdquo;" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/ClientServer_communication.gif" data-sub-html="<h2>ClientServer_communication</h2><p>&amp;ldquo;ClientServer_communication&amp;rdquo;</p>">
+        
+    </a><figcaption class="image-caption">ClientServer_communication</figcaption>
+    </figure></p>
 <p>The client communicates with various Microsoft Dynamics AX components in the following ways:</p>
 <ul>
 <li>
@@ -97,13 +138,22 @@
 <p>Similarly, the AIF response postprocessor, if it is configured, can intercept the outbound response messages for custom post-processing, such as message transforms or value substitutions. The AIF response postprocessor then returns the response to the client.</p>
 </li>
 </ul>
-<p></p>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/WCF_architecture.png" title="&amp;ldquo;WCF_architecture&amp;rdquo;" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/WCF_architecture.png" data-sub-html="<h2>WCF_architecture</h2><p>&amp;ldquo;WCF_architecture&amp;rdquo;</p>">
+        
+    </a><figcaption class="image-caption">WCF_architecture</figcaption>
+    </figure></p>
 <h2 id="enterprise-portal-architecture">Enterprise Portal architecture</h2>
 <p>This diagram provides a logical overview of a Microsoft Dynamics AX 2012 system with an Enterprise Portal server, and also describes the various components of the Enterprise Portal architecture.</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/EP_Architecture.gif" title="&amp;ldquo;EP_Architecture&amp;rdquo;" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/EP_Architecture.gif" data-sub-html="<h2>EP_Architecture</h2><p>&amp;ldquo;EP_Architecture&amp;rdquo;</p>">
+        
+    </a><figcaption class="image-caption">EP_Architecture</figcaption>
+    </figure></p>
 <h2 id="security-architecture">Security architecture</h2>
 <p>This following diagram provides a high-level overview of the security architecture of Microsoft Dynamics AX 2012.</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Security_architecture.gif" title="&amp;ldquo;Security_architecture&amp;rdquo;" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Security_architecture.gif" data-sub-html="<h2>Security_architecture</h2><p>&amp;ldquo;Security_architecture&amp;rdquo;</p>">
+        
+    </a><figcaption class="image-caption">Security_architecture</figcaption>
+    </figure></p>
 <h2 id="workflow-system-architecture">Workflow system architecture</h2>
 <ul>
 <li>
@@ -116,11 +166,17 @@
 <p>![](Workflow_system_arcitechture (1).gif)</p>
 <h2 id="analytic-architecture">Analytic architecture</h2>
 <p>The following diagram shows the Microsoft SQL Server Analysis Services cubes that are included with Microsoft Dynamics AX, and the components that are used to access them.</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Analytic_architecture.gif" title="&amp;ldquo;Analytic_architecture&amp;rdquo;" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Analytic_architecture.gif" data-sub-html="<h2>Analytic_architecture</h2><p>&amp;ldquo;Analytic_architecture&amp;rdquo;</p>">
+        
+    </a><figcaption class="image-caption">Analytic_architecture</figcaption>
+    </figure></p>
 <h2 id="reporting-architecture">Reporting architecture</h2>
 <p>The following diagram illustrates the architecture of the reporting functionality in Microsoft Dynamics AX.</p>
-<p></p>
-<p>Thank you for reading!</p>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/reporting_architecture.png" title="&amp;ldquo;reporting_architecture&amp;rdquo;" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/reporting_architecture.png" data-sub-html="<h2>reporting_architecture</h2><p>&amp;ldquo;reporting_architecture&amp;rdquo;</p>">
+        
+    </a><figcaption class="image-caption">reporting_architecture</figcaption>
+    </figure></p>
+<p>Thank you for reading.</p>
 ]]></description>
 </item></channel>
 </rss>

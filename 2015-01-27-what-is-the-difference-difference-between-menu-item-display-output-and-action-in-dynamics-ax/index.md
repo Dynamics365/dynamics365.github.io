@@ -3,7 +3,7 @@
 
 The answer is that there is no difference, the difference is a conceptual one rather than a functional or a technical one. So I think you will make a better choice for your scenario base on functional side.
 
-![](/imagesposts/what-is-the-difference-difference-between-menu-item-display-output-and-action-in-dynamics-ax.png)
+![what-is-the-difference-difference-between-menu-item-display-output-and-action-in-dynamics-ax](what-is-the-difference-difference-between-menu-item-display-output-and-action-in-dynamics-ax.png "hello") 
 
 ### Display Menu item
 
