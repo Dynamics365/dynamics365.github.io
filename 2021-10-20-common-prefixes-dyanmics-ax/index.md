@@ -12,6 +12,7 @@ A subject area specific application object is prefixed with the name of the subj
 `InventAccountType`
 {{< /admonition >}}
 
+<!--more-->
 ## Application Area Object Prefix
 
 An application area object is prefixed with the name of the application area the object belongs to.

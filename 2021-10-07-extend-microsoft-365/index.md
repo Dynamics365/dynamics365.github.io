@@ -1,14 +1,11 @@
 # Extend Microsoft 365 with office add-ins
 
 
-{{< admonition >}}
 Introduction to Office client customization with add-ins
 
 - Explain how Office add-ins extend and customize Office applications
 - Describe the development tooling, APIs, and deployment of Office add-ins
 - Understand how to incorporate data with Microsoft Graph and extend Office applications with add-ins using the Office UI Fabric
-
-{{< /admonition >}}
 
 <!--more-->
 
