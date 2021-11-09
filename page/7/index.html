@@ -114,43 +114,6 @@
         alt="Max Nguyen"
         title="Max Nguyen" /></a></div><h2 class="home-subtitle"><div id="id-3" class="typeit"></div></h2><div class="links"><a href="https://github.com/Dynamics365" title="GitHub" target="_blank" rel="noopener noreferrer me"><i class="fab fa-github fa-fw"></i></a><a href="mailto:luan52@outlook.com" title="Email" rel=" me"><i class="far fa-envelope fa-fw"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreferrer me"><i class="fas fa-rss fa-fw"></i></a></div><h3 class="home-disclaimer">This post is our own opinion and does not necessarily reflect the opinion or view of our companies or Microsoft.</h3></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/2016-11-08-understanding_modifedfield_table_method_in_dax_2012/">Understanding modifedField() Table method in DAX 2012</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="https://nuxulu.com/about" title="Author" target="_blank" rel="noopener noreferrer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="November 8, 2016">November 8, 2016</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax-2012/"><i class="far fa-folder fa-fw"></i>AX 2012</a>&nbsp;<a href="/categories/general/"><i class="far fa-folder fa-fw"></i>general</a></span></div><div class="content"><p>Dear all,</p>
-<p>We use <code>modifiedField()</code> method to perform any actions  after the field is modifed</p>
-<p><em>Ex:</em></p>
-<p>Create new table with 2 fields <strong>ItemId</strong> and <strong>ItemNameDisplay</strong>  from Extended Data Types node in AOT then Override <code>modifiedField()</code> in Table&rsquo;s method node, something likes:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">public</span> <span class="kt">void</span> <span class="nf">modifiedField</span><span class="p">(</span><span class="n">FieldId</span> <span class="n">_fieldId</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">InventTable</span> <span class="n">inventTable</span><span class="p">;</span>
-    <span class="n">super</span><span class="p">(</span><span class="n">_fieldId</span><span class="p">);</span>
-    <span class="k">switch</span> <span class="p">(</span><span class="n">_fieldId</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">case</span> <span class="n">fieldNum</span><span class="p">(</span><span class="n">IBD_Invent</span><span class="p">,</span><span class="n">itemid</span><span class="p">)</span><span class="o">:</span>
-            <span class="n">this</span><span class="p">.</span><span class="n">ItemNameDisplay</span> <span class="o">=</span> <span class="n">inventTable</span><span class="o">::</span><span class="n">find</span><span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="n">itemid</span><span class="p">).</span><span class="n">NameAlias</span><span class="p">;</span>
-            <span class="k">break</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div></div><div class="post-footer">
-        <a href="/2016-11-08-understanding_modifedfield_table_method_in_dax_2012/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/xpp/">xpp</a>,&nbsp;<a href="/tags/modifedfield/">modifedField</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs/">Expressions or Functions used in SSRS</a>
     </h1><div class="post-meta"><span class="post-author"><a href="https://nuxulu.com/about" title="Author" target="_blank" rel="noopener noreferrer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="October 7, 2016">October 7, 2016</time></span></div><div class="content"><p>Expressions are usually used for appearance of the data in a report, change properties of the fields, calculate some values and display them in a proper way, compares values between data of fields and then display them.</p>
 <h1 id="types-of-expressions">Types of Expressions</h1>
@@ -200,6 +163,13 @@ Delayed: Parent and child A pause is inserted before linked child data sources a
 For example, you can scroll a list of orders where you do not want to review the lines associated with the order until you stop scrolling.</div><div class="post-footer">
         <a href="/2016-01-07-link-type-and-join-types-in-ax-2012/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linktype/">linktype</a>,&nbsp;<a href="/tags/jointype/">jointype</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/2015-12-30-how-to-use-operator-in-querybuildrange/">How to use operator &#34;or&#34; in QueryBuildRange</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="https://nuxulu.com/about" title="Author" target="_blank" rel="noopener noreferrer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="December 30, 2015">December 30, 2015</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax-2012/"><i class="far fa-folder fa-fw"></i>AX 2012</a></span></div><div class="content">This blog post is show how to apply OR conditions in query build ranges in a simple way on same field in a table. Let&rsquo;s see the simple query :
+1  select*fromCustTablewhereAccountNum==&#39;2001&#39;||AccountNum==&#39;2002&#39;  We can find out solutions on MSDN by using expression in query ranges, but as it has lot of specifications which needs to be followed. However there is a simple way to do it :
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  static void Job12(Args _args) { CustTable cust; Query query = new Query(); QueryBuildDataSource qbds; QueryBuildRange queryRange1, queryRange2; ; qbds = query.</div><div class="post-footer">
+        <a href="/2015-12-30-how-to-use-operator-in-querybuildrange/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/xpp/">xpp</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>

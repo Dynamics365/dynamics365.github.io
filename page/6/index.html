@@ -114,55 +114,6 @@
         alt="Max Nguyen"
         title="Max Nguyen" /></a></div><h2 class="home-subtitle"><div id="id-3" class="typeit"></div></h2><div class="links"><a href="https://github.com/Dynamics365" title="GitHub" target="_blank" rel="noopener noreferrer me"><i class="fab fa-github fa-fw"></i></a><a href="mailto:luan52@outlook.com" title="Email" rel=" me"><i class="far fa-envelope fa-fw"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreferrer me"><i class="fas fa-rss fa-fw"></i></a></div><h3 class="home-disclaimer">This post is our own opinion and does not necessarily reflect the opinion or view of our companies or Microsoft.</h3></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/2016-12-28-insert-update-delete-order-line-through-aif-in-ax-2012-r3/">Insert, update, Delete order line through AIF In AX 2012 R3</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="https://nuxulu.com/about" title="Author" target="_blank" rel="noopener noreferrer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="December 28, 2016">December 28, 2016</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax-2012/"><i class="far fa-folder fa-fw"></i>AX 2012</a>&nbsp;<a href="/categories/integration/"><i class="far fa-folder fa-fw"></i>Integration</a></span></div><div class="content"><p>In previous <a href="https://dynamics365.github.io/ax2012/integration/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3/" target="_blank" rel="noopener noreferrer">post</a>, I already show how to create purchase order through AIF with <code>NETTCP</code> or <code>HTTP adapter</code>. In this post, we will get little deep more about action on line of order.</p>
-<p>The following code sample shows how to <code>insert</code>, <code>update</code>, <code>delete</code> a line of an existing purchase order through AIF, currently I’m using C#.NET console project for demo.</p>
-<p>As Partial update, we must include just the fields to change and any fields required by the document (you can check <code>Data policies</code> in AIF Service ports form for that).</p>
-<p>Also, notice how action properties are specified – no matter we do with the line, which means updating the order.</p>
-<p>I’m giving you an idea how it looks like, here is the code</p>
-<p><code>The first method will handle the key of AIF Service</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">private</span> <span class="k">static</span> <span class="n">EntityKey</span><span class="p">[]</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="kt">string</span> <span class="n">purchId</span><span class="p">)</span>
-<span class="p">{</span>
-	<span class="n">KeyField</span> <span class="n">field</span> <span class="p">=</span> <span class="k">new</span> <span class="n">KeyField</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">Field</span> <span class="p">=</span> <span class="s">&#34;PurchId&#34;</span><span class="p">,</span>
-		<span class="n">Value</span> <span class="p">=</span> <span class="n">purchId</span>
-	<span class="p">};</span>
-
-	<span class="n">EntityKey</span> <span class="n">key</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EntityKey</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">KeyData</span> <span class="p">=</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">field</span> <span class="p">}</span>
-	<span class="p">};</span>
-
-	<span class="k">return</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">key</span> <span class="p">};</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
-</div>
-</div></div><div class="post-footer">
-        <a href="/2016-12-28-insert-update-delete-order-line-through-aif-in-ax-2012-r3/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/aif/">aif</a>,&nbsp;<a href="/tags/programming/">Programming</a>,&nbsp;<a href="/tags/csharpdotnet/">csharpdotnet</a>,&nbsp;<a href="/tags/xpp/">xpp</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/2016-12-27-crud-items-products-products-master-dimension-variants-using-aif-in-dynamics-ax-2012-r3/">CRUD Items, products, products master dimension, variants using AIF in Dynamics AX 2012 R3</a>
     </h1><div class="post-meta"><span class="post-author"><a href="https://nuxulu.com/about" title="Author" target="_blank" rel="noopener noreferrer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="December 27, 2016">December 27, 2016</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax-2012/"><i class="far fa-folder fa-fw"></i>AX 2012</a>&nbsp;<a href="/categories/integration/"><i class="far fa-folder fa-fw"></i>Integration</a></span></div><div class="content"><h2 id="scenarios">Scenarios:</h2>
 <p>I’m trying to create <strong>product/master product</strong> in Dynamics AX using AIF inbound port, the AIF services consume by C#.NET.</p>
@@ -248,6 +199,43 @@ To create product variants, you must complete the following tasks:</p>
 The Microsoft Dynamics AX 2012 Test Data Transfer Tool (beta) is a tool that helps move data between from production to non-production environments or from non-production environments to production environments to make a new production environment.</div><div class="post-footer">
         <a href="/2016-11-08-microsoft_dyanmics_ax_2012_test_data_transfer_tool/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/data/">data</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/2016-11-08-understanding_modifedfield_table_method_in_dax_2012/">Understanding modifedField() Table method in DAX 2012</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="https://nuxulu.com/about" title="Author" target="_blank" rel="noopener noreferrer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="November 8, 2016">November 8, 2016</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax-2012/"><i class="far fa-folder fa-fw"></i>AX 2012</a>&nbsp;<a href="/categories/general/"><i class="far fa-folder fa-fw"></i>general</a></span></div><div class="content"><p>Dear all,</p>
+<p>We use <code>modifiedField()</code> method to perform any actions  after the field is modifed</p>
+<p><em>Ex:</em></p>
+<p>Create new table with 2 fields <strong>ItemId</strong> and <strong>ItemNameDisplay</strong>  from Extended Data Types node in AOT then Override <code>modifiedField()</code> in Table&rsquo;s method node, something likes:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">public</span> <span class="kt">void</span> <span class="nf">modifiedField</span><span class="p">(</span><span class="n">FieldId</span> <span class="n">_fieldId</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">InventTable</span> <span class="n">inventTable</span><span class="p">;</span>
+    <span class="n">super</span><span class="p">(</span><span class="n">_fieldId</span><span class="p">);</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="n">_fieldId</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">case</span> <span class="n">fieldNum</span><span class="p">(</span><span class="n">IBD_Invent</span><span class="p">,</span><span class="n">itemid</span><span class="p">)</span><span class="o">:</span>
+            <span class="n">this</span><span class="p">.</span><span class="n">ItemNameDisplay</span> <span class="o">=</span> <span class="n">inventTable</span><span class="o">::</span><span class="n">find</span><span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="n">itemid</span><span class="p">).</span><span class="n">NameAlias</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer">
+        <a href="/2016-11-08-understanding_modifedfield_table_method_in_dax_2012/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/xpp/">xpp</a>,&nbsp;<a href="/tags/modifedfield/">modifedField</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
