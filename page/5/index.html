@@ -170,17 +170,159 @@ What if you want to calculate for all items:
         <a href="/2017-01-01-difference-between-queryfilter-and-querybuildrange/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/querybuild/">QueryBuild</a>,&nbsp;<a href="/tags/queryfilter/">QueryFilter</a>,&nbsp;<a href="/tags/querybuildrrange/">QueryBuildRrange</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/2016-12-30-useful-functions-to-use-in-ax-2012/">Useful functions to use in AX 2012</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="https://nuxulu.com/about" title="Author" target="_blank" rel="noopener noreferrer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="December 30, 2016">December 30, 2016</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax-2012/"><i class="far fa-folder fa-fw"></i>AX 2012</a></span></div><div class="content">Useful functions to use in AX 2012
- --  Thank you for reading!</div><div class="post-footer">
-        <a href="/2016-12-30-useful-functions-to-use-in-ax-2012/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/xpp/">xpp</a></div></div>
+        <a href="/2016-12-29-crud-purchase-requisition-using-aif-in-dynamics-ax-2012-r3/">CRUD Purchase Requisition using AIF in Dynamics AX 2012 R3</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="https://nuxulu.com/about" title="Author" target="_blank" rel="noopener noreferrer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="December 29, 2016">December 29, 2016</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax-2012/"><i class="far fa-folder fa-fw"></i>AX 2012</a>&nbsp;<a href="/categories/integration/"><i class="far fa-folder fa-fw"></i>Integration</a></span></div><div class="content"><p>The workflow process moves purchase requisitions through the review process, from an initial status of <strong>Draft</strong> to a final status of <strong>Approved</strong>. When a purchase requisition is submitted for review, the workflow process is started. After a purchase requisition is approved, a purchase order can be generated for the purchase requisition lines and submitted to the vendor for order fulfillment.</p>
+<p>We will use AIF standard service for import PR from outside, service name <code>PurchReqImportService</code>.</p>
+<p>in <code>AxPurchReqTable</code> class and <code>setPurchReqId()</code> method</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">protected</span> <span class="k">void</span> <span class="n">setPurchReqId</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">NumberSequenceReference</span> <span class="n">numberSequenceReference</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isMethodExecuted</span><span class="p">(</span><span class="n">funcName</span><span class="p">()))</span>
+    <span class="p">{</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isFieldSetExternally</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span> <span class="n">PurchReqId</span><span class="p">)))</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isSetMethodsCalledFromSave</span><span class="p">())</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(!</span><span class="k">this</span><span class="p">.</span><span class="n">purchReqTable</span><span class="p">())</span>
+            <span class="p">{</span>
+                <span class="n">numberSequenceReference</span> <span class="p">=</span> <span class="n">PurchReqTable</span><span class="p">::</span><span class="n">numRefPurchReqId</span><span class="p">();</span>
+                <span class="k">this</span><span class="p">.</span><span class="n">checkNumber</span><span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">.</span><span class="n">numberSequenceTable</span><span class="p">(),</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span><span class="n">PurchReqId</span><span class="p">),</span><span class="k">this</span><span class="p">.</span><span class="n">parmPurchReqId</span><span class="p">());</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">.</span><span class="n">NumberSequenceId</span> <span class="p">&amp;&amp;</span> <span class="n">numberSequenceReference</span><span class="p">.</span><span class="n">numberSequenceTable</span><span class="p">().</span><span class="n">Continuous</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">NumberSeq</span><span class="p">::</span><span class="n">newReserveNum</span><span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">).</span><span class="n">reserve</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">parmPurchReqId</span><span class="p">());</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isFieldSet</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span> <span class="n">PurchReqId</span><span class="p">)))</span>
+        <span class="p">{</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(!</span><span class="k">this</span><span class="p">.</span><span class="n">parmPurchReqId</span><span class="p">())</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isSetMethodsCalledFromSave</span><span class="p">())</span>
+            <span class="p">{</span>
+                <span class="c1">//this.parmPurchReqId(NumberSeq::newGetNum(PurchParameters::numRefPurchReqId()).num());
+</span><span class="c1"></span>                <span class="n">numberSequenceReference</span> <span class="p">=</span> <span class="n">PurchReqTable</span><span class="p">::</span><span class="n">numRefPurchReqId</span><span class="p">();</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="k">this</span><span class="p">.</span><span class="n">setField</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span> <span class="n">PurchReqId</span><span class="p">),</span> <span class="n">NumberSeq</span><span class="p">::</span><span class="n">newGetNum</span><span class="p">(</span><span class="n">PurchParameters</span><span class="p">::</span><span class="n">numRefPurchReqId</span><span class="p">()).</span><span class="n">num</span><span class="p">());</span>
+                <span class="p">}</span>
+                <span class="k">else</span>
+                <span class="p">{</span>
+                    <span class="k">this</span><span class="p">.</span><span class="n">setField</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span> <span class="n">PurchReqId</span><span class="p">),</span> <span class="k">this</span><span class="p">.</span><span class="n">parmExternalSourceID</span><span class="p">());</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>Base on this method, you could know how System get PurchReqId.</p></div><div class="post-footer">
+        <a href="/2016-12-29-crud-purchase-requisition-using-aif-in-dynamics-ax-2012-r3/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/aif/">aif</a>,&nbsp;<a href="/tags/programming/">Programming</a>,&nbsp;<a href="/tags/csharpdotnet/">csharpdotnet</a>,&nbsp;<a href="/tags/xpp/">xpp</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/2016-12-30-useful-functions-to-use-in-ax-2012-part2/">Useful functions to use in AX 2012 part 2</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="https://nuxulu.com/about" title="Author" target="_blank" rel="noopener noreferrer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="December 30, 2016">December 30, 2016</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax-2012/"><i class="far fa-folder fa-fw"></i>AX 2012</a></span></div><div class="content">Useful functions to use in AX 2012 part 2
- --  Thank you for reading!</div><div class="post-footer">
-        <a href="/2016-12-30-useful-functions-to-use-in-ax-2012-part2/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/xpp/">xpp</a></div></div>
+        <a href="/2016-12-28-crud-purchase-order-using-aif-in-dynamics-ax-2012-r3/">CRUD Purchase order using AIF in Dynamics AX 2012 R3</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="https://nuxulu.com/about" title="Author" target="_blank" rel="noopener noreferrer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="December 28, 2016">December 28, 2016</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax-2012/"><i class="far fa-folder fa-fw"></i>AX 2012</a>&nbsp;<a href="/categories/integration/"><i class="far fa-folder fa-fw"></i>Integration</a></span></div><div class="content"><p>Due to Purchase order doesn’t have Standard document service so we have to create new Document service for that using AIF wizards.</p>
+<p>I’m using AIF document service with <code>NETTCP</code> or <code>HTTP</code> Adapter to Create Purchase order service, here is steps</p>
+<h2 id="create-query">Create Query</h2>
+<p>with three <strong>datasouce</strong> (<code>PurchTable, PurchLine, InventDim</code>) likes below</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-01.png"
+        data-srcset="/imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-01.png, /imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-01.png 1.5x, /imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-01.png 2x"
+        data-sizes="auto"
+        alt="/imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-01.png"
+        title="/imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-01.png" /></p>
+<blockquote>
+<p>As best practice for Document service, name of query should be start with Axd* prefix.</p>
+</blockquote>
+<h2 id="using-aif-wizards">Using AIF Wizards</h2>
+<p>In AX development environment, go to <em>Tools &gt; Wizards &gt; AIF document service wizards</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-02.png"
+        data-srcset="/imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-02.png, /imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-02.png 1.5x, /imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-02.png 2x"
+        data-sizes="auto"
+        alt="/imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-02.png"
+        title="/imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-02.png" /></p>
+<p>Choose recent created query and click <strong>next</strong>.</p>
+<h2 id="create-service-operation-and-axbc-class">Create Service operation and <code>AxBC class</code></h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-03.png"
+        data-srcset="/imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-03.png, /imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-03.png 1.5x, /imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-03.png 2x"
+        data-sizes="auto"
+        alt="/imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-03.png"
+        title="/imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-03.png" /></p>
+<p>Click <code>next</code> and then <code>Generate</code>.</p></div><div class="post-footer">
+        <a href="/2016-12-28-crud-purchase-order-using-aif-in-dynamics-ax-2012-r3/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/aif/">aif</a>,&nbsp;<a href="/tags/programming/">Programming</a>,&nbsp;<a href="/tags/csharpdotnet/">csharpdotnet</a>,&nbsp;<a href="/tags/xpp/">xpp</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
