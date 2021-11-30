@@ -13,7 +13,7 @@ You can add actions by adding a method to the data entity and then decorating th
 <p>I use this Odata actions mostly in automation job like after refreshing data from PROD to UAT, we need to enable users, assign company to users, enable batches &hellip;
 Or simply consume it in Power Automate.</p>
 <h1 id="1-create-an-action-to-odata-entity">1. Create an action to OData entity</h1>
-<p>You can create a new entity following <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/build-consuming-data-entities#add-a-new-data-entity-to-your-project" target="_blank" rel="noopener noreferrer">this standard docs</a>
+<p>You can create a new entity following <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/build-consuming-data-entities#add-a-new-data-entity-to-your-project" target="_blank" rel="noopener noreferrer">this standard docs</a> 
 or you can duplicate any standard entity. I created <strong>AutomationDataEntity</strong>. Right-click the enitity, select View code and add the code</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -412,7 +412,7 @@ Content-Type:application/json
     </a><figcaption class="image-caption">Cosnume</figcaption>
     </figure></p>
 <h3 id="31-list-database-backups">3.1. List database backups</h3>
-<p><code>GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/databases/project/{{projectId}}</code></p>
+<p><code> GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/databases/project/{{projectId}} </code></p>
 <p>And we’ll get a JSON with a list of the DB backups on our LCS Asset Library:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -463,7 +463,7 @@ Content-Type:application/json
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="32-create-database-refresh">3.2. Create database refresh</h3>
-<p><code>POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/refresh/project/{projectId}/source/{sourceEnvironmentId}/target/{targetEnvironmentId}</code></p>
+<p><code> POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/refresh/project/{projectId}/source/{sourceEnvironmentId}/target/{targetEnvironmentId} </code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -483,7 +483,7 @@ Content-Type:application/json
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="33-create-a-database-export">3.3. Create a database export</h3>
-<p><code>POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/export/project/{projectId}/environment/{environmentId}/backupName/{backupName}</code></p>
+<p><code> POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/export/project/{projectId}/environment/{environmentId}/backupName/{backupName} </code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -503,7 +503,7 @@ Content-Type:application/json
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="34-get-operation-activity-status">3.4. Get operation activity status</h3>
-<p><code>GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/fetchstatus/project/{projectId}/environment/{environmentId}/operationactivity/{operationactivityId}</code></p>
+<p><code> GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/fetchstatus/project/{projectId}/environment/{environmentId}/operationactivity/{operationactivityId} </code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
