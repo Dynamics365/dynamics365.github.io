@@ -114,6 +114,46 @@
         alt="Max Nguyen"
         title="Max Nguyen" /></a></div><h2 class="home-subtitle"><div id="id-3" class="typeit"></div></h2><div class="links"><a href="mailto:100max@outlook.com" title="Email" rel=" me"><i class="far fa-envelope fa-fw"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreferrer me"><i class="fas fa-rss fa-fw"></i></a></div><h3 class="home-disclaimer">This post is our own opinion and does not necessarily reflect the opinion or view of our companies or Microsoft.</h3></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/2016-12-28-crud-purchase-order-using-aif-in-dynamics-ax-2012-r3/">CRUD Purchase order using AIF in Dynamics AX 2012 R3</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="https://nuxulu.com/about" title="Author" target="_blank" rel="noopener noreferrer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="December 28, 2016">December 28, 2016</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax-2012/"><i class="far fa-folder fa-fw"></i>AX 2012</a>&nbsp;<a href="/categories/integration/"><i class="far fa-folder fa-fw"></i>Integration</a></span></div><div class="content"><p>Due to Purchase order doesn’t have Standard document service so we have to create new Document service for that using AIF wizards.</p>
+<p>I’m using AIF document service with <code>NETTCP</code> or <code>HTTP</code> Adapter to Create Purchase order service, here is steps</p>
+<h2 id="create-query">Create Query</h2>
+<p>with three <strong>datasouce</strong> (<code>PurchTable, PurchLine, InventDim</code>) likes below</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-01.png"
+        data-srcset="/imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-01.png, /imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-01.png 1.5x, /imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-01.png 2x"
+        data-sizes="auto"
+        alt="/imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-01.png"
+        title="/imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-01.png" /></p>
+<blockquote>
+<p>As best practice for Document service, name of query should be start with Axd* prefix.</p>
+</blockquote>
+<h2 id="using-aif-wizards">Using AIF Wizards</h2>
+<p>In AX development environment, go to <em>Tools &gt; Wizards &gt; AIF document service wizards</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-02.png"
+        data-srcset="/imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-02.png, /imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-02.png 1.5x, /imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-02.png 2x"
+        data-sizes="auto"
+        alt="/imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-02.png"
+        title="/imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-02.png" /></p>
+<p>Choose recent created query and click <strong>next</strong>.</p>
+<h2 id="create-service-operation-and-axbc-class">Create Service operation and <code>AxBC class</code></h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-03.png"
+        data-srcset="/imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-03.png, /imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-03.png 1.5x, /imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-03.png 2x"
+        data-sizes="auto"
+        alt="/imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-03.png"
+        title="/imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-03.png" /></p>
+<p>Click <code>next</code> and then <code>Generate</code>.</p></div><div class="post-footer">
+        <a href="/2016-12-28-crud-purchase-order-using-aif-in-dynamics-ax-2012-r3/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/aif/">aif</a>,&nbsp;<a href="/tags/programming/">Programming</a>,&nbsp;<a href="/tags/csharpdotnet/">csharpdotnet</a>,&nbsp;<a href="/tags/xpp/">xpp</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/2016-12-28-insert-update-delete-order-line-through-aif-in-ax-2012-r3/">Insert, update, Delete order line through AIF In AX 2012 R3</a>
     </h1><div class="post-meta"><span class="post-author"><a href="https://nuxulu.com/about" title="Author" target="_blank" rel="noopener noreferrer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="December 28, 2016">December 28, 2016</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax-2012/"><i class="far fa-folder fa-fw"></i>AX 2012</a>&nbsp;<a href="/categories/integration/"><i class="far fa-folder fa-fw"></i>Integration</a></span></div><div class="content"><p>In previous <a href="https://dynamics365.github.io/ax2012/integration/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3/" target="_blank" rel="noopener noreferrer">post</a>, I already show how to create purchase order through AIF with <code>NETTCP</code> or <code>HTTP adapter</code>. In this post, we will get little deep more about action on line of order.</p>
 <p>The following code sample shows how to <code>insert</code>, <code>update</code>, <code>delete</code> a line of an existing purchase order through AIF, currently I’m using C#.NET console project for demo.</p>
@@ -242,12 +282,6 @@ To create product variants, you must complete the following tasks:</p>
 <p>Document services can be deployed using the integration ports and all available adapters can be used.</p></div><div class="post-footer">
         <a href="/2016-11-10-types-services-microsoft-dynamics-ax-2012/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/aif/">aif</a>,&nbsp;<a href="/tags/xpp/">xpp</a>,&nbsp;<a href="/tags/aos/">aos</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/2016-11-08-microsoft_dyanmics_ax_2012_test_data_transfer_tool/">Microsoft AX 2012 Test Data Transfer Tool</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="https://nuxulu.com/about" title="Author" target="_blank" rel="noopener noreferrer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="November 8, 2016">November 8, 2016</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax-2012/"><i class="far fa-folder fa-fw"></i>AX 2012</a>&nbsp;<a href="/categories/data/"><i class="far fa-folder fa-fw"></i>Data</a></span></div><div class="content">SUMMARY Tool can be used for two different purposes. One is to install demo data and other one is elaborated as below. Customers often need to have a production dataset to use when building and validating customizations in non-production environments.
-The Microsoft Dynamics AX 2012 Test Data Transfer Tool (beta) is a tool that helps move data between from production to non-production environments or from non-production environments to production environments to make a new production environment.</div><div class="post-footer">
-        <a href="/2016-11-08-microsoft_dyanmics_ax_2012_test_data_transfer_tool/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/data/">data</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
