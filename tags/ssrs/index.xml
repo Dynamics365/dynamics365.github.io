@@ -1,0 +1,319 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+    <channel>
+        <title>ssrs - Tag - Dynamics 365 &amp; Power Platform | nuxulu.com</title>
+        <link>https://nuxulu.com/tags/ssrs/</link>
+        <description>ssrs - Tag - Dynamics 365 &amp; Power Platform | nuxulu.com</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Sun, 17 Jan 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/ssrs/" rel="self" type="application/rss+xml" /><item>
+    <title>Deploy SSRS reports in Dynamics 365 Finance, SCM using Powershell</title>
+    <link>https://nuxulu.com/2021-01-27-deploy-ssrs-reports-in-dynamics-365-finance-scm-using-powershell/</link>
+    <pubDate>Sun, 17 Jan 2021 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2021-01-27-deploy-ssrs-reports-in-dynamics-365-finance-scm-using-powershell/</guid>
+    <description><![CDATA[<p>Open Windows PowerShell in Admin mode</p>
+<p>Navigate to the PowerShell scripts</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ps" data-lang="ps"><span class="nf">cd</span> <span class="nf">K:\AosService\PackagesLocalDirectory\Plugins\AxReportVmRoleStartupTask\</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Execute the below commands:</p>
+<ul>
+<li>For deploying all SSRS reports</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ps" data-lang="ps"><span class="nf">.</span><span class="nv">/DeployAllReportsToSSRS.ps1</span> <span class="nf">-PackageInstallLocation</span> <span class="nf">“K:\AosService\PackagesLocalDirectory”</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>For deploying the specific reports</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">./</span><span class="n">DeployAllReportsToSSRS</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-Module</span> <span class="n">ApplicationSuite</span> <span class="n">-ReportName</span> <span class="p">&lt;</span><span class="n">ReportName</span><span class="p">&gt;</span> <span class="n">-PackageInstallLocation</span> <span class="err">“</span><span class="n">K:</span><span class="p">\</span><span class="n">AosService</span><span class="p">\</span><span class="n">PackagesLocalDirectory</span><span class="err">”</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>Example:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">./</span><span class="n">DeployAllReportsToSsrs</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-Module</span> <span class="n">MaxCustomization</span> <span class="n">-ReportName</span> <span class="n">MaxCheque_US</span><span class="p">.</span><span class="n">Report</span> <span class="n">-PackageInstallLocation</span> <span class="s2">&#34;K:\AosService\PackagesLocalDirectory&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">./</span><span class="n">DeployAllReportsToSsrs</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-Module</span> <span class="n">ApplicatoinSuite</span> <span class="n">-ReportName</span> <span class="n">Cust</span><span class="p">*</span> <span class="n">-PackageInstallLocation</span> <span class="s2">&#34;C:\AosService\PackagesLocalDirectory&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div>]]></description>
+</item><item>
+    <title>Extend the standard reports in Dynamics 365 finance and operations</title>
+    <link>https://nuxulu.com/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/</link>
+    <pubDate>Thu, 10 Oct 2019 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/</guid>
+    <description><![CDATA[<p>In this article, I will show the procedure for the SSRS Reports development and customization in Dynamics 365 finance and operations (Version 8.1 and above).</p>
+<p>The scenario is you would like to extend <strong>the customer account statement</strong> report with 2 main tasks</p>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/analytics/custom-designs-business-docs?toc=/dynamics365/commerce/toc.json" target="_blank" rel="noopener noreferrer">Create custom design for the report</a></li>
+<li><a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/analytics/expand-app-suite-report-data-sets?toc=/dynamics365/commerce/toc.json" target="_blank" rel="noopener noreferrer">Expand the standard report data sets</a></li>
+</ul>
+<p>Same with AX 2012 version, there is no change on how you developer a new SSRS report with query based and report data provider. But if you want to extend or modify the standard one you need to understand how to use extensions in general, Event handlers and Chain of Command.</p>
+<p>The steps</p>
+<h3 id="1-adding-a-new-field">1. Adding a new field</h3>
+<p>The main temp table is <strong>CustAccountStatementExtTmp</strong>, right click and create an extension; I&rsquo;m going to add a new string field <strong>MaxTxT</strong></p>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_1.png"></a>
+</figure>
+<h3 id="2-duplicate-the-report">2. Duplicate the report</h3>
+<p>Duplicate the <strong>CustAccountStatementExt</strong> report in <em>the Application explorer &gt; AOT &gt; Reports &gt; CustAccountStatementExt</em> as shown in below screen shot:</p>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_2.png"></a>
+</figure>
+<p>Rename the report and provide any appropriate name: <strong>MaxCustAccountStatementExt</strong></p>
+<h3 id="3-modifythe-report-design-right-click-on-report-dataset-and-choose-restore-to-refresh-the-new-field">3. Modify the report design, right click on report dataset and choose restore to refresh the new field</h3>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_3.png"></a>
+</figure>
+<p>Open report designer and add that field into a table</p>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_4.png"></a>
+</figure>
+<h3 id="4-create-a-new-extension-classthat-extends-the-standard-report-controller-class">4. Create a new Extension class that extends the standard report controller class.</h3>
+<p><em><strong>class MaxCustAccountStatementExtController_Ext extends CustAccountStatementExtController{}</strong></em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="c1">//Add construct
+</span><span class="c1"></span><span class="k">public</span> <span class="k">static</span> <span class="n">MaxCustAccountStatementExtController_Ext</span> <span class="n">construct</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">MaxCustAccountStatementExtController_Ext</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Copy the main method from the standard controller class and add references to the new Controller class</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">SrsPrintMgmtFormLetterController</span> <span class="n">controller</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MaxCustAccountStatementExtController_Ext</span><span class="p">();</span>
+    <span class="n">controller</span><span class="p">.</span><span class="n">parmReportName</span><span class="p">(</span><span class="n">PrintMgmtDocType</span><span class="p">::</span><span class="n">construct</span><span class="p">(</span><span class="n">PrintMgmtDocumentType</span><span class="p">::</span><span class="n">CustAccountStatement</span><span class="p">).</span><span class="n">getDefaultReportFormat</span><span class="p">());</span>
+    <span class="n">controller</span><span class="p">.</span><span class="n">parmArgs</span><span class="p">(</span><span class="m">_</span><span class="n">args</span><span class="p">);</span>
+    <span class="n">MaxCustAccountStatementExtController_Ext</span><span class="p">::</span><span class="n">startControllerOperation</span><span class="p">(</span><span class="n">controller</span><span class="p">,</span> <span class="m">_</span><span class="n">args</span><span class="p">);</span>
+<span class="p">}</span>
+ 
+<span class="k">protected</span> <span class="k">static</span> <span class="k">void</span> <span class="n">startControllerOperation</span><span class="p">(</span><span class="n">SrsPrintMgmtFormLetterController</span> <span class="m">_</span><span class="n">controller</span><span class="p">,</span> <span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="m">_</span><span class="n">controller</span><span class="p">.</span><span class="n">startOperation</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Optional method, determine which default design for report</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">protected</span> <span class="k">void</span> <span class="n">outputReport</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">SRSCatalogItemName</span>  <span class="n">reportDesign</span><span class="p">;</span>
+    <span class="n">reportDesign</span> <span class="p">=</span> <span class="n">ssrsReportStr</span><span class="p">(</span><span class="n">MaxCustAccountStatementExt</span><span class="p">,</span><span class="n">Report</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="n">parmReportName</span><span class="p">(</span><span class="n">reportDesign</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="n">parmReportContract</span><span class="p">().</span><span class="n">parmReportName</span><span class="p">(</span><span class="n">reportDesign</span><span class="p">);</span>
+    <span class="n">formletterReport</span><span class="p">.</span><span class="n">parmReportRun</span><span class="p">().</span><span class="n">settingDetail</span><span class="p">().</span><span class="n">parmReportFormatName</span><span class="p">(</span><span class="n">reportDesign</span><span class="p">);</span>
+    <span class="n">super</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="5-create-new-report-handler-class">5. Create new report handler class</h3>
+<p><em><strong>class MaxCustAccountStatementHandler {}</strong></em></p>
+<p>We have two different ways to Populate the data in the Report handler class:</p>
+<ul>
+<li>Add a temp table Inserting event, row-by-row calculations.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="na">[DataEventHandlerAttribute(tableStr(CustAccountStatementExtTmp), DataEventType::Inserting)]</span>
+<span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">CustAccountStatementExtTmpInsertEvent</span><span class="p">(</span><span class="n">Common</span> <span class="n">c</span><span class="p">,</span> <span class="n">DataEventArgs</span> <span class="n">e</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">CustAccountStatementExtTmp</span>    <span class="n">tempTable</span> <span class="p">=</span> <span class="n">c</span><span class="p">;</span>
+    <span class="n">tempTable</span><span class="p">.</span><span class="n">MaxTxT</span> <span class="p">=</span> <span class="s">&#34;Hello world&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Add a data processing post-handler, inserting operations that use a single pass over the result set of the standard solution.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="na">[PostHandlerFor(classStr(CustAccountStatementExtDP), methodstr(CustAccountStatementExtDP, processReport))]</span>
+<span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">TmpTablePostHandler</span><span class="p">(</span><span class="n">XppPrePostArgs</span> <span class="n">arguments</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">CustAccountStatementExtDP</span> <span class="n">dpInstance</span> <span class="p">=</span> <span class="n">arguments</span><span class="p">.</span><span class="n">getThis</span><span class="p">()</span> <span class="k">as</span> <span class="n">CustAccountStatementExtDP</span><span class="p">;</span>
+    <span class="n">CustAccountStatementExtTmp</span> <span class="n">tmpTable</span> <span class="p">=</span> <span class="n">dpInstance</span><span class="p">.</span><span class="n">getCustAccountStatementExtTmp</span><span class="p">();</span>
+    <span class="n">ttsbegin</span><span class="p">;</span>
+    <span class="k">while</span> <span class="k">select</span> <span class="n">forUpdate</span> <span class="n">tmpTable</span>
+    <span class="p">{</span>
+        <span class="n">tmpTable</span><span class="p">.</span><span class="n">MaxTxT</span> <span class="p">=</span> <span class="s">&#34;Hello world&#34;</span><span class="p">;</span>
+        <span class="n">tmpTable</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="n">ttscommit</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="6-add-a-delegate-handler-method-to-start-to-use-your-custom-report">6. Add a delegate handler method to start to use your custom report.</h3>
+<p>In this example, extend the <em><strong>getDefaultReportFormatDelegate</strong></em> method in the <em><strong>PrintMgtDocTypeHandlerExt</strong></em> class by using the following code.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">class</span> <span class="nc">MaxPrintMgtDocTypeHandlersExt</span>
+<span class="p">{</span>
+<span class="na">    [SubscribesTo(classstr(PrintMgmtDocType), delegatestr(PrintMgmtDocType, getDefaultReportFormatDelegate))]</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">getDefaultReportFormatDelegate</span><span class="p">(</span><span class="n">PrintMgmtDocumentType</span> <span class="m">_d</span><span class="n">ocType</span><span class="p">,</span> <span class="n">EventHandlerResult</span> <span class="m">_</span><span class="n">result</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">switch</span> <span class="p">(</span><span class="m">_d</span><span class="n">ocType</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">case</span> <span class="n">PrintMgmtDocumentType</span><span class="p">::</span><span class="n">CustAccountStatement</span><span class="p">:</span>
+                <span class="m">_</span><span class="n">result</span><span class="p">.</span><span class="n">result</span><span class="p">(</span><span class="n">ssrsReportStr</span><span class="p">(</span><span class="n">MaxCustAccountStatementExt</span><span class="p">,</span> <span class="n">Report</span><span class="p">));</span>
+                <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="7-create-extension-for-the-existing-menu-items">7. Create extension for the existing menu items</h3>
+<p>Navigating to the <strong>CustAccountStatementExt</strong> output menu item and create extension.</p>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_5.png"></a>
+</figure>
+<p>Also make sure to set the value of the Object property to <strong>MaxCustAccountStatementExtController_Ext</strong> to redirect user navigation to the extended solution.</p>
+<p>That&rsquo;s all, this is what you should have</p>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_9.png"></a>
+</figure>
+<h3 id="8-update-the-print-management-settings-to-use-the-custom-business-document">8. Update the Print management settings to use the custom business document</h3>
+<p>Go to <em>Account payable &gt; Inquiries and reports &gt; Setup &gt; Forms &gt; Form setup</em>
+Click <strong>Print Management</strong>, find the document configuration settings, and then select the custom design</p>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_6.png"></a>
+</figure>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_7.png"></a>
+</figure>
+<h3 id="9-run-report-and-test-the-result">9. Run report and test the result</h3>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_8.png"></a>
+</figure>]]></description>
+</item><item>
+    <title>Step by Step How to build SSRS Report - Advanced RDP Class</title>
+    <link>https://nuxulu.com/2016-11-23-step-by-step-how-to-build-ssrs-report-advanced-rdp-class/</link>
+    <pubDate>Thu, 17 Nov 2016 09:11:11 &#43;0900</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2016-11-23-step-by-step-how-to-build-ssrs-report-advanced-rdp-class/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>How to install two instances SSRS on one server</title>
+    <link>https://nuxulu.com/2015-12-16-how-to-install-2-instances-ssrs-on-1-server/</link>
+    <pubDate>Wed, 16 Dec 2015 09:01:11 &#43;0700</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2015-12-16-how-to-install-2-instances-ssrs-on-1-server/</guid>
+    <description><![CDATA[<h2 id="scenario">Scenario:</h2>
+<p>I have 2 AOS AX (maybe same in one server or different servers), but only one server for reporting server (I will install and configure multiple SRS instances in this server). Thing is how can we install and configure 2 SSRS instances on same server and running for 2 AOS.</p>
+<p>easierly, please take a look the picture below</p>
+<p></p>
+<p><em><strong>Figure 1</strong>: Two SSRS instance are running same server.</em></p>
+<h2 id="problems">Problems:</h2>
+<p>First you need to install 2 SSRS instance in same server, and install <code>reporting service component</code> for first AOS, this step is very simple. The problems come when we install second <code>reporting service component</code> for second AOS.</p>
+<p>Reporting service component uses <strong>business connector</strong> to connect to AX, and it&rsquo;s saved on configuration in Registry. When we install second <code>reporting service component</code> it will through message that component already installed.</p>
+<h2 id="how-to-do">How to do:</h2>
+<ol>
+<li>After installed second instance into <code>C:\Program Files\Microsoft SQL Server\MSRS12.InstanceName\Reporting Services\ReportServer\bin</code>, we need to create one <code>Dynamics.AX.ReportConfiguration.axc</code> file by <strong>AX configuration client</strong> with second AOS information.</li>
+</ol>
+<p></p>
+<ol start="2">
+<li>open <code>MS Dyanmics AX Management Shell</code>, run command below:</li>
+</ol>
+<p><code>Install-AXReportInstanceExtensions –ReportServerInstanceName [SSRSInstanceName] -Credential [DomainNameUserName]</code></p>
+<p></p>
+<ol start="3">
+<li>goto <code>C:\Program Files\Microsoft SQL Server\MSRS12.SecondInstance\Reporting Services\ReportServer</code> fix <code>fileconfi</code> with value from <code>Execution</code> to <code>FullTrust</code></li>
+</ol>
+<p></p>
+<p>After this, remember restart reporting services.</p>
+<p></p>
+<p>From now on, you can run 2 AX reporting instance in same server.</p>
+<p>Thank you for reading!</p>]]></description>
+</item></channel>
+</rss>
