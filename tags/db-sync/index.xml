@@ -1,0 +1,51 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+    <channel>
+        <title>DB sync - Tag - Dynamics 365 &amp; Power Platform | nuxulu.com</title>
+        <link>https://nuxulu.com/tags/db-sync/</link>
+        <description>DB sync - Tag - Dynamics 365 &amp; Power Platform | nuxulu.com</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Sun, 10 May 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/db-sync/" rel="self" type="application/rss+xml" /><item>
+    <title>Database Sync after data type on field has been changed</title>
+    <link>https://nuxulu.com/2020-05-10-database-sync-after-data-type-on-field-has-been-changed/</link>
+    <pubDate>Sun, 10 May 2020 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2020-05-10-database-sync-after-data-type-on-field-has-been-changed/</guid>
+    <description><![CDATA[<p>You will got an error like this when doing Database Synchronization after changing the data type of the field on the table:</p>
+<p>InvalidOperationException: Table &hellip; : Converting Field &lsquo;..&rsquo; of Type &lsquo;..&rsquo; to &lsquo;..&rsquo; is not support. Please drop the original field, sync the table and add new field with same name if needed.
+{:.error}</p>
+<p>Solution:</p>
+<ul>
+<li>Drop the table and delete references from SQLDictionary</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">AXDB</span><span class="p">.</span><span class="n">dbo</span><span class="p">.</span><span class="n">NAMEOFTABLE</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">DELETE</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">AXDB</span><span class="p">.</span><span class="n">dbo</span><span class="p">.</span><span class="n">SQLDICTIONARY</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">TABLEID</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">TABLEID</span><span class="w">
+</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SQLDICTIONARY</span><span class="w">
+</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;NAMEOFTABLE&#39;</span><span class="w">
+</span><span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">FIELDID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="w"></span><span class="p">)</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Restart IIS</li>
+<li>In VS 2015, run DB sync again.</li>
+</ul>
+<p>Thank you for reading.</p>
+]]></description>
+</item></channel>
+</rss>
