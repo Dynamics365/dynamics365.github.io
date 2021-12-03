@@ -1,0 +1,143 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+    <channel>
+        <title>QueryBuildRange - Tag - Dynamics 365 &amp; Power Platform | nuxulu.com</title>
+        <link>https://nuxulu.com/tags/querybuildrange/</link>
+        <description>QueryBuildRange - Tag - Dynamics 365 &amp; Power Platform | nuxulu.com</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Mon, 02 Jan 2017 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/querybuildrange/" rel="self" type="application/rss+xml" /><item>
+    <title>Using Methods in Table Filters &amp; Query Ranges in Dynamics AX 2012</title>
+    <link>https://nuxulu.com/2017-01-02-using-methods-in-table-filters-query-ranges-in-dynamics-ax-2012/</link>
+    <pubDate>Mon, 02 Jan 2017 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2017-01-02-using-methods-in-table-filters-query-ranges-in-dynamics-ax-2012/</guid>
+    <description><![CDATA[<p>In Dynamics AX, there is a class called <code>SysQueryRangeUtil</code> that can be utilized in both query ranges and table filters. Using methods from this class allow you to be very precise about what dates you want to use in reports or for filtering your data.</p>
+<p>Let’s say you have a report that you always want to run to see orders with shipping dates of the next day. It is possible to do so by using one of the methods from the <code>SysQueryRangeUtil</code>. The use of the letter <strong>&rsquo;t'</strong> will work for today’s date, but when you try to add days to it, it doesn’t work in reports. Instead, I will use the <code>currentdate()</code> method and add <code>1</code> to it.</p>
+<blockquote>
+<p>All methods &amp; expressions must be surrounded by parentheses as shown below.</p>
+</blockquote>
+<p></p>
+<p><em>Filtering the requested ship dates in an AX query for tomorrow <code>(current day() + 1)</code></em></p>
+<p>On any form with a grid, you filter your data by pressing <strong><em>Ctrl+G</em></strong>.</p>
+<p>If I were to want to see open customer invoices from the last 90 days, I would filter my <strong>open customer invoices form</strong> and use the method <code>(dayRange(-90,0))</code>. The first number represents how many months backward from this month, and the second represents how many months forward. The same sorts of things can be done for the <code>monthRange()</code>, <code>yearRange()</code>, and <code>dateRange()</code> methods. The best part about this is that you can of course save these filters to create views that you might use on a daily basis.</p>
+<p></p>
+<p>If you are creating your query ranges in code, these methods can also be utilized whenever you are setting them. Definitely be sure to check out the <code>SysQueryRangeUtil</code> class as there are many more methods to use.</p>
+<p>Here is some methods you can use:</p>
+<p>{% highlight html %}
+currentCustomerAccount()</p>
+<p>currentVendorAccount()</p>
+<p>currentUserId()</p>
+<p>currentDate()</p>
+<p>dateRange()</p>
+<p>day()</p>
+<p>dayRange()</p>
+<p>greaterThanDate()</p>
+<p>greaterThanUtcDate()</p>
+<p>greaterThanUtcNow()</p>
+<p>lessthanDate()</p>
+<p>lessthanUtcDate()</p>
+<p>lessthanUtcNow()</p>
+<p>monthRange()</p>
+<p>yearRange()</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">
+&gt; for example:
+
+{% highlight html %}
+(dayRange(-30,0)) – Results in a date range for the last 30 days: &#34;26-01-2017&#34;..&#34;25-02-2017&#34;
+
+(day(-1)) – Results in yesterday&#39;s date: 24-02-2017
+
+(day(0)) – Results in today&#39;s date: 25-02-2017
+
+(day(1)) – Results in tomorrow&#39;s date: 26-02-2017
+
+(greaterThanDate(2)) – Results in every date after today plus 2: &gt; 27-02-2017
+
+(lessThanDate(-1)) – Results in every date of today minus 1: &lt; 24-02-2017
+
+(monthRange(0,2)) – Results in first day till the last day of the month&#39;s choosen (0 = current month): &#34;01-02-2017&#34;..&#34;30-04-2017&#34;
+
+(yearRange(-1,-1)) – Results in first day till the last day of the chosen year: &#34;01-01-2017&#34;..&#34;31-12-2017&#34;
+</code></pre></td></tr></table>
+</div>
+</div><p>Thank you for reading!</p>]]></description>
+</item><item>
+    <title>HOW TO USE &#34;LIKE&#34; OPERATOR IN QueryBuildRange</title>
+    <link>https://nuxulu.com/2015-11-13-how-to-use-like-operator-in-querybuildrange/</link>
+    <pubDate>Fri, 13 Nov 2015 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2015-11-13-how-to-use-like-operator-in-querybuildrange/</guid>
+    <description><![CDATA[<p>To make something as the <code>LIKE</code> operator in a query, just assign a value to the QueryRange including a wildcard.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="k">static</span> <span class="k">void</span> <span class="n">QueryBuildRange_Sample</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Query</span>                       <span class="n">query</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Query</span><span class="p">();</span>
+    <span class="n">QueryRun</span>                    <span class="n">queryRun</span><span class="p">;</span>
+    <span class="n">QueryBuildDataSource</span>        <span class="n">qbds</span><span class="p">;</span>
+    <span class="n">QueryBuildRange</span>             <span class="n">queryRange</span><span class="p">;</span>   
+    <span class="n">CustTable</span>                   <span class="n">custTable</span><span class="p">;</span>
+    
+    <span class="n">qbds</span><span class="p">.</span><span class="n">addDataSource</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">CustTable</span><span class="p">));</span>
+    
+    <span class="n">queryRange</span> <span class="p">=</span> <span class="n">qbds</span><span class="p">.</span><span class="n">addRange</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">CustTable</span><span class="p">,</span> <span class="n">AccountNum</span><span class="p">));</span>
+    
+    <span class="n">queryRange</span><span class="p">.</span><span class="k">value</span><span class="p">(</span><span class="s">&#34;axd*&#34;</span><span class="p">);</span>
+    
+    <span class="n">queryRun</span> <span class="p">=</span> <span class="k">new</span> <span class="n">QueryRun</span><span class="p">(</span><span class="n">query</span><span class="p">);</span>
+    
+    <span class="k">while</span><span class="p">(</span><span class="n">queryRun</span><span class="p">.</span><span class="n">next</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="n">custTable</span> <span class="p">=</span> <span class="n">queryRun</span><span class="p">.</span><span class="k">get</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">CustTable</span><span class="p">));</span>
+        <span class="n">print</span> <span class="n">custTable</span><span class="p">.</span><span class="n">AccountNum</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">pause</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,154 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+    <channel>
+        <title>onebox vhd - Tag - Dynamics 365 &amp; Power Platform | nuxulu.com</title>
+        <link>https://nuxulu.com/tags/onebox-vhd/</link>
+        <description>onebox vhd - Tag - Dynamics 365 &amp; Power Platform | nuxulu.com</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Mon, 06 Apr 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/onebox-vhd/" rel="self" type="application/rss+xml" /><item>
+    <title>Getting onebox VHD Dynamics 365 finance and operations virtual machine</title>
+    <link>https://nuxulu.com/2020-04-06-getting-onebox-vhd-dynamics-365-finance-and-operations-virtual-machine/</link>
+    <pubDate>Mon, 06 Apr 2020 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2020-04-06-getting-onebox-vhd-dynamics-365-finance-and-operations-virtual-machine/</guid>
+    <description><![CDATA[<h2 id="1-download-dynamics-365-finance-and-operations-vhd-files">1. Download Dynamics 365 finance and operations VHD files</h2>
+<ul>
+<li>
+<p>Go to the LCS main page and select <strong>Shared asset library</strong> or go to Shared Asset Library.</p>
+</li>
+<li>
+<p>Select the asset type <strong>Downloadable VHD</strong>.</p>
+</li>
+<li>
+<p>Find the VHD you are looking for based on the desired Finance and Operation version. The VHD is divided into multiple file parts that you need to download. For example, the asset files that start with &ldquo;VHD - 10.0.5&rdquo; are the different files you need in order to install version 10.0.5.</p>
+</li>
+<li>
+<p>Download all files (parts) associated with the desired VHD to a local folder.</p>
+</li>
+<li>
+<p>After the download is complete, run the executable file that you downloaded, accept the software license agreement, and choose a file path to extract the VHD to.</p>
+</li>
+<li>
+<p>This creates a local VHD file that you can use to run a local virtual machine.</p>
+</li>
+<li>
+<p>Sign in to the VM by using the following credentials:</p>
+<ul>
+<li>User name: <strong>Administrator</strong></li>
+<li>Password: <strong>pass@word1</strong></li>
+</ul>
+</li>
+<li>
+<p>Provision the administrator user.</p>
+</li>
+</ul>
+<h2 id="2-rename-vm">2. Rename VM</h2>
+<ul>
+<li>
+<p>Rename and restart the machine before you start development or connect to Azure DevOps.</p>
+</li>
+<li>
+<p>Update the server name in SQL Server</p>
+<ul>
+<li>
+<p>To be able to login, Start SQL Server with <strong>administrator</strong> or using the user <strong>axdbadmin</strong> has password <strong>AOSWebSite@12</strong></p>
+</li>
+<li>
+<p>Run following query</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="n">sp_dropserver</span><span class="w"> </span><span class="p">[</span><span class="n">old_name</span><span class="p">]</span><span class="w">
+</span><span class="w"></span><span class="n">sp_addserver</span><span class="w"> </span><span class="p">[</span><span class="n">new_name</span><span class="p">],</span><span class="w"> </span><span class="k">local</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>Restart SQL service</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Open Reporting Services Configuration Manager for SQL Server 2016, then Select Database, select Change Database, and use the new server name.</p>
+</li>
+<li>
+<p>Update the Azure Storage Emulator</p>
+<ul>
+<li>
+<p>From the Start menu, open Microsoft Azure Storage Emulator - v4.0, and run the following commands.</p>
+<p><code>AzureStorageEmulator.exe start</code></p>
+<blockquote>
+<p>If you got an error <strong><em>Port conflict with existing application</em></strong>, please check this <a href="../2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/" rel="">post</a>.</p>
+</blockquote>
+</li>
+<li>
+<p>This command verifies that the emulator is running.</p>
+<p><code>AzureStorageEmulator.exe status</code></p>
+</li>
+<li>
+<p>Update the server name</p>
+<p><code>AzureStorageEmulator.exe init -server new_name</code></p>
+<p>For more information about Azure storage emulator please follow <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator" target="_blank" rel="noopener noreferrer">https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator</a></p>
+</li>
+<li>
+<p>Update financial reporting</p>
+</li>
+</ul>
+<p>Open a Microsoft Windows PowerShell command window as an admin, and run the following command. This command contains the default passwords that might have to be updated. Be sure to replace <strong>new_name</strong> with the new name.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">cd </span><span class="p">&lt;</span><span class="n">update</span> <span class="n">folder</span><span class="p">&gt;\</span><span class="n">MROneBox</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">Update</span>
+<span class="p">.\</span><span class="n">ConfigureMRDatabase</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-NewAosDatabaseName</span> <span class="n">AxDB</span> <span class="n">-NewAosDatabaseServerName</span> <span class="n">new_name</span> <span class="n">-NewMRDatabaseName</span> <span class="n">ManagementReporter</span> <span class="n">-NewAxAdminUserPassword</span> <span class="n">AOSWebSite</span><span class="nv">@123</span> <span class="n">-NewMRAdminUserName</span> <span class="n">MRUser</span> <span class="n">-NewMRAdminUserPassword</span> <span class="n">MRWebSite</span><span class="nv">@123</span> <span class="n">-NewMRRuntimeUserName</span> <span class="n">MRUSer</span> <span class="n">-NewMRRuntimeUserPassword</span> <span class="n">MRWebSite</span><span class="nv">@123</span> <span class="n">-NewAxMRRuntimeUserName</span> <span class="n">MRUser</span> <span class="n">-NewAxMRRuntimeUserPassword</span> <span class="n">MRWebSite</span><span class="nv">@123</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h2 id="3-location-of-packages-source-code-and-other-aos-configurations">3. Location of packages, source code, and other AOS configurations</h2>
+<p>On a VM, you can find most of the application configuration by opening the web.config file of AOSWebApplication.</p>
+<ol>
+<li>
+<p>Start IIS.</p>
+</li>
+<li>
+<p>Go to <em>Sites &gt; AOSWebApplication</em>.</p>
+</li>
+<li>
+<p>Right-click, and then click <strong>Explore</strong> to open File Explorer.</p>
+</li>
+<li>
+<p>Open the <strong>web.config</strong> file in Notepad or another text editor. The following keys are of interest to many developers and administrators:</p>
+<ul>
+<li>
+<p><strong>Aos.MetadataDirectory</strong> – This key points to the location of the packages folder that contains platform and application binaries, and also source code. (Source code is available only in development environments.) Typical values are: <em>c:\packages, c:\AosServicePackagesLocalDirectory</em>, and <em>J:AosServicePackagesLocalDirectory</em>.</p>
+</li>
+<li>
+<p><strong>DataAccess.Database</strong> – This key holds the name of the database.</p>
+</li>
+<li>
+<p><strong>Aos.AppRoot</strong> – This key points to the root folder of the Application Object Server (AOS) web application.</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="4-redeploying-or-restarting-the-runtime-on-the-vm">4. Redeploying or restarting the runtime on the VM</h2>
+<p>To restart the local runtime and redeploy all the packages, follow these steps.</p>
+<ol>
+<li>
+<p>Open File Explorer, and go to <em>C:\CustomerServiceUnit</em>.</p>
+</li>
+<li>
+<p>Right-click <strong>AOSDeploy.cmd</strong>, and then click <strong>Run as administrator</strong>.</p>
+</li>
+</ol>
+<p>This process might take a while. The process is completed when the cmd.exe window closes. If you just want to restart AOS (without redeploying the runtime), run iisreset from an administrator Command Prompt window, or restart AOSWebApplication from IIS.</p>
+<h2 id="5-update-to-the-latest-version">5. Update to the latest version</h2>
+<p>Please check this document
+<a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/deployment/install-deployable-package" target="_blank" rel="noopener noreferrer">https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/deployment/install-deployable-package</a></p>
+<p>That&rsquo;s it, thank you for reading.</p>
+]]></description>
+</item></channel>
+</rss>

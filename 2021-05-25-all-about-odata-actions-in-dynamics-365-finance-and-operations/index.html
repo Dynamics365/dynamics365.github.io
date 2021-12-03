@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>All about Odata actions in Dynamics 365 Finance And Operations - Dynamics 365 &amp; Power Platform | nuxulu.com</title><meta name="description" content="test desc"><meta property="og:title" content="All about Odata actions in Dynamics 365 Finance And Operations" />
+<meta property="og:description" content="test desc" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nuxulu.com/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/" /><meta property="og:image" content="https://nuxulu.com/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/dodatapostman.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-05-25T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-12-03T13:31:52+07:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://nuxulu.com/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/dodatapostman.png"/>
+<meta name="twitter:title" content="All about Odata actions in Dynamics 365 Finance And Operations"/>
+<meta name="twitter:description" content="test desc"/>
+<meta name="application-name" content="Finance Operations | Power Platform">
+<meta name="apple-mobile-web-app-title" content="Finance Operations | Power Platform"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/Icon/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://nuxulu.com/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/" /><link rel="prev" href="https://nuxulu.com/2021-01-27-deploy-ssrs-reports-in-dynamics-365-finance-scm-using-powershell/" /><link rel="next" href="https://nuxulu.com/2021-10-08-git-cheatsheet/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="f08c47fec0942fa0" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "All about Odata actions in Dynamics 365 Finance And Operations",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/nuxulu.com\/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/nuxulu.com\/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations\/dodatapostman.png",
+                            "width":  800 ,
+                            "height":  300 
+                        }],"genre": "posts","keywords": "Power Automate, Postman, OData Action, API Development","wordcount":  911 ,
+        "url": "https:\/\/nuxulu.com\/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations\/","datePublished": "2021-05-25T00:00:00+00:00","dateModified": "2021-12-03T13:31:52+07:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Max Nguyen"
+            },"description": "test desc"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">('false' === 'true' && window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Dynamics 365 &amp; Power Platform | nuxulu.com"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/Icon/favicon-32x32.png"
+        data-srcset="/Icon/favicon-32x32.png, /Icon/favicon-32x32.png 1.5x, /Icon/favicon-32x32.png 2x"
+        data-sizes="auto"
+        alt="/Icon/favicon-32x32.png"
+        title="/Icon/favicon-32x32.png" /><span class="header-title-pre">  </span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="/note/"> Note </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Dynamics 365 &amp; Power Platform | nuxulu.com"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/Icon/favicon-32x32.png"
+        data-srcset="/Icon/favicon-32x32.png, /Icon/favicon-32x32.png 1.5x, /Icon/favicon-32x32.png 2x"
+        data-sizes="auto"
+        alt="/Icon/favicon-32x32.png"
+        title="/Icon/favicon-32x32.png" /><span class="header-title-pre">  </span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="/note/" title="">Note</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">All about Odata actions in Dynamics 365 Finance And Operations</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://nuxulu.com/about" title="Author" target="_blank" rel="noopener noreferrer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Max Nguyen</a></span>&nbsp;<span class="post-category">included in <a href="/categories/integration/"><i class="far fa-folder fa-fw"></i>Integration</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="May 25, 2021">May 25, 2021</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;911 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/dodatapostman.png"
+        data-srcset="/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/dodatapostman.png, /2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/dodatapostman.png 1.5x, /2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/dodatapostman.png 2x"
+        data-sizes="auto"
+        alt="/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/dodatapostman.png"
+        title="test desc" /></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#21-with-postman">2.1. With Postman</a>
+      <ul>
+        <li><a href="#211-lets-use-the-first-example">2.1.1. Let&rsquo;s use the first example.</a></li>
+        <li><a href="#212-lets-try-with-the-second-example">2.1.2. Let&rsquo;s try with the second example</a></li>
+      </ul>
+    </li>
+    <li><a href="#22-with-power-automate">2.2. With Power Automate</a>
+      <ul>
+        <li><a href="#221-with-the-first-example">2.2.1. With the first example</a></li>
+        <li><a href="#222-with-the-second-example">2.2.2. With the second example</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>ODATA actions in Data Entities provide a way to inject behaviors into the data model, or expose custom business logic from Dynamics 365 Finance &amp; Operations.
+You can add actions by adding a method to the data entity and then decorating the method with specific attributes <em>[SysODataActionAttribute]</em></p>
+<p>I use this Odata actions mostly in automation job like after refreshing data from PROD to UAT, we need to enable users, assign company to users, enable batches &hellip;
+Or simply consume it in Power Automate.</p>
+<h1 id="1-create-an-action-to-odata-entity">1. Create an action to OData entity</h1>
+<p>You can create a new entity following <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/build-consuming-data-entities#add-a-new-data-entity-to-your-project" target="_blank" rel="noopener noreferrer">this standard docs</a>
+or you can duplicate any standard entity. I created <strong>AutomationDataEntity</strong>. Right-click the enitity, select View code and add the code</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="k">public</span> <span class="k">class</span> <span class="nc">AutomationDataEntity</span> <span class="n">extends</span> <span class="n">common</span>
+<span class="p">{</span>
+    <span class="c1">//1st example
+</span><span class="c1"></span><span class="na">    [SysODataActionAttribute(&#34;assignUserToCompany&#34;, false)]</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">assignUserToCompany</span><span class="p">(</span><span class="n">NetworkAlias</span> <span class="m">_</span><span class="n">networkAlias</span><span class="p">,</span> <span class="n">DataAreaName</span> <span class="m">_</span><span class="n">company</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">UserInfo</span> <span class="n">userInfo</span><span class="p">;</span>
+        <span class="n">ttsbegin</span><span class="p">;</span>
+        <span class="k">select</span> <span class="n">firstonly</span> <span class="n">forupdate</span> <span class="n">userInfo</span>
+            <span class="k">where</span> <span class="n">userInfo</span><span class="p">.</span><span class="n">networkAlias</span> <span class="p">==</span> <span class="m">_</span><span class="n">networkAlias</span><span class="p">;</span>
+        <span class="n">userInfo</span><span class="p">.</span><span class="n">company</span> <span class="p">=</span> <span class="m">_</span><span class="n">company</span><span class="p">;</span>
+        <span class="n">userInfo</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
+        <span class="n">ttscommit</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">//2nd example
+</span><span class="c1"></span><span class="na">    [SysODataActionAttribute(&#34;ReturnRental&#34;, true)]</span>
+    <span class="k">public</span> <span class="n">str</span> <span class="n">ReturnRental</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="s">&#34;Rental was successfully returned. Thanks for your business&#34;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">//following 3rd example of an OData action takes in a parameter and returns a list
+</span><span class="c1"></span><span class="na">    [SysODataActionAttribute(&#34;GetColors&#34;, true),
+</span><span class="na">    SysODataCollectionAttribute(&#34;return&#34;, Types::Record, &#34;CarColor&#34;)]</span>
+    <span class="k">public</span> <span class="n">List</span> <span class="n">GetColorsByAvailability</span><span class="p">(</span><span class="n">boolean</span> <span class="n">onlyAvailableVehicles</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">List</span> <span class="n">returnList</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Record</span><span class="p">);</span>
+        <span class="c1">// do something
+</span><span class="c1"></span>        <span class="k">return</span> <span class="n">returnList</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>In this example, the <code>SysODataActionAttribute</code> class decorates the <code>assginUserToCompany</code> method that is exposed as an action. The first argument of the attribute is the publicly exposed name of the action, and the second argument indicates whether this action need an entity instance or not. If you set the second argument to <em>false</em>, the method has to be <code>static</code>.</p>
+<blockquote>
+<p>You might need reset IIS service to update Odata endpoint.</p>
+</blockquote>
+<h1 id="2-test-entity-odata-actions-with-postman-and-power-automate">2. Test Entity Odata actions with Postman and Power Automate</h1>
+<h2 id="21-with-postman">2.1. With Postman</h2>
+<p>Please follow <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/third-party-service-test" target="_blank" rel="noopener noreferrer">this document</a> for basic configurations in Dynamics 365 Finance &amp; Operation, Azure to work with Postman.</p>
+<h3 id="211-lets-use-the-first-example">2.1.1. Let&rsquo;s use the first example.</h3>
+<p>Specify Odata endpoint request with POST method into Postman application</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown">[finopsURL]/data/AutomationDatas/Microsoft.Dynamics.DataEntities.assignUserToCompany
+</code></pre></td></tr></table>
+</div>
+</div><p>[finopsURL] = https://[yourenvironment].cloudax.dynamics.com</p>
+<p>Here is the Json file contains the parameters for <code>assignUserToCompany</code> method</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;_networkAlias&#34;</span><span class="p">:</span><span class="s2">&#34;Max.Nguyen@Microsoft.com&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;_company&#34;</span><span class="p">:</span><span class="s2">&#34;USMF&#34;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Click <strong>Send</strong> and you will get your logic executed.</p>
+<p><figure><a class="lightgallery" href="/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations_1.png" title="Image" data-thumbnail="/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations_1.png" data-sub-html="<h2>all-about-odata-actions-in-dynamics-365-finance-and-operations</h2><p>Image</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations_1.png"
+            data-srcset="/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations_1.png, 2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations_1.png 1.5x, /2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations_1.png 2x"
+            data-sizes="auto"
+            alt="/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations_1.png" />
+    </a><figcaption class="image-caption">all-about-odata-actions-in-dynamics-365-finance-and-operations</figcaption>
+    </figure></p>
+<h3 id="212-lets-try-with-the-second-example">2.1.2. Let&rsquo;s try with the second example</h3>
+<p>Everything should be remain the same, you just need to change the method to <code>ReturnRental</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown">[finopsURL]/data/AutomationDatas/Microsoft.Dynamics.DataEntities.ReturnRental
+</code></pre></td></tr></table>
+</div>
+</div><p>Click <strong>Send</strong> and you will get an error</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;Message&#34;</span><span class="p">:</span> <span class="s2">&#34;No HTTP resource was found that matches the request URI &#39;https://[devaos].cloudax.dynamics.com/data/AutomationDatas/Microsoft.Dynamics.DataEntities.ReturnRental&#39;. No route data was found for this request.&#34;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The reason is that you set the second argument to <code>true</code>, that means you need an instance for <code>AutomationDatas</code> entity before you can use <code>ReturnRental</code> method.
+My entity created based on <code>CustGroup</code> table, so to get an instance I need <code>DataAreaId</code> and <code>CustGroupID</code>. The correct endpoint should be</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown">[finopsURL]/data/AutomationDatas(dataAreaId=&#39;USMF&#39;,CustomerGroupId=&#39;BRIDGE&#39;)/Microsoft.Dynamics.DataEntities.ReturnRental
+</code></pre></td></tr></table>
+</div>
+</div><p>The result</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;@odata.context&#34;</span><span class="p">:</span> <span class="s2">&#34;https://[devaos].cloudax.dynamics.com/data/$metadata#Edm.String&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="s2">&#34;Rental was successfully returned. Thanks for your business&#34;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="22-with-power-automate">2.2. With Power Automate</h2>
+<h3 id="221-with-the-first-example">2.2.1. With the first example</h3>
+<p>Create a simple Power Automate with Dynamics 365 Finance &amp; Operations connector, to consume Odata actions we use &ldquo;Execute action&rdquo; action following</p>
+<p><figure><a class="lightgallery" href="/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations_2.png" title="Image" data-thumbnail="/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations_2.png" data-sub-html="<h2>all-about-odata-actions-in-dynamics-365-finance-and-operations</h2><p>Image</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations_2.png"
+            data-srcset="/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations_2.png, 2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations_2.png 1.5x, /2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations_2.png 2x"
+            data-sizes="auto"
+            alt="/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations_2.png" />
+    </a><figcaption class="image-caption">all-about-odata-actions-in-dynamics-365-finance-and-operations</figcaption>
+    </figure></p>
+<h3 id="222-with-the-second-example">2.2.2. With the second example</h3>
+<p>when specify <code>action</code> in <code>Execute action</code>, Dynamics 365 Finance &amp; Operations connector understand that this needs an instance</p>
+<p><figure><a class="lightgallery" href="/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations_3.png" title="Image" data-thumbnail="/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations_3.png" data-sub-html="<h2>all-about-odata-actions-in-dynamics-365-finance-and-operations</h2><p>Image</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations_3.png"
+            data-srcset="/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations_3.png, 2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations_3.png 1.5x, /2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations_3.png 2x"
+            data-sizes="auto"
+            alt="/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations_3.png" />
+    </a><figcaption class="image-caption">all-about-odata-actions-in-dynamics-365-finance-and-operations</figcaption>
+    </figure></p>
+<h1 id="3-more">3. More</h1>
+<p>In Odata actions, you can return a list</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="na">[SysODataActionAttribute(&#34;GetColors&#34;, true),
+</span><span class="na">SysODataCollectionAttribute(&#34;return&#34;, Types::Record, &#34;CarColor&#34;)]</span>
+<span class="k">public</span> <span class="n">List</span> <span class="n">GetColorsByAvailability</span><span class="p">(</span><span class="n">boolean</span> <span class="n">onlyAvailableVehicles</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">List</span> <span class="n">returnList</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Record</span><span class="p">);</span>
+    <span class="c1">// do something
+</span><span class="c1"></span>    <span class="k">return</span> <span class="n">returnList</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The following example of an OData action takes in list a parameter.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="na">[SysODataActionAttribute(&#34;GetColorsByAvailability&#34;, false),
+</span><span class="na">SysODataCollectionAttribute(&#34;InventSiteIdList&#34;, Types::String),
+</span><span class="na">SysODataCollectionAttribute(&#34;return&#34;, Types::String)]</span>
+<span class="k">public</span> <span class="k">static</span> <span class="n">str</span> <span class="n">GetColorsByAvailability</span><span class="p">(</span><span class="n">List</span> <span class="n">InventSiteIdList</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">str</span> <span class="n">strCommaSeperated</span><span class="p">;</span>
+    <span class="n">List</span> <span class="n">list</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">String</span><span class="p">);</span>
+    <span class="n">ListEnumerator</span>  <span class="n">ListEnumerator</span><span class="p">;</span>
+    <span class="n">ListEnumerator</span> <span class="p">=</span> <span class="n">InventSiteIdList</span><span class="p">.</span><span class="n">getEnumerator</span><span class="p">();</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">ListEnumerator</span><span class="p">.</span><span class="n">moveNext</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="n">strCommaSeperated</span> <span class="p">+=</span> <span class="n">strFmt</span><span class="p">(</span><span class="err">&#39;</span><span class="p">%</span><span class="m">1</span><span class="p">,</span> <span class="err">&#39;</span><span class="p">,</span> <span class="n">ListEnumerator</span><span class="p">.</span><span class="n">current</span><span class="p">())</span> <span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">strCommaSeperated</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>In those examples,the <code>SysODataCollectionAttribute</code> class enables OData to expose strongly typed collections from X++. This class takes in three parameters:</p>
+<ul>
+<li>The name of the parameter that is a list (Use return for the return value of the method.).</li>
+<li>The X++ type of the members of this list.</li>
+<li>The public name of the OData resource that is contained in the collection.</li>
+</ul>
+<p>You can find actions that are defined on data entities by searching for the <code>SysODataActionAttribute</code> attribute in <code>metadatasearch</code>.</p>
+<p>If you want to check how many Odata actions available for an entity, you can go here and search for an entity.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown">https://[devaos].cloudax.dynamics.com/data/$metadata
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;Action</span> <span class="na">Name=</span><span class="s">&#34;removeDeleteCT&#34;</span> <span class="na">IsBound=</span><span class="s">&#34;true&#34;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;AutomationData&#34;</span> <span class="na">Type=</span><span class="s">&#34;Collection(Microsoft.Dynamics.DataEntities.AutomationData)&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;_entityName&#34;</span> <span class="na">Type=</span><span class="s">&#34;Edm.String&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/Action&gt;</span>
+<span class="nt">&lt;Action</span> <span class="na">Name=</span><span class="s">&#34;assginUserToCompany&#34;</span> <span class="na">IsBound=</span><span class="s">&#34;true&#34;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;AutomationData&#34;</span> <span class="na">Type=</span><span class="s">&#34;Collection(Microsoft.Dynamics.DataEntities.AutomationData)&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;_networkAlias&#34;</span> <span class="na">Type=</span><span class="s">&#34;Edm.String&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;_company&#34;</span> <span class="na">Type=</span><span class="s">&#34;Edm.String&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/Action&gt;</span>
+<span class="nt">&lt;Action</span> <span class="na">Name=</span><span class="s">&#34;ReturnRental&#34;</span> <span class="na">IsBound=</span><span class="s">&#34;true&#34;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;AutomationData&#34;</span> <span class="na">Type=</span><span class="s">&#34;Microsoft.Dynamics.DataEntities.AutomationData&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;ReturnType</span> <span class="na">Type=</span><span class="s">&#34;Edm.String&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/Action&gt;</span>
+<span class="nt">&lt;Action</span> <span class="na">Name=</span><span class="s">&#34;addToAllUserGroups&#34;</span> <span class="na">IsBound=</span><span class="s">&#34;true&#34;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;AutomationData&#34;</span> <span class="na">Type=</span><span class="s">&#34;Collection(Microsoft.Dynamics.DataEntities.AutomationData)&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;_userId&#34;</span> <span class="na">Type=</span><span class="s">&#34;Edm.String&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/Action&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>At the time I&rsquo;m writing this post, Odata actions does not support COC extension (A 18, P 42). So if you write some thing like this, it won&rsquo;t work.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="na">[ExtensionOf(dataentityviewstr(CustCustomerGroupEntity))]</span>
+<span class="n">final</span> <span class="k">class</span> <span class="nc">CustCustomerGroupEntity_KA_Extension</span>
+<span class="p">{</span>
+<span class="na">    [SysODataActionAttribute(&#34;ReturnRental&#34;, false)]</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="n">str</span> <span class="n">ReturnRental</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="s">&#34;Rental was successfully returned. Thanks for your business&#34;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Thank you for reading.</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on December 3, 2021</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://nuxulu.com/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/" data-title="All about Odata actions in Dynamics 365 Finance And Operations" data-hashtags="Power Automate,Postman,OData Action,API Development"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://nuxulu.com/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/" data-hashtag="Power Automate"><i class="fab fa-facebook-square fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/power-automate/">Power Automate</a>,&nbsp;<a href="/tags/postman/">Postman</a>,&nbsp;<a href="/tags/odata-action/">OData Action</a>,&nbsp;<a href="/tags/api-development/">API Development</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2021-01-27-deploy-ssrs-reports-in-dynamics-365-finance-scm-using-powershell/" class="prev" rel="prev" title="Deploy SSRS reports in Dynamics 365 Finance, SCM using Powershell"><i class="fas fa-angle-left fa-fw"></i>Deploy SSRS reports in Dynamics 365 Finance, SCM using Powershell</a>
+            <a href="/2021-10-08-git-cheatsheet/" class="next" rel="next" title="Git &amp; Github cheatsheet">Git &amp; Github cheatsheet<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Have a nice day!</div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2013 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://nuxulu.com/about" target="_blank" rel="noopener noreferrer">Max Nguyen</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="https://https-dynamics365-github-io.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":300},"comment":{},"data":{"id-1":"Finance Operations \u0026 Power Platform Archive","id-2":"Finance Operations \u0026 Power Platform Archive"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'UA-57379422-3', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-57379422-3" async></script></body>
+</html>
