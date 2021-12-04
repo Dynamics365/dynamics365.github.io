@@ -1,4 +1,4 @@
-# AUTOMATE YOUR TESTS FOR DYNAMICS 365 FINANCE AND OPERATIONS
+# Automate testing Dynamics 365 Finance & Operations
 
 
 A new article for you the community. More specifically, all project managers, functional and technical consultants, as well as customer-side decision-makers on the deployment of Dynamics 365 Finance and Operations.
@@ -39,7 +39,7 @@ While the functional validation of an ERP application can’t be fully data agno
 *   Regression Suite Automation Tool (RSAT)
     
 
-**Overview**
+1. **Overview**
 ------------
 
 *   **SysTest framework** – The SysTest framework is reliable for writing unit tests. Because unit tests are generally testing a method or function, they should always be data agnostic and dependent only on the input data that is provided as part of the test.
@@ -67,7 +67,7 @@ While the functional validation of an ERP application can’t be fully data agno
 
 * * *
 
-**1/ LCS <=> BPM <=> AzureDevOps (via Task Recorder)**
+2. **1/ LCS <=> BPM <=> AzureDevOps (via Task Recorder)**
 ------------------------------------------------------
 
 You aren't required to use the Business process modeler (BPM) tool in LCS. However, BPM is the recommended tool if you want to enable the management and distribution of test libraries across projects and tenants. These capabilities are especially useful for Microsoft partners and independent software vendors (ISVs). BPM enables the distribution of test libraries as part of LCS solutions. If you are not using BPM, you can manually create test cases in Azure DevOps and attach developer recording files to your Azure DevOps test cases. You can create developer recording files directly from the Task recorder pane.
@@ -191,7 +191,7 @@ You will see in a test case, like the Customer flow that I’ve done before some
 
 * * *
 
-**2/ RSAT - Regression Suite Automation Tool**
+3. **2/ RSAT - Regression Suite Automation Tool**
 ----------------------------------------------
 
 **Overview**
@@ -359,14 +359,14 @@ When RSAT generates the Excel parameter file for a test case, validation steps a
 
 * * *
 
-**3/ SysTestFramework and ATL : Acceptance test library**
+4. **3/ SysTestFramework and ATL : Acceptance test library**
 ---------------------------------------------------------
 
 ![54.png](https://images.squarespace-cdn.com/content/v1/5dee13c4b2178b0eae4710df/1587414152757-21MAX75GVHI5LJD78FT5/ke17ZwdGBToddI8pDm48kLROaCskEsHFnCsBUuA_tlFZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PI1w5ynUc_FMWV9hJxizWJvxDFsMrOBfl-eUoWmXIOIBw/54.png)
 
 ![54.png](./Automate your tests for Dynamics 365 Finance and Operations — PowerAzure365_files/54.png)
 
-**Key concepts**
+5. **Key concepts**
 ----------------
 
 *   Use SysTest Framework to author unit/component test code.
@@ -468,7 +468,7 @@ Since I don’t want to rewrite all the Microsoft documentation and since it’s
 
 * * *
 
-**4/ Change your BUILD & Release pipeline in AzureDevOps**
+6. **4/ Change your BUILD & Release pipeline in AzureDevOps**
 ----------------------------------------------------------
 
   

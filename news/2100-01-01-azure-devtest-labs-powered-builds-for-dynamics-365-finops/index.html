@@ -13,7 +13,7 @@ Configuring the build VM in Azure DevTest Labs" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://nuxulu.com/news/2100-01-01-azure-devtest-labs-powered-builds-for-dynamics-365-finops/" /><meta property="og:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/><meta property="article:section" content="news" />
 <meta property="article:published_time" content="2021-05-03T00:00:00+00:00" />
-<meta property="article:modified_time" content="2021-12-05T01:22:28+07:00" />
+<meta property="article:modified_time" content="2021-12-05T01:36:35+07:00" />
 <meta property="og:see_also" content="https://nuxulu.com/news/2100-01-01-lcs-api-database-movement-with-powerautomate/" /><meta property="og:see_also" content="https://nuxulu.com/news/2100-01-01-develop-custom-data-entities-for-dual-write/" /><meta property="og:see_also" content="https://nuxulu.com/news/2100-01-01-dynamics-365-for-finance-operations-and-azure-devops/" /><meta property="og:see_also" content="https://nuxulu.com/news/2100-01-01-automate-your-tests-for-dynamics-365-finance/" />
 
 <meta name="twitter:card" content="summary_large_image"/>
@@ -34,8 +34,8 @@ Configuring the build VM in Azure DevTest Labs"/>
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/nuxulu.com\/news\/2100-01-01-azure-devtest-labs-powered-builds-for-dynamics-365-finops\/"
-        },"genre": "news","wordcount":  4850 ,
-        "url": "https:\/\/nuxulu.com\/news\/2100-01-01-azure-devtest-labs-powered-builds-for-dynamics-365-finops\/","datePublished": "2021-05-03T00:00:00+00:00","dateModified": "2021-12-05T01:22:28+07:00","publisher": {
+        },"genre": "news","wordcount":  4872 ,
+        "url": "https:\/\/nuxulu.com\/news\/2100-01-01-azure-devtest-labs-powered-builds-for-dynamics-365-finops\/","datePublished": "2021-05-03T00:00:00+00:00","dateModified": "2021-12-05T01:36:35+07:00","publisher": {
             "@type": "Organization",
             "name": ""},"description": ""
     }
@@ -133,41 +133,41 @@ Configuring the build VM in Azure DevTest Labs"/>
     <li><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocreate-a-devtest-labs-accountcreate-a-devtest-labs-account"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#create-a-devtest-labs-account"></a>Create a DevTest Labs account</a></li>
     <li><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocreating-the-vmcreating-the-vm"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#creating-the-vm"></a>Creating the VM</a>
       <ul>
-        <li><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnoconfigure-azure-devops-agent-serviceconfigure-azure-devops-agent-service"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#configure-azure-devops-agent-service"></a>Configure Azure DevOps Agent Service</a></li>
-        <li><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooption-a-use-an-artifactoption-a-use-an-artifact"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#option-a-use-an-artifact"></a>Option A: use an artifact</a></li>
-        <li><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooption-b-configure-azure-devops-agent-in-the-vmoption-b-configure-azure-devops-agent-in-the-vm"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#option-b-configure-azure-devops-agent-in-the-vm"></a>Option B: Configure Azure DevOps Agent in the VM</a></li>
-        <li><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnoarm-templatearm-template"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#arm-template"></a>ARM template</a></li>
+        <li><a href="#51-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnoconfigure-azure-devops-agent-serviceconfigure-azure-devops-agent-service">5.1. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#configure-azure-devops-agent-service"></a>Configure Azure DevOps Agent Service</a></li>
+        <li><a href="#52-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooption-a-use-an-artifactoption-a-use-an-artifact">5.2. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#option-a-use-an-artifact"></a>Option A: use an artifact</a></li>
+        <li><a href="#53-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooption-b-configure-azure-devops-agent-in-the-vmoption-b-configure-azure-devops-agent-in-the-vm">5.3. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#option-b-configure-azure-devops-agent-in-the-vm"></a>Option B: Configure Azure DevOps Agent in the VM</a></li>
+        <li><a href="#54-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnoarm-templatearm-template">5.4. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#arm-template"></a>ARM template</a></li>
       </ul>
     </li>
     <li><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnopreparing-the-vmpreparing-the-vm"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#preparing-the-vm"></a>Preparing the VM</a>
       <ul>
-        <li><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnodisable-servicesdisable-services"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#disable-services"></a>Disable services</a></li>
-        <li><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocreate-a-new-sql-usercreate-a-new-sql-user"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#create-a-new-sql-user"></a>Create a new SQL user</a></li>
-        <li><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnoprepare-ssrs-optionalprepare-ssrs-optional"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#prepare-ssrs-optional"></a>Prepare SSRS (optional)</a></li>
-        <li><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnopowershell-scriptspowershell-scripts"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#powershell-scripts"></a>PowerShell Scripts</a>
+        <li><a href="#61-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnodisable-servicesdisable-services">6.1. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#disable-services"></a>Disable services</a></li>
+        <li><a href="#62-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocreate-a-new-sql-usercreate-a-new-sql-user">6.2. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#create-a-new-sql-user"></a>Create a new SQL user</a></li>
+        <li><a href="#63-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnoprepare-ssrs-optionalprepare-ssrs-optional">6.3. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#prepare-ssrs-optional"></a>Prepare SSRS (optional)</a></li>
+        <li><a href="#64-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnopowershell-scriptspowershell-scripts">6.4. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#powershell-scripts"></a>PowerShell Scripts</a>
           <ul>
-            <li><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnoprepareforbuildprepareforbuild"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#prepareforbuild"></a>PrepareForBuild</a></li>
+            <li><a href="#641-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnoprepareforbuildprepareforbuild">6.4.1. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#prepareforbuild"></a>PrepareForBuild</a></li>
           </ul>
         </li>
-        <li><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooptional-but-recommended-install-d365fo-toolsoptional-but-recommended-install-d365fotoolshttpsgithubcomd365collaboratived365fotools"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#optional-but-recommended-install-d365fo-tools"></a><strong>Optional (but recommended)</strong>: install <a href="https://github.com/d365collaborative/d365fo.tools">d365fo.tools</a></a></li>
+        <li><a href="#65-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooptional-but-recommended-install-d365fo-toolsoptional-but-recommended-install-d365fotoolshttpsgithubcomd365collaboratived365fotools">6.5. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#optional-but-recommended-install-d365fo-tools"></a><strong>Optional (but recommended)</strong>: install <a href="https://github.com/d365collaborative/d365fo.tools">d365fo.tools</a></a></li>
       </ul>
     </li>
     <li><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocreate-a-new-imagecreate-a-new-image"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#create-a-new-image"></a>Create a new image</a></li>
     <li><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnoazure-devops-pipelinesazure-devops-pipelines"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#azure-devops-pipelines"></a>Azure DevOps Pipelines</a>
       <ul>
-        <li><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocreate-azure-devtest-labs-vmcreate-azure-devtest-labs-vm"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#create-azure-devtest-labs-vm"></a>Create Azure DevTest Labs VM</a></li>
-        <li><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnobuildbuild"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#build"></a>Build</a>
+        <li><a href="#81-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocreate-azure-devtest-labs-vmcreate-azure-devtest-labs-vm">8.1. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#create-azure-devtest-labs-vm"></a>Create Azure DevTest Labs VM</a></li>
+        <li><a href="#82-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnobuildbuild">8.2. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#build"></a>Build</a>
           <ul>
-            <li><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooptional-use-selectivesync-not-recommended-see-next-optionoptional-use-selectivesync-not-recommended-see-next-option"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#optional-use-selectivesync-not-recommended-see-next-option"></a>Optional: use SelectiveSync (not recommended, see next option)</a></li>
-            <li><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooptional-use-d365fo-tools-to-sync-your-packages-modelsoptional-use-d365fotools-to-sync-your-packagesmodels"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#optional-use-d365fo-tools-to-sync-your-packages-models"></a>Optional: use d365fo.tools to sync your packages/models</a></li>
-            <li><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooptional-use-d365fo-tools-to-deploy-ssrs-reportsoptional-use-d365fotools-to-deploy-ssrs-reports"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#optional-use-d365fo-tools-to-deploy-ssrs-reports"></a>Optional: use d365fo.tools to deploy SSRS reports</a></li>
+            <li><a href="#821-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooptional-use-selectivesync-not-recommended-see-next-optionoptional-use-selectivesync-not-recommended-see-next-option">8.2.1. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#optional-use-selectivesync-not-recommended-see-next-option"></a>Optional: use SelectiveSync (not recommended, see next option)</a></li>
+            <li><a href="#822-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooptional-use-d365fo-tools-to-sync-your-packages-modelsoptional-use-d365fotools-to-sync-your-packagesmodels">8.2.2. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#optional-use-d365fo-tools-to-sync-your-packages-models"></a>Optional: use d365fo.tools to sync your packages/models</a></li>
+            <li><a href="#823-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooptional-use-d365fo-tools-to-deploy-ssrs-reportsoptional-use-d365fotools-to-deploy-ssrs-reports">8.2.3. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#optional-use-d365fo-tools-to-deploy-ssrs-reports"></a>Optional: use d365fo.tools to deploy SSRS reports</a></li>
           </ul>
         </li>
-        <li><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnodelete-azure-devtest-labs-vmdelete-azure-devtest-labs-vm"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#delete-azure-devtest-labs-vm"></a>Delete Azure DevTest Labs VM</a></li>
-        <li><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnodependencies-and-conditionsdependencies-and-conditions"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#dependencies-and-conditions"></a>Dependencies and conditions</a>
+        <li><a href="#83-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnodelete-azure-devtest-labs-vmdelete-azure-devtest-labs-vm">8.3. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#delete-azure-devtest-labs-vm"></a>Delete Azure DevTest Labs VM</a></li>
+        <li><a href="#84-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnodependencies-and-conditionsdependencies-and-conditions">8.4. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#dependencies-and-conditions"></a>Dependencies and conditions</a>
           <ul>
-            <li><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnobuildbuild-1"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#build"></a>Build</a></li>
-            <li><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnodelete-vmdelete-vm"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#delete-vm"></a>Delete VM</a></li>
+            <li><a href="#841-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnobuildbuild">8.4.1. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#build"></a>Build</a></li>
+            <li><a href="#842-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnodelete-vmdelete-vm">8.4.2. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#delete-vm"></a>Delete VM</a></li>
           </ul>
         </li>
       </ul>
@@ -175,9 +175,9 @@ Configuring the build VM in Azure DevTest Labs"/>
     <li><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnorun-the-buildrun-the-build"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#run-the-build"></a>Run the build</a></li>
     <li><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnotimestimes"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#times"></a>Times</a>
       <ul>
-        <li><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocomparison-1comparison-1"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#comparison-1"></a>Comparison 1</a></li>
-        <li><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocomparison-2comparison-2"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#comparison-2"></a>Comparison 2</a></li>
-        <li><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocomparison-3comparison-3"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#comparison-3"></a>Comparison 3</a></li>
+        <li><a href="#101-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocomparison-1comparison-1">10.1. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#comparison-1"></a>Comparison 1</a></li>
+        <li><a href="#102-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocomparison-2comparison-2">10.2. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#comparison-2"></a>Comparison 2</a></li>
+        <li><a href="#103-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocomparison-3comparison-3">10.3. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#comparison-3"></a>Comparison 3</a></li>
       </ul>
     </li>
     <li><a href="#httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnoshow-me-the-moneyshow-me-the-money"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#show-me-the-money"></a>Show me the money!</a></li>
@@ -329,8 +329,8 @@ Configuring the build VM in Azure DevTest Labs"/>
 <p>Add artifacts to the VM</p>
 <p>Search for <strong>WinRM</strong>, select “Configure WinRM”, and on the next screen enter “Shared IP address” as the hostname box and click “Add”.</p>
 <p><strong>Note</strong>: if when the VM runs the artifacts can’t be installed check whether the <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/extensions/agent-windows?WT.mc_id=BA-MVP-5003976#manual-installation" target="_blank" rel="noopener noreferrer">Azure VM Agent</a> is installed on the base VHD. Thanks to Joris for pointing this out!</p>
-<h3 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnoconfigure-azure-devops-agent-serviceconfigure-azure-devops-agent-service"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#configure-azure-devops-agent-service" target="_blank" rel="noopener noreferrer"></a>Configure Azure DevOps Agent Service</h3>
-<h3 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooption-a-use-an-artifactoption-a-use-an-artifact"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#option-a-use-an-artifact" target="_blank" rel="noopener noreferrer"></a>Option A: use an artifact</h3>
+<h3 id="51-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnoconfigure-azure-devops-agent-serviceconfigure-azure-devops-agent-service">5.1. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#configure-azure-devops-agent-service" target="_blank" rel="noopener noreferrer"></a>Configure Azure DevOps Agent Service</h3>
+<h3 id="52-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooption-a-use-an-artifactoption-a-use-an-artifact">5.2. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#option-a-use-an-artifact" target="_blank" rel="noopener noreferrer"></a>Option A: use an artifact</h3>
 <p><strong>Update</strong>: thanks to <strong><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#comment-7107" target="_blank" rel="noopener noreferrer">Florian Hopfner</a></strong> for reminding me this because I forgot… If you choose Option A to install the agent service you need to do some things first!</p>
 <p>The first thing we need to do is running some PowerShell scripts that create registry entries and environment variables in the VM, go to C:\DynamicsSDK and run these:</p>
 <div class="highlight"><div class="chroma">
@@ -364,7 +364,7 @@ Configuring the build VM in Azure DevTest Labs"/>
 <p>On “<strong>Agent Name</strong>” give your agent a name, like DevTestAgent. And on “Agent Pool” a name for your pool, a new like DevTestPool or an existing one as Default.</p>
 <p>On “<strong>Account Name</strong>” use the same user that we’ll use in our pipeline later. Remember this. And on “<strong>Account Password</strong>” its password. Using secrets with a KeyVault is better, but I won’t explain this here.</p>
 <p>And, finally, set “<strong>Replace Agent</strong>” to true.</p>
-<h3 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooption-b-configure-azure-devops-agent-in-the-vmoption-b-configure-azure-devops-agent-in-the-vm"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#option-b-configure-azure-devops-agent-in-the-vm" target="_blank" rel="noopener noreferrer"></a>Option B: Configure Azure DevOps Agent in the VM</h3>
+<h3 id="53-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooption-b-configure-azure-devops-agent-in-the-vmoption-b-configure-azure-devops-agent-in-the-vm">5.3. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#option-b-configure-azure-devops-agent-in-the-vm" target="_blank" rel="noopener noreferrer"></a>Option B: Configure Azure DevOps Agent in the VM</h3>
 <p>To do this you have to create a VM from the base image you created before and then go to C:\DynamicsSDK and run the SetupBuildAgent script with the needed parameters:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -375,7 +375,7 @@ Configuring the build VM in Azure DevTest Labs"/>
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>WARNING</strong>: If you choose option B you must create a new base image from the VM where you’ve run the script. Then repeat the WinRM steps to generate the new ARM template which we’ll see next.</p>
-<h3 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnoarm-templatearm-template"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#arm-template" target="_blank" rel="noopener noreferrer"></a>ARM template</h3>
+<h3 id="54-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnoarm-templatearm-template">5.4. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#arm-template" target="_blank" rel="noopener noreferrer"></a>ARM template</h3>
 <p>Then go to the “Advanced Settings” tab and click the “<strong>View ARM template</strong>” button:</p>
 <p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2020/12/DevTest6.png" title="Get the ARM template" data-thumbnail="https://static.ariste.info/wp-content/uploads/2020/12/DevTest6.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 9</h2><p>Get the ARM template</p>">
         <img
@@ -1144,11 +1144,11 @@ Configuring the build VM in Azure DevTest Labs"/>
 <h2 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnopreparing-the-vmpreparing-the-vm"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#preparing-the-vm" target="_blank" rel="noopener noreferrer"></a>Preparing the VM</h2>
 <p>The VHD image you download can be used as a developer VM with no additional work, just run Visual Studio, connect it to your AZDO project and done. But if you want to use it as a build box you need to do several things first.</p>
 <p>Remember that the default user and password for these VHDs are Administrator and Pass@word1.</p>
-<h3 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnodisable-servicesdisable-services"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#disable-services" target="_blank" rel="noopener noreferrer"></a>Disable services</h3>
+<h3 id="61-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnodisable-servicesdisable-services">6.1. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#disable-services" target="_blank" rel="noopener noreferrer"></a>Disable services</h3>
 <p>First of all we will stop and disable services like the Batch, Management Reporter, SSAS, SSIS, etc. Anything you see that’s not needed to run a build.</p>
-<h3 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocreate-a-new-sql-usercreate-a-new-sql-user"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#create-a-new-sql-user" target="_blank" rel="noopener noreferrer"></a>Create a new SQL user</h3>
+<h3 id="62-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocreate-a-new-sql-usercreate-a-new-sql-user">6.2. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#create-a-new-sql-user" target="_blank" rel="noopener noreferrer"></a>Create a new SQL user</h3>
 <p>Open <a href="https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15&amp;WT.mc_id=BA-MVP-5003976" target="_blank" rel="noopener noreferrer">SSMS</a> (as an Administrator) and create a new SQL user as a copy of the axdbadmin one. Then open the web.config file and update the DB user and password to use the one you’ve just created.</p>
-<h3 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnoprepare-ssrs-optionalprepare-ssrs-optional"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#prepare-ssrs-optional" target="_blank" rel="noopener noreferrer"></a>Prepare SSRS (optional)</h3>
+<h3 id="63-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnoprepare-ssrs-optionalprepare-ssrs-optional">6.3. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#prepare-ssrs-optional" target="_blank" rel="noopener noreferrer"></a>Prepare SSRS (optional)</h3>
 <p>If you want to deploy reports as part of your build pipeline you need to go to SSMS again (and as an Admin again), and open a new query in the reporting DB to execute the following query:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1158,10 +1158,10 @@ Configuring the build VM in Azure DevTest Labs"/>
 <pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">exec</span><span class="w"> </span><span class="n">DeleteEncryptedContent</span><span class="w">
 </span></code></pre></td></tr></table>
 </div>
-</div><h3 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnopowershell-scriptspowershell-scripts"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#powershell-scripts" target="_blank" rel="noopener noreferrer"></a>PowerShell Scripts</h3>
+</div><h3 id="64-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnopowershell-scriptspowershell-scripts">6.4. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#powershell-scripts" target="_blank" rel="noopener noreferrer"></a>PowerShell Scripts</h3>
 <p>The default build definition that runs on a build VM uses several PowerShell scripts to run some tasks. I’m adding an additional script called PrepareForAgent.</p>
 <p>The scripts can be found in the C:\DynamicsSDK folder of the VM.</p>
-<h4 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnoprepareforbuildprepareforbuild"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#prepareforbuild" target="_blank" rel="noopener noreferrer"></a>PrepareForBuild</h4>
+<h4 id="641-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnoprepareforbuildprepareforbuild">6.4.1. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#prepareforbuild" target="_blank" rel="noopener noreferrer"></a>PrepareForBuild</h4>
 <p>This script comes with the VM and <strong>we need to modify it</strong> to avoid one thing: the PackagesLocalDirectory backup which is usually done in the first build. We need to get rid of this or we’ll waste around an hour per run until the files are copied.</p>
 <p>We don’t need this because our VM will be new each time we run the pipeline!</p>
 <p>So open the script, go to line 696 and look for this piece of code:</p>
@@ -1259,7 +1259,7 @@ Configuring the build VM in Azure DevTest Labs"/>
 </code></pre></td></tr></table>
 </div>
 </div><p>We just need the DB restore part and skip the backup, otherwise we’ll be losing 45 minutes in each run for something we don’t need because the VM will be deleted when the build is completed.</p>
-<h3 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooptional-but-recommended-install-d365fo-toolsoptional-but-recommended-install-d365fotoolshttpsgithubcomd365collaboratived365fotools"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#optional-but-recommended-install-d365fo-tools" target="_blank" rel="noopener noreferrer"></a><strong>Optional (but recommended)</strong>: install <a href="https://github.com/d365collaborative/d365fo.tools" target="_blank" rel="noopener noreferrer">d365fo.tools</a></h3>
+<h3 id="65-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooptional-but-recommended-install-d365fo-toolsoptional-but-recommended-install-d365fotoolshttpsgithubcomd365collaboratived365fotools">6.5. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#optional-but-recommended-install-d365fo-tools" target="_blank" rel="noopener noreferrer"></a><strong>Optional (but recommended)</strong>: install <a href="https://github.com/d365collaborative/d365fo.tools" target="_blank" rel="noopener noreferrer">d365fo.tools</a></h3>
 <p>Just run this:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1298,7 +1298,7 @@ Configuring the build VM in Azure DevTest Labs"/>
     </figure></p>
 <p>DevTest Labs Azure Pipelines</p>
 <p>The create and delete steps will run on the Azure Pipelines pool. The build step will run on our DevTestLabs pool, or the name you gave it when configuring the artifact on DevTest Labs or the script on the VM.</p>
-<h3 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocreate-azure-devtest-labs-vmcreate-azure-devtest-labs-vm"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#create-azure-devtest-labs-vm" target="_blank" rel="noopener noreferrer"></a>Create Azure DevTest Labs VM</h3>
+<h3 id="81-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocreate-azure-devtest-labs-vmcreate-azure-devtest-labs-vm">8.1. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#create-azure-devtest-labs-vm" target="_blank" rel="noopener noreferrer"></a>Create Azure DevTest Labs VM</h3>
 <p>Create a new pipeline and choose the “Use the classic editor” option. Make sure you’ve selected TFVC as your source and click “Continue” and “Empty job”. Add a new task to the pipeline, look for “Azure DevTest Labs Create VM”. We just need to fill in the missing parameters with our subscription, lab, etc.</p>
 <p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs5.png" title="Create VM Azure DevTest Labs" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs5.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 13</h2><p>Create VM Azure DevTest Labs</p>">
         <img
@@ -1312,7 +1312,7 @@ Configuring the build VM in Azure DevTest Labs"/>
     </figure></p>
 <p>Create VM Azure DevTest Labs</p>
 <p>Remember this step must run on the Azure-hosted pipeline.</p>
-<h3 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnobuildbuild"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#build" target="_blank" rel="noopener noreferrer"></a>Build</h3>
+<h3 id="82-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnobuildbuild">8.2. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#build" target="_blank" rel="noopener noreferrer"></a>Build</h3>
 <p>This is an easy one. Just export a working pipeline and import it. And this step needs to run on your self-hosted pool:</p>
 <p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/01/image-3.png" title="Runs on self-hosted pool" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/01/image-3.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 14</h2><p>Runs on self-hosted pool</p>">
         <img
@@ -1325,7 +1325,7 @@ Configuring the build VM in Azure DevTest Labs"/>
     </a><figcaption class="image-caption">Azure DevTest Labs powered builds for Dynamics 365 FnO 14</figcaption>
     </figure></p>
 <p>Runs on self-hosted pool</p>
-<h4 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooptional-use-selectivesync-not-recommended-see-next-optionoptional-use-selectivesync-not-recommended-see-next-option"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#optional-use-selectivesync-not-recommended-see-next-option" target="_blank" rel="noopener noreferrer"></a>Optional: use SelectiveSync (not recommended, see next option)</h4>
+<h4 id="821-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooptional-use-selectivesync-not-recommended-see-next-optionoptional-use-selectivesync-not-recommended-see-next-option">8.2.1. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#optional-use-selectivesync-not-recommended-see-next-option" target="_blank" rel="noopener noreferrer"></a>Optional: use SelectiveSync (not recommended, see next option)</h4>
 <p>You can replace the Database Sync task for a PowerShell script that will only sync the tables in your models:</p>
 <p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/01/image-9.png" title="SelectiveSync.ps1" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/01/image-9.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 15</h2><p>SelectiveSync.ps1</p>">
         <img
@@ -1339,7 +1339,7 @@ Configuring the build VM in Azure DevTest Labs"/>
     </figure></p>
 <p>SelectiveSync.ps1</p>
 <p>Thanks Joris for the tip!</p>
-<h4 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooptional-use-d365fo-tools-to-sync-your-packages-modelsoptional-use-d365fotools-to-sync-your-packagesmodels"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#optional-use-d365fo-tools-to-sync-your-packages-models" target="_blank" rel="noopener noreferrer"></a>Optional: use d365fo.tools to sync your packages/models</h4>
+<h4 id="822-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooptional-use-d365fo-tools-to-sync-your-packages-modelsoptional-use-d365fotools-to-sync-your-packagesmodels">8.2.2. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#optional-use-d365fo-tools-to-sync-your-packages-models" target="_blank" rel="noopener noreferrer"></a>Optional: use d365fo.tools to sync your packages/models</h4>
 <p>This is a better option than the SelectiveSync above. You can synchronize your packages or models only to gain some time. This cmdlet uses sync.exe like Visual Studio does and should be better than SelectiveSync.</p>
 <p>Add a new PowerShell task, select Inline Script and this is the command:</p>
 <div class="highlight"><div class="chroma">
@@ -1350,7 +1350,7 @@ Configuring the build VM in Azure DevTest Labs"/>
 <pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="nb">Invoke-D365DbSyncModule</span> <span class="p">\</span><span class="n">-Module</span> <span class="s2">&#34;Module1&#34;</span><span class="p">,</span> <span class="s2">&#34;Module2&#34;</span> <span class="p">\</span><span class="n">-ShowOriginalProgress</span> <span class="p">\</span><span class="n">-Verbose</span>
 </code></pre></td></tr></table>
 </div>
-</div><h4 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooptional-use-d365fo-tools-to-deploy-ssrs-reportsoptional-use-d365fotools-to-deploy-ssrs-reports"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#optional-use-d365fo-tools-to-deploy-ssrs-reports" target="_blank" rel="noopener noreferrer"></a>Optional: use d365fo.tools to deploy SSRS reports</h4>
+</div><h4 id="823-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooptional-use-d365fo-tools-to-deploy-ssrs-reportsoptional-use-d365fotools-to-deploy-ssrs-reports">8.2.3. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#optional-use-d365fo-tools-to-deploy-ssrs-reports" target="_blank" rel="noopener noreferrer"></a>Optional: use d365fo.tools to deploy SSRS reports</h4>
 <p>If you really want to add the report deployment step to your pipeline you can save some more extra time using <a href="https://github.com/d365collaborative/d365fo.tools" target="_blank" rel="noopener noreferrer">d365fo.tools</a> and just deploy the reports in your models like we’ve done with the DB sync.</p>
 <p>Run this in a new PowerShell task to do it:</p>
 <div class="highlight"><div class="chroma">
@@ -1361,7 +1361,7 @@ Configuring the build VM in Azure DevTest Labs"/>
 <pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="nb">Publish-D365SsrsReport</span> <span class="p">\</span><span class="n">-Module</span> <span class="n">YOUR</span><span class="p">\</span><span class="n">_MODULE</span> <span class="p">\</span><span class="n">-ReportName</span> <span class="p">\*</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnodelete-azure-devtest-labs-vmdelete-azure-devtest-labs-vm"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#delete-azure-devtest-labs-vm" target="_blank" rel="noopener noreferrer"></a>Delete Azure DevTest Labs VM</h3>
+</div><h3 id="83-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnodelete-azure-devtest-labs-vmdelete-azure-devtest-labs-vm">8.3. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#delete-azure-devtest-labs-vm" target="_blank" rel="noopener noreferrer"></a>Delete Azure DevTest Labs VM</h3>
 <p>It’s almost the same as the create step, complete the subscription, lab and VM fields and done:</p>
 <p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/01/image.png" title="Delete VM" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/01/image.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 16</h2><p>Delete VM</p>">
         <img
@@ -1375,9 +1375,9 @@ Configuring the build VM in Azure DevTest Labs"/>
     </figure></p>
 <p>Delete VM</p>
 <p>And this step, like the create one, will run on the Azure-hosted agent.</p>
-<h3 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnodependencies-and-conditionsdependencies-and-conditions"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#dependencies-and-conditions" target="_blank" rel="noopener noreferrer"></a>Dependencies and conditions</h3>
+<h3 id="84-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnodependencies-and-conditionsdependencies-and-conditions">8.4. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#dependencies-and-conditions" target="_blank" rel="noopener noreferrer"></a>Dependencies and conditions</h3>
 <p>When all three steps are configured we need to add dependencies and conditions to some of them. For example, to make sure that the delete VM step runs when the build step fails, but it doesn’t when the create VM step fails.</p>
-<h4 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnobuildbuild-1"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#build" target="_blank" rel="noopener noreferrer"></a>Build</h4>
+<h4 id="841-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnobuildbuild">8.4.1. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#build" target="_blank" rel="noopener noreferrer"></a>Build</h4>
 <p>The build step depends on the create VM step, and will only run if the previous step succeeds:</p>
 <p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/01/image-4.png" title="Build step dependencies and conditions" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/01/image-4.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 17</h2><p>Build step dependencies and conditions</p>">
         <img
@@ -1390,7 +1390,7 @@ Configuring the build VM in Azure DevTest Labs"/>
     </a><figcaption class="image-caption">Azure DevTest Labs powered builds for Dynamics 365 FnO 17</figcaption>
     </figure></p>
 <p>Build step dependencies and conditions</p>
-<h4 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnodelete-vmdelete-vm"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#delete-vm" target="_blank" rel="noopener noreferrer"></a>Delete VM</h4>
+<h4 id="842-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnodelete-vmdelete-vm">8.4.2. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#delete-vm" target="_blank" rel="noopener noreferrer"></a>Delete VM</h4>
 <p>The delete step depends on all previous steps and must run when the create VM step succeeds. If the create step fails there’s no VM and we don’t need to delete it:</p>
 <p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/01/image-5.png" title="Dependencies and conditions on delete VM step" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/01/image-5.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 18</h2><p>Dependencies and conditions on delete VM step</p>">
         <img
@@ -1477,7 +1477,7 @@ Configuring the build VM in Azure DevTest Labs"/>
 <p>If you skip deploying the SSRS reports your build will run in 15 minutes less, that’s around 45 minutes.</p>
 <p>If you use the partial sync process instead of a full DB sync it’ll be 5-7 minutes less.</p>
 <p>This would leave us with a 35-40 minutes build.</p>
-<h3 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocomparison-1comparison-1"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#comparison-1" target="_blank" rel="noopener noreferrer"></a>Comparison 1</h3>
+<h3 id="101-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocomparison-1comparison-1">10.1. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#comparison-1" target="_blank" rel="noopener noreferrer"></a>Comparison 1</h3>
 <p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/01/Dtcomp1.png" title="Azure DevTest Labs powered builds for Dynamics 365 FnO 4" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/01/Dtcomp1.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 24</h2><p>Azure DevTest Labs powered builds for Dynamics 365 FnO 4</p>">
         <img
             class="lazyload"
@@ -1490,7 +1490,7 @@ Configuring the build VM in Azure DevTest Labs"/>
     </figure></p>
 <p>No DB Sync</p>
 <p>The image above shows a simple package being compiled, without any table, so the selective sync goes really fast. The build times improve with VM size.</p>
-<h3 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocomparison-2comparison-2"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#comparison-2" target="_blank" rel="noopener noreferrer"></a>Comparison 2</h3>
+<h3 id="102-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocomparison-2comparison-2">10.2. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#comparison-2" target="_blank" rel="noopener noreferrer"></a>Comparison 2</h3>
 <p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/01/Dtcomp2.png" title="Azure DevTest Labs powered builds for Dynamics 365 FnO 5" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/01/Dtcomp2.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 25</h2><p>Azure DevTest Labs powered builds for Dynamics 365 FnO 5</p>">
         <img
             class="lazyload"
@@ -1503,7 +1503,7 @@ Configuring the build VM in Azure DevTest Labs"/>
     </figure></p>
 <p>Same code Full DB Sync</p>
 <p>This one is compiling the same codebase but is doing a full DB sync. The sync time improves in the B4ms VM compared to the B2ms but it’s almost the same in the B8ms. Build times are better for larger VM sizes.</p>
-<h3 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocomparison-3comparison-3"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#comparison-3" target="_blank" rel="noopener noreferrer"></a>Comparison 3</h3>
+<h3 id="103-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocomparison-3comparison-3">10.3. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#comparison-3" target="_blank" rel="noopener noreferrer"></a>Comparison 3</h3>
 <p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/01/image-14.png" title="Azure DevTest Labs powered builds for Dynamics 365 FnO 6" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/01/image-14.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 26</h2><p>Azure DevTest Labs powered builds for Dynamics 365 FnO 6</p>">
         <img
             class="lazyload"
