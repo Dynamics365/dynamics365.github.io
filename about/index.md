@@ -1,13 +1,12 @@
-# 
-
+# About Me
 
 Professional Engineer and developer who focused on the Microsoft stack of technologies with significant experience with Dynamics 365 Finance, Supply Chain Management, Azure Cloud, and Azure DevOps.
 
 For more than ten years, I have installed, configured, developed, and managed business-critical systems for plenty of companies across the APAC region. During that time, I have worked across many industries, including manufacturing, distribution, finance, and professional services.
 
-# Dynamics 365 Finance, Supply Chain Management experience
+## 1. Dynamics 365 Finance, Supply Chain Management experience
 
-#### Development: 
+#### 1.0.1. Development: 
   * Familiar with extensibility in Dynamics 365 for finance and operations (Class extensions, method wrapping/replacing and Chain of Command).
   * Strong X++ coding skills.
   * Workflow, batch job development.
@@ -19,7 +18,7 @@ For more than ten years, I have installed, configured, developed, and managed bu
   * Expert in debugging in DEV/UAT and using trace parser.
   * Project, model, package management.
 
-#### Provisioning and environment operation:
+#### 1.0.2. Provisioning and environment operation:
   * Ability to deploy On-premises version (have successfully deployed two on-premises environments).
   * Setup and provision Cloud-hosted environment include DEV and BUILD/TEST environment; implementation environment includes DEV, UAT sandbox, Production; VHD local development environment.
   * LCS configuration with Azure subscription, mapping BPM with Azure DevOps.
@@ -27,7 +26,7 @@ For more than ten years, I have installed, configured, developed, and managed bu
   * Apply packages, hotfixes, upgrading.
   * Refresh data From PROD to UAT/DEV, moving data across the environments.
 
-#### Data management and integration:
+#### 1.0.3. Data management and integration:
   * Building and using Aggregate Measurements, data entity, and Composite data entity development.
   * Using data management framework to import and export data.
   * Ability to use Bring your own database feature.
@@ -35,14 +34,14 @@ For more than ten years, I have installed, configured, developed, and managed bu
   * Data integration by using Common Data Service (PowerApps).
   * Ability to use Postman for integration testing.
 
-#### BI and Reporting:
+#### 1.0.4. BI and Reporting:
   * Building and extending Aggregate measurement for PowerBI report.
   * Configure Power BI integration for workspaces.
   * Familiar with Financial report, generate or reset data mart.
   * Power BI integration with Entity store
   * Configure BYOD to connect with another reporting system.
 
-#### Troubleshooting:
+#### 1.0.5. Troubleshooting:
   * Reading Trace parser for X++ logic error or data inconsistency.
   * Using LCS to find expensive SQL queries for application hanging or slow
   * Ability to use Fiddler to troubleshoot authentication error client interaction.
@@ -50,7 +49,7 @@ For more than ten years, I have installed, configured, developed, and managed bu
   * PowerShell scripts debugging for deployment errors.
  
 
-# Coding philosophy
+## 2. Coding philosophy
   * Minimizing the footprint of changes (I know how painful is when merging code from different partners or upgrade or installing hot-fix).
   * Where to make the change (always at the highest level and in this order: class, table, form data source field/method, form control).
   * Using field groups (The reason this reduces footprint).
@@ -59,7 +58,7 @@ For more than ten years, I have installed, configured, developed, and managed bu
   * Design for code reuse.
   * Apply Dynamics 365 design patterns and coding best practices.
 	
-# The modules which I've been working with
+## 3. The modules which I've been working with
 
   * **General Ledger**
 	* Financial Dimension
@@ -93,4 +92,3 @@ For more than ten years, I have installed, configured, developed, and managed bu
 	* Mobile devices
 
 >Here are [my badges](https://www.credly.com/users/nguyen-max/badges).
-
