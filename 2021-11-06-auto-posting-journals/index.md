@@ -1,4 +1,4 @@
-# Automatic posting of journals Dynamics AX 2012
+# Auto posting journals Dynamics AX 2012
 
 
 The previous post dealt primarily with the question how the selection and posting of journals can be restricted. Within this post I would like to change the perspective and take a look at a function that allows a periodic posting of a number of journals that have been created.
