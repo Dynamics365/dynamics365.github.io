@@ -1017,419 +1017,6 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </div><p>Thank you for reading!</p>
 ]]></description>
 </item><item>
-    <title>Useful functions to use in AX 2012 part 2</title>
-    <link>https://nuxulu.com/2016-12-30-useful-functions-to-use-in-ax-2012-part2/</link>
-    <pubDate>Fri, 30 Dec 2016 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2016-12-30-useful-functions-to-use-in-ax-2012-part2/</guid>
-    <description><![CDATA[<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">  1
-</span><span class="lnt">  2
-</span><span class="lnt">  3
-</span><span class="lnt">  4
-</span><span class="lnt">  5
-</span><span class="lnt">  6
-</span><span class="lnt">  7
-</span><span class="lnt">  8
-</span><span class="lnt">  9
-</span><span class="lnt"> 10
-</span><span class="lnt"> 11
-</span><span class="lnt"> 12
-</span><span class="lnt"> 13
-</span><span class="lnt"> 14
-</span><span class="lnt"> 15
-</span><span class="lnt"> 16
-</span><span class="lnt"> 17
-</span><span class="lnt"> 18
-</span><span class="lnt"> 19
-</span><span class="lnt"> 20
-</span><span class="lnt"> 21
-</span><span class="lnt"> 22
-</span><span class="lnt"> 23
-</span><span class="lnt"> 24
-</span><span class="lnt"> 25
-</span><span class="lnt"> 26
-</span><span class="lnt"> 27
-</span><span class="lnt"> 28
-</span><span class="lnt"> 29
-</span><span class="lnt"> 30
-</span><span class="lnt"> 31
-</span><span class="lnt"> 32
-</span><span class="lnt"> 33
-</span><span class="lnt"> 34
-</span><span class="lnt"> 35
-</span><span class="lnt"> 36
-</span><span class="lnt"> 37
-</span><span class="lnt"> 38
-</span><span class="lnt"> 39
-</span><span class="lnt"> 40
-</span><span class="lnt"> 41
-</span><span class="lnt"> 42
-</span><span class="lnt"> 43
-</span><span class="lnt"> 44
-</span><span class="lnt"> 45
-</span><span class="lnt"> 46
-</span><span class="lnt"> 47
-</span><span class="lnt"> 48
-</span><span class="lnt"> 49
-</span><span class="lnt"> 50
-</span><span class="lnt"> 51
-</span><span class="lnt"> 52
-</span><span class="lnt"> 53
-</span><span class="lnt"> 54
-</span><span class="lnt"> 55
-</span><span class="lnt"> 56
-</span><span class="lnt"> 57
-</span><span class="lnt"> 58
-</span><span class="lnt"> 59
-</span><span class="lnt"> 60
-</span><span class="lnt"> 61
-</span><span class="lnt"> 62
-</span><span class="lnt"> 63
-</span><span class="lnt"> 64
-</span><span class="lnt"> 65
-</span><span class="lnt"> 66
-</span><span class="lnt"> 67
-</span><span class="lnt"> 68
-</span><span class="lnt"> 69
-</span><span class="lnt"> 70
-</span><span class="lnt"> 71
-</span><span class="lnt"> 72
-</span><span class="lnt"> 73
-</span><span class="lnt"> 74
-</span><span class="lnt"> 75
-</span><span class="lnt"> 76
-</span><span class="lnt"> 77
-</span><span class="lnt"> 78
-</span><span class="lnt"> 79
-</span><span class="lnt"> 80
-</span><span class="lnt"> 81
-</span><span class="lnt"> 82
-</span><span class="lnt"> 83
-</span><span class="lnt"> 84
-</span><span class="lnt"> 85
-</span><span class="lnt"> 86
-</span><span class="lnt"> 87
-</span><span class="lnt"> 88
-</span><span class="lnt"> 89
-</span><span class="lnt"> 90
-</span><span class="lnt"> 91
-</span><span class="lnt"> 92
-</span><span class="lnt"> 93
-</span><span class="lnt"> 94
-</span><span class="lnt"> 95
-</span><span class="lnt"> 96
-</span><span class="lnt"> 97
-</span><span class="lnt"> 98
-</span><span class="lnt"> 99
-</span><span class="lnt">100
-</span><span class="lnt">101
-</span><span class="lnt">102
-</span><span class="lnt">103
-</span><span class="lnt">104
-</span><span class="lnt">105
-</span><span class="lnt">106
-</span><span class="lnt">107
-</span><span class="lnt">108
-</span><span class="lnt">109
-</span><span class="lnt">110
-</span><span class="lnt">111
-</span><span class="lnt">112
-</span><span class="lnt">113
-</span><span class="lnt">114
-</span><span class="lnt">115
-</span><span class="lnt">116
-</span><span class="lnt">117
-</span><span class="lnt">118
-</span><span class="lnt">119
-</span><span class="lnt">120
-</span><span class="lnt">121
-</span><span class="lnt">122
-</span><span class="lnt">123
-</span><span class="lnt">124
-</span><span class="lnt">125
-</span><span class="lnt">126
-</span><span class="lnt">127
-</span><span class="lnt">128
-</span><span class="lnt">129
-</span><span class="lnt">130
-</span><span class="lnt">131
-</span><span class="lnt">132
-</span><span class="lnt">133
-</span><span class="lnt">134
-</span><span class="lnt">135
-</span><span class="lnt">136
-</span><span class="lnt">137
-</span><span class="lnt">138
-</span><span class="lnt">139
-</span><span class="lnt">140
-</span><span class="lnt">141
-</span><span class="lnt">142
-</span><span class="lnt">143
-</span><span class="lnt">144
-</span><span class="lnt">145
-</span><span class="lnt">146
-</span><span class="lnt">147
-</span><span class="lnt">148
-</span><span class="lnt">149
-</span><span class="lnt">150
-</span><span class="lnt">151
-</span><span class="lnt">152
-</span><span class="lnt">153
-</span><span class="lnt">154
-</span><span class="lnt">155
-</span><span class="lnt">156
-</span><span class="lnt">157
-</span><span class="lnt">158
-</span><span class="lnt">159
-</span><span class="lnt">160
-</span><span class="lnt">161
-</span><span class="lnt">162
-</span><span class="lnt">163
-</span><span class="lnt">164
-</span><span class="lnt">165
-</span><span class="lnt">166
-</span><span class="lnt">167
-</span><span class="lnt">168
-</span><span class="lnt">169
-</span><span class="lnt">170
-</span><span class="lnt">171
-</span><span class="lnt">172
-</span><span class="lnt">173
-</span><span class="lnt">174
-</span><span class="lnt">175
-</span><span class="lnt">176
-</span><span class="lnt">177
-</span><span class="lnt">178
-</span><span class="lnt">179
-</span><span class="lnt">180
-</span><span class="lnt">181
-</span><span class="lnt">182
-</span><span class="lnt">183
-</span><span class="lnt">184
-</span><span class="lnt">185
-</span><span class="lnt">186
-</span><span class="lnt">187
-</span><span class="lnt">188
-</span><span class="lnt">189
-</span><span class="lnt">190
-</span><span class="lnt">191
-</span><span class="lnt">192
-</span><span class="lnt">193
-</span><span class="lnt">194
-</span><span class="lnt">195
-</span><span class="lnt">196
-</span><span class="lnt">197
-</span><span class="lnt">198
-</span><span class="lnt">199
-</span><span class="lnt">200
-</span><span class="lnt">201
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="c1">//Show viewhistory on form datasources if you have ValidaTimeState Enabled DateTime enabled on the tables of that form. 
-</span><span class="c1">//create this method in Global class so you can call whereever you want in form button click as below.
-</span><span class="c1"></span>
-<span class="k">void</span> <span class="n">clicked</span><span class="p">()</span>
-
-<span class="p">{</span>
-    <span class="n">buttonHistoryClick</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
-    <span class="n">Super</span><span class="p">();</span>
-<span class="p">}</span>
-
-<span class="k">static</span> <span class="k">public</span> <span class="k">void</span> <span class="n">buttonHistoryClick</span><span class="p">(</span><span class="n">FormRun</span> <span class="m">_f</span><span class="n">ormRun</span><span class="p">,</span> <span class="n">FormButtonControl</span> <span class="m">_f</span><span class="n">bc</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">void</span> <span class="n">changeDataSources</span><span class="p">(</span><span class="n">ValidTimeStateAutoQuery</span> <span class="m">_f</span><span class="n">rom</span><span class="p">,</span> <span class="n">ValidTimeStateAutoQuery</span> <span class="m">_</span><span class="n">to</span><span class="p">,</span> <span class="n">boolean</span> <span class="m">_</span><span class="n">allowDelete</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">Counter</span>         <span class="n">dataSourceNo</span><span class="p">;</span>
-        <span class="n">FormDataSource</span>  <span class="n">formDataSource</span><span class="p">;</span>
-
-        <span class="k">for</span> <span class="p">(</span><span class="n">dataSourceNo</span><span class="p">=</span><span class="m">1</span><span class="p">;</span><span class="m">_f</span><span class="n">ormRun</span><span class="p">.</span><span class="n">dataSourceCount</span><span class="p">()&gt;=</span><span class="n">dataSourceNo</span><span class="p">;</span><span class="n">dataSourceNo</span><span class="p">++)</span>
-        <span class="p">{</span>
-            <span class="n">formDataSource</span> <span class="p">=</span> <span class="m">_f</span><span class="n">ormRun</span><span class="p">.</span><span class="n">dataSource</span><span class="p">(</span><span class="n">dataSourceNo</span><span class="p">)</span> <span class="k">as</span> <span class="n">FormDataSource</span><span class="p">;</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">formDataSource</span><span class="p">.</span><span class="n">validTimeStateAutoQuery</span><span class="p">()</span> <span class="p">==</span> <span class="m">_f</span><span class="n">rom</span> <span class="p">&amp;&amp;</span> <span class="k">new</span> <span class="n">DictTable</span><span class="p">(</span><span class="n">formDataSource</span><span class="p">.</span><span class="n">table</span><span class="p">()).</span><span class="n">isValidTimeStateTable</span><span class="p">())</span>
-            <span class="p">{</span>
-                <span class="n">formDataSource</span><span class="p">.</span><span class="n">validTimeStateAutoQuery</span><span class="p">(</span><span class="m">_</span><span class="n">to</span><span class="p">);</span>
-                <span class="k">switch</span> <span class="p">(</span><span class="m">_</span><span class="n">to</span><span class="p">)</span>
-                <span class="p">{</span>
-                    <span class="k">case</span> <span class="n">ValidTimeStateAutoQuery</span><span class="p">::</span><span class="n">AsOfDate</span><span class="p">:</span>
-                        <span class="n">formDataSource</span><span class="p">.</span><span class="n">validTimeStateAutoQuery</span><span class="p">(</span><span class="n">ValidTimeStateAutoQuery</span><span class="p">::</span><span class="n">AsOfDate</span><span class="p">);</span>
-                        <span class="n">formDataSource</span><span class="p">.</span><span class="n">query</span><span class="p">().</span><span class="n">resetValidTimeStateQueryType</span><span class="p">();</span>
-                        <span class="n">formDataSource</span><span class="p">.</span><span class="n">allowDelete</span><span class="p">(</span><span class="m">_</span><span class="n">allowDelete</span><span class="p">);</span>
-                        <span class="k">break</span><span class="p">;</span>
-                    <span class="k">case</span> <span class="n">ValidTimeStateAutoQuery</span><span class="p">::</span><span class="n">DateRange</span><span class="p">:</span>
-                        <span class="n">formDataSource</span><span class="p">.</span><span class="n">validTimeStateAutoQuery</span><span class="p">(</span><span class="n">ValidTimeStateAutoQuery</span><span class="p">::</span><span class="n">DateRange</span><span class="p">);</span>
-                        <span class="n">formDataSource</span><span class="p">.</span><span class="n">query</span><span class="p">().</span><span class="n">validTimeStateDateTimeRange</span><span class="p">(</span><span class="n">DateTimeUtil</span><span class="p">::</span><span class="n">minValue</span><span class="p">(),</span> <span class="n">DateTimeUtil</span><span class="p">::</span><span class="n">maxValue</span><span class="p">());</span>
-                        <span class="n">formDataSource</span><span class="p">.</span><span class="n">allowDelete</span><span class="p">(</span><span class="m">_</span><span class="n">allowDelete</span><span class="p">);</span>
-                        <span class="k">break</span><span class="p">;</span>
-                <span class="p">}</span>
-                <span class="n">formDataSource</span><span class="p">.</span><span class="n">executeQuery</span><span class="p">();</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="m">_f</span><span class="n">bc</span><span class="p">.</span><span class="n">labelText</span><span class="p">()</span> <span class="p">==</span> <span class="s">&#34;@SYS110266&#34;</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">changeDataSources</span><span class="p">(</span><span class="n">ValidTimeStateAutoQuery</span><span class="p">::</span><span class="n">AsOfDate</span><span class="p">,</span> <span class="n">ValidTimeStateAutoQuery</span><span class="p">::</span><span class="n">DateRange</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
-        <span class="m">_f</span><span class="n">bc</span><span class="p">.</span><span class="n">text</span><span class="p">(</span><span class="s">&#34;Stoping History&#34;</span><span class="p">);</span>
-        <span class="m">_f</span><span class="n">bc</span><span class="p">.</span><span class="n">normalImage</span><span class="p">(</span><span class="s">&#34;10006&#34;</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">else</span>
-    <span class="p">{</span>
-        <span class="n">changeDataSources</span><span class="p">(</span><span class="n">ValidTimeStateAutoQuery</span><span class="p">::</span><span class="n">DateRange</span><span class="p">,</span> <span class="n">ValidTimeStateAutoQuery</span><span class="p">::</span><span class="n">AsOfDate</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
-        <span class="m">_f</span><span class="n">bc</span><span class="p">.</span><span class="n">Text</span><span class="p">(</span><span class="s">&#34;@SYS110266
-</span><span class="s"></span>        <span class="m">_f</span><span class="n">bc</span><span class="p">.</span><span class="n">normalImage</span><span class="p">(</span><span class="s">&#34;10007&#34;</span><span class="p">);</span>
-    <span class="p">}</span>
-
-<span class="p">}</span>
-<span class="c1">// this method is used to create filenameTimeStamp.
-</span><span class="c1"></span>
-<span class="k">static</span> <span class="n">FileName</span> <span class="n">createFilenameTimeStamp</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="n">FileName</span>    <span class="n">ret</span><span class="p">;</span>
-    <span class="n">Microsoft</span><span class="p">.</span><span class="n">Dynamics</span><span class="p">.</span><span class="n">IntegrationFramework</span><span class="p">.</span><span class="n">Adapter</span><span class="p">.</span><span class="n">FileSystem</span>       <span class="n">fileSystem</span><span class="p">;</span>
-    <span class="err">#</span><span class="n">Aif</span>
-
-    <span class="n">fileSystem</span>      <span class="p">=</span> <span class="n">AifUtil</span><span class="p">::</span><span class="n">getClrObject</span><span class="p">(</span><span class="err">#</span><span class="n">FileSystemProgId</span><span class="p">);</span>
-
-    <span class="n">ret</span> <span class="p">=</span> <span class="n">fileSystem</span><span class="p">.</span><span class="n">GetCurrentTimestamp</span><span class="p">();</span>
-
-    <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
-<span class="p">}</span>
-
-
-<span class="c1">// This method is used to split the string, and returns the conatiner with the position defined in the parameter
-</span><span class="c1"></span><span class="k">public</span> <span class="k">static</span> <span class="n">str</span> <span class="n">rsaStrSplit</span><span class="p">(</span><span class="n">str</span> <span class="m">_</span><span class="n">splitString</span><span class="p">,</span><span class="n">str</span> <span class="m">_</span><span class="n">splitchar</span><span class="p">,</span><span class="kt">int</span> <span class="m">_</span><span class="n">pos</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">List</span> <span class="n">strlist</span><span class="p">=</span><span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">String</span><span class="p">);</span>
-    <span class="n">ListIterator</span>    <span class="n">iterator</span><span class="p">;</span>
-    <span class="n">container</span>       <span class="n">packedList</span><span class="p">;</span>
-    <span class="p">;</span>
-    <span class="n">strlist</span><span class="p">=</span><span class="n">strSplit</span><span class="p">(</span><span class="m">_</span><span class="n">splitString</span><span class="p">,</span><span class="m">_</span><span class="n">splitchar</span><span class="p">);</span>
-    <span class="n">iterator</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ListIterator</span><span class="p">(</span><span class="n">strlist</span><span class="p">);</span>
-    <span class="k">while</span><span class="p">(</span><span class="n">iterator</span><span class="p">.</span><span class="n">more</span><span class="p">())</span>
-    <span class="p">{</span>
-        <span class="n">packedList</span> <span class="p">+=</span> <span class="n">iterator</span><span class="p">.</span><span class="k">value</span><span class="p">();</span>
-        <span class="n">iterator</span><span class="p">.</span><span class="n">next</span><span class="p">();</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">conPeek</span><span class="p">(</span><span class="n">packedList</span><span class="p">,</span><span class="m">_</span><span class="n">pos</span><span class="p">);</span>
-
-<span class="p">}</span>
-
-<span class="k">public</span> <span class="k">static</span> <span class="n">str</span> <span class="n">encrypt</span><span class="p">(</span><span class="n">str</span> <span class="m">_</span><span class="n">input</span><span class="p">,</span> <span class="n">str</span> <span class="m">_</span><span class="n">salt</span> <span class="p">=</span> <span class="err">&#39;&#39;</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">System</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Cryptography</span><span class="p">.</span><span class="n">SHA512Managed</span>  <span class="n">sha512managed</span> <span class="p">=</span> <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Cryptography</span><span class="p">.</span><span class="n">SHA512Managed</span><span class="p">();</span>
-    <span class="n">System</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="n">Encoding</span>                        <span class="n">encoding</span> <span class="p">=</span> <span class="n">System</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="n">Encoding</span><span class="p">::</span><span class="n">get_UTF8</span><span class="p">();</span>
-
-    <span class="n">System</span><span class="p">.</span><span class="n">Byte</span><span class="p">[]</span>                               <span class="n">inputBytes</span><span class="p">;</span>
-    <span class="n">System</span><span class="p">.</span><span class="n">Byte</span><span class="p">[]</span>                               <span class="n">resultBytes</span><span class="p">;</span>
-
-    <span class="kt">int</span>                                         <span class="n">i</span><span class="p">;</span>
-    <span class="n">str</span>                                         <span class="n">returnString</span><span class="p">;</span>
-    <span class="p">;</span>
-
-    <span class="k">new</span> <span class="n">InteropPermission</span><span class="p">(</span><span class="n">InteropKind</span><span class="p">::</span><span class="n">ClrInterop</span><span class="p">).</span><span class="n">assert</span><span class="p">();</span>
-
-    <span class="n">inputBytes</span> <span class="p">=</span> <span class="n">encoding</span><span class="p">.</span><span class="n">GetBytes</span><span class="p">(</span><span class="n">strLwr</span><span class="p">(</span><span class="m">_</span><span class="n">salt</span><span class="p">)</span> <span class="p">+</span> <span class="m">_</span><span class="n">input</span><span class="p">);</span> <span class="c1">// Convert lower case salt + input into byte array
-</span><span class="c1"></span>
-    <span class="c1">// The input is hashed 1024 times for attack resiliency
-</span><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="m">1024</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
-    <span class="p">{</span>
-        <span class="n">resultBytes</span> <span class="p">=</span> <span class="n">resultBytes</span> <span class="p">?</span> <span class="n">resultBytes</span> <span class="p">:</span> <span class="n">inputBytes</span><span class="p">;</span> <span class="c1">// First loop uses input for hashing
-</span><span class="c1"></span>        <span class="n">resultBytes</span> <span class="p">=</span> <span class="n">sha512managed</span><span class="p">.</span><span class="n">ComputeHash</span><span class="p">(</span><span class="n">resultBytes</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="n">returnString</span> <span class="p">=</span> <span class="n">System</span><span class="p">.</span><span class="n">Convert</span><span class="p">::</span><span class="n">ToBase64String</span><span class="p">(</span><span class="n">resultBytes</span><span class="p">);</span>
-
-    <span class="n">CodeAccessPermission</span><span class="p">::</span><span class="n">revertAssert</span><span class="p">();</span>
-
-    <span class="k">return</span> <span class="n">returnString</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="k">private</span> <span class="k">static</span> <span class="n">Map</span> <span class="n">fileGetList</span><span class="p">(</span><span class="n">FilePath</span>            <span class="m">_f</span><span class="n">ilePathArchive</span><span class="p">)</span>
-
-<span class="p">{</span>
-  
-    <span class="n">Map</span>                 <span class="n">mapFiles</span><span class="p">;</span>
-
-    <span class="n">InteropPermission</span>   <span class="n">interopPermission</span> <span class="p">=</span> <span class="k">new</span> <span class="n">InteropPermission</span><span class="p">(</span><span class="n">InteropKind</span><span class="p">::</span><span class="n">ClrInterop</span><span class="p">);</span>
-    <span class="n">Set</span>                 <span class="n">interopPermissionSet</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Set</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Class</span><span class="p">);</span>
-    <span class="n">System</span><span class="p">.</span><span class="n">Array</span>        <span class="n">arrayFiles</span><span class="p">;</span>
-
-    <span class="kt">int</span>                 <span class="n">i</span><span class="p">;</span>
-    <span class="p">;</span>
-
-    <span class="c1">// Granting file permission rights
-</span><span class="c1"></span>    <span class="n">interopPermissionSet</span><span class="p">.</span><span class="k">add</span><span class="p">(</span><span class="n">interopPermission</span><span class="p">);</span>
-    <span class="n">CodeAccessPermission</span><span class="p">::</span><span class="n">assertMultiple</span><span class="p">(</span><span class="n">interopPermissionSet</span><span class="p">);</span>
-
-    <span class="n">mapFiles</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Map</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">Types</span><span class="p">::</span><span class="n">String</span><span class="p">);</span> <span class="c1">// Key = return file | Value = archive path
-</span><span class="c1"></span>
-        <span class="k">if</span> <span class="p">(!</span><span class="n">System</span><span class="p">.</span><span class="n">IO</span><span class="p">.</span><span class="n">Directory</span><span class="p">::</span><span class="n">Exists</span><span class="p">(</span><span class="m">_f</span><span class="n">ilePathArchive</span><span class="p">))</span>
-        <span class="p">{</span>
-             <span class="k">throw</span>  <span class="n">error</span><span class="p">(</span><span class="s">&#34;Path doesnt exist&#34;</span><span class="p">);</span>
-        <span class="p">}</span>
-
-        <span class="n">arrayFiles</span> <span class="p">=</span> <span class="n">System</span><span class="p">.</span><span class="n">IO</span><span class="p">.</span><span class="n">Directory</span><span class="p">::</span><span class="n">GetFiles</span><span class="p">(</span><span class="m">_f</span><span class="n">ilePathArchive</span><span class="p">);</span>
-
-        <span class="c1">// CLRInterop::getAnyTypeForObject method is used to handle difference in AX and System types (e.g. System.Int32 != int)
-</span><span class="c1"></span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">CLRInterop</span><span class="p">::</span><span class="n">getAnyTypeForObject</span><span class="p">(</span><span class="n">arrayFiles</span><span class="p">.</span><span class="n">get_Length</span><span class="p">());</span> <span class="n">i</span><span class="p">++)</span>
-        <span class="p">{</span>
-       <span class="n">mapFiles</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">CLRInterop</span><span class="p">::</span><span class="n">getAnyTypeForObject</span><span class="p">(</span><span class="n">arrayFiles</span><span class="p">.</span><span class="n">GetValue</span><span class="p">(</span><span class="n">i</span><span class="p">)),</span> <span class="m">_f</span><span class="n">ilePathArchive</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="c1">// Reverting file permission rights
-</span><span class="c1"></span>    <span class="n">CodeAccessPermission</span><span class="p">::</span><span class="n">revertAssert</span><span class="p">();</span>
-
-    <span class="k">return</span> <span class="n">mapFiles</span><span class="p">;</span>
-<span class="p">}</span>
-
-
-<span class="c1">/// &lt;summary&gt;
-</span><span class="c1">///  Gets the SenderID from AIF xml .
-</span><span class="c1">/// &lt;/summary&gt;
-</span><span class="c1">/// &lt;param name=&#34;messagePartsXml&#34;&gt;
-</span><span class="c1">/// An &lt;c&gt;AifXml&lt;/c&gt; value.
-</span><span class="c1">/// &lt;/param&gt;
-</span><span class="c1">/// &lt;returns&gt;
-</span><span class="c1">/// An instance of the &lt;c&gt;str document Namespace&lt;/c&gt; class.
-</span><span class="c1">/// &lt;/returns&gt;
-</span><span class="c1"></span><span class="k">public</span> <span class="k">static</span> <span class="n">str</span> <span class="n">getSenderIDValue</span><span class="p">(</span><span class="n">AifXml</span> <span class="n">messagePartsXml</span><span class="p">)</span>
-<span class="p">{</span>
-     <span class="n">XmlTextReader</span>               <span class="n">xmlReader</span><span class="p">;</span>
-    <span class="n">str</span> <span class="k">value</span><span class="p">,</span><span class="n">currentElement</span><span class="p">,</span><span class="n">pureElement</span><span class="p">;</span>
-
-<span class="p">;</span>
-<span class="err">#</span><span class="n">Aif</span>
-    <span class="n">xmlReader</span> <span class="p">=</span> <span class="n">XmlTextReader</span><span class="p">::</span><span class="n">newXml</span><span class="p">(</span><span class="n">messagePartsXml</span><span class="p">);</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">xmlReader</span><span class="p">.</span><span class="n">Read</span><span class="p">())</span>
-    <span class="p">{</span>
-        <span class="k">switch</span> <span class="p">(</span><span class="n">xmlReader</span><span class="p">.</span><span class="n">nodeType</span><span class="p">())</span>
-        <span class="p">{</span>
-             <span class="k">case</span> <span class="n">XmlNodeType</span><span class="p">::</span><span class="n">Element</span><span class="p">:</span>
-                  <span class="n">currentElement</span> <span class="p">=</span> <span class="n">xmlReader</span><span class="p">.</span><span class="n">name</span><span class="p">();</span>
-                 <span class="k">break</span><span class="p">;</span>
-             <span class="k">case</span> <span class="n">XmlNodeType</span><span class="p">::</span><span class="n">Text</span><span class="p">:</span>
-                  <span class="n">pureElement</span> <span class="p">=</span> <span class="n">subStr</span><span class="p">(</span><span class="n">currentElement</span><span class="p">,</span><span class="n">strFind</span><span class="p">(</span><span class="n">currentElement</span><span class="p">,</span><span class="sc">&#39;:&#39;</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">256</span><span class="p">)+</span><span class="m">1</span><span class="p">,</span><span class="m">256</span><span class="p">);</span>
-                    <span class="k">switch</span> <span class="p">(</span><span class="n">pureElement</span><span class="p">)</span>
-                    <span class="p">{</span>
-                       <span class="k">case</span> <span class="s">&#34;SenderId&#34;</span><span class="p">:</span>
-                        <span class="p">{</span>
-                            <span class="k">value</span><span class="p">=</span><span class="n">xmlReader</span><span class="p">.</span><span class="k">value</span><span class="p">();</span>
-                            <span class="k">return</span> <span class="k">value</span><span class="p">;</span>
-                        <span class="p">}</span>
-                        <span class="k">break</span><span class="p">;</span>
-                    <span class="p">}</span>
-              <span class="k">break</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="k">return</span> <span class="k">value</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div>]]></description>
-</item><item>
     <title>CRUD Purchase Requisition using AIF in Dynamics AX 2012 R3</title>
     <link>https://nuxulu.com/2016-12-29-crud-purchase-requisition-using-aif-in-dynamics-ax-2012-r3/</link>
     <pubDate>Thu, 29 Dec 2016 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2016-12-29-crud-purchase-requisition-using-aif-in-dynamics-ax-2012-r3/</guid>
@@ -2186,5 +1773,766 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </code></pre></td></tr></table>
 </div>
 </div><p>Thank you for reading!</p>]]></description>
+</item><item>
+    <title>CRUD Items, products, products master dimension, variants using AIF in Dynamics AX 2012 R3</title>
+    <link>https://nuxulu.com/2016-12-27-crud-items-products-products-master-dimension-variants-using-aif-in-dynamics-ax-2012-r3/</link>
+    <pubDate>Tue, 27 Dec 2016 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2016-12-27-crud-items-products-products-master-dimension-variants-using-aif-in-dynamics-ax-2012-r3/</guid>
+    <description><![CDATA[<h2 id="scenarios">Scenarios:</h2>
+<p>I’m trying to create <strong>product/master product</strong> in Dynamics AX using AIF inbound port, the AIF services consume by C#.NET.</p>
+<p>From AX 2012 R2, Item is replaced with Product. Item master was in Inventory Management Module, now there is a separate module for item/product creation <code>Product information Management</code>.</p>
+<p>Some definitions you should know
+There are two types of Products in 2012 they are:</p>
+<ol>
+<li>
+<p><strong>Product</strong></p>
+<p><em>Product information management/Common/Products/Products</em></p>
+</li>
+<li>
+<p><strong>Product Master</strong></p>
+<p><em>Product information management/Common/Products/Products master</em></p>
+<p>a. <strong>Variants:</strong></p>
+</li>
+</ol>
+<p>To create a product variant, you must define at least one product dimension for a product master. You can also rename dimensions.
+To create product variants, you must complete the following tasks:</p>
+<ul>
+<li>
+<p>Set up dimensions, such as size, color, and style.</p>
+</li>
+<li>
+<p>Set up variant groups.</p>
+</li>
+<li>
+<p>Assign variant groups to a retail hierarchy.</p>
+</li>
+<li>
+<p>Create a product master and variants.</p>
+</li>
+</ul>
+<p>b. <strong>Product dimensions</strong></p>
+<p>Product dimensions are characteristics that serve to identify a product variant. You can use combinations of product dimensions to define product variants. You must define at least one product dimension for a product master to create a product variant.</p>
+<h2 id="process">Process:</h2>
+<p>Normally in AX, we create items master follow process:</p>
+<ul>
+<li>
+<p>Create product/product master.</p>
+</li>
+<li>
+<p>Assigning Dimensions Groups to a Product Master.</p>
+</li>
+<li>
+<p>Create Product dimension combinations (Product Variants)</p>
+</li>
+<li>
+<p>Release product to legal entities</p>
+</li>
+<li>
+<p>Assigning Item Model Group &amp; Item Groups to a Product Master</p>
+</li>
+</ul>
+<h2 id="how-to-do">How to do:</h2>
+<p>Ax provides us standard services for this purpose, so we don’t need to create any custom services for this. I will use 4 services for this purpose, descriptions below</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Service</th>
+<th style="text-align:center">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>EcoResProductService</code></td>
+<td style="text-align:center">Create products (all types). The service can also be used to                            retrieve data that has already been created (Create Product details in The EcoRes tables).</td>
+</tr>
+<tr>
+<td style="text-align:left">&mdash;-</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>EcoResProductMasterDimValueService</code></td>
+<td style="text-align:center">Specify values of product dimensions for a product master. These values become available for the creation of product variants. The service can also be used to retrieve data that has already been created.</td>
+</tr>
+<tr>
+<td style="text-align:left">&mdash;-</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>ItemService</code></td>
+<td style="text-align:center">Release distinct products and product masters. The service can also be used to retrieve data that has already been created.</td>
+</tr>
+<tr>
+<td style="text-align:left">&mdash;-</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>InventDimCombinationService</code></td>
+<td style="text-align:center">Release product variants. The service can also be used to retrieve data that has already been created.</td>
+</tr>
+<tr>
+<td style="text-align:left">{: rules=&ldquo;groups&rdquo;}</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>we have 4 steps</p>
+<ol>
+<li>
+<p>Create 4 AIF inbound services against Services operation above and active it
+<code>http://DEV-ERP:8103/DynamicsAx/Services/BCEcoResProduct</code>
+<code>http://DEV-ERP:8103/DynamicsAx/Services/BCEcoResProductMasterDimValue</code>
+<code>http://DEV-ERP:8103/DynamicsAx/Services/BCItemsMaster</code>
+<code>http://DEV-ERP:8103/DynamicsAx/Services/BCInventDimCombination</code></p>
+</li>
+<li>
+<p>After services creation, open visual studio then creates new Console project and add service References for that, you will get somethings like pic below:</p>
+<p></p>
+</li>
+<li>
+<p>Using C#.Net to consume service</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#">
+<span class="k">using</span> <span class="nn">ItemsMaster.ItemsRef</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">ItemsMaster.EcoResProductRef</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">ItemsMaster.EcoResProductMasterRef</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">ItemsMaster.InventDimRef</span><span class="p">;</span>
+<span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">Program</span> <span class="n">master</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Program</span><span class="p">();</span>
+	<span class="n">master</span><span class="p">.</span><span class="n">createDistinctProduct</span><span class="p">();</span>
+	<span class="n">Program</span><span class="p">.</span><span class="n">releaseProduct</span><span class="p">();</span>
+<span class="p">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p><code>EcoResProductServiceClient</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#">
+<span class="k">public</span> <span class="k">void</span> <span class="n">createDistinctProduct</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="n">AxdEntity_Product_EcoResDistinctProduct</span> <span class="n">distinctProduct</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Product_EcoResDistinctProduct</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">DisplayProductNumber</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
+		<span class="n">ProductType</span> <span class="p">=</span> <span class="n">AxdEnum_EcoResProductType</span><span class="p">.</span><span class="n">Item</span><span class="p">,</span>
+		<span class="n">SearchName</span> <span class="p">=</span> <span class="s">&#34;Max&#34;</span><span class="p">,</span>
+	   
+	<span class="p">};</span>
+
+	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">Translation</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Translation</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
+	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">Translation</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Translation</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">LanguageId</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
+		<span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Max Nguyen&#34;</span>
+	<span class="p">};</span>
+
+	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">Identifier</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Identifier</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
+	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">Identifier</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Identifier</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">ProductNumber</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span>
+	<span class="p">};</span>
+
+	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">StorageDimGroup</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_StorageDimGroup</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
+	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">StorageDimGroup</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_StorageDimGroup</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">Product</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
+		<span class="n">StorageDimensionGroup</span> <span class="p">=</span> <span class="s">&#34;SW_P&#34;</span>
+	<span class="p">};</span>
+
+	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">TrackingDimGroup</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_TrackingDimGroup</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
+	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">TrackingDimGroup</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_TrackingDimGroup</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">Product</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
+		<span class="n">TrackingDimensionGroup</span> <span class="p">=</span> <span class="s">&#34;Batch Only&#34;</span>
+	<span class="p">};</span>
+
+	<span class="n">AxdEcoResProduct</span> <span class="n">product</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEcoResProduct</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">Product</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Product_EcoResProduct</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">distinctProduct</span> <span class="p">}</span>
+	<span class="p">};</span>
+
+	<span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">CallContext</span> <span class="n">EcoResProductSctx</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">CallContext</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">,</span>
+		<span class="n">Language</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
+	<span class="p">};</span>
+
+	<span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">EcoResProductServiceClient</span> <span class="n">ecoResProductSClient</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">EcoResProductServiceClient</span><span class="p">();</span>
+	
+	<span class="n">ecoResProductSClient</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">EcoResProductSctx</span><span class="p">,</span> <span class="n">product</span><span class="p">);</span>
+
+<span class="p">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p><code>EcoResProductServiceClient</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#">
+<span class="k">public</span> <span class="k">void</span> <span class="n">createMaster</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="n">AxdEntity_Product_EcoResProductMaster</span> <span class="n">productMaster</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Product_EcoResProductMaster</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">DisplayProductNumber</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
+		<span class="n">ProductType</span> <span class="p">=</span> <span class="n">AxdEnum_EcoResProductType</span><span class="p">.</span><span class="n">Item</span><span class="p">,</span>
+		<span class="n">SearchName</span> <span class="p">=</span> <span class="s">&#34;Max Nguyen&#34;</span>
+	<span class="p">};</span>
+
+	<span class="n">productMaster</span><span class="p">.</span><span class="n">Translation</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Translation</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
+	<span class="n">productMaster</span><span class="p">.</span><span class="n">Translation</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Translation</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">LanguageId</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
+		<span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Max Nguyen&#34;</span>
+	<span class="p">};</span>
+
+	<span class="n">productMaster</span><span class="p">.</span><span class="n">Identifier</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Identifier</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
+	<span class="n">productMaster</span><span class="p">.</span><span class="n">Identifier</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Identifier</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">ProductNumber</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span>
+	<span class="p">};</span>
+	<span class="n">productMaster</span><span class="p">.</span><span class="n">ProductDimGroup</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_ProductDimGroup</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
+	<span class="n">productMaster</span><span class="p">.</span><span class="n">ProductDimGroup</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_ProductDimGroup</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">Product</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
+		<span class="n">ProductDimensionGroup</span> <span class="p">=</span> <span class="s">&#34;MAX10&#34;</span>
+	<span class="p">};</span>
+	<span class="n">productMaster</span><span class="p">.</span><span class="n">VariantConfigurationTechnology</span> <span class="p">=</span> <span class="n">AxdEnum_EcoResVariantConfigurationTechnologyType</span><span class="p">.</span><span class="n">PredefinedVariants</span><span class="p">;</span>
+
+	<span class="n">AxdEcoResProduct</span> <span class="n">axdProduct</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEcoResProduct</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">Product</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Product_EcoResProduct</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">productMaster</span> <span class="p">}</span>
+	<span class="p">};</span>
+
+	<span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">CallContext</span> <span class="n">EcoResProductSctx</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">CallContext</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">,</span>
+		<span class="n">Language</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
+	<span class="p">};</span>
+
+	<span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">EcoResProductServiceClient</span> <span class="n">ecoResProductSClient</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">EcoResProductServiceClient</span><span class="p">();</span>
+	
+	<span class="n">ecoResProductSClient</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">EcoResProductSctx</span><span class="p">,</span> <span class="n">axdProduct</span><span class="p">);</span>
+
+<span class="p">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p><code>EcoResProductMasterDimValueServiceClient</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#">
+<span class="k">static</span> <span class="k">void</span> <span class="n">createMasterDimensions</span><span class="p">()</span>
+<span class="p">{</span>
+
+	<span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span> <span class="n">ecoResSizeL</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;L&#34;</span>
+	<span class="p">};</span>
+
+	<span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span> <span class="n">ecoResSizeM</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;M&#34;</span>
+	<span class="p">};</span>
+	<span class="c1">//master dimensions definition (two sizes, L and M)
+</span><span class="c1"></span>	<span class="n">AxdEntity_MasterDim_EcoResProductMasterSize</span> <span class="n">sizeDimensionL</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_MasterDim_EcoResProductMasterSize</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">SizeProductMaster</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
+		<span class="n">Size</span> <span class="p">=</span> <span class="s">&#34;L&#34;</span><span class="p">,</span>
+		<span class="n">EcoResSize</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">ecoResSizeL</span> <span class="p">}</span>
+	<span class="p">};</span>
+	<span class="n">AxdEntity_MasterDim_EcoResProductMasterSize</span> <span class="n">sizeDimensionM</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_MasterDim_EcoResProductMasterSize</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">SizeProductMaster</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
+		<span class="n">Size</span> <span class="p">=</span> <span class="s">&#34;M&#34;</span><span class="p">,</span>
+		<span class="n">EcoResSize</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">ecoResSizeM</span> <span class="p">}</span>
+
+	<span class="p">};</span>
+
+	<span class="n">AxdEcoResProductMasterDimValue</span> <span class="n">axdDimValue</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEcoResProductMasterDimValue</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">MasterDim</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_MasterDim_EcoResProductMasterDimensionValue</span><span class="p">[</span><span class="m">2</span><span class="p">]</span> <span class="p">{</span> <span class="n">sizeDimensionL</span><span class="p">,</span> <span class="n">sizeDimensionM</span> <span class="p">}</span>
+	<span class="p">};</span>
+
+	<span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">CallContext</span> <span class="n">masterDimctx</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">CallContext</span><span class="p">();</span>
+	<span class="n">EcoResProductMasterDimValueServiceClient</span> <span class="n">masterDimensionService</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductMasterDimValueServiceClient</span><span class="p">();</span>
+	<span class="k">try</span>
+	<span class="p">{</span>
+		<span class="n">masterDimensionService</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">masterDimctx</span><span class="p">,</span> <span class="n">axdDimValue</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Message</span><span class="p">);</span>
+		<span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p><code>EcoResProductServiceClient</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#">
+<span class="k">static</span> <span class="k">void</span> <span class="n">createVariant</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="c1">//product variant definition
+</span><span class="c1"></span>	<span class="n">AxdEntity_Product_EcoResDistinctProductVariant</span> <span class="n">productVariant</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Product_EcoResDistinctProductVariant</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">DisplayProductNumber</span> <span class="p">=</span> <span class="s">&#34;MAXL&#34;</span><span class="p">,</span>
+		<span class="n">ProductType</span> <span class="p">=</span> <span class="n">AxdEnum_EcoResProductType</span><span class="p">.</span><span class="n">Item</span><span class="p">,</span>
+		<span class="n">SearchName</span> <span class="p">=</span> <span class="s">&#34;MAXL&#34;</span><span class="p">,</span>
+		<span class="n">ProductMaster</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span>
+	<span class="p">};</span>
+	<span class="n">productVariant</span><span class="p">.</span><span class="n">Translation</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Translation</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
+	<span class="n">productVariant</span><span class="p">.</span><span class="n">Translation</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Translation</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">LanguageId</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
+		<span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Max L size&#34;</span>
+	<span class="p">};</span>
+	<span class="n">productVariant</span><span class="p">.</span><span class="n">VariantDimValue</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_VariantDimValue_EcoResProductVariantDimensionValue</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
+	<span class="n">productVariant</span><span class="p">.</span><span class="n">VariantDimValue</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_VariantDimValue_EcoResProductVariantSize</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">DistinctProductVariant</span> <span class="p">=</span> <span class="s">&#34;MAXL&#34;</span><span class="p">,</span>
+		<span class="n">ProductDimensionAttribute</span> <span class="p">=</span> <span class="m">3173</span><span class="p">,</span><span class="c1">//The ID of the EcoResSize table
+</span><span class="c1"></span>		<span class="n">Size</span> <span class="p">=</span> <span class="s">&#34;L&#34;</span><span class="p">,</span>
+		<span class="n">EcoResSize</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span><span class="p">[</span><span class="m">1</span><span class="p">]</span>
+		<span class="p">{</span>
+			<span class="k">new</span> <span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span><span class="p">()</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;L&#34;</span> <span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">};</span>
+
+	<span class="n">AxdEcoResProduct</span> <span class="n">axdProduct</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEcoResProduct</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">Product</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Product_EcoResProduct</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">productVariant</span> <span class="p">}</span>
+	<span class="p">};</span>
+	<span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">CallContext</span> <span class="n">inventDimctx</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">CallContext</span><span class="p">();</span>
+	<span class="n">EcoResProductServiceClient</span> <span class="n">productService</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductServiceClient</span><span class="p">();</span>
+	<span class="k">try</span>
+	<span class="p">{</span>
+		<span class="n">productService</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">inventDimctx</span><span class="p">,</span> <span class="n">axdProduct</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Message</span><span class="p">);</span>
+		<span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p><code>this method can use to release a distinct product or a product master</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#">
+<span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">releaseProduct</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="kt">var</span> <span class="n">invent</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Invent</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
+		<span class="n">UnitId</span> <span class="p">=</span> <span class="s">&#34;box&#34;</span>
+	<span class="p">};</span>
+
+	<span class="kt">var</span> <span class="n">purch</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Purch</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
+		<span class="n">UnitId</span> <span class="p">=</span> <span class="s">&#34;box&#34;</span>
+	<span class="p">};</span>
+
+	<span class="kt">var</span> <span class="n">sales</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Sales</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
+		<span class="n">UnitId</span> <span class="p">=</span> <span class="s">&#34;box&#34;</span>
+	<span class="p">};</span>
+
+	<span class="kt">var</span> <span class="n">inventTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_InventTable</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
+		<span class="n">PmfProductType</span> <span class="p">=</span> <span class="n">AxdEnum_PmfProductType</span><span class="p">.</span><span class="n">MainItem</span><span class="p">,</span>
+		<span class="n">Product</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
+		<span class="n">Invent</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Invent</span><span class="p">[]</span> <span class="p">{</span> <span class="n">invent</span> <span class="p">},</span>
+		<span class="n">Purch</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Purch</span><span class="p">[]</span> <span class="p">{</span> <span class="n">purch</span> <span class="p">},</span>
+		<span class="n">Sales</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Sales</span><span class="p">[]</span> <span class="p">{</span> <span class="n">sales</span> <span class="p">},</span>
+		
+	<span class="p">};</span>
+
+	<span class="kt">var</span> <span class="n">item</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdItem</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">InventTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_InventTable</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">inventTable</span> <span class="p">}</span>
+	<span class="p">};</span>
+
+	<span class="n">ItemsRef</span><span class="p">.</span><span class="n">CallContext</span> <span class="n">callContext</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ItemsRef</span><span class="p">.</span><span class="n">CallContext</span><span class="p">();</span>
+	<span class="n">ItemsRef</span><span class="p">.</span><span class="n">ItemServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ItemsRef</span><span class="p">.</span><span class="n">ItemServiceClient</span><span class="p">();</span>
+
+	<span class="n">callContext</span><span class="p">.</span><span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">;</span>
+	<span class="n">callContext</span><span class="p">.</span><span class="n">Language</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">;</span>
+
+	<span class="k">try</span>
+	<span class="p">{</span>
+		<span class="n">ItemsRef</span><span class="p">.</span><span class="n">EntityKey</span><span class="p">[]</span> <span class="n">itemCreatedEntity</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">item</span><span class="p">);</span>
+		<span class="n">ItemsRef</span><span class="p">.</span><span class="n">EntityKey</span> <span class="n">itemCreated</span> <span class="p">=</span> <span class="p">(</span><span class="n">ItemsRef</span><span class="p">.</span><span class="n">EntityKey</span><span class="p">)</span><span class="n">itemCreatedEntity</span><span class="p">.</span><span class="n">GetValue</span><span class="p">(</span><span class="m">0</span><span class="p">);</span>
+
+		<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;AxdEntity_Invent &#34;</span> <span class="p">+</span> <span class="n">itemCreated</span><span class="p">.</span><span class="n">KeyData</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">Value</span><span class="p">);</span>
+		<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+	<span class="p">}</span>
+	<span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
+		<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p><code>Release product Variants</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#">
+<span class="k">static</span> <span class="k">void</span> <span class="n">releaseProductVariants</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="n">AxdEntity_InventDimCombination</span> <span class="n">releasedVariant</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_InventDimCombination</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">DistinctProductVariant</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
+		<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;&#34;</span>
+	<span class="p">};</span>
+
+	<span class="n">AxdInventDimCombination</span> <span class="n">inventDimCombination</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdInventDimCombination</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">InventDimCombination</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_InventDimCombination</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">releasedVariant</span> <span class="p">}</span>
+	<span class="p">};</span>
+
+	<span class="n">InventDimRef</span><span class="p">.</span><span class="n">CallContext</span> <span class="n">itemsctx</span> <span class="p">=</span> <span class="k">new</span> <span class="n">InventDimRef</span><span class="p">.</span><span class="n">CallContext</span><span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">,</span>
+		<span class="n">Language</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span>
+	<span class="p">};</span>
+	<span class="n">InventDimCombinationServiceClient</span> <span class="n">inventDimCombinationService</span> <span class="p">=</span> <span class="k">new</span> <span class="n">InventDimCombinationServiceClient</span><span class="p">();</span>
+	<span class="k">try</span>
+	<span class="p">{</span>
+		<span class="n">inventDimCombinationService</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">itemsctx</span><span class="p">,</span> <span class="n">inventDimCombination</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Message</span><span class="p">);</span>
+		<span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>Just for example, in <code>main</code> I only create Distinct product and release it, but you can use another method to create master, variant, masterDim and so on.</p>
+<pre><code>4. Try to run it and here is a result
+</code></pre>
+<p></p>
+<p>Thank you for reading and feel free to give me a question.</p>]]></description>
 </item></channel>
 </rss>
