@@ -29,14 +29,14 @@ For example, I created a project and add a new runnable class named Alex:</p>
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="k">class</span> <span class="nc">Alex</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">throw</span> <span class="n">error</span> <span class="p">(</span><span class="s">&#34;Hello World&#34;</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Alex</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="n">error</span> <span class="p">(</span><span class="s">&#34;Hello World&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>When this class runs, a <em>Hello World</em> info message will be displayed in the FinOps UI. Then I used chain of command to create Alex_Extension class that extends this class and &ldquo;override&rdquo; the main method of the Alex&rsquo;s class by putting the next call into another method and never call it like this:</p>
 <div class="highlight"><div class="chroma">
@@ -56,20 +56,20 @@ For example, I created a project and add a new runnable class named Alex:</p>
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="na">[ExtensionOf(classStr(Alex))]</span>
-<span class="n">final</span> <span class="k">class</span> <span class="nc">Alex_Extension</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="c1">//Implement something here
-</span><span class="c1"></span>        <span class="n">info</span> <span class="p">(</span><span class="s">&#34;Ok&#34;</span><span class="p">);</span>
-        <span class="k">void</span> <span class="n">ignore</span><span class="p">()</span>
-        <span class="p">{</span>
-            <span class="n">next</span> <span class="n">main</span><span class="p">(</span><span class="m">_</span><span class="n">args</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="na">[ExtensionOf(classStr(Alex))]</span>
+</span></span><span class="line"><span class="cl"><span class="n">final</span> <span class="k">class</span> <span class="nc">Alex_Extension</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//Implement something here</span>
+</span></span><span class="line"><span class="cl">        <span class="n">info</span> <span class="p">(</span><span class="s">&#34;Ok&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">void</span> <span class="n">ignore</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">next</span> <span class="n">main</span><span class="p">(</span><span class="m">_</span><span class="n">args</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>When I run the <em>AlexExtension</em>, the original main method of the Alex class will be ignored and only the additional block of code that I wrote in the <em>AlexExtension</em> class will be executed, so only the <strong>OK</strong> info will appear.</p>
 <p>Now we will try with a sample scenario from D365 Finance and Operation. In <strong>General Ledger</strong> Module, we have <strong>General journals</strong> form</p>
@@ -92,19 +92,19 @@ For example, I created a project and add a new runnable class named Alex:</p>
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="na">[ExtensionOf(classStr(LedgerJournalController))]</span>
-<span class="n">final</span> <span class="k">class</span> <span class="nc">Alex_LedgerJournalController_Extension</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">info</span><span class="p">(</span><span class="s">&#34;ok&#34;</span><span class="p">);</span>
-        <span class="k">void</span> <span class="n">ignore_first</span><span class="p">()</span>
-        <span class="p">{</span>
-            <span class="n">next</span> <span class="n">main</span><span class="p">(</span><span class="m">_</span><span class="n">args</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>  
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="na">[ExtensionOf(classStr(LedgerJournalController))]</span>
+</span></span><span class="line"><span class="cl"><span class="n">final</span> <span class="k">class</span> <span class="nc">Alex_LedgerJournalController_Extension</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">(</span><span class="s">&#34;ok&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">void</span> <span class="n">ignore_first</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">next</span> <span class="n">main</span><span class="p">(</span><span class="m">_</span><span class="n">args</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Using this I will ignore the the main method of <em>LedgerJournalController</em> class and instead of generate the report, the result will be only the <strong>OK</strong> info line in the extension class:</p>
 <p></p>

@@ -13,7 +13,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://nuxulu.com/2015-11-03-rename-a-database-in-sql-server/" /><meta property="og:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2015-11-03T03:45:13+07:00" />
-<meta property="article:modified_time" content="2022-02-24T15:07:02+07:00" />
+<meta property="article:modified_time" content="2022-03-21T22:30:25+07:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/>
@@ -34,7 +34,7 @@
             "@type": "WebPage",
             "@id": "https:\/\/nuxulu.com\/2015-11-03-rename-a-database-in-sql-server\/"
         },"genre": "posts","keywords": "sql","wordcount":  174 ,
-        "url": "https:\/\/nuxulu.com\/2015-11-03-rename-a-database-in-sql-server\/","datePublished": "2015-11-03T03:45:13+07:00","dateModified": "2022-02-24T15:07:02+07:00","publisher": {
+        "url": "https:\/\/nuxulu.com\/2015-11-03-rename-a-database-in-sql-server\/","datePublished": "2015-11-03T03:45:13+07:00","dateModified": "2022-03-21T22:30:25+07:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -158,18 +158,18 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- Replace all MyDBs with the name of the DB you want to change its name
-</span><span class="c1"></span><span class="n">USE</span><span class="w"> </span><span class="p">[</span><span class="n">MyDB</span><span class="p">];</span><span class="w">
-</span><span class="w"></span><span class="c1">-- Changing Physical names and paths
-</span><span class="c1">-- Replace all NewMyDB with the new name you want to set for the DB
-</span><span class="c1">-- Replace &#39;C:...NewMyDB.mdf&#39; with full path of new DB file to be used
-</span><span class="c1"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">MyDB</span><span class="w"> </span><span class="k">MODIFY</span><span class="w"> </span><span class="n">FILE</span><span class="w"> </span><span class="p">(</span><span class="n">NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39; MyDB &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">FILENAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;C:...NewMyDB.mdf&#39;</span><span class="p">);</span><span class="w">
-</span><span class="w"></span><span class="c1">-- Replace &#39;C:...NewMyDB_log.ldf&#39; with full path of new DB log file to be used
-</span><span class="c1"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">MyDB</span><span class="w"> </span><span class="k">MODIFY</span><span class="w"> </span><span class="n">FILE</span><span class="w"> </span><span class="p">(</span><span class="n">NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39; MyDB _log&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">FILENAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;C:...NewMyDB_log.ldf&#39;</span><span class="p">);</span><span class="w">
-</span><span class="w"></span><span class="c1">-- Changing logical names
-</span><span class="c1"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">MyDB</span><span class="w"> </span><span class="k">MODIFY</span><span class="w"> </span><span class="n">FILE</span><span class="w"> </span><span class="p">(</span><span class="n">NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyDB</span><span class="p">,</span><span class="w"> </span><span class="n">NEWNAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NewMyDB</span><span class="p">);</span><span class="w">
-</span><span class="w"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">MyDB</span><span class="w"> </span><span class="k">MODIFY</span><span class="w"> </span><span class="n">FILE</span><span class="w"> </span><span class="p">(</span><span class="n">NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyDB</span><span class="w"> </span><span class="n">_log</span><span class="p">,</span><span class="w"> </span><span class="n">NEWNAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NewMyDB_log</span><span class="p">);</span><span class="w">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- Replace all MyDBs with the name of the DB you want to change its name
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">USE</span><span class="w"> </span><span class="p">[</span><span class="n">MyDB</span><span class="p">];</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- Changing Physical names and paths
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- Replace all NewMyDB with the new name you want to set for the DB
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- Replace &#39;C:...NewMyDB.mdf&#39; with full path of new DB file to be used
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">MyDB</span><span class="w"> </span><span class="k">MODIFY</span><span class="w"> </span><span class="n">FILE</span><span class="w"> </span><span class="p">(</span><span class="n">NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39; MyDB &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">FILENAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;C:...NewMyDB.mdf&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- Replace &#39;C:...NewMyDB_log.ldf&#39; with full path of new DB log file to be used
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">MyDB</span><span class="w"> </span><span class="k">MODIFY</span><span class="w"> </span><span class="n">FILE</span><span class="w"> </span><span class="p">(</span><span class="n">NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39; MyDB _log&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">FILENAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;C:...NewMyDB_log.ldf&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- Changing logical names
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">MyDB</span><span class="w"> </span><span class="k">MODIFY</span><span class="w"> </span><span class="n">FILE</span><span class="w"> </span><span class="p">(</span><span class="n">NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyDB</span><span class="p">,</span><span class="w"> </span><span class="n">NEWNAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NewMyDB</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">MyDB</span><span class="w"> </span><span class="k">MODIFY</span><span class="w"> </span><span class="n">FILE</span><span class="w"> </span><span class="p">(</span><span class="n">NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyDB</span><span class="w"> </span><span class="n">_log</span><span class="p">,</span><span class="w"> </span><span class="n">NEWNAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NewMyDB_log</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><ol start="4">
 <li>
@@ -186,7 +186,7 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on February 24, 2022</span>
+                <span>Updated on March 21, 2022</span>
             </div>
             <div class="post-info-license"></div>
         </div>

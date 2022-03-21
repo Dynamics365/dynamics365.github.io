@@ -27,7 +27,7 @@
 <h1 id="custom-services">Custom services</h1>
 <p>Custom services were already available in Microsoft Dynamics AX 2009, but support for <strong>Extended Data Types(EDTs)</strong> was limited, which resulted in developers having to provide custom serialization and deserialization logic.</p>
 <p>Microsoft Dynamics AX 2012 introduces the concept of attributes.  <strong>Attributes</strong>  provide a way to specify metadata about classes and methods. Two of these attributes are used when creating data contracts: the <code>DataContractAttribute</code> and <code>DataMemberAttribute</code> attributes.</p>
-<p>The &lsquo;DataContractAttribute&rsquo; attribute is used to define that a class is a data contract. The&rsquo;DataMemberAttribute' attribute is added to methods of data contracts that represent data members that have to be exposed. This way of defining data contracts is very similar to other programming languages such as C#.</p>
+<p>The &lsquo;DataContractAttribute&rsquo; attribute is used to define that a class is a data contract. The&rsquo;DataMemberAttribute&rsquo; attribute is added to methods of data contracts that represent data members that have to be exposed. This way of defining data contracts is very similar to other programming languages such as C#.</p>
 <p>Support for more complex data types such as collections and tables has been added so that these types can be serialized and deserialized without developers having to provide the logic themselves.</p>
 <p>In a typical custom service you will find the following components:</p>
 <ul>
@@ -125,38 +125,38 @@ If we often restart AOS, how can we keep performance ?</p>
 </span><span class="lnt">31
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">static</span> <span class="k">void</span> <span class="n">WarmupRF</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
-
-<span class="p">{</span>
-    <span class="n">UtilElements</span> <span class="n">e</span><span class="p">;</span>
-    <span class="n">TreeNode</span> <span class="n">treeNode</span><span class="p">;</span>
-    <span class="n">FormRun</span> <span class="n">formRun</span><span class="p">;</span>
-
-    <span class="n">Args</span> <span class="n">args</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Args</span><span class="p">();</span>
-
-    <span class="k">while</span> <span class="k">select</span> <span class="n">e</span>
-        <span class="k">where</span> <span class="n">e</span><span class="p">.</span><span class="n">utilLevel</span>  <span class="p">==</span> <span class="n">UtilEntryLevel</span><span class="p">::</span><span class="kt">var</span>    <span class="c1">//&lt;-- specify layer here
-</span><span class="c1"></span>        <span class="p">&amp;&amp;</span>    <span class="n">e</span><span class="p">.</span><span class="n">recordType</span> <span class="p">==</span> <span class="n">UtilElementType</span><span class="p">::</span><span class="n">Form</span>  <span class="c1">//&lt;-- and only forms
-</span><span class="c1"></span>        <span class="p">&amp;&amp;</span>    <span class="n">e</span><span class="p">.</span><span class="n">name</span> <span class="n">like</span> <span class="s">&#34;nameofformPrefix&#34;</span>
-
-        <span class="p">{</span>
-            <span class="k">try</span>
-            <span class="p">{</span>
-                <span class="n">treeNode</span> <span class="p">=</span> <span class="n">xUtilElements</span><span class="p">::</span><span class="n">getNodeInTree</span><span class="p">(</span><span class="n">xUtilElements</span><span class="p">::</span><span class="n">parentElement</span><span class="p">(</span><span class="n">e</span><span class="p">));</span>
-                <span class="n">args</span><span class="p">.</span><span class="n">name</span><span class="p">(</span><span class="n">treeNode</span><span class="p">.</span><span class="n">AOTname</span><span class="p">());</span>
-                <span class="n">formRun</span> <span class="p">=</span> <span class="n">ClassFactory</span><span class="p">.</span><span class="n">formRunClass</span><span class="p">(</span><span class="n">args</span><span class="p">);</span>
-                <span class="n">formRun</span><span class="p">.</span><span class="n">init</span><span class="p">();</span>
-                <span class="c1">//formRun.run();   //&lt;-- No need to run the form, but sometimes it can load the data
-</span><span class="c1"></span>                <span class="n">formRun</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
-            <span class="p">}</span>
-            <span class="k">catch</span>
-            <span class="p">{</span>
-                <span class="n">Infolog</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
-                <span class="k">continue</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">WarmupRF</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UtilElements</span> <span class="n">e</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">TreeNode</span> <span class="n">treeNode</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">FormRun</span> <span class="n">formRun</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">Args</span> <span class="n">args</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Args</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="k">select</span> <span class="n">e</span>
+</span></span><span class="line"><span class="cl">        <span class="k">where</span> <span class="n">e</span><span class="p">.</span><span class="n">utilLevel</span>  <span class="p">==</span> <span class="n">UtilEntryLevel</span><span class="p">::</span><span class="kt">var</span>    <span class="c1">//&lt;-- specify layer here</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&amp;&amp;</span>    <span class="n">e</span><span class="p">.</span><span class="n">recordType</span> <span class="p">==</span> <span class="n">UtilElementType</span><span class="p">::</span><span class="n">Form</span>  <span class="c1">//&lt;-- and only forms</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&amp;&amp;</span>    <span class="n">e</span><span class="p">.</span><span class="n">name</span> <span class="n">like</span> <span class="s">&#34;nameofformPrefix&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">try</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">treeNode</span> <span class="p">=</span> <span class="n">xUtilElements</span><span class="p">::</span><span class="n">getNodeInTree</span><span class="p">(</span><span class="n">xUtilElements</span><span class="p">::</span><span class="n">parentElement</span><span class="p">(</span><span class="n">e</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">                <span class="n">args</span><span class="p">.</span><span class="n">name</span><span class="p">(</span><span class="n">treeNode</span><span class="p">.</span><span class="n">AOTname</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">                <span class="n">formRun</span> <span class="p">=</span> <span class="n">ClassFactory</span><span class="p">.</span><span class="n">formRunClass</span><span class="p">(</span><span class="n">args</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">formRun</span><span class="p">.</span><span class="k">init</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">//formRun.run();   //&lt;-- No need to run the form, but sometimes it can load the data</span>
+</span></span><span class="line"><span class="cl">                <span class="n">formRun</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">catch</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Infolog</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                <span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>]]></description>
 </item></channel>

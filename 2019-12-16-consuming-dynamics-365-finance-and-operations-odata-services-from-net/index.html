@@ -15,7 +15,7 @@ This is what you should have
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://nuxulu.com/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/" /><meta property="og:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-12-16T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-02-24T15:07:02+07:00" />
+<meta property="article:modified_time" content="2022-03-21T22:30:25+07:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/>
@@ -38,7 +38,7 @@ This is what you should have
             "@type": "WebPage",
             "@id": "https:\/\/nuxulu.com\/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net\/"
         },"genre": "posts","keywords": "Postman, OData, BATCH, integration, .NET","wordcount":  622 ,
-        "url": "https:\/\/nuxulu.com\/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net\/","datePublished": "2019-12-16T00:00:00+00:00","dateModified": "2022-02-24T15:07:02+07:00","publisher": {
+        "url": "https:\/\/nuxulu.com\/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net\/","datePublished": "2019-12-16T00:00:00+00:00","dateModified": "2022-03-21T22:30:25+07:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -230,18 +230,18 @@ You can build the project without problem.</p>
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="k">foreach</span> <span class="p">(</span><span class="n">IEdmEntitySet</span> <span class="n">entitySet</span> <span class="k">in</span> <span class="n">container</span><span class="p">.</span><span class="n">EntitySets</span><span class="p">())</span>
-<span class="p">{</span>
-    <span class="n">IEdmEntityType</span> <span class="n">entitySetElementType</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">EntityType</span><span class="p">();</span>
-    <span class="kt">string</span> <span class="n">entitySetElementTypeName</span> <span class="p">=</span> <span class="n">GetElementTypeName</span><span class="p">(</span><span class="n">entitySetElementType</span><span class="p">,</span> <span class="n">container</span><span class="p">);</span>
-
-    <span class="kt">string</span> <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">EnableNamingAlias</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">Customization</span><span class="p">.</span><span class="n">CustomizeNaming</span><span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">foreach</span> <span class="p">(</span><span class="n">IEdmEntitySet</span> <span class="n">entitySet</span> <span class="k">in</span> <span class="n">container</span><span class="p">.</span><span class="n">EntitySets</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IEdmEntityType</span> <span class="n">entitySetElementType</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">EntityType</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">entitySetElementTypeName</span> <span class="p">=</span> <span class="n">GetElementTypeName</span><span class="p">(</span><span class="n">entitySetElementType</span><span class="p">,</span> <span class="n">container</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">EnableNamingAlias</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">Customization</span><span class="p">.</span><span class="n">CustomizeNaming</span><span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>Modified code:</li>
@@ -268,25 +268,25 @@ You can build the project without problem.</p>
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="k">foreach</span> <span class="p">(</span><span class="n">IEdmEntitySet</span> <span class="n">entitySet</span> <span class="k">in</span> <span class="n">container</span><span class="p">.</span><span class="n">EntitySets</span><span class="p">())</span>
-<span class="p">{</span>
-    <span class="n">IEdmEntityType</span> <span class="n">entitySetElementType</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">EntityType</span><span class="p">();</span>
-    <span class="kt">string</span> <span class="n">entitySetElementTypeName</span> <span class="p">=</span> <span class="n">GetElementTypeName</span><span class="p">(</span><span class="n">entitySetElementType</span><span class="p">,</span> <span class="n">container</span><span class="p">);</span>
-
-    <span class="kt">string</span> <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
-
-    <span class="c1">//start of manual fix 
-</span><span class="c1"></span>    <span class="c1">//only process entity names that containin a specific string, to reduce the string size
-</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(((</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;CUST&#34;</span><span class="p">))</span> <span class="p">||</span> <span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;VEND&#34;</span><span class="p">)))</span> <span class="p">||</span> <span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;SALES&#34;</span><span class="p">)))</span>
-    <span class="p">{</span>
-      <span class="c1">// emd of manual fix
-</span><span class="c1"></span>      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">EnableNamingAlias</span><span class="p">)</span>
-      <span class="p">{</span>
-          <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">Customization</span><span class="p">.</span><span class="n">CustomizeNaming</span><span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">);</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">foreach</span> <span class="p">(</span><span class="n">IEdmEntitySet</span> <span class="n">entitySet</span> <span class="k">in</span> <span class="n">container</span><span class="p">.</span><span class="n">EntitySets</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IEdmEntityType</span> <span class="n">entitySetElementType</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">EntityType</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">entitySetElementTypeName</span> <span class="p">=</span> <span class="n">GetElementTypeName</span><span class="p">(</span><span class="n">entitySetElementType</span><span class="p">,</span> <span class="n">container</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//start of manual fix </span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//only process entity names that containin a specific string, to reduce the string size</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(((</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;CUST&#34;</span><span class="p">))</span> <span class="p">||</span> <span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;VEND&#34;</span><span class="p">)))</span> <span class="p">||</span> <span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;SALES&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// emd of manual fix</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">EnableNamingAlias</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">Customization</span><span class="p">.</span><span class="n">CustomizeNaming</span><span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="4-authentication-configuration">4. Authentication configuration</h1>
 <p>Under AuthenticationUtility project, you need to modify ClientConfiguration.cs follow, you can get all related information for the first step.</p>
@@ -307,7 +307,7 @@ If you are testing with a custom data entity and you get this error</p>
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on February 24, 2022</span>
+                <span>Updated on March 21, 2022</span>
             </div>
             <div class="post-info-license"></div>
         </div>

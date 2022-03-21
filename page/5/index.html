@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-	<meta name="generator" content="Hugo 0.92.2" />
+	<meta name="generator" content="Hugo 0.95.0" />
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
@@ -137,21 +137,21 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="n">AifEntityKeyList</span> <span class="n">createList</span><span class="p">(</span>
-    <span class="n">AifDocumentXml</span>                  <span class="m">_</span><span class="n">xml</span><span class="p">,</span>
-    <span class="n">AifEndpointActionPolicyInfo</span>     <span class="m">_</span><span class="n">actionPolicyInfo</span><span class="p">,</span>
-    <span class="n">AifConstraintListCollection</span>     <span class="m">_</span><span class="n">constraintListCollection</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">AifEntityKeyList</span> <span class="n">aifEntityKeyList</span><span class="p">;</span>
-
-    <span class="n">aifEntityKeyList</span> <span class="p">=</span> <span class="n">super</span><span class="p">(</span><span class="m">_</span><span class="n">xml</span><span class="p">,</span> <span class="m">_</span><span class="n">actionPolicyInfo</span><span class="p">,</span> <span class="m">_</span><span class="n">constraintListCollection</span><span class="p">);</span>
-
-    <span class="c1">// Sales orders are committed - master planning explosion can be executed and confirmed dates be set
-</span><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="n">postSalesOrderCreation</span><span class="p">(</span><span class="n">aifEntityKeyList</span><span class="p">);</span>
-
-    <span class="k">return</span> <span class="n">aifEntityKeyList</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="n">AifEntityKeyList</span> <span class="n">createList</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifDocumentXml</span>                  <span class="m">_</span><span class="n">xml</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifEndpointActionPolicyInfo</span>     <span class="m">_</span><span class="n">actionPolicyInfo</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifConstraintListCollection</span>     <span class="m">_</span><span class="n">constraintListCollection</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifEntityKeyList</span> <span class="n">aifEntityKeyList</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">aifEntityKeyList</span> <span class="p">=</span> <span class="n">super</span><span class="p">(</span><span class="m">_</span><span class="n">xml</span><span class="p">,</span> <span class="m">_</span><span class="n">actionPolicyInfo</span><span class="p">,</span> <span class="m">_</span><span class="n">constraintListCollection</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Sales orders are committed - master planning explosion can be executed and confirmed dates be set</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="n">postSalesOrderCreation</span><span class="p">(</span><span class="n">aifEntityKeyList</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">aifEntityKeyList</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>So, how about customer wants another meaning value beside <code>SalesID</code> likes <code>InventTransId</code> information in <code>SalesLine</code> table or another tables base on your requirement. To do that, we need to customize this method.</p></div><div class="post-footer">
         <a href="/2017-01-11-aif-custom-response-value-in-dynamics-ax-2012-r3/">Read More</a><div class="post-tags">

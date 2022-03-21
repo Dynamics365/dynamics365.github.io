@@ -12,7 +12,7 @@ The scenario is you would like to extend the customer account statement report w
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://nuxulu.com/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/" /><meta property="og:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-10-10T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-02-24T15:07:02+07:00" />
+<meta property="article:modified_time" content="2022-03-21T22:30:25+07:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/>
@@ -32,7 +32,7 @@ The scenario is you would like to extend the customer account statement report w
             "@type": "WebPage",
             "@id": "https:\/\/nuxulu.com\/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations\/"
         },"genre": "posts","keywords": "COC, Extension, SSRS","wordcount":  597 ,
-        "url": "https:\/\/nuxulu.com\/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations\/","datePublished": "2019-10-10T00:00:00+00:00","dateModified": "2022-02-24T15:07:02+07:00","publisher": {
+        "url": "https:\/\/nuxulu.com\/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations\/","datePublished": "2019-10-10T00:00:00+00:00","dateModified": "2022-03-21T22:30:25+07:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -184,12 +184,12 @@ The scenario is you would like to extend the customer account statement report w
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="c1">//Add construct
-</span><span class="c1"></span><span class="k">public</span> <span class="k">static</span> <span class="n">MaxCustAccountStatementExtController_Ext</span> <span class="n">construct</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="n">MaxCustAccountStatementExtController_Ext</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="c1">//Add construct</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">MaxCustAccountStatementExtController_Ext</span> <span class="n">construct</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="n">MaxCustAccountStatementExtController_Ext</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Copy the main method from the standard controller class and add references to the new Controller class</p>
 <div class="highlight"><div class="chroma">
@@ -208,19 +208,19 @@ The scenario is you would like to extend the customer account statement report w
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">SrsPrintMgmtFormLetterController</span> <span class="n">controller</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MaxCustAccountStatementExtController_Ext</span><span class="p">();</span>
-    <span class="n">controller</span><span class="p">.</span><span class="n">parmReportName</span><span class="p">(</span><span class="n">PrintMgmtDocType</span><span class="p">::</span><span class="n">construct</span><span class="p">(</span><span class="n">PrintMgmtDocumentType</span><span class="p">::</span><span class="n">CustAccountStatement</span><span class="p">).</span><span class="n">getDefaultReportFormat</span><span class="p">());</span>
-    <span class="n">controller</span><span class="p">.</span><span class="n">parmArgs</span><span class="p">(</span><span class="m">_</span><span class="n">args</span><span class="p">);</span>
-    <span class="n">MaxCustAccountStatementExtController_Ext</span><span class="p">::</span><span class="n">startControllerOperation</span><span class="p">(</span><span class="n">controller</span><span class="p">,</span> <span class="m">_</span><span class="n">args</span><span class="p">);</span>
-<span class="p">}</span>
- 
-<span class="k">protected</span> <span class="k">static</span> <span class="k">void</span> <span class="n">startControllerOperation</span><span class="p">(</span><span class="n">SrsPrintMgmtFormLetterController</span> <span class="m">_</span><span class="n">controller</span><span class="p">,</span> <span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="m">_</span><span class="n">controller</span><span class="p">.</span><span class="n">startOperation</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SrsPrintMgmtFormLetterController</span> <span class="n">controller</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MaxCustAccountStatementExtController_Ext</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">controller</span><span class="p">.</span><span class="n">parmReportName</span><span class="p">(</span><span class="n">PrintMgmtDocType</span><span class="p">::</span><span class="n">construct</span><span class="p">(</span><span class="n">PrintMgmtDocumentType</span><span class="p">::</span><span class="n">CustAccountStatement</span><span class="p">).</span><span class="n">getDefaultReportFormat</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">controller</span><span class="p">.</span><span class="n">parmArgs</span><span class="p">(</span><span class="m">_</span><span class="n">args</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">MaxCustAccountStatementExtController_Ext</span><span class="p">::</span><span class="n">startControllerOperation</span><span class="p">(</span><span class="n">controller</span><span class="p">,</span> <span class="m">_</span><span class="n">args</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="k">protected</span> <span class="k">static</span> <span class="k">void</span> <span class="n">startControllerOperation</span><span class="p">(</span><span class="n">SrsPrintMgmtFormLetterController</span> <span class="m">_</span><span class="n">controller</span><span class="p">,</span> <span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="m">_</span><span class="n">controller</span><span class="p">.</span><span class="n">startOperation</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Optional method, determine which default design for report</p>
 <div class="highlight"><div class="chroma">
@@ -236,16 +236,16 @@ The scenario is you would like to extend the customer account statement report w
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">protected</span> <span class="k">void</span> <span class="n">outputReport</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="n">SRSCatalogItemName</span>  <span class="n">reportDesign</span><span class="p">;</span>
-    <span class="n">reportDesign</span> <span class="p">=</span> <span class="n">ssrsReportStr</span><span class="p">(</span><span class="n">MaxCustAccountStatementExt</span><span class="p">,</span><span class="n">Report</span><span class="p">);</span>
-    <span class="k">this</span><span class="p">.</span><span class="n">parmReportName</span><span class="p">(</span><span class="n">reportDesign</span><span class="p">);</span>
-    <span class="k">this</span><span class="p">.</span><span class="n">parmReportContract</span><span class="p">().</span><span class="n">parmReportName</span><span class="p">(</span><span class="n">reportDesign</span><span class="p">);</span>
-    <span class="n">formletterReport</span><span class="p">.</span><span class="n">parmReportRun</span><span class="p">().</span><span class="n">settingDetail</span><span class="p">().</span><span class="n">parmReportFormatName</span><span class="p">(</span><span class="n">reportDesign</span><span class="p">);</span>
-    <span class="n">super</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">protected</span> <span class="k">void</span> <span class="n">outputReport</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SRSCatalogItemName</span>  <span class="n">reportDesign</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">reportDesign</span> <span class="p">=</span> <span class="n">ssrsReportStr</span><span class="p">(</span><span class="n">MaxCustAccountStatementExt</span><span class="p">,</span><span class="n">Report</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="n">parmReportName</span><span class="p">(</span><span class="n">reportDesign</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="n">parmReportContract</span><span class="p">().</span><span class="n">parmReportName</span><span class="p">(</span><span class="n">reportDesign</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">formletterReport</span><span class="p">.</span><span class="n">parmReportRun</span><span class="p">().</span><span class="n">settingDetail</span><span class="p">().</span><span class="n">parmReportFormatName</span><span class="p">(</span><span class="n">reportDesign</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="5-create-new-report-handler-class">5. Create new report handler class</h3>
 <p><em><strong>class MaxCustAccountStatementHandler {}</strong></em></p>
@@ -263,13 +263,13 @@ The scenario is you would like to extend the customer account statement report w
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="na">[DataEventHandlerAttribute(tableStr(CustAccountStatementExtTmp), DataEventType::Inserting)]</span>
-<span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">CustAccountStatementExtTmpInsertEvent</span><span class="p">(</span><span class="n">Common</span> <span class="n">c</span><span class="p">,</span> <span class="n">DataEventArgs</span> <span class="n">e</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">CustAccountStatementExtTmp</span>    <span class="n">tempTable</span> <span class="p">=</span> <span class="n">c</span><span class="p">;</span>
-    <span class="n">tempTable</span><span class="p">.</span><span class="n">MaxTxT</span> <span class="p">=</span> <span class="s">&#34;Hello world&#34;</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="na">[DataEventHandlerAttribute(tableStr(CustAccountStatementExtTmp), DataEventType::Inserting)]</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">CustAccountStatementExtTmpInsertEvent</span><span class="p">(</span><span class="n">Common</span> <span class="n">c</span><span class="p">,</span> <span class="n">DataEventArgs</span> <span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">CustAccountStatementExtTmp</span>    <span class="n">tempTable</span> <span class="p">=</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tempTable</span><span class="p">.</span><span class="n">MaxTxT</span> <span class="p">=</span> <span class="s">&#34;Hello world&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>Add a data processing post-handler, inserting operations that use a single pass over the result set of the standard solution.</li>
@@ -291,20 +291,20 @@ The scenario is you would like to extend the customer account statement report w
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="na">[PostHandlerFor(classStr(CustAccountStatementExtDP), methodstr(CustAccountStatementExtDP, processReport))]</span>
-<span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">TmpTablePostHandler</span><span class="p">(</span><span class="n">XppPrePostArgs</span> <span class="n">arguments</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">CustAccountStatementExtDP</span> <span class="n">dpInstance</span> <span class="p">=</span> <span class="n">arguments</span><span class="p">.</span><span class="n">getThis</span><span class="p">()</span> <span class="k">as</span> <span class="n">CustAccountStatementExtDP</span><span class="p">;</span>
-    <span class="n">CustAccountStatementExtTmp</span> <span class="n">tmpTable</span> <span class="p">=</span> <span class="n">dpInstance</span><span class="p">.</span><span class="n">getCustAccountStatementExtTmp</span><span class="p">();</span>
-    <span class="n">ttsbegin</span><span class="p">;</span>
-    <span class="k">while</span> <span class="k">select</span> <span class="n">forUpdate</span> <span class="n">tmpTable</span>
-    <span class="p">{</span>
-        <span class="n">tmpTable</span><span class="p">.</span><span class="n">MaxTxT</span> <span class="p">=</span> <span class="s">&#34;Hello world&#34;</span><span class="p">;</span>
-        <span class="n">tmpTable</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
-    <span class="p">}</span>
-    <span class="n">ttscommit</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="na">[PostHandlerFor(classStr(CustAccountStatementExtDP), methodstr(CustAccountStatementExtDP, processReport))]</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">TmpTablePostHandler</span><span class="p">(</span><span class="n">XppPrePostArgs</span> <span class="n">arguments</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">CustAccountStatementExtDP</span> <span class="n">dpInstance</span> <span class="p">=</span> <span class="n">arguments</span><span class="p">.</span><span class="n">getThis</span><span class="p">()</span> <span class="k">as</span> <span class="n">CustAccountStatementExtDP</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">CustAccountStatementExtTmp</span> <span class="n">tmpTable</span> <span class="p">=</span> <span class="n">dpInstance</span><span class="p">.</span><span class="n">getCustAccountStatementExtTmp</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ttsbegin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="k">select</span> <span class="n">forUpdate</span> <span class="n">tmpTable</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">tmpTable</span><span class="p">.</span><span class="n">MaxTxT</span> <span class="p">=</span> <span class="s">&#34;Hello world&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">tmpTable</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ttscommit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="6-add-a-delegate-handler-method-to-start-to-use-your-custom-report">6. Add a delegate handler method to start to use your custom report.</h3>
 <p>In this example, extend the <em><strong>getDefaultReportFormatDelegate</strong></em> method in the <em><strong>PrintMgtDocTypeHandlerExt</strong></em> class by using the following code.</p>
@@ -325,20 +325,20 @@ The scenario is you would like to extend the customer account statement report w
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">class</span> <span class="nc">MaxPrintMgtDocTypeHandlersExt</span>
-<span class="p">{</span>
-<span class="na">    [SubscribesTo(classstr(PrintMgmtDocType), delegatestr(PrintMgmtDocType, getDefaultReportFormatDelegate))]</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">getDefaultReportFormatDelegate</span><span class="p">(</span><span class="n">PrintMgmtDocumentType</span> <span class="m">_d</span><span class="n">ocType</span><span class="p">,</span> <span class="n">EventHandlerResult</span> <span class="m">_</span><span class="n">result</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">switch</span> <span class="p">(</span><span class="m">_d</span><span class="n">ocType</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="k">case</span> <span class="n">PrintMgmtDocumentType</span><span class="p">::</span><span class="n">CustAccountStatement</span><span class="p">:</span>
-                <span class="m">_</span><span class="n">result</span><span class="p">.</span><span class="n">result</span><span class="p">(</span><span class="n">ssrsReportStr</span><span class="p">(</span><span class="n">MaxCustAccountStatementExt</span><span class="p">,</span> <span class="n">Report</span><span class="p">));</span>
-                <span class="k">break</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MaxPrintMgtDocTypeHandlersExt</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="na">    [SubscribesTo(classstr(PrintMgmtDocType), delegatestr(PrintMgmtDocType, getDefaultReportFormatDelegate))]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">getDefaultReportFormatDelegate</span><span class="p">(</span><span class="n">PrintMgmtDocumentType</span> <span class="m">_d</span><span class="n">ocType</span><span class="p">,</span> <span class="n">EventHandlerResult</span> <span class="m">_</span><span class="n">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">switch</span> <span class="p">(</span><span class="m">_d</span><span class="n">ocType</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">case</span> <span class="n">PrintMgmtDocumentType</span><span class="p">::</span><span class="n">CustAccountStatement</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="m">_</span><span class="n">result</span><span class="p">.</span><span class="n">result</span><span class="p">(</span><span class="n">ssrsReportStr</span><span class="p">(</span><span class="n">MaxCustAccountStatementExt</span><span class="p">,</span> <span class="n">Report</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="7-create-extension-for-the-existing-menu-items">7. Create extension for the existing menu items</h3>
 <p>Navigating to the <strong>CustAccountStatementExt</strong> output menu item and create extension.</p>
@@ -366,7 +366,7 @@ Click <strong>Print Management</strong>, find the document configuration setting
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on February 24, 2022</span>
+                <span>Updated on March 21, 2022</span>
             </div>
             <div class="post-info-license"></div>
         </div>

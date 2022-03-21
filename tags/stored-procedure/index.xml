@@ -71,70 +71,68 @@
 </span><span class="lnt">57
 </span><span class="lnt">58
 </span><span class="lnt">59
-</span><span class="lnt">60
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#">
-<span class="k">static</span> <span class="k">void</span> <span class="n">execExternalDatabase</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">LoginProperty</span> <span class="n">loginProperty</span><span class="p">;</span>
-    <span class="n">ODBCConnection</span> <span class="n">odbcConnection</span><span class="p">;</span>
-    <span class="n">Statement</span> <span class="n">statement</span><span class="p">;</span>
-    <span class="n">ResultSet</span> <span class="n">resultSet</span><span class="p">;</span>
-   
-	<span class="n">ResultSetMetaData</span> <span class="n">resultSetMetaData</span><span class="p">;</span>
-    <span class="n">Counter</span> <span class="n">counter</span><span class="p">;</span>
-    <span class="n">str</span> <span class="n">sql</span><span class="p">;</span>
-    <span class="n">SqlStatementExecutePermission</span> <span class="n">perm</span><span class="p">;</span>
-    <span class="p">;</span>
- 
-   
-    <span class="n">loginProperty</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LoginProperty</span><span class="p">();</span>
-    <span class="n">loginProperty</span><span class="p">.</span><span class="n">setServer</span><span class="p">(</span><span class="s">&#34;SERVERNAME Here&#34;</span><span class="p">);</span> <span class="c1">// Replace your Database Server Name here
-</span><span class="c1"></span>    <span class="n">loginProperty</span><span class="p">.</span><span class="n">setDatabase</span><span class="p">(</span><span class="s">&#34;DemoDB&#34;</span><span class="p">);</span> <span class="c1">//Replace your Database name here
-</span><span class="c1"></span>    <span class="n">odbcConnection</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ODBCConnection</span><span class="p">(</span><span class="n">loginProperty</span><span class="p">);</span> <span class="c1">// setting odbc connection here.
-</span><span class="c1"></span> 
-    <span class="c1">// ODBC Connection to create statement
-</span><span class="c1"></span>    <span class="n">statement</span> <span class="p">=</span> <span class="n">odbcConnection</span><span class="p">.</span><span class="n">createStatement</span><span class="p">();</span>
- 
-    <span class="c1">// Replace the StoredProcedure you want to execute.
-</span><span class="c1"></span>    <span class="n">sql</span> <span class="p">=</span> <span class="n">strfmt</span><span class="p">(</span><span class="err">&#39;</span><span class="n">EXEC</span><span class="p">[</span><span class="n">myStoredProcedureName</span><span class="p">]</span><span class="err">&#39;</span><span class="p">);</span>
- 
-    <span class="c1">// Set code access permission to Execute
-</span><span class="c1"></span>    <span class="n">perm</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlStatementExecutePermission</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
-    <span class="n">perm</span><span class="p">.</span><span class="n">assert</span><span class="p">();</span>
- 
-    <span class="k">try</span>
-    <span class="p">{</span>
-        <span class="c1">// if Stored Procedure has Select query use executeQuery method.
-</span><span class="c1"></span>       
-        <span class="n">resultSet</span> <span class="p">=</span> <span class="n">statement</span><span class="p">.</span><span class="n">executeQuery</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
-        <span class="n">resultSet</span><span class="p">.</span><span class="n">next</span><span class="p">();</span>
-       
-        <span class="n">resultSetMetaData</span> <span class="p">=</span> <span class="n">resultSet</span><span class="p">.</span><span class="n">getMetaData</span><span class="p">();</span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">counter</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span> <span class="n">counter</span> <span class="p">&lt;=</span> <span class="n">resultSetMetaData</span><span class="p">.</span><span class="n">getColumnCount</span><span class="p">();</span> <span class="n">counter</span><span class="p">++)</span>
-        <span class="p">{</span>
-            <span class="k">switch</span><span class="p">(</span><span class="n">resultSetMetaData</span><span class="p">.</span><span class="n">getColumnType</span><span class="p">(</span><span class="n">counter</span><span class="p">))</span>
-            <span class="p">{</span>
-                <span class="k">case</span> <span class="m">0</span><span class="p">,</span><span class="m">1</span> <span class="p">:</span>
-                    <span class="n">info</span><span class="p">(</span><span class="n">resultSet</span><span class="p">.</span><span class="n">getString</span><span class="p">(</span><span class="n">counter</span><span class="p">));</span>
-                <span class="k">break</span><span class="p">;</span>
-                <span class="k">case</span> <span class="m">3</span><span class="p">:</span>
-                    <span class="n">info</span><span class="p">(</span><span class="n">date2StrUsr</span><span class="p">(</span><span class="n">resultSet</span><span class="p">.</span><span class="n">getdate</span><span class="p">(</span><span class="n">counter</span><span class="p">)));</span>
-                <span class="k">break</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">catch</span> <span class="p">(</span><span class="n">exception</span><span class="p">::</span><span class="n">Error</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">print</span> <span class="s">&#34;An error occured in the query.&#34;</span><span class="p">;</span>
-        <span class="n">pause</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="c1">// Code access permission scope ends here.
-</span><span class="c1"></span>    <span class="n">CodeAccessPermission</span><span class="p">::</span><span class="n">revertAssert</span><span class="p">();</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">execExternalDatabase</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">LoginProperty</span> <span class="n">loginProperty</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ODBCConnection</span> <span class="n">odbcConnection</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Statement</span> <span class="n">statement</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ResultSet</span> <span class="n">resultSet</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   
+</span></span><span class="line"><span class="cl">	<span class="n">ResultSetMetaData</span> <span class="n">resultSetMetaData</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Counter</span> <span class="n">counter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">str</span> <span class="n">sql</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SqlStatementExecutePermission</span> <span class="n">perm</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">   
+</span></span><span class="line"><span class="cl">    <span class="n">loginProperty</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LoginProperty</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">loginProperty</span><span class="p">.</span><span class="n">setServer</span><span class="p">(</span><span class="s">&#34;SERVERNAME Here&#34;</span><span class="p">);</span> <span class="c1">// Replace your Database Server Name here</span>
+</span></span><span class="line"><span class="cl">    <span class="n">loginProperty</span><span class="p">.</span><span class="n">setDatabase</span><span class="p">(</span><span class="s">&#34;DemoDB&#34;</span><span class="p">);</span> <span class="c1">//Replace your Database name here</span>
+</span></span><span class="line"><span class="cl">    <span class="n">odbcConnection</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ODBCConnection</span><span class="p">(</span><span class="n">loginProperty</span><span class="p">);</span> <span class="c1">// setting odbc connection here.</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="c1">// ODBC Connection to create statement</span>
+</span></span><span class="line"><span class="cl">    <span class="n">statement</span> <span class="p">=</span> <span class="n">odbcConnection</span><span class="p">.</span><span class="n">createStatement</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="c1">// Replace the StoredProcedure you want to execute.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sql</span> <span class="p">=</span> <span class="n">strfmt</span><span class="p">(</span><span class="err">&#39;</span><span class="n">EXEC</span><span class="p">[</span><span class="n">myStoredProcedureName</span><span class="p">]</span><span class="err">&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="c1">// Set code access permission to Execute</span>
+</span></span><span class="line"><span class="cl">    <span class="n">perm</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlStatementExecutePermission</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">perm</span><span class="p">.</span><span class="n">assert</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="k">try</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// if Stored Procedure has Select query use executeQuery method.</span>
+</span></span><span class="line"><span class="cl">       
+</span></span><span class="line"><span class="cl">        <span class="n">resultSet</span> <span class="p">=</span> <span class="n">statement</span><span class="p">.</span><span class="n">executeQuery</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">resultSet</span><span class="p">.</span><span class="n">next</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">       
+</span></span><span class="line"><span class="cl">        <span class="n">resultSetMetaData</span> <span class="p">=</span> <span class="n">resultSet</span><span class="p">.</span><span class="n">getMetaData</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="n">counter</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span> <span class="n">counter</span> <span class="p">&lt;=</span> <span class="n">resultSetMetaData</span><span class="p">.</span><span class="n">getColumnCount</span><span class="p">();</span> <span class="n">counter</span><span class="p">++)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">switch</span><span class="p">(</span><span class="n">resultSetMetaData</span><span class="p">.</span><span class="n">getColumnType</span><span class="p">(</span><span class="n">counter</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">case</span> <span class="m">0</span><span class="p">,</span><span class="m">1</span> <span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">info</span><span class="p">(</span><span class="n">resultSet</span><span class="p">.</span><span class="n">getString</span><span class="p">(</span><span class="n">counter</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="k">case</span> <span class="m">3</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">info</span><span class="p">(</span><span class="n">date2StrUsr</span><span class="p">(</span><span class="n">resultSet</span><span class="p">.</span><span class="n">getdate</span><span class="p">(</span><span class="n">counter</span><span class="p">)));</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">catch</span> <span class="p">(</span><span class="n">exception</span><span class="p">::</span><span class="n">Error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">print</span> <span class="s">&#34;An error occured in the query.&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pause</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Code access permission scope ends here.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">CodeAccessPermission</span><span class="p">::</span><span class="n">revertAssert</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Used a simple select query in the stored procedure and the result will be displayed on the infolog.</p>
 ]]></description>
@@ -170,30 +168,30 @@
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">AssemblyLoadEventArgs</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">Connection</span> <span class="n">con</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Connection</span><span class="p">();</span>
-    <span class="n">Statement</span> <span class="n">stmt</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Con</span><span class="p">.</span><span class="n">createStatement</span><span class="p">();</span>
- 
-    <span class="n">ResultSet</span> <span class="n">r</span><span class="p">;</span>
-    <span class="n">str</span> <span class="n">sql</span><span class="p">;</span>
- 
-    <span class="n">SqlStatementExecutePermission</span> <span class="n">perm</span><span class="p">;</span>
-    <span class="n">sql</span> <span class="p">=</span> <span class="n">stmt</span><span class="p">(</span><span class="err">&#39;</span><span class="n">EXEC</span> <span class="p">[</span><span class="n">StoreprocedureName</span><span class="p">]</span><span class="err">&#39;</span><span class="p">);</span>
-    <span class="n">perm</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlStatementExecutePermission</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
-    <span class="n">perm</span><span class="p">.</span><span class="n">assert</span><span class="p">();</span>
-    <span class="k">try</span>
-    <span class="p">{</span>
-        <span class="n">stmt</span><span class="p">.</span><span class="n">executeUpdate</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span><span class="p">::</span><span class="n">Error</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">print</span> <span class="s">&#34;An error occured in the query&#34;</span><span class="p">;</span>
-        <span class="n">pause</span><span class="p">;</span>
-    <span class="p">}</span>   
-    <span class="n">CodeAccessPermission</span><span class="p">::</span><span class="n">revertAssert</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">AssemblyLoadEventArgs</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Connection</span> <span class="n">con</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Connection</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Statement</span> <span class="n">stmt</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Con</span><span class="p">.</span><span class="n">createStatement</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="n">ResultSet</span> <span class="n">r</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">str</span> <span class="n">sql</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="n">SqlStatementExecutePermission</span> <span class="n">perm</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sql</span> <span class="p">=</span> <span class="n">stmt</span><span class="p">(</span><span class="err">&#39;</span><span class="n">EXEC</span> <span class="p">[</span><span class="n">StoreprocedureName</span><span class="p">]</span><span class="err">&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">perm</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlStatementExecutePermission</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">perm</span><span class="p">.</span><span class="n">assert</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stmt</span><span class="p">.</span><span class="n">executeUpdate</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span><span class="p">::</span><span class="n">Error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">print</span> <span class="s">&#34;An error occured in the query&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pause</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>   
+</span></span><span class="line"><span class="cl">    <span class="n">CodeAccessPermission</span><span class="p">::</span><span class="n">revertAssert</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>]]></description>
 </item></channel>

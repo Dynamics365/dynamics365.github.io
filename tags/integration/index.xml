@@ -184,176 +184,176 @@
 </span><span class="lnt">169
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="k">class</span> <span class="nc">MaxGeneratePO</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="c1">// number of purchase orders
-</span><span class="c1"></span>        <span class="n">NumberSeq</span> <span class="n">numberSeq</span><span class="p">;</span>
-        <span class="n">PurchTable</span> <span class="n">purchTable</span><span class="p">;</span>
-        <span class="n">PurchLine</span> <span class="n">purchLine</span><span class="p">;</span>
-        <span class="n">InventDim</span> <span class="n">inventDim</span><span class="p">;</span>
-
-        <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="p">&lt;=</span> <span class="m">3</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">ttsBegin</span><span class="p">;</span>
-            <span class="n">MaxGeneratePO</span> <span class="n">createPO</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MaxGeneratePO</span><span class="p">();</span>
-            <span class="n">numberSeq</span> <span class="p">=</span> <span class="n">NumberSeq</span><span class="p">::</span><span class="n">newGetNum</span><span class="p">(</span><span class="n">PurchParameters</span><span class="p">::</span><span class="n">numRefPurchId</span><span class="p">());</span>
-            <span class="n">numberSeq</span><span class="p">.</span><span class="n">used</span><span class="p">();</span>
-            <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span> <span class="p">=</span> <span class="n">numberSeq</span><span class="p">.</span><span class="n">num</span><span class="p">();</span>
-            <span class="n">purchTable</span><span class="p">.</span><span class="n">initValue</span><span class="p">();</span>
-            <span class="n">purchTable</span><span class="p">.</span><span class="n">initFromVendTable</span><span class="p">(</span><span class="n">VendTable</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="err">&#39;</span><span class="n">US</span><span class="p">-</span><span class="m">101</span><span class="err">&#39;</span><span class="p">));</span>
-
-            <span class="k">if</span> <span class="p">(!</span><span class="n">purchTable</span><span class="p">.</span><span class="n">validateWrite</span><span class="p">())</span>
-            <span class="p">{</span>
-                <span class="k">throw</span> <span class="n">Exception</span><span class="p">::</span><span class="n">Error</span><span class="p">;</span>
-            <span class="p">}</span>
-
-            <span class="n">purchTable</span><span class="p">.</span><span class="n">insert</span><span class="p">();</span>
-            <span class="n">inventDim</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
-            <span class="n">purchLine</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
-            <span class="n">purchLine</span><span class="p">.</span><span class="n">initValue</span><span class="p">();</span>
-
-            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchId</span> <span class="p">=</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">;</span>
-            <span class="n">purchLine</span><span class="p">.</span><span class="n">ItemId</span> <span class="p">=</span> <span class="err">&#39;</span><span class="n">D0002</span><span class="err">&#39;</span><span class="p">;</span>
-            <span class="n">inventDim</span><span class="p">.</span><span class="n">InventSiteId</span> <span class="p">=</span> <span class="s">&#34;1&#34;</span><span class="p">;</span>
-            <span class="n">inventDim</span><span class="p">.</span><span class="n">InventLocationId</span> <span class="p">=</span> <span class="s">&#34;11&#34;</span><span class="p">;</span>
-            <span class="n">purchLine</span><span class="p">.</span><span class="n">InventDimId</span><span class="p">=</span><span class="n">InventDim</span><span class="p">::</span><span class="n">findOrCreate</span><span class="p">(</span><span class="n">inventDim</span><span class="p">).</span><span class="n">inventDimId</span> <span class="p">;</span>
-            <span class="n">purchLine</span><span class="p">.</span><span class="n">createLine</span><span class="p">(</span><span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
-
-            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchQty</span> <span class="p">=</span> <span class="m">5</span><span class="p">;</span>
-            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchUnit</span> <span class="p">=</span> <span class="s">&#34;ea&#34;</span><span class="p">;</span>
-            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchPrice</span> <span class="p">=</span> <span class="n">createPO</span><span class="p">.</span><span class="n">randomAmount</span><span class="p">();</span> <span class="c1">// get random amount nubmer
-</span><span class="c1"></span>            <span class="n">purchLine</span><span class="p">.</span><span class="n">LineAmount</span> <span class="p">=</span> <span class="n">purchLine</span><span class="p">.</span><span class="n">calcLineAmount</span><span class="p">();</span>
-            <span class="n">purchLine</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
-            
-            <span class="c1">//PO confirm
-</span><span class="c1"></span>            <span class="n">PurchFormLetter</span> <span class="n">purchFormLetter</span><span class="p">;</span>
-            <span class="n">PurchFormLetter</span> <span class="n">purchFormLetterPack</span><span class="p">;</span>
-            <span class="n">purchFormLetter</span> <span class="p">=</span> <span class="n">PurchFormLetter</span><span class="p">::</span><span class="n">construct</span><span class="p">(</span><span class="n">DocumentStatus</span><span class="p">::</span><span class="n">PurchaseOrder</span><span class="p">);</span>
-            <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">purchTable</span><span class="p">,</span>
-                                <span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;ConNum_%1&#34;</span><span class="p">,</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">),</span>
-                                <span class="n">systemDateGet</span><span class="p">(),</span>
-                                <span class="n">PurchUpdate</span><span class="p">::</span><span class="n">All</span><span class="p">,</span>
-                                <span class="n">AccountOrder</span><span class="p">::</span><span class="n">None</span><span class="p">,</span>
-                                <span class="n">NoYes</span><span class="p">::</span><span class="n">No</span><span class="p">,</span>
-                                <span class="n">NoYes</span><span class="p">::</span><span class="n">no</span><span class="p">);</span>
-            <span class="c1">//Product receipt
-</span><span class="c1"></span>            <span class="n">createPO</span><span class="p">.</span><span class="n">proceed</span><span class="p">(</span><span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">,</span> <span class="n">purchLine</span><span class="p">.</span><span class="n">ItemId</span><span class="p">,</span><span class="n">purchLine</span><span class="p">.</span><span class="n">InventDimId</span><span class="p">,</span><span class="n">purchLine</span><span class="p">.</span><span class="n">PurchQty</span><span class="p">,</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;RptNum_%1&#34;</span><span class="p">,</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">));</span>
-            <span class="c1">//Post PO
-</span><span class="c1"></span>            <span class="n">createPO</span><span class="p">.</span><span class="n">postPOInvoice</span><span class="p">(</span><span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">,</span> <span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;RptNum_%1&#34;</span><span class="p">,</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">));</span>
-
-            <span class="n">info</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;Purchase order &#39;%1&#39; has been created&#34;</span><span class="p">,</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">));</span>
-            <span class="n">ttsCommit</span><span class="p">;</span>
-            <span class="n">i</span><span class="p">++;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="n">boolean</span> <span class="n">proceed</span><span class="p">(</span><span class="n">PurchId</span> <span class="m">_</span><span class="n">purchId</span><span class="p">,</span> <span class="n">ItemId</span> <span class="m">_</span><span class="n">itemId</span><span class="p">,</span><span class="n">inventDimId</span> <span class="m">_</span><span class="n">inventDimId</span><span class="p">,</span> <span class="n">PurchQty</span> <span class="m">_</span><span class="n">qty</span><span class="p">,</span> <span class="n">PackingSlipId</span> <span class="m">_</span><span class="n">productReceiptNumber</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">return</span>
-            <span class="k">this</span><span class="p">.</span><span class="n">generateProductReceipt</span><span class="p">(</span><span class="m">_</span><span class="n">purchId</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">addToPurchLineList</span><span class="p">(</span><span class="m">_</span><span class="n">purchId</span><span class="p">,</span> <span class="m">_</span><span class="n">itemId</span><span class="p">,</span> <span class="m">_</span><span class="n">inventDimId</span><span class="p">,</span> <span class="m">_</span><span class="n">qty</span><span class="p">),</span> <span class="m">_</span><span class="n">productReceiptNumber</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="n">boolean</span> <span class="n">generateProductReceipt</span><span class="p">(</span><span class="n">PurchId</span> <span class="m">_</span><span class="n">purchId</span><span class="p">,</span> <span class="n">List</span> <span class="m">_</span><span class="n">purchLineList</span><span class="p">,</span> <span class="n">PackingSlipId</span> <span class="m">_</span><span class="n">productReceiptNumber</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">boolean</span> <span class="n">ret</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
-        <span class="n">PurchFormLetter</span> <span class="n">purchFromLetter</span><span class="p">;</span>
-        <span class="n">PurchTable</span> <span class="n">purchTable</span> <span class="p">=</span> <span class="n">PurchTable</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="m">_</span><span class="n">purchId</span><span class="p">);</span>
-
-        <span class="k">try</span>
-        <span class="p">{</span>
-            <span class="n">ttsbegin</span><span class="p">;</span>
-            <span class="n">purchFromLetter</span> <span class="p">=</span> <span class="n">PurchFormLetter</span><span class="p">::</span><span class="n">construct</span><span class="p">(</span><span class="n">DocumentStatus</span><span class="p">::</span><span class="n">PackingSlip</span><span class="p">);</span>
-            <span class="n">purchFromLetter</span><span class="p">.</span><span class="n">createFromLines</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
-            <span class="n">purchFromLetter</span><span class="p">.</span><span class="n">parmLineList</span><span class="p">(</span><span class="m">_</span><span class="n">purchLineList</span><span class="p">.</span><span class="n">pack</span><span class="p">());</span>
-            <span class="n">purchFromLetter</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">purchTable</span><span class="p">,</span> <span class="m">_</span><span class="n">productReceiptNumber</span><span class="p">,</span>
-                                <span class="n">DateTimeUtil</span><span class="p">::</span><span class="n">getToday</span><span class="p">(</span><span class="n">DateTimeUtil</span><span class="p">::</span><span class="n">getUserPreferredTimeZone</span><span class="p">()),</span>
-                                <span class="n">PurchUpdate</span><span class="p">::</span><span class="n">All</span><span class="p">);</span>
-            <span class="n">ttscommit</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="k">catch</span>
-        <span class="p">{</span>
-            <span class="n">ret</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="n">List</span> <span class="n">addToPurchLineList</span><span class="p">(</span><span class="n">PurchId</span> <span class="m">_</span><span class="n">purchId</span><span class="p">,</span> <span class="n">ItemId</span> <span class="m">_</span><span class="n">itemId</span><span class="p">,</span><span class="n">inventDimId</span> <span class="m">_</span><span class="n">inventDimId</span><span class="p">,</span> <span class="n">PurchQty</span> <span class="m">_</span><span class="n">qty</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">List</span> <span class="n">purchLineList</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Record</span><span class="p">);</span>
-        <span class="n">PurchLine</span> <span class="n">purchLine</span> <span class="p">=</span> <span class="n">PurchLine</span><span class="p">::</span><span class="n">findItemIdInventDimId</span><span class="p">(</span><span class="m">_</span><span class="n">purchId</span><span class="p">,</span> <span class="m">_</span><span class="n">itemId</span><span class="p">,</span> <span class="m">_</span><span class="n">inventDimId</span><span class="p">);</span>
-
-        <span class="k">if</span><span class="p">(</span><span class="n">purchLine</span> <span class="p">&amp;&amp;</span> <span class="m">_</span><span class="n">qty</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchReceivedNow</span> <span class="p">=</span> <span class="m">_</span><span class="n">qty</span><span class="p">;</span>
-            <span class="n">purchline</span><span class="p">.</span><span class="n">modifiedField</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchLine</span><span class="p">,</span> <span class="n">PurchReceivedNow</span><span class="p">));</span>
-            <span class="n">purchLineList</span><span class="p">.</span><span class="n">addEnd</span><span class="p">(</span><span class="n">purchLine</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="n">purchLineList</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="k">void</span> <span class="n">postPOInvoice</span><span class="p">(</span><span class="n">PurchId</span> <span class="n">purchId</span><span class="p">,</span> <span class="n">PackingSlipId</span> <span class="n">packingSlipId</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">TmpFrmVirtual</span>               <span class="n">tmpFrmVirtualVend</span><span class="p">;</span>
-        <span class="n">PurchFormLetter_Invoice</span>     <span class="n">purchFormLetter</span><span class="p">;</span>
-        <span class="n">VendPackingSlipJour</span>         <span class="n">vendPackingSlipJour</span><span class="p">;</span>
-        <span class="n">SysQueryRun</span>                 <span class="n">chooseLinesQuery</span><span class="p">;</span>
-        <span class="n">SysQueryRun</span>                 <span class="n">chooseLinesPendingInvoiceQuery</span><span class="p">;</span>
-        <span class="n">container</span>                   <span class="n">conTmpFrmVirtual</span><span class="p">;</span>
-        <span class="n">List</span>                        <span class="n">selectedList</span>    <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Record</span><span class="p">);</span>
-
-        <span class="k">select</span> <span class="n">firstonly</span> <span class="n">vendPackingSlipJour</span>
-                    <span class="k">where</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">PurchId</span> <span class="p">==</span> <span class="n">purchId</span>
-            <span class="p">&amp;&amp;</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">PackingSlipId</span> <span class="p">==</span> <span class="n">packingSlipId</span><span class="p">;</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="n">vendPackingSlipJour</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
-            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">TableNum</span>  <span class="p">=</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">TableId</span><span class="p">;</span>
-            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">RecordNo</span>  <span class="p">=</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">RecId</span><span class="p">;</span>
-            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">NoYes</span>     <span class="p">=</span> <span class="n">NoYes</span><span class="p">::</span><span class="n">Yes</span><span class="p">;</span>
-            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">Id</span>        <span class="p">=</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">PurchId</span><span class="p">;</span>
-            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">insert</span><span class="p">();</span>
-        <span class="p">}</span>
-
-        <span class="n">chooseLinesQuery</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SysQueryRun</span><span class="p">(</span><span class="n">queryStr</span><span class="p">(</span><span class="n">PurchUpdate</span><span class="p">));</span>
-        <span class="n">chooseLinesQuery</span><span class="p">.</span><span class="n">query</span><span class="p">().</span><span class="n">addDataSource</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">VendInvoiceInfoTable</span><span class="p">)).</span><span class="n">enabled</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
-
-        <span class="c1">// chooseLinesPendingInvoiceQuery needs to be initialized, although it will not be used
-</span><span class="c1"></span>        <span class="n">chooseLinesPendingInvoiceQuery</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SysQueryRun</span><span class="p">(</span><span class="n">queryStr</span><span class="p">(</span><span class="n">PurchUpdatePendingInvoice</span><span class="p">));</span>
-        <span class="n">chooseLinesPendingInvoiceQuery</span><span class="p">.</span><span class="n">query</span><span class="p">().</span><span class="n">dataSourceTable</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">PurchTable</span><span class="p">)).</span><span class="n">addRange</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchTable</span><span class="p">,</span><span class="n">PurchId</span><span class="p">)).</span><span class="k">value</span><span class="p">(</span><span class="n">queryValue</span><span class="p">(</span><span class="err">&#39;&#39;</span><span class="p">));</span>
-           
-        <span class="n">purchFormLetter</span> <span class="p">=</span> <span class="n">PurchFormLetter</span><span class="p">::</span><span class="n">construct</span><span class="p">(</span><span class="n">DocumentStatus</span><span class="p">::</span><span class="n">Invoice</span><span class="p">);</span>
-        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">chooseLinesQuery</span> <span class="p">(</span><span class="n">chooseLinesQuery</span><span class="p">);</span>
-        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">parmQueryChooseLinesPendingInvoice</span><span class="p">(</span><span class="n">chooseLinesPendingInvoiceQuery</span><span class="p">);</span>
-        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">purchTable</span> <span class="p">(</span><span class="n">PurchTable</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="n">PurchId</span><span class="p">));</span>
-        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">transDate</span> <span class="p">(</span><span class="n">systemDateGet</span><span class="p">());</span>
-        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">parmParmTableNum</span> <span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;%1&#34;</span><span class="p">,</span><span class="n">packingSlipId</span><span class="p">));</span> <span class="c1">//This is invoice number
-</span><span class="c1"></span>        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">printFormLetter</span> <span class="p">(</span><span class="n">NoYes</span><span class="p">::</span><span class="n">No</span><span class="p">);</span>
-        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">sumBy</span> <span class="p">(</span><span class="n">AccountOrder</span><span class="p">::</span><span class="n">Auto</span><span class="p">);</span>
-        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">specQty</span> <span class="p">(</span><span class="n">PurchUpdate</span><span class="p">::</span><span class="n">PackingSlip</span><span class="p">);</span>
-      
-        <span class="k">while</span> <span class="k">select</span> <span class="n">tmpFrmVirtualVend</span>
-        <span class="p">{</span>
-            <span class="n">selectedList</span><span class="p">.</span><span class="n">addEnd</span><span class="p">(</span><span class="n">tmpFrmVirtualVend</span><span class="p">);</span>
-            <span class="n">conTmpFrmVirtual</span> <span class="p">=</span> <span class="n">selectedList</span><span class="p">.</span><span class="n">pack</span><span class="p">();</span>
-        <span class="p">}</span>
-        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">selectFromJournal</span><span class="p">(</span><span class="n">conTmpFrmVirtual</span><span class="p">);</span>
-        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">reArrangeNow</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
-        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="kt">int</span> <span class="n">randomAmount</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">RandomGenerate</span> <span class="n">randomGenerate</span><span class="p">;</span>
-        <span class="n">randomGenerate</span> <span class="p">=</span> <span class="n">RandomGenerate</span><span class="p">::</span><span class="n">construct</span><span class="p">();</span>
-        <span class="n">randomGenerate</span><span class="p">.</span><span class="n">parmSeed</span><span class="p">(</span><span class="k">new</span> <span class="n">Random</span><span class="p">().</span><span class="n">nextInt</span><span class="p">());</span>
-        <span class="k">return</span> <span class="n">RandomGenerate</span><span class="p">.</span><span class="n">randomInt</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="m">800</span><span class="p">);</span>
-    <span class="p">}</span>
-
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MaxGeneratePO</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="c1">// number of purchase orders</span>
+</span></span><span class="line"><span class="cl">        <span class="n">NumberSeq</span> <span class="n">numberSeq</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">PurchTable</span> <span class="n">purchTable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">PurchLine</span> <span class="n">purchLine</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">InventDim</span> <span class="n">inventDim</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="p">&lt;=</span> <span class="m">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ttsBegin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">MaxGeneratePO</span> <span class="n">createPO</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MaxGeneratePO</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">numberSeq</span> <span class="p">=</span> <span class="n">NumberSeq</span><span class="p">::</span><span class="n">newGetNum</span><span class="p">(</span><span class="n">PurchParameters</span><span class="p">::</span><span class="n">numRefPurchId</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">            <span class="n">numberSeq</span><span class="p">.</span><span class="n">used</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span> <span class="p">=</span> <span class="n">numberSeq</span><span class="p">.</span><span class="n">num</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchTable</span><span class="p">.</span><span class="n">initValue</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchTable</span><span class="p">.</span><span class="n">initFromVendTable</span><span class="p">(</span><span class="n">VendTable</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="err">&#39;</span><span class="n">US</span><span class="p">-</span><span class="m">101</span><span class="err">&#39;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(!</span><span class="n">purchTable</span><span class="p">.</span><span class="n">validateWrite</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">throw</span> <span class="n">Exception</span><span class="p">::</span><span class="n">Error</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">purchTable</span><span class="p">.</span><span class="n">insert</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">inventDim</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">initValue</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchId</span> <span class="p">=</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">ItemId</span> <span class="p">=</span> <span class="err">&#39;</span><span class="n">D0002</span><span class="err">&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">inventDim</span><span class="p">.</span><span class="n">InventSiteId</span> <span class="p">=</span> <span class="s">&#34;1&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">inventDim</span><span class="p">.</span><span class="n">InventLocationId</span> <span class="p">=</span> <span class="s">&#34;11&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">InventDimId</span><span class="p">=</span><span class="n">InventDim</span><span class="p">::</span><span class="n">findOrCreate</span><span class="p">(</span><span class="n">inventDim</span><span class="p">).</span><span class="n">inventDimId</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">createLine</span><span class="p">(</span><span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchQty</span> <span class="p">=</span> <span class="m">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchUnit</span> <span class="p">=</span> <span class="s">&#34;ea&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchPrice</span> <span class="p">=</span> <span class="n">createPO</span><span class="p">.</span><span class="n">randomAmount</span><span class="p">();</span> <span class="c1">// get random amount nubmer</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">LineAmount</span> <span class="p">=</span> <span class="n">purchLine</span><span class="p">.</span><span class="n">calcLineAmount</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="c1">//PO confirm</span>
+</span></span><span class="line"><span class="cl">            <span class="n">PurchFormLetter</span> <span class="n">purchFormLetter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">PurchFormLetter</span> <span class="n">purchFormLetterPack</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchFormLetter</span> <span class="p">=</span> <span class="n">PurchFormLetter</span><span class="p">::</span><span class="n">construct</span><span class="p">(</span><span class="n">DocumentStatus</span><span class="p">::</span><span class="n">PurchaseOrder</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">purchTable</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;ConNum_%1&#34;</span><span class="p">,</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">systemDateGet</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">PurchUpdate</span><span class="p">::</span><span class="n">All</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">AccountOrder</span><span class="p">::</span><span class="n">None</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">NoYes</span><span class="p">::</span><span class="n">No</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">NoYes</span><span class="p">::</span><span class="n">no</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//Product receipt</span>
+</span></span><span class="line"><span class="cl">            <span class="n">createPO</span><span class="p">.</span><span class="n">proceed</span><span class="p">(</span><span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">,</span> <span class="n">purchLine</span><span class="p">.</span><span class="n">ItemId</span><span class="p">,</span><span class="n">purchLine</span><span class="p">.</span><span class="n">InventDimId</span><span class="p">,</span><span class="n">purchLine</span><span class="p">.</span><span class="n">PurchQty</span><span class="p">,</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;RptNum_%1&#34;</span><span class="p">,</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//Post PO</span>
+</span></span><span class="line"><span class="cl">            <span class="n">createPO</span><span class="p">.</span><span class="n">postPOInvoice</span><span class="p">(</span><span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">,</span> <span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;RptNum_%1&#34;</span><span class="p">,</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">info</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;Purchase order &#39;%1&#39; has been created&#34;</span><span class="p">,</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ttsCommit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">i</span><span class="p">++;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">boolean</span> <span class="n">proceed</span><span class="p">(</span><span class="n">PurchId</span> <span class="m">_</span><span class="n">purchId</span><span class="p">,</span> <span class="n">ItemId</span> <span class="m">_</span><span class="n">itemId</span><span class="p">,</span><span class="n">inventDimId</span> <span class="m">_</span><span class="n">inventDimId</span><span class="p">,</span> <span class="n">PurchQty</span> <span class="m">_</span><span class="n">qty</span><span class="p">,</span> <span class="n">PackingSlipId</span> <span class="m">_</span><span class="n">productReceiptNumber</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span>
+</span></span><span class="line"><span class="cl">            <span class="k">this</span><span class="p">.</span><span class="n">generateProductReceipt</span><span class="p">(</span><span class="m">_</span><span class="n">purchId</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">addToPurchLineList</span><span class="p">(</span><span class="m">_</span><span class="n">purchId</span><span class="p">,</span> <span class="m">_</span><span class="n">itemId</span><span class="p">,</span> <span class="m">_</span><span class="n">inventDimId</span><span class="p">,</span> <span class="m">_</span><span class="n">qty</span><span class="p">),</span> <span class="m">_</span><span class="n">productReceiptNumber</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">boolean</span> <span class="n">generateProductReceipt</span><span class="p">(</span><span class="n">PurchId</span> <span class="m">_</span><span class="n">purchId</span><span class="p">,</span> <span class="n">List</span> <span class="m">_</span><span class="n">purchLineList</span><span class="p">,</span> <span class="n">PackingSlipId</span> <span class="m">_</span><span class="n">productReceiptNumber</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">boolean</span> <span class="n">ret</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">PurchFormLetter</span> <span class="n">purchFromLetter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">PurchTable</span> <span class="n">purchTable</span> <span class="p">=</span> <span class="n">PurchTable</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="m">_</span><span class="n">purchId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">try</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ttsbegin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchFromLetter</span> <span class="p">=</span> <span class="n">PurchFormLetter</span><span class="p">::</span><span class="n">construct</span><span class="p">(</span><span class="n">DocumentStatus</span><span class="p">::</span><span class="n">PackingSlip</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchFromLetter</span><span class="p">.</span><span class="n">createFromLines</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchFromLetter</span><span class="p">.</span><span class="n">parmLineList</span><span class="p">(</span><span class="m">_</span><span class="n">purchLineList</span><span class="p">.</span><span class="n">pack</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchFromLetter</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">purchTable</span><span class="p">,</span> <span class="m">_</span><span class="n">productReceiptNumber</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">DateTimeUtil</span><span class="p">::</span><span class="n">getToday</span><span class="p">(</span><span class="n">DateTimeUtil</span><span class="p">::</span><span class="n">getUserPreferredTimeZone</span><span class="p">()),</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">PurchUpdate</span><span class="p">::</span><span class="n">All</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ttscommit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">catch</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ret</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">List</span> <span class="n">addToPurchLineList</span><span class="p">(</span><span class="n">PurchId</span> <span class="m">_</span><span class="n">purchId</span><span class="p">,</span> <span class="n">ItemId</span> <span class="m">_</span><span class="n">itemId</span><span class="p">,</span><span class="n">inventDimId</span> <span class="m">_</span><span class="n">inventDimId</span><span class="p">,</span> <span class="n">PurchQty</span> <span class="m">_</span><span class="n">qty</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">List</span> <span class="n">purchLineList</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Record</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">PurchLine</span> <span class="n">purchLine</span> <span class="p">=</span> <span class="n">PurchLine</span><span class="p">::</span><span class="n">findItemIdInventDimId</span><span class="p">(</span><span class="m">_</span><span class="n">purchId</span><span class="p">,</span> <span class="m">_</span><span class="n">itemId</span><span class="p">,</span> <span class="m">_</span><span class="n">inventDimId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">purchLine</span> <span class="p">&amp;&amp;</span> <span class="m">_</span><span class="n">qty</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchReceivedNow</span> <span class="p">=</span> <span class="m">_</span><span class="n">qty</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchline</span><span class="p">.</span><span class="n">modifiedField</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchLine</span><span class="p">,</span> <span class="n">PurchReceivedNow</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLineList</span><span class="p">.</span><span class="n">addEnd</span><span class="p">(</span><span class="n">purchLine</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">purchLineList</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">void</span> <span class="n">postPOInvoice</span><span class="p">(</span><span class="n">PurchId</span> <span class="n">purchId</span><span class="p">,</span> <span class="n">PackingSlipId</span> <span class="n">packingSlipId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">TmpFrmVirtual</span>               <span class="n">tmpFrmVirtualVend</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">PurchFormLetter_Invoice</span>     <span class="n">purchFormLetter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">VendPackingSlipJour</span>         <span class="n">vendPackingSlipJour</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SysQueryRun</span>                 <span class="n">chooseLinesQuery</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SysQueryRun</span>                 <span class="n">chooseLinesPendingInvoiceQuery</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">container</span>                   <span class="n">conTmpFrmVirtual</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">List</span>                        <span class="n">selectedList</span>    <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Record</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">select</span> <span class="n">firstonly</span> <span class="n">vendPackingSlipJour</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">where</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">PurchId</span> <span class="p">==</span> <span class="n">purchId</span>
+</span></span><span class="line"><span class="cl">            <span class="p">&amp;&amp;</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">PackingSlipId</span> <span class="p">==</span> <span class="n">packingSlipId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">vendPackingSlipJour</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">TableNum</span>  <span class="p">=</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">TableId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">RecordNo</span>  <span class="p">=</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">RecId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">NoYes</span>     <span class="p">=</span> <span class="n">NoYes</span><span class="p">::</span><span class="n">Yes</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">Id</span>        <span class="p">=</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">PurchId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">insert</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">chooseLinesQuery</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SysQueryRun</span><span class="p">(</span><span class="n">queryStr</span><span class="p">(</span><span class="n">PurchUpdate</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chooseLinesQuery</span><span class="p">.</span><span class="n">query</span><span class="p">().</span><span class="n">addDataSource</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">VendInvoiceInfoTable</span><span class="p">)).</span><span class="n">enabled</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// chooseLinesPendingInvoiceQuery needs to be initialized, although it will not be used</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chooseLinesPendingInvoiceQuery</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SysQueryRun</span><span class="p">(</span><span class="n">queryStr</span><span class="p">(</span><span class="n">PurchUpdatePendingInvoice</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chooseLinesPendingInvoiceQuery</span><span class="p">.</span><span class="n">query</span><span class="p">().</span><span class="n">dataSourceTable</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">PurchTable</span><span class="p">)).</span><span class="n">addRange</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchTable</span><span class="p">,</span><span class="n">PurchId</span><span class="p">)).</span><span class="k">value</span><span class="p">(</span><span class="n">queryValue</span><span class="p">(</span><span class="err">&#39;&#39;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">           
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span> <span class="p">=</span> <span class="n">PurchFormLetter</span><span class="p">::</span><span class="n">construct</span><span class="p">(</span><span class="n">DocumentStatus</span><span class="p">::</span><span class="n">Invoice</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">chooseLinesQuery</span> <span class="p">(</span><span class="n">chooseLinesQuery</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">parmQueryChooseLinesPendingInvoice</span><span class="p">(</span><span class="n">chooseLinesPendingInvoiceQuery</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">purchTable</span> <span class="p">(</span><span class="n">PurchTable</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="n">PurchId</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">transDate</span> <span class="p">(</span><span class="n">systemDateGet</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">parmParmTableNum</span> <span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;%1&#34;</span><span class="p">,</span><span class="n">packingSlipId</span><span class="p">));</span> <span class="c1">//This is invoice number</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">printFormLetter</span> <span class="p">(</span><span class="n">NoYes</span><span class="p">::</span><span class="n">No</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">sumBy</span> <span class="p">(</span><span class="n">AccountOrder</span><span class="p">::</span><span class="n">Auto</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">specQty</span> <span class="p">(</span><span class="n">PurchUpdate</span><span class="p">::</span><span class="n">PackingSlip</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="k">select</span> <span class="n">tmpFrmVirtualVend</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">selectedList</span><span class="p">.</span><span class="n">addEnd</span><span class="p">(</span><span class="n">tmpFrmVirtualVend</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">conTmpFrmVirtual</span> <span class="p">=</span> <span class="n">selectedList</span><span class="p">.</span><span class="n">pack</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">selectFromJournal</span><span class="p">(</span><span class="n">conTmpFrmVirtual</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">reArrangeNow</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="kt">int</span> <span class="n">randomAmount</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">RandomGenerate</span> <span class="n">randomGenerate</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">randomGenerate</span> <span class="p">=</span> <span class="n">RandomGenerate</span><span class="p">::</span><span class="n">construct</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">randomGenerate</span><span class="p">.</span><span class="n">parmSeed</span><span class="p">(</span><span class="k">new</span> <span class="n">Random</span><span class="p">().</span><span class="n">nextInt</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">RandomGenerate</span><span class="p">.</span><span class="n">randomInt</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="m">800</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Thank you for reading.</p>]]></description>
 </item><item>
@@ -403,27 +403,27 @@ The resolution here is simply delete it and regenerate metadata again by saving 
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">//</span> <span class="n">Allow</span> <span class="n">policy</span>
-<span class="nb">set-executionpolicy</span> <span class="n">remotesigned</span>
-
-<span class="p">//</span><span class="n">Install</span> <span class="n">AzureRM</span>
-<span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">AzureRM</span> <span class="n">-AllowClobber</span>
-
-<span class="p">//</span> <span class="n">Login</span> <span class="n">to</span> <span class="n">Azure</span> <span class="n">using</span> <span class="n">credentials</span>
-<span class="nb">Login-AzureRmAccount</span>
-
-<span class="p">//</span> <span class="nb">select </span><span class="n">the</span> <span class="n">subscription</span> <span class="n">ID</span>
-<span class="nb">Select-AzureRmSubscription</span> <span class="n">-SubscriptionId</span> <span class="nv">$subscriptionId</span>
-
-<span class="nv">$ResourceGroupName</span> <span class="p">=</span> <span class="err">“</span><span class="n">MaxWorkspaceCollections</span><span class="err">”</span>
-<span class="nv">$Location</span> <span class="p">=</span> <span class="s2">&#34;Southeast Asia&#34;</span>
-
-<span class="p">//</span> <span class="n">Create</span> <span class="n">workspace</span> <span class="n">collections</span>
-<span class="nb">New-AzPowerBIWorkspaceCollection</span> <span class="n">-ResourceGroupName</span> <span class="nv">$ResourceGroupName</span> <span class="n">-WorkspaceCollectionName</span> <span class="nv">$WorkSpaceCollectionName</span> <span class="n">-Location</span> <span class="nv">$Location</span>
-
-<span class="p">//</span> <span class="n">Obtain</span> <span class="n">the</span> <span class="n">access</span> <span class="n">keys</span>
-<span class="nb">Get-AzPowerBIWorkspaceCollection</span> <span class="n">-ResourceGroupName</span> <span class="nv">$ResourceGroupName</span> <span class="n">-name</span> <span class="s2">&#34;&lt;yourWorkspacename&gt;&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">//</span> <span class="n">Allow</span> <span class="n">policy</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set-executionpolicy</span> <span class="n">remotesigned</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">//</span><span class="n">Install</span> <span class="n">AzureRM</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">AzureRM</span> <span class="n">-AllowClobber</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">//</span> <span class="n">Login</span> <span class="n">to</span> <span class="n">Azure</span> <span class="n">using</span> <span class="n">credentials</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Login-AzureRmAccount</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">//</span> <span class="nb">select </span><span class="n">the</span> <span class="n">subscription</span> <span class="n">ID</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Select-AzureRmSubscription</span> <span class="n">-SubscriptionId</span> <span class="nv">$subscriptionId</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$ResourceGroupName</span> <span class="p">=</span> <span class="err">“</span><span class="n">MaxWorkspaceCollections</span><span class="err">”</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$Location</span> <span class="p">=</span> <span class="s2">&#34;Southeast Asia&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">//</span> <span class="n">Create</span> <span class="n">workspace</span> <span class="n">collections</span>
+</span></span><span class="line"><span class="cl"><span class="nb">New-AzPowerBIWorkspaceCollection</span> <span class="n">-ResourceGroupName</span> <span class="nv">$ResourceGroupName</span> <span class="n">-WorkspaceCollectionName</span> <span class="nv">$WorkSpaceCollectionName</span> <span class="n">-Location</span> <span class="nv">$Location</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">//</span> <span class="n">Obtain</span> <span class="n">the</span> <span class="n">access</span> <span class="n">keys</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Get-AzPowerBIWorkspaceCollection</span> <span class="n">-ResourceGroupName</span> <span class="nv">$ResourceGroupName</span> <span class="n">-name</span> <span class="s2">&#34;&lt;yourWorkspacename&gt;&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="2-create-axwd-azure-sql-database">2. Create AxWD Azure SQL Database</h2>
 <p>We must use the Azure SQL Database for the AxDW in Dynamics 365 finance and operations cloud-hosted environment.
@@ -446,15 +446,15 @@ Once you have the Azure SQL Database, we can use SSMS to connect to the database
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="n">Use</span><span class="w"> </span><span class="n">Master</span><span class="w">
-</span><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="n">LOGIN</span><span class="w"> </span><span class="n">axdwadmin</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">PASSWORD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span><span class="w"> 
-</span><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="n">LOGIN</span><span class="w"> </span><span class="n">axdwruntimeuser</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">PASSWORD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span><span class="w">
-</span><span class="w"></span><span class="n">Use</span><span class="w"> </span><span class="n">AxDw</span><span class="w">
-</span><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">axdwadmin</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">LOGIN</span><span class="w"> </span><span class="n">axdwadmin</span><span class="p">;</span><span class="w"> 
-</span><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">axdwruntimeuser</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">LOGIN</span><span class="w"> </span><span class="n">axdwruntimeuser</span><span class="p">;</span><span class="w">
-</span><span class="w"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">ROLE</span><span class="w"> </span><span class="n">db_owner</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="n">MEMBER</span><span class="w"> </span><span class="n">axdwadmin</span><span class="p">;</span><span class="w"> 
-</span><span class="w"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">ROLE</span><span class="w"> </span><span class="n">db_datareader</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="n">MEMBER</span><span class="w"> </span><span class="n">axdwruntimeuser</span><span class="p">;</span><span class="w">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">Use</span><span class="w"> </span><span class="n">Master</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="n">LOGIN</span><span class="w"> </span><span class="n">axdwadmin</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">PASSWORD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="n">LOGIN</span><span class="w"> </span><span class="n">axdwruntimeuser</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">PASSWORD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Use</span><span class="w"> </span><span class="n">AxDw</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">axdwadmin</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">LOGIN</span><span class="w"> </span><span class="n">axdwadmin</span><span class="p">;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">axdwruntimeuser</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">LOGIN</span><span class="w"> </span><span class="n">axdwruntimeuser</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">ROLE</span><span class="w"> </span><span class="n">db_owner</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="n">MEMBER</span><span class="w"> </span><span class="n">axdwadmin</span><span class="p">;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">ROLE</span><span class="w"> </span><span class="n">db_datareader</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="n">MEMBER</span><span class="w"> </span><span class="n">axdwruntimeuser</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="3-configuring-to-enable-analytical-workspaces-and-reports">3. Configuring to enable Analytical Workspaces and Reports</h2>
 <p>What you are having now</p>
@@ -466,10 +466,10 @@ Once you have the Azure SQL Database, we can use SSMS to connect to the database
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">Workspace Collection Name: The name of the Workspace Collection created when deploying the Power BI Embedded Service
-Access Key1:  The secret key #1 used to access the Power BI Embedded service
-Access Key2:  The secret key #2 used to access the Power BI Embedded service
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Workspace Collection Name: The name of the Workspace Collection created when deploying the Power BI Embedded Service
+</span></span><span class="line"><span class="cl">Access Key1:  The secret key #1 used to access the Power BI Embedded service
+</span></span><span class="line"><span class="cl">Access Key2:  The secret key #2 used to access the Power BI Embedded service
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Entity Store Database Service details from step 2</p>
 <div class="highlight"><div class="chroma">
@@ -480,11 +480,11 @@ Access Key2:  The secret key #2 used to access the Power BI Embedded service
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">Database name:  AxDW
-Server name:  Azure SQL Server name (*.database.windows.net)
-Server admin login:  Username supplied in the SQL Server settings
-Password:  Account password supplied when configuring SQL Server
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Database name:  AxDW
+</span></span><span class="line"><span class="cl">Server name:  Azure SQL Server name (*.database.windows.net)
+</span></span><span class="line"><span class="cl">Server admin login:  Username supplied in the SQL Server settings
+</span></span><span class="line"><span class="cl">Password:  Account password supplied when configuring SQL Server
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Run Notepad in <strong>administrator</strong> mode, open web.config from <em>K:\AOSService\webroot</em> in Dynamics 365 for finance and operations environment.</p>
 <p>Update the configuration settings:</p>
@@ -496,11 +496,11 @@ Password:  Account password supplied when configuring SQL Server
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;BiReporting.DW&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Database name]&#34;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;BiReporting.DWServer&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Server name]&#34;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;BiReporting.DWRuntimeUser&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Server Admin login]&#34;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;BiReporting.DWRuntimePwd&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Password]&#34;</span> <span class="p">/&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;BiReporting.DW&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Database name]&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;BiReporting.DWServer&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Server name]&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;BiReporting.DWRuntimeUser&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Server Admin login]&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;BiReporting.DWRuntimePwd&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Password]&#34;</span> <span class="p">/&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Update the Power BI Embedded Service configuration settings:</p>
 <div class="highlight"><div class="chroma">
@@ -512,12 +512,12 @@ Password:  Account password supplied when configuring SQL Server
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.AccessKey&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Access Key1]&#34;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.AccessKey2&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Access Key2]&#34;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.ApiUrl&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;https://api.powerbi.com&#34;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.IsPowerBIEmbeddedEnabled&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;true&#34;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.WorkspaceCollectionName&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Workspace Collection Name]&#34;</span> <span class="p">/&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.AccessKey&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Access Key1]&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.AccessKey2&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Access Key2]&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.ApiUrl&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;https://api.powerbi.com&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.IsPowerBIEmbeddedEnabled&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;true&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.WorkspaceCollectionName&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Workspace Collection Name]&#34;</span> <span class="p">/&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>After that, you need to restart IIS and Dynamics 365 for finance and operations batch service</p>
 <h2 id="4-refresh-data-entity-store-to-axdw">4. Refresh data entity store to AxDW</h2>
@@ -592,18 +592,18 @@ You can build the project without problem.</p>
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="k">foreach</span> <span class="p">(</span><span class="n">IEdmEntitySet</span> <span class="n">entitySet</span> <span class="k">in</span> <span class="n">container</span><span class="p">.</span><span class="n">EntitySets</span><span class="p">())</span>
-<span class="p">{</span>
-    <span class="n">IEdmEntityType</span> <span class="n">entitySetElementType</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">EntityType</span><span class="p">();</span>
-    <span class="kt">string</span> <span class="n">entitySetElementTypeName</span> <span class="p">=</span> <span class="n">GetElementTypeName</span><span class="p">(</span><span class="n">entitySetElementType</span><span class="p">,</span> <span class="n">container</span><span class="p">);</span>
-
-    <span class="kt">string</span> <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">EnableNamingAlias</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">Customization</span><span class="p">.</span><span class="n">CustomizeNaming</span><span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">foreach</span> <span class="p">(</span><span class="n">IEdmEntitySet</span> <span class="n">entitySet</span> <span class="k">in</span> <span class="n">container</span><span class="p">.</span><span class="n">EntitySets</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IEdmEntityType</span> <span class="n">entitySetElementType</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">EntityType</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">entitySetElementTypeName</span> <span class="p">=</span> <span class="n">GetElementTypeName</span><span class="p">(</span><span class="n">entitySetElementType</span><span class="p">,</span> <span class="n">container</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">EnableNamingAlias</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">Customization</span><span class="p">.</span><span class="n">CustomizeNaming</span><span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>Modified code:</li>
@@ -630,25 +630,25 @@ You can build the project without problem.</p>
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="k">foreach</span> <span class="p">(</span><span class="n">IEdmEntitySet</span> <span class="n">entitySet</span> <span class="k">in</span> <span class="n">container</span><span class="p">.</span><span class="n">EntitySets</span><span class="p">())</span>
-<span class="p">{</span>
-    <span class="n">IEdmEntityType</span> <span class="n">entitySetElementType</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">EntityType</span><span class="p">();</span>
-    <span class="kt">string</span> <span class="n">entitySetElementTypeName</span> <span class="p">=</span> <span class="n">GetElementTypeName</span><span class="p">(</span><span class="n">entitySetElementType</span><span class="p">,</span> <span class="n">container</span><span class="p">);</span>
-
-    <span class="kt">string</span> <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
-
-    <span class="c1">//start of manual fix 
-</span><span class="c1"></span>    <span class="c1">//only process entity names that containin a specific string, to reduce the string size
-</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(((</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;CUST&#34;</span><span class="p">))</span> <span class="p">||</span> <span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;VEND&#34;</span><span class="p">)))</span> <span class="p">||</span> <span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;SALES&#34;</span><span class="p">)))</span>
-    <span class="p">{</span>
-      <span class="c1">// emd of manual fix
-</span><span class="c1"></span>      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">EnableNamingAlias</span><span class="p">)</span>
-      <span class="p">{</span>
-          <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">Customization</span><span class="p">.</span><span class="n">CustomizeNaming</span><span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">);</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">foreach</span> <span class="p">(</span><span class="n">IEdmEntitySet</span> <span class="n">entitySet</span> <span class="k">in</span> <span class="n">container</span><span class="p">.</span><span class="n">EntitySets</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IEdmEntityType</span> <span class="n">entitySetElementType</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">EntityType</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">entitySetElementTypeName</span> <span class="p">=</span> <span class="n">GetElementTypeName</span><span class="p">(</span><span class="n">entitySetElementType</span><span class="p">,</span> <span class="n">container</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//start of manual fix </span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//only process entity names that containin a specific string, to reduce the string size</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(((</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;CUST&#34;</span><span class="p">))</span> <span class="p">||</span> <span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;VEND&#34;</span><span class="p">)))</span> <span class="p">||</span> <span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;SALES&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// emd of manual fix</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">EnableNamingAlias</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">Customization</span><span class="p">.</span><span class="n">CustomizeNaming</span><span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="4-authentication-configuration">4. Authentication configuration</h1>
 <p>Under AuthenticationUtility project, you need to modify ClientConfiguration.cs follow, you can get all related information for the first step.</p>
@@ -687,18 +687,18 @@ To create Azure function please follow this <a href="https://docs.microsoft.com/
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">System.Net</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">Microsoft.AspNetCore.Mvc</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">Microsoft.Extensions.Primitives</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">Newtonsoft.Json</span><span class="p">;</span>
-<span class="k">public</span> <span class="k">static</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">IActionResult</span><span class="p">&gt;</span> <span class="n">Run</span><span class="p">(</span><span class="n">HttpRequest</span> <span class="n">req</span><span class="p">,</span> <span class="n">ILogger</span> <span class="n">log</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">log</span><span class="p">.</span><span class="n">LogInformation</span><span class="p">(</span><span class="s">&#34;Dynamics 365 finance and operations notifications&#34;</span><span class="p">);</span>
-  <span class="kt">string</span> <span class="n">requestBody</span> <span class="p">=</span> <span class="k">await</span> <span class="k">new</span> <span class="n">StreamReader</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">Body</span><span class="p">).</span><span class="n">ReadToEndAsync</span><span class="p">();</span>
-  <span class="n">log</span><span class="p">.</span><span class="n">LogInformation</span><span class="p">(</span><span class="n">requestBody</span><span class="p">);</span>
-  <span class="k">return</span> <span class="p">(</span><span class="n">ActionResult</span><span class="p">)</span><span class="k">new</span> <span class="n">OkObjectResult</span><span class="p">(</span><span class="s">$&#34;Hello world&#34;</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Net</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">Microsoft.AspNetCore.Mvc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">Microsoft.Extensions.Primitives</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">Newtonsoft.Json</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">IActionResult</span><span class="p">&gt;</span> <span class="n">Run</span><span class="p">(</span><span class="n">HttpRequest</span> <span class="n">req</span><span class="p">,</span> <span class="n">ILogger</span> <span class="n">log</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">log</span><span class="p">.</span><span class="n">LogInformation</span><span class="p">(</span><span class="s">&#34;Dynamics 365 finance and operations notifications&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">string</span> <span class="n">requestBody</span> <span class="p">=</span> <span class="k">await</span> <span class="k">new</span> <span class="n">StreamReader</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">Body</span><span class="p">).</span><span class="n">ReadToEndAsync</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="n">log</span><span class="p">.</span><span class="n">LogInformation</span><span class="p">(</span><span class="n">requestBody</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">(</span><span class="n">ActionResult</span><span class="p">)</span><span class="k">new</span> <span class="n">OkObjectResult</span><span class="p">(</span><span class="s">$&#34;Hello world&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>This basically listens the JSON messages from Business events and display the Json message at Console.</p>
 <p>From the Azure function you can get the HTTPs endpoint, save it for later reference.</p>
@@ -815,40 +815,40 @@ This can be done from POSTMAN too and you need to use header and body as you see
 </span><span class="lnt">33
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd">--batch_d63a-e9be-2927
-Content-Type: multipart/mixed; boundary=changeset_2499-90ab-7b93
-
---changeset_2499-90ab-7b93
-Content-Type: application/http
-Content-Transfer-Encoding: binary
-
-POST CustomerGroups?cross-company=true HTTP/1.1
-Content-ID: 1
-Accept: application/json;q=0.9, */*;q=0.1
-OData-Version: 4.0
-Content-Type: application/json
-OData-MaxVersion: 4.0
-
-{<span class="s2">&#34;CustomerGroupId&#34;</span>:<span class="s2">&#34;1060&#34;</span>,<span class="s2">&#34;Description&#34;</span>:<span class="s2">&#34;Wholesales customers&#34;</span>,<span class="s2">&#34;PaymentTermId&#34;</span>:<span class="s2">&#34;Net30&#34;</span>,<span class="s2">&#34;IsSalesTaxIncludedInPrice&#34;</span>:<span class="s2">&#34;No&#34;</span>,<span class="s2">&#34;dataAreaId&#34;</span>:<span class="s2">&#34;usmf&#34;</span>}
---changeset_2499-90ab-7b93--
-
---batch_d63a-e9be-2927
-Content-Type: multipart/mixed; boundary=changeset_b573-33b2-85ff
-
---changeset_b573-33b2-85ff
-Content-Type: application/http
-Content-Transfer-Encoding: binary
-
-POST CustomerGroups?cross-company=true HTTP/1.1
-Content-ID: 2
-Accept: application/json;q=0.9, */*;q=0.1
-OData-Version: 4.0
-Content-Type: application/json
-OData-MaxVersion: 4.0
-
-{<span class="s2">&#34;CustomerGroupId&#34;</span>:<span class="s2">&#34;1070&#34;</span>,<span class="s2">&#34;Description&#34;</span>:<span class="s2">&#34;Wholesales customers1&#34;</span>,<span class="s2">&#34;PaymentTermId&#34;</span>:<span class="s2">&#34;Net30&#34;</span>,<span class="s2">&#34;IsSalesTaxIncludedInPrice&#34;</span>:<span class="s2">&#34;No&#34;</span>,<span class="s2">&#34;dataAreaId&#34;</span>:<span class="s2">&#34;usmf&#34;</span>}
---changeset_b573-33b2-85ff--
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">--batch_d63a-e9be-2927
+</span></span><span class="line"><span class="cl">Content-Type: multipart/mixed; boundary=changeset_2499-90ab-7b93
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">--changeset_2499-90ab-7b93
+</span></span><span class="line"><span class="cl">Content-Type: application/http
+</span></span><span class="line"><span class="cl">Content-Transfer-Encoding: binary
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">POST CustomerGroups?cross-company=true HTTP/1.1
+</span></span><span class="line"><span class="cl">Content-ID: 1
+</span></span><span class="line"><span class="cl">Accept: application/json;q=0.9, */*;q=0.1
+</span></span><span class="line"><span class="cl">OData-Version: 4.0
+</span></span><span class="line"><span class="cl">Content-Type: application/json
+</span></span><span class="line"><span class="cl">OData-MaxVersion: 4.0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">{<span class="s2">&#34;CustomerGroupId&#34;</span>:<span class="s2">&#34;1060&#34;</span>,<span class="s2">&#34;Description&#34;</span>:<span class="s2">&#34;Wholesales customers&#34;</span>,<span class="s2">&#34;PaymentTermId&#34;</span>:<span class="s2">&#34;Net30&#34;</span>,<span class="s2">&#34;IsSalesTaxIncludedInPrice&#34;</span>:<span class="s2">&#34;No&#34;</span>,<span class="s2">&#34;dataAreaId&#34;</span>:<span class="s2">&#34;usmf&#34;</span>}
+</span></span><span class="line"><span class="cl">--changeset_2499-90ab-7b93--
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">--batch_d63a-e9be-2927
+</span></span><span class="line"><span class="cl">Content-Type: multipart/mixed; boundary=changeset_b573-33b2-85ff
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">--changeset_b573-33b2-85ff
+</span></span><span class="line"><span class="cl">Content-Type: application/http
+</span></span><span class="line"><span class="cl">Content-Transfer-Encoding: binary
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">POST CustomerGroups?cross-company=true HTTP/1.1
+</span></span><span class="line"><span class="cl">Content-ID: 2
+</span></span><span class="line"><span class="cl">Accept: application/json;q=0.9, */*;q=0.1
+</span></span><span class="line"><span class="cl">OData-Version: 4.0
+</span></span><span class="line"><span class="cl">Content-Type: application/json
+</span></span><span class="line"><span class="cl">OData-MaxVersion: 4.0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">{<span class="s2">&#34;CustomerGroupId&#34;</span>:<span class="s2">&#34;1070&#34;</span>,<span class="s2">&#34;Description&#34;</span>:<span class="s2">&#34;Wholesales customers1&#34;</span>,<span class="s2">&#34;PaymentTermId&#34;</span>:<span class="s2">&#34;Net30&#34;</span>,<span class="s2">&#34;IsSalesTaxIncludedInPrice&#34;</span>:<span class="s2">&#34;No&#34;</span>,<span class="s2">&#34;dataAreaId&#34;</span>:<span class="s2">&#34;usmf&#34;</span>}
+</span></span><span class="line"><span class="cl">--changeset_b573-33b2-85ff--
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Click send and this is what you got from response</p>
 <figure class='center'>
@@ -912,60 +912,60 @@ OData-MaxVersion: 4.0
 </span><span class="lnt">53
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="err">--batchresponse_</span><span class="mf">45e87829</span><span class="mi">-5</span><span class="err">a</span><span class="mi">26</span><span class="mf">-480e-8</span><span class="err">aaa</span><span class="mi">-8</span><span class="err">a</span><span class="mi">08</span><span class="err">c</span><span class="mi">7</span><span class="err">a</span><span class="mi">82</span><span class="err">c</span><span class="mi">60</span>
-<span class="err">Content-Type:</span> <span class="err">multipart/mixed;</span> <span class="err">boundary=changesetresponse_</span><span class="mi">27</span><span class="err">ed</span><span class="mi">7621</span><span class="err">-d</span><span class="mi">939-40</span><span class="err">b</span><span class="mi">7-9</span><span class="err">f</span><span class="mi">8</span><span class="err">b-be</span><span class="mi">0421</span><span class="err">ff</span><span class="mi">0</span><span class="err">cea</span>
-<span class="err">--changesetresponse_</span><span class="mi">27</span><span class="err">ed</span><span class="mi">7621</span><span class="err">-d</span><span class="mi">939-40</span><span class="err">b</span><span class="mi">7-9</span><span class="err">f</span><span class="mi">8</span><span class="err">b-be</span><span class="mi">0421</span><span class="err">ff</span><span class="mi">0</span><span class="err">cea</span>
-<span class="err">Content-Type:</span> <span class="err">application/http</span>
-<span class="err">Content-Transfer-Encoding:</span> <span class="err">binary</span>
-<span class="err">Content-ID:</span> <span class="mi">1</span>
-<span class="err">HTTP/</span><span class="mf">1.1</span> <span class="mi">201</span> <span class="err">Created</span>
-<span class="err">ETag:</span> <span class="err">W/</span><span class="s2">&#34;JzEsNjg3MTk0Nzk4MzUn&#34;</span>
-<span class="err">Location:</span> <span class="err">https:</span> <span class="c1">//fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/CustomerGroups(dataAreaId=&#39;usmf&#39;,CustomerGroupId=&#39;1060&#39;)
-</span><span class="c1"></span><span class="err">Content-Type:</span> <span class="err">application/json;</span> <span class="err">odata.metadata=minimal</span>
-<span class="err">OData-Version:</span> <span class="mf">4.0</span>
-<span class="p">{</span>
-<span class="nt">&#34;@odata.context&#34;</span><span class="p">:</span> <span class="s2">&#34;https://fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/$metadata#CustomerGroups/$entity&#34;</span><span class="p">,</span>
-<span class="nt">&#34;@odata.etag&#34;</span><span class="p">:</span> <span class="s2">&#34;W/\&#34;JzEsNjg3MTk0Nzk4MzUn\&#34;&#34;</span><span class="p">,</span>
-<span class="nt">&#34;dataAreaId&#34;</span><span class="p">:</span> <span class="s2">&#34;usmf&#34;</span><span class="p">,</span>
-<span class="nt">&#34;CustomerGroupId&#34;</span><span class="p">:</span> <span class="s2">&#34;1060&#34;</span><span class="p">,</span>
-<span class="nt">&#34;ClearingPeriodPaymentTermName&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-<span class="nt">&#34;DefaultDimensionDisplayValue&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-<span class="nt">&#34;CustomerAccountNumberSequence&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-<span class="nt">&#34;IsSalesTaxIncludedInPrice&#34;</span><span class="p">:</span> <span class="s2">&#34;No&#34;</span><span class="p">,</span>
-<span class="nt">&#34;Description&#34;</span><span class="p">:</span> <span class="s2">&#34;Wholesales customers&#34;</span><span class="p">,</span>
-<span class="nt">&#34;WriteOffReason&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-<span class="nt">&#34;PaymentTermId&#34;</span><span class="p">:</span> <span class="s2">&#34;Net30&#34;</span><span class="p">,</span>
-<span class="nt">&#34;TaxGroupId&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
-<span class="p">}</span>
-<span class="err">--changesetresponse_</span><span class="mi">27</span><span class="err">ed</span><span class="mi">7621</span><span class="err">-d</span><span class="mi">939-40</span><span class="err">b</span><span class="mi">7-9</span><span class="err">f</span><span class="mi">8</span><span class="err">b-be</span><span class="mi">0421</span><span class="err">ff</span><span class="mi">0</span><span class="err">cea--</span>
-<span class="err">--batchresponse_</span><span class="mf">45e87829</span><span class="mi">-5</span><span class="err">a</span><span class="mi">26</span><span class="mf">-480e-8</span><span class="err">aaa</span><span class="mi">-8</span><span class="err">a</span><span class="mi">08</span><span class="err">c</span><span class="mi">7</span><span class="err">a</span><span class="mi">82</span><span class="err">c</span><span class="mi">60</span>
-<span class="err">Content-Type:</span> <span class="err">multipart/mixed;</span> <span class="err">boundary=changesetresponse_</span><span class="mi">541</span><span class="err">a</span><span class="mi">7</span><span class="err">d</span><span class="mi">21</span><span class="err">-af</span><span class="mi">21-4</span><span class="err">d</span><span class="mi">66</span><span class="err">-b</span><span class="mi">410</span><span class="err">-fb</span><span class="mi">4165599</span><span class="err">b</span><span class="mi">54</span>
-<span class="err">--changesetresponse_</span><span class="mi">541</span><span class="err">a</span><span class="mi">7</span><span class="err">d</span><span class="mi">21</span><span class="err">-af</span><span class="mi">21-4</span><span class="err">d</span><span class="mi">66</span><span class="err">-b</span><span class="mi">410</span><span class="err">-fb</span><span class="mi">4165599</span><span class="err">b</span><span class="mi">54</span>
-<span class="err">Content-Type:</span> <span class="err">application/http</span>
-<span class="err">Content-Transfer-Encoding:</span> <span class="err">binary</span>
-<span class="err">Content-ID:</span> <span class="mi">2</span>
-<span class="err">HTTP/</span><span class="mf">1.1</span> <span class="mi">201</span> <span class="err">Created</span>
-<span class="err">ETag:</span> <span class="err">W/</span><span class="s2">&#34;JzEsNjg3MTk0Nzk4MzYn&#34;</span>
-<span class="err">Location:</span> <span class="err">https:</span> <span class="c1">//fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/CustomerGroups(dataAreaId=&#39;usmf&#39;,CustomerGroupId=&#39;1070&#39;)
-</span><span class="c1"></span><span class="err">Content-Type:</span> <span class="err">application/json;</span> <span class="err">odata.metadata=minimal</span>
-<span class="err">OData-Version:</span> <span class="mf">4.0</span>
-<span class="p">{</span>
-<span class="nt">&#34;@odata.context&#34;</span><span class="p">:</span> <span class="s2">&#34;https://fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/$metadata#CustomerGroups/$entity&#34;</span><span class="p">,</span>
-<span class="nt">&#34;@odata.etag&#34;</span><span class="p">:</span> <span class="s2">&#34;W/\&#34;JzEsNjg3MTk0Nzk4MzYn\&#34;&#34;</span><span class="p">,</span>
-<span class="nt">&#34;dataAreaId&#34;</span><span class="p">:</span> <span class="s2">&#34;usmf&#34;</span><span class="p">,</span>
-<span class="nt">&#34;CustomerGroupId&#34;</span><span class="p">:</span> <span class="s2">&#34;1070&#34;</span><span class="p">,</span>
-<span class="nt">&#34;ClearingPeriodPaymentTermName&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-<span class="nt">&#34;DefaultDimensionDisplayValue&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-<span class="nt">&#34;CustomerAccountNumberSequence&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-<span class="nt">&#34;IsSalesTaxIncludedInPrice&#34;</span><span class="p">:</span> <span class="s2">&#34;No&#34;</span><span class="p">,</span>
-<span class="nt">&#34;Description&#34;</span><span class="p">:</span> <span class="s2">&#34;Wholesales customers1&#34;</span><span class="p">,</span>
-<span class="nt">&#34;WriteOffReason&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-<span class="nt">&#34;PaymentTermId&#34;</span><span class="p">:</span> <span class="s2">&#34;Net30&#34;</span><span class="p">,</span>
-<span class="nt">&#34;TaxGroupId&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
-<span class="p">}</span>
-<span class="err">--changesetresponse_</span><span class="mi">541</span><span class="err">a</span><span class="mi">7</span><span class="err">d</span><span class="mi">21</span><span class="err">-af</span><span class="mi">21-4</span><span class="err">d</span><span class="mi">66</span><span class="err">-b</span><span class="mi">410</span><span class="err">-fb</span><span class="mi">4165599</span><span class="err">b</span><span class="mi">54</span><span class="err">--</span>
-<span class="err">--batchresponse_</span><span class="mf">45e87829</span><span class="mi">-5</span><span class="err">a</span><span class="mi">26</span><span class="mf">-480e-8</span><span class="err">aaa</span><span class="mi">-8</span><span class="err">a</span><span class="mi">08</span><span class="err">c</span><span class="mi">7</span><span class="err">a</span><span class="mi">82</span><span class="err">c</span><span class="mi">60</span><span class="err">--</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">--batchresponse_</span><span class="mf">45e87829</span><span class="mi">-5</span><span class="err">a</span><span class="mi">26</span><span class="mf">-480e-8</span><span class="err">aaa</span><span class="mi">-8</span><span class="err">a</span><span class="mi">08</span><span class="err">c</span><span class="mi">7</span><span class="err">a</span><span class="mi">82</span><span class="err">c</span><span class="mi">60</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-Type:</span> <span class="err">multipart/mixed;</span> <span class="err">boundary=changesetresponse_</span><span class="mi">27</span><span class="err">ed</span><span class="mi">7621</span><span class="err">-d</span><span class="mi">939-40</span><span class="err">b</span><span class="mi">7-9</span><span class="err">f</span><span class="mi">8</span><span class="err">b-be</span><span class="mi">0421</span><span class="err">ff</span><span class="mi">0</span><span class="err">cea</span>
+</span></span><span class="line"><span class="cl"><span class="err">--changesetresponse_</span><span class="mi">27</span><span class="err">ed</span><span class="mi">7621</span><span class="err">-d</span><span class="mi">939-40</span><span class="err">b</span><span class="mi">7-9</span><span class="err">f</span><span class="mi">8</span><span class="err">b-be</span><span class="mi">0421</span><span class="err">ff</span><span class="mi">0</span><span class="err">cea</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-Type:</span> <span class="err">application/http</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-Transfer-Encoding:</span> <span class="err">binary</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-ID:</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="err">HTTP/</span><span class="mf">1.1</span> <span class="mi">201</span> <span class="err">Created</span>
+</span></span><span class="line"><span class="cl"><span class="err">ETag:</span> <span class="err">W/</span><span class="s2">&#34;JzEsNjg3MTk0Nzk4MzUn&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="err">Location:</span> <span class="err">https:</span> <span class="c1">//fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/CustomerGroups(dataAreaId=&#39;usmf&#39;,CustomerGroupId=&#39;1060&#39;)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">Content-Type:</span> <span class="err">application/json;</span> <span class="err">odata.metadata=minimal</span>
+</span></span><span class="line"><span class="cl"><span class="err">OData-Version:</span> <span class="mf">4.0</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;@odata.context&#34;</span><span class="p">:</span> <span class="s2">&#34;https://fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/$metadata#CustomerGroups/$entity&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;@odata.etag&#34;</span><span class="p">:</span> <span class="s2">&#34;W/\&#34;JzEsNjg3MTk0Nzk4MzUn\&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;dataAreaId&#34;</span><span class="p">:</span> <span class="s2">&#34;usmf&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;CustomerGroupId&#34;</span><span class="p">:</span> <span class="s2">&#34;1060&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;ClearingPeriodPaymentTermName&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;DefaultDimensionDisplayValue&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;CustomerAccountNumberSequence&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;IsSalesTaxIncludedInPrice&#34;</span><span class="p">:</span> <span class="s2">&#34;No&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;Description&#34;</span><span class="p">:</span> <span class="s2">&#34;Wholesales customers&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;WriteOffReason&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;PaymentTermId&#34;</span><span class="p">:</span> <span class="s2">&#34;Net30&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;TaxGroupId&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="err">--changesetresponse_</span><span class="mi">27</span><span class="err">ed</span><span class="mi">7621</span><span class="err">-d</span><span class="mi">939-40</span><span class="err">b</span><span class="mi">7-9</span><span class="err">f</span><span class="mi">8</span><span class="err">b-be</span><span class="mi">0421</span><span class="err">ff</span><span class="mi">0</span><span class="err">cea--</span>
+</span></span><span class="line"><span class="cl"><span class="err">--batchresponse_</span><span class="mf">45e87829</span><span class="mi">-5</span><span class="err">a</span><span class="mi">26</span><span class="mf">-480e-8</span><span class="err">aaa</span><span class="mi">-8</span><span class="err">a</span><span class="mi">08</span><span class="err">c</span><span class="mi">7</span><span class="err">a</span><span class="mi">82</span><span class="err">c</span><span class="mi">60</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-Type:</span> <span class="err">multipart/mixed;</span> <span class="err">boundary=changesetresponse_</span><span class="mi">541</span><span class="err">a</span><span class="mi">7</span><span class="err">d</span><span class="mi">21</span><span class="err">-af</span><span class="mi">21-4</span><span class="err">d</span><span class="mi">66</span><span class="err">-b</span><span class="mi">410</span><span class="err">-fb</span><span class="mi">4165599</span><span class="err">b</span><span class="mi">54</span>
+</span></span><span class="line"><span class="cl"><span class="err">--changesetresponse_</span><span class="mi">541</span><span class="err">a</span><span class="mi">7</span><span class="err">d</span><span class="mi">21</span><span class="err">-af</span><span class="mi">21-4</span><span class="err">d</span><span class="mi">66</span><span class="err">-b</span><span class="mi">410</span><span class="err">-fb</span><span class="mi">4165599</span><span class="err">b</span><span class="mi">54</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-Type:</span> <span class="err">application/http</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-Transfer-Encoding:</span> <span class="err">binary</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-ID:</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="err">HTTP/</span><span class="mf">1.1</span> <span class="mi">201</span> <span class="err">Created</span>
+</span></span><span class="line"><span class="cl"><span class="err">ETag:</span> <span class="err">W/</span><span class="s2">&#34;JzEsNjg3MTk0Nzk4MzYn&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="err">Location:</span> <span class="err">https:</span> <span class="c1">//fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/CustomerGroups(dataAreaId=&#39;usmf&#39;,CustomerGroupId=&#39;1070&#39;)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">Content-Type:</span> <span class="err">application/json;</span> <span class="err">odata.metadata=minimal</span>
+</span></span><span class="line"><span class="cl"><span class="err">OData-Version:</span> <span class="mf">4.0</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;@odata.context&#34;</span><span class="p">:</span> <span class="s2">&#34;https://fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/$metadata#CustomerGroups/$entity&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;@odata.etag&#34;</span><span class="p">:</span> <span class="s2">&#34;W/\&#34;JzEsNjg3MTk0Nzk4MzYn\&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;dataAreaId&#34;</span><span class="p">:</span> <span class="s2">&#34;usmf&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;CustomerGroupId&#34;</span><span class="p">:</span> <span class="s2">&#34;1070&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;ClearingPeriodPaymentTermName&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;DefaultDimensionDisplayValue&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;CustomerAccountNumberSequence&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;IsSalesTaxIncludedInPrice&#34;</span><span class="p">:</span> <span class="s2">&#34;No&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;Description&#34;</span><span class="p">:</span> <span class="s2">&#34;Wholesales customers1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;WriteOffReason&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;PaymentTermId&#34;</span><span class="p">:</span> <span class="s2">&#34;Net30&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;TaxGroupId&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="err">--changesetresponse_</span><span class="mi">541</span><span class="err">a</span><span class="mi">7</span><span class="err">d</span><span class="mi">21</span><span class="err">-af</span><span class="mi">21-4</span><span class="err">d</span><span class="mi">66</span><span class="err">-b</span><span class="mi">410</span><span class="err">-fb</span><span class="mi">4165599</span><span class="err">b</span><span class="mi">54</span><span class="err">--</span>
+</span></span><span class="line"><span class="cl"><span class="err">--batchresponse_</span><span class="mf">45e87829</span><span class="mi">-5</span><span class="err">a</span><span class="mi">26</span><span class="mf">-480e-8</span><span class="err">aaa</span><span class="mi">-8</span><span class="err">a</span><span class="mi">08</span><span class="err">c</span><span class="mi">7</span><span class="err">a</span><span class="mi">82</span><span class="err">c</span><span class="mi">60</span><span class="err">--</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Check the data in Dynamics 365 for finance and operations</p>
 <figure class='center'>

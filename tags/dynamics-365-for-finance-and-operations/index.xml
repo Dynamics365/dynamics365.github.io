@@ -71,48 +71,48 @@
 </span><span class="lnt">41
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">class</span> <span class="nc">CustCreateCustomer</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">CustCreateCustomer</span> <span class="n">custCreateCustomer</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CustCreateCustomer</span><span class="p">();</span>
-        <span class="n">custCreateCustomer</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="k">void</span> <span class="n">run</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">Dialog</span>          <span class="n">dlg</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dialog</span><span class="p">(</span><span class="s">&#34;Create new customer&#34;</span><span class="p">);</span>
-        <span class="n">DialogField</span>     <span class="n">dlgCust</span><span class="p">;</span>
-        <span class="n">DialogField</span>     <span class="n">dlgGrp</span><span class="p">;</span>
-        <span class="n">CustTable</span> <span class="n">custTable</span><span class="p">;</span>
-
-        <span class="n">dlgCust</span> <span class="p">=</span> <span class="n">dlg</span><span class="p">.</span><span class="n">addField</span><span class="p">(</span><span class="n">extendedTypeStr</span><span class="p">(</span><span class="n">CustVendAc</span><span class="p">),</span> <span class="s">&#34;Customer account&#34;</span><span class="p">);</span>
-        <span class="n">dlgGrp</span>  <span class="p">=</span> <span class="n">dlg</span><span class="p">.</span><span class="n">addField</span><span class="p">(</span><span class="n">extendedTypeStr</span><span class="p">(</span><span class="n">CustGroupId</span><span class="p">));</span>
-        
-        <span class="k">if</span> <span class="p">(</span><span class="n">dlg</span><span class="p">.</span><span class="n">run</span><span class="p">())</span>
-        <span class="p">{</span>
-            <span class="k">try</span>
-            <span class="p">{</span>
-                <span class="n">custTable</span><span class="p">.</span><span class="n">AccountNum</span>    <span class="p">=</span> <span class="n">dlgCust</span><span class="p">.</span><span class="k">value</span><span class="p">();</span>
-                <span class="n">custTable</span><span class="p">.</span><span class="n">CustGroup</span>     <span class="p">=</span> <span class="n">dlgGrp</span><span class="p">.</span><span class="k">value</span><span class="p">();</span>
-                <span class="k">if</span> <span class="p">(!</span><span class="n">custTable</span><span class="p">.</span><span class="n">validateWrite</span><span class="p">())</span>
-                <span class="p">{</span>
-                    <span class="k">throw</span> <span class="n">error</span><span class="p">(</span><span class="s">&#34;Please enter all required fields.&#34;</span><span class="p">);</span>
-                <span class="p">}</span>
-                <span class="k">else</span>
-                <span class="p">{</span>
-                    <span class="n">custTable</span><span class="p">.</span><span class="n">insert</span><span class="p">();</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-            <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span><span class="p">::</span><span class="n">Error</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="n">error</span><span class="p">(</span><span class="s">&#34;An error occurred. Please try again&#34;</span><span class="p">);</span>
-            <span class="p">}</span>
-
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CustCreateCustomer</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">CustCreateCustomer</span> <span class="n">custCreateCustomer</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CustCreateCustomer</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">custCreateCustomer</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">void</span> <span class="n">run</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Dialog</span>          <span class="n">dlg</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dialog</span><span class="p">(</span><span class="s">&#34;Create new customer&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">DialogField</span>     <span class="n">dlgCust</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">DialogField</span>     <span class="n">dlgGrp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">CustTable</span> <span class="n">custTable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">dlgCust</span> <span class="p">=</span> <span class="n">dlg</span><span class="p">.</span><span class="n">addField</span><span class="p">(</span><span class="n">extendedTypeStr</span><span class="p">(</span><span class="n">CustVendAc</span><span class="p">),</span> <span class="s">&#34;Customer account&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dlgGrp</span>  <span class="p">=</span> <span class="n">dlg</span><span class="p">.</span><span class="n">addField</span><span class="p">(</span><span class="n">extendedTypeStr</span><span class="p">(</span><span class="n">CustGroupId</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">dlg</span><span class="p">.</span><span class="n">run</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">try</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">custTable</span><span class="p">.</span><span class="n">AccountNum</span>    <span class="p">=</span> <span class="n">dlgCust</span><span class="p">.</span><span class="k">value</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                <span class="n">custTable</span><span class="p">.</span><span class="n">CustGroup</span>     <span class="p">=</span> <span class="n">dlgGrp</span><span class="p">.</span><span class="k">value</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(!</span><span class="n">custTable</span><span class="p">.</span><span class="n">validateWrite</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">throw</span> <span class="n">error</span><span class="p">(</span><span class="s">&#34;Please enter all required fields.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="k">else</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">custTable</span><span class="p">.</span><span class="n">insert</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span><span class="p">::</span><span class="n">Error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">error</span><span class="p">(</span><span class="s">&#34;An error occurred. Please try again&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>This code will try to create a customer after revived inputted value from users, this code also handling errors when user do not input enough information. A <code>Throw</code> statement is used to throw an error that can be caught by a Catch statement. When the system throws an exception <code>ttsabort</code> is called automatically, and so does not have to be called in a Catch statement.</p>
 <h3 id="4-optimistic-concurrency-exceptions">4. Optimistic Concurrency Exceptions</h3>
@@ -161,43 +161,43 @@
 </span><span class="lnt">36
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">void</span> <span class="n">update</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="err">#</span><span class="n">OCCRetryCount</span>
-    <span class="k">try</span>
-    <span class="p">{</span>
-        <span class="n">ttsbegin</span><span class="p">;</span>
-        <span class="c1">// code that updates records in other tables
-</span><span class="c1"></span>        <span class="n">super</span><span class="p">();</span> <span class="c1">// do the update
-</span><span class="c1"></span>        <span class="c1">// other code that updates records in other tables
-</span><span class="c1"></span>        <span class="n">ttscommit</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="c1">//Deadlock
-</span><span class="c1"></span>    <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span><span class="p">::</span><span class="n">Deadlock</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">retry</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="c1">//UpdateConflict
-</span><span class="c1"></span>    <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span><span class="p">::</span><span class="n">UpdateConflict</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">appl</span><span class="p">.</span><span class="n">ttsLevel</span><span class="p">()</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">xSession</span><span class="p">::</span><span class="n">currentRetryCount</span><span class="p">()</span> <span class="p">&gt;=</span> <span class="err">#</span><span class="n">RetryNum</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="k">throw</span> <span class="n">Exception</span><span class="p">::</span><span class="n">UpdateConflictNotRecovered</span><span class="p">;</span>
-            <span class="p">}</span>
-            <span class="k">else</span>
-            <span class="p">{</span>
-                <span class="n">retry</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-        <span class="k">else</span>
-        <span class="p">{</span>
-            <span class="k">throw</span> <span class="n">Exception</span><span class="p">::</span><span class="n">UpdateConflict</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">update</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="err">#</span><span class="n">OCCRetryCount</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ttsbegin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// code that updates records in other tables</span>
+</span></span><span class="line"><span class="cl">        <span class="n">super</span><span class="p">();</span> <span class="c1">// do the update</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// other code that updates records in other tables</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ttscommit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//Deadlock</span>
+</span></span><span class="line"><span class="cl">    <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span><span class="p">::</span><span class="n">Deadlock</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">retry</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//UpdateConflict</span>
+</span></span><span class="line"><span class="cl">    <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span><span class="p">::</span><span class="n">UpdateConflict</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">appl</span><span class="p">.</span><span class="n">ttsLevel</span><span class="p">()</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">xSession</span><span class="p">::</span><span class="n">currentRetryCount</span><span class="p">()</span> <span class="p">&gt;=</span> <span class="err">#</span><span class="n">RetryNum</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">throw</span> <span class="n">Exception</span><span class="p">::</span><span class="n">UpdateConflictNotRecovered</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">retry</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="n">Exception</span><span class="p">::</span><span class="n">UpdateConflict</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>If a conflict due to OCC occurs, the system throws the <code>UpdateConflict</code> exception and it is caught by the catch statement.</p>
 <p>The other new element here is <code>ttsLevel</code>. Since transactions can be nested, we do want the exception to falling through to the parent transaction if one exists. If <code>ttsabort</code> is issued (directly or due to a throwing error) at any level, the whole transaction will be rolled back; we can&rsquo;t roll back just the level where the error is thrown.</p>

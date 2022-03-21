@@ -18,12 +18,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#">
-<span class="n">InventSumRecalcItem</span> <span class="n">InventSumRecalcItem</span><span class="p">;</span>
-<span class="p">;</span>
-<span class="n">InventSumRecalcItem</span> <span class="p">=</span> <span class="k">new</span> <span class="n">InventSumRecalcItem</span><span class="p">(</span><span class="s">&#34;ITEM001&#34;</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="n">checkfix</span><span class="p">::</span><span class="n">fix</span><span class="p">);</span>
-<span class="n">InventSumRecalcItem</span><span class="p">.</span><span class="n">updatenow</span><span class="p">();</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">InventSumRecalcItem</span> <span class="n">InventSumRecalcItem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">InventSumRecalcItem</span> <span class="p">=</span> <span class="k">new</span> <span class="n">InventSumRecalcItem</span><span class="p">(</span><span class="s">&#34;ITEM001&#34;</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="n">checkfix</span><span class="p">::</span><span class="n">fix</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">InventSumRecalcItem</span><span class="p">.</span><span class="n">updatenow</span><span class="p">();</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>First parameter : <code>ItemId</code></p>
 <p>Second parameter : <code>Show errors</code></p>
@@ -42,16 +42,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="n">InventTable</span> <span class="n">InventTable</span><span class="p">;</span>
-<span class="n">InventSumRecalcItem</span> <span class="n">InventSumRecalcItem</span><span class="p">;</span>
-
-<span class="n">WHILE</span> <span class="n">SELECT</span> <span class="n">InventTable</span>
-	<span class="n">WHERE</span> <span class="p">(</span><span class="n">InventTable</span><span class="p">.</span><span class="n">ItemType</span> <span class="p">==</span> <span class="n">ItemType</span><span class="p">::</span><span class="n">Item</span><span class="p">)</span> <span class="p">||</span> <span class="p">(</span><span class="n">InventTable</span><span class="p">.</span><span class="n">ItemType</span> <span class="p">==</span> <span class="n">ItemType</span><span class="p">::</span><span class="n">BOM</span><span class="p">)</span>
-	<span class="p">{</span>
-		<span class="n">InventSumRecalcItem</span> <span class="p">=</span> <span class="k">new</span> <span class="n">InventSumRecalcItem</span><span class="p">(</span><span class="n">InventTable</span><span class="p">.</span><span class="n">ItemId</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="n">checkfix</span><span class="p">::</span><span class="n">fix</span><span class="p">);</span>
-		<span class="n">InventSumRecalcItem</span><span class="p">.</span><span class="n">updatenow</span><span class="p">();</span>
-	<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">InventTable</span> <span class="n">InventTable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">InventSumRecalcItem</span> <span class="n">InventSumRecalcItem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">WHILE</span> <span class="n">SELECT</span> <span class="n">InventTable</span>
+</span></span><span class="line"><span class="cl">	<span class="n">WHERE</span> <span class="p">(</span><span class="n">InventTable</span><span class="p">.</span><span class="n">ItemType</span> <span class="p">==</span> <span class="n">ItemType</span><span class="p">::</span><span class="n">Item</span><span class="p">)</span> <span class="p">||</span> <span class="p">(</span><span class="n">InventTable</span><span class="p">.</span><span class="n">ItemType</span> <span class="p">==</span> <span class="n">ItemType</span><span class="p">::</span><span class="n">BOM</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">InventSumRecalcItem</span> <span class="p">=</span> <span class="k">new</span> <span class="n">InventSumRecalcItem</span><span class="p">(</span><span class="n">InventTable</span><span class="p">.</span><span class="n">ItemId</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="n">checkfix</span><span class="p">::</span><span class="n">fix</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">InventSumRecalcItem</span><span class="p">.</span><span class="n">updatenow</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Thank you for reading!</p>
 ]]></description>

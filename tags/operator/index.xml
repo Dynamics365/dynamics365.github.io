@@ -65,30 +65,30 @@
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="k">static</span> <span class="k">void</span> <span class="n">QueryBuildRange_Sample</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">Query</span>                       <span class="n">query</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Query</span><span class="p">();</span>
-    <span class="n">QueryRun</span>                    <span class="n">queryRun</span><span class="p">;</span>
-    <span class="n">QueryBuildDataSource</span>        <span class="n">qbds</span><span class="p">;</span>
-    <span class="n">QueryBuildRange</span>             <span class="n">queryRange</span><span class="p">;</span>   
-    <span class="n">CustTable</span>                   <span class="n">custTable</span><span class="p">;</span>
-    
-    <span class="n">qbds</span><span class="p">.</span><span class="n">addDataSource</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">CustTable</span><span class="p">));</span>
-    
-    <span class="n">queryRange</span> <span class="p">=</span> <span class="n">qbds</span><span class="p">.</span><span class="n">addRange</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">CustTable</span><span class="p">,</span> <span class="n">AccountNum</span><span class="p">));</span>
-    
-    <span class="n">queryRange</span><span class="p">.</span><span class="k">value</span><span class="p">(</span><span class="s">&#34;axd*&#34;</span><span class="p">);</span>
-    
-    <span class="n">queryRun</span> <span class="p">=</span> <span class="k">new</span> <span class="n">QueryRun</span><span class="p">(</span><span class="n">query</span><span class="p">);</span>
-    
-    <span class="k">while</span><span class="p">(</span><span class="n">queryRun</span><span class="p">.</span><span class="n">next</span><span class="p">())</span>
-    <span class="p">{</span>
-        <span class="n">custTable</span> <span class="p">=</span> <span class="n">queryRun</span><span class="p">.</span><span class="k">get</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">CustTable</span><span class="p">));</span>
-        <span class="n">print</span> <span class="n">custTable</span><span class="p">.</span><span class="n">AccountNum</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="n">pause</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">QueryBuildRange_Sample</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Query</span>                       <span class="n">query</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Query</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">QueryRun</span>                    <span class="n">queryRun</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">QueryBuildDataSource</span>        <span class="n">qbds</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">QueryBuildRange</span>             <span class="n">queryRange</span><span class="p">;</span>   
+</span></span><span class="line"><span class="cl">    <span class="n">CustTable</span>                   <span class="n">custTable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">qbds</span><span class="p">.</span><span class="n">addDataSource</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">CustTable</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">queryRange</span> <span class="p">=</span> <span class="n">qbds</span><span class="p">.</span><span class="n">addRange</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">CustTable</span><span class="p">,</span> <span class="n">AccountNum</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">queryRange</span><span class="p">.</span><span class="k">value</span><span class="p">(</span><span class="s">&#34;axd*&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">queryRun</span> <span class="p">=</span> <span class="k">new</span> <span class="n">QueryRun</span><span class="p">(</span><span class="n">query</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">queryRun</span><span class="p">.</span><span class="n">next</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">custTable</span> <span class="p">=</span> <span class="n">queryRun</span><span class="p">.</span><span class="k">get</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">CustTable</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">print</span> <span class="n">custTable</span><span class="p">.</span><span class="n">AccountNum</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pause</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>]]></description>
 </item></channel>

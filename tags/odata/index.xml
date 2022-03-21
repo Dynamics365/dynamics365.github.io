@@ -77,18 +77,18 @@ You can build the project without problem.</p>
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="k">foreach</span> <span class="p">(</span><span class="n">IEdmEntitySet</span> <span class="n">entitySet</span> <span class="k">in</span> <span class="n">container</span><span class="p">.</span><span class="n">EntitySets</span><span class="p">())</span>
-<span class="p">{</span>
-    <span class="n">IEdmEntityType</span> <span class="n">entitySetElementType</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">EntityType</span><span class="p">();</span>
-    <span class="kt">string</span> <span class="n">entitySetElementTypeName</span> <span class="p">=</span> <span class="n">GetElementTypeName</span><span class="p">(</span><span class="n">entitySetElementType</span><span class="p">,</span> <span class="n">container</span><span class="p">);</span>
-
-    <span class="kt">string</span> <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">EnableNamingAlias</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">Customization</span><span class="p">.</span><span class="n">CustomizeNaming</span><span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">foreach</span> <span class="p">(</span><span class="n">IEdmEntitySet</span> <span class="n">entitySet</span> <span class="k">in</span> <span class="n">container</span><span class="p">.</span><span class="n">EntitySets</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IEdmEntityType</span> <span class="n">entitySetElementType</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">EntityType</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">entitySetElementTypeName</span> <span class="p">=</span> <span class="n">GetElementTypeName</span><span class="p">(</span><span class="n">entitySetElementType</span><span class="p">,</span> <span class="n">container</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">EnableNamingAlias</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">Customization</span><span class="p">.</span><span class="n">CustomizeNaming</span><span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>Modified code:</li>
@@ -115,25 +115,25 @@ You can build the project without problem.</p>
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="k">foreach</span> <span class="p">(</span><span class="n">IEdmEntitySet</span> <span class="n">entitySet</span> <span class="k">in</span> <span class="n">container</span><span class="p">.</span><span class="n">EntitySets</span><span class="p">())</span>
-<span class="p">{</span>
-    <span class="n">IEdmEntityType</span> <span class="n">entitySetElementType</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">EntityType</span><span class="p">();</span>
-    <span class="kt">string</span> <span class="n">entitySetElementTypeName</span> <span class="p">=</span> <span class="n">GetElementTypeName</span><span class="p">(</span><span class="n">entitySetElementType</span><span class="p">,</span> <span class="n">container</span><span class="p">);</span>
-
-    <span class="kt">string</span> <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
-
-    <span class="c1">//start of manual fix 
-</span><span class="c1"></span>    <span class="c1">//only process entity names that containin a specific string, to reduce the string size
-</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(((</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;CUST&#34;</span><span class="p">))</span> <span class="p">||</span> <span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;VEND&#34;</span><span class="p">)))</span> <span class="p">||</span> <span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;SALES&#34;</span><span class="p">)))</span>
-    <span class="p">{</span>
-      <span class="c1">// emd of manual fix
-</span><span class="c1"></span>      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">EnableNamingAlias</span><span class="p">)</span>
-      <span class="p">{</span>
-          <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">Customization</span><span class="p">.</span><span class="n">CustomizeNaming</span><span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">);</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">foreach</span> <span class="p">(</span><span class="n">IEdmEntitySet</span> <span class="n">entitySet</span> <span class="k">in</span> <span class="n">container</span><span class="p">.</span><span class="n">EntitySets</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IEdmEntityType</span> <span class="n">entitySetElementType</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">EntityType</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">entitySetElementTypeName</span> <span class="p">=</span> <span class="n">GetElementTypeName</span><span class="p">(</span><span class="n">entitySetElementType</span><span class="p">,</span> <span class="n">container</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//start of manual fix </span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//only process entity names that containin a specific string, to reduce the string size</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(((</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;CUST&#34;</span><span class="p">))</span> <span class="p">||</span> <span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;VEND&#34;</span><span class="p">)))</span> <span class="p">||</span> <span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;SALES&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// emd of manual fix</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">EnableNamingAlias</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">Customization</span><span class="p">.</span><span class="n">CustomizeNaming</span><span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="4-authentication-configuration">4. Authentication configuration</h1>
 <p>Under AuthenticationUtility project, you need to modify ClientConfiguration.cs follow, you can get all related information for the first step.</p>
@@ -207,40 +207,40 @@ This can be done from POSTMAN too and you need to use header and body as you see
 </span><span class="lnt">33
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd">--batch_d63a-e9be-2927
-Content-Type: multipart/mixed; boundary=changeset_2499-90ab-7b93
-
---changeset_2499-90ab-7b93
-Content-Type: application/http
-Content-Transfer-Encoding: binary
-
-POST CustomerGroups?cross-company=true HTTP/1.1
-Content-ID: 1
-Accept: application/json;q=0.9, */*;q=0.1
-OData-Version: 4.0
-Content-Type: application/json
-OData-MaxVersion: 4.0
-
-{<span class="s2">&#34;CustomerGroupId&#34;</span>:<span class="s2">&#34;1060&#34;</span>,<span class="s2">&#34;Description&#34;</span>:<span class="s2">&#34;Wholesales customers&#34;</span>,<span class="s2">&#34;PaymentTermId&#34;</span>:<span class="s2">&#34;Net30&#34;</span>,<span class="s2">&#34;IsSalesTaxIncludedInPrice&#34;</span>:<span class="s2">&#34;No&#34;</span>,<span class="s2">&#34;dataAreaId&#34;</span>:<span class="s2">&#34;usmf&#34;</span>}
---changeset_2499-90ab-7b93--
-
---batch_d63a-e9be-2927
-Content-Type: multipart/mixed; boundary=changeset_b573-33b2-85ff
-
---changeset_b573-33b2-85ff
-Content-Type: application/http
-Content-Transfer-Encoding: binary
-
-POST CustomerGroups?cross-company=true HTTP/1.1
-Content-ID: 2
-Accept: application/json;q=0.9, */*;q=0.1
-OData-Version: 4.0
-Content-Type: application/json
-OData-MaxVersion: 4.0
-
-{<span class="s2">&#34;CustomerGroupId&#34;</span>:<span class="s2">&#34;1070&#34;</span>,<span class="s2">&#34;Description&#34;</span>:<span class="s2">&#34;Wholesales customers1&#34;</span>,<span class="s2">&#34;PaymentTermId&#34;</span>:<span class="s2">&#34;Net30&#34;</span>,<span class="s2">&#34;IsSalesTaxIncludedInPrice&#34;</span>:<span class="s2">&#34;No&#34;</span>,<span class="s2">&#34;dataAreaId&#34;</span>:<span class="s2">&#34;usmf&#34;</span>}
---changeset_b573-33b2-85ff--
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">--batch_d63a-e9be-2927
+</span></span><span class="line"><span class="cl">Content-Type: multipart/mixed; boundary=changeset_2499-90ab-7b93
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">--changeset_2499-90ab-7b93
+</span></span><span class="line"><span class="cl">Content-Type: application/http
+</span></span><span class="line"><span class="cl">Content-Transfer-Encoding: binary
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">POST CustomerGroups?cross-company=true HTTP/1.1
+</span></span><span class="line"><span class="cl">Content-ID: 1
+</span></span><span class="line"><span class="cl">Accept: application/json;q=0.9, */*;q=0.1
+</span></span><span class="line"><span class="cl">OData-Version: 4.0
+</span></span><span class="line"><span class="cl">Content-Type: application/json
+</span></span><span class="line"><span class="cl">OData-MaxVersion: 4.0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">{<span class="s2">&#34;CustomerGroupId&#34;</span>:<span class="s2">&#34;1060&#34;</span>,<span class="s2">&#34;Description&#34;</span>:<span class="s2">&#34;Wholesales customers&#34;</span>,<span class="s2">&#34;PaymentTermId&#34;</span>:<span class="s2">&#34;Net30&#34;</span>,<span class="s2">&#34;IsSalesTaxIncludedInPrice&#34;</span>:<span class="s2">&#34;No&#34;</span>,<span class="s2">&#34;dataAreaId&#34;</span>:<span class="s2">&#34;usmf&#34;</span>}
+</span></span><span class="line"><span class="cl">--changeset_2499-90ab-7b93--
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">--batch_d63a-e9be-2927
+</span></span><span class="line"><span class="cl">Content-Type: multipart/mixed; boundary=changeset_b573-33b2-85ff
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">--changeset_b573-33b2-85ff
+</span></span><span class="line"><span class="cl">Content-Type: application/http
+</span></span><span class="line"><span class="cl">Content-Transfer-Encoding: binary
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">POST CustomerGroups?cross-company=true HTTP/1.1
+</span></span><span class="line"><span class="cl">Content-ID: 2
+</span></span><span class="line"><span class="cl">Accept: application/json;q=0.9, */*;q=0.1
+</span></span><span class="line"><span class="cl">OData-Version: 4.0
+</span></span><span class="line"><span class="cl">Content-Type: application/json
+</span></span><span class="line"><span class="cl">OData-MaxVersion: 4.0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">{<span class="s2">&#34;CustomerGroupId&#34;</span>:<span class="s2">&#34;1070&#34;</span>,<span class="s2">&#34;Description&#34;</span>:<span class="s2">&#34;Wholesales customers1&#34;</span>,<span class="s2">&#34;PaymentTermId&#34;</span>:<span class="s2">&#34;Net30&#34;</span>,<span class="s2">&#34;IsSalesTaxIncludedInPrice&#34;</span>:<span class="s2">&#34;No&#34;</span>,<span class="s2">&#34;dataAreaId&#34;</span>:<span class="s2">&#34;usmf&#34;</span>}
+</span></span><span class="line"><span class="cl">--changeset_b573-33b2-85ff--
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Click send and this is what you got from response</p>
 <figure class='center'>
@@ -304,60 +304,60 @@ OData-MaxVersion: 4.0
 </span><span class="lnt">53
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="err">--batchresponse_</span><span class="mf">45e87829</span><span class="mi">-5</span><span class="err">a</span><span class="mi">26</span><span class="mf">-480e-8</span><span class="err">aaa</span><span class="mi">-8</span><span class="err">a</span><span class="mi">08</span><span class="err">c</span><span class="mi">7</span><span class="err">a</span><span class="mi">82</span><span class="err">c</span><span class="mi">60</span>
-<span class="err">Content-Type:</span> <span class="err">multipart/mixed;</span> <span class="err">boundary=changesetresponse_</span><span class="mi">27</span><span class="err">ed</span><span class="mi">7621</span><span class="err">-d</span><span class="mi">939-40</span><span class="err">b</span><span class="mi">7-9</span><span class="err">f</span><span class="mi">8</span><span class="err">b-be</span><span class="mi">0421</span><span class="err">ff</span><span class="mi">0</span><span class="err">cea</span>
-<span class="err">--changesetresponse_</span><span class="mi">27</span><span class="err">ed</span><span class="mi">7621</span><span class="err">-d</span><span class="mi">939-40</span><span class="err">b</span><span class="mi">7-9</span><span class="err">f</span><span class="mi">8</span><span class="err">b-be</span><span class="mi">0421</span><span class="err">ff</span><span class="mi">0</span><span class="err">cea</span>
-<span class="err">Content-Type:</span> <span class="err">application/http</span>
-<span class="err">Content-Transfer-Encoding:</span> <span class="err">binary</span>
-<span class="err">Content-ID:</span> <span class="mi">1</span>
-<span class="err">HTTP/</span><span class="mf">1.1</span> <span class="mi">201</span> <span class="err">Created</span>
-<span class="err">ETag:</span> <span class="err">W/</span><span class="s2">&#34;JzEsNjg3MTk0Nzk4MzUn&#34;</span>
-<span class="err">Location:</span> <span class="err">https:</span> <span class="c1">//fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/CustomerGroups(dataAreaId=&#39;usmf&#39;,CustomerGroupId=&#39;1060&#39;)
-</span><span class="c1"></span><span class="err">Content-Type:</span> <span class="err">application/json;</span> <span class="err">odata.metadata=minimal</span>
-<span class="err">OData-Version:</span> <span class="mf">4.0</span>
-<span class="p">{</span>
-<span class="nt">&#34;@odata.context&#34;</span><span class="p">:</span> <span class="s2">&#34;https://fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/$metadata#CustomerGroups/$entity&#34;</span><span class="p">,</span>
-<span class="nt">&#34;@odata.etag&#34;</span><span class="p">:</span> <span class="s2">&#34;W/\&#34;JzEsNjg3MTk0Nzk4MzUn\&#34;&#34;</span><span class="p">,</span>
-<span class="nt">&#34;dataAreaId&#34;</span><span class="p">:</span> <span class="s2">&#34;usmf&#34;</span><span class="p">,</span>
-<span class="nt">&#34;CustomerGroupId&#34;</span><span class="p">:</span> <span class="s2">&#34;1060&#34;</span><span class="p">,</span>
-<span class="nt">&#34;ClearingPeriodPaymentTermName&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-<span class="nt">&#34;DefaultDimensionDisplayValue&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-<span class="nt">&#34;CustomerAccountNumberSequence&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-<span class="nt">&#34;IsSalesTaxIncludedInPrice&#34;</span><span class="p">:</span> <span class="s2">&#34;No&#34;</span><span class="p">,</span>
-<span class="nt">&#34;Description&#34;</span><span class="p">:</span> <span class="s2">&#34;Wholesales customers&#34;</span><span class="p">,</span>
-<span class="nt">&#34;WriteOffReason&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-<span class="nt">&#34;PaymentTermId&#34;</span><span class="p">:</span> <span class="s2">&#34;Net30&#34;</span><span class="p">,</span>
-<span class="nt">&#34;TaxGroupId&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
-<span class="p">}</span>
-<span class="err">--changesetresponse_</span><span class="mi">27</span><span class="err">ed</span><span class="mi">7621</span><span class="err">-d</span><span class="mi">939-40</span><span class="err">b</span><span class="mi">7-9</span><span class="err">f</span><span class="mi">8</span><span class="err">b-be</span><span class="mi">0421</span><span class="err">ff</span><span class="mi">0</span><span class="err">cea--</span>
-<span class="err">--batchresponse_</span><span class="mf">45e87829</span><span class="mi">-5</span><span class="err">a</span><span class="mi">26</span><span class="mf">-480e-8</span><span class="err">aaa</span><span class="mi">-8</span><span class="err">a</span><span class="mi">08</span><span class="err">c</span><span class="mi">7</span><span class="err">a</span><span class="mi">82</span><span class="err">c</span><span class="mi">60</span>
-<span class="err">Content-Type:</span> <span class="err">multipart/mixed;</span> <span class="err">boundary=changesetresponse_</span><span class="mi">541</span><span class="err">a</span><span class="mi">7</span><span class="err">d</span><span class="mi">21</span><span class="err">-af</span><span class="mi">21-4</span><span class="err">d</span><span class="mi">66</span><span class="err">-b</span><span class="mi">410</span><span class="err">-fb</span><span class="mi">4165599</span><span class="err">b</span><span class="mi">54</span>
-<span class="err">--changesetresponse_</span><span class="mi">541</span><span class="err">a</span><span class="mi">7</span><span class="err">d</span><span class="mi">21</span><span class="err">-af</span><span class="mi">21-4</span><span class="err">d</span><span class="mi">66</span><span class="err">-b</span><span class="mi">410</span><span class="err">-fb</span><span class="mi">4165599</span><span class="err">b</span><span class="mi">54</span>
-<span class="err">Content-Type:</span> <span class="err">application/http</span>
-<span class="err">Content-Transfer-Encoding:</span> <span class="err">binary</span>
-<span class="err">Content-ID:</span> <span class="mi">2</span>
-<span class="err">HTTP/</span><span class="mf">1.1</span> <span class="mi">201</span> <span class="err">Created</span>
-<span class="err">ETag:</span> <span class="err">W/</span><span class="s2">&#34;JzEsNjg3MTk0Nzk4MzYn&#34;</span>
-<span class="err">Location:</span> <span class="err">https:</span> <span class="c1">//fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/CustomerGroups(dataAreaId=&#39;usmf&#39;,CustomerGroupId=&#39;1070&#39;)
-</span><span class="c1"></span><span class="err">Content-Type:</span> <span class="err">application/json;</span> <span class="err">odata.metadata=minimal</span>
-<span class="err">OData-Version:</span> <span class="mf">4.0</span>
-<span class="p">{</span>
-<span class="nt">&#34;@odata.context&#34;</span><span class="p">:</span> <span class="s2">&#34;https://fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/$metadata#CustomerGroups/$entity&#34;</span><span class="p">,</span>
-<span class="nt">&#34;@odata.etag&#34;</span><span class="p">:</span> <span class="s2">&#34;W/\&#34;JzEsNjg3MTk0Nzk4MzYn\&#34;&#34;</span><span class="p">,</span>
-<span class="nt">&#34;dataAreaId&#34;</span><span class="p">:</span> <span class="s2">&#34;usmf&#34;</span><span class="p">,</span>
-<span class="nt">&#34;CustomerGroupId&#34;</span><span class="p">:</span> <span class="s2">&#34;1070&#34;</span><span class="p">,</span>
-<span class="nt">&#34;ClearingPeriodPaymentTermName&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-<span class="nt">&#34;DefaultDimensionDisplayValue&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-<span class="nt">&#34;CustomerAccountNumberSequence&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-<span class="nt">&#34;IsSalesTaxIncludedInPrice&#34;</span><span class="p">:</span> <span class="s2">&#34;No&#34;</span><span class="p">,</span>
-<span class="nt">&#34;Description&#34;</span><span class="p">:</span> <span class="s2">&#34;Wholesales customers1&#34;</span><span class="p">,</span>
-<span class="nt">&#34;WriteOffReason&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-<span class="nt">&#34;PaymentTermId&#34;</span><span class="p">:</span> <span class="s2">&#34;Net30&#34;</span><span class="p">,</span>
-<span class="nt">&#34;TaxGroupId&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
-<span class="p">}</span>
-<span class="err">--changesetresponse_</span><span class="mi">541</span><span class="err">a</span><span class="mi">7</span><span class="err">d</span><span class="mi">21</span><span class="err">-af</span><span class="mi">21-4</span><span class="err">d</span><span class="mi">66</span><span class="err">-b</span><span class="mi">410</span><span class="err">-fb</span><span class="mi">4165599</span><span class="err">b</span><span class="mi">54</span><span class="err">--</span>
-<span class="err">--batchresponse_</span><span class="mf">45e87829</span><span class="mi">-5</span><span class="err">a</span><span class="mi">26</span><span class="mf">-480e-8</span><span class="err">aaa</span><span class="mi">-8</span><span class="err">a</span><span class="mi">08</span><span class="err">c</span><span class="mi">7</span><span class="err">a</span><span class="mi">82</span><span class="err">c</span><span class="mi">60</span><span class="err">--</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">--batchresponse_</span><span class="mf">45e87829</span><span class="mi">-5</span><span class="err">a</span><span class="mi">26</span><span class="mf">-480e-8</span><span class="err">aaa</span><span class="mi">-8</span><span class="err">a</span><span class="mi">08</span><span class="err">c</span><span class="mi">7</span><span class="err">a</span><span class="mi">82</span><span class="err">c</span><span class="mi">60</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-Type:</span> <span class="err">multipart/mixed;</span> <span class="err">boundary=changesetresponse_</span><span class="mi">27</span><span class="err">ed</span><span class="mi">7621</span><span class="err">-d</span><span class="mi">939-40</span><span class="err">b</span><span class="mi">7-9</span><span class="err">f</span><span class="mi">8</span><span class="err">b-be</span><span class="mi">0421</span><span class="err">ff</span><span class="mi">0</span><span class="err">cea</span>
+</span></span><span class="line"><span class="cl"><span class="err">--changesetresponse_</span><span class="mi">27</span><span class="err">ed</span><span class="mi">7621</span><span class="err">-d</span><span class="mi">939-40</span><span class="err">b</span><span class="mi">7-9</span><span class="err">f</span><span class="mi">8</span><span class="err">b-be</span><span class="mi">0421</span><span class="err">ff</span><span class="mi">0</span><span class="err">cea</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-Type:</span> <span class="err">application/http</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-Transfer-Encoding:</span> <span class="err">binary</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-ID:</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="err">HTTP/</span><span class="mf">1.1</span> <span class="mi">201</span> <span class="err">Created</span>
+</span></span><span class="line"><span class="cl"><span class="err">ETag:</span> <span class="err">W/</span><span class="s2">&#34;JzEsNjg3MTk0Nzk4MzUn&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="err">Location:</span> <span class="err">https:</span> <span class="c1">//fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/CustomerGroups(dataAreaId=&#39;usmf&#39;,CustomerGroupId=&#39;1060&#39;)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">Content-Type:</span> <span class="err">application/json;</span> <span class="err">odata.metadata=minimal</span>
+</span></span><span class="line"><span class="cl"><span class="err">OData-Version:</span> <span class="mf">4.0</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;@odata.context&#34;</span><span class="p">:</span> <span class="s2">&#34;https://fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/$metadata#CustomerGroups/$entity&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;@odata.etag&#34;</span><span class="p">:</span> <span class="s2">&#34;W/\&#34;JzEsNjg3MTk0Nzk4MzUn\&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;dataAreaId&#34;</span><span class="p">:</span> <span class="s2">&#34;usmf&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;CustomerGroupId&#34;</span><span class="p">:</span> <span class="s2">&#34;1060&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;ClearingPeriodPaymentTermName&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;DefaultDimensionDisplayValue&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;CustomerAccountNumberSequence&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;IsSalesTaxIncludedInPrice&#34;</span><span class="p">:</span> <span class="s2">&#34;No&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;Description&#34;</span><span class="p">:</span> <span class="s2">&#34;Wholesales customers&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;WriteOffReason&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;PaymentTermId&#34;</span><span class="p">:</span> <span class="s2">&#34;Net30&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;TaxGroupId&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="err">--changesetresponse_</span><span class="mi">27</span><span class="err">ed</span><span class="mi">7621</span><span class="err">-d</span><span class="mi">939-40</span><span class="err">b</span><span class="mi">7-9</span><span class="err">f</span><span class="mi">8</span><span class="err">b-be</span><span class="mi">0421</span><span class="err">ff</span><span class="mi">0</span><span class="err">cea--</span>
+</span></span><span class="line"><span class="cl"><span class="err">--batchresponse_</span><span class="mf">45e87829</span><span class="mi">-5</span><span class="err">a</span><span class="mi">26</span><span class="mf">-480e-8</span><span class="err">aaa</span><span class="mi">-8</span><span class="err">a</span><span class="mi">08</span><span class="err">c</span><span class="mi">7</span><span class="err">a</span><span class="mi">82</span><span class="err">c</span><span class="mi">60</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-Type:</span> <span class="err">multipart/mixed;</span> <span class="err">boundary=changesetresponse_</span><span class="mi">541</span><span class="err">a</span><span class="mi">7</span><span class="err">d</span><span class="mi">21</span><span class="err">-af</span><span class="mi">21-4</span><span class="err">d</span><span class="mi">66</span><span class="err">-b</span><span class="mi">410</span><span class="err">-fb</span><span class="mi">4165599</span><span class="err">b</span><span class="mi">54</span>
+</span></span><span class="line"><span class="cl"><span class="err">--changesetresponse_</span><span class="mi">541</span><span class="err">a</span><span class="mi">7</span><span class="err">d</span><span class="mi">21</span><span class="err">-af</span><span class="mi">21-4</span><span class="err">d</span><span class="mi">66</span><span class="err">-b</span><span class="mi">410</span><span class="err">-fb</span><span class="mi">4165599</span><span class="err">b</span><span class="mi">54</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-Type:</span> <span class="err">application/http</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-Transfer-Encoding:</span> <span class="err">binary</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-ID:</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="err">HTTP/</span><span class="mf">1.1</span> <span class="mi">201</span> <span class="err">Created</span>
+</span></span><span class="line"><span class="cl"><span class="err">ETag:</span> <span class="err">W/</span><span class="s2">&#34;JzEsNjg3MTk0Nzk4MzYn&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="err">Location:</span> <span class="err">https:</span> <span class="c1">//fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/CustomerGroups(dataAreaId=&#39;usmf&#39;,CustomerGroupId=&#39;1070&#39;)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">Content-Type:</span> <span class="err">application/json;</span> <span class="err">odata.metadata=minimal</span>
+</span></span><span class="line"><span class="cl"><span class="err">OData-Version:</span> <span class="mf">4.0</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;@odata.context&#34;</span><span class="p">:</span> <span class="s2">&#34;https://fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/$metadata#CustomerGroups/$entity&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;@odata.etag&#34;</span><span class="p">:</span> <span class="s2">&#34;W/\&#34;JzEsNjg3MTk0Nzk4MzYn\&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;dataAreaId&#34;</span><span class="p">:</span> <span class="s2">&#34;usmf&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;CustomerGroupId&#34;</span><span class="p">:</span> <span class="s2">&#34;1070&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;ClearingPeriodPaymentTermName&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;DefaultDimensionDisplayValue&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;CustomerAccountNumberSequence&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;IsSalesTaxIncludedInPrice&#34;</span><span class="p">:</span> <span class="s2">&#34;No&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;Description&#34;</span><span class="p">:</span> <span class="s2">&#34;Wholesales customers1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;WriteOffReason&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;PaymentTermId&#34;</span><span class="p">:</span> <span class="s2">&#34;Net30&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;TaxGroupId&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="err">--changesetresponse_</span><span class="mi">541</span><span class="err">a</span><span class="mi">7</span><span class="err">d</span><span class="mi">21</span><span class="err">-af</span><span class="mi">21-4</span><span class="err">d</span><span class="mi">66</span><span class="err">-b</span><span class="mi">410</span><span class="err">-fb</span><span class="mi">4165599</span><span class="err">b</span><span class="mi">54</span><span class="err">--</span>
+</span></span><span class="line"><span class="cl"><span class="err">--batchresponse_</span><span class="mf">45e87829</span><span class="mi">-5</span><span class="err">a</span><span class="mi">26</span><span class="mf">-480e-8</span><span class="err">aaa</span><span class="mi">-8</span><span class="err">a</span><span class="mi">08</span><span class="err">c</span><span class="mi">7</span><span class="err">a</span><span class="mi">82</span><span class="err">c</span><span class="mi">60</span><span class="err">--</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Check the data in Dynamics 365 for finance and operations</p>
 <figure class='center'>

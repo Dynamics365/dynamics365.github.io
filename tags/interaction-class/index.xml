@@ -40,17 +40,17 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">void</span> <span class="n">selectionChanged</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="n">Requisition</span> <span class="n">requisition</span> <span class="p">=</span> <span class="k">this</span><span class="p">.</span><span class="n">listPage</span><span class="p">().</span><span class="n">activeRecord</span><span class="p">(</span><span class="n">queryDataSourceStr</span><span class="p">(</span><span class="n">RequisitionQuery</span><span class="p">,</span><span class="n">Requisition</span><span class="p">));</span>
-    <span class="n">super</span><span class="p">();</span>
-   
-    <span class="k">if</span><span class="p">(</span><span class="n">requisition</span><span class="p">.</span><span class="n">WorkflowApprovalStatus</span> <span class="p">==</span> <span class="n">WorkflowApprovalStatus</span><span class="p">::</span><span class="n">Approved</span><span class="p">)</span>
-        <span class="k">this</span><span class="p">.</span><span class="n">listPage</span><span class="p">().</span><span class="n">actionPaneControlEnabled</span><span class="p">(</span><span class="n">formControlStr</span><span class="p">(</span><span class="n">RequisitionListPage</span><span class="p">,</span><span class="n">Edit</span><span class="p">),</span><span class="k">true</span><span class="p">);</span>
-    <span class="k">else</span>
-        <span class="k">this</span><span class="p">.</span><span class="n">listPage</span><span class="p">().</span><span class="n">actionPaneControlEnabled</span><span class="p">(</span><span class="n">formControlStr</span><span class="p">(</span><span class="n">RequisitionListPage</span><span class="p">,</span><span class="n">Edit</span><span class="p">),</span><span class="k">false</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">selectionChanged</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Requisition</span> <span class="n">requisition</span> <span class="p">=</span> <span class="k">this</span><span class="p">.</span><span class="n">listPage</span><span class="p">().</span><span class="n">activeRecord</span><span class="p">(</span><span class="n">queryDataSourceStr</span><span class="p">(</span><span class="n">RequisitionQuery</span><span class="p">,</span><span class="n">Requisition</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">   
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">requisition</span><span class="p">.</span><span class="n">WorkflowApprovalStatus</span> <span class="p">==</span> <span class="n">WorkflowApprovalStatus</span><span class="p">::</span><span class="n">Approved</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="n">listPage</span><span class="p">().</span><span class="n">actionPaneControlEnabled</span><span class="p">(</span><span class="n">formControlStr</span><span class="p">(</span><span class="n">RequisitionListPage</span><span class="p">,</span><span class="n">Edit</span><span class="p">),</span><span class="k">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="n">listPage</span><span class="p">().</span><span class="n">actionPaneControlEnabled</span><span class="p">(</span><span class="n">formControlStr</span><span class="p">(</span><span class="n">RequisitionListPage</span><span class="p">,</span><span class="n">Edit</span><span class="p">),</span><span class="k">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li><strong>setButtonVisibility</strong>: Should be overridden to show/hide buttons when the form first opens. This is used more to do a one-off layout adjustment based on system configuration/parameters, as well as the menu-item used to open the form.</li>

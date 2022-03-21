@@ -99,92 +99,92 @@
 </span><span class="lnt">85
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">static</span> <span class="k">void</span> <span class="n">WriteXml</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
-<span class="p">{</span>
-
-    <span class="n">XmlDocument</span> <span class="n">xmlDoc</span><span class="p">;</span>
-    <span class="n">XmlElement</span> <span class="n">xmlRoot</span><span class="p">;</span>
-    <span class="n">XmlElement</span> <span class="n">xmlField</span><span class="p">;</span>
-    <span class="n">XmlElement</span> <span class="n">xmlRecord</span><span class="p">;</span>
-    <span class="n">XMLWriter</span> <span class="n">xmlWriter</span><span class="p">;</span>
-
-    <span class="n">CarTable</span> <span class="n">carTable</span><span class="p">;</span>
-    <span class="n">DictTable</span> <span class="n">dTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DictTable</span><span class="p">(</span><span class="n">tablenum</span><span class="p">(</span><span class="n">CarTable</span><span class="p">));</span>
-    <span class="n">DictField</span> <span class="n">dField</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">fieldId</span><span class="p">;</span>
-    <span class="n">str</span> <span class="k">value</span><span class="p">;</span>
-    <span class="p">;</span> 
-
-    <span class="err">#</span><span class="n">CarsXmlTags</span> 
-
-    <span class="c1">// Create a new object of the XmlDocument class
-</span><span class="c1"></span>    <span class="n">xmlDoc</span> <span class="p">=</span> <span class="n">XmlDocument</span><span class="p">::</span><span class="n">newBlank</span><span class="p">();</span>
-
-    <span class="c1">// Create the root node
-</span><span class="c1"></span>    <span class="n">xmlRoot</span> <span class="p">=</span> <span class="n">xmlDoc</span><span class="p">.</span><span class="n">createElement</span><span class="p">(</span><span class="err">#</span><span class="n">CarRootNode</span><span class="p">);</span>
-
-    <span class="c1">// Loop through all the records in the carTable
-</span><span class="c1"></span>    <span class="k">while</span> <span class="k">select</span> <span class="n">carTable</span>
-    <span class="p">{</span>
-        <span class="c1">// Create a XmlElement (record) to hold the
-</span><span class="c1"></span>        <span class="c1">// contents of the current record.
-</span><span class="c1"></span>        <span class="n">xmlRecord</span> <span class="p">=</span> <span class="n">xmlDoc</span><span class="p">.</span><span class="n">createElement</span><span class="p">(</span><span class="err">#</span><span class="n">CarRecords</span><span class="p">);</span>
-        <span class="c1">// Loop through all the fields in the record
-</span><span class="c1"></span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">=</span><span class="m">1</span><span class="p">;</span> <span class="n">i</span><span class="p">&lt;=</span><span class="n">dTable</span><span class="p">.</span><span class="n">fieldCnt</span><span class="p">();</span> <span class="n">i</span><span class="p">++)</span>
-        <span class="p">{</span>
-            <span class="c1">// Get the fieldId from the field-count
-</span><span class="c1"></span>            <span class="n">fieldId</span> <span class="p">=</span> <span class="n">dTable</span><span class="p">.</span><span class="n">fieldCnt2Id</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-            
-            <span class="c1">// Find the DictField object that matches the fieldId
-</span><span class="c1"></span>            <span class="n">dField</span> <span class="p">=</span> <span class="n">dTable</span><span class="p">.</span><span class="n">fieldObject</span><span class="p">(</span><span class="n">fieldId</span><span class="p">);</span>
-            
-            <span class="c1">// Skip system fields
-</span><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="n">dField</span><span class="p">.</span><span class="n">isSystem</span><span class="p">())</span>
-            <span class="k">continue</span><span class="p">;</span>
-
-            <span class="c1">// Create a new XmlElement (field) and
-</span><span class="c1"></span>            <span class="c1">// have the name equal to the name of the
-</span><span class="c1"></span>            <span class="c1">// dictField
-</span><span class="c1"></span>            <span class="n">xmlField</span> <span class="p">=</span> <span class="n">xmlDoc</span><span class="p">.</span><span class="n">createElement</span><span class="p">(</span><span class="n">dField</span><span class="p">.</span><span class="n">name</span><span class="p">());</span>
-            
-            <span class="c1">// Convert values to string. I have just added
-</span><span class="c1"></span>            <span class="c1">// a couple of conversion as an example.
-</span><span class="c1"></span>            <span class="c1">// Use tableName.(fieldId) instead of fieldname
-</span><span class="c1"></span>            <span class="c1">// to get the content of the field.
-</span><span class="c1"></span>            <span class="k">switch</span> <span class="p">(</span><span class="n">dField</span><span class="p">.</span><span class="n">baseType</span><span class="p">())</span>
-            <span class="p">{</span>
-                <span class="k">case</span> <span class="n">Types</span><span class="p">::</span><span class="n">Int64</span> <span class="p">:</span>
-                    <span class="k">value</span> <span class="p">=</span> <span class="n">int642str</span><span class="p">(</span><span class="n">carTable</span><span class="p">.(</span><span class="n">fieldId</span><span class="p">));</span>
-                <span class="k">break</span><span class="p">;</span>
-                <span class="k">case</span> <span class="n">Types</span><span class="p">::</span><span class="n">Integer</span> <span class="p">:</span>
-                    <span class="k">value</span> <span class="p">=</span> <span class="n">int2str</span><span class="p">(</span><span class="n">carTable</span><span class="p">.(</span><span class="n">fieldId</span><span class="p">));</span>
-                <span class="k">break</span><span class="p">;</span>
-                <span class="k">default</span> <span class="p">:</span>
-                    <span class="k">value</span> <span class="p">=</span> <span class="n">carTable</span><span class="p">.(</span><span class="n">fieldId</span><span class="p">);</span>
-                <span class="k">break</span><span class="p">;</span>
-            <span class="p">}</span>
-
-            <span class="c1">// Set the innerText of the XmlElement (field)
-</span><span class="c1"></span>            <span class="c1">// to the value from the table
-</span><span class="c1"></span>            <span class="n">xmlField</span><span class="p">.</span><span class="n">innerText</span><span class="p">(</span><span class="k">value</span><span class="p">);</span>
-             
-            <span class="c1">// Append the field as a child node to the record
-</span><span class="c1"></span>            <span class="n">xmlRecord</span><span class="p">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">xmlField</span><span class="p">);</span>
-        <span class="p">}</span>
-         <span class="c1">// Add the record as a child node to the root
-</span><span class="c1"></span>        <span class="n">xmlRoot</span><span class="p">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">xmlRecord</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="c1">// Add the root to the XmlDocument
-</span><span class="c1"></span>    <span class="n">xmlDoc</span><span class="p">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">xmlRoot</span><span class="p">);</span>
-    <span class="c1">// Create a new object of the XmlWriter class
-</span><span class="c1"></span>    <span class="c1">// in order to be able to write the xml to a file
-</span><span class="c1"></span>    <span class="n">xmlWriter</span> <span class="p">=</span> <span class="n">XMLWriter</span><span class="p">::</span><span class="n">newFile</span><span class="p">(</span><span class="s">@&#34;c:tempcars.xml&#34;</span><span class="p">);</span>
-    <span class="c1">// Write the content of the XmlDocument to the
-</span><span class="c1"></span>    <span class="c1">// file as specified by the XmlWriter
-</span><span class="c1"></span>    <span class="n">xmlDoc</span><span class="p">.</span><span class="n">writeTo</span><span class="p">(</span><span class="n">xmlWriter</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">WriteXml</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">XmlDocument</span> <span class="n">xmlDoc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">XmlElement</span> <span class="n">xmlRoot</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">XmlElement</span> <span class="n">xmlField</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">XmlElement</span> <span class="n">xmlRecord</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">XMLWriter</span> <span class="n">xmlWriter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">CarTable</span> <span class="n">carTable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">DictTable</span> <span class="n">dTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DictTable</span><span class="p">(</span><span class="n">tablenum</span><span class="p">(</span><span class="n">CarTable</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">DictField</span> <span class="n">dField</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">fieldId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">str</span> <span class="k">value</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">;</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="err">#</span><span class="n">CarsXmlTags</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Create a new object of the XmlDocument class</span>
+</span></span><span class="line"><span class="cl">    <span class="n">xmlDoc</span> <span class="p">=</span> <span class="n">XmlDocument</span><span class="p">::</span><span class="n">newBlank</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Create the root node</span>
+</span></span><span class="line"><span class="cl">    <span class="n">xmlRoot</span> <span class="p">=</span> <span class="n">xmlDoc</span><span class="p">.</span><span class="n">createElement</span><span class="p">(</span><span class="err">#</span><span class="n">CarRootNode</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Loop through all the records in the carTable</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="k">select</span> <span class="n">carTable</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Create a XmlElement (record) to hold the</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// contents of the current record.</span>
+</span></span><span class="line"><span class="cl">        <span class="n">xmlRecord</span> <span class="p">=</span> <span class="n">xmlDoc</span><span class="p">.</span><span class="n">createElement</span><span class="p">(</span><span class="err">#</span><span class="n">CarRecords</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Loop through all the fields in the record</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">=</span><span class="m">1</span><span class="p">;</span> <span class="n">i</span><span class="p">&lt;=</span><span class="n">dTable</span><span class="p">.</span><span class="n">fieldCnt</span><span class="p">();</span> <span class="n">i</span><span class="p">++)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// Get the fieldId from the field-count</span>
+</span></span><span class="line"><span class="cl">            <span class="n">fieldId</span> <span class="p">=</span> <span class="n">dTable</span><span class="p">.</span><span class="n">fieldCnt2Id</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="c1">// Find the DictField object that matches the fieldId</span>
+</span></span><span class="line"><span class="cl">            <span class="n">dField</span> <span class="p">=</span> <span class="n">dTable</span><span class="p">.</span><span class="n">fieldObject</span><span class="p">(</span><span class="n">fieldId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="c1">// Skip system fields</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">dField</span><span class="p">.</span><span class="n">isSystem</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">            <span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">// Create a new XmlElement (field) and</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// have the name equal to the name of the</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// dictField</span>
+</span></span><span class="line"><span class="cl">            <span class="n">xmlField</span> <span class="p">=</span> <span class="n">xmlDoc</span><span class="p">.</span><span class="n">createElement</span><span class="p">(</span><span class="n">dField</span><span class="p">.</span><span class="n">name</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="c1">// Convert values to string. I have just added</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// a couple of conversion as an example.</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// Use tableName.(fieldId) instead of fieldname</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// to get the content of the field.</span>
+</span></span><span class="line"><span class="cl">            <span class="k">switch</span> <span class="p">(</span><span class="n">dField</span><span class="p">.</span><span class="n">baseType</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">case</span> <span class="n">Types</span><span class="p">::</span><span class="n">Int64</span> <span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">value</span> <span class="p">=</span> <span class="n">int642str</span><span class="p">(</span><span class="n">carTable</span><span class="p">.(</span><span class="n">fieldId</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="k">case</span> <span class="n">Types</span><span class="p">::</span><span class="n">Integer</span> <span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">value</span> <span class="p">=</span> <span class="n">int2str</span><span class="p">(</span><span class="n">carTable</span><span class="p">.(</span><span class="n">fieldId</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="k">default</span> <span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">value</span> <span class="p">=</span> <span class="n">carTable</span><span class="p">.(</span><span class="n">fieldId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">// Set the innerText of the XmlElement (field)</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// to the value from the table</span>
+</span></span><span class="line"><span class="cl">            <span class="n">xmlField</span><span class="p">.</span><span class="n">innerText</span><span class="p">(</span><span class="k">value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">             
+</span></span><span class="line"><span class="cl">            <span class="c1">// Append the field as a child node to the record</span>
+</span></span><span class="line"><span class="cl">            <span class="n">xmlRecord</span><span class="p">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">xmlField</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">         <span class="c1">// Add the record as a child node to the root</span>
+</span></span><span class="line"><span class="cl">        <span class="n">xmlRoot</span><span class="p">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">xmlRecord</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Add the root to the XmlDocument</span>
+</span></span><span class="line"><span class="cl">    <span class="n">xmlDoc</span><span class="p">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">xmlRoot</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Create a new object of the XmlWriter class</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// in order to be able to write the xml to a file</span>
+</span></span><span class="line"><span class="cl">    <span class="n">xmlWriter</span> <span class="p">=</span> <span class="n">XMLWriter</span><span class="p">::</span><span class="n">newFile</span><span class="p">(</span><span class="s">@&#34;c:tempcars.xml&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Write the content of the XmlDocument to the</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// file as specified by the XmlWriter</span>
+</span></span><span class="line"><span class="cl">    <span class="n">xmlDoc</span><span class="p">.</span><span class="n">writeTo</span><span class="p">(</span><span class="n">xmlWriter</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>The file that is created looks like the one in the following screenshot(only first part of the file is shown):</p>
 <p><figure><a class="lightgallery" href="/2015-02-04-create-and-write-to-xml-file-in-dynamics-ax/create-and-write-to-xml-file-in-dynamics-ax_1.png" title="&amp;ldquo;create-and-write-to-xml&amp;rdquo;" data-thumbnail="/2015-02-04-create-and-write-to-xml-file-in-dynamics-ax/create-and-write-to-xml-file-in-dynamics-ax_1.png" data-sub-html="<h2>create-and-write-to-xml</h2><p>&amp;ldquo;create-and-write-to-xml&amp;rdquo;</p>">
@@ -202,13 +202,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="c1">// Set the innerText of the XmlElement (field)
-</span><span class="c1">// to the value from the table
-</span><span class="c1"></span><span class="n">xmlField</span><span class="p">.</span><span class="n">innerText</span><span class="p">(</span><span class="k">value</span><span class="p">);</span>
-
-<span class="c1">// Append the field as a child node to the record
-</span><span class="c1"></span><span class="n">xmlRecord</span><span class="p">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">xmlField</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="c1">// Set the innerText of the XmlElement (field)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// to the value from the table</span>
+</span></span><span class="line"><span class="cl"><span class="n">xmlField</span><span class="p">.</span><span class="n">innerText</span><span class="p">(</span><span class="k">value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Append the field as a child node to the record</span>
+</span></span><span class="line"><span class="cl"><span class="n">xmlRecord</span><span class="p">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">xmlField</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>With these lines:</p>
 <div class="highlight"><div class="chroma">
@@ -217,9 +217,9 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="c1">// Add the attribute to the record
-</span><span class="c1"></span><span class="n">xmlRecord</span><span class="p">.</span><span class="n">setAttribute</span><span class="p">(</span><span class="n">dField</span><span class="p">.</span><span class="n">name</span><span class="p">(),</span> <span class="k">value</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="c1">// Add the attribute to the record</span>
+</span></span><span class="line"><span class="cl"><span class="n">xmlRecord</span><span class="p">.</span><span class="n">setAttribute</span><span class="p">(</span><span class="n">dField</span><span class="p">.</span><span class="n">name</span><span class="p">(),</span> <span class="k">value</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>The file that is created now looks like the one in the following screenshot:</p>
 <p><figure><a class="lightgallery" href="/2015-02-04-create-and-write-to-xml-file-in-dynamics-ax/create-and-write-to-xml-file-in-dynamics-ax_2.png" title="&amp;ldquo;create-and-write-to-xml&amp;rdquo;" data-thumbnail="/2015-02-04-create-and-write-to-xml-file-in-dynamics-ax/create-and-write-to-xml-file-in-dynamics-ax_2.png" data-sub-html="<h2>create-and-write-to-xml</h2><p>&amp;ldquo;create-and-write-to-xml&amp;rdquo;</p>">

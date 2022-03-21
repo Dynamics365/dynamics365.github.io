@@ -36,27 +36,27 @@
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">//</span> <span class="n">Allow</span> <span class="n">policy</span>
-<span class="nb">set-executionpolicy</span> <span class="n">remotesigned</span>
-
-<span class="p">//</span><span class="n">Install</span> <span class="n">AzureRM</span>
-<span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">AzureRM</span> <span class="n">-AllowClobber</span>
-
-<span class="p">//</span> <span class="n">Login</span> <span class="n">to</span> <span class="n">Azure</span> <span class="n">using</span> <span class="n">credentials</span>
-<span class="nb">Login-AzureRmAccount</span>
-
-<span class="p">//</span> <span class="nb">select </span><span class="n">the</span> <span class="n">subscription</span> <span class="n">ID</span>
-<span class="nb">Select-AzureRmSubscription</span> <span class="n">-SubscriptionId</span> <span class="nv">$subscriptionId</span>
-
-<span class="nv">$ResourceGroupName</span> <span class="p">=</span> <span class="err">“</span><span class="n">MaxWorkspaceCollections</span><span class="err">”</span>
-<span class="nv">$Location</span> <span class="p">=</span> <span class="s2">&#34;Southeast Asia&#34;</span>
-
-<span class="p">//</span> <span class="n">Create</span> <span class="n">workspace</span> <span class="n">collections</span>
-<span class="nb">New-AzPowerBIWorkspaceCollection</span> <span class="n">-ResourceGroupName</span> <span class="nv">$ResourceGroupName</span> <span class="n">-WorkspaceCollectionName</span> <span class="nv">$WorkSpaceCollectionName</span> <span class="n">-Location</span> <span class="nv">$Location</span>
-
-<span class="p">//</span> <span class="n">Obtain</span> <span class="n">the</span> <span class="n">access</span> <span class="n">keys</span>
-<span class="nb">Get-AzPowerBIWorkspaceCollection</span> <span class="n">-ResourceGroupName</span> <span class="nv">$ResourceGroupName</span> <span class="n">-name</span> <span class="s2">&#34;&lt;yourWorkspacename&gt;&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">//</span> <span class="n">Allow</span> <span class="n">policy</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set-executionpolicy</span> <span class="n">remotesigned</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">//</span><span class="n">Install</span> <span class="n">AzureRM</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">AzureRM</span> <span class="n">-AllowClobber</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">//</span> <span class="n">Login</span> <span class="n">to</span> <span class="n">Azure</span> <span class="n">using</span> <span class="n">credentials</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Login-AzureRmAccount</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">//</span> <span class="nb">select </span><span class="n">the</span> <span class="n">subscription</span> <span class="n">ID</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Select-AzureRmSubscription</span> <span class="n">-SubscriptionId</span> <span class="nv">$subscriptionId</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$ResourceGroupName</span> <span class="p">=</span> <span class="err">“</span><span class="n">MaxWorkspaceCollections</span><span class="err">”</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$Location</span> <span class="p">=</span> <span class="s2">&#34;Southeast Asia&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">//</span> <span class="n">Create</span> <span class="n">workspace</span> <span class="n">collections</span>
+</span></span><span class="line"><span class="cl"><span class="nb">New-AzPowerBIWorkspaceCollection</span> <span class="n">-ResourceGroupName</span> <span class="nv">$ResourceGroupName</span> <span class="n">-WorkspaceCollectionName</span> <span class="nv">$WorkSpaceCollectionName</span> <span class="n">-Location</span> <span class="nv">$Location</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">//</span> <span class="n">Obtain</span> <span class="n">the</span> <span class="n">access</span> <span class="n">keys</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Get-AzPowerBIWorkspaceCollection</span> <span class="n">-ResourceGroupName</span> <span class="nv">$ResourceGroupName</span> <span class="n">-name</span> <span class="s2">&#34;&lt;yourWorkspacename&gt;&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="2-create-axwd-azure-sql-database">2. Create AxWD Azure SQL Database</h2>
 <p>We must use the Azure SQL Database for the AxDW in Dynamics 365 finance and operations cloud-hosted environment.
@@ -79,15 +79,15 @@ Once you have the Azure SQL Database, we can use SSMS to connect to the database
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="n">Use</span><span class="w"> </span><span class="n">Master</span><span class="w">
-</span><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="n">LOGIN</span><span class="w"> </span><span class="n">axdwadmin</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">PASSWORD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span><span class="w"> 
-</span><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="n">LOGIN</span><span class="w"> </span><span class="n">axdwruntimeuser</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">PASSWORD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span><span class="w">
-</span><span class="w"></span><span class="n">Use</span><span class="w"> </span><span class="n">AxDw</span><span class="w">
-</span><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">axdwadmin</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">LOGIN</span><span class="w"> </span><span class="n">axdwadmin</span><span class="p">;</span><span class="w"> 
-</span><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">axdwruntimeuser</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">LOGIN</span><span class="w"> </span><span class="n">axdwruntimeuser</span><span class="p">;</span><span class="w">
-</span><span class="w"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">ROLE</span><span class="w"> </span><span class="n">db_owner</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="n">MEMBER</span><span class="w"> </span><span class="n">axdwadmin</span><span class="p">;</span><span class="w"> 
-</span><span class="w"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">ROLE</span><span class="w"> </span><span class="n">db_datareader</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="n">MEMBER</span><span class="w"> </span><span class="n">axdwruntimeuser</span><span class="p">;</span><span class="w">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">Use</span><span class="w"> </span><span class="n">Master</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="n">LOGIN</span><span class="w"> </span><span class="n">axdwadmin</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">PASSWORD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="n">LOGIN</span><span class="w"> </span><span class="n">axdwruntimeuser</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">PASSWORD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Use</span><span class="w"> </span><span class="n">AxDw</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">axdwadmin</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">LOGIN</span><span class="w"> </span><span class="n">axdwadmin</span><span class="p">;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">axdwruntimeuser</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">LOGIN</span><span class="w"> </span><span class="n">axdwruntimeuser</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">ROLE</span><span class="w"> </span><span class="n">db_owner</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="n">MEMBER</span><span class="w"> </span><span class="n">axdwadmin</span><span class="p">;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">ROLE</span><span class="w"> </span><span class="n">db_datareader</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="n">MEMBER</span><span class="w"> </span><span class="n">axdwruntimeuser</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="3-configuring-to-enable-analytical-workspaces-and-reports">3. Configuring to enable Analytical Workspaces and Reports</h2>
 <p>What you are having now</p>
@@ -99,10 +99,10 @@ Once you have the Azure SQL Database, we can use SSMS to connect to the database
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">Workspace Collection Name: The name of the Workspace Collection created when deploying the Power BI Embedded Service
-Access Key1:  The secret key #1 used to access the Power BI Embedded service
-Access Key2:  The secret key #2 used to access the Power BI Embedded service
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Workspace Collection Name: The name of the Workspace Collection created when deploying the Power BI Embedded Service
+</span></span><span class="line"><span class="cl">Access Key1:  The secret key #1 used to access the Power BI Embedded service
+</span></span><span class="line"><span class="cl">Access Key2:  The secret key #2 used to access the Power BI Embedded service
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Entity Store Database Service details from step 2</p>
 <div class="highlight"><div class="chroma">
@@ -113,11 +113,11 @@ Access Key2:  The secret key #2 used to access the Power BI Embedded service
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">Database name:  AxDW
-Server name:  Azure SQL Server name (*.database.windows.net)
-Server admin login:  Username supplied in the SQL Server settings
-Password:  Account password supplied when configuring SQL Server
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Database name:  AxDW
+</span></span><span class="line"><span class="cl">Server name:  Azure SQL Server name (*.database.windows.net)
+</span></span><span class="line"><span class="cl">Server admin login:  Username supplied in the SQL Server settings
+</span></span><span class="line"><span class="cl">Password:  Account password supplied when configuring SQL Server
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Run Notepad in <strong>administrator</strong> mode, open web.config from <em>K:\AOSService\webroot</em> in Dynamics 365 for finance and operations environment.</p>
 <p>Update the configuration settings:</p>
@@ -129,11 +129,11 @@ Password:  Account password supplied when configuring SQL Server
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;BiReporting.DW&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Database name]&#34;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;BiReporting.DWServer&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Server name]&#34;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;BiReporting.DWRuntimeUser&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Server Admin login]&#34;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;BiReporting.DWRuntimePwd&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Password]&#34;</span> <span class="p">/&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;BiReporting.DW&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Database name]&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;BiReporting.DWServer&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Server name]&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;BiReporting.DWRuntimeUser&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Server Admin login]&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;BiReporting.DWRuntimePwd&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Password]&#34;</span> <span class="p">/&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Update the Power BI Embedded Service configuration settings:</p>
 <div class="highlight"><div class="chroma">
@@ -145,12 +145,12 @@ Password:  Account password supplied when configuring SQL Server
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.AccessKey&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Access Key1]&#34;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.AccessKey2&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Access Key2]&#34;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.ApiUrl&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;https://api.powerbi.com&#34;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.IsPowerBIEmbeddedEnabled&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;true&#34;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.WorkspaceCollectionName&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Workspace Collection Name]&#34;</span> <span class="p">/&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.AccessKey&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Access Key1]&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.AccessKey2&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Access Key2]&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.ApiUrl&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;https://api.powerbi.com&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.IsPowerBIEmbeddedEnabled&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;true&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.WorkspaceCollectionName&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Workspace Collection Name]&#34;</span> <span class="p">/&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>After that, you need to restart IIS and Dynamics 365 for finance and operations batch service</p>
 <h2 id="4-refresh-data-entity-store-to-axdw">4. Refresh data entity store to AxDW</h2>

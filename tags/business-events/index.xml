@@ -32,18 +32,18 @@ To create Azure function please follow this <a href="https://docs.microsoft.com/
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">System.Net</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">Microsoft.AspNetCore.Mvc</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">Microsoft.Extensions.Primitives</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">Newtonsoft.Json</span><span class="p">;</span>
-<span class="k">public</span> <span class="k">static</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">IActionResult</span><span class="p">&gt;</span> <span class="n">Run</span><span class="p">(</span><span class="n">HttpRequest</span> <span class="n">req</span><span class="p">,</span> <span class="n">ILogger</span> <span class="n">log</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">log</span><span class="p">.</span><span class="n">LogInformation</span><span class="p">(</span><span class="s">&#34;Dynamics 365 finance and operations notifications&#34;</span><span class="p">);</span>
-  <span class="kt">string</span> <span class="n">requestBody</span> <span class="p">=</span> <span class="k">await</span> <span class="k">new</span> <span class="n">StreamReader</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">Body</span><span class="p">).</span><span class="n">ReadToEndAsync</span><span class="p">();</span>
-  <span class="n">log</span><span class="p">.</span><span class="n">LogInformation</span><span class="p">(</span><span class="n">requestBody</span><span class="p">);</span>
-  <span class="k">return</span> <span class="p">(</span><span class="n">ActionResult</span><span class="p">)</span><span class="k">new</span> <span class="n">OkObjectResult</span><span class="p">(</span><span class="s">$&#34;Hello world&#34;</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Net</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">Microsoft.AspNetCore.Mvc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">Microsoft.Extensions.Primitives</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">Newtonsoft.Json</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">IActionResult</span><span class="p">&gt;</span> <span class="n">Run</span><span class="p">(</span><span class="n">HttpRequest</span> <span class="n">req</span><span class="p">,</span> <span class="n">ILogger</span> <span class="n">log</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">log</span><span class="p">.</span><span class="n">LogInformation</span><span class="p">(</span><span class="s">&#34;Dynamics 365 finance and operations notifications&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">string</span> <span class="n">requestBody</span> <span class="p">=</span> <span class="k">await</span> <span class="k">new</span> <span class="n">StreamReader</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">Body</span><span class="p">).</span><span class="n">ReadToEndAsync</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="n">log</span><span class="p">.</span><span class="n">LogInformation</span><span class="p">(</span><span class="n">requestBody</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">(</span><span class="n">ActionResult</span><span class="p">)</span><span class="k">new</span> <span class="n">OkObjectResult</span><span class="p">(</span><span class="s">$&#34;Hello world&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>This basically listens the JSON messages from Business events and display the Json message at Console.</p>
 <p>From the Azure function you can get the HTTPs endpoint, save it for later reference.</p>

@@ -10,7 +10,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://nuxulu.com/2016-12-28-insert-update-delete-order-line-through-aif-in-ax-2012-r3/" /><meta property="og:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2016-12-28T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-02-24T15:07:02+07:00" />
+<meta property="article:modified_time" content="2022-03-21T22:30:25+07:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/>
@@ -27,8 +27,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/nuxulu.com\/2016-12-28-insert-update-delete-order-line-through-aif-in-ax-2012-r3\/"
-        },"genre": "posts","keywords": "aif, programming, csharpdotnet, xpp","wordcount":  397 ,
-        "url": "https:\/\/nuxulu.com\/2016-12-28-insert-update-delete-order-line-through-aif-in-ax-2012-r3\/","datePublished": "2016-12-28T00:00:00+00:00","dateModified": "2022-02-24T15:07:02+07:00","publisher": {
+        },"genre": "posts","keywords": "aif, programming, csharpdotnet, xpp","wordcount":  395 ,
+        "url": "https:\/\/nuxulu.com\/2016-12-28-insert-update-delete-order-line-through-aif-in-ax-2012-r3\/","datePublished": "2016-12-28T00:00:00+00:00","dateModified": "2022-03-21T22:30:25+07:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -118,7 +118,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Insert, update, Delete order line through AIF In AX 2012 R3</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://nuxulu.com/about" title="Author" target="_blank" rel="noopener noreferrer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Max Nguyen</a></span>&nbsp;<span class="post-category">included in <a href="/categories/ax-2012/"><i class="far fa-folder fa-fw"></i>AX 2012</a>&nbsp;<a href="/categories/integration/"><i class="far fa-folder fa-fw"></i>Integration</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="December 28, 2016">December 28, 2016</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;397 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="December 28, 2016">December 28, 2016</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;395 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -149,26 +149,24 @@
 </span><span class="lnt">13
 </span><span class="lnt">14
 </span><span class="lnt">15
-</span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">private</span> <span class="k">static</span> <span class="n">EntityKey</span><span class="p">[]</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="kt">string</span> <span class="n">purchId</span><span class="p">)</span>
-<span class="p">{</span>
-	<span class="n">KeyField</span> <span class="n">field</span> <span class="p">=</span> <span class="k">new</span> <span class="n">KeyField</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">Field</span> <span class="p">=</span> <span class="s">&#34;PurchId&#34;</span><span class="p">,</span>
-		<span class="n">Value</span> <span class="p">=</span> <span class="n">purchId</span>
-	<span class="p">};</span>
-
-	<span class="n">EntityKey</span> <span class="n">key</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EntityKey</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">KeyData</span> <span class="p">=</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">field</span> <span class="p">}</span>
-	<span class="p">};</span>
-
-	<span class="k">return</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">key</span> <span class="p">};</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">private</span> <span class="k">static</span> <span class="n">EntityKey</span><span class="p">[]</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="kt">string</span> <span class="n">purchId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">KeyField</span> <span class="n">field</span> <span class="p">=</span> <span class="k">new</span> <span class="n">KeyField</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Field</span> <span class="p">=</span> <span class="s">&#34;PurchId&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Value</span> <span class="p">=</span> <span class="n">purchId</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">EntityKey</span> <span class="n">key</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EntityKey</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">KeyData</span> <span class="p">=</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">field</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">key</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>create Line, delete Line, update line in Purchase order</code></p>
 <div class="highlight"><div class="chroma">
@@ -227,71 +225,69 @@
 </span><span class="lnt">52
 </span><span class="lnt">53
 </span><span class="lnt">54
-</span><span class="lnt">55
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="n">EntityKey</span><span class="p">[]</span> <span class="n">entityKeyList</span> <span class="p">=</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="s">&#34;BGR-000054&#34;</span><span class="p">);</span>
-
-<span class="n">CallContext</span> <span class="n">callContext</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span><span class="p">();</span>
-<span class="n">callContext</span><span class="p">.</span><span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">;</span>
-
-<span class="n">Mav_PurchOrderServiceServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mav_PurchOrderServiceServiceClient</span><span class="p">();</span>
-<span class="n">AxdMav_PurchOrderService</span> <span class="n">purchOrders</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">);</span>
-
-<span class="c1">//Define which line need to be update or delete
-</span><span class="c1"></span><span class="kt">var</span> <span class="n">lastLine</span> <span class="p">=</span> <span class="n">purchOrders</span><span class="p">.</span><span class="n">PurchTable</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">PurchLine</span><span class="p">.</span><span class="n">Last</span><span class="p">();</span>
-
-<span class="kt">var</span> <span class="n">purchLine</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchLine</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;110329&#34;</span><span class="p">,</span>
-	<span class="n">PurchQty</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span>
-	<span class="n">CurrencyCode</span> <span class="p">=</span> <span class="s">&#34;KRW&#34;</span><span class="p">,</span>
-	<span class="n">RecIdSpecified</span>      <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
-	<span class="n">LineNumberSpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
-	<span class="n">action</span>              <span class="p">=</span> <span class="n">AxdEnum_AxdEntityAction</span><span class="p">.</span><span class="n">create</span><span class="p">,</span>
-	<span class="n">actionSpecified</span>     <span class="p">=</span> <span class="k">true</span>
-
-	<span class="c1">//for delete
-</span><span class="c1"></span>	<span class="c1">//RecId               = lastLine.RecId,
-</span><span class="c1"></span>	<span class="c1">//RecIdSpecified      = true,
-</span><span class="c1"></span>	<span class="c1">//action              = AxdEnum_AxdEntityAction.delete,
-</span><span class="c1"></span>	<span class="c1">//actionSpecified     = true
-</span><span class="c1"></span>
-	<span class="c1">//for Update
-</span><span class="c1"></span>	<span class="c1">//RecId               = lastLine.RecId,
-</span><span class="c1"></span>	<span class="c1">//RecIdSpecified      = true,
-</span><span class="c1"></span>	<span class="c1">//action              = AxdEnum_AxdEntityAction.update,
-</span><span class="c1"></span>	<span class="c1">//actionSpecified     = true
-</span><span class="c1"></span>	
-<span class="p">};</span>
-
-<span class="kt">var</span> <span class="n">purchTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchTable</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="m">_D</span><span class="n">ocumentHash</span> <span class="p">=</span> <span class="n">purchOrders</span><span class="p">.</span><span class="n">PurchTable</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="m">_D</span><span class="n">ocumentHash</span><span class="p">,</span>
-	<span class="n">OrderAccount</span> <span class="p">=</span> <span class="s">&#34;101-01-75441&#34;</span><span class="p">,</span>
-	<span class="n">LanguageId</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
-	<span class="n">CurrencyCode</span> <span class="p">=</span> <span class="s">&#34;KRW&#34;</span><span class="p">,</span>
-	<span class="n">PurchName</span> <span class="p">=</span> <span class="s">&#34;AIF PO Test&#34;</span><span class="p">,</span>
-	<span class="n">action</span> <span class="p">=</span> <span class="n">AxdEnum_AxdEntityAction</span><span class="p">.</span><span class="n">update</span><span class="p">,</span>
-	<span class="n">actionSpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
-	<span class="n">PurchLine</span> <span class="p">=</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">purchLine</span> <span class="p">}</span>
-<span class="p">};</span>
-
-<span class="n">AxdMav_PurchOrderService</span> <span class="n">purchOrder</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdMav_PurchOrderService</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="n">PurchTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchTable</span><span class="p">[]</span> <span class="p">{</span><span class="n">purchTable</span><span class="p">}</span>
-<span class="p">};</span>
-
-
-<span class="n">client</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">,</span> <span class="n">purchOrder</span><span class="p">);</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">EntityKey</span><span class="p">[]</span> <span class="n">entityKeyList</span> <span class="p">=</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="s">&#34;BGR-000054&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">CallContext</span> <span class="n">callContext</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">callContext</span><span class="p">.</span><span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Mav_PurchOrderServiceServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mav_PurchOrderServiceServiceClient</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">AxdMav_PurchOrderService</span> <span class="n">purchOrders</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//Define which line need to be update or delete</span>
+</span></span><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">lastLine</span> <span class="p">=</span> <span class="n">purchOrders</span><span class="p">.</span><span class="n">PurchTable</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">PurchLine</span><span class="p">.</span><span class="n">Last</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">purchLine</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchLine</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;110329&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">PurchQty</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">CurrencyCode</span> <span class="p">=</span> <span class="s">&#34;KRW&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">RecIdSpecified</span>      <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">LineNumberSpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">action</span>              <span class="p">=</span> <span class="n">AxdEnum_AxdEntityAction</span><span class="p">.</span><span class="n">create</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">actionSpecified</span>     <span class="p">=</span> <span class="k">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">//for delete</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//RecId               = lastLine.RecId,</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//RecIdSpecified      = true,</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//action              = AxdEnum_AxdEntityAction.delete,</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//actionSpecified     = true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">//for Update</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//RecId               = lastLine.RecId,</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//RecIdSpecified      = true,</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//action              = AxdEnum_AxdEntityAction.update,</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//actionSpecified     = true</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">purchTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchTable</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="m">_D</span><span class="n">ocumentHash</span> <span class="p">=</span> <span class="n">purchOrders</span><span class="p">.</span><span class="n">PurchTable</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="m">_D</span><span class="n">ocumentHash</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">OrderAccount</span> <span class="p">=</span> <span class="s">&#34;101-01-75441&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">LanguageId</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">CurrencyCode</span> <span class="p">=</span> <span class="s">&#34;KRW&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">PurchName</span> <span class="p">=</span> <span class="s">&#34;AIF PO Test&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">action</span> <span class="p">=</span> <span class="n">AxdEnum_AxdEntityAction</span><span class="p">.</span><span class="n">update</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">actionSpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">PurchLine</span> <span class="p">=</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">purchLine</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">AxdMav_PurchOrderService</span> <span class="n">purchOrder</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdMav_PurchOrderService</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">PurchTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchTable</span><span class="p">[]</span> <span class="p">{</span><span class="n">purchTable</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">client</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">,</span> <span class="n">purchOrder</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Thank you for reading!</p></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on February 24, 2022</span>
+                <span>Updated on March 21, 2022</span>
             </div>
             <div class="post-info-license"></div>
         </div>

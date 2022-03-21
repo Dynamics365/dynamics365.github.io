@@ -10,7 +10,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://nuxulu.com/2016-12-28-crud-purchase-order-using-aif-in-dynamics-ax-2012-r3/" /><meta property="og:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2016-12-28T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-02-24T15:07:02+07:00" />
+<meta property="article:modified_time" content="2022-03-21T22:30:25+07:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/>
@@ -28,7 +28,7 @@
             "@type": "WebPage",
             "@id": "https:\/\/nuxulu.com\/2016-12-28-crud-purchase-order-using-aif-in-dynamics-ax-2012-r3\/"
         },"genre": "posts","keywords": "aif, programming, csharpdotnet, xpp","wordcount":  730 ,
-        "url": "https:\/\/nuxulu.com\/2016-12-28-crud-purchase-order-using-aif-in-dynamics-ax-2012-r3\/","datePublished": "2016-12-28T00:00:00+00:00","dateModified": "2022-02-24T15:07:02+07:00","publisher": {
+        "url": "https:\/\/nuxulu.com\/2016-12-28-crud-purchase-order-using-aif-in-dynamics-ax-2012-r3\/","datePublished": "2016-12-28T00:00:00+00:00","dateModified": "2022-03-21T22:30:25+07:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -218,22 +218,22 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">private</span> <span class="k">static</span> <span class="n">EntityKey</span><span class="p">[]</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="kt">string</span> <span class="n">purchId</span><span class="p">)</span>
-<span class="p">{</span>
-	<span class="n">KeyField</span> <span class="n">field</span> <span class="p">=</span> <span class="k">new</span> <span class="n">KeyField</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">Field</span> <span class="p">=</span> <span class="s">&#34;PurchId&#34;</span><span class="p">,</span>
-		<span class="n">Value</span> <span class="p">=</span> <span class="n">purchId</span>
-	<span class="p">};</span>
-
-	<span class="n">EntityKey</span> <span class="n">key</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EntityKey</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">KeyData</span> <span class="p">=</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">field</span> <span class="p">}</span>
-	<span class="p">};</span>
-
-	<span class="k">return</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">key</span> <span class="p">};</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">private</span> <span class="k">static</span> <span class="n">EntityKey</span><span class="p">[]</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="kt">string</span> <span class="n">purchId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">KeyField</span> <span class="n">field</span> <span class="p">=</span> <span class="k">new</span> <span class="n">KeyField</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Field</span> <span class="p">=</span> <span class="s">&#34;PurchId&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Value</span> <span class="p">=</span> <span class="n">purchId</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">EntityKey</span> <span class="n">key</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EntityKey</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">KeyData</span> <span class="p">=</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">field</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">key</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>Code for create purchase order </code></p>
 <div class="highlight"><div class="chroma">
@@ -292,59 +292,59 @@
 </span><span class="lnt">52
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="kt">var</span> <span class="n">dim</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_InventDim</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="n">InventSiteId</span> <span class="p">=</span> <span class="s">&#34;DN&#34;</span><span class="p">,</span>
-	<span class="n">InventLocationId</span> <span class="p">=</span> <span class="s">&#34;F10-S120&#34;</span><span class="p">,</span>
-	<span class="n">InventBatchId</span> <span class="p">=</span> <span class="s">&#34;BATCH001&#34;</span>
-<span class="p">};</span>
-
-<span class="kt">var</span> <span class="n">purchLine</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchLine</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;220067&#34;</span><span class="p">,</span>
-	<span class="n">PurchQty</span> <span class="p">=</span> <span class="m">15</span><span class="p">,</span>
-	<span class="n">PurchUnit</span><span class="p">=</span>  <span class="s">&#34;ea&#34;</span><span class="p">,</span>
-
-	<span class="n">InventDim</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_InventDim</span><span class="p">[]</span> <span class="p">{</span> <span class="n">dim</span> <span class="p">}</span>
-<span class="p">};</span>
-
-
-<span class="kt">var</span> <span class="n">purchTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchTable</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="n">OrderAccount</span> <span class="p">=</span> <span class="s">&#34;101-01-75441&#34;</span><span class="p">,</span>
-	<span class="n">LanguageId</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
-	<span class="n">CurrencyCode</span> <span class="p">=</span> <span class="s">&#34;KRW&#34;</span><span class="p">,</span>
-	<span class="n">PurchName</span> <span class="p">=</span> <span class="s">&#34;AIF PO Test&#34;</span><span class="p">,</span>
-	<span class="n">PurchLine</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchLine</span><span class="p">[]</span> <span class="p">{</span> <span class="n">purchLine</span> <span class="p">}</span>
-
-<span class="p">};</span>
-
-<span class="n">AxdMav_PurchOrderService</span> <span class="n">purchOrder</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdMav_PurchOrderService</span><span class="p">();</span>
-
-<span class="n">purchOrder</span><span class="p">.</span><span class="n">PurchTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchTable</span><span class="p">[]</span> <span class="p">{</span> <span class="n">purchTable</span> <span class="p">};</span>
-
-<span class="n">CallContext</span> <span class="n">callContext</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span>
-<span class="p">{</span>
-	<span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">,</span>
-	<span class="n">Language</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span>
-<span class="p">};</span>
-
-<span class="n">Mav_PurchOrderServiceServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mav_PurchOrderServiceServiceClient</span><span class="p">();</span>
-
-<span class="k">try</span>
-<span class="p">{</span>
-	<span class="n">EntityKey</span><span class="p">[]</span> <span class="n">purchOrderCreatedEntity</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">purchOrder</span><span class="p">);</span>
-	<span class="n">EntityKey</span> <span class="n">purchOrderCreated</span> <span class="p">=</span> <span class="p">(</span><span class="n">EntityKey</span><span class="p">)</span><span class="n">purchOrderCreatedEntity</span><span class="p">.</span><span class="n">GetValue</span><span class="p">(</span><span class="m">0</span><span class="p">);</span>
-
-	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;The purch order created has a Purch ID of &#34;</span> <span class="p">+</span> <span class="n">purchOrderCreated</span><span class="p">.</span><span class="n">KeyData</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">Value</span><span class="p">);</span>
-	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-<span class="p">}</span>
-<span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
-<span class="p">{</span>
-	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
-	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">dim</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_InventDim</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">InventSiteId</span> <span class="p">=</span> <span class="s">&#34;DN&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">InventLocationId</span> <span class="p">=</span> <span class="s">&#34;F10-S120&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">InventBatchId</span> <span class="p">=</span> <span class="s">&#34;BATCH001&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">purchLine</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchLine</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;220067&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">PurchQty</span> <span class="p">=</span> <span class="m">15</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">PurchUnit</span><span class="p">=</span>  <span class="s">&#34;ea&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">InventDim</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_InventDim</span><span class="p">[]</span> <span class="p">{</span> <span class="n">dim</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">purchTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchTable</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">OrderAccount</span> <span class="p">=</span> <span class="s">&#34;101-01-75441&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">LanguageId</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">CurrencyCode</span> <span class="p">=</span> <span class="s">&#34;KRW&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">PurchName</span> <span class="p">=</span> <span class="s">&#34;AIF PO Test&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">PurchLine</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchLine</span><span class="p">[]</span> <span class="p">{</span> <span class="n">purchLine</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">AxdMav_PurchOrderService</span> <span class="n">purchOrder</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdMav_PurchOrderService</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">purchOrder</span><span class="p">.</span><span class="n">PurchTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchTable</span><span class="p">[]</span> <span class="p">{</span> <span class="n">purchTable</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">CallContext</span> <span class="n">callContext</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Language</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Mav_PurchOrderServiceServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mav_PurchOrderServiceServiceClient</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">try</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">EntityKey</span><span class="p">[]</span> <span class="n">purchOrderCreatedEntity</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">purchOrder</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">EntityKey</span> <span class="n">purchOrderCreated</span> <span class="p">=</span> <span class="p">(</span><span class="n">EntityKey</span><span class="p">)</span><span class="n">purchOrderCreatedEntity</span><span class="p">.</span><span class="n">GetValue</span><span class="p">(</span><span class="m">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;The purch order created has a Purch ID of &#34;</span> <span class="p">+</span> <span class="n">purchOrderCreated</span><span class="p">.</span><span class="n">KeyData</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">Value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>Code for read purchase order </code></p>
 <div class="highlight"><div class="chroma">
@@ -371,27 +371,27 @@
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="n">EntityKey</span><span class="p">[]</span> <span class="n">entityKeyList</span> <span class="p">=</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="s">&#34;BGR-000054&#34;</span><span class="p">);</span>
-
-<span class="n">CallContext</span> <span class="n">callContext</span>      <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span><span class="p">();</span>
-<span class="n">callContext</span><span class="p">.</span><span class="n">Company</span>          <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">;</span>
-<span class="n">Mav_PurchOrderServiceServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mav_PurchOrderServiceServiceClient</span><span class="p">();</span>
-
-<span class="n">AxdMav_PurchOrderService</span> <span class="n">purchOrders</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">);</span>
-<span class="n">AxdEntity_PurchTable</span><span class="p">[]</span> <span class="n">purchTables</span> <span class="p">=</span> <span class="n">purchOrders</span><span class="p">.</span><span class="n">PurchTable</span><span class="p">;</span>
-<span class="n">AxdEntity_PurchTable</span>    <span class="n">purchTable</span> <span class="p">=</span> <span class="n">purchTables</span><span class="p">[</span><span class="m">0</span><span class="p">];</span>
-<span class="n">AxdEntity_PurchLine</span> <span class="n">purchLine</span> <span class="p">=</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchLine</span><span class="p">[</span><span class="m">0</span><span class="p">];</span>
-
-<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Purch Name: &#34;</span> <span class="p">+</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchName</span><span class="p">);</span>            
-<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Order Account: &#34;</span> <span class="p">+</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">OrderAccount</span><span class="p">);</span>
-<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Language Id: &#34;</span> <span class="p">+</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">LanguageId</span><span class="p">);</span>
-<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Qty: &#34;</span> <span class="p">+</span> <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchQty</span><span class="p">);</span>
-<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Item Id: &#34;</span> <span class="p">+</span> <span class="n">purchLine</span><span class="p">.</span><span class="n">ItemId</span><span class="p">);</span>
-
-<span class="n">client</span><span class="p">.</span><span class="n">Close</span><span class="p">();</span>
-<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-			
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">EntityKey</span><span class="p">[]</span> <span class="n">entityKeyList</span> <span class="p">=</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="s">&#34;BGR-000054&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">CallContext</span> <span class="n">callContext</span>      <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">callContext</span><span class="p">.</span><span class="n">Company</span>          <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Mav_PurchOrderServiceServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mav_PurchOrderServiceServiceClient</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">AxdMav_PurchOrderService</span> <span class="n">purchOrders</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">AxdEntity_PurchTable</span><span class="p">[]</span> <span class="n">purchTables</span> <span class="p">=</span> <span class="n">purchOrders</span><span class="p">.</span><span class="n">PurchTable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">AxdEntity_PurchTable</span>    <span class="n">purchTable</span> <span class="p">=</span> <span class="n">purchTables</span><span class="p">[</span><span class="m">0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="n">AxdEntity_PurchLine</span> <span class="n">purchLine</span> <span class="p">=</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchLine</span><span class="p">[</span><span class="m">0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Purch Name: &#34;</span> <span class="p">+</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchName</span><span class="p">);</span>            
+</span></span><span class="line"><span class="cl"><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Order Account: &#34;</span> <span class="p">+</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">OrderAccount</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Language Id: &#34;</span> <span class="p">+</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">LanguageId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Qty: &#34;</span> <span class="p">+</span> <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchQty</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Item Id: &#34;</span> <span class="p">+</span> <span class="n">purchLine</span><span class="p">.</span><span class="n">ItemId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">client</span><span class="p">.</span><span class="n">Close</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">			
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>Code for update purchase order </code></p>
 <div class="highlight"><div class="chroma">
@@ -429,38 +429,38 @@
 </span><span class="lnt">31
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="n">Mav_PurchOrderServiceServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mav_PurchOrderServiceServiceClient</span><span class="p">();</span>
-<span class="n">CallContext</span> <span class="n">callContext</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span><span class="p">();</span>
-<span class="n">callContext</span><span class="p">.</span><span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">;</span>
-
-<span class="n">EntityKey</span><span class="p">[]</span> <span class="n">entityKeyList</span> <span class="p">=</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="s">&#34;BGR-000078&#34;</span><span class="p">);</span>
-<span class="n">AxdMav_PurchOrderService</span> <span class="n">purchOrders</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">);</span>
-
-<span class="c1">//salesOrders.GetHashCode();
-</span><span class="c1"></span><span class="n">AxdEntity_PurchTable</span><span class="p">[]</span> <span class="n">purchTables</span> <span class="p">=</span> <span class="n">purchOrders</span><span class="p">.</span><span class="n">PurchTable</span><span class="p">;</span>
-<span class="n">AxdEntity_PurchTable</span> <span class="n">purchTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchTable</span><span class="p">();</span>
-<span class="n">purchTable</span> <span class="p">=</span> <span class="n">purchTables</span><span class="p">.</span><span class="n">First</span><span class="p">();</span>
-
-<span class="c1">//salesTable.GetHashCode();
-</span><span class="c1"></span><span class="n">AxdEntity_PurchLine</span> <span class="n">purchLine</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchLine</span><span class="p">();</span>
-<span class="n">purchLine</span> <span class="p">=</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchLine</span><span class="p">.</span><span class="n">First</span><span class="p">();</span>
-
-<span class="kt">decimal</span> <span class="n">purchQty</span> <span class="p">=</span> <span class="m">20</span><span class="p">;</span>
-<span class="n">purchLine</span><span class="p">.</span><span class="n">PurchQty</span> <span class="p">=</span> <span class="n">purchQty</span><span class="p">;</span>
-
-<span class="k">try</span>
-<span class="p">{</span>
-	<span class="n">client</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">,</span> <span class="n">purchOrders</span><span class="p">);</span>
-	<span class="n">EntityKey</span> <span class="n">purchOrdersUpdated</span> <span class="p">=</span> <span class="p">(</span><span class="n">EntityKey</span><span class="p">)</span><span class="n">entityKeyList</span><span class="p">.</span><span class="n">GetValue</span><span class="p">(</span><span class="m">0</span><span class="p">);</span>
-	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;The purchase order has been updated has a Purch ID of &#34;</span> <span class="p">+</span> <span class="n">purchOrdersUpdated</span><span class="p">.</span><span class="n">KeyData</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">Value</span> <span class="p">+</span> <span class="s">&#34; with Qty &#34;</span> <span class="p">+</span> <span class="n">purchQty</span><span class="p">.</span><span class="n">ToString</span><span class="p">()</span> <span class="p">+</span> <span class="s">&#34;&#34;</span><span class="p">);</span>
-	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-<span class="p">}</span>
-<span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="p">)</span>
-<span class="p">{</span>
-	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">ex</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
-	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">Mav_PurchOrderServiceServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mav_PurchOrderServiceServiceClient</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">CallContext</span> <span class="n">callContext</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">callContext</span><span class="p">.</span><span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">EntityKey</span><span class="p">[]</span> <span class="n">entityKeyList</span> <span class="p">=</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="s">&#34;BGR-000078&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">AxdMav_PurchOrderService</span> <span class="n">purchOrders</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//salesOrders.GetHashCode();</span>
+</span></span><span class="line"><span class="cl"><span class="n">AxdEntity_PurchTable</span><span class="p">[]</span> <span class="n">purchTables</span> <span class="p">=</span> <span class="n">purchOrders</span><span class="p">.</span><span class="n">PurchTable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">AxdEntity_PurchTable</span> <span class="n">purchTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchTable</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">purchTable</span> <span class="p">=</span> <span class="n">purchTables</span><span class="p">.</span><span class="n">First</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//salesTable.GetHashCode();</span>
+</span></span><span class="line"><span class="cl"><span class="n">AxdEntity_PurchLine</span> <span class="n">purchLine</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">purchLine</span> <span class="p">=</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchLine</span><span class="p">.</span><span class="n">First</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">decimal</span> <span class="n">purchQty</span> <span class="p">=</span> <span class="m">20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">purchLine</span><span class="p">.</span><span class="n">PurchQty</span> <span class="p">=</span> <span class="n">purchQty</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">try</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">client</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">,</span> <span class="n">purchOrders</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">EntityKey</span> <span class="n">purchOrdersUpdated</span> <span class="p">=</span> <span class="p">(</span><span class="n">EntityKey</span><span class="p">)</span><span class="n">entityKeyList</span><span class="p">.</span><span class="n">GetValue</span><span class="p">(</span><span class="m">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;The purchase order has been updated has a Purch ID of &#34;</span> <span class="p">+</span> <span class="n">purchOrdersUpdated</span><span class="p">.</span><span class="n">KeyData</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">Value</span> <span class="p">+</span> <span class="s">&#34; with Qty &#34;</span> <span class="p">+</span> <span class="n">purchQty</span><span class="p">.</span><span class="n">ToString</span><span class="p">()</span> <span class="p">+</span> <span class="s">&#34;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">ex</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>Code for delete purchase order </code></p>
 <div class="highlight"><div class="chroma">
@@ -484,30 +484,30 @@
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="n">Mav_PurchOrderServiceServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mav_PurchOrderServiceServiceClient</span><span class="p">();</span>
-<span class="n">CallContext</span> <span class="n">callContext</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span><span class="p">();</span>
-<span class="n">callContext</span><span class="p">.</span><span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">;</span>
-
-<span class="n">EntityKey</span><span class="p">[]</span> <span class="n">entityKeyList</span> <span class="p">=</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="s">&#34;BGR-000054&#34;</span><span class="p">);</span>
-<span class="k">try</span>
-<span class="p">{</span>
-	<span class="n">client</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">);</span>
-	<span class="n">EntityKey</span> <span class="n">purchOrdersDeleted</span> <span class="p">=</span> <span class="p">(</span><span class="n">EntityKey</span><span class="p">)</span><span class="n">entityKeyList</span><span class="p">.</span><span class="n">GetValue</span><span class="p">(</span><span class="m">0</span><span class="p">);</span>
-	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;The purch order has been deleted has a purch ID of &#34;</span> <span class="p">+</span> <span class="n">purchOrdersDeleted</span><span class="p">.</span><span class="n">KeyData</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">Value</span><span class="p">);</span>
-	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-<span class="p">}</span>
-<span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="p">)</span>
-<span class="p">{</span>
-	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">ex</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
-	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">Mav_PurchOrderServiceServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mav_PurchOrderServiceServiceClient</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">CallContext</span> <span class="n">callContext</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">callContext</span><span class="p">.</span><span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">EntityKey</span><span class="p">[]</span> <span class="n">entityKeyList</span> <span class="p">=</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="s">&#34;BGR-000054&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">try</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">client</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">EntityKey</span> <span class="n">purchOrdersDeleted</span> <span class="p">=</span> <span class="p">(</span><span class="n">EntityKey</span><span class="p">)</span><span class="n">entityKeyList</span><span class="p">.</span><span class="n">GetValue</span><span class="p">(</span><span class="m">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;The purch order has been deleted has a purch ID of &#34;</span> <span class="p">+</span> <span class="n">purchOrdersDeleted</span><span class="p">.</span><span class="n">KeyData</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">Value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">ex</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Thank you for reading!</p></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on February 24, 2022</span>
+                <span>Updated on March 21, 2022</span>
             </div>
             <div class="post-info-license"></div>
         </div>

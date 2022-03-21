@@ -53,41 +53,41 @@ or you can duplicate any standard entity. I created <strong>AutomationDataEntity
 </span><span class="lnt">34
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="k">public</span> <span class="k">class</span> <span class="nc">AutomationDataEntity</span> <span class="n">extends</span> <span class="n">common</span>
-<span class="p">{</span>
-    <span class="c1">//1st example
-</span><span class="c1"></span><span class="na">    [SysODataActionAttribute(&#34;assignUserToCompany&#34;, false)]</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">assignUserToCompany</span><span class="p">(</span><span class="n">NetworkAlias</span> <span class="m">_</span><span class="n">networkAlias</span><span class="p">,</span> <span class="n">DataAreaName</span> <span class="m">_</span><span class="n">company</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">UserInfo</span> <span class="n">userInfo</span><span class="p">;</span>
-        <span class="n">ttsbegin</span><span class="p">;</span>
-        <span class="k">select</span> <span class="n">firstonly</span> <span class="n">forupdate</span> <span class="n">userInfo</span>
-            <span class="k">where</span> <span class="n">userInfo</span><span class="p">.</span><span class="n">networkAlias</span> <span class="p">==</span> <span class="m">_</span><span class="n">networkAlias</span><span class="p">;</span>
-        <span class="n">userInfo</span><span class="p">.</span><span class="n">company</span> <span class="p">=</span> <span class="m">_</span><span class="n">company</span><span class="p">;</span>
-        <span class="n">userInfo</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
-        <span class="n">ttscommit</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="c1">//2nd example
-</span><span class="c1"></span><span class="na">    [SysODataActionAttribute(&#34;ReturnRental&#34;, true)]</span>
-    <span class="k">public</span> <span class="n">str</span> <span class="n">ReturnRental</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">return</span> <span class="s">&#34;Rental was successfully returned. Thanks for your business&#34;</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="c1">//following 3rd example of an OData action takes in a parameter and returns a list
-</span><span class="c1"></span><span class="na">    [SysODataActionAttribute(&#34;GetColors&#34;, true),
-</span><span class="na">    SysODataCollectionAttribute(&#34;return&#34;, Types::Record, &#34;CarColor&#34;)]</span>
-    <span class="k">public</span> <span class="n">List</span> <span class="n">GetColorsByAvailability</span><span class="p">(</span><span class="n">boolean</span> <span class="n">onlyAvailableVehicles</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">List</span> <span class="n">returnList</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Record</span><span class="p">);</span>
-        <span class="c1">// do something
-</span><span class="c1"></span>        <span class="k">return</span> <span class="n">returnList</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">AutomationDataEntity</span> <span class="n">extends</span> <span class="n">common</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//1st example</span>
+</span></span><span class="line"><span class="cl"><span class="na">    [SysODataActionAttribute(&#34;assignUserToCompany&#34;, false)]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">assignUserToCompany</span><span class="p">(</span><span class="n">NetworkAlias</span> <span class="m">_</span><span class="n">networkAlias</span><span class="p">,</span> <span class="n">DataAreaName</span> <span class="m">_</span><span class="n">company</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">UserInfo</span> <span class="n">userInfo</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ttsbegin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">select</span> <span class="n">firstonly</span> <span class="n">forupdate</span> <span class="n">userInfo</span>
+</span></span><span class="line"><span class="cl">            <span class="k">where</span> <span class="n">userInfo</span><span class="p">.</span><span class="n">networkAlias</span> <span class="p">==</span> <span class="m">_</span><span class="n">networkAlias</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">userInfo</span><span class="p">.</span><span class="n">company</span> <span class="p">=</span> <span class="m">_</span><span class="n">company</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">userInfo</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ttscommit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//2nd example</span>
+</span></span><span class="line"><span class="cl"><span class="na">    [SysODataActionAttribute(&#34;ReturnRental&#34;, true)]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">str</span> <span class="n">ReturnRental</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;Rental was successfully returned. Thanks for your business&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//following 3rd example of an OData action takes in a parameter and returns a list</span>
+</span></span><span class="line"><span class="cl"><span class="na">    [SysODataActionAttribute(&#34;GetColors&#34;, true),
+</span></span></span><span class="line"><span class="cl"><span class="na">    SysODataCollectionAttribute(&#34;return&#34;, Types::Record, &#34;CarColor&#34;)]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">List</span> <span class="n">GetColorsByAvailability</span><span class="p">(</span><span class="n">boolean</span> <span class="n">onlyAvailableVehicles</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">List</span> <span class="n">returnList</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Record</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// do something</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">returnList</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>In this example, the <code>SysODataActionAttribute</code> class decorates the <code>assginUserToCompany</code> method that is exposed as an action. The first argument of the attribute is the publicly exposed name of the action, and the second argument indicates whether this action need an entity instance or not. If you set the second argument to <em>false</em>, the method has to be <code>static</code>.</p>
 <blockquote>
@@ -103,8 +103,8 @@ or you can duplicate any standard entity. I created <strong>AutomationDataEntity
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown">[finopsURL]/data/AutomationDatas/Microsoft.Dynamics.DataEntities.assignUserToCompany
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">[finopsURL]/data/AutomationDatas/Microsoft.Dynamics.DataEntities.assignUserToCompany
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>[finopsURL] = https://[yourenvironment].cloudax.dynamics.com</p>
 <p>Here is the Json file contains the parameters for <code>assignUserToCompany</code> method</p>
@@ -116,11 +116,11 @@ or you can duplicate any standard entity. I created <strong>AutomationDataEntity
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-    <span class="nt">&#34;_networkAlias&#34;</span><span class="p">:</span><span class="s2">&#34;Max.Nguyen@Microsoft.com&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;_company&#34;</span><span class="p">:</span><span class="s2">&#34;USMF&#34;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;_networkAlias&#34;</span><span class="p">:</span><span class="s2">&#34;Max.Nguyen@Microsoft.com&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;_company&#34;</span><span class="p">:</span><span class="s2">&#34;USMF&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Click <strong>Send</strong> and you will get your logic executed.</p>
 <p><figure><a class="lightgallery" href="/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations_1.png" title="Image" data-thumbnail="/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations_1.png" data-sub-html="<h2>all-about-odata-actions-in-dynamics-365-finance-and-operations</h2><p>Image</p>">
@@ -134,8 +134,8 @@ or you can duplicate any standard entity. I created <strong>AutomationDataEntity
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown">[finopsURL]/data/AutomationDatas/Microsoft.Dynamics.DataEntities.ReturnRental
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">[finopsURL]/data/AutomationDatas/Microsoft.Dynamics.DataEntities.ReturnRental
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Click <strong>Send</strong> and you will get an error</p>
 <div class="highlight"><div class="chroma">
@@ -145,10 +145,10 @@ or you can duplicate any standard entity. I created <strong>AutomationDataEntity
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-    <span class="nt">&#34;Message&#34;</span><span class="p">:</span> <span class="s2">&#34;No HTTP resource was found that matches the request URI &#39;https://[devaos].cloudax.dynamics.com/data/AutomationDatas/Microsoft.Dynamics.DataEntities.ReturnRental&#39;. No route data was found for this request.&#34;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Message&#34;</span><span class="p">:</span> <span class="s2">&#34;No HTTP resource was found that matches the request URI &#39;https://[devaos].cloudax.dynamics.com/data/AutomationDatas/Microsoft.Dynamics.DataEntities.ReturnRental&#39;. No route data was found for this request.&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>The reason is that you set the second argument to <code>true</code>, that means you need an instance for <code>AutomationDatas</code> entity before you can use <code>ReturnRental</code> method.
 My entity created based on <code>CustGroup</code> table, so to get an instance I need <code>DataAreaId</code> and <code>CustGroupID</code>. The correct endpoint should be</p>
@@ -157,8 +157,8 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown">[finopsURL]/data/AutomationDatas(dataAreaId=&#39;USMF&#39;,CustomerGroupId=&#39;BRIDGE&#39;)/Microsoft.Dynamics.DataEntities.ReturnRental
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">[finopsURL]/data/AutomationDatas(dataAreaId=&#39;USMF&#39;,CustomerGroupId=&#39;BRIDGE&#39;)/Microsoft.Dynamics.DataEntities.ReturnRental
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>The result</p>
 <div class="highlight"><div class="chroma">
@@ -169,11 +169,11 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-    <span class="nt">&#34;@odata.context&#34;</span><span class="p">:</span> <span class="s2">&#34;https://[devaos].cloudax.dynamics.com/data/$metadata#Edm.String&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="s2">&#34;Rental was successfully returned. Thanks for your business&#34;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;@odata.context&#34;</span><span class="p">:</span> <span class="s2">&#34;https://[devaos].cloudax.dynamics.com/data/$metadata#Edm.String&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="s2">&#34;Rental was successfully returned. Thanks for your business&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="22-with-power-automate">2.2. With Power Automate</h2>
 <h3 id="221-with-the-first-example">2.2.1. With the first example</h3>
@@ -202,15 +202,15 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="na">[SysODataActionAttribute(&#34;GetColors&#34;, true),
-</span><span class="na">SysODataCollectionAttribute(&#34;return&#34;, Types::Record, &#34;CarColor&#34;)]</span>
-<span class="k">public</span> <span class="n">List</span> <span class="n">GetColorsByAvailability</span><span class="p">(</span><span class="n">boolean</span> <span class="n">onlyAvailableVehicles</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">List</span> <span class="n">returnList</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Record</span><span class="p">);</span>
-    <span class="c1">// do something
-</span><span class="c1"></span>    <span class="k">return</span> <span class="n">returnList</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="na">[SysODataActionAttribute(&#34;GetColors&#34;, true),
+</span></span></span><span class="line"><span class="cl"><span class="na">SysODataCollectionAttribute(&#34;return&#34;, Types::Record, &#34;CarColor&#34;)]</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="n">List</span> <span class="n">GetColorsByAvailability</span><span class="p">(</span><span class="n">boolean</span> <span class="n">onlyAvailableVehicles</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span> <span class="n">returnList</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Record</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// do something</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">returnList</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>The following example of an OData action takes in list a parameter.</p>
 <div class="highlight"><div class="chroma">
@@ -232,22 +232,22 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="na">[SysODataActionAttribute(&#34;GetColorsByAvailability&#34;, false),
-</span><span class="na">SysODataCollectionAttribute(&#34;InventSiteIdList&#34;, Types::String),
-</span><span class="na">SysODataCollectionAttribute(&#34;return&#34;, Types::String)]</span>
-<span class="k">public</span> <span class="k">static</span> <span class="n">str</span> <span class="n">GetColorsByAvailability</span><span class="p">(</span><span class="n">List</span> <span class="n">InventSiteIdList</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">str</span> <span class="n">strCommaSeperated</span><span class="p">;</span>
-    <span class="n">List</span> <span class="n">list</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">String</span><span class="p">);</span>
-    <span class="n">ListEnumerator</span>  <span class="n">ListEnumerator</span><span class="p">;</span>
-    <span class="n">ListEnumerator</span> <span class="p">=</span> <span class="n">InventSiteIdList</span><span class="p">.</span><span class="n">getEnumerator</span><span class="p">();</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">ListEnumerator</span><span class="p">.</span><span class="n">moveNext</span><span class="p">())</span>
-    <span class="p">{</span>
-        <span class="n">strCommaSeperated</span> <span class="p">+=</span> <span class="n">strFmt</span><span class="p">(</span><span class="err">&#39;</span><span class="p">%</span><span class="m">1</span><span class="p">,</span> <span class="err">&#39;</span><span class="p">,</span> <span class="n">ListEnumerator</span><span class="p">.</span><span class="n">current</span><span class="p">())</span> <span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">strCommaSeperated</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="na">[SysODataActionAttribute(&#34;GetColorsByAvailability&#34;, false),
+</span></span></span><span class="line"><span class="cl"><span class="na">SysODataCollectionAttribute(&#34;InventSiteIdList&#34;, Types::String),
+</span></span></span><span class="line"><span class="cl"><span class="na">SysODataCollectionAttribute(&#34;return&#34;, Types::String)]</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">str</span> <span class="n">GetColorsByAvailability</span><span class="p">(</span><span class="n">List</span> <span class="n">InventSiteIdList</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">str</span> <span class="n">strCommaSeperated</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span> <span class="n">list</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">String</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ListEnumerator</span>  <span class="n">ListEnumerator</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ListEnumerator</span> <span class="p">=</span> <span class="n">InventSiteIdList</span><span class="p">.</span><span class="n">getEnumerator</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">ListEnumerator</span><span class="p">.</span><span class="n">moveNext</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">strCommaSeperated</span> <span class="p">+=</span> <span class="n">strFmt</span><span class="p">(</span><span class="err">&#39;</span><span class="p">%</span><span class="m">1</span><span class="p">,</span> <span class="err">&#39;</span><span class="p">,</span> <span class="n">ListEnumerator</span><span class="p">.</span><span class="n">current</span><span class="p">())</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">strCommaSeperated</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>In those examples,the <code>SysODataCollectionAttribute</code> class enables OData to expose strongly typed collections from X++. This class takes in three parameters:</p>
 <ul>
@@ -262,8 +262,8 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown">https://[devaos].cloudax.dynamics.com/data/$metadata
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">https://[devaos].cloudax.dynamics.com/data/$metadata
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -286,24 +286,24 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;Action</span> <span class="na">Name=</span><span class="s">&#34;removeDeleteCT&#34;</span> <span class="na">IsBound=</span><span class="s">&#34;true&#34;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;AutomationData&#34;</span> <span class="na">Type=</span><span class="s">&#34;Collection(Microsoft.Dynamics.DataEntities.AutomationData)&#34;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;_entityName&#34;</span> <span class="na">Type=</span><span class="s">&#34;Edm.String&#34;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;/Action&gt;</span>
-<span class="nt">&lt;Action</span> <span class="na">Name=</span><span class="s">&#34;assginUserToCompany&#34;</span> <span class="na">IsBound=</span><span class="s">&#34;true&#34;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;AutomationData&#34;</span> <span class="na">Type=</span><span class="s">&#34;Collection(Microsoft.Dynamics.DataEntities.AutomationData)&#34;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;_networkAlias&#34;</span> <span class="na">Type=</span><span class="s">&#34;Edm.String&#34;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;_company&#34;</span> <span class="na">Type=</span><span class="s">&#34;Edm.String&#34;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;/Action&gt;</span>
-<span class="nt">&lt;Action</span> <span class="na">Name=</span><span class="s">&#34;ReturnRental&#34;</span> <span class="na">IsBound=</span><span class="s">&#34;true&#34;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;AutomationData&#34;</span> <span class="na">Type=</span><span class="s">&#34;Microsoft.Dynamics.DataEntities.AutomationData&#34;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;ReturnType</span> <span class="na">Type=</span><span class="s">&#34;Edm.String&#34;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;/Action&gt;</span>
-<span class="nt">&lt;Action</span> <span class="na">Name=</span><span class="s">&#34;addToAllUserGroups&#34;</span> <span class="na">IsBound=</span><span class="s">&#34;true&#34;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;AutomationData&#34;</span> <span class="na">Type=</span><span class="s">&#34;Collection(Microsoft.Dynamics.DataEntities.AutomationData)&#34;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;_userId&#34;</span> <span class="na">Type=</span><span class="s">&#34;Edm.String&#34;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;/Action&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;Action</span> <span class="na">Name=</span><span class="s">&#34;removeDeleteCT&#34;</span> <span class="na">IsBound=</span><span class="s">&#34;true&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;AutomationData&#34;</span> <span class="na">Type=</span><span class="s">&#34;Collection(Microsoft.Dynamics.DataEntities.AutomationData)&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;_entityName&#34;</span> <span class="na">Type=</span><span class="s">&#34;Edm.String&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/Action&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;Action</span> <span class="na">Name=</span><span class="s">&#34;assginUserToCompany&#34;</span> <span class="na">IsBound=</span><span class="s">&#34;true&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;AutomationData&#34;</span> <span class="na">Type=</span><span class="s">&#34;Collection(Microsoft.Dynamics.DataEntities.AutomationData)&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;_networkAlias&#34;</span> <span class="na">Type=</span><span class="s">&#34;Edm.String&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;_company&#34;</span> <span class="na">Type=</span><span class="s">&#34;Edm.String&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/Action&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;Action</span> <span class="na">Name=</span><span class="s">&#34;ReturnRental&#34;</span> <span class="na">IsBound=</span><span class="s">&#34;true&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;AutomationData&#34;</span> <span class="na">Type=</span><span class="s">&#34;Microsoft.Dynamics.DataEntities.AutomationData&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;ReturnType</span> <span class="na">Type=</span><span class="s">&#34;Edm.String&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/Action&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;Action</span> <span class="na">Name=</span><span class="s">&#34;addToAllUserGroups&#34;</span> <span class="na">IsBound=</span><span class="s">&#34;true&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;AutomationData&#34;</span> <span class="na">Type=</span><span class="s">&#34;Collection(Microsoft.Dynamics.DataEntities.AutomationData)&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;_userId&#34;</span> <span class="na">Type=</span><span class="s">&#34;Edm.String&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/Action&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>At the time I&rsquo;m writing this post, Odata actions does not support COC extension (A 18, P 42). So if you write some thing like this, it won&rsquo;t work.</p>
 <div class="highlight"><div class="chroma">
@@ -320,17 +320,17 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="na">[ExtensionOf(dataentityviewstr(CustCustomerGroupEntity))]</span>
-<span class="n">final</span> <span class="k">class</span> <span class="nc">CustCustomerGroupEntity_KA_Extension</span>
-<span class="p">{</span>
-<span class="na">    [SysODataActionAttribute(&#34;ReturnRental&#34;, false)]</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="n">str</span> <span class="n">ReturnRental</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">return</span> <span class="s">&#34;Rental was successfully returned. Thanks for your business&#34;</span><span class="p">;</span>
-    <span class="p">}</span>
-
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="na">[ExtensionOf(dataentityviewstr(CustCustomerGroupEntity))]</span>
+</span></span><span class="line"><span class="cl"><span class="n">final</span> <span class="k">class</span> <span class="nc">CustCustomerGroupEntity_KA_Extension</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="na">    [SysODataActionAttribute(&#34;ReturnRental&#34;, false)]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="n">str</span> <span class="n">ReturnRental</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;Rental was successfully returned. Thanks for your business&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Thank you for reading.</p>]]></description>
 </item></channel>

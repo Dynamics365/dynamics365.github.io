@@ -10,7 +10,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://nuxulu.com/2017-01-12-respone-in-aif-custom-service-class/" /><meta property="og:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2017-01-12T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-02-24T15:07:02+07:00" />
+<meta property="article:modified_time" content="2022-03-21T22:30:25+07:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/>
@@ -28,7 +28,7 @@
             "@type": "WebPage",
             "@id": "https:\/\/nuxulu.com\/2017-01-12-respone-in-aif-custom-service-class\/"
         },"genre": "posts","keywords": "xpp, aif","wordcount":  394 ,
-        "url": "https:\/\/nuxulu.com\/2017-01-12-respone-in-aif-custom-service-class\/","datePublished": "2017-01-12T00:00:00+00:00","dateModified": "2022-02-24T15:07:02+07:00","publisher": {
+        "url": "https:\/\/nuxulu.com\/2017-01-12-respone-in-aif-custom-service-class\/","datePublished": "2017-01-12T00:00:00+00:00","dateModified": "2022-03-21T22:30:25+07:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -176,13 +176,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="na">[DataContractAttribute]</span>
-<span class="k">class</span> <span class="nc">MaxWorkerResponse</span>
-<span class="p">{</span>
-    <span class="n">str</span>     <span class="n">gId</span><span class="p">;</span>
-    <span class="n">str</span>     <span class="n">gName</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="na">[DataContractAttribute]</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MaxWorkerResponse</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">str</span>     <span class="n">gId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">str</span>     <span class="n">gName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>two value that I want to return is <code>HcmPersonnelNumberId</code> and <code>HcmWorkerName</code>, I will store it in 2 parms method</p>
 <div class="highlight"><div class="chroma">
@@ -204,22 +204,22 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="na">[DataMemberAttribute(&#39;HcmWorkerName&#39;)]</span>
-<span class="k">public</span> <span class="n">HcmWorkerName</span> <span class="n">parmName</span><span class="p">(</span><span class="n">HcmWorkerName</span> <span class="m">_</span><span class="n">name</span> <span class="p">=</span> <span class="n">gName</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">gName</span> <span class="p">=</span> <span class="m">_</span><span class="n">name</span><span class="p">;</span>
-
-    <span class="k">return</span> <span class="n">gName</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="na">
-</span><span class="na">[DataMemberAttribute(&#39;HcmPersonnelNumberId&#39;)]</span>
-<span class="k">public</span> <span class="n">HcmPersonnelNumberId</span> <span class="n">parmId</span><span class="p">(</span><span class="n">HcmPersonnelNumberId</span> <span class="m">_</span><span class="n">id</span> <span class="p">=</span> <span class="n">gId</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">gId</span> <span class="p">=</span> <span class="m">_</span><span class="n">id</span><span class="p">;</span>
-
-    <span class="k">return</span> <span class="n">gId</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="na">[DataMemberAttribute(&#39;HcmWorkerName&#39;)]</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="n">HcmWorkerName</span> <span class="n">parmName</span><span class="p">(</span><span class="n">HcmWorkerName</span> <span class="m">_</span><span class="n">name</span> <span class="p">=</span> <span class="n">gName</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">gName</span> <span class="p">=</span> <span class="m">_</span><span class="n">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">gName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="na">
+</span></span></span><span class="line"><span class="cl"><span class="na">[DataMemberAttribute(&#39;HcmPersonnelNumberId&#39;)]</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="n">HcmPersonnelNumberId</span> <span class="n">parmId</span><span class="p">(</span><span class="n">HcmPersonnelNumberId</span> <span class="m">_</span><span class="n">id</span> <span class="p">=</span> <span class="n">gId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">gId</span> <span class="p">=</span> <span class="m">_</span><span class="n">id</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">gId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="service-class">Service class</h4>
 <p>Create <code>MaxPRService</code> Class, This class consume through service that need to be extend <code>SysOperationServiceBase</code> class</p>
@@ -230,10 +230,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">class</span> <span class="nc">MaxPRService</span> <span class="n">extends</span> <span class="n">SysOperationServiceBase</span>
-<span class="p">{</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MaxPRService</span> <span class="n">extends</span> <span class="n">SysOperationServiceBase</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Main logic</p>
 <div class="highlight"><div class="chroma">
@@ -260,27 +260,27 @@
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="na">[SysEntryPointAttribute(true),
-</span><span class="na">AifCollectionTypeAttribute(&#39;return&#39;, Types::String)]</span>
-<span class="k">public</span> <span class="n">MaxWorkerResponse</span> <span class="n">getEmployee</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="n">HcmWorkerRecId</span>          <span class="n">workerRecId</span><span class="p">;</span>
-    <span class="n">HcmPersonnelNumberId</span>    <span class="n">personnelNumber</span><span class="p">;</span>
-    <span class="n">HcmWorkerName</span>           <span class="n">name</span><span class="p">;</span>
-    <span class="n">MaxWorkerResponse</span>       <span class="n">response</span><span class="p">;</span>
-
-    <span class="n">workerRecId</span> <span class="p">=</span> <span class="n">DirPersonUser</span><span class="p">::</span><span class="n">currentWorker</span><span class="p">();</span>
-    <span class="n">personnelNumber</span> <span class="p">=</span> <span class="n">HcmWorker</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="n">workerRecId</span><span class="p">).</span><span class="n">PersonnelNumber</span><span class="p">;</span>
-    <span class="n">name</span> <span class="p">=</span> <span class="n">HcmWorker</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="n">workerRecId</span><span class="p">).</span><span class="n">name</span><span class="p">();</span>
-    
-    <span class="n">response</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MaxWorkerResponse</span><span class="p">();</span>
-    
-    <span class="n">response</span><span class="p">.</span><span class="n">parmId</span><span class="p">(</span><span class="n">personnelNumber</span><span class="p">);</span>
-    <span class="n">response</span><span class="p">.</span><span class="n">parmName</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
-    
-    <span class="k">return</span> <span class="n">response</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="na">[SysEntryPointAttribute(true),
+</span></span></span><span class="line"><span class="cl"><span class="na">AifCollectionTypeAttribute(&#39;return&#39;, Types::String)]</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="n">MaxWorkerResponse</span> <span class="n">getEmployee</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">HcmWorkerRecId</span>          <span class="n">workerRecId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">HcmPersonnelNumberId</span>    <span class="n">personnelNumber</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">HcmWorkerName</span>           <span class="n">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">MaxWorkerResponse</span>       <span class="n">response</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">workerRecId</span> <span class="p">=</span> <span class="n">DirPersonUser</span><span class="p">::</span><span class="n">currentWorker</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">personnelNumber</span> <span class="p">=</span> <span class="n">HcmWorker</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="n">workerRecId</span><span class="p">).</span><span class="n">PersonnelNumber</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">name</span> <span class="p">=</span> <span class="n">HcmWorker</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="n">workerRecId</span><span class="p">).</span><span class="n">name</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">response</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MaxWorkerResponse</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">response</span><span class="p">.</span><span class="n">parmId</span><span class="p">(</span><span class="n">personnelNumber</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">response</span><span class="p">.</span><span class="n">parmName</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">response</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="create-service">Create service</h4>
 <p>In AOT create new service and add recent created class to that Service, in operations node add <code>getEmployee</code> method, you will get something likes</p>
@@ -314,27 +314,27 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
-<span class="p">{</span>
-	<span class="n">CallContext</span> <span class="n">context</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;USMF&#34;</span><span class="p">,</span>
-		<span class="n">Language</span> <span class="p">=</span> <span class="s">&#34;EN-US&#34;</span><span class="p">,</span>
-	<span class="p">};</span>
-	
-	<span class="n">MaxPRServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MaxPRServiceClient</span><span class="p">();</span>
-	<span class="n">MaxWorkerResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">getEmployee</span><span class="p">(</span><span class="n">context</span><span class="p">);</span>
-	
-	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">HcmWorkerName</span> <span class="p">+</span> <span class="s">&#34;, &#34;</span> <span class="p">+</span> <span class="n">response</span><span class="p">.</span><span class="n">HcmPersonnelNumberId</span><span class="p">);</span>
-	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">CallContext</span> <span class="n">context</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;USMF&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Language</span> <span class="p">=</span> <span class="s">&#34;EN-US&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="n">MaxPRServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MaxPRServiceClient</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">MaxWorkerResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">getEmployee</span><span class="p">(</span><span class="n">context</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">HcmWorkerName</span> <span class="p">+</span> <span class="s">&#34;, &#34;</span> <span class="p">+</span> <span class="n">response</span><span class="p">.</span><span class="n">HcmPersonnelNumberId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Thank you for reading.</p></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on February 24, 2022</span>
+                <span>Updated on March 21, 2022</span>
             </div>
             <div class="post-info-license"></div>
         </div>

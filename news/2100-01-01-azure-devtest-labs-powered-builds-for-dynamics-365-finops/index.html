@@ -13,8 +13,8 @@ Configuring the build VM in Azure DevTest Labs" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://nuxulu.com/news/2100-01-01-azure-devtest-labs-powered-builds-for-dynamics-365-finops/" /><meta property="og:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/><meta property="article:section" content="news" />
 <meta property="article:published_time" content="2021-05-03T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-02-24T15:07:02+07:00" />
-<meta property="og:see_also" content="https://nuxulu.com/news/2100-01-01-lcs-api-database-movement-with-powerautomate/" /><meta property="og:see_also" content="https://nuxulu.com/news/2100-01-01-develop-custom-data-entities-for-dual-write/" /><meta property="og:see_also" content="https://nuxulu.com/news/2100-01-01-dynamics-365-for-finance-operations-and-azure-devops/" /><meta property="og:see_also" content="https://nuxulu.com/news/2100-01-01-automate-your-tests-for-dynamics-365-finance/" />
+<meta property="article:modified_time" content="2022-03-21T22:30:25+07:00" />
+<meta property="og:see_also" content="https://nuxulu.com/news/2100-01-01-data-entity-tips/" /><meta property="og:see_also" content="https://nuxulu.com/news/2100-01-01-lcs-api-database-movement-with-powerautomate/" /><meta property="og:see_also" content="https://nuxulu.com/news/2100-01-01-develop-custom-data-entities-for-dual-write/" /><meta property="og:see_also" content="https://nuxulu.com/news/2100-01-01-dynamics-365-for-finance--operations-and-azure-devops/" /><meta property="og:see_also" content="https://nuxulu.com/news/2100-01-01-automate-your-tests-for-dynamics-365-finance/" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/>
@@ -35,7 +35,7 @@ Configuring the build VM in Azure DevTest Labs"/>
             "@type": "WebPage",
             "@id": "https:\/\/nuxulu.com\/news\/2100-01-01-azure-devtest-labs-powered-builds-for-dynamics-365-finops\/"
         },"genre": "news","wordcount":  4872 ,
-        "url": "https:\/\/nuxulu.com\/news\/2100-01-01-azure-devtest-labs-powered-builds-for-dynamics-365-finops\/","datePublished": "2021-05-03T00:00:00+00:00","dateModified": "2022-02-24T15:07:02+07:00","publisher": {
+        "url": "https:\/\/nuxulu.com\/news\/2100-01-01-azure-devtest-labs-powered-builds-for-dynamics-365-finops\/","datePublished": "2021-05-03T00:00:00+00:00","dateModified": "2022-03-21T22:30:25+07:00","publisher": {
             "@type": "Organization",
             "name": ""},"description": ""
     }
@@ -222,8 +222,8 @@ Configuring the build VM in Azure DevTest Labs"/>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="nb">Convert-VHD</span> <span class="err">–</span><span class="n">Path</span> <span class="n">VHDLOCATION</span><span class="p">.</span><span class="n">vhd</span> <span class="err">–</span><span class="n">DestinationPath</span> <span class="n">NEWVHD</span><span class="p">.</span><span class="n">vhd</span> <span class="err">–</span><span class="n">VHDType</span> <span class="n">Fixed</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="line"><span class="cl"><span class="nb">Convert-VHD</span> <span class="err">–</span><span class="n">Path</span> <span class="n">VHDLOCATION</span><span class="p">.</span><span class="n">vhd</span> <span class="err">–</span><span class="n">DestinationPath</span> <span class="n">NEWVHD</span><span class="p">.</span><span class="n">vhd</span> <span class="err">–</span><span class="n">VHDType</span> <span class="n">Fixed</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>The reason is <strong>you can’t create an Azure VM from a dynamically-sized VHD</strong>. And it took me several attempts to notice this 🙂</p>
 <h2 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocreate-a-devtest-labs-accountcreate-a-devtest-labs-account"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#create-a-devtest-labs-account" target="_blank" rel="noopener noreferrer"></a>Create a DevTest Labs account</h2>
@@ -270,20 +270,20 @@ Configuring the build VM in Azure DevTest Labs"/>
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="cm">&lt;#
-</span><span class="cm">Generated script to upload a local VHD to Azure.
-</span><span class="cm">
-</span><span class="cm">WARNING: The destination will be publicly available for 24 hours, after which it will expire.
-</span><span class="cm">
-</span><span class="cm"> Ensure you complete your upload by then.
-</span><span class="cm">
-</span><span class="cm">Run the following command in a Azure PowerShell console after entering
-</span><span class="cm">
-</span><span class="cm">the LocalFilePath to your VHD.
-</span><span class="cm">#&gt;</span>
-
-<span class="nb">Add-AzureRmVhd</span> <span class="p">\</span><span class="n">-Destination</span> <span class="s2">&#34;https://YOURBLOB.blob.core.windows.net/uploads/tempImage.vhd?sv=2019-07-07&amp;st=2020-12-27T09%3A08%3A26Z&amp;se=2020-12-28T09%3A23%3A26Z&amp;sr=b&amp;sp=rcw&amp;sig=YTeXpxpVEJdSM7KZle71w8NVw9oznNizSnYj8Q3hngI%3D&#34;</span> <span class="p">\</span><span class="n">-LocalFilePath</span> <span class="s2">&#34;&lt;Enter VHD location here&gt;&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="line"><span class="cl"><span class="cm">&lt;#
+</span></span></span><span class="line"><span class="cl"><span class="cm">Generated script to upload a local VHD to Azure.
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">WARNING: The destination will be publicly available for 24 hours, after which it will expire.
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm"> Ensure you complete your upload by then.
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">Run the following command in a Azure PowerShell console after entering
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">the LocalFilePath to your VHD.
+</span></span></span><span class="line"><span class="cl"><span class="cm">#&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">Add-AzureRmVhd</span> <span class="p">\</span><span class="n">-Destination</span> <span class="s2">&#34;https://YOURBLOB.blob.core.windows.net/uploads/tempImage.vhd?sv=2019-07-07&amp;st=2020-12-27T09%3A08%3A26Z&amp;se=2020-12-28T09%3A23%3A26Z&amp;sr=b&amp;sp=rcw&amp;sig=YTeXpxpVEJdSM7KZle71w8NVw9oznNizSnYj8Q3hngI%3D&#34;</span> <span class="p">\</span><span class="n">-LocalFilePath</span> <span class="s2">&#34;&lt;Enter VHD location here&gt;&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2020/12/DevTest3.png" title="DevTest Labs custom image upload" data-thumbnail="https://static.ariste.info/wp-content/uploads/2020/12/DevTest3.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 5</h2><p>DevTest Labs custom image upload</p>">
         <img
@@ -340,10 +340,10 @@ Configuring the build VM in Azure DevTest Labs"/>
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="nb">Import-Module</span> <span class="p">$(</span><span class="nb">Join-Path</span> <span class="p">\</span><span class="n">-Path</span> <span class="s2">&#34;C:\\DynamicsSDK&#34;</span> <span class="p">\</span><span class="n">-ChildPath</span> <span class="s2">&#34;DynamicsSDKCommon.psm1&#34;</span><span class="p">)</span> <span class="p">\</span><span class="n">-Function</span> <span class="s2">&#34;Write-Message&#34;</span><span class="p">,</span> <span class="s2">&#34;Set-AX7SdkRegistryValues&#34;</span><span class="p">,</span> <span class="s2">&#34;Set-AX7SdkEnvironmentVariables&#34;</span>
-<span class="n">Set</span><span class="p">\</span><span class="n">-AX7SdkEnvironmentVariables</span> <span class="p">\</span><span class="n">-DynamicsSDK</span> <span class="s2">&#34;C:\\DynamicsSDK&#34;</span>
-<span class="n">Set</span><span class="p">\</span><span class="n">-AX7SdkRegistryValues</span> <span class="p">\</span><span class="n">-DynamicsSDK</span> <span class="s2">&#34;c:\\DynamicsSDK&#34;</span> <span class="p">\</span><span class="n">-TeamFoundationServerUrl</span> <span class="s2">&#34;https://dev.azure.com/YOUR\_ORG&#34;</span> <span class="p">\</span><span class="n">-AosWebsiteName</span> <span class="nv">$AosWebsiteName</span> <span class="s2">&#34;AosService&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="line"><span class="cl"><span class="nb">Import-Module</span> <span class="p">$(</span><span class="nb">Join-Path</span> <span class="p">\</span><span class="n">-Path</span> <span class="s2">&#34;C:\\DynamicsSDK&#34;</span> <span class="p">\</span><span class="n">-ChildPath</span> <span class="s2">&#34;DynamicsSDKCommon.psm1&#34;</span><span class="p">)</span> <span class="p">\</span><span class="n">-Function</span> <span class="s2">&#34;Write-Message&#34;</span><span class="p">,</span> <span class="s2">&#34;Set-AX7SdkRegistryValues&#34;</span><span class="p">,</span> <span class="s2">&#34;Set-AX7SdkEnvironmentVariables&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Set</span><span class="p">\</span><span class="n">-AX7SdkEnvironmentVariables</span> <span class="p">\</span><span class="n">-DynamicsSDK</span> <span class="s2">&#34;C:\\DynamicsSDK&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Set</span><span class="p">\</span><span class="n">-AX7SdkRegistryValues</span> <span class="p">\</span><span class="n">-DynamicsSDK</span> <span class="s2">&#34;c:\\DynamicsSDK&#34;</span> <span class="p">\</span><span class="n">-TeamFoundationServerUrl</span> <span class="s2">&#34;https://dev.azure.com/YOUR\_ORG&#34;</span> <span class="p">\</span><span class="n">-AosWebsiteName</span> <span class="nv">$AosWebsiteName</span> <span class="s2">&#34;AosService&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>The first one will load the functions and make them available in the command-line and the other two create the registry entries and environment variables.</p>
 <p>Now we need to <strong>add an artifact for the Azure DevOps agent service</strong>. This will configure the agent service on the VM each time the VM is deployed. Search for “Azure Pipelines Agent” and click it. You will see this:</p>
@@ -371,8 +371,8 @@ Configuring the build VM in Azure DevTest Labs"/>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="n">SetupBuildAgent</span><span class="p">.</span><span class="n">ps1</span> <span class="p">\</span><span class="n">-VSO</span><span class="p">\</span><span class="n">_ProjectCollection</span> <span class="s2">&#34;https://dev.azure.com/YOUR\_ORG&#34;</span> <span class="p">\</span><span class="n">-ServiceAccountName</span> <span class="s2">&#34;myUser&#34;</span> <span class="p">\</span><span class="n">-ServiceAccountPassword</span> <span class="s2">&#34;mYPassword&#34;</span> <span class="p">\</span><span class="n">-AgentName</span> <span class="s2">&#34;DevTestAgent&#34;</span> <span class="p">\</span><span class="n">-AgentPoolName</span> <span class="s2">&#34;DevTestPool&#34;</span> <span class="p">\</span><span class="n">-VSOAccessToken</span> <span class="s2">&#34;YOUR\_VSTS\_TOKEN&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="line"><span class="cl"><span class="n">SetupBuildAgent</span><span class="p">.</span><span class="n">ps1</span> <span class="p">\</span><span class="n">-VSO</span><span class="p">\</span><span class="n">_ProjectCollection</span> <span class="s2">&#34;https://dev.azure.com/YOUR\_ORG&#34;</span> <span class="p">\</span><span class="n">-ServiceAccountName</span> <span class="s2">&#34;myUser&#34;</span> <span class="p">\</span><span class="n">-ServiceAccountPassword</span> <span class="s2">&#34;mYPassword&#34;</span> <span class="p">\</span><span class="n">-AgentName</span> <span class="s2">&#34;DevTestAgent&#34;</span> <span class="p">\</span><span class="n">-AgentPoolName</span> <span class="s2">&#34;DevTestPool&#34;</span> <span class="p">\</span><span class="n">-VSOAccessToken</span> <span class="s2">&#34;YOUR\_VSTS\_TOKEN&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>WARNING</strong>: If you choose option B you must create a new base image from the VM where you’ve run the script. Then repeat the WinRM steps to generate the new ARM template which we’ll see next.</p>
 <h3 id="54-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnoarm-templatearm-template">5.4. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#arm-template" target="_blank" rel="noopener noreferrer"></a>ARM template</h3>
@@ -744,358 +744,358 @@ Configuring the build VM in Azure DevTest Labs"/>
 </span><span class="lnt">351
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="p">{</span>
-
- <span class="s">&#34;$schema&#34;</span><span class="p">:</span> <span class="s">&#34;https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;contentVersion&#34;</span><span class="p">:</span> <span class="s">&#34;1.0.0.0&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;parameters&#34;</span><span class="p">:</span> <span class="p">{</span>
-
- <span class="s">&#34;newVMName&#34;</span><span class="p">:</span> <span class="p">{</span>
-
- <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;aariste001&#34;</span>
-
- <span class="p">},</span>
-
- <span class="s">&#34;labName&#34;</span><span class="p">:</span> <span class="p">{</span>
-
- <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;aristeinfo&#34;</span>
-
- <span class="p">},</span>
-
- <span class="s">&#34;size&#34;</span><span class="p">:</span> <span class="p">{</span>
-
- <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;Standard\_B4ms&#34;</span>
-
- <span class="p">},</span>
-
- <span class="s">&#34;userName&#34;</span><span class="p">:</span> <span class="p">{</span>
-
- <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;myUser&#34;</span>
-
- <span class="p">},</span>
-
- <span class="s">&#34;password&#34;</span><span class="p">:</span> <span class="p">{</span>
-
- <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;securestring&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;\[\[\[VmPassword\]\]&#34;</span>
-
- <span class="p">},</span>
-
- <span class="s">&#34;Configure\_WinRM\_hostName&#34;</span><span class="p">:</span> <span class="p">{</span>
-
- <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;Public IP address&#34;</span>
-
- <span class="p">},</span>
-
- <span class="s">&#34;Azure\_Pipelines\_Agent\_vstsAccount&#34;</span><span class="p">:</span> <span class="p">{</span>
-
- <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;ariste&#34;</span>
-
- <span class="p">},</span>
-
- <span class="s">&#34;Azure\_Pipelines\_Agent\_vstsPassword&#34;</span><span class="p">:</span> <span class="p">{</span>
-
- <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;securestring&#34;</span>
-
- <span class="p">},</span>
-
- <span class="s">&#34;Azure\_Pipelines\_Agent\_agentName&#34;</span><span class="p">:</span> <span class="p">{</span>
-
- <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;DevTestAgent&#34;</span>
-
- <span class="p">},</span>
-
- <span class="s">&#34;Azure\_Pipelines\_Agent\_agentNameSuffix&#34;</span><span class="p">:</span> <span class="p">{</span>
-
- <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;&#34;</span>
-
- <span class="p">},</span>
-
- <span class="s">&#34;Azure\_Pipelines\_Agent\_poolName&#34;</span><span class="p">:</span> <span class="p">{</span>
-
- <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;DevTestPool&#34;</span>
-
- <span class="p">},</span>
-
- <span class="s">&#34;Azure\_Pipelines\_Agent\_RunAsAutoLogon&#34;</span><span class="p">:</span> <span class="p">{</span>
-
- <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;bool&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="k">false</span>
-
- <span class="p">},</span>
-
- <span class="s">&#34;Azure\_Pipelines\_Agent\_windowsLogonAccount&#34;</span><span class="p">:</span> <span class="p">{</span>
-
- <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;aariste&#34;</span>
-
- <span class="p">},</span>
-
- <span class="s">&#34;Azure\_Pipelines\_Agent\_windowsLogonPassword&#34;</span><span class="p">:</span> <span class="p">{</span>
-
- <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;securestring&#34;</span>
-
- <span class="p">},</span>
-
- <span class="s">&#34;Azure\_Pipelines\_Agent\_driveLetter&#34;</span><span class="p">:</span> <span class="p">{</span>
-
- <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;C&#34;</span>
-
- <span class="p">},</span>
-
- <span class="s">&#34;Azure\_Pipelines\_Agent\_workDirectory&#34;</span><span class="p">:</span> <span class="p">{</span>
-
- <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;DevTestAgent&#34;</span>
-
- <span class="p">},</span>
-
- <span class="s">&#34;Azure\_Pipelines\_Agent\_replaceAgent&#34;</span><span class="p">:</span> <span class="p">{</span>
-
- <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;bool&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="k">true</span>
-
- <span class="p">}</span>
-
- <span class="p">},</span>
-
- <span class="s">&#34;variables&#34;</span><span class="p">:</span> <span class="p">{</span>
-
- <span class="s">&#34;labSubnetName&#34;</span><span class="p">:</span> <span class="s">&#34;\[concat(variables(&#39;labVirtualNetworkName&#39;), &#39;Subnet&#39;)\]&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;labVirtualNetworkId&#34;</span><span class="p">:</span> <span class="s">&#34;\[resourceId(&#39;Microsoft.DevTestLab/labs/virtualnetworks&#39;, parameters(&#39;labName&#39;), variables(&#39;labVirtualNetworkName&#39;))\]&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;labVirtualNetworkName&#34;</span><span class="p">:</span> <span class="s">&#34;\[concat(&#39;Dtl&#39;, parameters(&#39;labName&#39;))\]&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;vmId&#34;</span><span class="p">:</span> <span class="s">&#34;\[resourceId (&#39;Microsoft.DevTestLab/labs/virtualmachines&#39;, parameters(&#39;labName&#39;), parameters(&#39;newVMName&#39;))\]&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;vmName&#34;</span><span class="p">:</span> <span class="s">&#34;\[concat(parameters(&#39;labName&#39;), &#39;/&#39;, parameters(&#39;newVMName&#39;))\]&#34;</span>
-
- <span class="p">},</span>
-
- <span class="s">&#34;resources&#34;</span><span class="p">:</span> <span class="err">\</span><span class="p">[</span>
-
- <span class="p">{</span>
-
- <span class="s">&#34;apiVersion&#34;</span><span class="p">:</span> <span class="s">&#34;2018-10-15-preview&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;Microsoft.DevTestLab/labs/virtualmachines&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;\[variables(&#39;vmName&#39;)\]&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;location&#34;</span><span class="p">:</span> <span class="s">&#34;\[resourceGroup().location\]&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;properties&#34;</span><span class="p">:</span> <span class="p">{</span>
-
- <span class="s">&#34;labVirtualNetworkId&#34;</span><span class="p">:</span> <span class="s">&#34;\[variables(&#39;labVirtualNetworkId&#39;)\]&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;notes&#34;</span><span class="p">:</span> <span class="s">&#34;Dynamics365FnO10013AgentLessV2&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;customImageId&#34;</span><span class="p">:</span> <span class="s">&#34;/subscriptions/6715778f-c852-453d-b6bb-907ac34f280f/resourcegroups/devtestlabs365/providers/microsoft.devtestlab/labs/devtestd365/customimages/dynamics365fno10013agentlessv2&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;size&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;size&#39;)\]&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;userName&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;userName&#39;)\]&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;password&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;password&#39;)\]&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;isAuthenticationWithSshKey&#34;</span><span class="p">:</span> <span class="k">false</span><span class="p">,</span>
-
- <span class="s">&#34;artifacts&#34;</span><span class="p">:</span> <span class="err">\</span><span class="p">[</span>
-
- <span class="p">{</span>
-
- <span class="s">&#34;artifactId&#34;</span><span class="p">:</span> <span class="s">&#34;\[resourceId(&#39;Microsoft.DevTestLab/labs/artifactSources/artifacts&#39;, parameters(&#39;labName&#39;), &#39;public repo&#39;, &#39;windows-winrm&#39;)\]&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;parameters&#34;</span><span class="p">:</span> <span class="err">\</span><span class="p">[</span>
-
- <span class="p">{</span>
-
- <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;hostName&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Configure\_WinRM\_hostName&#39;)\]&#34;</span>
-
- <span class="p">}</span>
-
- <span class="err">\</span><span class="p">]</span>
-
- <span class="p">},</span>
-
- <span class="p">{</span>
-
- <span class="s">&#34;artifactId&#34;</span><span class="p">:</span> <span class="s">&#34;\[resourceId(&#39;Microsoft.DevTestLab/labs/artifactSources/artifacts&#39;, parameters(&#39;labName&#39;), &#39;public repo&#39;, &#39;windows-vsts-build-agent&#39;)\]&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;parameters&#34;</span><span class="p">:</span> <span class="err">\</span><span class="p">[</span>
-
- <span class="p">{</span>
-
- <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;vstsAccount&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_vstsAccount&#39;)\]&#34;</span>
-
- <span class="p">},</span>
-
- <span class="p">{</span>
-
- <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;vstsPassword&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_vstsPassword&#39;)\]&#34;</span>
-
- <span class="p">},</span>
-
- <span class="p">{</span>
-
- <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;agentName&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_agentName&#39;)\]&#34;</span>
-
- <span class="p">},</span>
-
- <span class="p">{</span>
-
- <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;agentNameSuffix&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_agentNameSuffix&#39;)\]&#34;</span>
-
- <span class="p">},</span>
-
- <span class="p">{</span>
-
- <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;poolName&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_poolName&#39;)\]&#34;</span>
-
- <span class="p">},</span>
-
- <span class="p">{</span>
-
- <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;RunAsAutoLogon&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_RunAsAutoLogon&#39;)\]&#34;</span>
-
- <span class="p">},</span>
-
- <span class="p">{</span>
-
- <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;windowsLogonAccount&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_windowsLogonAccount&#39;)\]&#34;</span>
-
- <span class="p">},</span>
-
- <span class="p">{</span>
-
- <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;windowsLogonPassword&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_windowsLogonPassword&#39;)\]&#34;</span>
-
- <span class="p">},</span>
-
- <span class="p">{</span>
-
- <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;driveLetter&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_driveLetter&#39;)\]&#34;</span>
-
- <span class="p">},</span>
-
- <span class="p">{</span>
-
- <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;workDirectory&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_workDirectory&#39;)\]&#34;</span>
-
- <span class="p">},</span>
-
- <span class="p">{</span>
-
- <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;replaceAgent&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_replaceAgent&#39;)\]&#34;</span>
-
- <span class="p">}</span>
-
- <span class="err">\</span><span class="p">]</span>
-
- <span class="p">}</span>
-
- <span class="err">\</span><span class="p">],</span>
-
- <span class="s">&#34;labSubnetName&#34;</span><span class="p">:</span> <span class="s">&#34;\[variables(&#39;labSubnetName&#39;)\]&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;disallowPublicIpAddress&#34;</span><span class="p">:</span> <span class="k">true</span><span class="p">,</span>
-
- <span class="s">&#34;storageType&#34;</span><span class="p">:</span> <span class="s">&#34;Premium&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;allowClaim&#34;</span><span class="p">:</span> <span class="k">false</span><span class="p">,</span>
-
- <span class="s">&#34;networkInterface&#34;</span><span class="p">:</span> <span class="p">{</span>
-
- <span class="s">&#34;sharedPublicIpAddressConfiguration&#34;</span><span class="p">:</span> <span class="p">{</span>
-
- <span class="s">&#34;inboundNatRules&#34;</span><span class="p">:</span> <span class="err">\</span><span class="p">[</span>
-
- <span class="p">{</span>
-
- <span class="s">&#34;transportProtocol&#34;</span><span class="p">:</span> <span class="s">&#34;tcp&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;backendPort&#34;</span><span class="p">:</span> <span class="m">3389</span>
-
- <span class="p">}</span>
-
- <span class="err">\</span><span class="p">]</span>
-
- <span class="p">}</span>
-
- <span class="p">}</span>
-
- <span class="p">}</span>
-
- <span class="p">}</span>
-
- <span class="err">\</span><span class="p">],</span>
-
- <span class="s">&#34;outputs&#34;</span><span class="p">:</span> <span class="p">{</span>
-
- <span class="s">&#34;labVMId&#34;</span><span class="p">:</span> <span class="p">{</span>
-
- <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
-
- <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[variables(&#39;vmId&#39;)\]&#34;</span>
-
- <span class="p">}</span>
-
- <span class="p">}</span>
-
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;$schema&#34;</span><span class="p">:</span> <span class="s">&#34;https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;contentVersion&#34;</span><span class="p">:</span> <span class="s">&#34;1.0.0.0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;parameters&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;newVMName&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;aariste001&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;labName&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;aristeinfo&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;size&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;Standard\_B4ms&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;userName&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;myUser&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;password&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;securestring&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;\[\[\[VmPassword\]\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;Configure\_WinRM\_hostName&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;Public IP address&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;Azure\_Pipelines\_Agent\_vstsAccount&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;ariste&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;Azure\_Pipelines\_Agent\_vstsPassword&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;securestring&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;Azure\_Pipelines\_Agent\_agentName&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;DevTestAgent&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;Azure\_Pipelines\_Agent\_agentNameSuffix&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;Azure\_Pipelines\_Agent\_poolName&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;DevTestPool&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;Azure\_Pipelines\_Agent\_RunAsAutoLogon&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;bool&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="k">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;Azure\_Pipelines\_Agent\_windowsLogonAccount&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;aariste&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;Azure\_Pipelines\_Agent\_windowsLogonPassword&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;securestring&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;Azure\_Pipelines\_Agent\_driveLetter&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;C&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;Azure\_Pipelines\_Agent\_workDirectory&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;DevTestAgent&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;Azure\_Pipelines\_Agent\_replaceAgent&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;bool&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="k">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;variables&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;labSubnetName&#34;</span><span class="p">:</span> <span class="s">&#34;\[concat(variables(&#39;labVirtualNetworkName&#39;), &#39;Subnet&#39;)\]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;labVirtualNetworkId&#34;</span><span class="p">:</span> <span class="s">&#34;\[resourceId(&#39;Microsoft.DevTestLab/labs/virtualnetworks&#39;, parameters(&#39;labName&#39;), variables(&#39;labVirtualNetworkName&#39;))\]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;labVirtualNetworkName&#34;</span><span class="p">:</span> <span class="s">&#34;\[concat(&#39;Dtl&#39;, parameters(&#39;labName&#39;))\]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;vmId&#34;</span><span class="p">:</span> <span class="s">&#34;\[resourceId (&#39;Microsoft.DevTestLab/labs/virtualmachines&#39;, parameters(&#39;labName&#39;), parameters(&#39;newVMName&#39;))\]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;vmName&#34;</span><span class="p">:</span> <span class="s">&#34;\[concat(parameters(&#39;labName&#39;), &#39;/&#39;, parameters(&#39;newVMName&#39;))\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;resources&#34;</span><span class="p">:</span> <span class="err">\</span><span class="p">[</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;apiVersion&#34;</span><span class="p">:</span> <span class="s">&#34;2018-10-15-preview&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;Microsoft.DevTestLab/labs/virtualmachines&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;\[variables(&#39;vmName&#39;)\]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;location&#34;</span><span class="p">:</span> <span class="s">&#34;\[resourceGroup().location\]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;properties&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;labVirtualNetworkId&#34;</span><span class="p">:</span> <span class="s">&#34;\[variables(&#39;labVirtualNetworkId&#39;)\]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;notes&#34;</span><span class="p">:</span> <span class="s">&#34;Dynamics365FnO10013AgentLessV2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;customImageId&#34;</span><span class="p">:</span> <span class="s">&#34;/subscriptions/6715778f-c852-453d-b6bb-907ac34f280f/resourcegroups/devtestlabs365/providers/microsoft.devtestlab/labs/devtestd365/customimages/dynamics365fno10013agentlessv2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;size&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;size&#39;)\]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;userName&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;userName&#39;)\]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;password&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;password&#39;)\]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;isAuthenticationWithSshKey&#34;</span><span class="p">:</span> <span class="k">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;artifacts&#34;</span><span class="p">:</span> <span class="err">\</span><span class="p">[</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;artifactId&#34;</span><span class="p">:</span> <span class="s">&#34;\[resourceId(&#39;Microsoft.DevTestLab/labs/artifactSources/artifacts&#39;, parameters(&#39;labName&#39;), &#39;public repo&#39;, &#39;windows-winrm&#39;)\]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;parameters&#34;</span><span class="p">:</span> <span class="err">\</span><span class="p">[</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;hostName&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Configure\_WinRM\_hostName&#39;)\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="err">\</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;artifactId&#34;</span><span class="p">:</span> <span class="s">&#34;\[resourceId(&#39;Microsoft.DevTestLab/labs/artifactSources/artifacts&#39;, parameters(&#39;labName&#39;), &#39;public repo&#39;, &#39;windows-vsts-build-agent&#39;)\]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;parameters&#34;</span><span class="p">:</span> <span class="err">\</span><span class="p">[</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;vstsAccount&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_vstsAccount&#39;)\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;vstsPassword&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_vstsPassword&#39;)\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;agentName&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_agentName&#39;)\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;agentNameSuffix&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_agentNameSuffix&#39;)\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;poolName&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_poolName&#39;)\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;RunAsAutoLogon&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_RunAsAutoLogon&#39;)\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;windowsLogonAccount&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_windowsLogonAccount&#39;)\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;windowsLogonPassword&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_windowsLogonPassword&#39;)\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;driveLetter&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_driveLetter&#39;)\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;workDirectory&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_workDirectory&#39;)\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;replaceAgent&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_replaceAgent&#39;)\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="err">\</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="err">\</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;labSubnetName&#34;</span><span class="p">:</span> <span class="s">&#34;\[variables(&#39;labSubnetName&#39;)\]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;disallowPublicIpAddress&#34;</span><span class="p">:</span> <span class="k">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;storageType&#34;</span><span class="p">:</span> <span class="s">&#34;Premium&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;allowClaim&#34;</span><span class="p">:</span> <span class="k">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;networkInterface&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;sharedPublicIpAddressConfiguration&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;inboundNatRules&#34;</span><span class="p">:</span> <span class="err">\</span><span class="p">[</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;transportProtocol&#34;</span><span class="p">:</span> <span class="s">&#34;tcp&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;backendPort&#34;</span><span class="p">:</span> <span class="m">3389</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="err">\</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="err">\</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;outputs&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;labVMId&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[variables(&#39;vmId&#39;)\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>NOTE</strong>: if you’re using option B you won’t have the artifact node for the VSTS agent.</p>
 <p>This JSON file will be used as the base to create our VMs from the Azure DevOps pipeline. This is known as <a href="https://docs.microsoft.com/en-us/azure/devops/learn/what-is-infrastructure-as-code?WT.mc_id=BA-MVP-5003976" target="_blank" rel="noopener noreferrer">Infrastructure as Code</a> (IaC) and it’s a way of defining our infrastructure in a file as it were code. It’s another part of the DevOps practice that should solve the “it works on my machine” issue.</p>
@@ -1118,14 +1118,14 @@ Configuring the build VM in Azure DevTest Labs"/>
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;password&#34;</span><span class="err">:</span> <span class="p">{</span>
-
- <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
-
- <span class="nt">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s2">&#34;yourPassword&#34;</span>
-
- <span class="p">}</span><span class="err">,</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="s2">&#34;password&#34;</span><span class="err">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="nt">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s2">&#34;yourPassword&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">}</span><span class="err">,</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>I will do the same with all the <em>secureString</em> nodes, but you shouldn’t and should instead use an Azure KeyVault which comes with the DevTest Labs account.</p>
 <p>Of course <strong>you would never upload this template to Azure DevOps with a password in plain text</strong>. There’s plenty of resources online that teach how to use parameters, Azure KeyVault, etc. to accomplish this, for example this one: <a href="https://devkimchi.com/2019/04/24/6-ways-passing-secrets-to-arm-templates/" target="_blank" rel="noopener noreferrer">6 Ways Passing Secrets to ARM Templates</a>.</p>
@@ -1155,8 +1155,8 @@ Configuring the build VM in Azure DevTest Labs"/>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">exec</span><span class="w"> </span><span class="n">DeleteEncryptedContent</span><span class="w">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">exec</span><span class="w"> </span><span class="n">DeleteEncryptedContent</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="64-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnopowershell-scriptspowershell-scripts">6.4. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#powershell-scripts" target="_blank" rel="noopener noreferrer"></a>PowerShell Scripts</h3>
 <p>The default build definition that runs on a build VM uses several PowerShell scripts to run some tasks. I’m adding an additional script called PrepareForAgent.</p>
@@ -1202,40 +1202,40 @@ Configuring the build VM in Azure DevTest Labs"/>
 </span><span class="lnt">33
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">\</span><span class="c"># Create packages backup (if it does not exist).</span>
-
-<span class="nv">$NewBackupCreated</span> <span class="p">\=</span> <span class="nb">Backup-AX7Packages</span> <span class="p">\</span><span class="n">-BackupPath</span> <span class="nv">$PackagesBackupPath</span> <span class="p">\</span><span class="n">-DeploymentPackagesPath</span> <span class="nv">$DeploymentPackagesPath</span> <span class="p">\</span><span class="n">-LogLocation</span> <span class="nv">$LogLocation</span>
-
-<span class="p">\</span><span class="c"># Restore packages backup (unless a new backup was just created).</span>
-
-<span class="k">if</span> <span class="p">(!</span><span class="nv">$NewBackupCreated</span><span class="p">)</span>
-
-<span class="p">{</span>
-
- <span class="nb">Restore-AX7Packages</span> <span class="p">\</span><span class="n">-BackupPath</span> <span class="nv">$PackagesBackupPath</span> <span class="p">\</span><span class="n">-DeploymentPackagesPath</span> <span class="nv">$DeploymentPackagesPath</span> <span class="p">\</span><span class="n">-LogLocation</span> <span class="nv">$LogLocation</span> <span class="p">\</span><span class="n">-RestoreAllFiles</span><span class="err">:</span><span class="nv">$RestorePackagesAllFiles</span>
-
-<span class="p">}</span>
-
-<span class="k">if</span> <span class="p">(!</span><span class="nv">$DatabaseBackupToRestore</span><span class="p">)</span>
-
-<span class="p">{</span>
-
- <span class="nv">$DatabaseBackupPath</span> <span class="p">\=</span> <span class="nb">Get-BackupPath</span> <span class="p">\</span><span class="n">-Purpose</span> <span class="s2">&#34;Databases&#34;</span>
-
- <span class="nb">Backup-AX7Database</span> <span class="p">\</span><span class="n">-BackupPath</span> <span class="nv">$DatabaseBackupPath</span>
-
-<span class="p">}</span>
-
-<span class="k">else</span>
-
-<span class="p">{</span>
-
- <span class="p">\</span><span class="c"># Restore a database backup (if specified).</span>
-
- <span class="nb">Restore-AX7Database</span> <span class="p">\</span><span class="n">-DatabaseBackupToRestore</span> <span class="nv">$DatabaseBackupToRestore</span>
-
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">\</span><span class="c"># Create packages backup (if it does not exist).</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$NewBackupCreated</span> <span class="p">\=</span> <span class="nb">Backup-AX7Packages</span> <span class="p">\</span><span class="n">-BackupPath</span> <span class="nv">$PackagesBackupPath</span> <span class="p">\</span><span class="n">-DeploymentPackagesPath</span> <span class="nv">$DeploymentPackagesPath</span> <span class="p">\</span><span class="n">-LogLocation</span> <span class="nv">$LogLocation</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">\</span><span class="c"># Restore packages backup (unless a new backup was just created).</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(!</span><span class="nv">$NewBackupCreated</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="nb">Restore-AX7Packages</span> <span class="p">\</span><span class="n">-BackupPath</span> <span class="nv">$PackagesBackupPath</span> <span class="p">\</span><span class="n">-DeploymentPackagesPath</span> <span class="nv">$DeploymentPackagesPath</span> <span class="p">\</span><span class="n">-LogLocation</span> <span class="nv">$LogLocation</span> <span class="p">\</span><span class="n">-RestoreAllFiles</span><span class="err">:</span><span class="nv">$RestorePackagesAllFiles</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(!</span><span class="nv">$DatabaseBackupToRestore</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="nv">$DatabaseBackupPath</span> <span class="p">\=</span> <span class="nb">Get-BackupPath</span> <span class="p">\</span><span class="n">-Purpose</span> <span class="s2">&#34;Databases&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="nb">Backup-AX7Database</span> <span class="p">\</span><span class="n">-BackupPath</span> <span class="nv">$DatabaseBackupPath</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">\</span><span class="c"># Restore a database backup (if specified).</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="nb">Restore-AX7Database</span> <span class="p">\</span><span class="n">-DatabaseBackupToRestore</span> <span class="nv">$DatabaseBackupToRestore</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>We need to modify it until we end up with this:</p>
 <div class="highlight"><div class="chroma">
@@ -1249,14 +1249,14 @@ Configuring the build VM in Azure DevTest Labs"/>
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="k">if</span> <span class="p">(</span><span class="nv">$DatabaseBackupToRestore</span><span class="p">)</span>
-
-<span class="p">{</span>
-
- <span class="nb">Restore-AX7Database</span> <span class="p">\</span><span class="n">-DatabaseBackupToRestore</span> <span class="nv">$DatabaseBackupToRestore</span>
-
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nv">$DatabaseBackupToRestore</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="nb">Restore-AX7Database</span> <span class="p">\</span><span class="n">-DatabaseBackupToRestore</span> <span class="nv">$DatabaseBackupToRestore</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>We just need the DB restore part and skip the backup, otherwise we’ll be losing 45 minutes in each run for something we don’t need because the VM will be deleted when the build is completed.</p>
 <h3 id="65-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooptional-but-recommended-install-d365fo-toolsoptional-but-recommended-install-d365fotoolshttpsgithubcomd365collaboratived365fotools">6.5. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#optional-but-recommended-install-d365fo-tools" target="_blank" rel="noopener noreferrer"></a><strong>Optional (but recommended)</strong>: install <a href="https://github.com/d365collaborative/d365fo.tools" target="_blank" rel="noopener noreferrer">d365fo.tools</a></h3>
@@ -1266,8 +1266,8 @@ Configuring the build VM in Azure DevTest Labs"/>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="nb">Install-Module</span> <span class="p">\</span><span class="n">-Name</span> <span class="n">d365fo</span><span class="p">.</span><span class="n">tools</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="line"><span class="cl"><span class="nb">Install-Module</span> <span class="p">\</span><span class="n">-Name</span> <span class="n">d365fo</span><span class="p">.</span><span class="n">tools</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>We can use the tools to do a module sync, partial sync or deploy just our reports instead of all.</p>
 <h2 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocreate-a-new-imagecreate-a-new-image"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#create-a-new-image" target="_blank" rel="noopener noreferrer"></a>Create a new image</h2>
@@ -1347,8 +1347,8 @@ Configuring the build VM in Azure DevTest Labs"/>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="nb">Invoke-D365DbSyncModule</span> <span class="p">\</span><span class="n">-Module</span> <span class="s2">&#34;Module1&#34;</span><span class="p">,</span> <span class="s2">&#34;Module2&#34;</span> <span class="p">\</span><span class="n">-ShowOriginalProgress</span> <span class="p">\</span><span class="n">-Verbose</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="line"><span class="cl"><span class="nb">Invoke-D365DbSyncModule</span> <span class="p">\</span><span class="n">-Module</span> <span class="s2">&#34;Module1&#34;</span><span class="p">,</span> <span class="s2">&#34;Module2&#34;</span> <span class="p">\</span><span class="n">-ShowOriginalProgress</span> <span class="p">\</span><span class="n">-Verbose</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="823-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooptional-use-d365fo-tools-to-deploy-ssrs-reportsoptional-use-d365fotools-to-deploy-ssrs-reports">8.2.3. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#optional-use-d365fo-tools-to-deploy-ssrs-reports" target="_blank" rel="noopener noreferrer"></a>Optional: use d365fo.tools to deploy SSRS reports</h4>
 <p>If you really want to add the report deployment step to your pipeline you can save some more extra time using <a href="https://github.com/d365collaborative/d365fo.tools" target="_blank" rel="noopener noreferrer">d365fo.tools</a> and just deploy the reports in your models like we’ve done with the DB sync.</p>
@@ -1358,8 +1358,8 @@ Configuring the build VM in Azure DevTest Labs"/>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="nb">Publish-D365SsrsReport</span> <span class="p">\</span><span class="n">-Module</span> <span class="n">YOUR</span><span class="p">\</span><span class="n">_MODULE</span> <span class="p">\</span><span class="n">-ReportName</span> <span class="p">\*</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="line"><span class="cl"><span class="nb">Publish-D365SsrsReport</span> <span class="p">\</span><span class="n">-Module</span> <span class="n">YOUR</span><span class="p">\</span><span class="n">_MODULE</span> <span class="p">\</span><span class="n">-ReportName</span> <span class="p">\*</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="83-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnodelete-azure-devtest-labs-vmdelete-azure-devtest-labs-vm">8.3. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#delete-azure-devtest-labs-vm" target="_blank" rel="noopener noreferrer"></a>Delete Azure DevTest Labs VM</h3>
 <p>It’s almost the same as the create step, complete the subscription, lab and VM fields and done:</p>
@@ -1409,8 +1409,8 @@ Configuring the build VM in Azure DevTest Labs"/>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">and(always(), eq(dependencies.Job\_1.status, &#39;Succeeded&#39;))
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">and(always(), eq(dependencies.Job\_1.status, &#39;Succeeded&#39;))
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>If you need to know your first step’s job name just export the pipeline to YAML and you’ll find it there:</p>
 <p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/01/image-6.png" title="Export pipeline to YAML" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/01/image-6.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 19</h2><p>Export pipeline to YAML</p>">

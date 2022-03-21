@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-	<meta name="generator" content="Hugo 0.92.2" />
+	<meta name="generator" content="Hugo 0.95.0" />
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
@@ -175,60 +175,58 @@
 </span><span class="lnt">47
 </span><span class="lnt">48
 </span><span class="lnt">49
-</span><span class="lnt">50
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">protected</span> <span class="k">void</span> <span class="n">setPurchReqId</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="n">NumberSequenceReference</span> <span class="n">numberSequenceReference</span><span class="p">;</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isMethodExecuted</span><span class="p">(</span><span class="n">funcName</span><span class="p">()))</span>
-    <span class="p">{</span>
-        <span class="k">return</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isFieldSetExternally</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span> <span class="n">PurchReqId</span><span class="p">)))</span>
-    <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isSetMethodsCalledFromSave</span><span class="p">())</span>
-        <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(!</span><span class="k">this</span><span class="p">.</span><span class="n">purchReqTable</span><span class="p">())</span>
-            <span class="p">{</span>
-                <span class="n">numberSequenceReference</span> <span class="p">=</span> <span class="n">PurchReqTable</span><span class="p">::</span><span class="n">numRefPurchReqId</span><span class="p">();</span>
-                <span class="k">this</span><span class="p">.</span><span class="n">checkNumber</span><span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">.</span><span class="n">numberSequenceTable</span><span class="p">(),</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span><span class="n">PurchReqId</span><span class="p">),</span><span class="k">this</span><span class="p">.</span><span class="n">parmPurchReqId</span><span class="p">());</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">.</span><span class="n">NumberSequenceId</span> <span class="p">&amp;&amp;</span> <span class="n">numberSequenceReference</span><span class="p">.</span><span class="n">numberSequenceTable</span><span class="p">().</span><span class="n">Continuous</span><span class="p">)</span>
-                <span class="p">{</span>
-                    <span class="n">NumberSeq</span><span class="p">::</span><span class="n">newReserveNum</span><span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">).</span><span class="n">reserve</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">parmPurchReqId</span><span class="p">());</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">else</span>
-    <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isFieldSet</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span> <span class="n">PurchReqId</span><span class="p">)))</span>
-        <span class="p">{</span>
-            <span class="k">return</span><span class="p">;</span>
-        <span class="p">}</span>
-
-        <span class="k">if</span> <span class="p">(!</span><span class="k">this</span><span class="p">.</span><span class="n">parmPurchReqId</span><span class="p">())</span>
-        <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isSetMethodsCalledFromSave</span><span class="p">())</span>
-            <span class="p">{</span>
-                <span class="c1">//this.parmPurchReqId(NumberSeq::newGetNum(PurchParameters::numRefPurchReqId()).num());
-</span><span class="c1"></span>                <span class="n">numberSequenceReference</span> <span class="p">=</span> <span class="n">PurchReqTable</span><span class="p">::</span><span class="n">numRefPurchReqId</span><span class="p">();</span>
-                <span class="k">if</span><span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">)</span>
-                <span class="p">{</span>
-                    <span class="k">this</span><span class="p">.</span><span class="n">setField</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span> <span class="n">PurchReqId</span><span class="p">),</span> <span class="n">NumberSeq</span><span class="p">::</span><span class="n">newGetNum</span><span class="p">(</span><span class="n">PurchParameters</span><span class="p">::</span><span class="n">numRefPurchReqId</span><span class="p">()).</span><span class="n">num</span><span class="p">());</span>
-                <span class="p">}</span>
-                <span class="k">else</span>
-                <span class="p">{</span>
-                    <span class="k">this</span><span class="p">.</span><span class="n">setField</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span> <span class="n">PurchReqId</span><span class="p">),</span> <span class="k">this</span><span class="p">.</span><span class="n">parmExternalSourceID</span><span class="p">());</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">protected</span> <span class="k">void</span> <span class="n">setPurchReqId</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">NumberSequenceReference</span> <span class="n">numberSequenceReference</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isMethodExecuted</span><span class="p">(</span><span class="n">funcName</span><span class="p">()))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isFieldSetExternally</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span> <span class="n">PurchReqId</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isSetMethodsCalledFromSave</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(!</span><span class="k">this</span><span class="p">.</span><span class="n">purchReqTable</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">numberSequenceReference</span> <span class="p">=</span> <span class="n">PurchReqTable</span><span class="p">::</span><span class="n">numRefPurchReqId</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                <span class="k">this</span><span class="p">.</span><span class="n">checkNumber</span><span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">.</span><span class="n">numberSequenceTable</span><span class="p">(),</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span><span class="n">PurchReqId</span><span class="p">),</span><span class="k">this</span><span class="p">.</span><span class="n">parmPurchReqId</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">.</span><span class="n">NumberSequenceId</span> <span class="p">&amp;&amp;</span> <span class="n">numberSequenceReference</span><span class="p">.</span><span class="n">numberSequenceTable</span><span class="p">().</span><span class="n">Continuous</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">NumberSeq</span><span class="p">::</span><span class="n">newReserveNum</span><span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">).</span><span class="n">reserve</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">parmPurchReqId</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isFieldSet</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span> <span class="n">PurchReqId</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(!</span><span class="k">this</span><span class="p">.</span><span class="n">parmPurchReqId</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isSetMethodsCalledFromSave</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">//this.parmPurchReqId(NumberSeq::newGetNum(PurchParameters::numRefPurchReqId()).num());</span>
+</span></span><span class="line"><span class="cl">                <span class="n">numberSequenceReference</span> <span class="p">=</span> <span class="n">PurchReqTable</span><span class="p">::</span><span class="n">numRefPurchReqId</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span><span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">this</span><span class="p">.</span><span class="n">setField</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span> <span class="n">PurchReqId</span><span class="p">),</span> <span class="n">NumberSeq</span><span class="p">::</span><span class="n">newGetNum</span><span class="p">(</span><span class="n">PurchParameters</span><span class="p">::</span><span class="n">numRefPurchReqId</span><span class="p">()).</span><span class="n">num</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="k">else</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">this</span><span class="p">.</span><span class="n">setField</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span> <span class="n">PurchReqId</span><span class="p">),</span> <span class="k">this</span><span class="p">.</span><span class="n">parmExternalSourceID</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Base on this method, you could know how System get PurchReqId.</p></div><div class="post-footer">
         <a href="/2016-12-29-crud-purchase-requisition-using-aif-in-dynamics-ax-2012-r3/">Read More</a><div class="post-tags">
@@ -298,26 +296,24 @@
 </span><span class="lnt">13
 </span><span class="lnt">14
 </span><span class="lnt">15
-</span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">private</span> <span class="k">static</span> <span class="n">EntityKey</span><span class="p">[]</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="kt">string</span> <span class="n">purchId</span><span class="p">)</span>
-<span class="p">{</span>
-	<span class="n">KeyField</span> <span class="n">field</span> <span class="p">=</span> <span class="k">new</span> <span class="n">KeyField</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">Field</span> <span class="p">=</span> <span class="s">&#34;PurchId&#34;</span><span class="p">,</span>
-		<span class="n">Value</span> <span class="p">=</span> <span class="n">purchId</span>
-	<span class="p">};</span>
-
-	<span class="n">EntityKey</span> <span class="n">key</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EntityKey</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">KeyData</span> <span class="p">=</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">field</span> <span class="p">}</span>
-	<span class="p">};</span>
-
-	<span class="k">return</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">key</span> <span class="p">};</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">private</span> <span class="k">static</span> <span class="n">EntityKey</span><span class="p">[]</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="kt">string</span> <span class="n">purchId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">KeyField</span> <span class="n">field</span> <span class="p">=</span> <span class="k">new</span> <span class="n">KeyField</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Field</span> <span class="p">=</span> <span class="s">&#34;PurchId&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Value</span> <span class="p">=</span> <span class="n">purchId</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">EntityKey</span> <span class="n">key</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EntityKey</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">KeyData</span> <span class="p">=</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">field</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">key</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></div><div class="post-footer">
         <a href="/2016-12-28-insert-update-delete-order-line-through-aif-in-ax-2012-r3/">Read More</a><div class="post-tags">

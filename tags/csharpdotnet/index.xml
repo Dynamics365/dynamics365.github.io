@@ -62,60 +62,58 @@
 </span><span class="lnt">47
 </span><span class="lnt">48
 </span><span class="lnt">49
-</span><span class="lnt">50
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">protected</span> <span class="k">void</span> <span class="n">setPurchReqId</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="n">NumberSequenceReference</span> <span class="n">numberSequenceReference</span><span class="p">;</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isMethodExecuted</span><span class="p">(</span><span class="n">funcName</span><span class="p">()))</span>
-    <span class="p">{</span>
-        <span class="k">return</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isFieldSetExternally</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span> <span class="n">PurchReqId</span><span class="p">)))</span>
-    <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isSetMethodsCalledFromSave</span><span class="p">())</span>
-        <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(!</span><span class="k">this</span><span class="p">.</span><span class="n">purchReqTable</span><span class="p">())</span>
-            <span class="p">{</span>
-                <span class="n">numberSequenceReference</span> <span class="p">=</span> <span class="n">PurchReqTable</span><span class="p">::</span><span class="n">numRefPurchReqId</span><span class="p">();</span>
-                <span class="k">this</span><span class="p">.</span><span class="n">checkNumber</span><span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">.</span><span class="n">numberSequenceTable</span><span class="p">(),</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span><span class="n">PurchReqId</span><span class="p">),</span><span class="k">this</span><span class="p">.</span><span class="n">parmPurchReqId</span><span class="p">());</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">.</span><span class="n">NumberSequenceId</span> <span class="p">&amp;&amp;</span> <span class="n">numberSequenceReference</span><span class="p">.</span><span class="n">numberSequenceTable</span><span class="p">().</span><span class="n">Continuous</span><span class="p">)</span>
-                <span class="p">{</span>
-                    <span class="n">NumberSeq</span><span class="p">::</span><span class="n">newReserveNum</span><span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">).</span><span class="n">reserve</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">parmPurchReqId</span><span class="p">());</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">else</span>
-    <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isFieldSet</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span> <span class="n">PurchReqId</span><span class="p">)))</span>
-        <span class="p">{</span>
-            <span class="k">return</span><span class="p">;</span>
-        <span class="p">}</span>
-
-        <span class="k">if</span> <span class="p">(!</span><span class="k">this</span><span class="p">.</span><span class="n">parmPurchReqId</span><span class="p">())</span>
-        <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isSetMethodsCalledFromSave</span><span class="p">())</span>
-            <span class="p">{</span>
-                <span class="c1">//this.parmPurchReqId(NumberSeq::newGetNum(PurchParameters::numRefPurchReqId()).num());
-</span><span class="c1"></span>                <span class="n">numberSequenceReference</span> <span class="p">=</span> <span class="n">PurchReqTable</span><span class="p">::</span><span class="n">numRefPurchReqId</span><span class="p">();</span>
-                <span class="k">if</span><span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">)</span>
-                <span class="p">{</span>
-                    <span class="k">this</span><span class="p">.</span><span class="n">setField</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span> <span class="n">PurchReqId</span><span class="p">),</span> <span class="n">NumberSeq</span><span class="p">::</span><span class="n">newGetNum</span><span class="p">(</span><span class="n">PurchParameters</span><span class="p">::</span><span class="n">numRefPurchReqId</span><span class="p">()).</span><span class="n">num</span><span class="p">());</span>
-                <span class="p">}</span>
-                <span class="k">else</span>
-                <span class="p">{</span>
-                    <span class="k">this</span><span class="p">.</span><span class="n">setField</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span> <span class="n">PurchReqId</span><span class="p">),</span> <span class="k">this</span><span class="p">.</span><span class="n">parmExternalSourceID</span><span class="p">());</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">protected</span> <span class="k">void</span> <span class="n">setPurchReqId</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">NumberSequenceReference</span> <span class="n">numberSequenceReference</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isMethodExecuted</span><span class="p">(</span><span class="n">funcName</span><span class="p">()))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isFieldSetExternally</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span> <span class="n">PurchReqId</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isSetMethodsCalledFromSave</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(!</span><span class="k">this</span><span class="p">.</span><span class="n">purchReqTable</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">numberSequenceReference</span> <span class="p">=</span> <span class="n">PurchReqTable</span><span class="p">::</span><span class="n">numRefPurchReqId</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                <span class="k">this</span><span class="p">.</span><span class="n">checkNumber</span><span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">.</span><span class="n">numberSequenceTable</span><span class="p">(),</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span><span class="n">PurchReqId</span><span class="p">),</span><span class="k">this</span><span class="p">.</span><span class="n">parmPurchReqId</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">.</span><span class="n">NumberSequenceId</span> <span class="p">&amp;&amp;</span> <span class="n">numberSequenceReference</span><span class="p">.</span><span class="n">numberSequenceTable</span><span class="p">().</span><span class="n">Continuous</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">NumberSeq</span><span class="p">::</span><span class="n">newReserveNum</span><span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">).</span><span class="n">reserve</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">parmPurchReqId</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isFieldSet</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span> <span class="n">PurchReqId</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(!</span><span class="k">this</span><span class="p">.</span><span class="n">parmPurchReqId</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">isSetMethodsCalledFromSave</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">//this.parmPurchReqId(NumberSeq::newGetNum(PurchParameters::numRefPurchReqId()).num());</span>
+</span></span><span class="line"><span class="cl">                <span class="n">numberSequenceReference</span> <span class="p">=</span> <span class="n">PurchReqTable</span><span class="p">::</span><span class="n">numRefPurchReqId</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span><span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">this</span><span class="p">.</span><span class="n">setField</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span> <span class="n">PurchReqId</span><span class="p">),</span> <span class="n">NumberSeq</span><span class="p">::</span><span class="n">newGetNum</span><span class="p">(</span><span class="n">PurchParameters</span><span class="p">::</span><span class="n">numRefPurchReqId</span><span class="p">()).</span><span class="n">num</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="k">else</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">this</span><span class="p">.</span><span class="n">setField</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchReqTable</span><span class="p">,</span> <span class="n">PurchReqId</span><span class="p">),</span> <span class="k">this</span><span class="p">.</span><span class="n">parmExternalSourceID</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Base on this method, you could know how System get PurchReqId.</p>
 <h3 id="how-to-do">How to do</h3>
@@ -190,67 +188,65 @@
 </span><span class="lnt">54
 </span><span class="lnt">55
 </span><span class="lnt">56
-</span><span class="lnt">57
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#">
-<span class="n">PurchReqImportServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">PurchReqImportServiceClient</span><span class="p">();</span>
-<span class="n">CallContext</span> <span class="n">context</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;BGR&#34;</span><span class="p">,</span>
-	<span class="n">Language</span> <span class="p">=</span> <span class="s">&#34;En-us&#34;</span>
-<span class="p">};</span>
-
-<span class="n">AxdEntity_PurchReqLine</span> <span class="n">purchReqLine</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchReqLine</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="n">Requisitioner</span> <span class="p">=</span> <span class="s">&#34;000007&#34;</span><span class="p">,</span>
-	<span class="n">BuyingLegalEntity</span> <span class="p">=</span> <span class="s">&#34;BGR&#34;</span><span class="p">,</span>
-	<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;110329&#34;</span><span class="p">,</span>
-	<span class="n">PurchUnitOfMeasure</span> <span class="p">=</span> <span class="s">&#34;Box&#34;</span><span class="p">,</span>
-	<span class="n">CurrencyCode</span> <span class="p">=</span> <span class="s">&#34;KRW&#34;</span><span class="p">,</span>
-	<span class="n">PurchQty</span> <span class="p">=</span> <span class="m">100</span><span class="p">,</span>
-	<span class="n">PurchQtySpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
-	<span class="n">PriceUnit</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span>
-	<span class="n">PriceUnitSpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
-<span class="p">};</span>
-
-<span class="c1">// Create an instance of the document class.
-</span><span class="c1"></span><span class="n">AxdEntity_PurchReqTable</span> <span class="n">purchReqTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchReqTable</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="n">PurchReqId</span> <span class="p">=</span> <span class="s">&#34;&#34;</span><span class="p">,</span>
-	<span class="n">PurchReqName</span> <span class="p">=</span> <span class="s">&#34;Purch Req by Max&#34;</span><span class="p">,</span>
-	<span class="n">ExternalSourceID</span> <span class="p">=</span> <span class="s">&#34;PR002&#34;</span><span class="p">,</span>
-	<span class="n">ExternalSourceName</span> <span class="p">=</span> <span class="s">&#34;PR002&#34;</span><span class="p">,</span>
-	<span class="n">AutoSubmitToWorkflowRequired</span> <span class="p">=</span> <span class="n">AxdEnum_NoYes</span><span class="p">.</span><span class="n">No</span><span class="p">,</span>
-	<span class="n">StatusToBeSaved</span> <span class="p">=</span> <span class="n">AxdEnum_PurchReqCreationStatus</span><span class="p">.</span><span class="n">Draft</span><span class="p">,</span>
-	<span class="n">RequisitionStatus</span> <span class="p">=</span> <span class="n">AxdEnum_PurchReqRequisitionStatus</span><span class="p">.</span><span class="n">Draft</span><span class="p">,</span>
-	<span class="n">RequisitionStatusSpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
-	<span class="n">RequiredDate</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DateTime</span><span class="p">(</span><span class="m">2016</span><span class="p">,</span> <span class="m">12</span><span class="p">,</span> <span class="m">30</span><span class="p">),</span>
-	<span class="n">RequiredDateSpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
-	<span class="n">TransDate</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DateTime</span><span class="p">(</span><span class="m">2016</span><span class="p">,</span> <span class="m">12</span><span class="p">,</span> <span class="m">30</span><span class="p">),</span>
-	<span class="n">TransDateSpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
-	<span class="n">PurchReqLine</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchReqLine</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">purchReqLine</span> <span class="p">}</span>
-<span class="p">};</span>
-
-
-<span class="c1">// Create instances of the entities that are used in the service and
-</span><span class="c1">// set the needed fields on those entities.
-</span><span class="c1"></span><span class="n">AxdPurchReqImport</span> <span class="n">purchReq</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdPurchReqImport</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="n">PurchReqTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchReqTable</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">purchReqTable</span> <span class="p">}</span>
-<span class="p">};</span>
-
-<span class="k">try</span>
-<span class="p">{</span>
-	<span class="n">client</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">purchReq</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
-<span class="p">{</span>
-	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
-	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">PurchReqImportServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">PurchReqImportServiceClient</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">CallContext</span> <span class="n">context</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;BGR&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Language</span> <span class="p">=</span> <span class="s">&#34;En-us&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">AxdEntity_PurchReqLine</span> <span class="n">purchReqLine</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchReqLine</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Requisitioner</span> <span class="p">=</span> <span class="s">&#34;000007&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">BuyingLegalEntity</span> <span class="p">=</span> <span class="s">&#34;BGR&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;110329&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">PurchUnitOfMeasure</span> <span class="p">=</span> <span class="s">&#34;Box&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">CurrencyCode</span> <span class="p">=</span> <span class="s">&#34;KRW&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">PurchQty</span> <span class="p">=</span> <span class="m">100</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">PurchQtySpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">PriceUnit</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">PriceUnitSpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Create an instance of the document class.</span>
+</span></span><span class="line"><span class="cl"><span class="n">AxdEntity_PurchReqTable</span> <span class="n">purchReqTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchReqTable</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">PurchReqId</span> <span class="p">=</span> <span class="s">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">PurchReqName</span> <span class="p">=</span> <span class="s">&#34;Purch Req by Max&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ExternalSourceID</span> <span class="p">=</span> <span class="s">&#34;PR002&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ExternalSourceName</span> <span class="p">=</span> <span class="s">&#34;PR002&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">AutoSubmitToWorkflowRequired</span> <span class="p">=</span> <span class="n">AxdEnum_NoYes</span><span class="p">.</span><span class="n">No</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">StatusToBeSaved</span> <span class="p">=</span> <span class="n">AxdEnum_PurchReqCreationStatus</span><span class="p">.</span><span class="n">Draft</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">RequisitionStatus</span> <span class="p">=</span> <span class="n">AxdEnum_PurchReqRequisitionStatus</span><span class="p">.</span><span class="n">Draft</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">RequisitionStatusSpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">RequiredDate</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DateTime</span><span class="p">(</span><span class="m">2016</span><span class="p">,</span> <span class="m">12</span><span class="p">,</span> <span class="m">30</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">	<span class="n">RequiredDateSpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">TransDate</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DateTime</span><span class="p">(</span><span class="m">2016</span><span class="p">,</span> <span class="m">12</span><span class="p">,</span> <span class="m">30</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">	<span class="n">TransDateSpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">PurchReqLine</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchReqLine</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">purchReqLine</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Create instances of the entities that are used in the service and</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// set the needed fields on those entities.</span>
+</span></span><span class="line"><span class="cl"><span class="n">AxdPurchReqImport</span> <span class="n">purchReq</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdPurchReqImport</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">PurchReqTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchReqTable</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">purchReqTable</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">try</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">client</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">purchReq</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Run it and check result in AX</p>
 <p></p>
@@ -309,22 +305,22 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">private</span> <span class="k">static</span> <span class="n">EntityKey</span><span class="p">[]</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="kt">string</span> <span class="n">purchId</span><span class="p">)</span>
-<span class="p">{</span>
-	<span class="n">KeyField</span> <span class="n">field</span> <span class="p">=</span> <span class="k">new</span> <span class="n">KeyField</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">Field</span> <span class="p">=</span> <span class="s">&#34;PurchId&#34;</span><span class="p">,</span>
-		<span class="n">Value</span> <span class="p">=</span> <span class="n">purchId</span>
-	<span class="p">};</span>
-
-	<span class="n">EntityKey</span> <span class="n">key</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EntityKey</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">KeyData</span> <span class="p">=</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">field</span> <span class="p">}</span>
-	<span class="p">};</span>
-
-	<span class="k">return</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">key</span> <span class="p">};</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">private</span> <span class="k">static</span> <span class="n">EntityKey</span><span class="p">[]</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="kt">string</span> <span class="n">purchId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">KeyField</span> <span class="n">field</span> <span class="p">=</span> <span class="k">new</span> <span class="n">KeyField</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Field</span> <span class="p">=</span> <span class="s">&#34;PurchId&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Value</span> <span class="p">=</span> <span class="n">purchId</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">EntityKey</span> <span class="n">key</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EntityKey</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">KeyData</span> <span class="p">=</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">field</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">key</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>Code for create purchase order </code></p>
 <div class="highlight"><div class="chroma">
@@ -383,59 +379,59 @@
 </span><span class="lnt">52
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="kt">var</span> <span class="n">dim</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_InventDim</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="n">InventSiteId</span> <span class="p">=</span> <span class="s">&#34;DN&#34;</span><span class="p">,</span>
-	<span class="n">InventLocationId</span> <span class="p">=</span> <span class="s">&#34;F10-S120&#34;</span><span class="p">,</span>
-	<span class="n">InventBatchId</span> <span class="p">=</span> <span class="s">&#34;BATCH001&#34;</span>
-<span class="p">};</span>
-
-<span class="kt">var</span> <span class="n">purchLine</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchLine</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;220067&#34;</span><span class="p">,</span>
-	<span class="n">PurchQty</span> <span class="p">=</span> <span class="m">15</span><span class="p">,</span>
-	<span class="n">PurchUnit</span><span class="p">=</span>  <span class="s">&#34;ea&#34;</span><span class="p">,</span>
-
-	<span class="n">InventDim</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_InventDim</span><span class="p">[]</span> <span class="p">{</span> <span class="n">dim</span> <span class="p">}</span>
-<span class="p">};</span>
-
-
-<span class="kt">var</span> <span class="n">purchTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchTable</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="n">OrderAccount</span> <span class="p">=</span> <span class="s">&#34;101-01-75441&#34;</span><span class="p">,</span>
-	<span class="n">LanguageId</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
-	<span class="n">CurrencyCode</span> <span class="p">=</span> <span class="s">&#34;KRW&#34;</span><span class="p">,</span>
-	<span class="n">PurchName</span> <span class="p">=</span> <span class="s">&#34;AIF PO Test&#34;</span><span class="p">,</span>
-	<span class="n">PurchLine</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchLine</span><span class="p">[]</span> <span class="p">{</span> <span class="n">purchLine</span> <span class="p">}</span>
-
-<span class="p">};</span>
-
-<span class="n">AxdMav_PurchOrderService</span> <span class="n">purchOrder</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdMav_PurchOrderService</span><span class="p">();</span>
-
-<span class="n">purchOrder</span><span class="p">.</span><span class="n">PurchTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchTable</span><span class="p">[]</span> <span class="p">{</span> <span class="n">purchTable</span> <span class="p">};</span>
-
-<span class="n">CallContext</span> <span class="n">callContext</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span>
-<span class="p">{</span>
-	<span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">,</span>
-	<span class="n">Language</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span>
-<span class="p">};</span>
-
-<span class="n">Mav_PurchOrderServiceServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mav_PurchOrderServiceServiceClient</span><span class="p">();</span>
-
-<span class="k">try</span>
-<span class="p">{</span>
-	<span class="n">EntityKey</span><span class="p">[]</span> <span class="n">purchOrderCreatedEntity</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">purchOrder</span><span class="p">);</span>
-	<span class="n">EntityKey</span> <span class="n">purchOrderCreated</span> <span class="p">=</span> <span class="p">(</span><span class="n">EntityKey</span><span class="p">)</span><span class="n">purchOrderCreatedEntity</span><span class="p">.</span><span class="n">GetValue</span><span class="p">(</span><span class="m">0</span><span class="p">);</span>
-
-	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;The purch order created has a Purch ID of &#34;</span> <span class="p">+</span> <span class="n">purchOrderCreated</span><span class="p">.</span><span class="n">KeyData</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">Value</span><span class="p">);</span>
-	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-<span class="p">}</span>
-<span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
-<span class="p">{</span>
-	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
-	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">dim</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_InventDim</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">InventSiteId</span> <span class="p">=</span> <span class="s">&#34;DN&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">InventLocationId</span> <span class="p">=</span> <span class="s">&#34;F10-S120&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">InventBatchId</span> <span class="p">=</span> <span class="s">&#34;BATCH001&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">purchLine</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchLine</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;220067&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">PurchQty</span> <span class="p">=</span> <span class="m">15</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">PurchUnit</span><span class="p">=</span>  <span class="s">&#34;ea&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">InventDim</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_InventDim</span><span class="p">[]</span> <span class="p">{</span> <span class="n">dim</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">purchTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchTable</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">OrderAccount</span> <span class="p">=</span> <span class="s">&#34;101-01-75441&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">LanguageId</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">CurrencyCode</span> <span class="p">=</span> <span class="s">&#34;KRW&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">PurchName</span> <span class="p">=</span> <span class="s">&#34;AIF PO Test&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">PurchLine</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchLine</span><span class="p">[]</span> <span class="p">{</span> <span class="n">purchLine</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">AxdMav_PurchOrderService</span> <span class="n">purchOrder</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdMav_PurchOrderService</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">purchOrder</span><span class="p">.</span><span class="n">PurchTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchTable</span><span class="p">[]</span> <span class="p">{</span> <span class="n">purchTable</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">CallContext</span> <span class="n">callContext</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Language</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Mav_PurchOrderServiceServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mav_PurchOrderServiceServiceClient</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">try</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">EntityKey</span><span class="p">[]</span> <span class="n">purchOrderCreatedEntity</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">purchOrder</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">EntityKey</span> <span class="n">purchOrderCreated</span> <span class="p">=</span> <span class="p">(</span><span class="n">EntityKey</span><span class="p">)</span><span class="n">purchOrderCreatedEntity</span><span class="p">.</span><span class="n">GetValue</span><span class="p">(</span><span class="m">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;The purch order created has a Purch ID of &#34;</span> <span class="p">+</span> <span class="n">purchOrderCreated</span><span class="p">.</span><span class="n">KeyData</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">Value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>Code for read purchase order </code></p>
 <div class="highlight"><div class="chroma">
@@ -462,27 +458,27 @@
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="n">EntityKey</span><span class="p">[]</span> <span class="n">entityKeyList</span> <span class="p">=</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="s">&#34;BGR-000054&#34;</span><span class="p">);</span>
-
-<span class="n">CallContext</span> <span class="n">callContext</span>      <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span><span class="p">();</span>
-<span class="n">callContext</span><span class="p">.</span><span class="n">Company</span>          <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">;</span>
-<span class="n">Mav_PurchOrderServiceServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mav_PurchOrderServiceServiceClient</span><span class="p">();</span>
-
-<span class="n">AxdMav_PurchOrderService</span> <span class="n">purchOrders</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">);</span>
-<span class="n">AxdEntity_PurchTable</span><span class="p">[]</span> <span class="n">purchTables</span> <span class="p">=</span> <span class="n">purchOrders</span><span class="p">.</span><span class="n">PurchTable</span><span class="p">;</span>
-<span class="n">AxdEntity_PurchTable</span>    <span class="n">purchTable</span> <span class="p">=</span> <span class="n">purchTables</span><span class="p">[</span><span class="m">0</span><span class="p">];</span>
-<span class="n">AxdEntity_PurchLine</span> <span class="n">purchLine</span> <span class="p">=</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchLine</span><span class="p">[</span><span class="m">0</span><span class="p">];</span>
-
-<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Purch Name: &#34;</span> <span class="p">+</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchName</span><span class="p">);</span>            
-<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Order Account: &#34;</span> <span class="p">+</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">OrderAccount</span><span class="p">);</span>
-<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Language Id: &#34;</span> <span class="p">+</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">LanguageId</span><span class="p">);</span>
-<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Qty: &#34;</span> <span class="p">+</span> <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchQty</span><span class="p">);</span>
-<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Item Id: &#34;</span> <span class="p">+</span> <span class="n">purchLine</span><span class="p">.</span><span class="n">ItemId</span><span class="p">);</span>
-
-<span class="n">client</span><span class="p">.</span><span class="n">Close</span><span class="p">();</span>
-<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-			
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">EntityKey</span><span class="p">[]</span> <span class="n">entityKeyList</span> <span class="p">=</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="s">&#34;BGR-000054&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">CallContext</span> <span class="n">callContext</span>      <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">callContext</span><span class="p">.</span><span class="n">Company</span>          <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Mav_PurchOrderServiceServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mav_PurchOrderServiceServiceClient</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">AxdMav_PurchOrderService</span> <span class="n">purchOrders</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">AxdEntity_PurchTable</span><span class="p">[]</span> <span class="n">purchTables</span> <span class="p">=</span> <span class="n">purchOrders</span><span class="p">.</span><span class="n">PurchTable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">AxdEntity_PurchTable</span>    <span class="n">purchTable</span> <span class="p">=</span> <span class="n">purchTables</span><span class="p">[</span><span class="m">0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="n">AxdEntity_PurchLine</span> <span class="n">purchLine</span> <span class="p">=</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchLine</span><span class="p">[</span><span class="m">0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Purch Name: &#34;</span> <span class="p">+</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchName</span><span class="p">);</span>            
+</span></span><span class="line"><span class="cl"><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Order Account: &#34;</span> <span class="p">+</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">OrderAccount</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Language Id: &#34;</span> <span class="p">+</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">LanguageId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Qty: &#34;</span> <span class="p">+</span> <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchQty</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Item Id: &#34;</span> <span class="p">+</span> <span class="n">purchLine</span><span class="p">.</span><span class="n">ItemId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">client</span><span class="p">.</span><span class="n">Close</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">			
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>Code for update purchase order </code></p>
 <div class="highlight"><div class="chroma">
@@ -520,38 +516,38 @@
 </span><span class="lnt">31
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="n">Mav_PurchOrderServiceServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mav_PurchOrderServiceServiceClient</span><span class="p">();</span>
-<span class="n">CallContext</span> <span class="n">callContext</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span><span class="p">();</span>
-<span class="n">callContext</span><span class="p">.</span><span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">;</span>
-
-<span class="n">EntityKey</span><span class="p">[]</span> <span class="n">entityKeyList</span> <span class="p">=</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="s">&#34;BGR-000078&#34;</span><span class="p">);</span>
-<span class="n">AxdMav_PurchOrderService</span> <span class="n">purchOrders</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">);</span>
-
-<span class="c1">//salesOrders.GetHashCode();
-</span><span class="c1"></span><span class="n">AxdEntity_PurchTable</span><span class="p">[]</span> <span class="n">purchTables</span> <span class="p">=</span> <span class="n">purchOrders</span><span class="p">.</span><span class="n">PurchTable</span><span class="p">;</span>
-<span class="n">AxdEntity_PurchTable</span> <span class="n">purchTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchTable</span><span class="p">();</span>
-<span class="n">purchTable</span> <span class="p">=</span> <span class="n">purchTables</span><span class="p">.</span><span class="n">First</span><span class="p">();</span>
-
-<span class="c1">//salesTable.GetHashCode();
-</span><span class="c1"></span><span class="n">AxdEntity_PurchLine</span> <span class="n">purchLine</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchLine</span><span class="p">();</span>
-<span class="n">purchLine</span> <span class="p">=</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchLine</span><span class="p">.</span><span class="n">First</span><span class="p">();</span>
-
-<span class="kt">decimal</span> <span class="n">purchQty</span> <span class="p">=</span> <span class="m">20</span><span class="p">;</span>
-<span class="n">purchLine</span><span class="p">.</span><span class="n">PurchQty</span> <span class="p">=</span> <span class="n">purchQty</span><span class="p">;</span>
-
-<span class="k">try</span>
-<span class="p">{</span>
-	<span class="n">client</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">,</span> <span class="n">purchOrders</span><span class="p">);</span>
-	<span class="n">EntityKey</span> <span class="n">purchOrdersUpdated</span> <span class="p">=</span> <span class="p">(</span><span class="n">EntityKey</span><span class="p">)</span><span class="n">entityKeyList</span><span class="p">.</span><span class="n">GetValue</span><span class="p">(</span><span class="m">0</span><span class="p">);</span>
-	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;The purchase order has been updated has a Purch ID of &#34;</span> <span class="p">+</span> <span class="n">purchOrdersUpdated</span><span class="p">.</span><span class="n">KeyData</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">Value</span> <span class="p">+</span> <span class="s">&#34; with Qty &#34;</span> <span class="p">+</span> <span class="n">purchQty</span><span class="p">.</span><span class="n">ToString</span><span class="p">()</span> <span class="p">+</span> <span class="s">&#34;&#34;</span><span class="p">);</span>
-	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-<span class="p">}</span>
-<span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="p">)</span>
-<span class="p">{</span>
-	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">ex</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
-	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">Mav_PurchOrderServiceServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mav_PurchOrderServiceServiceClient</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">CallContext</span> <span class="n">callContext</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">callContext</span><span class="p">.</span><span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">EntityKey</span><span class="p">[]</span> <span class="n">entityKeyList</span> <span class="p">=</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="s">&#34;BGR-000078&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">AxdMav_PurchOrderService</span> <span class="n">purchOrders</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//salesOrders.GetHashCode();</span>
+</span></span><span class="line"><span class="cl"><span class="n">AxdEntity_PurchTable</span><span class="p">[]</span> <span class="n">purchTables</span> <span class="p">=</span> <span class="n">purchOrders</span><span class="p">.</span><span class="n">PurchTable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">AxdEntity_PurchTable</span> <span class="n">purchTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchTable</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">purchTable</span> <span class="p">=</span> <span class="n">purchTables</span><span class="p">.</span><span class="n">First</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//salesTable.GetHashCode();</span>
+</span></span><span class="line"><span class="cl"><span class="n">AxdEntity_PurchLine</span> <span class="n">purchLine</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">purchLine</span> <span class="p">=</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchLine</span><span class="p">.</span><span class="n">First</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">decimal</span> <span class="n">purchQty</span> <span class="p">=</span> <span class="m">20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">purchLine</span><span class="p">.</span><span class="n">PurchQty</span> <span class="p">=</span> <span class="n">purchQty</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">try</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">client</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">,</span> <span class="n">purchOrders</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">EntityKey</span> <span class="n">purchOrdersUpdated</span> <span class="p">=</span> <span class="p">(</span><span class="n">EntityKey</span><span class="p">)</span><span class="n">entityKeyList</span><span class="p">.</span><span class="n">GetValue</span><span class="p">(</span><span class="m">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;The purchase order has been updated has a Purch ID of &#34;</span> <span class="p">+</span> <span class="n">purchOrdersUpdated</span><span class="p">.</span><span class="n">KeyData</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">Value</span> <span class="p">+</span> <span class="s">&#34; with Qty &#34;</span> <span class="p">+</span> <span class="n">purchQty</span><span class="p">.</span><span class="n">ToString</span><span class="p">()</span> <span class="p">+</span> <span class="s">&#34;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">ex</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>Code for delete purchase order </code></p>
 <div class="highlight"><div class="chroma">
@@ -575,24 +571,24 @@
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="n">Mav_PurchOrderServiceServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mav_PurchOrderServiceServiceClient</span><span class="p">();</span>
-<span class="n">CallContext</span> <span class="n">callContext</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span><span class="p">();</span>
-<span class="n">callContext</span><span class="p">.</span><span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">;</span>
-
-<span class="n">EntityKey</span><span class="p">[]</span> <span class="n">entityKeyList</span> <span class="p">=</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="s">&#34;BGR-000054&#34;</span><span class="p">);</span>
-<span class="k">try</span>
-<span class="p">{</span>
-	<span class="n">client</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">);</span>
-	<span class="n">EntityKey</span> <span class="n">purchOrdersDeleted</span> <span class="p">=</span> <span class="p">(</span><span class="n">EntityKey</span><span class="p">)</span><span class="n">entityKeyList</span><span class="p">.</span><span class="n">GetValue</span><span class="p">(</span><span class="m">0</span><span class="p">);</span>
-	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;The purch order has been deleted has a purch ID of &#34;</span> <span class="p">+</span> <span class="n">purchOrdersDeleted</span><span class="p">.</span><span class="n">KeyData</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">Value</span><span class="p">);</span>
-	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-<span class="p">}</span>
-<span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="p">)</span>
-<span class="p">{</span>
-	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">ex</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
-	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">Mav_PurchOrderServiceServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mav_PurchOrderServiceServiceClient</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">CallContext</span> <span class="n">callContext</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">callContext</span><span class="p">.</span><span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">EntityKey</span><span class="p">[]</span> <span class="n">entityKeyList</span> <span class="p">=</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="s">&#34;BGR-000054&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">try</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">client</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">EntityKey</span> <span class="n">purchOrdersDeleted</span> <span class="p">=</span> <span class="p">(</span><span class="n">EntityKey</span><span class="p">)</span><span class="n">entityKeyList</span><span class="p">.</span><span class="n">GetValue</span><span class="p">(</span><span class="m">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;The purch order has been deleted has a purch ID of &#34;</span> <span class="p">+</span> <span class="n">purchOrdersDeleted</span><span class="p">.</span><span class="n">KeyData</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">Value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">ex</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Thank you for reading!</p>]]></description>
 </item><item>
@@ -622,26 +618,24 @@
 </span><span class="lnt">13
 </span><span class="lnt">14
 </span><span class="lnt">15
-</span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">private</span> <span class="k">static</span> <span class="n">EntityKey</span><span class="p">[]</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="kt">string</span> <span class="n">purchId</span><span class="p">)</span>
-<span class="p">{</span>
-	<span class="n">KeyField</span> <span class="n">field</span> <span class="p">=</span> <span class="k">new</span> <span class="n">KeyField</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">Field</span> <span class="p">=</span> <span class="s">&#34;PurchId&#34;</span><span class="p">,</span>
-		<span class="n">Value</span> <span class="p">=</span> <span class="n">purchId</span>
-	<span class="p">};</span>
-
-	<span class="n">EntityKey</span> <span class="n">key</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EntityKey</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">KeyData</span> <span class="p">=</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">field</span> <span class="p">}</span>
-	<span class="p">};</span>
-
-	<span class="k">return</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">key</span> <span class="p">};</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">private</span> <span class="k">static</span> <span class="n">EntityKey</span><span class="p">[]</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="kt">string</span> <span class="n">purchId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">KeyField</span> <span class="n">field</span> <span class="p">=</span> <span class="k">new</span> <span class="n">KeyField</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Field</span> <span class="p">=</span> <span class="s">&#34;PurchId&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Value</span> <span class="p">=</span> <span class="n">purchId</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">EntityKey</span> <span class="n">key</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EntityKey</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">KeyData</span> <span class="p">=</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">field</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">key</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>create Line, delete Line, update line in Purchase order</code></p>
 <div class="highlight"><div class="chroma">
@@ -700,65 +694,63 @@
 </span><span class="lnt">52
 </span><span class="lnt">53
 </span><span class="lnt">54
-</span><span class="lnt">55
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="n">EntityKey</span><span class="p">[]</span> <span class="n">entityKeyList</span> <span class="p">=</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="s">&#34;BGR-000054&#34;</span><span class="p">);</span>
-
-<span class="n">CallContext</span> <span class="n">callContext</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span><span class="p">();</span>
-<span class="n">callContext</span><span class="p">.</span><span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">;</span>
-
-<span class="n">Mav_PurchOrderServiceServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mav_PurchOrderServiceServiceClient</span><span class="p">();</span>
-<span class="n">AxdMav_PurchOrderService</span> <span class="n">purchOrders</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">);</span>
-
-<span class="c1">//Define which line need to be update or delete
-</span><span class="c1"></span><span class="kt">var</span> <span class="n">lastLine</span> <span class="p">=</span> <span class="n">purchOrders</span><span class="p">.</span><span class="n">PurchTable</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">PurchLine</span><span class="p">.</span><span class="n">Last</span><span class="p">();</span>
-
-<span class="kt">var</span> <span class="n">purchLine</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchLine</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;110329&#34;</span><span class="p">,</span>
-	<span class="n">PurchQty</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span>
-	<span class="n">CurrencyCode</span> <span class="p">=</span> <span class="s">&#34;KRW&#34;</span><span class="p">,</span>
-	<span class="n">RecIdSpecified</span>      <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
-	<span class="n">LineNumberSpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
-	<span class="n">action</span>              <span class="p">=</span> <span class="n">AxdEnum_AxdEntityAction</span><span class="p">.</span><span class="n">create</span><span class="p">,</span>
-	<span class="n">actionSpecified</span>     <span class="p">=</span> <span class="k">true</span>
-
-	<span class="c1">//for delete
-</span><span class="c1"></span>	<span class="c1">//RecId               = lastLine.RecId,
-</span><span class="c1"></span>	<span class="c1">//RecIdSpecified      = true,
-</span><span class="c1"></span>	<span class="c1">//action              = AxdEnum_AxdEntityAction.delete,
-</span><span class="c1"></span>	<span class="c1">//actionSpecified     = true
-</span><span class="c1"></span>
-	<span class="c1">//for Update
-</span><span class="c1"></span>	<span class="c1">//RecId               = lastLine.RecId,
-</span><span class="c1"></span>	<span class="c1">//RecIdSpecified      = true,
-</span><span class="c1"></span>	<span class="c1">//action              = AxdEnum_AxdEntityAction.update,
-</span><span class="c1"></span>	<span class="c1">//actionSpecified     = true
-</span><span class="c1"></span>	
-<span class="p">};</span>
-
-<span class="kt">var</span> <span class="n">purchTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchTable</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="m">_D</span><span class="n">ocumentHash</span> <span class="p">=</span> <span class="n">purchOrders</span><span class="p">.</span><span class="n">PurchTable</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="m">_D</span><span class="n">ocumentHash</span><span class="p">,</span>
-	<span class="n">OrderAccount</span> <span class="p">=</span> <span class="s">&#34;101-01-75441&#34;</span><span class="p">,</span>
-	<span class="n">LanguageId</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
-	<span class="n">CurrencyCode</span> <span class="p">=</span> <span class="s">&#34;KRW&#34;</span><span class="p">,</span>
-	<span class="n">PurchName</span> <span class="p">=</span> <span class="s">&#34;AIF PO Test&#34;</span><span class="p">,</span>
-	<span class="n">action</span> <span class="p">=</span> <span class="n">AxdEnum_AxdEntityAction</span><span class="p">.</span><span class="n">update</span><span class="p">,</span>
-	<span class="n">actionSpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
-	<span class="n">PurchLine</span> <span class="p">=</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">purchLine</span> <span class="p">}</span>
-<span class="p">};</span>
-
-<span class="n">AxdMav_PurchOrderService</span> <span class="n">purchOrder</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdMav_PurchOrderService</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="n">PurchTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchTable</span><span class="p">[]</span> <span class="p">{</span><span class="n">purchTable</span><span class="p">}</span>
-<span class="p">};</span>
-
-
-<span class="n">client</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">,</span> <span class="n">purchOrder</span><span class="p">);</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">EntityKey</span><span class="p">[]</span> <span class="n">entityKeyList</span> <span class="p">=</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="s">&#34;BGR-000054&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">CallContext</span> <span class="n">callContext</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">callContext</span><span class="p">.</span><span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Mav_PurchOrderServiceServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mav_PurchOrderServiceServiceClient</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">AxdMav_PurchOrderService</span> <span class="n">purchOrders</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//Define which line need to be update or delete</span>
+</span></span><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">lastLine</span> <span class="p">=</span> <span class="n">purchOrders</span><span class="p">.</span><span class="n">PurchTable</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">PurchLine</span><span class="p">.</span><span class="n">Last</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">purchLine</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchLine</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;110329&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">PurchQty</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">CurrencyCode</span> <span class="p">=</span> <span class="s">&#34;KRW&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">RecIdSpecified</span>      <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">LineNumberSpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">action</span>              <span class="p">=</span> <span class="n">AxdEnum_AxdEntityAction</span><span class="p">.</span><span class="n">create</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">actionSpecified</span>     <span class="p">=</span> <span class="k">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">//for delete</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//RecId               = lastLine.RecId,</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//RecIdSpecified      = true,</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//action              = AxdEnum_AxdEntityAction.delete,</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//actionSpecified     = true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">//for Update</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//RecId               = lastLine.RecId,</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//RecIdSpecified      = true,</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//action              = AxdEnum_AxdEntityAction.update,</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//actionSpecified     = true</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">purchTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchTable</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="m">_D</span><span class="n">ocumentHash</span> <span class="p">=</span> <span class="n">purchOrders</span><span class="p">.</span><span class="n">PurchTable</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="m">_D</span><span class="n">ocumentHash</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">OrderAccount</span> <span class="p">=</span> <span class="s">&#34;101-01-75441&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">LanguageId</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">CurrencyCode</span> <span class="p">=</span> <span class="s">&#34;KRW&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">PurchName</span> <span class="p">=</span> <span class="s">&#34;AIF PO Test&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">action</span> <span class="p">=</span> <span class="n">AxdEnum_AxdEntityAction</span><span class="p">.</span><span class="n">update</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">actionSpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">PurchLine</span> <span class="p">=</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">purchLine</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">AxdMav_PurchOrderService</span> <span class="n">purchOrder</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdMav_PurchOrderService</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">PurchTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchTable</span><span class="p">[]</span> <span class="p">{</span><span class="n">purchTable</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">client</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">,</span> <span class="n">purchOrder</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Thank you for reading!</p>]]></description>
 </item><item>
@@ -892,22 +884,20 @@ To create product variants, you must complete the following tasks:</p>
 </span><span class="lnt"> 9
 </span><span class="lnt">10
 </span><span class="lnt">11
-</span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#">
-<span class="k">using</span> <span class="nn">ItemsMaster.ItemsRef</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">ItemsMaster.EcoResProductRef</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">ItemsMaster.EcoResProductMasterRef</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">ItemsMaster.InventDimRef</span><span class="p">;</span>
-<span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
-<span class="p">{</span>
-	<span class="n">Program</span> <span class="n">master</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Program</span><span class="p">();</span>
-	<span class="n">master</span><span class="p">.</span><span class="n">createDistinctProduct</span><span class="p">();</span>
-	<span class="n">Program</span><span class="p">.</span><span class="n">releaseProduct</span><span class="p">();</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">ItemsMaster.ItemsRef</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">ItemsMaster.EcoResProductRef</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">ItemsMaster.EcoResProductMasterRef</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">ItemsMaster.InventDimRef</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Program</span> <span class="n">master</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Program</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">master</span><span class="p">.</span><span class="n">createDistinctProduct</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Program</span><span class="p">.</span><span class="n">releaseProduct</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>EcoResProductServiceClient</code></p>
 <div class="highlight"><div class="chroma">
@@ -966,65 +956,63 @@ To create product variants, you must complete the following tasks:</p>
 </span><span class="lnt">52
 </span><span class="lnt">53
 </span><span class="lnt">54
-</span><span class="lnt">55
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#">
-<span class="k">public</span> <span class="k">void</span> <span class="n">createDistinctProduct</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="n">AxdEntity_Product_EcoResDistinctProduct</span> <span class="n">distinctProduct</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Product_EcoResDistinctProduct</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">DisplayProductNumber</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
-		<span class="n">ProductType</span> <span class="p">=</span> <span class="n">AxdEnum_EcoResProductType</span><span class="p">.</span><span class="n">Item</span><span class="p">,</span>
-		<span class="n">SearchName</span> <span class="p">=</span> <span class="s">&#34;Max&#34;</span><span class="p">,</span>
-	   
-	<span class="p">};</span>
-
-	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">Translation</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Translation</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
-	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">Translation</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Translation</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">LanguageId</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
-		<span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Max Nguyen&#34;</span>
-	<span class="p">};</span>
-
-	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">Identifier</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Identifier</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
-	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">Identifier</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Identifier</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">ProductNumber</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span>
-	<span class="p">};</span>
-
-	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">StorageDimGroup</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_StorageDimGroup</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
-	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">StorageDimGroup</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_StorageDimGroup</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">Product</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
-		<span class="n">StorageDimensionGroup</span> <span class="p">=</span> <span class="s">&#34;SW_P&#34;</span>
-	<span class="p">};</span>
-
-	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">TrackingDimGroup</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_TrackingDimGroup</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
-	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">TrackingDimGroup</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_TrackingDimGroup</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">Product</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
-		<span class="n">TrackingDimensionGroup</span> <span class="p">=</span> <span class="s">&#34;Batch Only&#34;</span>
-	<span class="p">};</span>
-
-	<span class="n">AxdEcoResProduct</span> <span class="n">product</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEcoResProduct</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">Product</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Product_EcoResProduct</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">distinctProduct</span> <span class="p">}</span>
-	<span class="p">};</span>
-
-	<span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">CallContext</span> <span class="n">EcoResProductSctx</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">CallContext</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">,</span>
-		<span class="n">Language</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
-	<span class="p">};</span>
-
-	<span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">EcoResProductServiceClient</span> <span class="n">ecoResProductSClient</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">EcoResProductServiceClient</span><span class="p">();</span>
-	
-	<span class="n">ecoResProductSClient</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">EcoResProductSctx</span><span class="p">,</span> <span class="n">product</span><span class="p">);</span>
-
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">createDistinctProduct</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">AxdEntity_Product_EcoResDistinctProduct</span> <span class="n">distinctProduct</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Product_EcoResDistinctProduct</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">DisplayProductNumber</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ProductType</span> <span class="p">=</span> <span class="n">AxdEnum_EcoResProductType</span><span class="p">.</span><span class="n">Item</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">SearchName</span> <span class="p">=</span> <span class="s">&#34;Max&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	   
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">Translation</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Translation</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">Translation</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Translation</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">LanguageId</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Max Nguyen&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">Identifier</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Identifier</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">Identifier</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Identifier</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ProductNumber</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">StorageDimGroup</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_StorageDimGroup</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">StorageDimGroup</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_StorageDimGroup</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Product</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">StorageDimensionGroup</span> <span class="p">=</span> <span class="s">&#34;SW_P&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">TrackingDimGroup</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_TrackingDimGroup</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">TrackingDimGroup</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_TrackingDimGroup</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Product</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">TrackingDimensionGroup</span> <span class="p">=</span> <span class="s">&#34;Batch Only&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">AxdEcoResProduct</span> <span class="n">product</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEcoResProduct</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Product</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Product_EcoResProduct</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">distinctProduct</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">CallContext</span> <span class="n">EcoResProductSctx</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">CallContext</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Language</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">EcoResProductServiceClient</span> <span class="n">ecoResProductSClient</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">EcoResProductServiceClient</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="n">ecoResProductSClient</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">EcoResProductSctx</span><span class="p">,</span> <span class="n">product</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>EcoResProductServiceClient</code></p>
 <div class="highlight"><div class="chroma">
@@ -1075,57 +1063,55 @@ To create product variants, you must complete the following tasks:</p>
 </span><span class="lnt">44
 </span><span class="lnt">45
 </span><span class="lnt">46
-</span><span class="lnt">47
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#">
-<span class="k">public</span> <span class="k">void</span> <span class="n">createMaster</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="n">AxdEntity_Product_EcoResProductMaster</span> <span class="n">productMaster</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Product_EcoResProductMaster</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">DisplayProductNumber</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
-		<span class="n">ProductType</span> <span class="p">=</span> <span class="n">AxdEnum_EcoResProductType</span><span class="p">.</span><span class="n">Item</span><span class="p">,</span>
-		<span class="n">SearchName</span> <span class="p">=</span> <span class="s">&#34;Max Nguyen&#34;</span>
-	<span class="p">};</span>
-
-	<span class="n">productMaster</span><span class="p">.</span><span class="n">Translation</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Translation</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
-	<span class="n">productMaster</span><span class="p">.</span><span class="n">Translation</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Translation</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">LanguageId</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
-		<span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Max Nguyen&#34;</span>
-	<span class="p">};</span>
-
-	<span class="n">productMaster</span><span class="p">.</span><span class="n">Identifier</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Identifier</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
-	<span class="n">productMaster</span><span class="p">.</span><span class="n">Identifier</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Identifier</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">ProductNumber</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span>
-	<span class="p">};</span>
-	<span class="n">productMaster</span><span class="p">.</span><span class="n">ProductDimGroup</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_ProductDimGroup</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
-	<span class="n">productMaster</span><span class="p">.</span><span class="n">ProductDimGroup</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_ProductDimGroup</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">Product</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
-		<span class="n">ProductDimensionGroup</span> <span class="p">=</span> <span class="s">&#34;MAX10&#34;</span>
-	<span class="p">};</span>
-	<span class="n">productMaster</span><span class="p">.</span><span class="n">VariantConfigurationTechnology</span> <span class="p">=</span> <span class="n">AxdEnum_EcoResVariantConfigurationTechnologyType</span><span class="p">.</span><span class="n">PredefinedVariants</span><span class="p">;</span>
-
-	<span class="n">AxdEcoResProduct</span> <span class="n">axdProduct</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEcoResProduct</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">Product</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Product_EcoResProduct</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">productMaster</span> <span class="p">}</span>
-	<span class="p">};</span>
-
-	<span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">CallContext</span> <span class="n">EcoResProductSctx</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">CallContext</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">,</span>
-		<span class="n">Language</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
-	<span class="p">};</span>
-
-	<span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">EcoResProductServiceClient</span> <span class="n">ecoResProductSClient</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">EcoResProductServiceClient</span><span class="p">();</span>
-	
-	<span class="n">ecoResProductSClient</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">EcoResProductSctx</span><span class="p">,</span> <span class="n">axdProduct</span><span class="p">);</span>
-
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">createMaster</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">AxdEntity_Product_EcoResProductMaster</span> <span class="n">productMaster</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Product_EcoResProductMaster</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">DisplayProductNumber</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ProductType</span> <span class="p">=</span> <span class="n">AxdEnum_EcoResProductType</span><span class="p">.</span><span class="n">Item</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">SearchName</span> <span class="p">=</span> <span class="s">&#34;Max Nguyen&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">productMaster</span><span class="p">.</span><span class="n">Translation</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Translation</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="n">productMaster</span><span class="p">.</span><span class="n">Translation</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Translation</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">LanguageId</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Max Nguyen&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">productMaster</span><span class="p">.</span><span class="n">Identifier</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Identifier</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="n">productMaster</span><span class="p">.</span><span class="n">Identifier</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Identifier</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ProductNumber</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">	<span class="n">productMaster</span><span class="p">.</span><span class="n">ProductDimGroup</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_ProductDimGroup</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="n">productMaster</span><span class="p">.</span><span class="n">ProductDimGroup</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_ProductDimGroup</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Product</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ProductDimensionGroup</span> <span class="p">=</span> <span class="s">&#34;MAX10&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">	<span class="n">productMaster</span><span class="p">.</span><span class="n">VariantConfigurationTechnology</span> <span class="p">=</span> <span class="n">AxdEnum_EcoResVariantConfigurationTechnologyType</span><span class="p">.</span><span class="n">PredefinedVariants</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">AxdEcoResProduct</span> <span class="n">axdProduct</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEcoResProduct</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Product</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Product_EcoResProduct</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">productMaster</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">CallContext</span> <span class="n">EcoResProductSctx</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">CallContext</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Language</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">EcoResProductServiceClient</span> <span class="n">ecoResProductSClient</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">EcoResProductServiceClient</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="n">ecoResProductSClient</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">EcoResProductSctx</span><span class="p">,</span> <span class="n">axdProduct</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>EcoResProductMasterDimValueServiceClient</code></p>
 <div class="highlight"><div class="chroma">
@@ -1175,56 +1161,54 @@ To create product variants, you must complete the following tasks:</p>
 </span><span class="lnt">43
 </span><span class="lnt">44
 </span><span class="lnt">45
-</span><span class="lnt">46
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#">
-<span class="k">static</span> <span class="k">void</span> <span class="n">createMasterDimensions</span><span class="p">()</span>
-<span class="p">{</span>
-
-	<span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span> <span class="n">ecoResSizeL</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;L&#34;</span>
-	<span class="p">};</span>
-
-	<span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span> <span class="n">ecoResSizeM</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;M&#34;</span>
-	<span class="p">};</span>
-	<span class="c1">//master dimensions definition (two sizes, L and M)
-</span><span class="c1"></span>	<span class="n">AxdEntity_MasterDim_EcoResProductMasterSize</span> <span class="n">sizeDimensionL</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_MasterDim_EcoResProductMasterSize</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">SizeProductMaster</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
-		<span class="n">Size</span> <span class="p">=</span> <span class="s">&#34;L&#34;</span><span class="p">,</span>
-		<span class="n">EcoResSize</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">ecoResSizeL</span> <span class="p">}</span>
-	<span class="p">};</span>
-	<span class="n">AxdEntity_MasterDim_EcoResProductMasterSize</span> <span class="n">sizeDimensionM</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_MasterDim_EcoResProductMasterSize</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">SizeProductMaster</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
-		<span class="n">Size</span> <span class="p">=</span> <span class="s">&#34;M&#34;</span><span class="p">,</span>
-		<span class="n">EcoResSize</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">ecoResSizeM</span> <span class="p">}</span>
-
-	<span class="p">};</span>
-
-	<span class="n">AxdEcoResProductMasterDimValue</span> <span class="n">axdDimValue</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEcoResProductMasterDimValue</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">MasterDim</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_MasterDim_EcoResProductMasterDimensionValue</span><span class="p">[</span><span class="m">2</span><span class="p">]</span> <span class="p">{</span> <span class="n">sizeDimensionL</span><span class="p">,</span> <span class="n">sizeDimensionM</span> <span class="p">}</span>
-	<span class="p">};</span>
-
-	<span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">CallContext</span> <span class="n">masterDimctx</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">CallContext</span><span class="p">();</span>
-	<span class="n">EcoResProductMasterDimValueServiceClient</span> <span class="n">masterDimensionService</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductMasterDimValueServiceClient</span><span class="p">();</span>
-	<span class="k">try</span>
-	<span class="p">{</span>
-		<span class="n">masterDimensionService</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">masterDimctx</span><span class="p">,</span> <span class="n">axdDimValue</span><span class="p">);</span>
-	<span class="p">}</span>
-	<span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
-	<span class="p">{</span>
-		<span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Message</span><span class="p">);</span>
-		<span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">createMasterDimensions</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span> <span class="n">ecoResSizeL</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;L&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span> <span class="n">ecoResSizeM</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;M&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//master dimensions definition (two sizes, L and M)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">AxdEntity_MasterDim_EcoResProductMasterSize</span> <span class="n">sizeDimensionL</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_MasterDim_EcoResProductMasterSize</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">SizeProductMaster</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Size</span> <span class="p">=</span> <span class="s">&#34;L&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">EcoResSize</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">ecoResSizeL</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">	<span class="n">AxdEntity_MasterDim_EcoResProductMasterSize</span> <span class="n">sizeDimensionM</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_MasterDim_EcoResProductMasterSize</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">SizeProductMaster</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Size</span> <span class="p">=</span> <span class="s">&#34;M&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">EcoResSize</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">ecoResSizeM</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">AxdEcoResProductMasterDimValue</span> <span class="n">axdDimValue</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEcoResProductMasterDimValue</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">MasterDim</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_MasterDim_EcoResProductMasterDimensionValue</span><span class="p">[</span><span class="m">2</span><span class="p">]</span> <span class="p">{</span> <span class="n">sizeDimensionL</span><span class="p">,</span> <span class="n">sizeDimensionM</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">CallContext</span> <span class="n">masterDimctx</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">CallContext</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">EcoResProductMasterDimValueServiceClient</span> <span class="n">masterDimensionService</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductMasterDimValueServiceClient</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="k">try</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">masterDimensionService</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">masterDimctx</span><span class="p">,</span> <span class="n">axdDimValue</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Message</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>EcoResProductServiceClient</code></p>
 <div class="highlight"><div class="chroma">
@@ -1274,56 +1258,54 @@ To create product variants, you must complete the following tasks:</p>
 </span><span class="lnt">43
 </span><span class="lnt">44
 </span><span class="lnt">45
-</span><span class="lnt">46
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#">
-<span class="k">static</span> <span class="k">void</span> <span class="n">createVariant</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="c1">//product variant definition
-</span><span class="c1"></span>	<span class="n">AxdEntity_Product_EcoResDistinctProductVariant</span> <span class="n">productVariant</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Product_EcoResDistinctProductVariant</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">DisplayProductNumber</span> <span class="p">=</span> <span class="s">&#34;MAXL&#34;</span><span class="p">,</span>
-		<span class="n">ProductType</span> <span class="p">=</span> <span class="n">AxdEnum_EcoResProductType</span><span class="p">.</span><span class="n">Item</span><span class="p">,</span>
-		<span class="n">SearchName</span> <span class="p">=</span> <span class="s">&#34;MAXL&#34;</span><span class="p">,</span>
-		<span class="n">ProductMaster</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span>
-	<span class="p">};</span>
-	<span class="n">productVariant</span><span class="p">.</span><span class="n">Translation</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Translation</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
-	<span class="n">productVariant</span><span class="p">.</span><span class="n">Translation</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Translation</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">LanguageId</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
-		<span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Max L size&#34;</span>
-	<span class="p">};</span>
-	<span class="n">productVariant</span><span class="p">.</span><span class="n">VariantDimValue</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_VariantDimValue_EcoResProductVariantDimensionValue</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
-	<span class="n">productVariant</span><span class="p">.</span><span class="n">VariantDimValue</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_VariantDimValue_EcoResProductVariantSize</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">DistinctProductVariant</span> <span class="p">=</span> <span class="s">&#34;MAXL&#34;</span><span class="p">,</span>
-		<span class="n">ProductDimensionAttribute</span> <span class="p">=</span> <span class="m">3173</span><span class="p">,</span><span class="c1">//The ID of the EcoResSize table
-</span><span class="c1"></span>		<span class="n">Size</span> <span class="p">=</span> <span class="s">&#34;L&#34;</span><span class="p">,</span>
-		<span class="n">EcoResSize</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span><span class="p">[</span><span class="m">1</span><span class="p">]</span>
-		<span class="p">{</span>
-			<span class="k">new</span> <span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span><span class="p">()</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;L&#34;</span> <span class="p">}</span>
-		<span class="p">}</span>
-	<span class="p">};</span>
-
-	<span class="n">AxdEcoResProduct</span> <span class="n">axdProduct</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEcoResProduct</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">Product</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Product_EcoResProduct</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">productVariant</span> <span class="p">}</span>
-	<span class="p">};</span>
-	<span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">CallContext</span> <span class="n">inventDimctx</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">CallContext</span><span class="p">();</span>
-	<span class="n">EcoResProductServiceClient</span> <span class="n">productService</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductServiceClient</span><span class="p">();</span>
-	<span class="k">try</span>
-	<span class="p">{</span>
-		<span class="n">productService</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">inventDimctx</span><span class="p">,</span> <span class="n">axdProduct</span><span class="p">);</span>
-	<span class="p">}</span>
-	<span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
-	<span class="p">{</span>
-		<span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Message</span><span class="p">);</span>
-		<span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">createVariant</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//product variant definition</span>
+</span></span><span class="line"><span class="cl">	<span class="n">AxdEntity_Product_EcoResDistinctProductVariant</span> <span class="n">productVariant</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Product_EcoResDistinctProductVariant</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">DisplayProductNumber</span> <span class="p">=</span> <span class="s">&#34;MAXL&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ProductType</span> <span class="p">=</span> <span class="n">AxdEnum_EcoResProductType</span><span class="p">.</span><span class="n">Item</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">SearchName</span> <span class="p">=</span> <span class="s">&#34;MAXL&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ProductMaster</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">	<span class="n">productVariant</span><span class="p">.</span><span class="n">Translation</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Translation</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="n">productVariant</span><span class="p">.</span><span class="n">Translation</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Translation</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">LanguageId</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Max L size&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">	<span class="n">productVariant</span><span class="p">.</span><span class="n">VariantDimValue</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_VariantDimValue_EcoResProductVariantDimensionValue</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="n">productVariant</span><span class="p">.</span><span class="n">VariantDimValue</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_VariantDimValue_EcoResProductVariantSize</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">DistinctProductVariant</span> <span class="p">=</span> <span class="s">&#34;MAXL&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ProductDimensionAttribute</span> <span class="p">=</span> <span class="m">3173</span><span class="p">,</span><span class="c1">//The ID of the EcoResSize table</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Size</span> <span class="p">=</span> <span class="s">&#34;L&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">EcoResSize</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span><span class="p">[</span><span class="m">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">new</span> <span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span><span class="p">()</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;L&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">AxdEcoResProduct</span> <span class="n">axdProduct</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEcoResProduct</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Product</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Product_EcoResProduct</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">productVariant</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">	<span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">CallContext</span> <span class="n">inventDimctx</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">CallContext</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">EcoResProductServiceClient</span> <span class="n">productService</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductServiceClient</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="k">try</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">productService</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">inventDimctx</span><span class="p">,</span> <span class="n">axdProduct</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Message</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>this method can use to release a distinct product or a product master</code></p>
 <div class="highlight"><div class="chroma">
@@ -1385,68 +1367,66 @@ To create product variants, you must complete the following tasks:</p>
 </span><span class="lnt">55
 </span><span class="lnt">56
 </span><span class="lnt">57
-</span><span class="lnt">58
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#">
-<span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">releaseProduct</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="kt">var</span> <span class="n">invent</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Invent</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
-		<span class="n">UnitId</span> <span class="p">=</span> <span class="s">&#34;box&#34;</span>
-	<span class="p">};</span>
-
-	<span class="kt">var</span> <span class="n">purch</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Purch</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
-		<span class="n">UnitId</span> <span class="p">=</span> <span class="s">&#34;box&#34;</span>
-	<span class="p">};</span>
-
-	<span class="kt">var</span> <span class="n">sales</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Sales</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
-		<span class="n">UnitId</span> <span class="p">=</span> <span class="s">&#34;box&#34;</span>
-	<span class="p">};</span>
-
-	<span class="kt">var</span> <span class="n">inventTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_InventTable</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
-		<span class="n">PmfProductType</span> <span class="p">=</span> <span class="n">AxdEnum_PmfProductType</span><span class="p">.</span><span class="n">MainItem</span><span class="p">,</span>
-		<span class="n">Product</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
-		<span class="n">Invent</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Invent</span><span class="p">[]</span> <span class="p">{</span> <span class="n">invent</span> <span class="p">},</span>
-		<span class="n">Purch</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Purch</span><span class="p">[]</span> <span class="p">{</span> <span class="n">purch</span> <span class="p">},</span>
-		<span class="n">Sales</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Sales</span><span class="p">[]</span> <span class="p">{</span> <span class="n">sales</span> <span class="p">},</span>
-		
-	<span class="p">};</span>
-
-	<span class="kt">var</span> <span class="n">item</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdItem</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">InventTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_InventTable</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">inventTable</span> <span class="p">}</span>
-	<span class="p">};</span>
-
-	<span class="n">ItemsRef</span><span class="p">.</span><span class="n">CallContext</span> <span class="n">callContext</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ItemsRef</span><span class="p">.</span><span class="n">CallContext</span><span class="p">();</span>
-	<span class="n">ItemsRef</span><span class="p">.</span><span class="n">ItemServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ItemsRef</span><span class="p">.</span><span class="n">ItemServiceClient</span><span class="p">();</span>
-
-	<span class="n">callContext</span><span class="p">.</span><span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">;</span>
-	<span class="n">callContext</span><span class="p">.</span><span class="n">Language</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">;</span>
-
-	<span class="k">try</span>
-	<span class="p">{</span>
-		<span class="n">ItemsRef</span><span class="p">.</span><span class="n">EntityKey</span><span class="p">[]</span> <span class="n">itemCreatedEntity</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">item</span><span class="p">);</span>
-		<span class="n">ItemsRef</span><span class="p">.</span><span class="n">EntityKey</span> <span class="n">itemCreated</span> <span class="p">=</span> <span class="p">(</span><span class="n">ItemsRef</span><span class="p">.</span><span class="n">EntityKey</span><span class="p">)</span><span class="n">itemCreatedEntity</span><span class="p">.</span><span class="n">GetValue</span><span class="p">(</span><span class="m">0</span><span class="p">);</span>
-
-		<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;AxdEntity_Invent &#34;</span> <span class="p">+</span> <span class="n">itemCreated</span><span class="p">.</span><span class="n">KeyData</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">Value</span><span class="p">);</span>
-		<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-	<span class="p">}</span>
-	<span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
-	<span class="p">{</span>
-		<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
-		<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">releaseProduct</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">var</span> <span class="n">invent</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Invent</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">UnitId</span> <span class="p">=</span> <span class="s">&#34;box&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kt">var</span> <span class="n">purch</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Purch</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">UnitId</span> <span class="p">=</span> <span class="s">&#34;box&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kt">var</span> <span class="n">sales</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Sales</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">UnitId</span> <span class="p">=</span> <span class="s">&#34;box&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kt">var</span> <span class="n">inventTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_InventTable</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">PmfProductType</span> <span class="p">=</span> <span class="n">AxdEnum_PmfProductType</span><span class="p">.</span><span class="n">MainItem</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Product</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Invent</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Invent</span><span class="p">[]</span> <span class="p">{</span> <span class="n">invent</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Purch</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Purch</span><span class="p">[]</span> <span class="p">{</span> <span class="n">purch</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Sales</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Sales</span><span class="p">[]</span> <span class="p">{</span> <span class="n">sales</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kt">var</span> <span class="n">item</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdItem</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">InventTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_InventTable</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">inventTable</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">ItemsRef</span><span class="p">.</span><span class="n">CallContext</span> <span class="n">callContext</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ItemsRef</span><span class="p">.</span><span class="n">CallContext</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ItemsRef</span><span class="p">.</span><span class="n">ItemServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ItemsRef</span><span class="p">.</span><span class="n">ItemServiceClient</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">callContext</span><span class="p">.</span><span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">callContext</span><span class="p">.</span><span class="n">Language</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">try</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ItemsRef</span><span class="p">.</span><span class="n">EntityKey</span><span class="p">[]</span> <span class="n">itemCreatedEntity</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">item</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ItemsRef</span><span class="p">.</span><span class="n">EntityKey</span> <span class="n">itemCreated</span> <span class="p">=</span> <span class="p">(</span><span class="n">ItemsRef</span><span class="p">.</span><span class="n">EntityKey</span><span class="p">)</span><span class="n">itemCreatedEntity</span><span class="p">.</span><span class="n">GetValue</span><span class="p">(</span><span class="m">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;AxdEntity_Invent &#34;</span> <span class="p">+</span> <span class="n">itemCreated</span><span class="p">.</span><span class="n">KeyData</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">Value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>Release product Variants</code></p>
 <div class="highlight"><div class="chroma">
@@ -1481,41 +1461,39 @@ To create product variants, you must complete the following tasks:</p>
 </span><span class="lnt">28
 </span><span class="lnt">29
 </span><span class="lnt">30
-</span><span class="lnt">31
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#">
-<span class="k">static</span> <span class="k">void</span> <span class="n">releaseProductVariants</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="n">AxdEntity_InventDimCombination</span> <span class="n">releasedVariant</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_InventDimCombination</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">DistinctProductVariant</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
-		<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;&#34;</span>
-	<span class="p">};</span>
-
-	<span class="n">AxdInventDimCombination</span> <span class="n">inventDimCombination</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdInventDimCombination</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">InventDimCombination</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_InventDimCombination</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">releasedVariant</span> <span class="p">}</span>
-	<span class="p">};</span>
-
-	<span class="n">InventDimRef</span><span class="p">.</span><span class="n">CallContext</span> <span class="n">itemsctx</span> <span class="p">=</span> <span class="k">new</span> <span class="n">InventDimRef</span><span class="p">.</span><span class="n">CallContext</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">,</span>
-		<span class="n">Language</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span>
-	<span class="p">};</span>
-	<span class="n">InventDimCombinationServiceClient</span> <span class="n">inventDimCombinationService</span> <span class="p">=</span> <span class="k">new</span> <span class="n">InventDimCombinationServiceClient</span><span class="p">();</span>
-	<span class="k">try</span>
-	<span class="p">{</span>
-		<span class="n">inventDimCombinationService</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">itemsctx</span><span class="p">,</span> <span class="n">inventDimCombination</span><span class="p">);</span>
-	<span class="p">}</span>
-	<span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
-	<span class="p">{</span>
-		<span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Message</span><span class="p">);</span>
-		<span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">releaseProductVariants</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">AxdEntity_InventDimCombination</span> <span class="n">releasedVariant</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_InventDimCombination</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">DistinctProductVariant</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">AxdInventDimCombination</span> <span class="n">inventDimCombination</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdInventDimCombination</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">InventDimCombination</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_InventDimCombination</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">releasedVariant</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">InventDimRef</span><span class="p">.</span><span class="n">CallContext</span> <span class="n">itemsctx</span> <span class="p">=</span> <span class="k">new</span> <span class="n">InventDimRef</span><span class="p">.</span><span class="n">CallContext</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Language</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">	<span class="n">InventDimCombinationServiceClient</span> <span class="n">inventDimCombinationService</span> <span class="p">=</span> <span class="k">new</span> <span class="n">InventDimCombinationServiceClient</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="k">try</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">inventDimCombinationService</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">itemsctx</span><span class="p">,</span> <span class="n">inventDimCombination</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Message</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Just for example, in <code>main</code> I only create Distinct product and release it, but you can use another method to create master, variant, masterDim and so on.</p>
 <pre><code>4. Try to run it and here is a result

@@ -10,7 +10,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://nuxulu.com/2017-01-02-using-methods-in-table-filters-query-ranges-in-dynamics-ax-2012/" /><meta property="og:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2017-01-02T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-02-24T15:07:02+07:00" />
+<meta property="article:modified_time" content="2022-03-21T22:30:25+07:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/>
@@ -28,7 +28,7 @@
             "@type": "WebPage",
             "@id": "https:\/\/nuxulu.com\/2017-01-02-using-methods-in-table-filters-query-ranges-in-dynamics-ax-2012\/"
         },"genre": "posts","keywords": "sysqueryrangeutil, QUERYFILTER, QUERYBUILDRANGE","wordcount":  447 ,
-        "url": "https:\/\/nuxulu.com\/2017-01-02-using-methods-in-table-filters-query-ranges-in-dynamics-ax-2012\/","datePublished": "2017-01-02T00:00:00+00:00","dateModified": "2022-02-24T15:07:02+07:00","publisher": {
+        "url": "https:\/\/nuxulu.com\/2017-01-02-using-methods-in-table-filters-query-ranges-in-dynamics-ax-2012\/","datePublished": "2017-01-02T00:00:00+00:00","dateModified": "2022-03-21T22:30:25+07:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -127,7 +127,7 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
             </div><div class="content" id="content"><p>In Dynamics AX, there is a class called <code>SysQueryRangeUtil</code> that can be utilized in both query ranges and table filters. Using methods from this class allow you to be very precise about what dates you want to use in reports or for filtering your data.</p>
-<p>Let’s say you have a report that you always want to run to see orders with shipping dates of the next day. It is possible to do so by using one of the methods from the <code>SysQueryRangeUtil</code>. The use of the letter <strong>&rsquo;t'</strong> will work for today’s date, but when you try to add days to it, it doesn’t work in reports. Instead, I will use the <code>currentdate()</code> method and add <code>1</code> to it.</p>
+<p>Let’s say you have a report that you always want to run to see orders with shipping dates of the next day. It is possible to do so by using one of the methods from the <code>SysQueryRangeUtil</code>. The use of the letter <strong>&rsquo;t&rsquo;</strong> will work for today’s date, but when you try to add days to it, it doesn’t work in reports. Instead, I will use the <code>currentdate()</code> method and add <code>1</code> to it.</p>
 <blockquote>
 <p>All methods &amp; expressions must be surrounded by parentheses as shown below.</p>
 </blockquote>
@@ -185,36 +185,36 @@
 </span><span class="lnt">29
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html">currentCustomerAccount()
-
-currentVendorAccount()
-
-currentUserId()
-
-currentDate()
-
-dateRange()
-
-day()
-
-dayRange()
-
-greaterThanDate()
-
-greaterThanUtcDate()
-
-greaterThanUtcNow()
-
-lessthanDate()
-
-lessthanUtcDate()
-
-lessthanUtcNow()
-
-monthRange()
-
-yearRange()
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">currentCustomerAccount()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">currentVendorAccount()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">currentUserId()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">currentDate()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">dateRange()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">day()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">dayRange()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">greaterThanDate()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">greaterThanUtcDate()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">greaterThanUtcNow()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">lessthanDate()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">lessthanUtcDate()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">lessthanUtcNow()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">monthRange()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">yearRange()
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>for example:</p>
@@ -238,29 +238,29 @@ yearRange()
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">(</span><span class="n">dayRange</span><span class="p">(-</span><span class="n">30</span><span class="p">,</span><span class="n">0</span><span class="p">))</span> <span class="err">–</span> <span class="n">Results</span> <span class="k">in</span> <span class="n">a</span> <span class="n">date</span> <span class="n">range</span> <span class="k">for</span> <span class="n">the</span> <span class="n">last</span> <span class="n">30</span> <span class="n">days</span><span class="err">:</span> <span class="s2">&#34;26-01-2017&#34;</span><span class="p">..</span><span class="s2">&#34;25-02-2017&#34;</span>
-
-<span class="p">(</span><span class="n">day</span><span class="p">(-</span><span class="n">1</span><span class="p">))</span> <span class="err">–</span> <span class="n">Results</span> <span class="k">in</span> <span class="n">yesterday</span><span class="s1">&#39;s date: 24-02-2017
-</span><span class="s1">
-</span><span class="s1">(day(0)) – Results in today&#39;</span><span class="n">s</span> <span class="n">date</span><span class="err">:</span> <span class="n">25</span><span class="p">-</span><span class="n">02</span><span class="p">-</span><span class="n">2017</span>
-
-<span class="p">(</span><span class="n">day</span><span class="p">(</span><span class="n">1</span><span class="p">))</span> <span class="err">–</span> <span class="n">Results</span> <span class="k">in</span> <span class="n">tomorrow</span><span class="s1">&#39;s date: 26-02-2017
-</span><span class="s1">
-</span><span class="s1">(greaterThanDate(2)) – Results in every date after today plus 2: &gt; 27-02-2017
-</span><span class="s1">
-</span><span class="s1">(lessThanDate(-1)) – Results in every date of today minus 1: &lt; 24-02-2017
-</span><span class="s1">
-</span><span class="s1">(monthRange(0,2)) – Results in first day till the last day of the month&#39;</span><span class="n">s</span> <span class="n">choosen</span> <span class="p">(</span><span class="n">0</span> <span class="p">=</span> <span class="n">current</span> <span class="n">month</span><span class="p">)</span><span class="err">:</span> <span class="s2">&#34;01-02-2017&#34;</span><span class="p">..</span><span class="s2">&#34;30-04-2017&#34;</span>
-
-<span class="p">(</span><span class="n">yearRange</span><span class="p">(-</span><span class="n">1</span><span class="p">,-</span><span class="n">1</span><span class="p">))</span> <span class="err">–</span> <span class="n">Results</span> <span class="k">in</span> <span class="n">first</span> <span class="n">day</span> <span class="n">till</span> <span class="n">the</span> <span class="n">last</span> <span class="n">day</span> <span class="n">of</span> <span class="n">the</span> <span class="n">chosen</span> <span class="n">year</span><span class="err">:</span> <span class="s2">&#34;01-01-2017&#34;</span><span class="p">..</span><span class="s2">&#34;31-12-2017&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">(</span><span class="n">dayRange</span><span class="p">(-</span><span class="n">30</span><span class="p">,</span><span class="n">0</span><span class="p">))</span> <span class="err">–</span> <span class="n">Results</span> <span class="k">in</span> <span class="n">a</span> <span class="n">date</span> <span class="n">range</span> <span class="k">for</span> <span class="n">the</span> <span class="n">last</span> <span class="n">30</span> <span class="n">days</span><span class="err">:</span> <span class="s2">&#34;26-01-2017&#34;</span><span class="p">..</span><span class="s2">&#34;25-02-2017&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="n">day</span><span class="p">(-</span><span class="n">1</span><span class="p">))</span> <span class="err">–</span> <span class="n">Results</span> <span class="k">in</span> <span class="n">yesterday</span><span class="s1">&#39;s date: 24-02-2017
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">(day(0)) – Results in today&#39;</span><span class="n">s</span> <span class="n">date</span><span class="err">:</span> <span class="n">25</span><span class="p">-</span><span class="n">02</span><span class="p">-</span><span class="n">2017</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="n">day</span><span class="p">(</span><span class="n">1</span><span class="p">))</span> <span class="err">–</span> <span class="n">Results</span> <span class="k">in</span> <span class="n">tomorrow</span><span class="s1">&#39;s date: 26-02-2017
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">(greaterThanDate(2)) – Results in every date after today plus 2: &gt; 27-02-2017
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">(lessThanDate(-1)) – Results in every date of today minus 1: &lt; 24-02-2017
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">(monthRange(0,2)) – Results in first day till the last day of the month&#39;</span><span class="n">s</span> <span class="n">choosen</span> <span class="p">(</span><span class="n">0</span> <span class="p">=</span> <span class="n">current</span> <span class="n">month</span><span class="p">)</span><span class="err">:</span> <span class="s2">&#34;01-02-2017&#34;</span><span class="p">..</span><span class="s2">&#34;30-04-2017&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="n">yearRange</span><span class="p">(-</span><span class="n">1</span><span class="p">,-</span><span class="n">1</span><span class="p">))</span> <span class="err">–</span> <span class="n">Results</span> <span class="k">in</span> <span class="n">first</span> <span class="n">day</span> <span class="n">till</span> <span class="n">the</span> <span class="n">last</span> <span class="n">day</span> <span class="n">of</span> <span class="n">the</span> <span class="n">chosen</span> <span class="n">year</span><span class="err">:</span> <span class="s2">&#34;01-01-2017&#34;</span><span class="p">..</span><span class="s2">&#34;31-12-2017&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Thank you for reading!</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on February 24, 2022</span>
+                <span>Updated on March 21, 2022</span>
             </div>
             <div class="post-info-license"></div>
         </div>

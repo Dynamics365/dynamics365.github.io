@@ -20,7 +20,7 @@ This value will be used to link number sequence to the module and to restrict di
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://nuxulu.com/2017-01-19-number-sequence-farmework-in-dynamics-ax-2012/" /><meta property="og:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2017-01-19T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-02-24T15:07:02+07:00" />
+<meta property="article:modified_time" content="2022-03-21T22:30:25+07:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/>
@@ -48,7 +48,7 @@ This value will be used to link number sequence to the module and to restrict di
             "@type": "WebPage",
             "@id": "https:\/\/nuxulu.com\/2017-01-19-number-sequence-farmework-in-dynamics-ax-2012\/"
         },"genre": "posts","keywords": "X\u002b\u002b, numbersequence, programming","wordcount":  1374 ,
-        "url": "https:\/\/nuxulu.com\/2017-01-19-number-sequence-farmework-in-dynamics-ax-2012\/","datePublished": "2017-01-19T00:00:00+00:00","dateModified": "2022-02-24T15:07:02+07:00","publisher": {
+        "url": "https:\/\/nuxulu.com\/2017-01-19-number-sequence-farmework-in-dynamics-ax-2012\/","datePublished": "2017-01-19T00:00:00+00:00","dateModified": "2022-03-21T22:30:25+07:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -207,33 +207,33 @@ This value will be used to link number sequence to the module and to restrict di
 </span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">class</span> <span class="nc">NumberSeqModuleContoso</span> <span class="n">extends</span> <span class="n">NumberSeqApplicationModule</span>
-<span class="p">{</span>
-<span class="p">}</span>
-
-<span class="k">protected</span> <span class="k">void</span> <span class="n">loadModule</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="n">NumberSeqDatatype</span> <span class="n">datatype</span> <span class="p">=</span> <span class="n">NumberSeqDatatype</span><span class="p">::</span><span class="n">construct</span><span class="p">();</span>
-	<span class="p">;</span>
-
-	<span class="cm">/* Contoso Id */</span>
-	<span class="n">datatype</span><span class="p">.</span><span class="n">parmDatatypeId</span><span class="p">(</span><span class="n">extendedtypenum</span><span class="p">(</span><span class="n">ContosoId</span><span class="p">));</span>
-	<span class="n">datatype</span><span class="p">.</span><span class="n">parmReferenceHelp</span><span class="p">(</span><span class="s">&#34;ContosoId&#34;</span><span class="p">);</span>
-	<span class="n">datatype</span><span class="p">.</span><span class="n">parmWizardIsContinuous</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
-	<span class="n">datatype</span><span class="p">.</span><span class="n">parmWizardIsManual</span><span class="p">(</span><span class="n">NoYes</span><span class="p">::</span><span class="n">No</span><span class="p">);</span>
-	<span class="n">datatype</span><span class="p">.</span><span class="n">parmWizardIsChangeDownAllowed</span><span class="p">(</span><span class="n">NoYes</span><span class="p">::</span><span class="n">No</span><span class="p">);</span>
-	<span class="n">datatype</span><span class="p">.</span><span class="n">parmWizardIsChangeUpAllowed</span><span class="p">(</span><span class="n">NoYes</span><span class="p">::</span><span class="n">No</span><span class="p">);</span>
-	<span class="n">datatype</span><span class="p">.</span><span class="n">parmWizardHighest</span><span class="p">(</span><span class="m">999999</span><span class="p">);</span>
-	<span class="n">datatype</span><span class="p">.</span><span class="n">addParameterType</span><span class="p">(</span><span class="n">NumberSeqParameterType</span><span class="p">::</span><span class="n">DataArea</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
-	<span class="k">this</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">datatype</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="k">public</span> <span class="n">NumberSeqModule</span> <span class="n">numberSeqModule</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="p">;</span>
-	<span class="k">return</span> <span class="n">NumberSeqModule</span><span class="p">::</span><span class="n">Contoso</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">NumberSeqModuleContoso</span> <span class="n">extends</span> <span class="n">NumberSeqApplicationModule</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">protected</span> <span class="k">void</span> <span class="n">loadModule</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">NumberSeqDatatype</span> <span class="n">datatype</span> <span class="p">=</span> <span class="n">NumberSeqDatatype</span><span class="p">::</span><span class="n">construct</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="cm">/* Contoso Id */</span>
+</span></span><span class="line"><span class="cl">	<span class="n">datatype</span><span class="p">.</span><span class="n">parmDatatypeId</span><span class="p">(</span><span class="n">extendedtypenum</span><span class="p">(</span><span class="n">ContosoId</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">	<span class="n">datatype</span><span class="p">.</span><span class="n">parmReferenceHelp</span><span class="p">(</span><span class="s">&#34;ContosoId&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">datatype</span><span class="p">.</span><span class="n">parmWizardIsContinuous</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">datatype</span><span class="p">.</span><span class="n">parmWizardIsManual</span><span class="p">(</span><span class="n">NoYes</span><span class="p">::</span><span class="n">No</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">datatype</span><span class="p">.</span><span class="n">parmWizardIsChangeDownAllowed</span><span class="p">(</span><span class="n">NoYes</span><span class="p">::</span><span class="n">No</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">datatype</span><span class="p">.</span><span class="n">parmWizardIsChangeUpAllowed</span><span class="p">(</span><span class="n">NoYes</span><span class="p">::</span><span class="n">No</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">datatype</span><span class="p">.</span><span class="n">parmWizardHighest</span><span class="p">(</span><span class="m">999999</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">datatype</span><span class="p">.</span><span class="n">addParameterType</span><span class="p">(</span><span class="n">NumberSeqParameterType</span><span class="p">::</span><span class="n">DataArea</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">this</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">datatype</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="n">NumberSeqModule</span> <span class="n">numberSeqModule</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">NumberSeqModule</span><span class="p">::</span><span class="n">Contoso</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Use of the <code>DataArea</code> segment in <em>Step 4</em> to describe the default segment for the extended data types used for <code>ContosoId</code>.</p>
 <p>Note In <strong>Microsoft Dynamics AX 2009</strong>, number sequence references could be initialized by restarting the Application Object Server (AOS). In <strong>Microsoft Dynamics AX 2012</strong>, the initialization of references to populate the <code>NumberSequenceDatatype</code> and <code>NumberSequenceParameterType</code> tables has moved to the initialization checklist. To initialize the newly created references, run a job that executes the <code>LoadModule</code> method likes below.</p>
@@ -248,14 +248,14 @@ This value will be used to link number sequence to the module and to restrict di
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">static</span> <span class="k">void</span> <span class="n">loadNumSeq</span> <span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
-<span class="p">{</span>
-	<span class="c1">//define the class variable
-</span><span class="c1"></span>	<span class="n">NumberSeqModuleContoso</span> <span class="n">seqMod</span> <span class="p">=</span> <span class="k">new</span> <span class="n">NumberSeqModuleContoso</span> <span class="p">();</span>
-	<span class="c1">//load the number sequences that were not generated
-</span><span class="c1"></span>	<span class="n">seqMod</span><span class="p">.</span><span class="n">load</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">loadNumSeq</span> <span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//define the class variable</span>
+</span></span><span class="line"><span class="cl">	<span class="n">NumberSeqModuleContoso</span> <span class="n">seqMod</span> <span class="p">=</span> <span class="k">new</span> <span class="n">NumberSeqModuleContoso</span> <span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//load the number sequences that were not generated</span>
+</span></span><span class="line"><span class="cl">	<span class="n">seqMod</span><span class="p">.</span><span class="n">load</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>You can also reinitialize all references by running a job that executes the <code>LoadAll</code> method in the <code>NumberSequenceModuleSetup</code> class. However, for reinitializing all references, you must ensure that there are no existing number sequences already defined in the system.</p>
 <p>Then run the wizard in <em>Organization Administration &gt; CommonForms &gt; Numbersequences &gt; Numbersequences &gt; Generate &gt; run the wizard</em>.</p>
@@ -343,49 +343,49 @@ This value will be used to link number sequence to the module and to restrict di
 </span><span class="lnt">42
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">void</span> <span class="n">delete</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="k">throw</span> <span class="n">error</span><span class="p">(</span><span class="s">&#34;@SYS23721&#34;</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="k">public</span> <span class="k">void</span> <span class="n">initValue</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="p">;</span>
-	<span class="n">super</span><span class="p">();</span>
-	<span class="c1">// Key is set to mandatory so set it to 1
-</span><span class="c1"></span>	<span class="k">this</span><span class="p">.</span><span class="n">Key</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="k">static</span> <span class="n">ContosoParameters</span> <span class="n">find</span><span class="p">(</span><span class="n">boolean</span> <span class="m">_f</span><span class="n">orupdate</span> <span class="p">=</span> <span class="k">false</span><span class="p">)</span>
-<span class="p">{</span>
-	<span class="n">ContosoParameters</span> <span class="n">parameter</span><span class="p">;</span>
-
-	<span class="k">if</span> <span class="p">(</span><span class="m">_f</span><span class="n">orupdate</span><span class="p">)</span>
-	<span class="p">{</span>
-		<span class="n">parameter</span><span class="p">.</span><span class="n">selectForUpdate</span><span class="p">(</span><span class="m">_f</span><span class="n">orupdate</span><span class="p">);</span>
-	<span class="p">}</span>
-
-	<span class="k">select</span> <span class="n">firstonly</span> <span class="n">RecId</span> <span class="k">from</span> <span class="n">parameter</span>
-		<span class="k">where</span> <span class="n">parameter</span><span class="p">.</span><span class="n">Key</span> <span class="p">==</span> <span class="m">1</span><span class="p">;</span>
-
-	<span class="k">if</span> <span class="p">(!</span><span class="n">parameter</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">parameter</span><span class="p">.</span><span class="n">isTmp</span><span class="p">())</span>
-	<span class="p">{</span>
-		<span class="n">Company</span><span class="p">::</span><span class="n">createParameter</span><span class="p">(</span><span class="n">parameter</span><span class="p">);</span>
-	<span class="p">}</span>
-
-	<span class="k">return</span> <span class="n">parameter</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="n">client</span> <span class="n">server</span> <span class="k">static</span> <span class="n">NumberSeqModule</span> <span class="n">numberSeqModule</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="p">;</span>
-	<span class="k">return</span> <span class="n">NumberSeqModule</span><span class="p">::</span><span class="n">Contoso</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="k">public</span> <span class="n">server</span> <span class="k">static</span> <span class="n">NumberSequenceReference</span> <span class="n">numRefContosoId</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="p">;</span>
-	<span class="n">NumberSeqScopeFactory</span><span class="p">::</span><span class="n">CreateDataAreaScope</span><span class="p">(</span><span class="n">curext</span><span class="p">());</span>
-	<span class="k">return</span> <span class="n">NumberSeqReference</span><span class="p">::</span><span class="n">findReference</span><span class="p">(</span><span class="n">extendedtypenum</span> <span class="p">(</span><span class="n">ContosoId</span><span class="p">));</span>
-
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">void</span> <span class="n">delete</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">throw</span> <span class="n">error</span><span class="p">(</span><span class="s">&#34;@SYS23721&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">initValue</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// Key is set to mandatory so set it to 1</span>
+</span></span><span class="line"><span class="cl">	<span class="k">this</span><span class="p">.</span><span class="n">Key</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="n">ContosoParameters</span> <span class="n">find</span><span class="p">(</span><span class="n">boolean</span> <span class="m">_f</span><span class="n">orupdate</span> <span class="p">=</span> <span class="k">false</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ContosoParameters</span> <span class="n">parameter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="m">_f</span><span class="n">orupdate</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">parameter</span><span class="p">.</span><span class="n">selectForUpdate</span><span class="p">(</span><span class="m">_f</span><span class="n">orupdate</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">select</span> <span class="n">firstonly</span> <span class="n">RecId</span> <span class="k">from</span> <span class="n">parameter</span>
+</span></span><span class="line"><span class="cl">		<span class="k">where</span> <span class="n">parameter</span><span class="p">.</span><span class="n">Key</span> <span class="p">==</span> <span class="m">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(!</span><span class="n">parameter</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">parameter</span><span class="p">.</span><span class="n">isTmp</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Company</span><span class="p">::</span><span class="n">createParameter</span><span class="p">(</span><span class="n">parameter</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">parameter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">client</span> <span class="n">server</span> <span class="k">static</span> <span class="n">NumberSeqModule</span> <span class="n">numberSeqModule</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">NumberSeqModule</span><span class="p">::</span><span class="n">Contoso</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="n">server</span> <span class="k">static</span> <span class="n">NumberSequenceReference</span> <span class="n">numRefContosoId</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">NumberSeqScopeFactory</span><span class="p">::</span><span class="n">CreateDataAreaScope</span><span class="p">(</span><span class="n">curext</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">NumberSeqReference</span><span class="p">::</span><span class="n">findReference</span><span class="p">(</span><span class="n">extendedtypenum</span> <span class="p">(</span><span class="n">ContosoId</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="create-contosoparameters-form">Create <code>ContosoParameters</code> form</h3>
 <p>Note This form can only be used for references that have a scope of DataArea. The administration forms described in the Setup and Administration of number sequences section can be used for references that have any scope. These forms can be found in <em>Organization Administration &gt; Common &gt; Number Sequences</em></p>
@@ -435,44 +435,44 @@ This value will be used to link number sequence to the module and to restrict di
 </span><span class="lnt">37
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">class</span> <span class="nc">FormRun</span> <span class="n">extends</span> <span class="n">ObjectRun</span>
-<span class="p">{</span>
-	<span class="n">NumberSeqReference</span>          <span class="n">numberSeqReference</span><span class="p">;</span>
-	<span class="n">boolean</span>                     <span class="n">runExecuteDirect</span><span class="p">;</span>
-	<span class="n">TmpIdRef</span>                    <span class="n">tmpIdRef</span><span class="p">;</span>
-	<span class="n">NumberSeqScope</span>              <span class="n">scope</span><span class="p">;</span>
-	<span class="n">NumberSeqApplicationModule</span>  <span class="n">numberSeqApplicationModule</span><span class="p">;</span>
-	<span class="n">container</span>                   <span class="n">numberSequenceModules</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="k">void</span> <span class="n">init</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="p">;</span>
-	<span class="k">this</span><span class="p">.</span><span class="n">numberSeqPreInit</span><span class="p">();</span>
-	<span class="n">super</span><span class="p">();</span>
-	<span class="n">ContosoParameters</span><span class="p">::</span><span class="n">find</span><span class="p">();</span>
-	<span class="k">this</span><span class="p">.</span><span class="n">numberSeqPostInit</span><span class="p">();</span>
-<span class="p">}</span>
-
-<span class="k">void</span> <span class="n">numberSeqPostInit</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="n">numberSequenceReference_ds</span><span class="p">.</span><span class="kt">object</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">NumberSequenceReference</span><span class="p">,</span> <span class="n">AllowSameAs</span><span class="p">)).</span><span class="n">visible</span><span class="p">(</span><span class="n">numberSeqApplicationModule</span><span class="p">.</span><span class="n">sameAsActive</span><span class="p">());</span>
-	<span class="n">referenceSameAsLabel</span><span class="p">.</span><span class="n">visible</span><span class="p">(</span><span class="n">numberSeqApplicationModule</span><span class="p">.</span><span class="n">sameAsActive</span><span class="p">());</span>
-<span class="p">}</span>
-
-<span class="k">void</span> <span class="n">numberSeqPreInit</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="p">;</span>
-	<span class="n">runExecuteDirect</span>            <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
-
-	<span class="n">numberSequenceModules</span>       <span class="p">=</span> <span class="p">[</span><span class="n">NumberSeqModule</span><span class="p">::</span><span class="n">Contoso</span><span class="p">];</span>
-	<span class="n">numberSeqApplicationModule</span>  <span class="p">=</span> <span class="k">new</span> <span class="n">NumberSeqModuleContoso</span> <span class="p">();</span>
-	<span class="n">scope</span>                       <span class="p">=</span> <span class="n">NumberSeqScopeFactory</span><span class="p">::</span><span class="n">createDataAreaScope</span><span class="p">();</span>
-	<span class="n">NumberSeqApplicationModule</span><span class="p">::</span><span class="n">createReferencesMulti</span><span class="p">(</span><span class="n">numberSequenceModules</span><span class="p">,</span> <span class="n">scope</span><span class="p">);</span>
-
-	<span class="n">tmpIdRef</span><span class="p">.</span><span class="n">setTmpData</span><span class="p">(</span><span class="n">NumberSequenceReference</span><span class="p">::</span><span class="n">configurationKeyTableMulti</span><span class="p">(</span><span class="n">numberSequenceModules</span><span class="p">));</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">FormRun</span> <span class="n">extends</span> <span class="n">ObjectRun</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">NumberSeqReference</span>          <span class="n">numberSeqReference</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">boolean</span>                     <span class="n">runExecuteDirect</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">TmpIdRef</span>                    <span class="n">tmpIdRef</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">NumberSeqScope</span>              <span class="n">scope</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">NumberSeqApplicationModule</span>  <span class="n">numberSeqApplicationModule</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">container</span>                   <span class="n">numberSequenceModules</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">void</span> <span class="k">init</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">this</span><span class="p">.</span><span class="n">numberSeqPreInit</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ContosoParameters</span><span class="p">::</span><span class="n">find</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="k">this</span><span class="p">.</span><span class="n">numberSeqPostInit</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">void</span> <span class="n">numberSeqPostInit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">numberSequenceReference_ds</span><span class="p">.</span><span class="kt">object</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">NumberSequenceReference</span><span class="p">,</span> <span class="n">AllowSameAs</span><span class="p">)).</span><span class="n">visible</span><span class="p">(</span><span class="n">numberSeqApplicationModule</span><span class="p">.</span><span class="n">sameAsActive</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">	<span class="n">referenceSameAsLabel</span><span class="p">.</span><span class="n">visible</span><span class="p">(</span><span class="n">numberSeqApplicationModule</span><span class="p">.</span><span class="n">sameAsActive</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">void</span> <span class="n">numberSeqPreInit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">runExecuteDirect</span>            <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">numberSequenceModules</span>       <span class="p">=</span> <span class="p">[</span><span class="n">NumberSeqModule</span><span class="p">::</span><span class="n">Contoso</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="n">numberSeqApplicationModule</span>  <span class="p">=</span> <span class="k">new</span> <span class="n">NumberSeqModuleContoso</span> <span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">scope</span>                       <span class="p">=</span> <span class="n">NumberSeqScopeFactory</span><span class="p">::</span><span class="n">createDataAreaScope</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">NumberSeqApplicationModule</span><span class="p">::</span><span class="n">createReferencesMulti</span><span class="p">(</span><span class="n">numberSequenceModules</span><span class="p">,</span> <span class="n">scope</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">tmpIdRef</span><span class="p">.</span><span class="n">setTmpData</span><span class="p">(</span><span class="n">NumberSequenceReference</span><span class="p">::</span><span class="n">configurationKeyTableMulti</span><span class="p">(</span><span class="n">numberSequenceModules</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Code example for <code>NumberSequenceReference</code> data source methods</p>
 <div class="highlight"><div class="chroma">
@@ -503,31 +503,31 @@ This value will be used to link number sequence to the module and to restrict di
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">void</span> <span class="n">removeFilter</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="p">;</span>
-	<span class="n">runExecuteDirect</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
-	<span class="n">numbersequenceReference_ds</span><span class="p">.</span><span class="n">executeQuery</span><span class="p">();</span>
-<span class="p">}</span>
-
-<span class="k">void</span> <span class="n">executeQuery</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="k">if</span> <span class="p">(</span><span class="n">runExecuteDirect</span><span class="p">)</span>
-	<span class="p">{</span>
-		<span class="n">super</span><span class="p">();</span>
-	<span class="p">}</span>
-	<span class="k">else</span>
-	<span class="p">{</span>
-		<span class="n">runExecuteDirect</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
-		<span class="k">this</span><span class="p">.</span><span class="n">queryRun</span><span class="p">(</span><span class="n">NumberSeqReference</span><span class="p">::</span><span class="n">buildQueryRunMulti</span><span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">,</span>
-															 <span class="n">tmpIdRef</span><span class="p">,</span>
-															 <span class="n">numberSequenceTable</span><span class="p">,</span>
-															 <span class="n">numberSequenceModules</span><span class="p">,</span>
-															 <span class="n">scope</span><span class="p">));</span>
-		<span class="n">numbersequenceReference_ds</span><span class="p">.</span><span class="n">research</span><span class="p">();</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">void</span> <span class="n">removeFilter</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">runExecuteDirect</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">numbersequenceReference_ds</span><span class="p">.</span><span class="n">executeQuery</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">void</span> <span class="n">executeQuery</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">runExecuteDirect</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">runExecuteDirect</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">this</span><span class="p">.</span><span class="n">queryRun</span><span class="p">(</span><span class="n">NumberSeqReference</span><span class="p">::</span><span class="n">buildQueryRunMulti</span><span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">															 <span class="n">tmpIdRef</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">															 <span class="n">numberSequenceTable</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">															 <span class="n">numberSequenceModules</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">															 <span class="n">scope</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">		<span class="n">numbersequenceReference_ds</span><span class="p">.</span><span class="n">research</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="how-to-use-on-table">How to use on Table</h2>
 <p>Set number sequence in Contoso Table</p>
@@ -548,20 +548,20 @@ This value will be used to link number sequence to the module and to restrict di
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">private</span> <span class="k">void</span> <span class="n">setContosoId</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="n">NumberSeq</span> <span class="n">num</span><span class="p">;</span>
-	<span class="n">NumberSequenceReference</span> <span class="n">numberSequenceReference</span><span class="p">;</span>
-	<span class="p">;</span>
-	<span class="n">numberSequenceReference</span> <span class="p">=</span> <span class="n">CVRParameters</span><span class="p">::</span><span class="n">numRefContosoId</span><span class="p">();</span>
-
-	<span class="k">if</span> <span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">)</span>
-	<span class="p">{</span>
-		<span class="n">num</span> <span class="p">=</span> <span class="n">NumberSeq</span><span class="p">::</span><span class="n">newGetNum</span><span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">);</span>
-		<span class="k">this</span><span class="p">.</span><span class="n">Id</span> <span class="p">=</span> <span class="n">num</span><span class="p">.</span><span class="n">num</span><span class="p">();</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">private</span> <span class="k">void</span> <span class="n">setContosoId</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">NumberSeq</span> <span class="n">num</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">NumberSequenceReference</span> <span class="n">numberSequenceReference</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">numberSequenceReference</span> <span class="p">=</span> <span class="n">CVRParameters</span><span class="p">::</span><span class="n">numRefContosoId</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">num</span> <span class="p">=</span> <span class="n">NumberSeq</span><span class="p">::</span><span class="n">newGetNum</span><span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="k">this</span><span class="p">.</span><span class="n">Id</span> <span class="p">=</span> <span class="n">num</span><span class="p">.</span><span class="n">num</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Optional method – in case you don’t want to expose Number sequence on Form Level</p>
 <div class="highlight"><div class="chroma">
@@ -587,26 +587,26 @@ This value will be used to link number sequence to the module and to restrict di
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">void</span> <span class="n">initValue</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="p">;</span>
-	<span class="n">super</span><span class="p">();</span>
-
-	<span class="c1">// Initialise the title id
-</span><span class="c1"></span>	<span class="k">this</span><span class="p">.</span> <span class="n">setContosoId</span> <span class="p">();</span>
-<span class="p">}</span>
-
-<span class="k">public</span> <span class="k">void</span> <span class="n">insert</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="p">;</span>
-	<span class="k">if</span><span class="p">(!</span><span class="k">this</span><span class="p">.</span><span class="n">Id</span><span class="p">)</span>
-	<span class="p">{</span>
-		<span class="k">this</span><span class="p">.</span> <span class="n">setContosoId</span> <span class="p">();</span>
-	<span class="p">}</span>
-
-	<span class="n">super</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">initValue</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// Initialise the title id</span>
+</span></span><span class="line"><span class="cl">	<span class="k">this</span><span class="p">.</span> <span class="n">setContosoId</span> <span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">insert</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(!</span><span class="k">this</span><span class="p">.</span><span class="n">Id</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">this</span><span class="p">.</span> <span class="n">setContosoId</span> <span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>From now on you can create new record in Contoso Table with number sequence.</p>
 <h2 id="how-to-use-on-form">How to use on Form</h2>
@@ -622,11 +622,11 @@ This value will be used to link number sequence to the module and to restrict di
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">class</span> <span class="nc">FormRun</span> <span class="n">extends</span> <span class="n">ObjectRun</span>
-<span class="p">{</span>
-	<span class="n">NumberSeqFormHandler</span> <span class="n">numberSeqFormHandlerContosoId</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">FormRun</span> <span class="n">extends</span> <span class="n">ObjectRun</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">NumberSeqFormHandler</span> <span class="n">numberSeqFormHandlerContosoId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>Add the <code>NumberSeqFormHandler</code> method to the form. The code in this method will create an instance of the number sequence form handler and return it.</li>
@@ -647,19 +647,19 @@ This value will be used to link number sequence to the module and to restrict di
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="n">NumberSeqFormHandler</span> <span class="n">numSeqFormHandlerContosoId</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="k">if</span> <span class="p">(!</span><span class="n">numberSeqFormHandlerContosoId</span><span class="p">)</span>
-	<span class="p">{</span>
-		<span class="n">numberSeqFormHandlerContosoId</span> <span class="p">=</span> <span class="n">NumberSeqFormHandler</span><span class="p">::</span><span class="n">newForm</span><span class="p">(</span><span class="n">ContosoParameters</span><span class="p">::</span> <span class="n">numRefContosoId</span><span class="p">().</span><span class="n">NumberSequenceId</span><span class="p">,</span>
-															 <span class="n">element</span><span class="p">,</span>
-															 <span class="n">Contoso_ds</span><span class="p">,</span>
-															 <span class="n">fieldNum</span><span class="p">(</span><span class="n">Contoso</span><span class="p">,</span> <span class="n">ContosoId</span><span class="p">)</span>
-															<span class="p">);</span>
-	<span class="p">}</span>
-	<span class="k">return</span> <span class="n">numberSeqFormHandlerContosoId</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="n">NumberSeqFormHandler</span> <span class="n">numSeqFormHandlerContosoId</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(!</span><span class="n">numberSeqFormHandlerContosoId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">numberSeqFormHandlerContosoId</span> <span class="p">=</span> <span class="n">NumberSeqFormHandler</span><span class="p">::</span><span class="n">newForm</span><span class="p">(</span><span class="n">ContosoParameters</span><span class="p">::</span> <span class="n">numRefContosoId</span><span class="p">().</span><span class="n">NumberSequenceId</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">															 <span class="n">element</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">															 <span class="n">Contoso_ds</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">															 <span class="n">fieldNum</span><span class="p">(</span><span class="n">Contoso</span><span class="p">,</span> <span class="n">ContosoId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">															<span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">numberSeqFormHandlerContosoId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>Add <strong>create, delete, and write</strong> methods to the data source of the table that contains the field for which the number sequence is being used. The following code examples show these methods that are added to the data source for the Contoso table to support the number sequence for the <code>ContosoId</code> field.</li>
@@ -713,52 +713,52 @@ This value will be used to link number sequence to the module and to restrict di
 </span><span class="lnt">45
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">void</span> <span class="n">create</span><span class="p">(</span><span class="n">boolean</span> <span class="m">_</span><span class="n">append</span> <span class="p">=</span> <span class="k">false</span><span class="p">)</span>
-<span class="p">{</span>
-	<span class="c1">//before create, (ensure the number seuence has not run out of numbers)
-</span><span class="c1"></span>	<span class="n">element</span><span class="p">.</span><span class="n">numSeqFormHandlerContosoId</span><span class="p">().</span><span class="n">formMethodDataSourceCreatePre</span><span class="p">();</span>
-
-	<span class="c1">// start: inherited table code
-</span><span class="c1"></span>	<span class="c1">// we need to let the create happen so the user can
-</span><span class="c1"></span>	<span class="c1">// choose the type
-</span><span class="c1"></span>	<span class="n">super</span><span class="p">(</span><span class="m">_</span><span class="n">append</span><span class="p">);</span>
-
-	<span class="c1">//number sequence, create action, (get next number)
-</span><span class="c1"></span>	<span class="n">element</span><span class="p">.</span><span class="n">numSeqFormHandlerContosoId</span><span class="p">().</span><span class="n">formMethodDataSourceCreate</span><span class="p">();</span>
-<span class="p">}</span>
-<span class="k">public</span> <span class="k">void</span> <span class="n">delete</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="c1">//release the number sequence value.
-</span><span class="c1"></span>	<span class="n">element</span><span class="p">.</span> <span class="n">numSeqFormHandlerContosoId</span><span class="p">().</span><span class="n">formMethodDataSourceDelete</span><span class="p">();</span>
-
-	<span class="c1">//delete the record
-</span><span class="c1"></span>	<span class="n">super</span><span class="p">();</span>
-<span class="p">}</span>
-<span class="k">public</span> <span class="k">void</span> <span class="n">write</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="n">super</span><span class="p">();</span>
-	<span class="n">element</span><span class="p">.</span> <span class="n">numSeqFormHandlerContosoId</span><span class="p">().</span><span class="n">formMethodDataSourceWrite</span><span class="p">();</span>
-<span class="p">}</span>
-
-<span class="k">public</span> <span class="n">boolean</span> <span class="n">validateWrite</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="n">boolean</span>         <span class="n">ret</span><span class="p">;</span>
-	<span class="n">ret</span> <span class="p">=</span> <span class="n">super</span><span class="p">();</span>
-	<span class="n">ret</span> <span class="p">=</span> <span class="n">element</span><span class="p">.</span><span class="n">numberSeqFormHandler</span><span class="p">().</span><span class="n">formMethodDataSourceValidateWrite</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span> <span class="p">&amp;&amp;</span> <span class="n">ret</span><span class="p">;</span>
-	<span class="k">if</span> <span class="p">(</span><span class="n">ret</span><span class="p">)</span>
-	<span class="p">{</span>
-		<span class="n">Contoso</span><span class="p">.</span><span class="n">validateWrite</span><span class="p">();</span>
-	<span class="p">}</span>
-	<span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="n">Link</span> <span class="n">Active</span><span class="p">()</span>
-<span class="k">public</span> <span class="k">void</span> <span class="n">linkActive</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="p">;</span>
-	<span class="n">element</span><span class="p">.</span><span class="n">numberSeqFormHandler</span><span class="p">().</span><span class="n">formMethodDataSourceLinkActive</span><span class="p">();</span>
-	<span class="n">super</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">create</span><span class="p">(</span><span class="n">boolean</span> <span class="m">_</span><span class="n">append</span> <span class="p">=</span> <span class="k">false</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//before create, (ensure the number seuence has not run out of numbers)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">element</span><span class="p">.</span><span class="n">numSeqFormHandlerContosoId</span><span class="p">().</span><span class="n">formMethodDataSourceCreatePre</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// start: inherited table code</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// we need to let the create happen so the user can</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// choose the type</span>
+</span></span><span class="line"><span class="cl">	<span class="n">super</span><span class="p">(</span><span class="m">_</span><span class="n">append</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">//number sequence, create action, (get next number)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">element</span><span class="p">.</span><span class="n">numSeqFormHandlerContosoId</span><span class="p">().</span><span class="n">formMethodDataSourceCreate</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">delete</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//release the number sequence value.</span>
+</span></span><span class="line"><span class="cl">	<span class="n">element</span><span class="p">.</span> <span class="n">numSeqFormHandlerContosoId</span><span class="p">().</span><span class="n">formMethodDataSourceDelete</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">//delete the record</span>
+</span></span><span class="line"><span class="cl">	<span class="n">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">write</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">element</span><span class="p">.</span> <span class="n">numSeqFormHandlerContosoId</span><span class="p">().</span><span class="n">formMethodDataSourceWrite</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="n">boolean</span> <span class="n">validateWrite</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">boolean</span>         <span class="n">ret</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ret</span> <span class="p">=</span> <span class="n">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ret</span> <span class="p">=</span> <span class="n">element</span><span class="p">.</span><span class="n">numberSeqFormHandler</span><span class="p">().</span><span class="n">formMethodDataSourceValidateWrite</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span> <span class="p">&amp;&amp;</span> <span class="n">ret</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Contoso</span><span class="p">.</span><span class="n">validateWrite</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">Link</span> <span class="n">Active</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">linkActive</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">element</span><span class="p">.</span><span class="n">numberSeqFormHandler</span><span class="p">().</span><span class="n">formMethodDataSourceLinkActive</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="optional-method">Optional method</h2>
 <p>Continuous sequence</p>
@@ -772,12 +772,12 @@ This value will be used to link number sequence to the module and to restrict di
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">void</span> <span class="n">delete</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="n">super</span><span class="p">();</span>
-	<span class="n">NumberSeq</span><span class="p">::</span><span class="n">releaseNumber</span><span class="p">(</span><span class="n">ContosoParameters</span><span class="p">::</span><span class="n">numRefContosoId</span><span class="p">().</span><span class="n">NumberSequenceId</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">ContosoId</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">delete</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">NumberSeq</span><span class="p">::</span><span class="n">releaseNumber</span><span class="p">(</span><span class="n">ContosoParameters</span><span class="p">::</span><span class="n">numRefContosoId</span><span class="p">().</span><span class="n">NumberSequenceId</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">ContosoId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="testing">Testing</h2>
 <p>Testing Number sequence by Job</p>
@@ -808,36 +808,36 @@ This value will be used to link number sequence to the module and to restrict di
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">static</span> <span class="k">void</span> <span class="n">Max_numberSeqRefCustAccount</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
-<span class="p">{</span>
-	<span class="n">NumberSequenceReference</span> <span class="n">numberSeqRefCustAccount</span> <span class="p">=</span> <span class="n">CustParameters</span><span class="p">::</span><span class="n">numRefCustAccount</span><span class="p">();</span>
-	<span class="n">NumberSeq</span>               <span class="n">numSeqCustAccount</span><span class="p">;</span>
-	<span class="k">try</span>
-	<span class="p">{</span>
-<span class="c1">//Use the TTS level to decide whether sequence is consumed or not.
-</span><span class="c1"></span>		<span class="n">ttsBegin</span><span class="p">;</span>
-		<span class="k">if</span> <span class="p">(</span><span class="n">numberSeqRefCustAccount</span><span class="p">)</span>
-		<span class="p">{</span>
-			<span class="n">numSeqCustAccount</span> <span class="p">=</span> <span class="n">NumberSeq</span><span class="p">::</span><span class="n">newGetNum</span><span class="p">(</span><span class="n">numberSeqRefCustAccount</span><span class="p">);</span>
-			<span class="k">if</span> <span class="p">(</span><span class="n">numSeqCustAccount</span><span class="p">)</span>
-			<span class="p">{</span>
-				<span class="n">info</span><span class="p">(</span><span class="n">numSeqCustAccount</span><span class="p">.</span><span class="n">num</span><span class="p">());</span>
-			<span class="p">}</span>
-		<span class="p">}</span>
-		<span class="n">ttsCommit</span><span class="p">;</span>
-	<span class="p">}</span>
-	<span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span><span class="p">::</span><span class="n">Error</span><span class="p">)</span>
-	<span class="p">{</span>
-	   <span class="n">info</span><span class="p">(</span><span class="s">&#34;Caught &#39;Exception::Error&#39;.&#34;</span><span class="p">);</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">Max_numberSeqRefCustAccount</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">NumberSequenceReference</span> <span class="n">numberSeqRefCustAccount</span> <span class="p">=</span> <span class="n">CustParameters</span><span class="p">::</span><span class="n">numRefCustAccount</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">NumberSeq</span>               <span class="n">numSeqCustAccount</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">try</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//Use the TTS level to decide whether sequence is consumed or not.</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ttsBegin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="n">numberSeqRefCustAccount</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">numSeqCustAccount</span> <span class="p">=</span> <span class="n">NumberSeq</span><span class="p">::</span><span class="n">newGetNum</span><span class="p">(</span><span class="n">numberSeqRefCustAccount</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="p">(</span><span class="n">numSeqCustAccount</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="n">info</span><span class="p">(</span><span class="n">numSeqCustAccount</span><span class="p">.</span><span class="n">num</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ttsCommit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span><span class="p">::</span><span class="n">Error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">	   <span class="n">info</span><span class="p">(</span><span class="s">&#34;Caught &#39;Exception::Error&#39;.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Thank you for reading!</p></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on February 24, 2022</span>
+                <span>Updated on March 21, 2022</span>
             </div>
             <div class="post-info-license"></div>
         </div>

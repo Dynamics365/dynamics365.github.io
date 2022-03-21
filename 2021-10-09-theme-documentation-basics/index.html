@@ -10,7 +10,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://nuxulu.com/2021-10-09-theme-documentation-basics/" /><meta property="og:image" content="https://nuxulu.com/2021-10-09-theme-documentation-basics/featured-image.jpg"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-10-10T21:29:01+08:00" />
-<meta property="article:modified_time" content="2022-02-24T15:07:02+07:00" />
+<meta property="article:modified_time" content="2022-03-21T22:30:25+07:00" />
 <meta property="og:see_also" content="https://nuxulu.com/2021-10-09-emoji-support/" /><meta property="og:see_also" content="https://nuxulu.com/2021-10-09-theme-documentation-built-in-shortcodes/" /><meta property="og:see_also" content="https://nuxulu.com/2021-10-09-theme-documentation-extended-shortcodes/" /><meta property="og:see_also" content="https://nuxulu.com/2021-10-09-theme-documentation-content/" /><meta property="og:see_also" content="https://nuxulu.com/2021-10-09-basic-markdown-syntax/" />
 
 <meta name="twitter:card" content="summary_large_image"/>
@@ -33,7 +33,7 @@
                             "width":  1600 ,
                             "height":  840 
                         }],"genre": "posts","wordcount":  4749 ,
-        "url": "https:\/\/nuxulu.com\/2021-10-09-theme-documentation-basics\/","datePublished": "2021-10-10T21:29:01+08:00","dateModified": "2022-02-24T15:07:02+07:00","publisher": {
+        "url": "https:\/\/nuxulu.com\/2021-10-09-theme-documentation-basics\/","datePublished": "2021-10-10T21:29:01+08:00","dateModified": "2022-03-21T22:30:25+07:00","publisher": {
             "@type": "Organization",
             "name": ""},"description": ""
     }
@@ -191,9 +191,9 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">hugo new site my_website
-<span class="nb">cd</span> my_website
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo new site my_website
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> my_website
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="22-install-the-theme">2.2 Install the Theme</h3>
 <p>The <strong>CodeIT</strong> theme’s repository is: <a href="https://github.com/sunt-programator/CodeIT" target="_blank" rel="noopener noreferrer">https://github.com/sunt-programator/CodeIT</a>.</p>
@@ -204,8 +204,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git clone https://github.com/sunt-programator/CodeIT.git themes/CodeIT
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone https://github.com/sunt-programator/CodeIT.git themes/CodeIT
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Or, create an empty git repository and make this repository a submodule of your site directory:</p>
 <div class="highlight"><div class="chroma">
@@ -214,9 +214,9 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git init
-git submodule add https://github.com/sunt-programator/CodeIT.git themes/CodeIT
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git init
+</span></span><span class="line"><span class="cl">git submodule add https://github.com/sunt-programator/CodeIT.git themes/CodeIT
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="basic-configuration">2.3 Basic Configuration</h3>
 <p>The following is a basic configuration for the CodeIT theme:</p>
@@ -273,56 +273,56 @@ git submodule add https://github.com/sunt-programator/CodeIT.git themes/CodeIT
 </span><span class="lnt">49
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="nx">baseURL</span> <span class="p">=</span> <span class="s2">&#34;http://example.org/&#34;</span>
-<span class="c"># [en, zh-cn, fr, ...] determines default content language</span>
-<span class="nx">defaultContentLanguage</span> <span class="p">=</span> <span class="s2">&#34;en&#34;</span>
-<span class="c"># language code</span>
-<span class="nx">languageCode</span> <span class="p">=</span> <span class="s2">&#34;en&#34;</span>
-<span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;My New Hugo Site&#34;</span>
-
-<span class="c"># Change the default theme to be use when building the site with Hugo</span>
-<span class="nx">theme</span> <span class="p">=</span> <span class="s2">&#34;CodeIT&#34;</span>
-
-<span class="p">[</span><span class="nx">params</span><span class="p">]</span>
-  <span class="c"># CodeIT theme version</span>
-  <span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;0.2.X&#34;</span>
-
-<span class="p">[</span><span class="nx">menu</span><span class="p">]</span>
-  <span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
-    <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;posts&#34;</span>
-    <span class="c"># you can add extra information before the name (HTML format is supported), such as icons</span>
-    <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="c"># you can add extra information after the name (HTML format is supported), such as icons</span>
-    <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Posts&#34;</span>
-    <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/posts/&#34;</span>
-    <span class="c"># title will be shown when you hover on this menu link</span>
-    <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">weight</span> <span class="p">=</span> <span class="mi">1</span>
-  <span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
-    <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;tags&#34;</span>
-    <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Tags&#34;</span>
-    <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/tags/&#34;</span>
-    <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">weight</span> <span class="p">=</span> <span class="mi">2</span>
-  <span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
-    <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;categories&#34;</span>
-    <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Categories&#34;</span>
-    <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/categories/&#34;</span>
-    <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">weight</span> <span class="p">=</span> <span class="mi">3</span>
-
-<span class="c"># Markup related configuration in Hugo</span>
-<span class="p">[</span><span class="nx">markup</span><span class="p">]</span>
-  <span class="c"># Syntax Highlighting (https://gohugo.io/content-management/syntax-highlighting)</span>
-  <span class="p">[</span><span class="nx">markup</span><span class="p">.</span><span class="nx">highlight</span><span class="p">]</span>
-    <span class="c"># false is a necessary configuration (https://github.com/sunt-programator/CodeIT/issues/158)</span>
-    <span class="nx">noClasses</span> <span class="p">=</span> <span class="kc">false</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">baseURL</span> <span class="p">=</span> <span class="s2">&#34;http://example.org/&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c"># [en, zh-cn, fr, ...] determines default content language</span>
+</span></span><span class="line"><span class="cl"><span class="nx">defaultContentLanguage</span> <span class="p">=</span> <span class="s2">&#34;en&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c"># language code</span>
+</span></span><span class="line"><span class="cl"><span class="nx">languageCode</span> <span class="p">=</span> <span class="s2">&#34;en&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;My New Hugo Site&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Change the default theme to be use when building the site with Hugo</span>
+</span></span><span class="line"><span class="cl"><span class="nx">theme</span> <span class="p">=</span> <span class="s2">&#34;CodeIT&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># CodeIT theme version</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;0.2.X&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">menu</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;posts&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># you can add extra information before the name (HTML format is supported), such as icons</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># you can add extra information after the name (HTML format is supported), such as icons</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Posts&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/posts/&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># title will be shown when you hover on this menu link</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">weight</span> <span class="p">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;tags&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Tags&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/tags/&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">weight</span> <span class="p">=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;categories&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Categories&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/categories/&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">weight</span> <span class="p">=</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Markup related configuration in Hugo</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">markup</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># Syntax Highlighting (https://gohugo.io/content-management/syntax-highlighting)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">markup</span><span class="p">.</span><span class="nx">highlight</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># false is a necessary configuration (https://github.com/sunt-programator/CodeIT/issues/158)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">noClasses</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="details admonition note open">
         <div class="details-summary admonition-title">
@@ -339,8 +339,8 @@ git submodule add https://github.com/sunt-programator/CodeIT.git themes/CodeIT
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">hugo new posts/first_post.md
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo new posts/first_post.md
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Feel free to edit the post file by adding some sample content and replacing the title value in the beginning of the file.</p>
 <div class="details admonition note open">
@@ -358,8 +358,8 @@ git submodule add https://github.com/sunt-programator/CodeIT.git themes/CodeIT
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">hugo serve
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo serve
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Go to <code>http://localhost:1313</code>.</p>
 <p><figure><a class="lightgallery" href="/2021-10-09-theme-documentation-basics/basic-configuration-preview.png" title="Basic configuration preview" data-thumbnail="/2021-10-09-theme-documentation-basics/basic-configuration-preview.png" data-sub-html="<h2>Basic configuration preview</h2><p>Basic configuration preview</p>">
@@ -392,8 +392,8 @@ it is highly recommended that you add <code>--disableFastRender</code> parameter
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">hugo serve --disableFastRender
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo serve --disableFastRender
+</span></span></code></pre></td></tr></table>
 </div>
 </div></div>
         </div>
@@ -405,8 +405,8 @@ it is highly recommended that you add <code>--disableFastRender</code> parameter
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">hugo
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>A <code>public</code> folder will be generated, containing all static content and assets for your website. It can now be deployed on any web server.</p>
 <div class="details admonition tip open">
@@ -973,129 +973,129 @@ Alternatively, you can use <a href="https://gohugo.io/hosting-and-deployment/hos
 </span><span class="lnt">547
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
-  <span class="c"># CodeIT theme version</span>
-  <span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;0.2.X&#34;</span>
-  <span class="c"># site description</span>
-  <span class="nx">description</span> <span class="p">=</span> <span class="s2">&#34;This is My New Hugo Site&#34;</span>
-  <span class="c"># site keywords</span>
-  <span class="nx">keywords</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;Theme&#34;</span><span class="p">,</span> <span class="s2">&#34;Hugo&#34;</span><span class="p">]</span>
-  <span class="c"># site default theme (&#34;light&#34;, &#34;dark&#34;, &#34;auto&#34;)</span>
-  <span class="nx">defaultTheme</span> <span class="p">=</span> <span class="s2">&#34;auto&#34;</span>
-  <span class="c"># public git repo url only then enableGitInfo is true</span>
-  <span class="nx">gitRepo</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-  <span class="c"># which hash function used for SRI, when empty, no SRI is used</span>
-  <span class="c"># (&#34;sha256&#34;, &#34;sha384&#34;, &#34;sha512&#34;, &#34;md5&#34;)</span>
-  <span class="nx">fingerprint</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-  <span class="c"># date format</span>
-  <span class="nx">dateFormat</span> <span class="p">=</span> <span class="s2">&#34;2006-01-02&#34;</span>
-  <span class="c"># website images for Open Graph and Twitter Cards</span>
-  <span class="nx">images</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;/logo.png&#34;</span><span class="p">]</span>
-
-  <span class="c"># App icon config</span>
-  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">app</span><span class="p">]</span>
-    <span class="c"># optional site title override for the app when added to an iOS home screen or Android launcher</span>
-    <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;CodeIT&#34;</span>
-    <span class="c"># whether to omit favicon resource links</span>
-    <span class="nx">noFavicon</span> <span class="p">=</span> <span class="kc">false</span>
-    <span class="c"># modern SVG favicon to use in place of older style .png and .ico files</span>
-    <span class="nx">svgFavicon</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="c"># Android browser theme color</span>
-    <span class="nx">themeColor</span> <span class="p">=</span> <span class="s2">&#34;#ffffff&#34;</span>
-    <span class="c"># Safari mask icon color</span>
-    <span class="nx">iconColor</span> <span class="p">=</span> <span class="s2">&#34;#5bbad5&#34;</span>
-    <span class="c"># Windows v8-10 tile color</span>
-    <span class="nx">tileColor</span> <span class="p">=</span> <span class="s2">&#34;#da532c&#34;</span>
-
-  <span class="c"># Search config</span>
-  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">search</span><span class="p">]</span>
-    <span class="nx">enable</span> <span class="p">=</span> <span class="kc">true</span>
-    <span class="c"># type of search engine (&#34;lunr&#34;, &#34;algolia&#34;)</span>
-    <span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;lunr&#34;</span>
-    <span class="c"># max index length of the chunked content</span>
-    <span class="nx">contentLength</span> <span class="p">=</span> <span class="mi">4000</span>
-    <span class="c"># placeholder of the search bar</span>
-    <span class="nx">placeholder</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="c"># max number of results length</span>
-    <span class="nx">maxResultLength</span> <span class="p">=</span> <span class="mi">10</span>
-    <span class="c"># snippet length of the result</span>
-    <span class="nx">snippetLength</span> <span class="p">=</span> <span class="mi">30</span>
-    <span class="c"># HTML tag name of the highlight part in results</span>
-    <span class="nx">highlightTag</span> <span class="p">=</span> <span class="s2">&#34;em&#34;</span>
-    <span class="c"># whether to use the absolute URL based on the baseURL in search index</span>
-    <span class="nx">absoluteURL</span> <span class="p">=</span> <span class="kc">false</span>
-    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">search</span><span class="p">.</span><span class="nx">algolia</span><span class="p">]</span>
-      <span class="nx">index</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">appID</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">searchKey</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-
-  <span class="c"># Header config</span>
-  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">header</span><span class="p">]</span>
-    <span class="c"># desktop header mode (&#34;fixed&#34;, &#34;normal&#34;, &#34;auto&#34;)</span>
-    <span class="nx">desktopMode</span> <span class="p">=</span> <span class="s2">&#34;fixed&#34;</span>
-    <span class="c"># mobile header mode (&#34;fixed&#34;, &#34;normal&#34;, &#34;auto&#34;)</span>
-    <span class="nx">mobileMode</span> <span class="p">=</span> <span class="s2">&#34;auto&#34;</span>
-    <span class="c"># Header title config</span>
-    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">header</span><span class="p">.</span><span class="nx">title</span><span class="p">]</span>
-      <span class="c"># URL of the LOGO</span>
-      <span class="nx">logo</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="c"># title name</span>
-      <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="c"># you can add extra information before the name (HTML format is supported), such as icons</span>
-      <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="c"># you can add extra information after the name (HTML format is supported), such as icons</span>
-      <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="c"># whether to use typeit animation for title name</span>
-      <span class="nx">typeit</span> <span class="p">=</span> <span class="kc">false</span>
-
-  <span class="c"># Footer config</span>
-  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">footer</span><span class="p">]</span>
-    <span class="nx">enable</span> <span class="p">=</span> <span class="kc">true</span>
-    <span class="c"># Custom content (HTML format is supported)</span>
-    <span class="nx">custom</span> <span class="p">=</span> <span class="s1">&#39;&#39;</span>
-    <span class="c"># whether to show Hugo and theme info</span>
-    <span class="nx">hugo</span> <span class="p">=</span> <span class="kc">true</span>
-    <span class="c"># whether to show copyright info</span>
-    <span class="nx">copyright</span> <span class="p">=</span> <span class="kc">true</span>
-    <span class="c"># whether to show the author</span>
-    <span class="nx">author</span> <span class="p">=</span> <span class="kc">true</span>
-    <span class="c"># Site creation time</span>
-    <span class="nx">since</span> <span class="p">=</span> <span class="mi">2019</span>
-    <span class="c"># ICP info only in China (HTML format is supported)</span>
-    <span class="nx">icp</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="c"># license info (HTML format is supported)</span>
-    <span class="nx">license</span> <span class="p">=</span> <span class="s1">&#39;&lt;a rel=&#34;license external nofollow noopener noreffer&#34; href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34;&gt;CC BY-NC 4.0&lt;/a&gt;&#39;</span>
-
-  <span class="c"># Section (all posts) page config</span>
-  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">section</span><span class="p">]</span>
-    <span class="c"># special amount of posts in each section page</span>
-    <span class="nx">paginate</span> <span class="p">=</span> <span class="mi">20</span>
-    <span class="c"># date format (month and day)</span>
-    <span class="nx">dateFormat</span> <span class="p">=</span> <span class="s2">&#34;01-02&#34;</span>
-    <span class="c"># amount of RSS pages</span>
-    <span class="nx">rss</span> <span class="p">=</span> <span class="mi">10</span>
-
-  <span class="c"># List (category or tag) page config</span>
-  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">list</span><span class="p">]</span>
-    <span class="c"># special amount of posts in each list page</span>
-    <span class="nx">paginate</span> <span class="p">=</span> <span class="mi">20</span>
-    <span class="c"># date format (month and day)</span>
-    <span class="nx">dateFormat</span> <span class="p">=</span> <span class="s2">&#34;01-02&#34;</span>
-    <span class="c"># amount of RSS pages</span>
-    <span class="nx">rss</span> <span class="p">=</span> <span class="mi">10</span>
-
-  <span class="c"># Home page config</span>
-  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">home</span><span class="p">]</span>
-    <span class="c"># amount of RSS pages</span>
-    <span class="nx">rss</span> <span class="p">=</span> <span class="mi">10</span>
-    <span class="c"># Home page profile</span>
-    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">home</span><span class="p">.</span><span class="nx">profile</span><span class="p">]</span>
-      <span class="nx">enable</span> <span class="p">=</span> <span class="kc">true</span>
-      <span class="c"># Gravatar Email for preferred avatar in home page</span>
-      <span class="nx">gravatarEmail</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="c"># URL of avatar shown in home page</span>
-      <span class="nx">avatarURL</span> <span class="p">=</span> <span class="s2">&#34;/images/avatar.png&#34;</span>
-      <span class="c"># <a href="https://github.com/sunt-programator/CodeIT/releases/tag/v0.1.1" rel="noopener noreferrer" target="_blank"><img
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># CodeIT theme version</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;0.2.X&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># site description</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">description</span> <span class="p">=</span> <span class="s2">&#34;This is My New Hugo Site&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># site keywords</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">keywords</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;Theme&#34;</span><span class="p">,</span> <span class="s2">&#34;Hugo&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># site default theme (&#34;light&#34;, &#34;dark&#34;, &#34;auto&#34;)</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">defaultTheme</span> <span class="p">=</span> <span class="s2">&#34;auto&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># public git repo url only then enableGitInfo is true</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">gitRepo</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># which hash function used for SRI, when empty, no SRI is used</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># (&#34;sha256&#34;, &#34;sha384&#34;, &#34;sha512&#34;, &#34;md5&#34;)</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">fingerprint</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># date format</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">dateFormat</span> <span class="p">=</span> <span class="s2">&#34;2006-01-02&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># website images for Open Graph and Twitter Cards</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">images</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;/logo.png&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c"># App icon config</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">app</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># optional site title override for the app when added to an iOS home screen or Android launcher</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;CodeIT&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># whether to omit favicon resource links</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">noFavicon</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># modern SVG favicon to use in place of older style .png and .ico files</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">svgFavicon</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># Android browser theme color</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">themeColor</span> <span class="p">=</span> <span class="s2">&#34;#ffffff&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># Safari mask icon color</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">iconColor</span> <span class="p">=</span> <span class="s2">&#34;#5bbad5&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># Windows v8-10 tile color</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">tileColor</span> <span class="p">=</span> <span class="s2">&#34;#da532c&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c"># Search config</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">search</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">enable</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># type of search engine (&#34;lunr&#34;, &#34;algolia&#34;)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;lunr&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># max index length of the chunked content</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">contentLength</span> <span class="p">=</span> <span class="mi">4000</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># placeholder of the search bar</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">placeholder</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># max number of results length</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">maxResultLength</span> <span class="p">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># snippet length of the result</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">snippetLength</span> <span class="p">=</span> <span class="mi">30</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># HTML tag name of the highlight part in results</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">highlightTag</span> <span class="p">=</span> <span class="s2">&#34;em&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># whether to use the absolute URL based on the baseURL in search index</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">absoluteURL</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">search</span><span class="p">.</span><span class="nx">algolia</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">index</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">appID</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">searchKey</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c"># Header config</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">header</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># desktop header mode (&#34;fixed&#34;, &#34;normal&#34;, &#34;auto&#34;)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">desktopMode</span> <span class="p">=</span> <span class="s2">&#34;fixed&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># mobile header mode (&#34;fixed&#34;, &#34;normal&#34;, &#34;auto&#34;)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">mobileMode</span> <span class="p">=</span> <span class="s2">&#34;auto&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># Header title config</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">header</span><span class="p">.</span><span class="nx">title</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># URL of the LOGO</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">logo</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># title name</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># you can add extra information before the name (HTML format is supported), such as icons</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># you can add extra information after the name (HTML format is supported), such as icons</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># whether to use typeit animation for title name</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">typeit</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c"># Footer config</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">footer</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">enable</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># Custom content (HTML format is supported)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">custom</span> <span class="p">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># whether to show Hugo and theme info</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">hugo</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># whether to show copyright info</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">copyright</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># whether to show the author</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">author</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># Site creation time</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">since</span> <span class="p">=</span> <span class="mi">2019</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># ICP info only in China (HTML format is supported)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">icp</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># license info (HTML format is supported)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">license</span> <span class="p">=</span> <span class="s1">&#39;&lt;a rel=&#34;license external nofollow noopener noreffer&#34; href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34;&gt;CC BY-NC 4.0&lt;/a&gt;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c"># Section (all posts) page config</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">section</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># special amount of posts in each section page</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">paginate</span> <span class="p">=</span> <span class="mi">20</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># date format (month and day)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">dateFormat</span> <span class="p">=</span> <span class="s2">&#34;01-02&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># amount of RSS pages</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">rss</span> <span class="p">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c"># List (category or tag) page config</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">list</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># special amount of posts in each list page</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">paginate</span> <span class="p">=</span> <span class="mi">20</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># date format (month and day)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">dateFormat</span> <span class="p">=</span> <span class="s2">&#34;01-02&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># amount of RSS pages</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">rss</span> <span class="p">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c"># Home page config</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">home</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># amount of RSS pages</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">rss</span> <span class="p">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># Home page profile</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">home</span><span class="p">.</span><span class="nx">profile</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">enable</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># Gravatar Email for preferred avatar in home page</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">gravatarEmail</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># URL of avatar shown in home page</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">avatarURL</span> <span class="p">=</span> <span class="s2">&#34;/images/avatar.png&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># <a href="https://github.com/sunt-programator/CodeIT/releases/tag/v0.1.1" rel="noopener noreferrer" target="_blank"><img
         class="lazyload version"
         src="/svg/loading.min.svg"
         data-src="/svg/version/0.1.1-new.min.svg"
@@ -1103,11 +1103,11 @@ Alternatively, you can use <a href="https://gohugo.io/hosting-and-deployment/hos
         data-sizes="auto"
         alt="CodeIT NEW | 0.1.1"
         title="CodeIT NEW | 0.1.1" /></a> Alt text for avatar (default is the author name)</span>
-      <span class="nx">avatarAlt</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="c"># title shown in home page (HTML format is supported)</span>
-      <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="c"># subtitle shown in home page</span>
-      <span class="c"># <a href="https://github.com/sunt-programator/CodeIT/releases/tag/v0.1.1" rel="noopener noreferrer" target="_blank"><img
+</span></span><span class="line"><span class="cl">      <span class="nx">avatarAlt</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># title shown in home page (HTML format is supported)</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># subtitle shown in home page</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># <a href="https://github.com/sunt-programator/CodeIT/releases/tag/v0.1.1" rel="noopener noreferrer" target="_blank"><img
         class="lazyload version"
         src="/svg/loading.min.svg"
         data-src="/svg/version/0.1.1-changed.min.svg"
@@ -1115,89 +1115,89 @@ Alternatively, you can use <a href="https://gohugo.io/hosting-and-deployment/hos
         data-sizes="auto"
         alt="CodeIT CHANGED | 0.1.1"
         title="CodeIT CHANGED | 0.1.1" /></a> (HTML format is supported)</span>
-      <span class="nx">subtitle</span> <span class="p">=</span> <span class="s2">&#34;This is My New Hugo Site&#34;</span>
-      <span class="c"># whether to use typeit animation for subtitle</span>
-      <span class="nx">typeit</span> <span class="p">=</span> <span class="kc">true</span>
-      <span class="c"># whether to show social links</span>
-      <span class="nx">social</span> <span class="p">=</span> <span class="kc">true</span>
-      <span class="c"># disclaimer (HTML format is supported)</span>
-      <span class="nx">disclaimer</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="c"># Home page posts</span>
-    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">home</span><span class="p">.</span><span class="nx">posts</span><span class="p">]</span>
-      <span class="nx">enable</span> <span class="p">=</span> <span class="kc">true</span>
-      <span class="c"># special amount of posts in each home posts page</span>
-      <span class="nx">paginate</span> <span class="p">=</span> <span class="mi">6</span>
-      <span class="c"># replaced with hiddenFromHomePage in params.page</span>
-      <span class="c"># default behavior when you don&#39;t set &#34;hiddenFromHomePage&#34; in front matter</span>
-      <span class="nx">defaultHiddenFromHomePage</span> <span class="p">=</span> <span class="kc">false</span>
-
-  <span class="c"># Social config about the author</span>
-  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">social</span><span class="p">]</span>
-    <span class="nx">GitHub</span> <span class="p">=</span> <span class="s2">&#34;xxxx&#34;</span>
-    <span class="nx">Linkedin</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Twitter</span> <span class="p">=</span> <span class="s2">&#34;xxxx&#34;</span>
-    <span class="nx">Instagram</span> <span class="p">=</span> <span class="s2">&#34;xxxx&#34;</span>
-    <span class="nx">Facebook</span> <span class="p">=</span> <span class="s2">&#34;xxxx&#34;</span>
-    <span class="nx">Telegram</span> <span class="p">=</span> <span class="s2">&#34;xxxx&#34;</span>
-    <span class="nx">Medium</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Gitlab</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Youtubelegacy</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Youtubecustom</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Youtubechannel</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Tumblr</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Quora</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Keybase</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Pinterest</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Reddit</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Codepen</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">FreeCodeCamp</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Bitbucket</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Stackoverflow</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Weibo</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Odnoklassniki</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">VK</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Flickr</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Xing</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Snapchat</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Soundcloud</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Spotify</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Bandcamp</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Paypal</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Fivehundredpx</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Mix</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Goodreads</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Lastfm</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Foursquare</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Hackernews</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Kickstarter</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Patreon</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Steam</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Twitch</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Strava</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Skype</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Whatsapp</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Zhihu</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Douban</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Angellist</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Slidershare</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Jsfiddle</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Deviantart</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Behance</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Dribbble</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Wordpress</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Vine</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Googlescholar</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Researchgate</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Mastodon</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Thingiverse</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Devto</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Gitea</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">XMPP</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Matrix</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Bilibili</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">Email</span> <span class="p">=</span> <span class="s2">&#34;xxxx@xxxx.com&#34;</span>
-    <span class="nx">RSS</span> <span class="p">=</span> <span class="kc">true</span>
-    <span class="c"># <a href="https://github.com/sunt-programator/CodeIT/releases/tag/v0.1.2" rel="noopener noreferrer" target="_blank"><img
+</span></span><span class="line"><span class="cl">      <span class="nx">subtitle</span> <span class="p">=</span> <span class="s2">&#34;This is My New Hugo Site&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># whether to use typeit animation for subtitle</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">typeit</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># whether to show social links</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">social</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># disclaimer (HTML format is supported)</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">disclaimer</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># Home page posts</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">home</span><span class="p">.</span><span class="nx">posts</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">enable</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># special amount of posts in each home posts page</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">paginate</span> <span class="p">=</span> <span class="mi">6</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># replaced with hiddenFromHomePage in params.page</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># default behavior when you don&#39;t set &#34;hiddenFromHomePage&#34; in front matter</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">defaultHiddenFromHomePage</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c"># Social config about the author</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">social</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">GitHub</span> <span class="p">=</span> <span class="s2">&#34;xxxx&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Linkedin</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Twitter</span> <span class="p">=</span> <span class="s2">&#34;xxxx&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Instagram</span> <span class="p">=</span> <span class="s2">&#34;xxxx&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Facebook</span> <span class="p">=</span> <span class="s2">&#34;xxxx&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Telegram</span> <span class="p">=</span> <span class="s2">&#34;xxxx&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Medium</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Gitlab</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Youtubelegacy</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Youtubecustom</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Youtubechannel</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Tumblr</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Quora</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Keybase</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Pinterest</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Reddit</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Codepen</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">FreeCodeCamp</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Bitbucket</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Stackoverflow</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Weibo</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Odnoklassniki</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">VK</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Flickr</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Xing</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Snapchat</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Soundcloud</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Spotify</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Bandcamp</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Paypal</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Fivehundredpx</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Mix</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Goodreads</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Lastfm</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Foursquare</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Hackernews</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Kickstarter</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Patreon</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Steam</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Twitch</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Strava</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Skype</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Whatsapp</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Zhihu</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Douban</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Angellist</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Slidershare</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Jsfiddle</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Deviantart</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Behance</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Dribbble</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Wordpress</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Vine</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Googlescholar</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Researchgate</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Mastodon</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Thingiverse</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Devto</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Gitea</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">XMPP</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Matrix</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Bilibili</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Email</span> <span class="p">=</span> <span class="s2">&#34;xxxx@xxxx.com&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">RSS</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># <a href="https://github.com/sunt-programator/CodeIT/releases/tag/v0.1.2" rel="noopener noreferrer" target="_blank"><img
         class="lazyload version"
         src="/svg/loading.min.svg"
         data-src="/svg/version/0.1.2-new.min.svg"
@@ -1205,102 +1205,102 @@ Alternatively, you can use <a href="https://gohugo.io/hosting-and-deployment/hos
         data-sizes="auto"
         alt="CodeIT NEW | 0.1.2"
         title="CodeIT NEW | 0.1.2" /></a> Open Researcher and Contributor ID</span>
-    <span class="nx">Orcid</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-
-  <span class="c"># Page config</span>
-  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">]</span>
-    <span class="c"># whether to hide a page from home page</span>
-    <span class="nx">hiddenFromHomePage</span> <span class="p">=</span> <span class="kc">false</span>
-    <span class="c"># whether to hide a page from search results</span>
-    <span class="nx">hiddenFromSearch</span> <span class="p">=</span> <span class="kc">false</span>
-    <span class="c"># whether to enable twemoji</span>
-    <span class="nx">twemoji</span> <span class="p">=</span> <span class="kc">false</span>
-    <span class="c"># whether to enable lightgallery</span>
-    <span class="nx">lightgallery</span> <span class="p">=</span> <span class="kc">false</span>
-    <span class="c"># whether to enable the ruby extended syntax</span>
-    <span class="nx">ruby</span> <span class="p">=</span> <span class="kc">true</span>
-    <span class="c"># whether to enable the fraction extended syntax</span>
-    <span class="nx">fraction</span> <span class="p">=</span> <span class="kc">true</span>
-    <span class="c"># whether to enable the fontawesome extended syntax</span>
-    <span class="nx">fontawesome</span> <span class="p">=</span> <span class="kc">true</span>
-    <span class="c"># whether to show link to Raw Markdown content of the content</span>
-    <span class="nx">linkToMarkdown</span> <span class="p">=</span> <span class="kc">true</span>
-    <span class="c"># whether to show the full text content in RSS</span>
-    <span class="nx">rssFullText</span> <span class="p">=</span> <span class="kc">false</span>
-    <span class="c"># Table of the contents config</span>
-    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">toc</span><span class="p">]</span>
-      <span class="c"># whether to enable the table of the contents</span>
-      <span class="nx">enable</span> <span class="p">=</span> <span class="kc">true</span>
-      <span class="c"># whether to keep the static table of the contents in front of the post</span>
-      <span class="nx">keepStatic</span> <span class="p">=</span> <span class="kc">true</span>
-      <span class="c"># whether to make the table of the contents in the sidebar automatically collapsed</span>
-      <span class="nx">auto</span> <span class="p">=</span> <span class="kc">true</span>
-    <span class="c"># <a href="https://katex.org/" target="_blank" rel="noopener noreferrer">KaTeX</a> mathematical formulas</span>
-    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">math</span><span class="p">]</span>
-      <span class="nx">enable</span> <span class="p">=</span> <span class="kc">true</span>
-      <span class="c"># default block delimiter is $$ ... $$ and \\[ ... \\]</span>
-      <span class="nx">blockLeftDelimiter</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">blockRightDelimiter</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="c"># default inline delimiter is $ ... $ and \\( ... \\)</span>
-      <span class="nx">inlineLeftDelimiter</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">inlineRightDelimiter</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="c"># KaTeX extension copy_tex</span>
-      <span class="nx">copyTex</span> <span class="p">=</span> <span class="kc">true</span>
-      <span class="c"># KaTeX extension mhchem</span>
-      <span class="nx">mhchem</span> <span class="p">=</span> <span class="kc">true</span>
-    <span class="c"># Code config</span>
-    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">code</span><span class="p">]</span>
-      <span class="c"># whether to show the copy button of the code block</span>
-      <span class="nx">copy</span> <span class="p">=</span> <span class="kc">true</span>
-      <span class="c"># the maximum number of lines of displayed code by default</span>
-      <span class="nx">maxShownLines</span> <span class="p">=</span> <span class="mi">10</span>
-    <span class="c"># <a href="https://docs.mapbox.com/mapbox-gl-js" target="_blank" rel="noopener noreferrer">Mapbox GL JS</a> config</span>
-    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">mapbox</span><span class="p">]</span>
-      <span class="c"># access token of Mapbox GL JS</span>
-      <span class="nx">accessToken</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="c"># style for the light theme</span>
-      <span class="nx">lightStyle</span> <span class="p">=</span> <span class="s2">&#34;mapbox://styles/mapbox/light-v9&#34;</span>
-      <span class="c"># style for the dark theme</span>
-      <span class="nx">darkStyle</span> <span class="p">=</span> <span class="s2">&#34;mapbox://styles/mapbox/dark-v9&#34;</span>
-      <span class="c"># whether to add <a href="https://docs.mapbox.com/mapbox-gl-js/api#navigationcontrol" target="_blank" rel="noopener noreferrer">NavigationControl</a></span>
-      <span class="nx">navigation</span> <span class="p">=</span> <span class="kc">true</span>
-      <span class="c"># whether to add <a href="https://docs.mapbox.com/mapbox-gl-js/api#geolocatecontrol" target="_blank" rel="noopener noreferrer">GeolocateControl</a></span>
-      <span class="nx">geolocate</span> <span class="p">=</span> <span class="kc">true</span>
-      <span class="c"># whether to add <a href="https://docs.mapbox.com/mapbox-gl-js/api#scalecontrol" target="_blank" rel="noopener noreferrer">ScaleControl</a></span>
-      <span class="nx">scale</span> <span class="p">=</span> <span class="kc">true</span>
-      <span class="c"># whether to add <a href="https://docs.mapbox.com/mapbox-gl-js/api#fullscreencontrol" target="_blank" rel="noopener noreferrer">FullscreenControl</a></span>
-      <span class="nx">fullscreen</span> <span class="p">=</span> <span class="kc">true</span>
-    <span class="c"># social share links in post page</span>
-    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">share</span><span class="p">]</span>
-      <span class="nx">enable</span> <span class="p">=</span> <span class="kc">true</span>
-      <span class="nx">Twitter</span> <span class="p">=</span> <span class="kc">true</span>
-      <span class="nx">Facebook</span> <span class="p">=</span> <span class="kc">true</span>
-      <span class="nx">Linkedin</span> <span class="p">=</span> <span class="kc">false</span>
-      <span class="nx">Whatsapp</span> <span class="p">=</span> <span class="kc">true</span>
-      <span class="nx">Pinterest</span> <span class="p">=</span> <span class="kc">false</span>
-      <span class="nx">Tumblr</span> <span class="p">=</span> <span class="kc">false</span>
-      <span class="nx">HackerNews</span> <span class="p">=</span> <span class="kc">false</span>
-      <span class="nx">Reddit</span> <span class="p">=</span> <span class="kc">false</span>
-      <span class="nx">VK</span> <span class="p">=</span> <span class="kc">false</span>
-      <span class="nx">Buffer</span> <span class="p">=</span> <span class="kc">false</span>
-      <span class="nx">Xing</span> <span class="p">=</span> <span class="kc">false</span>
-      <span class="nx">Line</span> <span class="p">=</span> <span class="kc">true</span>
-      <span class="nx">Instapaper</span> <span class="p">=</span> <span class="kc">false</span>
-      <span class="nx">Pocket</span> <span class="p">=</span> <span class="kc">false</span>
-      <span class="nx">Digg</span> <span class="p">=</span> <span class="kc">false</span>
-      <span class="nx">Stumbleupon</span> <span class="p">=</span> <span class="kc">false</span>
-      <span class="nx">Flipboard</span> <span class="p">=</span> <span class="kc">false</span>
-      <span class="nx">Weibo</span> <span class="p">=</span> <span class="kc">true</span>
-      <span class="nx">Renren</span> <span class="p">=</span> <span class="kc">false</span>
-      <span class="nx">Myspace</span> <span class="p">=</span> <span class="kc">true</span>
-      <span class="nx">Blogger</span> <span class="p">=</span> <span class="kc">true</span>
-      <span class="nx">Baidu</span> <span class="p">=</span> <span class="kc">false</span>
-      <span class="nx">Odnoklassniki</span> <span class="p">=</span> <span class="kc">false</span>
-      <span class="nx">Evernote</span> <span class="p">=</span> <span class="kc">true</span>
-      <span class="nx">Skype</span> <span class="p">=</span> <span class="kc">false</span>
-      <span class="nx">Trello</span> <span class="p">=</span> <span class="kc">false</span>
-      <span class="nx">Mix</span> <span class="p">=</span> <span class="kc">false</span>
-      <span class="c"># <a href="https://github.com/sunt-programator/CodeIT/releases/tag/v0.1.2" rel="noopener noreferrer" target="_blank"><img
+</span></span><span class="line"><span class="cl">    <span class="nx">Orcid</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c"># Page config</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># whether to hide a page from home page</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">hiddenFromHomePage</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># whether to hide a page from search results</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">hiddenFromSearch</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># whether to enable twemoji</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">twemoji</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># whether to enable lightgallery</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">lightgallery</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># whether to enable the ruby extended syntax</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">ruby</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># whether to enable the fraction extended syntax</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fraction</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># whether to enable the fontawesome extended syntax</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fontawesome</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># whether to show link to Raw Markdown content of the content</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">linkToMarkdown</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># whether to show the full text content in RSS</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">rssFullText</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># Table of the contents config</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">toc</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># whether to enable the table of the contents</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">enable</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># whether to keep the static table of the contents in front of the post</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">keepStatic</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># whether to make the table of the contents in the sidebar automatically collapsed</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">auto</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># <a href="https://katex.org/" target="_blank" rel="noopener noreferrer">KaTeX</a> mathematical formulas</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">math</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">enable</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># default block delimiter is $$ ... $$ and \\[ ... \\]</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">blockLeftDelimiter</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">blockRightDelimiter</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># default inline delimiter is $ ... $ and \\( ... \\)</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">inlineLeftDelimiter</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">inlineRightDelimiter</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># KaTeX extension copy_tex</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">copyTex</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># KaTeX extension mhchem</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">mhchem</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># Code config</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">code</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># whether to show the copy button of the code block</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">copy</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># the maximum number of lines of displayed code by default</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">maxShownLines</span> <span class="p">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># <a href="https://docs.mapbox.com/mapbox-gl-js" target="_blank" rel="noopener noreferrer">Mapbox GL JS</a> config</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">mapbox</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># access token of Mapbox GL JS</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">accessToken</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># style for the light theme</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">lightStyle</span> <span class="p">=</span> <span class="s2">&#34;mapbox://styles/mapbox/light-v9&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># style for the dark theme</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">darkStyle</span> <span class="p">=</span> <span class="s2">&#34;mapbox://styles/mapbox/dark-v9&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># whether to add <a href="https://docs.mapbox.com/mapbox-gl-js/api#navigationcontrol" target="_blank" rel="noopener noreferrer">NavigationControl</a></span>
+</span></span><span class="line"><span class="cl">      <span class="nx">navigation</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># whether to add <a href="https://docs.mapbox.com/mapbox-gl-js/api#geolocatecontrol" target="_blank" rel="noopener noreferrer">GeolocateControl</a></span>
+</span></span><span class="line"><span class="cl">      <span class="nx">geolocate</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># whether to add <a href="https://docs.mapbox.com/mapbox-gl-js/api#scalecontrol" target="_blank" rel="noopener noreferrer">ScaleControl</a></span>
+</span></span><span class="line"><span class="cl">      <span class="nx">scale</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># whether to add <a href="https://docs.mapbox.com/mapbox-gl-js/api#fullscreencontrol" target="_blank" rel="noopener noreferrer">FullscreenControl</a></span>
+</span></span><span class="line"><span class="cl">      <span class="nx">fullscreen</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># social share links in post page</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">share</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">enable</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">Twitter</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">Facebook</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">Linkedin</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">Whatsapp</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">Pinterest</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">Tumblr</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">HackerNews</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">Reddit</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">VK</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">Buffer</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">Xing</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">Line</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">Instapaper</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">Pocket</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">Digg</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">Stumbleupon</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">Flipboard</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">Weibo</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">Renren</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">Myspace</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">Blogger</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">Baidu</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">Odnoklassniki</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">Evernote</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">Skype</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">Trello</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">Mix</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># <a href="https://github.com/sunt-programator/CodeIT/releases/tag/v0.1.2" rel="noopener noreferrer" target="_blank"><img
         class="lazyload version"
         src="/svg/loading.min.svg"
         data-src="/svg/version/0.1.2-new.min.svg"
@@ -1308,73 +1308,73 @@ Alternatively, you can use <a href="https://gohugo.io/hosting-and-deployment/hos
         data-sizes="auto"
         alt="CodeIT NEW | 0.1.2"
         title="CodeIT NEW | 0.1.2" /></a></span>
-      <span class="nx">Telegram</span> <span class="p">=</span> <span class="kc">false</span>
-    <span class="c"># Comment config</span>
-    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">comment</span><span class="p">]</span>
-      <span class="nx">enable</span> <span class="p">=</span> <span class="kc">true</span>
-      <span class="c"># <a href="https://disqus.com/" target="_blank" rel="noopener noreferrer">Disqus</a> comment config</span>
-      <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">comment</span><span class="p">.</span><span class="nx">disqus</span><span class="p">]</span>
-        <span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span>
-        <span class="c"># Disqus shortname to use Disqus in posts</span>
-        <span class="nx">shortname</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="c"># <a href="https://github.com/gitalk/gitalk" target="_blank" rel="noopener noreferrer">Gitalk</a> comment config</span>
-      <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">comment</span><span class="p">.</span><span class="nx">gitalk</span><span class="p">]</span>
-        <span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span>
-        <span class="nx">owner</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-        <span class="nx">repo</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-        <span class="nx">clientId</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-        <span class="nx">clientSecret</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="c"># <a href="https://github.com/xCss/Valine" target="_blank" rel="noopener noreferrer">Valine</a> comment config</span>
-      <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">comment</span><span class="p">.</span><span class="nx">valine</span><span class="p">]</span>
-        <span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span>
-        <span class="nx">appId</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-        <span class="nx">appKey</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-        <span class="nx">placeholder</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-        <span class="nx">avatar</span> <span class="p">=</span> <span class="s2">&#34;mp&#34;</span>
-        <span class="nx">meta</span><span class="p">=</span> <span class="s2">&#34;&#34;</span>
-        <span class="nx">pageSize</span> <span class="p">=</span> <span class="mi">10</span>
-        <span class="nx">lang</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-        <span class="nx">visitor</span> <span class="p">=</span> <span class="kc">true</span>
-        <span class="nx">recordIP</span> <span class="p">=</span> <span class="kc">true</span>
-        <span class="nx">highlight</span> <span class="p">=</span> <span class="kc">true</span>
-        <span class="nx">enableQQ</span> <span class="p">=</span> <span class="kc">false</span>
-        <span class="nx">serverURLs</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-        <span class="c"># emoji data file name, default is &#34;google.yml&#34;</span>
-        <span class="c"># (&#34;apple.yml&#34;, &#34;google.yml&#34;, &#34;facebook.yml&#34;, &#34;twitter.yml&#34;)</span>
-        <span class="c"># located in &#34;themes/CodeIT/assets/data/emoji/&#34; directory</span>
-        <span class="c"># you can store your own data files in the same path under your project:</span>
-        <span class="c"># &#34;assets/data/emoji/&#34;</span>
-        <span class="nx">emoji</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="c"># <a href="https://developers.facebook.com/docs/plugins/comments" target="_blank" rel="noopener noreferrer">Facebook comment</a> config</span>
-      <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">comment</span><span class="p">.</span><span class="nx">facebook</span><span class="p">]</span>
-        <span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span>
-        <span class="nx">width</span> <span class="p">=</span> <span class="s2">&#34;100%&#34;</span>
-        <span class="nx">numPosts</span> <span class="p">=</span> <span class="mi">10</span>
-        <span class="nx">appId</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-        <span class="nx">languageCode</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="c"># <a href="https://comments.app/" target="_blank" rel="noopener noreferrer">Telegram comments</a> config</span>
-      <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">comment</span><span class="p">.</span><span class="nx">telegram</span><span class="p">]</span>
-        <span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span>
-        <span class="nx">siteID</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-        <span class="nx">limit</span> <span class="p">=</span> <span class="mi">5</span>
-        <span class="nx">height</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-        <span class="nx">color</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-        <span class="nx">colorful</span> <span class="p">=</span> <span class="kc">true</span>
-        <span class="nx">dislikes</span> <span class="p">=</span> <span class="kc">false</span>
-        <span class="nx">outlined</span> <span class="p">=</span> <span class="kc">false</span>
-      <span class="c"># <a href="https://commento.io/" target="_blank" rel="noopener noreferrer">Commento</a> comment config</span>
-      <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">comment</span><span class="p">.</span><span class="nx">commento</span><span class="p">]</span>
-        <span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span>
-      <span class="c"># <a href="https://utteranc.es/" target="_blank" rel="noopener noreferrer">Utterances</a> comment config</span>
-      <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">comment</span><span class="p">.</span><span class="nx">utterances</span><span class="p">]</span>
-        <span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span>
-        <span class="c"># owner/repo</span>
-        <span class="nx">repo</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-        <span class="nx">issueTerm</span> <span class="p">=</span> <span class="s2">&#34;pathname&#34;</span>
-        <span class="nx">label</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-        <span class="nx">lightTheme</span> <span class="p">=</span> <span class="s2">&#34;github-light&#34;</span>
-        <span class="nx">darkTheme</span> <span class="p">=</span> <span class="s2">&#34;github-dark&#34;</span>
-      <span class="c"># <a href="https://github.com/sunt-programator/CodeIT/releases/tag/v0.2.0" rel="noopener noreferrer" target="_blank"><img
+</span></span><span class="line"><span class="cl">      <span class="nx">Telegram</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># Comment config</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">comment</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">enable</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># <a href="https://disqus.com/" target="_blank" rel="noopener noreferrer">Disqus</a> comment config</span>
+</span></span><span class="line"><span class="cl">      <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">comment</span><span class="p">.</span><span class="nx">disqus</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">        <span class="c"># Disqus shortname to use Disqus in posts</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">shortname</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># <a href="https://github.com/gitalk/gitalk" target="_blank" rel="noopener noreferrer">Gitalk</a> comment config</span>
+</span></span><span class="line"><span class="cl">      <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">comment</span><span class="p">.</span><span class="nx">gitalk</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">owner</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">repo</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">clientId</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">clientSecret</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># <a href="https://github.com/xCss/Valine" target="_blank" rel="noopener noreferrer">Valine</a> comment config</span>
+</span></span><span class="line"><span class="cl">      <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">comment</span><span class="p">.</span><span class="nx">valine</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">appId</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">appKey</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">placeholder</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">avatar</span> <span class="p">=</span> <span class="s2">&#34;mp&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">meta</span><span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">pageSize</span> <span class="p">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">lang</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">visitor</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">recordIP</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">highlight</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">enableQQ</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">serverURLs</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="c"># emoji data file name, default is &#34;google.yml&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="c"># (&#34;apple.yml&#34;, &#34;google.yml&#34;, &#34;facebook.yml&#34;, &#34;twitter.yml&#34;)</span>
+</span></span><span class="line"><span class="cl">        <span class="c"># located in &#34;themes/CodeIT/assets/data/emoji/&#34; directory</span>
+</span></span><span class="line"><span class="cl">        <span class="c"># you can store your own data files in the same path under your project:</span>
+</span></span><span class="line"><span class="cl">        <span class="c"># &#34;assets/data/emoji/&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">emoji</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># <a href="https://developers.facebook.com/docs/plugins/comments" target="_blank" rel="noopener noreferrer">Facebook comment</a> config</span>
+</span></span><span class="line"><span class="cl">      <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">comment</span><span class="p">.</span><span class="nx">facebook</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">width</span> <span class="p">=</span> <span class="s2">&#34;100%&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">numPosts</span> <span class="p">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">appId</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">languageCode</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># <a href="https://comments.app/" target="_blank" rel="noopener noreferrer">Telegram comments</a> config</span>
+</span></span><span class="line"><span class="cl">      <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">comment</span><span class="p">.</span><span class="nx">telegram</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">siteID</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">limit</span> <span class="p">=</span> <span class="mi">5</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">height</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">color</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">colorful</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">dislikes</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">outlined</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># <a href="https://commento.io/" target="_blank" rel="noopener noreferrer">Commento</a> comment config</span>
+</span></span><span class="line"><span class="cl">      <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">comment</span><span class="p">.</span><span class="nx">commento</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># <a href="https://utteranc.es/" target="_blank" rel="noopener noreferrer">Utterances</a> comment config</span>
+</span></span><span class="line"><span class="cl">      <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">comment</span><span class="p">.</span><span class="nx">utterances</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">        <span class="c"># owner/repo</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">repo</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">issueTerm</span> <span class="p">=</span> <span class="s2">&#34;pathname&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">label</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">lightTheme</span> <span class="p">=</span> <span class="s2">&#34;github-light&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">darkTheme</span> <span class="p">=</span> <span class="s2">&#34;github-dark&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># <a href="https://github.com/sunt-programator/CodeIT/releases/tag/v0.2.0" rel="noopener noreferrer" target="_blank"><img
         class="lazyload version"
         src="/svg/loading.min.svg"
         data-src="/svg/version/0.2.0-new.min.svg"
@@ -1382,12 +1382,12 @@ Alternatively, you can use <a href="https://gohugo.io/hosting-and-deployment/hos
         data-sizes="auto"
         alt="CodeIT NEW | 0.2.0"
         title="CodeIT NEW | 0.2.0" /></a> <a href="https://waline.js.org/en/" target="_blank" rel="noopener noreferrer">Waline</a> comment config</span>
-      <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">comment</span><span class="p">.</span><span class="nx">waline</span><span class="p">]</span>
-        <span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span>
-        <span class="nx">serverURL</span> <span class="p">=</span> <span class="s2">&#34;https://xxx.vercel.com&#34;</span>
-        <span class="nx">visitor</span> <span class="p">=</span> <span class="kc">true</span>
-        <span class="nx">dark</span> <span class="p">=</span> <span class="s1">&#39;auto&#39;</span>
-      <span class="c"># <a href="https://github.com/sunt-programator/CodeIT/releases/tag/v0.2.0" rel="noopener noreferrer" target="_blank"><img
+</span></span><span class="line"><span class="cl">      <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">comment</span><span class="p">.</span><span class="nx">waline</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">serverURL</span> <span class="p">=</span> <span class="s2">&#34;https://xxx.vercel.com&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">visitor</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">dark</span> <span class="p">=</span> <span class="s1">&#39;auto&#39;</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># <a href="https://github.com/sunt-programator/CodeIT/releases/tag/v0.2.0" rel="noopener noreferrer" target="_blank"><img
         class="lazyload version"
         src="/svg/loading.min.svg"
         data-src="/svg/version/0.2.0-new.min.svg"
@@ -1395,71 +1395,71 @@ Alternatively, you can use <a href="https://gohugo.io/hosting-and-deployment/hos
         data-sizes="auto"
         alt="CodeIT NEW | 0.2.0"
         title="CodeIT NEW | 0.2.0" /></a> <a href="https://twikoo.js.org" target="_blank" rel="noopener noreferrer">Twikoo</a> comment config</span>
-      <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">comment</span><span class="p">.</span><span class="nx">twikoo</span><span class="p">]</span>
-        <span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span>
-        <span class="nx">evnId</span> <span class="p">=</span> <span class="s2">&#34;https://xxx.vercel.com&#34;</span>
-
-    <span class="c"># Third-party library config</span>
-    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">library</span><span class="p">]</span>
-      <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">library</span><span class="p">.</span><span class="nx">css</span><span class="p">]</span>
-        <span class="c"># someCSS = &#34;some.css&#34;</span>
-        <span class="c"># located in &#34;assets/&#34;</span>
-        <span class="c"># Or</span>
-        <span class="c"># someCSS = &#34;https://cdn.example.com/some.css&#34;</span>
-      <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">library</span><span class="p">.</span><span class="nx">js</span><span class="p">]</span>
-        <span class="c"># someJavascript = &#34;some.js&#34;</span>
-        <span class="c"># located in &#34;assets/&#34;</span>
-        <span class="c"># Or</span>
-        <span class="c"># someJavascript = &#34;https://cdn.example.com/some.js&#34;</span>
-    <span class="c"># Page SEO config</span>
-    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">seo</span><span class="p">]</span>
-      <span class="c"># image URL</span>
-      <span class="nx">images</span> <span class="p">=</span> <span class="p">[]</span>
-      <span class="c"># Publisher info</span>
-      <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">seo</span><span class="p">.</span><span class="nx">publisher</span><span class="p">]</span>
-        <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-        <span class="nx">logoUrl</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-
-  <span class="c"># TypeIt config</span>
-  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">typeit</span><span class="p">]</span>
-    <span class="c"># typing speed between each step (measured in milliseconds)</span>
-    <span class="nx">speed</span> <span class="p">=</span> <span class="mi">100</span>
-    <span class="c"># blinking speed of the cursor (measured in milliseconds)</span>
-    <span class="nx">cursorSpeed</span> <span class="p">=</span> <span class="mi">1000</span>
-    <span class="c"># character used for the cursor (HTML format is supported)</span>
-    <span class="nx">cursorChar</span> <span class="p">=</span> <span class="s2">&#34;|&#34;</span>
-    <span class="c"># cursor duration after typing finishing (measured in milliseconds, &#34;-1&#34; means unlimited)</span>
-    <span class="nx">duration</span> <span class="p">=</span> <span class="mi">-1</span>
-
-  <span class="c"># Site verification code config for Google/Bing/Yandex/Pinterest/Baidu</span>
-  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">verification</span><span class="p">]</span>
-    <span class="nx">google</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">bing</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">yandex</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">pinterest</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">baidu</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-
-  <span class="c"># Site SEO config</span>
-  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">seo</span><span class="p">]</span>
-    <span class="c"># image URL</span>
-    <span class="nx">image</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="c"># thumbnail URL</span>
-    <span class="nx">thumbnailUrl</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-
-  <span class="c"># Analytics config</span>
-  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">analytics</span><span class="p">]</span>
-    <span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span>
-    <span class="c"># Google Analytics</span>
-    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">analytics</span><span class="p">.</span><span class="nx">google</span><span class="p">]</span>
-      <span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="c"># whether to anonymize IP</span>
-      <span class="nx">anonymizeIP</span> <span class="p">=</span> <span class="kc">true</span>
-    <span class="c"># Fathom Analytics</span>
-    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">analytics</span><span class="p">.</span><span class="nx">fathom</span><span class="p">]</span>
-      <span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="c"># server url for your tracker if you&#39;re self hosting</span>
-      <span class="nx">server</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="c"># <a href="https://github.com/sunt-programator/CodeIT/releases/tag/v0.1.0" rel="noopener noreferrer" target="_blank"><img
+</span></span><span class="line"><span class="cl">      <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">comment</span><span class="p">.</span><span class="nx">twikoo</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">evnId</span> <span class="p">=</span> <span class="s2">&#34;https://xxx.vercel.com&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c"># Third-party library config</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">library</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">      <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">library</span><span class="p">.</span><span class="nx">css</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="c"># someCSS = &#34;some.css&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="c"># located in &#34;assets/&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="c"># Or</span>
+</span></span><span class="line"><span class="cl">        <span class="c"># someCSS = &#34;https://cdn.example.com/some.css&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">library</span><span class="p">.</span><span class="nx">js</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="c"># someJavascript = &#34;some.js&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="c"># located in &#34;assets/&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="c"># Or</span>
+</span></span><span class="line"><span class="cl">        <span class="c"># someJavascript = &#34;https://cdn.example.com/some.js&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># Page SEO config</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">seo</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># image URL</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">images</span> <span class="p">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># Publisher info</span>
+</span></span><span class="line"><span class="cl">      <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">seo</span><span class="p">.</span><span class="nx">publisher</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">logoUrl</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c"># TypeIt config</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">typeit</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># typing speed between each step (measured in milliseconds)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">speed</span> <span class="p">=</span> <span class="mi">100</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># blinking speed of the cursor (measured in milliseconds)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">cursorSpeed</span> <span class="p">=</span> <span class="mi">1000</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># character used for the cursor (HTML format is supported)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">cursorChar</span> <span class="p">=</span> <span class="s2">&#34;|&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># cursor duration after typing finishing (measured in milliseconds, &#34;-1&#34; means unlimited)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">duration</span> <span class="p">=</span> <span class="mi">-1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c"># Site verification code config for Google/Bing/Yandex/Pinterest/Baidu</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">verification</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">google</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">bing</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">yandex</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pinterest</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">baidu</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c"># Site SEO config</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">seo</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># image URL</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">image</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># thumbnail URL</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">thumbnailUrl</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c"># Analytics config</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">analytics</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">enable</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># Google Analytics</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">analytics</span><span class="p">.</span><span class="nx">google</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># whether to anonymize IP</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">anonymizeIP</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># Fathom Analytics</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">analytics</span><span class="p">.</span><span class="nx">fathom</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># server url for your tracker if you&#39;re self hosting</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">server</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># <a href="https://github.com/sunt-programator/CodeIT/releases/tag/v0.1.0" rel="noopener noreferrer" target="_blank"><img
         class="lazyload version"
         src="/svg/loading.min.svg"
         data-src="/svg/version/0.1.0-new.min.svg"
@@ -1467,109 +1467,109 @@ Alternatively, you can use <a href="https://gohugo.io/hosting-and-deployment/hos
         data-sizes="auto"
         alt="CodeIT NEW | 0.1.0"
         title="CodeIT NEW | 0.1.0" /></a> Plausible Analytics</span>
-    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">analytics</span><span class="p">.</span><span class="nx">plausible</span><span class="p">]</span>
-      <span class="nx">domain</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-
-  <span class="c"># Cookie consent config</span>
-  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">cookieconsent</span><span class="p">]</span>
-    <span class="nx">enable</span> <span class="p">=</span> <span class="kc">true</span>
-    <span class="c"># text strings used for Cookie consent banner</span>
-    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">cookieconsent</span><span class="p">.</span><span class="nx">content</span><span class="p">]</span>
-      <span class="nx">message</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">dismiss</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">link</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-
-  <span class="c"># CDN config for third-party library files</span>
-  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">cdn</span><span class="p">]</span>
-    <span class="c"># CDN data file name, disabled by default</span>
-    <span class="c"># (&#34;jsdelivr.yml&#34;)</span>
-    <span class="c"># located in &#34;themes/CodeIT/assets/data/cdn/&#34; directory</span>
-    <span class="c"># you can store your own data files in the same path under your project:</span>
-    <span class="c"># &#34;assets/data/cdn/&#34;</span>
-    <span class="nx">data</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-
-  <span class="c"># Compatibility config</span>
-  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">compatibility</span><span class="p">]</span>
-    <span class="c"># whether to use Polyfill.io to be compatible with older browsers</span>
-    <span class="nx">polyfill</span> <span class="p">=</span> <span class="kc">false</span>
-    <span class="c"># whether to use object-fit-images to be compatible with older browsers</span>
-    <span class="nx">objectFit</span> <span class="p">=</span> <span class="kc">false</span>
-
-<span class="c"># Markup related config in Hugo</span>
-<span class="p">[</span><span class="nx">markup</span><span class="p">]</span>
-  <span class="c"># <a href="https://gohugo.io/content-management/syntax-highlighting" target="_blank" rel="noopener noreferrer">Syntax Highlighting</a></span>
-  <span class="p">[</span><span class="nx">markup</span><span class="p">.</span><span class="nx">highlight</span><span class="p">]</span>
-    <span class="nx">codeFences</span> <span class="p">=</span> <span class="kc">true</span>
-    <span class="nx">guessSyntax</span> <span class="p">=</span> <span class="kc">true</span>
-    <span class="nx">lineNos</span> <span class="p">=</span> <span class="kc">true</span>
-    <span class="nx">lineNumbersInTable</span> <span class="p">=</span> <span class="kc">true</span>
-    <span class="c"># false is a necessary configuration</span>
-    <span class="c"># (<a href="https://github.com/sunt-programator/CodeIT/issues/158" target="_blank" rel="noopener noreferrer">https://github.com/sunt-programator/CodeIT/issues/158</a>)</span>
-    <span class="nx">noClasses</span> <span class="p">=</span> <span class="kc">false</span>
-  <span class="c"># Goldmark is from Hugo 0.60 the default library used for Markdown</span>
-  <span class="p">[</span><span class="nx">markup</span><span class="p">.</span><span class="nx">goldmark</span><span class="p">]</span>
-    <span class="p">[</span><span class="nx">markup</span><span class="p">.</span><span class="nx">goldmark</span><span class="p">.</span><span class="nx">extensions</span><span class="p">]</span>
-      <span class="nx">definitionList</span> <span class="p">=</span> <span class="kc">true</span>
-      <span class="nx">footnote</span> <span class="p">=</span> <span class="kc">true</span>
-      <span class="nx">linkify</span> <span class="p">=</span> <span class="kc">true</span>
-      <span class="nx">strikethrough</span> <span class="p">=</span> <span class="kc">true</span>
-      <span class="nx">table</span> <span class="p">=</span> <span class="kc">true</span>
-      <span class="nx">taskList</span> <span class="p">=</span> <span class="kc">true</span>
-      <span class="nx">typographer</span> <span class="p">=</span> <span class="kc">true</span>
-    <span class="p">[</span><span class="nx">markup</span><span class="p">.</span><span class="nx">goldmark</span><span class="p">.</span><span class="nx">renderer</span><span class="p">]</span>
-      <span class="c"># whether to use HTML tags directly in the document</span>
-      <span class="nx">unsafe</span> <span class="p">=</span> <span class="kc">true</span>
-  <span class="c"># Table Of Contents settings</span>
-  <span class="p">[</span><span class="nx">markup</span><span class="p">.</span><span class="nx">tableOfContents</span><span class="p">]</span>
-    <span class="nx">startLevel</span> <span class="p">=</span> <span class="mi">2</span>
-    <span class="nx">endLevel</span> <span class="p">=</span> <span class="mi">6</span>
-
-<span class="c"># Author config</span>
-<span class="p">[</span><span class="nx">author</span><span class="p">]</span>
-  <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;xxxx&#34;</span>
-  <span class="nx">email</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-  <span class="nx">link</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-
-<span class="c"># Sitemap config</span>
-<span class="p">[</span><span class="nx">sitemap</span><span class="p">]</span>
-  <span class="nx">changefreq</span> <span class="p">=</span> <span class="s2">&#34;weekly&#34;</span>
-  <span class="nx">filename</span> <span class="p">=</span> <span class="s2">&#34;sitemap.xml&#34;</span>
-  <span class="nx">priority</span> <span class="p">=</span> <span class="mf">0.5</span>
-
-<span class="c"># <a href="https://gohugo.io/content-management/urls#permalinks" target="_blank" rel="noopener noreferrer">Permalinks config</a></span>
-<span class="p">[</span><span class="nx">Permalinks</span><span class="p">]</span>
-  <span class="c"># posts = &#34;:year/:month/:filename&#34;</span>
-  <span class="nx">posts</span> <span class="p">=</span> <span class="s2">&#34;:filename&#34;</span>
-
-<span class="c"># <a href="https://gohugo.io/about/hugo-and-gdpr/" target="_blank" rel="noopener noreferrer">Privacy config</a></span>
-<span class="p">[</span><span class="nx">privacy</span><span class="p">]</span>
-  <span class="c"># privacy of the Google Analytics (replaced by params.analytics.google)</span>
-  <span class="p">[</span><span class="nx">privacy</span><span class="p">.</span><span class="nx">googleAnalytics</span><span class="p">]</span>
-    <span class="c"># ...</span>
-  <span class="p">[</span><span class="nx">privacy</span><span class="p">.</span><span class="nx">twitter</span><span class="p">]</span>
-    <span class="nx">enableDNT</span> <span class="p">=</span> <span class="kc">true</span>
-  <span class="p">[</span><span class="nx">privacy</span><span class="p">.</span><span class="nx">youtube</span><span class="p">]</span>
-    <span class="nx">privacyEnhanced</span> <span class="p">=</span> <span class="kc">true</span>
-
-<span class="c"># Options to make output .md files</span>
-<span class="p">[</span><span class="nx">mediaTypes</span><span class="p">]</span>
-  <span class="p">[</span><span class="nx">mediaTypes</span><span class="p">.</span><span class="s2">&#34;text/plain&#34;</span><span class="p">]</span>
-    <span class="nx">suffixes</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;md&#34;</span><span class="p">]</span>
-
-<span class="c"># Options to make output .md files</span>
-<span class="p">[</span><span class="nx">outputFormats</span><span class="p">.</span><span class="nx">MarkDown</span><span class="p">]</span>
-  <span class="nx">mediaType</span> <span class="p">=</span> <span class="s2">&#34;text/plain&#34;</span>
-  <span class="nx">isPlainText</span> <span class="p">=</span> <span class="kc">true</span>
-  <span class="nx">isHTML</span> <span class="p">=</span> <span class="kc">false</span>
-
-<span class="c"># Options to make hugo output files</span>
-<span class="p">[</span><span class="nx">outputs</span><span class="p">]</span>
-  <span class="nx">home</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;HTML&#34;</span><span class="p">,</span> <span class="s2">&#34;RSS&#34;</span><span class="p">,</span> <span class="s2">&#34;JSON&#34;</span><span class="p">]</span>
-  <span class="nx">page</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;HTML&#34;</span><span class="p">,</span> <span class="s2">&#34;MarkDown&#34;</span><span class="p">]</span>
-  <span class="nx">section</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;HTML&#34;</span><span class="p">,</span> <span class="s2">&#34;RSS&#34;</span><span class="p">]</span>
-  <span class="nx">taxonomy</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;HTML&#34;</span><span class="p">,</span> <span class="s2">&#34;RSS&#34;</span><span class="p">]</span>
-  <span class="nx">taxonomyTerm</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;HTML&#34;</span><span class="p">]</span>
-</code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">analytics</span><span class="p">.</span><span class="nx">plausible</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">domain</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c"># Cookie consent config</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">cookieconsent</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">enable</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># text strings used for Cookie consent banner</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">cookieconsent</span><span class="p">.</span><span class="nx">content</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">message</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">dismiss</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">link</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c"># CDN config for third-party library files</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">cdn</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># CDN data file name, disabled by default</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># (&#34;jsdelivr.yml&#34;)</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># located in &#34;themes/CodeIT/assets/data/cdn/&#34; directory</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># you can store your own data files in the same path under your project:</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># &#34;assets/data/cdn/&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">data</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c"># Compatibility config</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">compatibility</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># whether to use Polyfill.io to be compatible with older browsers</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">polyfill</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># whether to use object-fit-images to be compatible with older browsers</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">objectFit</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Markup related config in Hugo</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">markup</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># <a href="https://gohugo.io/content-management/syntax-highlighting" target="_blank" rel="noopener noreferrer">Syntax Highlighting</a></span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">markup</span><span class="p">.</span><span class="nx">highlight</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">codeFences</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">guessSyntax</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">lineNos</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">lineNumbersInTable</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># false is a necessary configuration</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># (<a href="https://github.com/sunt-programator/CodeIT/issues/158" target="_blank" rel="noopener noreferrer">https://github.com/sunt-programator/CodeIT/issues/158</a>)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">noClasses</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># Goldmark is from Hugo 0.60 the default library used for Markdown</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">markup</span><span class="p">.</span><span class="nx">goldmark</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nx">markup</span><span class="p">.</span><span class="nx">goldmark</span><span class="p">.</span><span class="nx">extensions</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">definitionList</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">footnote</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">linkify</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">strikethrough</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">table</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">taskList</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">typographer</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nx">markup</span><span class="p">.</span><span class="nx">goldmark</span><span class="p">.</span><span class="nx">renderer</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">      <span class="c"># whether to use HTML tags directly in the document</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">unsafe</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># Table Of Contents settings</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">markup</span><span class="p">.</span><span class="nx">tableOfContents</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">startLevel</span> <span class="p">=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">endLevel</span> <span class="p">=</span> <span class="mi">6</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Author config</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">author</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;xxxx&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">email</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">link</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Sitemap config</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">sitemap</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">changefreq</span> <span class="p">=</span> <span class="s2">&#34;weekly&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">filename</span> <span class="p">=</span> <span class="s2">&#34;sitemap.xml&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">priority</span> <span class="p">=</span> <span class="mf">0.5</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># <a href="https://gohugo.io/content-management/urls#permalinks" target="_blank" rel="noopener noreferrer">Permalinks config</a></span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">Permalinks</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># posts = &#34;:year/:month/:filename&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">posts</span> <span class="p">=</span> <span class="s2">&#34;:filename&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># <a href="https://gohugo.io/about/hugo-and-gdpr/" target="_blank" rel="noopener noreferrer">Privacy config</a></span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">privacy</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># privacy of the Google Analytics (replaced by params.analytics.google)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">privacy</span><span class="p">.</span><span class="nx">googleAnalytics</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># ...</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">privacy</span><span class="p">.</span><span class="nx">twitter</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">enableDNT</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">privacy</span><span class="p">.</span><span class="nx">youtube</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">privacyEnhanced</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Options to make output .md files</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">mediaTypes</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">mediaTypes</span><span class="p">.</span><span class="s2">&#34;text/plain&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">suffixes</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;md&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Options to make output .md files</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">outputFormats</span><span class="p">.</span><span class="nx">MarkDown</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">mediaType</span> <span class="p">=</span> <span class="s2">&#34;text/plain&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">isPlainText</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">isHTML</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Options to make hugo output files</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">outputs</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">home</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;HTML&#34;</span><span class="p">,</span> <span class="s2">&#34;RSS&#34;</span><span class="p">,</span> <span class="s2">&#34;JSON&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">page</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;HTML&#34;</span><span class="p">,</span> <span class="s2">&#34;MarkDown&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">section</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;HTML&#34;</span><span class="p">,</span> <span class="s2">&#34;RSS&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">taxonomy</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;HTML&#34;</span><span class="p">,</span> <span class="s2">&#34;RSS&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">taxonomyTerm</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;HTML&#34;</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="details admonition note open">
         <div class="details-summary admonition-title">
@@ -1604,11 +1604,11 @@ the <strong>comment system</strong>, <strong>CDN</strong> and <strong>fingerprin
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">cdn</span><span class="p">]</span>
-  <span class="c"># CDN data file name, disabled by default</span>
-  <span class="c"># (&#34;jsdelivr.yml&#34;)</span>
-  <span class="nx">data</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">cdn</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># CDN data file name, disabled by default</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># (&#34;jsdelivr.yml&#34;)</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">data</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>The default CDN data file is located in <code>themes/CodeIT/assets/data/cdn/</code> directory.
 You can store your own data file in the same path under your project: <code>assets/data/cdn/</code>.</p>
@@ -1627,9 +1627,9 @@ You can store your own data file in the same path under your project: <code>asse
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">social</span><span class="p">]</span>
-  <span class="nx">Mastodon</span> <span class="p">=</span> <span class="s2">&#34;@xxxx&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">social</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">Mastodon</span> <span class="p">=</span> <span class="s2">&#34;@xxxx&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>The social link generated is <code>https://mastodon.technology/@xxxx</code>.</p>
 <p>Or You can set more options through a dict:</p>
@@ -1647,17 +1647,17 @@ You can store your own data file in the same path under your project: <code>asse
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">social</span><span class="p">]</span>
-  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">social</span><span class="p">.</span><span class="nx">Mastodon</span><span class="p">]</span>
-    <span class="c"># weight when arranging icons (the greater the weight, the later the icon is positioned)</span>
-    <span class="nx">weight</span> <span class="p">=</span> <span class="mi">0</span>
-    <span class="c"># your social ID</span>
-    <span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;@xxxx&#34;</span>
-    <span class="c"># prefix of your social link</span>
-    <span class="nx">prefix</span> <span class="p">=</span> <span class="s2">&#34;https://mastodon.social/&#34;</span>
-    <span class="c"># content hovering on the icon</span>
-    <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;Mastodon&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">social</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">social</span><span class="p">.</span><span class="nx">Mastodon</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># weight when arranging icons (the greater the weight, the later the icon is positioned)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">weight</span> <span class="p">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># your social ID</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;@xxxx&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># prefix of your social link</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">prefix</span> <span class="p">=</span> <span class="s2">&#34;https://mastodon.social/&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># content hovering on the icon</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;Mastodon&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>The default data of all supported social links is located in <code>themes/CodeIT/assets/data/social.yaml</code>,
 which is you can refer to.</p>
@@ -1706,10 +1706,10 @@ which is you can refer to.</p>
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="k">@import</span> <span class="sx">url(&#34;https://fonts.googleapis.com/css?family=Fira+Mono:400,700&amp;display=swap&amp;subset=latin-ext&#34;)</span><span class="p">;</span>
-<span class="nv">$code-font-family</span><span class="o">:</span> <span class="n">Fira</span> <span class="n">Mono</span><span class="o">,</span> <span class="n">Source</span> <span class="n">Code</span> <span class="n">Pro</span><span class="o">,</span> <span class="n">Menlo</span><span class="o">,</span> <span class="n">Consolas</span><span class="o">,</span> <span class="n">Monaco</span><span class="o">,</span>
-  <span class="ni">monospace</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="k">@import</span> <span class="sx">url(&#34;https://fonts.googleapis.com/css?family=Fira+Mono:400,700&amp;display=swap&amp;subset=latin-ext&#34;)</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$code-font-family</span><span class="o">:</span> <span class="n">Fira</span> <span class="n">Mono</span><span class="o">,</span> <span class="n">Source</span> <span class="n">Code</span> <span class="n">Pro</span><span class="o">,</span> <span class="n">Menlo</span><span class="o">,</span> <span class="n">Consolas</span><span class="o">,</span> <span class="n">Monaco</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">  <span class="ni">monospace</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>In <code>assets/css/_custom.scss</code>, you can add some css style code to customize the style.</p>
 <h2 id="4-multilingual-and-i18n">4 Multilingual and i18n</h2>
@@ -1932,103 +1932,103 @@ which is you can refer to.</p>
 </span><span class="lnt">96
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="c"># [en, zh-cn, fr, pl, ...] determines default content language</span>
-<span class="nx">defaultContentLanguage</span> <span class="p">=</span> <span class="s2">&#34;en&#34;</span>
-
-<span class="p">[</span><span class="nx">languages</span><span class="p">]</span>
-  <span class="p">[</span><span class="nx">languages</span><span class="p">.</span><span class="nx">en</span><span class="p">]</span>
-    <span class="nx">weight</span> <span class="p">=</span> <span class="mi">1</span>
-    <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;My New Hugo Site&#34;</span>
-    <span class="nx">languageCode</span> <span class="p">=</span> <span class="s2">&#34;en&#34;</span>
-    <span class="nx">languageName</span> <span class="p">=</span> <span class="s2">&#34;English&#34;</span>
-    <span class="p">[[</span><span class="nx">languages</span><span class="p">.</span><span class="nx">en</span><span class="p">.</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
-      <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;posts&#34;</span>
-      <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Posts&#34;</span>
-      <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/posts/&#34;</span>
-      <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">weight</span> <span class="p">=</span> <span class="mi">1</span>
-    <span class="p">[[</span><span class="nx">languages</span><span class="p">.</span><span class="nx">en</span><span class="p">.</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
-      <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;tags&#34;</span>
-      <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Tags&#34;</span>
-      <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/tags/&#34;</span>
-      <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">weight</span> <span class="p">=</span> <span class="mi">2</span>
-    <span class="p">[[</span><span class="nx">languages</span><span class="p">.</span><span class="nx">en</span><span class="p">.</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
-      <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;categories&#34;</span>
-      <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Categories&#34;</span>
-      <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/categories/&#34;</span>
-      <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">weight</span> <span class="p">=</span> <span class="mi">3</span>
-
-  <span class="p">[</span><span class="nx">languages</span><span class="p">.</span><span class="nx">zh-cn</span><span class="p">]</span>
-    <span class="nx">weight</span> <span class="p">=</span> <span class="mi">2</span>
-    <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;我的全新 Hugo 网站&#34;</span>
-    <span class="c"># language code, CN only here</span>
-    <span class="nx">languageCode</span> <span class="p">=</span> <span class="s2">&#34;zh-CN&#34;</span>
-    <span class="nx">languageName</span> <span class="p">=</span> <span class="s2">&#34;简体中文&#34;</span>
-    <span class="c"># whether to include Chinese/Japanese/Korean</span>
-    <span class="nx">hasCJKLanguage</span> <span class="p">=</span> <span class="kc">true</span>
-    <span class="p">[[</span><span class="nx">languages</span><span class="p">.</span><span class="nx">zh-cn</span><span class="p">.</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
-      <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;posts&#34;</span>
-      <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;文章&#34;</span>
-      <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/posts/&#34;</span>
-      <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">weight</span> <span class="p">=</span> <span class="mi">1</span>
-    <span class="p">[[</span><span class="nx">languages</span><span class="p">.</span><span class="nx">zh-cn</span><span class="p">.</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
-      <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;tags&#34;</span>
-      <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;标签&#34;</span>
-      <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/tags/&#34;</span>
-      <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">weight</span> <span class="p">=</span> <span class="mi">2</span>
-    <span class="p">[[</span><span class="nx">languages</span><span class="p">.</span><span class="nx">zh-cn</span><span class="p">.</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
-      <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;categories&#34;</span>
-      <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;分类&#34;</span>
-      <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/categories/&#34;</span>
-      <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">weight</span> <span class="p">=</span> <span class="mi">3</span>
-
-  <span class="p">[</span><span class="nx">languages</span><span class="p">.</span><span class="nx">fr</span><span class="p">]</span>
-    <span class="nx">weight</span> <span class="p">=</span> <span class="mi">3</span>
-    <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;Mon nouveau site Hugo&#34;</span>
-    <span class="nx">languageCode</span> <span class="p">=</span> <span class="s2">&#34;fr&#34;</span>
-    <span class="nx">languageName</span> <span class="p">=</span> <span class="s2">&#34;Français&#34;</span>
-    <span class="p">[[</span><span class="nx">languages</span><span class="p">.</span><span class="nx">fr</span><span class="p">.</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
-      <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;posts&#34;</span>
-      <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Postes&#34;</span>
-      <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/posts/&#34;</span>
-      <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">weight</span> <span class="p">=</span> <span class="mi">1</span>
-    <span class="p">[[</span><span class="nx">languages</span><span class="p">.</span><span class="nx">fr</span><span class="p">.</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
-      <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;tags&#34;</span>
-      <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Balises&#34;</span>
-      <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/tags/&#34;</span>
-      <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">weight</span> <span class="p">=</span> <span class="mi">2</span>
-    <span class="p">[[</span><span class="nx">languages</span><span class="p">.</span><span class="nx">fr</span><span class="p">.</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
-      <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;categories&#34;</span>
-      <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Catégories&#34;</span>
-      <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/categories/&#34;</span>
-      <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-      <span class="nx">weight</span> <span class="p">=</span> <span class="mi">3</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="c"># [en, zh-cn, fr, pl, ...] determines default content language</span>
+</span></span><span class="line"><span class="cl"><span class="nx">defaultContentLanguage</span> <span class="p">=</span> <span class="s2">&#34;en&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">languages</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">languages</span><span class="p">.</span><span class="nx">en</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">weight</span> <span class="p">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;My New Hugo Site&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">languageCode</span> <span class="p">=</span> <span class="s2">&#34;en&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">languageName</span> <span class="p">=</span> <span class="s2">&#34;English&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[[</span><span class="nx">languages</span><span class="p">.</span><span class="nx">en</span><span class="p">.</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;posts&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Posts&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/posts/&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">weight</span> <span class="p">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[[</span><span class="nx">languages</span><span class="p">.</span><span class="nx">en</span><span class="p">.</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;tags&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Tags&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/tags/&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">weight</span> <span class="p">=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[[</span><span class="nx">languages</span><span class="p">.</span><span class="nx">en</span><span class="p">.</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;categories&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Categories&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/categories/&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">weight</span> <span class="p">=</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">languages</span><span class="p">.</span><span class="nx">zh-cn</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">weight</span> <span class="p">=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;我的全新 Hugo 网站&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># language code, CN only here</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">languageCode</span> <span class="p">=</span> <span class="s2">&#34;zh-CN&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">languageName</span> <span class="p">=</span> <span class="s2">&#34;简体中文&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># whether to include Chinese/Japanese/Korean</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">hasCJKLanguage</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[[</span><span class="nx">languages</span><span class="p">.</span><span class="nx">zh-cn</span><span class="p">.</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;posts&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;文章&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/posts/&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">weight</span> <span class="p">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[[</span><span class="nx">languages</span><span class="p">.</span><span class="nx">zh-cn</span><span class="p">.</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;tags&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;标签&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/tags/&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">weight</span> <span class="p">=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[[</span><span class="nx">languages</span><span class="p">.</span><span class="nx">zh-cn</span><span class="p">.</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;categories&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;分类&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/categories/&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">weight</span> <span class="p">=</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">languages</span><span class="p">.</span><span class="nx">fr</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">weight</span> <span class="p">=</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;Mon nouveau site Hugo&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">languageCode</span> <span class="p">=</span> <span class="s2">&#34;fr&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">languageName</span> <span class="p">=</span> <span class="s2">&#34;Français&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[[</span><span class="nx">languages</span><span class="p">.</span><span class="nx">fr</span><span class="p">.</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;posts&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Postes&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/posts/&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">weight</span> <span class="p">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[[</span><span class="nx">languages</span><span class="p">.</span><span class="nx">fr</span><span class="p">.</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;tags&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Balises&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/tags/&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">weight</span> <span class="p">=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[[</span><span class="nx">languages</span><span class="p">.</span><span class="nx">fr</span><span class="p">.</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;categories&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Catégories&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/categories/&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">weight</span> <span class="p">=</span> <span class="mi">3</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Then, for each new page, append the language code to the file name.</p>
 <p>Single file <code>my-page.md</code> is split in three files:</p>
@@ -2067,9 +2067,9 @@ which is you can refer to.</p>
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">outputs</span><span class="p">]</span>
-  <span class="nx">home</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;HTML&#34;</span><span class="p">,</span> <span class="s2">&#34;RSS&#34;</span><span class="p">,</span> <span class="s2">&#34;JSON&#34;</span><span class="p">]</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">outputs</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">home</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;HTML&#34;</span><span class="p">,</span> <span class="s2">&#34;RSS&#34;</span><span class="p">,</span> <span class="s2">&#34;JSON&#34;</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="52-search-configuration">5.2 Search Configuration</h3>
 <p>Based on <code>index.json</code> generated by Hugo, you could activate searching.</p>
@@ -2098,27 +2098,27 @@ which is you can refer to.</p>
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">search</span><span class="p">]</span>
-  <span class="nx">enable</span> <span class="p">=</span> <span class="kc">true</span>
-  <span class="c"># type of search engine (&#34;lunr&#34;, &#34;algolia&#34;)</span>
-  <span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;lunr&#34;</span>
-  <span class="c"># max index length of the chunked content</span>
-  <span class="nx">contentLength</span> <span class="p">=</span> <span class="mi">4000</span>
-  <span class="c"># placeholder of the search bar</span>
-  <span class="nx">placeholder</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-  <span class="c"># max number of results length</span>
-  <span class="nx">maxResultLength</span> <span class="p">=</span> <span class="mi">10</span>
-  <span class="c"># snippet length of the result</span>
-  <span class="nx">snippetLength</span> <span class="p">=</span> <span class="mi">30</span>
-  <span class="c"># HTML tag name of the highlight part in results</span>
-  <span class="nx">highlightTag</span> <span class="p">=</span> <span class="s2">&#34;em&#34;</span>
-  <span class="c"># whether to use the absolute URL based on the baseURL in search index</span>
-  <span class="nx">absoluteURL</span> <span class="p">=</span> <span class="kc">false</span>
-  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">search</span><span class="p">.</span><span class="nx">algolia</span><span class="p">]</span>
-    <span class="nx">index</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">appID</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="nx">searchKey</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">search</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">enable</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># type of search engine (&#34;lunr&#34;, &#34;algolia&#34;)</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;lunr&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># max index length of the chunked content</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">contentLength</span> <span class="p">=</span> <span class="mi">4000</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># placeholder of the search bar</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">placeholder</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># max number of results length</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">maxResultLength</span> <span class="p">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># snippet length of the result</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">snippetLength</span> <span class="p">=</span> <span class="mi">30</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># HTML tag name of the highlight part in results</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">highlightTag</span> <span class="p">=</span> <span class="s2">&#34;em&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># whether to use the absolute URL based on the baseURL in search index</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">absoluteURL</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">search</span><span class="p">.</span><span class="nx">algolia</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">index</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">appID</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">searchKey</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="details admonition note open">
         <div class="details-summary admonition-title">
@@ -2151,7 +2151,7 @@ you need to upload different <code>index.json</code> for each language to the di
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on February 24, 2022</span>
+                <span>Updated on March 21, 2022</span>
             </div>
             <div class="post-info-license"></div>
         </div>

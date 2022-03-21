@@ -12,7 +12,7 @@ The script will work for Dynamics 365 Finance &amp; Operations version
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://nuxulu.com/2020-01-25-create-po-confirm-receipt-post/" /><meta property="og:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-01-25T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-02-24T15:07:02+07:00" />
+<meta property="article:modified_time" content="2022-03-21T22:30:25+07:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/>
@@ -32,7 +32,7 @@ The script will work for Dynamics 365 Finance &amp; Operations version
             "@type": "WebPage",
             "@id": "https:\/\/nuxulu.com\/2020-01-25-create-po-confirm-receipt-post\/"
         },"genre": "posts","keywords": "Create Purchase order X\u002b\u002b, Coding, integration","wordcount":  541 ,
-        "url": "https:\/\/nuxulu.com\/2020-01-25-create-po-confirm-receipt-post\/","datePublished": "2020-01-25T00:00:00+00:00","dateModified": "2022-02-24T15:07:02+07:00","publisher": {
+        "url": "https:\/\/nuxulu.com\/2020-01-25-create-po-confirm-receipt-post\/","datePublished": "2020-01-25T00:00:00+00:00","dateModified": "2022-03-21T22:30:25+07:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -306,182 +306,182 @@ The script will work for Dynamics 365 Finance &amp; Operations version
 </span><span class="lnt">169
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="k">class</span> <span class="nc">MaxGeneratePO</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="c1">// number of purchase orders
-</span><span class="c1"></span>        <span class="n">NumberSeq</span> <span class="n">numberSeq</span><span class="p">;</span>
-        <span class="n">PurchTable</span> <span class="n">purchTable</span><span class="p">;</span>
-        <span class="n">PurchLine</span> <span class="n">purchLine</span><span class="p">;</span>
-        <span class="n">InventDim</span> <span class="n">inventDim</span><span class="p">;</span>
-
-        <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="p">&lt;=</span> <span class="m">3</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">ttsBegin</span><span class="p">;</span>
-            <span class="n">MaxGeneratePO</span> <span class="n">createPO</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MaxGeneratePO</span><span class="p">();</span>
-            <span class="n">numberSeq</span> <span class="p">=</span> <span class="n">NumberSeq</span><span class="p">::</span><span class="n">newGetNum</span><span class="p">(</span><span class="n">PurchParameters</span><span class="p">::</span><span class="n">numRefPurchId</span><span class="p">());</span>
-            <span class="n">numberSeq</span><span class="p">.</span><span class="n">used</span><span class="p">();</span>
-            <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span> <span class="p">=</span> <span class="n">numberSeq</span><span class="p">.</span><span class="n">num</span><span class="p">();</span>
-            <span class="n">purchTable</span><span class="p">.</span><span class="n">initValue</span><span class="p">();</span>
-            <span class="n">purchTable</span><span class="p">.</span><span class="n">initFromVendTable</span><span class="p">(</span><span class="n">VendTable</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="err">&#39;</span><span class="n">US</span><span class="p">-</span><span class="m">101</span><span class="err">&#39;</span><span class="p">));</span>
-
-            <span class="k">if</span> <span class="p">(!</span><span class="n">purchTable</span><span class="p">.</span><span class="n">validateWrite</span><span class="p">())</span>
-            <span class="p">{</span>
-                <span class="k">throw</span> <span class="n">Exception</span><span class="p">::</span><span class="n">Error</span><span class="p">;</span>
-            <span class="p">}</span>
-
-            <span class="n">purchTable</span><span class="p">.</span><span class="n">insert</span><span class="p">();</span>
-            <span class="n">inventDim</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
-            <span class="n">purchLine</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
-            <span class="n">purchLine</span><span class="p">.</span><span class="n">initValue</span><span class="p">();</span>
-
-            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchId</span> <span class="p">=</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">;</span>
-            <span class="n">purchLine</span><span class="p">.</span><span class="n">ItemId</span> <span class="p">=</span> <span class="err">&#39;</span><span class="n">D0002</span><span class="err">&#39;</span><span class="p">;</span>
-            <span class="n">inventDim</span><span class="p">.</span><span class="n">InventSiteId</span> <span class="p">=</span> <span class="s">&#34;1&#34;</span><span class="p">;</span>
-            <span class="n">inventDim</span><span class="p">.</span><span class="n">InventLocationId</span> <span class="p">=</span> <span class="s">&#34;11&#34;</span><span class="p">;</span>
-            <span class="n">purchLine</span><span class="p">.</span><span class="n">InventDimId</span><span class="p">=</span><span class="n">InventDim</span><span class="p">::</span><span class="n">findOrCreate</span><span class="p">(</span><span class="n">inventDim</span><span class="p">).</span><span class="n">inventDimId</span> <span class="p">;</span>
-            <span class="n">purchLine</span><span class="p">.</span><span class="n">createLine</span><span class="p">(</span><span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
-
-            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchQty</span> <span class="p">=</span> <span class="m">5</span><span class="p">;</span>
-            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchUnit</span> <span class="p">=</span> <span class="s">&#34;ea&#34;</span><span class="p">;</span>
-            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchPrice</span> <span class="p">=</span> <span class="n">createPO</span><span class="p">.</span><span class="n">randomAmount</span><span class="p">();</span> <span class="c1">// get random amount nubmer
-</span><span class="c1"></span>            <span class="n">purchLine</span><span class="p">.</span><span class="n">LineAmount</span> <span class="p">=</span> <span class="n">purchLine</span><span class="p">.</span><span class="n">calcLineAmount</span><span class="p">();</span>
-            <span class="n">purchLine</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
-            
-            <span class="c1">//PO confirm
-</span><span class="c1"></span>            <span class="n">PurchFormLetter</span> <span class="n">purchFormLetter</span><span class="p">;</span>
-            <span class="n">PurchFormLetter</span> <span class="n">purchFormLetterPack</span><span class="p">;</span>
-            <span class="n">purchFormLetter</span> <span class="p">=</span> <span class="n">PurchFormLetter</span><span class="p">::</span><span class="n">construct</span><span class="p">(</span><span class="n">DocumentStatus</span><span class="p">::</span><span class="n">PurchaseOrder</span><span class="p">);</span>
-            <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">purchTable</span><span class="p">,</span>
-                                <span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;ConNum_%1&#34;</span><span class="p">,</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">),</span>
-                                <span class="n">systemDateGet</span><span class="p">(),</span>
-                                <span class="n">PurchUpdate</span><span class="p">::</span><span class="n">All</span><span class="p">,</span>
-                                <span class="n">AccountOrder</span><span class="p">::</span><span class="n">None</span><span class="p">,</span>
-                                <span class="n">NoYes</span><span class="p">::</span><span class="n">No</span><span class="p">,</span>
-                                <span class="n">NoYes</span><span class="p">::</span><span class="n">no</span><span class="p">);</span>
-            <span class="c1">//Product receipt
-</span><span class="c1"></span>            <span class="n">createPO</span><span class="p">.</span><span class="n">proceed</span><span class="p">(</span><span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">,</span> <span class="n">purchLine</span><span class="p">.</span><span class="n">ItemId</span><span class="p">,</span><span class="n">purchLine</span><span class="p">.</span><span class="n">InventDimId</span><span class="p">,</span><span class="n">purchLine</span><span class="p">.</span><span class="n">PurchQty</span><span class="p">,</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;RptNum_%1&#34;</span><span class="p">,</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">));</span>
-            <span class="c1">//Post PO
-</span><span class="c1"></span>            <span class="n">createPO</span><span class="p">.</span><span class="n">postPOInvoice</span><span class="p">(</span><span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">,</span> <span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;RptNum_%1&#34;</span><span class="p">,</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">));</span>
-
-            <span class="n">info</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;Purchase order &#39;%1&#39; has been created&#34;</span><span class="p">,</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">));</span>
-            <span class="n">ttsCommit</span><span class="p">;</span>
-            <span class="n">i</span><span class="p">++;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="n">boolean</span> <span class="n">proceed</span><span class="p">(</span><span class="n">PurchId</span> <span class="m">_</span><span class="n">purchId</span><span class="p">,</span> <span class="n">ItemId</span> <span class="m">_</span><span class="n">itemId</span><span class="p">,</span><span class="n">inventDimId</span> <span class="m">_</span><span class="n">inventDimId</span><span class="p">,</span> <span class="n">PurchQty</span> <span class="m">_</span><span class="n">qty</span><span class="p">,</span> <span class="n">PackingSlipId</span> <span class="m">_</span><span class="n">productReceiptNumber</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">return</span>
-            <span class="k">this</span><span class="p">.</span><span class="n">generateProductReceipt</span><span class="p">(</span><span class="m">_</span><span class="n">purchId</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">addToPurchLineList</span><span class="p">(</span><span class="m">_</span><span class="n">purchId</span><span class="p">,</span> <span class="m">_</span><span class="n">itemId</span><span class="p">,</span> <span class="m">_</span><span class="n">inventDimId</span><span class="p">,</span> <span class="m">_</span><span class="n">qty</span><span class="p">),</span> <span class="m">_</span><span class="n">productReceiptNumber</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="n">boolean</span> <span class="n">generateProductReceipt</span><span class="p">(</span><span class="n">PurchId</span> <span class="m">_</span><span class="n">purchId</span><span class="p">,</span> <span class="n">List</span> <span class="m">_</span><span class="n">purchLineList</span><span class="p">,</span> <span class="n">PackingSlipId</span> <span class="m">_</span><span class="n">productReceiptNumber</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">boolean</span> <span class="n">ret</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
-        <span class="n">PurchFormLetter</span> <span class="n">purchFromLetter</span><span class="p">;</span>
-        <span class="n">PurchTable</span> <span class="n">purchTable</span> <span class="p">=</span> <span class="n">PurchTable</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="m">_</span><span class="n">purchId</span><span class="p">);</span>
-
-        <span class="k">try</span>
-        <span class="p">{</span>
-            <span class="n">ttsbegin</span><span class="p">;</span>
-            <span class="n">purchFromLetter</span> <span class="p">=</span> <span class="n">PurchFormLetter</span><span class="p">::</span><span class="n">construct</span><span class="p">(</span><span class="n">DocumentStatus</span><span class="p">::</span><span class="n">PackingSlip</span><span class="p">);</span>
-            <span class="n">purchFromLetter</span><span class="p">.</span><span class="n">createFromLines</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
-            <span class="n">purchFromLetter</span><span class="p">.</span><span class="n">parmLineList</span><span class="p">(</span><span class="m">_</span><span class="n">purchLineList</span><span class="p">.</span><span class="n">pack</span><span class="p">());</span>
-            <span class="n">purchFromLetter</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">purchTable</span><span class="p">,</span> <span class="m">_</span><span class="n">productReceiptNumber</span><span class="p">,</span>
-                                <span class="n">DateTimeUtil</span><span class="p">::</span><span class="n">getToday</span><span class="p">(</span><span class="n">DateTimeUtil</span><span class="p">::</span><span class="n">getUserPreferredTimeZone</span><span class="p">()),</span>
-                                <span class="n">PurchUpdate</span><span class="p">::</span><span class="n">All</span><span class="p">);</span>
-            <span class="n">ttscommit</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="k">catch</span>
-        <span class="p">{</span>
-            <span class="n">ret</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="n">List</span> <span class="n">addToPurchLineList</span><span class="p">(</span><span class="n">PurchId</span> <span class="m">_</span><span class="n">purchId</span><span class="p">,</span> <span class="n">ItemId</span> <span class="m">_</span><span class="n">itemId</span><span class="p">,</span><span class="n">inventDimId</span> <span class="m">_</span><span class="n">inventDimId</span><span class="p">,</span> <span class="n">PurchQty</span> <span class="m">_</span><span class="n">qty</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">List</span> <span class="n">purchLineList</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Record</span><span class="p">);</span>
-        <span class="n">PurchLine</span> <span class="n">purchLine</span> <span class="p">=</span> <span class="n">PurchLine</span><span class="p">::</span><span class="n">findItemIdInventDimId</span><span class="p">(</span><span class="m">_</span><span class="n">purchId</span><span class="p">,</span> <span class="m">_</span><span class="n">itemId</span><span class="p">,</span> <span class="m">_</span><span class="n">inventDimId</span><span class="p">);</span>
-
-        <span class="k">if</span><span class="p">(</span><span class="n">purchLine</span> <span class="p">&amp;&amp;</span> <span class="m">_</span><span class="n">qty</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchReceivedNow</span> <span class="p">=</span> <span class="m">_</span><span class="n">qty</span><span class="p">;</span>
-            <span class="n">purchline</span><span class="p">.</span><span class="n">modifiedField</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchLine</span><span class="p">,</span> <span class="n">PurchReceivedNow</span><span class="p">));</span>
-            <span class="n">purchLineList</span><span class="p">.</span><span class="n">addEnd</span><span class="p">(</span><span class="n">purchLine</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="n">purchLineList</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="k">void</span> <span class="n">postPOInvoice</span><span class="p">(</span><span class="n">PurchId</span> <span class="n">purchId</span><span class="p">,</span> <span class="n">PackingSlipId</span> <span class="n">packingSlipId</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">TmpFrmVirtual</span>               <span class="n">tmpFrmVirtualVend</span><span class="p">;</span>
-        <span class="n">PurchFormLetter_Invoice</span>     <span class="n">purchFormLetter</span><span class="p">;</span>
-        <span class="n">VendPackingSlipJour</span>         <span class="n">vendPackingSlipJour</span><span class="p">;</span>
-        <span class="n">SysQueryRun</span>                 <span class="n">chooseLinesQuery</span><span class="p">;</span>
-        <span class="n">SysQueryRun</span>                 <span class="n">chooseLinesPendingInvoiceQuery</span><span class="p">;</span>
-        <span class="n">container</span>                   <span class="n">conTmpFrmVirtual</span><span class="p">;</span>
-        <span class="n">List</span>                        <span class="n">selectedList</span>    <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Record</span><span class="p">);</span>
-
-        <span class="k">select</span> <span class="n">firstonly</span> <span class="n">vendPackingSlipJour</span>
-                    <span class="k">where</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">PurchId</span> <span class="p">==</span> <span class="n">purchId</span>
-            <span class="p">&amp;&amp;</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">PackingSlipId</span> <span class="p">==</span> <span class="n">packingSlipId</span><span class="p">;</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="n">vendPackingSlipJour</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
-            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">TableNum</span>  <span class="p">=</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">TableId</span><span class="p">;</span>
-            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">RecordNo</span>  <span class="p">=</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">RecId</span><span class="p">;</span>
-            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">NoYes</span>     <span class="p">=</span> <span class="n">NoYes</span><span class="p">::</span><span class="n">Yes</span><span class="p">;</span>
-            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">Id</span>        <span class="p">=</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">PurchId</span><span class="p">;</span>
-            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">insert</span><span class="p">();</span>
-        <span class="p">}</span>
-
-        <span class="n">chooseLinesQuery</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SysQueryRun</span><span class="p">(</span><span class="n">queryStr</span><span class="p">(</span><span class="n">PurchUpdate</span><span class="p">));</span>
-        <span class="n">chooseLinesQuery</span><span class="p">.</span><span class="n">query</span><span class="p">().</span><span class="n">addDataSource</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">VendInvoiceInfoTable</span><span class="p">)).</span><span class="n">enabled</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
-
-        <span class="c1">// chooseLinesPendingInvoiceQuery needs to be initialized, although it will not be used
-</span><span class="c1"></span>        <span class="n">chooseLinesPendingInvoiceQuery</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SysQueryRun</span><span class="p">(</span><span class="n">queryStr</span><span class="p">(</span><span class="n">PurchUpdatePendingInvoice</span><span class="p">));</span>
-        <span class="n">chooseLinesPendingInvoiceQuery</span><span class="p">.</span><span class="n">query</span><span class="p">().</span><span class="n">dataSourceTable</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">PurchTable</span><span class="p">)).</span><span class="n">addRange</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchTable</span><span class="p">,</span><span class="n">PurchId</span><span class="p">)).</span><span class="k">value</span><span class="p">(</span><span class="n">queryValue</span><span class="p">(</span><span class="err">&#39;&#39;</span><span class="p">));</span>
-           
-        <span class="n">purchFormLetter</span> <span class="p">=</span> <span class="n">PurchFormLetter</span><span class="p">::</span><span class="n">construct</span><span class="p">(</span><span class="n">DocumentStatus</span><span class="p">::</span><span class="n">Invoice</span><span class="p">);</span>
-        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">chooseLinesQuery</span> <span class="p">(</span><span class="n">chooseLinesQuery</span><span class="p">);</span>
-        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">parmQueryChooseLinesPendingInvoice</span><span class="p">(</span><span class="n">chooseLinesPendingInvoiceQuery</span><span class="p">);</span>
-        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">purchTable</span> <span class="p">(</span><span class="n">PurchTable</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="n">PurchId</span><span class="p">));</span>
-        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">transDate</span> <span class="p">(</span><span class="n">systemDateGet</span><span class="p">());</span>
-        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">parmParmTableNum</span> <span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;%1&#34;</span><span class="p">,</span><span class="n">packingSlipId</span><span class="p">));</span> <span class="c1">//This is invoice number
-</span><span class="c1"></span>        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">printFormLetter</span> <span class="p">(</span><span class="n">NoYes</span><span class="p">::</span><span class="n">No</span><span class="p">);</span>
-        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">sumBy</span> <span class="p">(</span><span class="n">AccountOrder</span><span class="p">::</span><span class="n">Auto</span><span class="p">);</span>
-        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">specQty</span> <span class="p">(</span><span class="n">PurchUpdate</span><span class="p">::</span><span class="n">PackingSlip</span><span class="p">);</span>
-      
-        <span class="k">while</span> <span class="k">select</span> <span class="n">tmpFrmVirtualVend</span>
-        <span class="p">{</span>
-            <span class="n">selectedList</span><span class="p">.</span><span class="n">addEnd</span><span class="p">(</span><span class="n">tmpFrmVirtualVend</span><span class="p">);</span>
-            <span class="n">conTmpFrmVirtual</span> <span class="p">=</span> <span class="n">selectedList</span><span class="p">.</span><span class="n">pack</span><span class="p">();</span>
-        <span class="p">}</span>
-        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">selectFromJournal</span><span class="p">(</span><span class="n">conTmpFrmVirtual</span><span class="p">);</span>
-        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">reArrangeNow</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
-        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="kt">int</span> <span class="n">randomAmount</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">RandomGenerate</span> <span class="n">randomGenerate</span><span class="p">;</span>
-        <span class="n">randomGenerate</span> <span class="p">=</span> <span class="n">RandomGenerate</span><span class="p">::</span><span class="n">construct</span><span class="p">();</span>
-        <span class="n">randomGenerate</span><span class="p">.</span><span class="n">parmSeed</span><span class="p">(</span><span class="k">new</span> <span class="n">Random</span><span class="p">().</span><span class="n">nextInt</span><span class="p">());</span>
-        <span class="k">return</span> <span class="n">RandomGenerate</span><span class="p">.</span><span class="n">randomInt</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="m">800</span><span class="p">);</span>
-    <span class="p">}</span>
-
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MaxGeneratePO</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="c1">// number of purchase orders</span>
+</span></span><span class="line"><span class="cl">        <span class="n">NumberSeq</span> <span class="n">numberSeq</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">PurchTable</span> <span class="n">purchTable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">PurchLine</span> <span class="n">purchLine</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">InventDim</span> <span class="n">inventDim</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="p">&lt;=</span> <span class="m">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ttsBegin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">MaxGeneratePO</span> <span class="n">createPO</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MaxGeneratePO</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">numberSeq</span> <span class="p">=</span> <span class="n">NumberSeq</span><span class="p">::</span><span class="n">newGetNum</span><span class="p">(</span><span class="n">PurchParameters</span><span class="p">::</span><span class="n">numRefPurchId</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">            <span class="n">numberSeq</span><span class="p">.</span><span class="n">used</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span> <span class="p">=</span> <span class="n">numberSeq</span><span class="p">.</span><span class="n">num</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchTable</span><span class="p">.</span><span class="n">initValue</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchTable</span><span class="p">.</span><span class="n">initFromVendTable</span><span class="p">(</span><span class="n">VendTable</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="err">&#39;</span><span class="n">US</span><span class="p">-</span><span class="m">101</span><span class="err">&#39;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(!</span><span class="n">purchTable</span><span class="p">.</span><span class="n">validateWrite</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">throw</span> <span class="n">Exception</span><span class="p">::</span><span class="n">Error</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">purchTable</span><span class="p">.</span><span class="n">insert</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">inventDim</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">initValue</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchId</span> <span class="p">=</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">ItemId</span> <span class="p">=</span> <span class="err">&#39;</span><span class="n">D0002</span><span class="err">&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">inventDim</span><span class="p">.</span><span class="n">InventSiteId</span> <span class="p">=</span> <span class="s">&#34;1&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">inventDim</span><span class="p">.</span><span class="n">InventLocationId</span> <span class="p">=</span> <span class="s">&#34;11&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">InventDimId</span><span class="p">=</span><span class="n">InventDim</span><span class="p">::</span><span class="n">findOrCreate</span><span class="p">(</span><span class="n">inventDim</span><span class="p">).</span><span class="n">inventDimId</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">createLine</span><span class="p">(</span><span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchQty</span> <span class="p">=</span> <span class="m">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchUnit</span> <span class="p">=</span> <span class="s">&#34;ea&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchPrice</span> <span class="p">=</span> <span class="n">createPO</span><span class="p">.</span><span class="n">randomAmount</span><span class="p">();</span> <span class="c1">// get random amount nubmer</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">LineAmount</span> <span class="p">=</span> <span class="n">purchLine</span><span class="p">.</span><span class="n">calcLineAmount</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="c1">//PO confirm</span>
+</span></span><span class="line"><span class="cl">            <span class="n">PurchFormLetter</span> <span class="n">purchFormLetter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">PurchFormLetter</span> <span class="n">purchFormLetterPack</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchFormLetter</span> <span class="p">=</span> <span class="n">PurchFormLetter</span><span class="p">::</span><span class="n">construct</span><span class="p">(</span><span class="n">DocumentStatus</span><span class="p">::</span><span class="n">PurchaseOrder</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">purchTable</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;ConNum_%1&#34;</span><span class="p">,</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">systemDateGet</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">PurchUpdate</span><span class="p">::</span><span class="n">All</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">AccountOrder</span><span class="p">::</span><span class="n">None</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">NoYes</span><span class="p">::</span><span class="n">No</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">NoYes</span><span class="p">::</span><span class="n">no</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//Product receipt</span>
+</span></span><span class="line"><span class="cl">            <span class="n">createPO</span><span class="p">.</span><span class="n">proceed</span><span class="p">(</span><span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">,</span> <span class="n">purchLine</span><span class="p">.</span><span class="n">ItemId</span><span class="p">,</span><span class="n">purchLine</span><span class="p">.</span><span class="n">InventDimId</span><span class="p">,</span><span class="n">purchLine</span><span class="p">.</span><span class="n">PurchQty</span><span class="p">,</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;RptNum_%1&#34;</span><span class="p">,</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//Post PO</span>
+</span></span><span class="line"><span class="cl">            <span class="n">createPO</span><span class="p">.</span><span class="n">postPOInvoice</span><span class="p">(</span><span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">,</span> <span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;RptNum_%1&#34;</span><span class="p">,</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">info</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;Purchase order &#39;%1&#39; has been created&#34;</span><span class="p">,</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ttsCommit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">i</span><span class="p">++;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">boolean</span> <span class="n">proceed</span><span class="p">(</span><span class="n">PurchId</span> <span class="m">_</span><span class="n">purchId</span><span class="p">,</span> <span class="n">ItemId</span> <span class="m">_</span><span class="n">itemId</span><span class="p">,</span><span class="n">inventDimId</span> <span class="m">_</span><span class="n">inventDimId</span><span class="p">,</span> <span class="n">PurchQty</span> <span class="m">_</span><span class="n">qty</span><span class="p">,</span> <span class="n">PackingSlipId</span> <span class="m">_</span><span class="n">productReceiptNumber</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span>
+</span></span><span class="line"><span class="cl">            <span class="k">this</span><span class="p">.</span><span class="n">generateProductReceipt</span><span class="p">(</span><span class="m">_</span><span class="n">purchId</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">addToPurchLineList</span><span class="p">(</span><span class="m">_</span><span class="n">purchId</span><span class="p">,</span> <span class="m">_</span><span class="n">itemId</span><span class="p">,</span> <span class="m">_</span><span class="n">inventDimId</span><span class="p">,</span> <span class="m">_</span><span class="n">qty</span><span class="p">),</span> <span class="m">_</span><span class="n">productReceiptNumber</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">boolean</span> <span class="n">generateProductReceipt</span><span class="p">(</span><span class="n">PurchId</span> <span class="m">_</span><span class="n">purchId</span><span class="p">,</span> <span class="n">List</span> <span class="m">_</span><span class="n">purchLineList</span><span class="p">,</span> <span class="n">PackingSlipId</span> <span class="m">_</span><span class="n">productReceiptNumber</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">boolean</span> <span class="n">ret</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">PurchFormLetter</span> <span class="n">purchFromLetter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">PurchTable</span> <span class="n">purchTable</span> <span class="p">=</span> <span class="n">PurchTable</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="m">_</span><span class="n">purchId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">try</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ttsbegin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchFromLetter</span> <span class="p">=</span> <span class="n">PurchFormLetter</span><span class="p">::</span><span class="n">construct</span><span class="p">(</span><span class="n">DocumentStatus</span><span class="p">::</span><span class="n">PackingSlip</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchFromLetter</span><span class="p">.</span><span class="n">createFromLines</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchFromLetter</span><span class="p">.</span><span class="n">parmLineList</span><span class="p">(</span><span class="m">_</span><span class="n">purchLineList</span><span class="p">.</span><span class="n">pack</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchFromLetter</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">purchTable</span><span class="p">,</span> <span class="m">_</span><span class="n">productReceiptNumber</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">DateTimeUtil</span><span class="p">::</span><span class="n">getToday</span><span class="p">(</span><span class="n">DateTimeUtil</span><span class="p">::</span><span class="n">getUserPreferredTimeZone</span><span class="p">()),</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">PurchUpdate</span><span class="p">::</span><span class="n">All</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ttscommit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">catch</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ret</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">List</span> <span class="n">addToPurchLineList</span><span class="p">(</span><span class="n">PurchId</span> <span class="m">_</span><span class="n">purchId</span><span class="p">,</span> <span class="n">ItemId</span> <span class="m">_</span><span class="n">itemId</span><span class="p">,</span><span class="n">inventDimId</span> <span class="m">_</span><span class="n">inventDimId</span><span class="p">,</span> <span class="n">PurchQty</span> <span class="m">_</span><span class="n">qty</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">List</span> <span class="n">purchLineList</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Record</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">PurchLine</span> <span class="n">purchLine</span> <span class="p">=</span> <span class="n">PurchLine</span><span class="p">::</span><span class="n">findItemIdInventDimId</span><span class="p">(</span><span class="m">_</span><span class="n">purchId</span><span class="p">,</span> <span class="m">_</span><span class="n">itemId</span><span class="p">,</span> <span class="m">_</span><span class="n">inventDimId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">purchLine</span> <span class="p">&amp;&amp;</span> <span class="m">_</span><span class="n">qty</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchReceivedNow</span> <span class="p">=</span> <span class="m">_</span><span class="n">qty</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchline</span><span class="p">.</span><span class="n">modifiedField</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchLine</span><span class="p">,</span> <span class="n">PurchReceivedNow</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLineList</span><span class="p">.</span><span class="n">addEnd</span><span class="p">(</span><span class="n">purchLine</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">purchLineList</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">void</span> <span class="n">postPOInvoice</span><span class="p">(</span><span class="n">PurchId</span> <span class="n">purchId</span><span class="p">,</span> <span class="n">PackingSlipId</span> <span class="n">packingSlipId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">TmpFrmVirtual</span>               <span class="n">tmpFrmVirtualVend</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">PurchFormLetter_Invoice</span>     <span class="n">purchFormLetter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">VendPackingSlipJour</span>         <span class="n">vendPackingSlipJour</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SysQueryRun</span>                 <span class="n">chooseLinesQuery</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SysQueryRun</span>                 <span class="n">chooseLinesPendingInvoiceQuery</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">container</span>                   <span class="n">conTmpFrmVirtual</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">List</span>                        <span class="n">selectedList</span>    <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Record</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">select</span> <span class="n">firstonly</span> <span class="n">vendPackingSlipJour</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">where</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">PurchId</span> <span class="p">==</span> <span class="n">purchId</span>
+</span></span><span class="line"><span class="cl">            <span class="p">&amp;&amp;</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">PackingSlipId</span> <span class="p">==</span> <span class="n">packingSlipId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">vendPackingSlipJour</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">TableNum</span>  <span class="p">=</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">TableId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">RecordNo</span>  <span class="p">=</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">RecId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">NoYes</span>     <span class="p">=</span> <span class="n">NoYes</span><span class="p">::</span><span class="n">Yes</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">Id</span>        <span class="p">=</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">PurchId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">insert</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">chooseLinesQuery</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SysQueryRun</span><span class="p">(</span><span class="n">queryStr</span><span class="p">(</span><span class="n">PurchUpdate</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chooseLinesQuery</span><span class="p">.</span><span class="n">query</span><span class="p">().</span><span class="n">addDataSource</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">VendInvoiceInfoTable</span><span class="p">)).</span><span class="n">enabled</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// chooseLinesPendingInvoiceQuery needs to be initialized, although it will not be used</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chooseLinesPendingInvoiceQuery</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SysQueryRun</span><span class="p">(</span><span class="n">queryStr</span><span class="p">(</span><span class="n">PurchUpdatePendingInvoice</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chooseLinesPendingInvoiceQuery</span><span class="p">.</span><span class="n">query</span><span class="p">().</span><span class="n">dataSourceTable</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">PurchTable</span><span class="p">)).</span><span class="n">addRange</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchTable</span><span class="p">,</span><span class="n">PurchId</span><span class="p">)).</span><span class="k">value</span><span class="p">(</span><span class="n">queryValue</span><span class="p">(</span><span class="err">&#39;&#39;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">           
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span> <span class="p">=</span> <span class="n">PurchFormLetter</span><span class="p">::</span><span class="n">construct</span><span class="p">(</span><span class="n">DocumentStatus</span><span class="p">::</span><span class="n">Invoice</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">chooseLinesQuery</span> <span class="p">(</span><span class="n">chooseLinesQuery</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">parmQueryChooseLinesPendingInvoice</span><span class="p">(</span><span class="n">chooseLinesPendingInvoiceQuery</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">purchTable</span> <span class="p">(</span><span class="n">PurchTable</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="n">PurchId</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">transDate</span> <span class="p">(</span><span class="n">systemDateGet</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">parmParmTableNum</span> <span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;%1&#34;</span><span class="p">,</span><span class="n">packingSlipId</span><span class="p">));</span> <span class="c1">//This is invoice number</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">printFormLetter</span> <span class="p">(</span><span class="n">NoYes</span><span class="p">::</span><span class="n">No</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">sumBy</span> <span class="p">(</span><span class="n">AccountOrder</span><span class="p">::</span><span class="n">Auto</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">specQty</span> <span class="p">(</span><span class="n">PurchUpdate</span><span class="p">::</span><span class="n">PackingSlip</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="k">select</span> <span class="n">tmpFrmVirtualVend</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">selectedList</span><span class="p">.</span><span class="n">addEnd</span><span class="p">(</span><span class="n">tmpFrmVirtualVend</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">conTmpFrmVirtual</span> <span class="p">=</span> <span class="n">selectedList</span><span class="p">.</span><span class="n">pack</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">selectFromJournal</span><span class="p">(</span><span class="n">conTmpFrmVirtual</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">reArrangeNow</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="kt">int</span> <span class="n">randomAmount</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">RandomGenerate</span> <span class="n">randomGenerate</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">randomGenerate</span> <span class="p">=</span> <span class="n">RandomGenerate</span><span class="p">::</span><span class="n">construct</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">randomGenerate</span><span class="p">.</span><span class="n">parmSeed</span><span class="p">(</span><span class="k">new</span> <span class="n">Random</span><span class="p">().</span><span class="n">nextInt</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">RandomGenerate</span><span class="p">.</span><span class="n">randomInt</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="m">800</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Thank you for reading.</p></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on February 24, 2022</span>
+                <span>Updated on March 21, 2022</span>
             </div>
             <div class="post-info-license"></div>
         </div>

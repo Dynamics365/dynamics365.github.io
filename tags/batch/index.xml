@@ -77,18 +77,18 @@ You can build the project without problem.</p>
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="k">foreach</span> <span class="p">(</span><span class="n">IEdmEntitySet</span> <span class="n">entitySet</span> <span class="k">in</span> <span class="n">container</span><span class="p">.</span><span class="n">EntitySets</span><span class="p">())</span>
-<span class="p">{</span>
-    <span class="n">IEdmEntityType</span> <span class="n">entitySetElementType</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">EntityType</span><span class="p">();</span>
-    <span class="kt">string</span> <span class="n">entitySetElementTypeName</span> <span class="p">=</span> <span class="n">GetElementTypeName</span><span class="p">(</span><span class="n">entitySetElementType</span><span class="p">,</span> <span class="n">container</span><span class="p">);</span>
-
-    <span class="kt">string</span> <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">EnableNamingAlias</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">Customization</span><span class="p">.</span><span class="n">CustomizeNaming</span><span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">foreach</span> <span class="p">(</span><span class="n">IEdmEntitySet</span> <span class="n">entitySet</span> <span class="k">in</span> <span class="n">container</span><span class="p">.</span><span class="n">EntitySets</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IEdmEntityType</span> <span class="n">entitySetElementType</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">EntityType</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">entitySetElementTypeName</span> <span class="p">=</span> <span class="n">GetElementTypeName</span><span class="p">(</span><span class="n">entitySetElementType</span><span class="p">,</span> <span class="n">container</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">EnableNamingAlias</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">Customization</span><span class="p">.</span><span class="n">CustomizeNaming</span><span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>Modified code:</li>
@@ -115,25 +115,25 @@ You can build the project without problem.</p>
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="k">foreach</span> <span class="p">(</span><span class="n">IEdmEntitySet</span> <span class="n">entitySet</span> <span class="k">in</span> <span class="n">container</span><span class="p">.</span><span class="n">EntitySets</span><span class="p">())</span>
-<span class="p">{</span>
-    <span class="n">IEdmEntityType</span> <span class="n">entitySetElementType</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">EntityType</span><span class="p">();</span>
-    <span class="kt">string</span> <span class="n">entitySetElementTypeName</span> <span class="p">=</span> <span class="n">GetElementTypeName</span><span class="p">(</span><span class="n">entitySetElementType</span><span class="p">,</span> <span class="n">container</span><span class="p">);</span>
-
-    <span class="kt">string</span> <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
-
-    <span class="c1">//start of manual fix 
-</span><span class="c1"></span>    <span class="c1">//only process entity names that containin a specific string, to reduce the string size
-</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(((</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;CUST&#34;</span><span class="p">))</span> <span class="p">||</span> <span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;VEND&#34;</span><span class="p">)))</span> <span class="p">||</span> <span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;SALES&#34;</span><span class="p">)))</span>
-    <span class="p">{</span>
-      <span class="c1">// emd of manual fix
-</span><span class="c1"></span>      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">EnableNamingAlias</span><span class="p">)</span>
-      <span class="p">{</span>
-          <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">Customization</span><span class="p">.</span><span class="n">CustomizeNaming</span><span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">);</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">foreach</span> <span class="p">(</span><span class="n">IEdmEntitySet</span> <span class="n">entitySet</span> <span class="k">in</span> <span class="n">container</span><span class="p">.</span><span class="n">EntitySets</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IEdmEntityType</span> <span class="n">entitySetElementType</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">EntityType</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">entitySetElementTypeName</span> <span class="p">=</span> <span class="n">GetElementTypeName</span><span class="p">(</span><span class="n">entitySetElementType</span><span class="p">,</span> <span class="n">container</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//start of manual fix </span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//only process entity names that containin a specific string, to reduce the string size</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(((</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;CUST&#34;</span><span class="p">))</span> <span class="p">||</span> <span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;VEND&#34;</span><span class="p">)))</span> <span class="p">||</span> <span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;SALES&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// emd of manual fix</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">EnableNamingAlias</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">Customization</span><span class="p">.</span><span class="n">CustomizeNaming</span><span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="4-authentication-configuration">4. Authentication configuration</h1>
 <p>Under AuthenticationUtility project, you need to modify ClientConfiguration.cs follow, you can get all related information for the first step.</p>
@@ -172,18 +172,18 @@ To create Azure function please follow this <a href="https://docs.microsoft.com/
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">using</span> <span class="nn">System.Net</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">Microsoft.AspNetCore.Mvc</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">Microsoft.Extensions.Primitives</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">Newtonsoft.Json</span><span class="p">;</span>
-<span class="k">public</span> <span class="k">static</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">IActionResult</span><span class="p">&gt;</span> <span class="n">Run</span><span class="p">(</span><span class="n">HttpRequest</span> <span class="n">req</span><span class="p">,</span> <span class="n">ILogger</span> <span class="n">log</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="n">log</span><span class="p">.</span><span class="n">LogInformation</span><span class="p">(</span><span class="s">&#34;Dynamics 365 finance and operations notifications&#34;</span><span class="p">);</span>
-  <span class="kt">string</span> <span class="n">requestBody</span> <span class="p">=</span> <span class="k">await</span> <span class="k">new</span> <span class="n">StreamReader</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">Body</span><span class="p">).</span><span class="n">ReadToEndAsync</span><span class="p">();</span>
-  <span class="n">log</span><span class="p">.</span><span class="n">LogInformation</span><span class="p">(</span><span class="n">requestBody</span><span class="p">);</span>
-  <span class="k">return</span> <span class="p">(</span><span class="n">ActionResult</span><span class="p">)</span><span class="k">new</span> <span class="n">OkObjectResult</span><span class="p">(</span><span class="s">$&#34;Hello world&#34;</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Net</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">Microsoft.AspNetCore.Mvc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">Microsoft.Extensions.Primitives</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">Newtonsoft.Json</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">IActionResult</span><span class="p">&gt;</span> <span class="n">Run</span><span class="p">(</span><span class="n">HttpRequest</span> <span class="n">req</span><span class="p">,</span> <span class="n">ILogger</span> <span class="n">log</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">log</span><span class="p">.</span><span class="n">LogInformation</span><span class="p">(</span><span class="s">&#34;Dynamics 365 finance and operations notifications&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">string</span> <span class="n">requestBody</span> <span class="p">=</span> <span class="k">await</span> <span class="k">new</span> <span class="n">StreamReader</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">Body</span><span class="p">).</span><span class="n">ReadToEndAsync</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="n">log</span><span class="p">.</span><span class="n">LogInformation</span><span class="p">(</span><span class="n">requestBody</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">(</span><span class="n">ActionResult</span><span class="p">)</span><span class="k">new</span> <span class="n">OkObjectResult</span><span class="p">(</span><span class="s">$&#34;Hello world&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>This basically listens the JSON messages from Business events and display the Json message at Console.</p>
 <p>From the Azure function you can get the HTTPs endpoint, save it for later reference.</p>
@@ -300,40 +300,40 @@ This can be done from POSTMAN too and you need to use header and body as you see
 </span><span class="lnt">33
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd">--batch_d63a-e9be-2927
-Content-Type: multipart/mixed; boundary=changeset_2499-90ab-7b93
-
---changeset_2499-90ab-7b93
-Content-Type: application/http
-Content-Transfer-Encoding: binary
-
-POST CustomerGroups?cross-company=true HTTP/1.1
-Content-ID: 1
-Accept: application/json;q=0.9, */*;q=0.1
-OData-Version: 4.0
-Content-Type: application/json
-OData-MaxVersion: 4.0
-
-{<span class="s2">&#34;CustomerGroupId&#34;</span>:<span class="s2">&#34;1060&#34;</span>,<span class="s2">&#34;Description&#34;</span>:<span class="s2">&#34;Wholesales customers&#34;</span>,<span class="s2">&#34;PaymentTermId&#34;</span>:<span class="s2">&#34;Net30&#34;</span>,<span class="s2">&#34;IsSalesTaxIncludedInPrice&#34;</span>:<span class="s2">&#34;No&#34;</span>,<span class="s2">&#34;dataAreaId&#34;</span>:<span class="s2">&#34;usmf&#34;</span>}
---changeset_2499-90ab-7b93--
-
---batch_d63a-e9be-2927
-Content-Type: multipart/mixed; boundary=changeset_b573-33b2-85ff
-
---changeset_b573-33b2-85ff
-Content-Type: application/http
-Content-Transfer-Encoding: binary
-
-POST CustomerGroups?cross-company=true HTTP/1.1
-Content-ID: 2
-Accept: application/json;q=0.9, */*;q=0.1
-OData-Version: 4.0
-Content-Type: application/json
-OData-MaxVersion: 4.0
-
-{<span class="s2">&#34;CustomerGroupId&#34;</span>:<span class="s2">&#34;1070&#34;</span>,<span class="s2">&#34;Description&#34;</span>:<span class="s2">&#34;Wholesales customers1&#34;</span>,<span class="s2">&#34;PaymentTermId&#34;</span>:<span class="s2">&#34;Net30&#34;</span>,<span class="s2">&#34;IsSalesTaxIncludedInPrice&#34;</span>:<span class="s2">&#34;No&#34;</span>,<span class="s2">&#34;dataAreaId&#34;</span>:<span class="s2">&#34;usmf&#34;</span>}
---changeset_b573-33b2-85ff--
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">--batch_d63a-e9be-2927
+</span></span><span class="line"><span class="cl">Content-Type: multipart/mixed; boundary=changeset_2499-90ab-7b93
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">--changeset_2499-90ab-7b93
+</span></span><span class="line"><span class="cl">Content-Type: application/http
+</span></span><span class="line"><span class="cl">Content-Transfer-Encoding: binary
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">POST CustomerGroups?cross-company=true HTTP/1.1
+</span></span><span class="line"><span class="cl">Content-ID: 1
+</span></span><span class="line"><span class="cl">Accept: application/json;q=0.9, */*;q=0.1
+</span></span><span class="line"><span class="cl">OData-Version: 4.0
+</span></span><span class="line"><span class="cl">Content-Type: application/json
+</span></span><span class="line"><span class="cl">OData-MaxVersion: 4.0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">{<span class="s2">&#34;CustomerGroupId&#34;</span>:<span class="s2">&#34;1060&#34;</span>,<span class="s2">&#34;Description&#34;</span>:<span class="s2">&#34;Wholesales customers&#34;</span>,<span class="s2">&#34;PaymentTermId&#34;</span>:<span class="s2">&#34;Net30&#34;</span>,<span class="s2">&#34;IsSalesTaxIncludedInPrice&#34;</span>:<span class="s2">&#34;No&#34;</span>,<span class="s2">&#34;dataAreaId&#34;</span>:<span class="s2">&#34;usmf&#34;</span>}
+</span></span><span class="line"><span class="cl">--changeset_2499-90ab-7b93--
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">--batch_d63a-e9be-2927
+</span></span><span class="line"><span class="cl">Content-Type: multipart/mixed; boundary=changeset_b573-33b2-85ff
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">--changeset_b573-33b2-85ff
+</span></span><span class="line"><span class="cl">Content-Type: application/http
+</span></span><span class="line"><span class="cl">Content-Transfer-Encoding: binary
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">POST CustomerGroups?cross-company=true HTTP/1.1
+</span></span><span class="line"><span class="cl">Content-ID: 2
+</span></span><span class="line"><span class="cl">Accept: application/json;q=0.9, */*;q=0.1
+</span></span><span class="line"><span class="cl">OData-Version: 4.0
+</span></span><span class="line"><span class="cl">Content-Type: application/json
+</span></span><span class="line"><span class="cl">OData-MaxVersion: 4.0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">{<span class="s2">&#34;CustomerGroupId&#34;</span>:<span class="s2">&#34;1070&#34;</span>,<span class="s2">&#34;Description&#34;</span>:<span class="s2">&#34;Wholesales customers1&#34;</span>,<span class="s2">&#34;PaymentTermId&#34;</span>:<span class="s2">&#34;Net30&#34;</span>,<span class="s2">&#34;IsSalesTaxIncludedInPrice&#34;</span>:<span class="s2">&#34;No&#34;</span>,<span class="s2">&#34;dataAreaId&#34;</span>:<span class="s2">&#34;usmf&#34;</span>}
+</span></span><span class="line"><span class="cl">--changeset_b573-33b2-85ff--
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Click send and this is what you got from response</p>
 <figure class='center'>
@@ -397,60 +397,60 @@ OData-MaxVersion: 4.0
 </span><span class="lnt">53
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="err">--batchresponse_</span><span class="mf">45e87829</span><span class="mi">-5</span><span class="err">a</span><span class="mi">26</span><span class="mf">-480e-8</span><span class="err">aaa</span><span class="mi">-8</span><span class="err">a</span><span class="mi">08</span><span class="err">c</span><span class="mi">7</span><span class="err">a</span><span class="mi">82</span><span class="err">c</span><span class="mi">60</span>
-<span class="err">Content-Type:</span> <span class="err">multipart/mixed;</span> <span class="err">boundary=changesetresponse_</span><span class="mi">27</span><span class="err">ed</span><span class="mi">7621</span><span class="err">-d</span><span class="mi">939-40</span><span class="err">b</span><span class="mi">7-9</span><span class="err">f</span><span class="mi">8</span><span class="err">b-be</span><span class="mi">0421</span><span class="err">ff</span><span class="mi">0</span><span class="err">cea</span>
-<span class="err">--changesetresponse_</span><span class="mi">27</span><span class="err">ed</span><span class="mi">7621</span><span class="err">-d</span><span class="mi">939-40</span><span class="err">b</span><span class="mi">7-9</span><span class="err">f</span><span class="mi">8</span><span class="err">b-be</span><span class="mi">0421</span><span class="err">ff</span><span class="mi">0</span><span class="err">cea</span>
-<span class="err">Content-Type:</span> <span class="err">application/http</span>
-<span class="err">Content-Transfer-Encoding:</span> <span class="err">binary</span>
-<span class="err">Content-ID:</span> <span class="mi">1</span>
-<span class="err">HTTP/</span><span class="mf">1.1</span> <span class="mi">201</span> <span class="err">Created</span>
-<span class="err">ETag:</span> <span class="err">W/</span><span class="s2">&#34;JzEsNjg3MTk0Nzk4MzUn&#34;</span>
-<span class="err">Location:</span> <span class="err">https:</span> <span class="c1">//fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/CustomerGroups(dataAreaId=&#39;usmf&#39;,CustomerGroupId=&#39;1060&#39;)
-</span><span class="c1"></span><span class="err">Content-Type:</span> <span class="err">application/json;</span> <span class="err">odata.metadata=minimal</span>
-<span class="err">OData-Version:</span> <span class="mf">4.0</span>
-<span class="p">{</span>
-<span class="nt">&#34;@odata.context&#34;</span><span class="p">:</span> <span class="s2">&#34;https://fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/$metadata#CustomerGroups/$entity&#34;</span><span class="p">,</span>
-<span class="nt">&#34;@odata.etag&#34;</span><span class="p">:</span> <span class="s2">&#34;W/\&#34;JzEsNjg3MTk0Nzk4MzUn\&#34;&#34;</span><span class="p">,</span>
-<span class="nt">&#34;dataAreaId&#34;</span><span class="p">:</span> <span class="s2">&#34;usmf&#34;</span><span class="p">,</span>
-<span class="nt">&#34;CustomerGroupId&#34;</span><span class="p">:</span> <span class="s2">&#34;1060&#34;</span><span class="p">,</span>
-<span class="nt">&#34;ClearingPeriodPaymentTermName&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-<span class="nt">&#34;DefaultDimensionDisplayValue&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-<span class="nt">&#34;CustomerAccountNumberSequence&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-<span class="nt">&#34;IsSalesTaxIncludedInPrice&#34;</span><span class="p">:</span> <span class="s2">&#34;No&#34;</span><span class="p">,</span>
-<span class="nt">&#34;Description&#34;</span><span class="p">:</span> <span class="s2">&#34;Wholesales customers&#34;</span><span class="p">,</span>
-<span class="nt">&#34;WriteOffReason&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-<span class="nt">&#34;PaymentTermId&#34;</span><span class="p">:</span> <span class="s2">&#34;Net30&#34;</span><span class="p">,</span>
-<span class="nt">&#34;TaxGroupId&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
-<span class="p">}</span>
-<span class="err">--changesetresponse_</span><span class="mi">27</span><span class="err">ed</span><span class="mi">7621</span><span class="err">-d</span><span class="mi">939-40</span><span class="err">b</span><span class="mi">7-9</span><span class="err">f</span><span class="mi">8</span><span class="err">b-be</span><span class="mi">0421</span><span class="err">ff</span><span class="mi">0</span><span class="err">cea--</span>
-<span class="err">--batchresponse_</span><span class="mf">45e87829</span><span class="mi">-5</span><span class="err">a</span><span class="mi">26</span><span class="mf">-480e-8</span><span class="err">aaa</span><span class="mi">-8</span><span class="err">a</span><span class="mi">08</span><span class="err">c</span><span class="mi">7</span><span class="err">a</span><span class="mi">82</span><span class="err">c</span><span class="mi">60</span>
-<span class="err">Content-Type:</span> <span class="err">multipart/mixed;</span> <span class="err">boundary=changesetresponse_</span><span class="mi">541</span><span class="err">a</span><span class="mi">7</span><span class="err">d</span><span class="mi">21</span><span class="err">-af</span><span class="mi">21-4</span><span class="err">d</span><span class="mi">66</span><span class="err">-b</span><span class="mi">410</span><span class="err">-fb</span><span class="mi">4165599</span><span class="err">b</span><span class="mi">54</span>
-<span class="err">--changesetresponse_</span><span class="mi">541</span><span class="err">a</span><span class="mi">7</span><span class="err">d</span><span class="mi">21</span><span class="err">-af</span><span class="mi">21-4</span><span class="err">d</span><span class="mi">66</span><span class="err">-b</span><span class="mi">410</span><span class="err">-fb</span><span class="mi">4165599</span><span class="err">b</span><span class="mi">54</span>
-<span class="err">Content-Type:</span> <span class="err">application/http</span>
-<span class="err">Content-Transfer-Encoding:</span> <span class="err">binary</span>
-<span class="err">Content-ID:</span> <span class="mi">2</span>
-<span class="err">HTTP/</span><span class="mf">1.1</span> <span class="mi">201</span> <span class="err">Created</span>
-<span class="err">ETag:</span> <span class="err">W/</span><span class="s2">&#34;JzEsNjg3MTk0Nzk4MzYn&#34;</span>
-<span class="err">Location:</span> <span class="err">https:</span> <span class="c1">//fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/CustomerGroups(dataAreaId=&#39;usmf&#39;,CustomerGroupId=&#39;1070&#39;)
-</span><span class="c1"></span><span class="err">Content-Type:</span> <span class="err">application/json;</span> <span class="err">odata.metadata=minimal</span>
-<span class="err">OData-Version:</span> <span class="mf">4.0</span>
-<span class="p">{</span>
-<span class="nt">&#34;@odata.context&#34;</span><span class="p">:</span> <span class="s2">&#34;https://fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/$metadata#CustomerGroups/$entity&#34;</span><span class="p">,</span>
-<span class="nt">&#34;@odata.etag&#34;</span><span class="p">:</span> <span class="s2">&#34;W/\&#34;JzEsNjg3MTk0Nzk4MzYn\&#34;&#34;</span><span class="p">,</span>
-<span class="nt">&#34;dataAreaId&#34;</span><span class="p">:</span> <span class="s2">&#34;usmf&#34;</span><span class="p">,</span>
-<span class="nt">&#34;CustomerGroupId&#34;</span><span class="p">:</span> <span class="s2">&#34;1070&#34;</span><span class="p">,</span>
-<span class="nt">&#34;ClearingPeriodPaymentTermName&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-<span class="nt">&#34;DefaultDimensionDisplayValue&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-<span class="nt">&#34;CustomerAccountNumberSequence&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-<span class="nt">&#34;IsSalesTaxIncludedInPrice&#34;</span><span class="p">:</span> <span class="s2">&#34;No&#34;</span><span class="p">,</span>
-<span class="nt">&#34;Description&#34;</span><span class="p">:</span> <span class="s2">&#34;Wholesales customers1&#34;</span><span class="p">,</span>
-<span class="nt">&#34;WriteOffReason&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-<span class="nt">&#34;PaymentTermId&#34;</span><span class="p">:</span> <span class="s2">&#34;Net30&#34;</span><span class="p">,</span>
-<span class="nt">&#34;TaxGroupId&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
-<span class="p">}</span>
-<span class="err">--changesetresponse_</span><span class="mi">541</span><span class="err">a</span><span class="mi">7</span><span class="err">d</span><span class="mi">21</span><span class="err">-af</span><span class="mi">21-4</span><span class="err">d</span><span class="mi">66</span><span class="err">-b</span><span class="mi">410</span><span class="err">-fb</span><span class="mi">4165599</span><span class="err">b</span><span class="mi">54</span><span class="err">--</span>
-<span class="err">--batchresponse_</span><span class="mf">45e87829</span><span class="mi">-5</span><span class="err">a</span><span class="mi">26</span><span class="mf">-480e-8</span><span class="err">aaa</span><span class="mi">-8</span><span class="err">a</span><span class="mi">08</span><span class="err">c</span><span class="mi">7</span><span class="err">a</span><span class="mi">82</span><span class="err">c</span><span class="mi">60</span><span class="err">--</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">--batchresponse_</span><span class="mf">45e87829</span><span class="mi">-5</span><span class="err">a</span><span class="mi">26</span><span class="mf">-480e-8</span><span class="err">aaa</span><span class="mi">-8</span><span class="err">a</span><span class="mi">08</span><span class="err">c</span><span class="mi">7</span><span class="err">a</span><span class="mi">82</span><span class="err">c</span><span class="mi">60</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-Type:</span> <span class="err">multipart/mixed;</span> <span class="err">boundary=changesetresponse_</span><span class="mi">27</span><span class="err">ed</span><span class="mi">7621</span><span class="err">-d</span><span class="mi">939-40</span><span class="err">b</span><span class="mi">7-9</span><span class="err">f</span><span class="mi">8</span><span class="err">b-be</span><span class="mi">0421</span><span class="err">ff</span><span class="mi">0</span><span class="err">cea</span>
+</span></span><span class="line"><span class="cl"><span class="err">--changesetresponse_</span><span class="mi">27</span><span class="err">ed</span><span class="mi">7621</span><span class="err">-d</span><span class="mi">939-40</span><span class="err">b</span><span class="mi">7-9</span><span class="err">f</span><span class="mi">8</span><span class="err">b-be</span><span class="mi">0421</span><span class="err">ff</span><span class="mi">0</span><span class="err">cea</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-Type:</span> <span class="err">application/http</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-Transfer-Encoding:</span> <span class="err">binary</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-ID:</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="err">HTTP/</span><span class="mf">1.1</span> <span class="mi">201</span> <span class="err">Created</span>
+</span></span><span class="line"><span class="cl"><span class="err">ETag:</span> <span class="err">W/</span><span class="s2">&#34;JzEsNjg3MTk0Nzk4MzUn&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="err">Location:</span> <span class="err">https:</span> <span class="c1">//fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/CustomerGroups(dataAreaId=&#39;usmf&#39;,CustomerGroupId=&#39;1060&#39;)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">Content-Type:</span> <span class="err">application/json;</span> <span class="err">odata.metadata=minimal</span>
+</span></span><span class="line"><span class="cl"><span class="err">OData-Version:</span> <span class="mf">4.0</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;@odata.context&#34;</span><span class="p">:</span> <span class="s2">&#34;https://fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/$metadata#CustomerGroups/$entity&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;@odata.etag&#34;</span><span class="p">:</span> <span class="s2">&#34;W/\&#34;JzEsNjg3MTk0Nzk4MzUn\&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;dataAreaId&#34;</span><span class="p">:</span> <span class="s2">&#34;usmf&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;CustomerGroupId&#34;</span><span class="p">:</span> <span class="s2">&#34;1060&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;ClearingPeriodPaymentTermName&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;DefaultDimensionDisplayValue&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;CustomerAccountNumberSequence&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;IsSalesTaxIncludedInPrice&#34;</span><span class="p">:</span> <span class="s2">&#34;No&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;Description&#34;</span><span class="p">:</span> <span class="s2">&#34;Wholesales customers&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;WriteOffReason&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;PaymentTermId&#34;</span><span class="p">:</span> <span class="s2">&#34;Net30&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;TaxGroupId&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="err">--changesetresponse_</span><span class="mi">27</span><span class="err">ed</span><span class="mi">7621</span><span class="err">-d</span><span class="mi">939-40</span><span class="err">b</span><span class="mi">7-9</span><span class="err">f</span><span class="mi">8</span><span class="err">b-be</span><span class="mi">0421</span><span class="err">ff</span><span class="mi">0</span><span class="err">cea--</span>
+</span></span><span class="line"><span class="cl"><span class="err">--batchresponse_</span><span class="mf">45e87829</span><span class="mi">-5</span><span class="err">a</span><span class="mi">26</span><span class="mf">-480e-8</span><span class="err">aaa</span><span class="mi">-8</span><span class="err">a</span><span class="mi">08</span><span class="err">c</span><span class="mi">7</span><span class="err">a</span><span class="mi">82</span><span class="err">c</span><span class="mi">60</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-Type:</span> <span class="err">multipart/mixed;</span> <span class="err">boundary=changesetresponse_</span><span class="mi">541</span><span class="err">a</span><span class="mi">7</span><span class="err">d</span><span class="mi">21</span><span class="err">-af</span><span class="mi">21-4</span><span class="err">d</span><span class="mi">66</span><span class="err">-b</span><span class="mi">410</span><span class="err">-fb</span><span class="mi">4165599</span><span class="err">b</span><span class="mi">54</span>
+</span></span><span class="line"><span class="cl"><span class="err">--changesetresponse_</span><span class="mi">541</span><span class="err">a</span><span class="mi">7</span><span class="err">d</span><span class="mi">21</span><span class="err">-af</span><span class="mi">21-4</span><span class="err">d</span><span class="mi">66</span><span class="err">-b</span><span class="mi">410</span><span class="err">-fb</span><span class="mi">4165599</span><span class="err">b</span><span class="mi">54</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-Type:</span> <span class="err">application/http</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-Transfer-Encoding:</span> <span class="err">binary</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-ID:</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="err">HTTP/</span><span class="mf">1.1</span> <span class="mi">201</span> <span class="err">Created</span>
+</span></span><span class="line"><span class="cl"><span class="err">ETag:</span> <span class="err">W/</span><span class="s2">&#34;JzEsNjg3MTk0Nzk4MzYn&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="err">Location:</span> <span class="err">https:</span> <span class="c1">//fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/CustomerGroups(dataAreaId=&#39;usmf&#39;,CustomerGroupId=&#39;1070&#39;)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">Content-Type:</span> <span class="err">application/json;</span> <span class="err">odata.metadata=minimal</span>
+</span></span><span class="line"><span class="cl"><span class="err">OData-Version:</span> <span class="mf">4.0</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;@odata.context&#34;</span><span class="p">:</span> <span class="s2">&#34;https://fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/$metadata#CustomerGroups/$entity&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;@odata.etag&#34;</span><span class="p">:</span> <span class="s2">&#34;W/\&#34;JzEsNjg3MTk0Nzk4MzYn\&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;dataAreaId&#34;</span><span class="p">:</span> <span class="s2">&#34;usmf&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;CustomerGroupId&#34;</span><span class="p">:</span> <span class="s2">&#34;1070&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;ClearingPeriodPaymentTermName&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;DefaultDimensionDisplayValue&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;CustomerAccountNumberSequence&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;IsSalesTaxIncludedInPrice&#34;</span><span class="p">:</span> <span class="s2">&#34;No&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;Description&#34;</span><span class="p">:</span> <span class="s2">&#34;Wholesales customers1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;WriteOffReason&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;PaymentTermId&#34;</span><span class="p">:</span> <span class="s2">&#34;Net30&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;TaxGroupId&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="err">--changesetresponse_</span><span class="mi">541</span><span class="err">a</span><span class="mi">7</span><span class="err">d</span><span class="mi">21</span><span class="err">-af</span><span class="mi">21-4</span><span class="err">d</span><span class="mi">66</span><span class="err">-b</span><span class="mi">410</span><span class="err">-fb</span><span class="mi">4165599</span><span class="err">b</span><span class="mi">54</span><span class="err">--</span>
+</span></span><span class="line"><span class="cl"><span class="err">--batchresponse_</span><span class="mf">45e87829</span><span class="mi">-5</span><span class="err">a</span><span class="mi">26</span><span class="mf">-480e-8</span><span class="err">aaa</span><span class="mi">-8</span><span class="err">a</span><span class="mi">08</span><span class="err">c</span><span class="mi">7</span><span class="err">a</span><span class="mi">82</span><span class="err">c</span><span class="mi">60</span><span class="err">--</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Check the data in Dynamics 365 for finance and operations</p>
 <figure class='center'>
@@ -514,49 +514,49 @@ OData-MaxVersion: 4.0
 </span><span class="lnt">42
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">static</span> <span class="k">void</span> <span class="n">UpdateVendorEmail</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">VendTable</span>                   <span class="n">vendTable</span><span class="p">;</span>
-    <span class="n">LogisticsElectronicAddress</span>  <span class="n">electronicAddress</span><span class="p">;</span>
-    <span class="n">DirPartyTable</span>               <span class="n">partyTable</span><span class="p">;</span>
-    <span class="n">DirPartyLocation</span>            <span class="n">partyLocation</span><span class="p">;</span>
-
-    <span class="n">electronicAddress</span><span class="p">.</span><span class="n">initValue</span><span class="p">();</span>
-    <span class="n">electronicAddress</span><span class="p">.</span><span class="n">Type</span> <span class="p">=</span> <span class="n">LogisticsElectronicAddressMethodType</span><span class="p">::</span><span class="n">Email</span><span class="p">;</span>
-    <span class="n">electronicAddress</span><span class="p">.</span><span class="n">Description</span> <span class="p">=</span> <span class="s">&#34;Max Nguyen&#34;</span><span class="p">;</span>
-    <span class="n">electronicAddress</span><span class="p">.</span><span class="n">Locator</span>     <span class="p">=</span> <span class="s">&#34;luan52@outlook.com&#34;</span><span class="p">;</span>
-    <span class="n">electronicAddress</span><span class="p">.</span><span class="n">IsPrimary</span>   <span class="p">=</span> <span class="n">NoYes</span><span class="p">::</span><span class="n">Yes</span><span class="p">;</span>
-    <span class="n">electronicAddress</span><span class="p">.</span><span class="n">insert</span><span class="p">();</span>
-
-    <span class="k">while</span> <span class="k">select</span> <span class="n">forUpdate</span> <span class="n">partyTable</span>
-        <span class="n">exists</span> <span class="k">join</span> <span class="n">vendTable</span>
-            <span class="k">where</span> <span class="n">vendTable</span><span class="p">.</span><span class="n">Party</span> <span class="p">==</span> <span class="n">partyTable</span><span class="p">.</span><span class="n">RecId</span>
-    <span class="p">{</span>
-        <span class="n">ttsBegin</span><span class="p">;</span>
-        <span class="n">partyTable</span><span class="p">.</span><span class="n">PrimaryContactEmail</span> <span class="p">=</span> <span class="n">electronicAddress</span><span class="p">.</span><span class="n">RecId</span><span class="p">;</span>
-        <span class="n">partyTable</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
-        <span class="n">ttsCommit</span><span class="p">;</span>
-
-        <span class="k">select</span> <span class="n">firstOnly</span> <span class="n">forupdate</span> <span class="n">partyLocation</span>
-            <span class="k">where</span> <span class="n">partyLocation</span><span class="p">.</span><span class="n">Party</span> <span class="p">==</span> <span class="n">partyTable</span><span class="p">.</span><span class="n">RecId</span><span class="p">;</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="n">partyLocation</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">ttsBegin</span><span class="p">;</span>
-            <span class="n">partyLocation</span><span class="p">.</span><span class="n">Location</span> <span class="p">=</span> <span class="n">electronicAddress</span><span class="p">.</span><span class="n">Location</span><span class="p">;</span>
-            <span class="n">partyLocation</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
-            <span class="n">ttsCommit</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="k">else</span>
-        <span class="p">{</span>
-            <span class="n">partyLocation</span><span class="p">.</span><span class="n">initValue</span><span class="p">();</span>
-            <span class="n">partyLocation</span><span class="p">.</span><span class="n">Location</span> <span class="p">=</span> <span class="n">electronicAddress</span><span class="p">.</span><span class="n">Location</span><span class="p">;</span>
-            <span class="n">partyLocation</span><span class="p">.</span><span class="n">Party</span>     <span class="p">=</span> <span class="n">partyTable</span><span class="p">.</span><span class="n">RecId</span><span class="p">;</span>
-            <span class="n">partyLocation</span><span class="p">.</span><span class="n">insert</span><span class="p">();</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">UpdateVendorEmail</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VendTable</span>                   <span class="n">vendTable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">LogisticsElectronicAddress</span>  <span class="n">electronicAddress</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">DirPartyTable</span>               <span class="n">partyTable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">DirPartyLocation</span>            <span class="n">partyLocation</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">electronicAddress</span><span class="p">.</span><span class="n">initValue</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">electronicAddress</span><span class="p">.</span><span class="n">Type</span> <span class="p">=</span> <span class="n">LogisticsElectronicAddressMethodType</span><span class="p">::</span><span class="n">Email</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">electronicAddress</span><span class="p">.</span><span class="n">Description</span> <span class="p">=</span> <span class="s">&#34;Max Nguyen&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">electronicAddress</span><span class="p">.</span><span class="n">Locator</span>     <span class="p">=</span> <span class="s">&#34;luan52@outlook.com&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">electronicAddress</span><span class="p">.</span><span class="n">IsPrimary</span>   <span class="p">=</span> <span class="n">NoYes</span><span class="p">::</span><span class="n">Yes</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">electronicAddress</span><span class="p">.</span><span class="n">insert</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="k">select</span> <span class="n">forUpdate</span> <span class="n">partyTable</span>
+</span></span><span class="line"><span class="cl">        <span class="n">exists</span> <span class="k">join</span> <span class="n">vendTable</span>
+</span></span><span class="line"><span class="cl">            <span class="k">where</span> <span class="n">vendTable</span><span class="p">.</span><span class="n">Party</span> <span class="p">==</span> <span class="n">partyTable</span><span class="p">.</span><span class="n">RecId</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ttsBegin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">partyTable</span><span class="p">.</span><span class="n">PrimaryContactEmail</span> <span class="p">=</span> <span class="n">electronicAddress</span><span class="p">.</span><span class="n">RecId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">partyTable</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ttsCommit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">select</span> <span class="n">firstOnly</span> <span class="n">forupdate</span> <span class="n">partyLocation</span>
+</span></span><span class="line"><span class="cl">            <span class="k">where</span> <span class="n">partyLocation</span><span class="p">.</span><span class="n">Party</span> <span class="p">==</span> <span class="n">partyTable</span><span class="p">.</span><span class="n">RecId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">partyLocation</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ttsBegin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">partyLocation</span><span class="p">.</span><span class="n">Location</span> <span class="p">=</span> <span class="n">electronicAddress</span><span class="p">.</span><span class="n">Location</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">partyLocation</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ttsCommit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">partyLocation</span><span class="p">.</span><span class="n">initValue</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">partyLocation</span><span class="p">.</span><span class="n">Location</span> <span class="p">=</span> <span class="n">electronicAddress</span><span class="p">.</span><span class="n">Location</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">partyLocation</span><span class="p">.</span><span class="n">Party</span>     <span class="p">=</span> <span class="n">partyTable</span><span class="p">.</span><span class="n">RecId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">partyLocation</span><span class="p">.</span><span class="n">insert</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="batch-class">Batch class</h3>
 <p>Main logic here is find Vend accounts are not exist in <code>VendTrans</code> table with condition <code>endTrans.TransDate &gt;= beginDate</code>, and <code>beginDate</code> count from today <code>systemDateGet()</code>.</p>
@@ -567,10 +567,10 @@ OData-MaxVersion: 4.0
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">class</span> <span class="nc">Max_VendorBlockedBatch</span> <span class="n">extends</span> <span class="n">RunBaseBatch</span>
-<span class="p">{</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">Max_VendorBlockedBatch</span> <span class="n">extends</span> <span class="n">RunBaseBatch</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Get the date before 6 months from today</p>
 <div class="highlight"><div class="chroma">
@@ -600,30 +600,30 @@ OData-MaxVersion: 4.0
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="n">TransDate</span> <span class="n">getBeginDate</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="n">TransDate</span>   <span class="n">beginDate</span><span class="p">;</span>
-    <span class="n">TransDate</span>   <span class="n">currentDate</span><span class="p">;</span>
-    <span class="n">Months</span>      <span class="n">month</span><span class="p">;</span>
-    <span class="n">YearBase</span>    <span class="n">years</span><span class="p">;</span>
-    <span class="n">Day</span>         <span class="n">day</span><span class="p">;</span>
-
-    <span class="n">currentDate</span> <span class="p">=</span> <span class="n">systemDateGet</span><span class="p">();</span>
-    <span class="n">day</span>         <span class="p">=</span> <span class="n">dayOfMth</span><span class="p">(</span><span class="n">currentDate</span><span class="p">);</span>
-    <span class="n">month</span>       <span class="p">=</span> <span class="n">mthOfYr</span><span class="p">(</span><span class="n">currentDate</span><span class="p">);</span>
-    <span class="n">years</span>       <span class="p">=</span> <span class="n">year</span><span class="p">(</span><span class="n">currentDate</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">month</span> <span class="p">&lt;</span> <span class="m">6</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">beginDate</span> <span class="p">=</span> <span class="n">mkDate</span><span class="p">(</span><span class="n">day</span><span class="p">,</span> <span class="m">12</span> <span class="p">-</span> <span class="p">(</span><span class="m">6</span> <span class="p">-</span> <span class="n">month</span><span class="p">)</span> <span class="p">+</span> <span class="m">1</span><span class="p">,</span> <span class="n">years</span> <span class="p">-</span> <span class="m">1</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">else</span>
-    <span class="p">{</span>
-        <span class="n">beginDate</span> <span class="p">=</span> <span class="n">mkDate</span><span class="p">(</span><span class="n">day</span><span class="p">,</span> <span class="n">month</span> <span class="p">-</span> <span class="m">6</span> <span class="p">+</span> <span class="m">1</span><span class="p">,</span> <span class="n">years</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="k">return</span> <span class="n">beginDate</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="n">TransDate</span> <span class="n">getBeginDate</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">TransDate</span>   <span class="n">beginDate</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">TransDate</span>   <span class="n">currentDate</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Months</span>      <span class="n">month</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">YearBase</span>    <span class="n">years</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Day</span>         <span class="n">day</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">currentDate</span> <span class="p">=</span> <span class="n">systemDateGet</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">day</span>         <span class="p">=</span> <span class="n">dayOfMth</span><span class="p">(</span><span class="n">currentDate</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">month</span>       <span class="p">=</span> <span class="n">mthOfYr</span><span class="p">(</span><span class="n">currentDate</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">years</span>       <span class="p">=</span> <span class="n">year</span><span class="p">(</span><span class="n">currentDate</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">month</span> <span class="p">&lt;</span> <span class="m">6</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">beginDate</span> <span class="p">=</span> <span class="n">mkDate</span><span class="p">(</span><span class="n">day</span><span class="p">,</span> <span class="m">12</span> <span class="p">-</span> <span class="p">(</span><span class="m">6</span> <span class="p">-</span> <span class="n">month</span><span class="p">)</span> <span class="p">+</span> <span class="m">1</span><span class="p">,</span> <span class="n">years</span> <span class="p">-</span> <span class="m">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">beginDate</span> <span class="p">=</span> <span class="n">mkDate</span><span class="p">(</span><span class="n">day</span><span class="p">,</span> <span class="n">month</span> <span class="p">-</span> <span class="m">6</span> <span class="p">+</span> <span class="m">1</span><span class="p">,</span> <span class="n">years</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">beginDate</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Send E-mail</p>
 <div class="highlight"><div class="chroma">
@@ -693,76 +693,74 @@ OData-MaxVersion: 4.0
 </span><span class="lnt">63
 </span><span class="lnt">64
 </span><span class="lnt">65
-</span><span class="lnt">66
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#">
-<span class="k">public</span> <span class="k">void</span> <span class="n">sendEmail</span><span class="p">(</span><span class="n">AccountNum</span> <span class="m">_</span><span class="n">vendor</span><span class="p">,</span> <span class="n">str</span> <span class="m">_</span><span class="n">recipient</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">str</span>                                     <span class="n">sender</span>  <span class="p">=</span> <span class="err">&#39;</span><span class="n">sender@email</span><span class="p">.</span><span class="n">com</span><span class="err">&#39;</span><span class="p">;</span>
-    <span class="n">str</span>                                     <span class="n">subject</span> <span class="p">=</span> <span class="err">&#39;</span><span class="n">Account</span> <span class="n">blocked</span><span class="err">&#39;</span><span class="p">;</span>
-    <span class="n">str</span>                                     <span class="n">body</span>    <span class="p">=</span> <span class="err">&#39;</span><span class="n">Your</span> <span class="n">account</span> <span class="k">is</span> <span class="n">blocked</span> <span class="n">due</span> <span class="n">to</span> <span class="n">last</span> <span class="n">transaction</span><span class="err">&#39;</span><span class="p">;</span>
-    <span class="n">List</span>                                    <span class="n">toList</span><span class="p">;</span>
-    <span class="n">ListEnumerator</span>                          <span class="n">le</span><span class="p">;</span>
-    <span class="n">Set</span>                                     <span class="n">permissionSet</span><span class="p">;</span>
-    <span class="n">System</span><span class="p">.</span><span class="n">Exception</span>                        <span class="n">e</span><span class="p">;</span>
-    <span class="n">str</span>                                     <span class="n">mailServer</span><span class="p">;</span>
-    <span class="kt">int</span>                                     <span class="n">mailServerPort</span><span class="p">;</span>
-    <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">SmtpClient</span>              <span class="n">mailClient</span><span class="p">;</span>
-    <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailMessage</span>             <span class="n">mailMessage</span><span class="p">;</span>
-    <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailAddress</span>             <span class="n">mailFrom</span><span class="p">;</span>
-    <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailAddress</span>             <span class="n">mailTo</span><span class="p">;</span>
-    <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailAddressCollection</span>   <span class="n">mailToCollection</span><span class="p">;</span>
- 
-    <span class="k">try</span>
-    <span class="p">{</span>
-        <span class="n">toList</span> <span class="p">=</span> <span class="n">strSplit</span><span class="p">(</span><span class="m">_</span><span class="n">recipient</span><span class="p">,</span> <span class="sc">&#39;;&#39;</span><span class="p">);</span>
-         
-        <span class="n">permissionSet</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Set</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Class</span><span class="p">);</span>
-        <span class="n">permissionSet</span><span class="p">.</span><span class="k">add</span><span class="p">(</span><span class="k">new</span> <span class="n">InteropPermission</span><span class="p">(</span><span class="n">InteropKind</span><span class="p">::</span><span class="n">ClrInterop</span><span class="p">));</span>
-        <span class="n">CodeAccessPermission</span><span class="p">::</span><span class="n">assertMultiple</span><span class="p">(</span><span class="n">permissionSet</span><span class="p">);</span>
- 
-        <span class="n">mailServer</span>      <span class="p">=</span> <span class="n">SysEmaiLParameters</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="k">false</span><span class="p">).</span><span class="n">SMTPRelayServerName</span><span class="p">;</span>
-        <span class="n">mailServerPort</span>  <span class="p">=</span> <span class="n">SysEmaiLParameters</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="k">false</span><span class="p">).</span><span class="n">SMTPPortNumber</span><span class="p">;</span>
-        <span class="n">mailClient</span>      <span class="p">=</span> <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">SmtpClient</span><span class="p">(</span><span class="n">mailServer</span><span class="p">,</span> <span class="n">mailServerPort</span><span class="p">);</span>
- 
-        <span class="n">le</span> <span class="p">=</span> <span class="n">toList</span><span class="p">.</span><span class="n">getEnumerator</span><span class="p">();</span>
-        <span class="n">le</span><span class="p">.</span><span class="n">moveNext</span><span class="p">();</span>
-         
-        <span class="n">mailFrom</span>    <span class="p">=</span> <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailAddress</span><span class="p">(</span><span class="n">sender</span><span class="p">);</span>
-        <span class="n">mailTo</span>      <span class="p">=</span> <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailAddress</span><span class="p">(</span><span class="n">strLTrim</span><span class="p">(</span><span class="n">strRTrim</span><span class="p">(</span><span class="n">le</span><span class="p">.</span><span class="n">current</span><span class="p">())));</span>
-        <span class="n">mailMessage</span> <span class="p">=</span> <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailMessage</span><span class="p">(</span><span class="n">mailFrom</span><span class="p">,</span> <span class="n">mailTo</span><span class="p">);</span>     
-
-        <span class="n">mailToCollection</span> <span class="p">=</span> <span class="n">mailMessage</span><span class="p">.</span><span class="n">get_To</span><span class="p">();</span>
-        <span class="k">while</span> <span class="p">(</span><span class="n">le</span><span class="p">.</span><span class="n">moveNext</span><span class="p">())</span>
-        <span class="p">{</span>
-            <span class="n">mailToCollection</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">strLTrim</span><span class="p">(</span><span class="n">strRTrim</span><span class="p">(</span><span class="n">le</span><span class="p">.</span><span class="n">current</span><span class="p">())));</span>
-        <span class="p">}</span>
-         
-        <span class="n">mailMessage</span><span class="p">.</span><span class="n">set_Priority</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailPriority</span><span class="p">::</span><span class="n">High</span><span class="p">);</span>
-        <span class="n">mailMessage</span><span class="p">.</span><span class="n">set_Subject</span><span class="p">(</span><span class="n">subject</span><span class="p">);</span>
-        <span class="n">mailMessage</span><span class="p">.</span><span class="n">set_Body</span><span class="p">(</span><span class="n">body</span><span class="p">);</span>
- 
-        <span class="n">mailClient</span><span class="p">.</span><span class="n">Send</span><span class="p">(</span><span class="n">mailMessage</span><span class="p">);</span>
-        <span class="n">mailMessage</span><span class="p">.</span><span class="n">Dispose</span><span class="p">();</span>
- 
-        <span class="n">CodeAccessPermission</span><span class="p">::</span><span class="n">revertAssert</span><span class="p">();</span> 
-        <span class="n">info</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Email</span> <span class="n">was</span> <span class="n">sent</span> <span class="n">to</span> <span class="n">vendor</span> <span class="p">%</span><span class="m">1.</span><span class="err">&#39;</span><span class="p">,</span> <span class="m">_</span><span class="n">vendor</span><span class="p">));</span>
-    <span class="p">}</span>
-    <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span><span class="p">::</span><span class="n">CLRError</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">e</span> <span class="p">=</span> <span class="n">ClrInterop</span><span class="p">::</span><span class="n">getLastException</span><span class="p">();</span>
-        <span class="k">while</span> <span class="p">(</span><span class="n">e</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">info</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">get_Message</span><span class="p">());</span>
-            <span class="n">e</span> <span class="p">=</span> <span class="n">e</span><span class="p">.</span><span class="n">get_InnerException</span><span class="p">();</span>
-        <span class="p">}</span>
-
-        <span class="n">CodeAccessPermission</span><span class="p">::</span><span class="n">revertAssert</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">sendEmail</span><span class="p">(</span><span class="n">AccountNum</span> <span class="m">_</span><span class="n">vendor</span><span class="p">,</span> <span class="n">str</span> <span class="m">_</span><span class="n">recipient</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">str</span>                                     <span class="n">sender</span>  <span class="p">=</span> <span class="err">&#39;</span><span class="n">sender@email</span><span class="p">.</span><span class="n">com</span><span class="err">&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">str</span>                                     <span class="n">subject</span> <span class="p">=</span> <span class="err">&#39;</span><span class="n">Account</span> <span class="n">blocked</span><span class="err">&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">str</span>                                     <span class="n">body</span>    <span class="p">=</span> <span class="err">&#39;</span><span class="n">Your</span> <span class="n">account</span> <span class="k">is</span> <span class="n">blocked</span> <span class="n">due</span> <span class="n">to</span> <span class="n">last</span> <span class="n">transaction</span><span class="err">&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span>                                    <span class="n">toList</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ListEnumerator</span>                          <span class="n">le</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Set</span>                                     <span class="n">permissionSet</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="p">.</span><span class="n">Exception</span>                        <span class="n">e</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">str</span>                                     <span class="n">mailServer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span>                                     <span class="n">mailServerPort</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">SmtpClient</span>              <span class="n">mailClient</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailMessage</span>             <span class="n">mailMessage</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailAddress</span>             <span class="n">mailFrom</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailAddress</span>             <span class="n">mailTo</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailAddressCollection</span>   <span class="n">mailToCollection</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="k">try</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">toList</span> <span class="p">=</span> <span class="n">strSplit</span><span class="p">(</span><span class="m">_</span><span class="n">recipient</span><span class="p">,</span> <span class="sc">&#39;;&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">         
+</span></span><span class="line"><span class="cl">        <span class="n">permissionSet</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Set</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Class</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">permissionSet</span><span class="p">.</span><span class="k">add</span><span class="p">(</span><span class="k">new</span> <span class="n">InteropPermission</span><span class="p">(</span><span class="n">InteropKind</span><span class="p">::</span><span class="n">ClrInterop</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">CodeAccessPermission</span><span class="p">::</span><span class="n">assertMultiple</span><span class="p">(</span><span class="n">permissionSet</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">        <span class="n">mailServer</span>      <span class="p">=</span> <span class="n">SysEmaiLParameters</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="k">false</span><span class="p">).</span><span class="n">SMTPRelayServerName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mailServerPort</span>  <span class="p">=</span> <span class="n">SysEmaiLParameters</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="k">false</span><span class="p">).</span><span class="n">SMTPPortNumber</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mailClient</span>      <span class="p">=</span> <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">SmtpClient</span><span class="p">(</span><span class="n">mailServer</span><span class="p">,</span> <span class="n">mailServerPort</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">        <span class="n">le</span> <span class="p">=</span> <span class="n">toList</span><span class="p">.</span><span class="n">getEnumerator</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">le</span><span class="p">.</span><span class="n">moveNext</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">         
+</span></span><span class="line"><span class="cl">        <span class="n">mailFrom</span>    <span class="p">=</span> <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailAddress</span><span class="p">(</span><span class="n">sender</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mailTo</span>      <span class="p">=</span> <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailAddress</span><span class="p">(</span><span class="n">strLTrim</span><span class="p">(</span><span class="n">strRTrim</span><span class="p">(</span><span class="n">le</span><span class="p">.</span><span class="n">current</span><span class="p">())));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mailMessage</span> <span class="p">=</span> <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailMessage</span><span class="p">(</span><span class="n">mailFrom</span><span class="p">,</span> <span class="n">mailTo</span><span class="p">);</span>     
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">mailToCollection</span> <span class="p">=</span> <span class="n">mailMessage</span><span class="p">.</span><span class="n">get_To</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">le</span><span class="p">.</span><span class="n">moveNext</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mailToCollection</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">strLTrim</span><span class="p">(</span><span class="n">strRTrim</span><span class="p">(</span><span class="n">le</span><span class="p">.</span><span class="n">current</span><span class="p">())));</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">         
+</span></span><span class="line"><span class="cl">        <span class="n">mailMessage</span><span class="p">.</span><span class="n">set_Priority</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailPriority</span><span class="p">::</span><span class="n">High</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mailMessage</span><span class="p">.</span><span class="n">set_Subject</span><span class="p">(</span><span class="n">subject</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mailMessage</span><span class="p">.</span><span class="n">set_Body</span><span class="p">(</span><span class="n">body</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">        <span class="n">mailClient</span><span class="p">.</span><span class="n">Send</span><span class="p">(</span><span class="n">mailMessage</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mailMessage</span><span class="p">.</span><span class="n">Dispose</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">        <span class="n">CodeAccessPermission</span><span class="p">::</span><span class="n">revertAssert</span><span class="p">();</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Email</span> <span class="n">was</span> <span class="n">sent</span> <span class="n">to</span> <span class="n">vendor</span> <span class="p">%</span><span class="m">1.</span><span class="err">&#39;</span><span class="p">,</span> <span class="m">_</span><span class="n">vendor</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span><span class="p">::</span><span class="n">CLRError</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">e</span> <span class="p">=</span> <span class="n">ClrInterop</span><span class="p">::</span><span class="n">getLastException</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">info</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">get_Message</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">            <span class="n">e</span> <span class="p">=</span> <span class="n">e</span><span class="p">.</span><span class="n">get_InnerException</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">CodeAccessPermission</span><span class="p">::</span><span class="n">revertAssert</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Initializes a new instance of the <em><c>Batch</c></em> class.</p>
 <div class="highlight"><div class="chroma">
@@ -773,11 +771,11 @@ OData-MaxVersion: 4.0
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">static</span> <span class="n">MAX_VendorBlockedBatch</span> <span class="n">construct</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="n">MAX_VendorBlockedBatch</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">MAX_VendorBlockedBatch</span> <span class="n">construct</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="n">MAX_VendorBlockedBatch</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Gets description of the dialog.</p>
 <div class="highlight"><div class="chroma">
@@ -788,11 +786,11 @@ OData-MaxVersion: 4.0
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">static</span> <span class="n">ClassDescription</span> <span class="n">description</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="k">return</span> <span class="err">&#39;</span><span class="n">Vendor</span> <span class="n">blocked</span> <span class="n">batch</span><span class="err">&#39;</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">ClassDescription</span> <span class="n">description</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="err">&#39;</span><span class="n">Vendor</span> <span class="n">blocked</span> <span class="n">batch</span><span class="err">&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Find the vendor without transaction and disable, then send email to vendor</p>
 <div class="highlight"><div class="chroma">
@@ -838,46 +836,46 @@ OData-MaxVersion: 4.0
 </span><span class="lnt">39
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">void</span> <span class="n">run</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="n">VendTrans</span>   <span class="n">vendTrans</span><span class="p">;</span>
-    <span class="n">VendTable</span>   <span class="n">vendTable</span><span class="p">;</span>
-    <span class="n">TransDate</span>   <span class="n">beginDate</span><span class="p">;</span>
-    <span class="n">Email</span>       <span class="n">email</span><span class="p">;</span>
-    <span class="kt">int</span>         <span class="n">i</span><span class="p">;</span>
-
-    <span class="k">try</span>
-    <span class="p">{</span>
-        <span class="n">beginDate</span> <span class="p">=</span> <span class="k">this</span><span class="p">.</span><span class="n">getBeginDate</span><span class="p">();</span>
-        <span class="k">while</span> <span class="k">select</span> <span class="n">forUpdate</span> <span class="n">AccountNum</span><span class="p">,</span> <span class="n">Party</span> <span class="k">from</span> <span class="n">vendTable</span>
-            <span class="n">Notexists</span> <span class="k">join</span> <span class="n">vendTrans</span>
-            <span class="k">where</span> <span class="n">vendTrans</span><span class="p">.</span><span class="n">AccountNum</span> <span class="p">==</span> <span class="n">vendTable</span><span class="p">.</span><span class="n">AccountNum</span>
-                <span class="p">&amp;&amp;</span> <span class="n">vendTrans</span><span class="p">.</span><span class="n">TransDate</span> <span class="p">&gt;=</span> <span class="n">beginDate</span>
-        <span class="p">{</span>
-            <span class="c1">//Set the vendor blocked
-</span><span class="c1"></span>            <span class="n">ttsBegin</span><span class="p">;</span>
-            <span class="n">vendTable</span><span class="p">.</span><span class="n">Blocked</span> <span class="p">=</span> <span class="n">CustVendorBlocked</span><span class="p">::</span><span class="n">All</span><span class="p">;</span>
-            <span class="n">vendTable</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
-            <span class="n">ttsCommit</span><span class="p">;</span>
-
-            <span class="c1">//Send E-mail to vendor
-</span><span class="c1"></span>            <span class="n">email</span> <span class="p">=</span> <span class="n">vendTable</span><span class="p">.</span><span class="n">email</span><span class="p">();</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">email</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="k">this</span><span class="p">.</span><span class="n">sendEmail</span><span class="p">(</span><span class="n">vendTable</span><span class="p">.</span><span class="n">AccountNum</span><span class="p">,</span> <span class="n">email</span><span class="p">);</span>
-            <span class="p">}</span>
-            <span class="k">else</span>
-            <span class="p">{</span>
-                <span class="n">warning</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="err">&#39;</span><span class="n">The</span> <span class="n">vendor</span> <span class="p">%</span><span class="m">1</span> <span class="n">did</span> <span class="n">not</span> <span class="n">have</span> <span class="n">E</span><span class="p">-</span><span class="n">mail</span> <span class="n">address</span><span class="p">.</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">vendTable</span><span class="p">.</span><span class="n">AccountNum</span><span class="p">));</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span><span class="p">::</span><span class="n">Deadlock</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">retry</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">run</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VendTrans</span>   <span class="n">vendTrans</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VendTable</span>   <span class="n">vendTable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">TransDate</span>   <span class="n">beginDate</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Email</span>       <span class="n">email</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span>         <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">try</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">beginDate</span> <span class="p">=</span> <span class="k">this</span><span class="p">.</span><span class="n">getBeginDate</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="k">select</span> <span class="n">forUpdate</span> <span class="n">AccountNum</span><span class="p">,</span> <span class="n">Party</span> <span class="k">from</span> <span class="n">vendTable</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Notexists</span> <span class="k">join</span> <span class="n">vendTrans</span>
+</span></span><span class="line"><span class="cl">            <span class="k">where</span> <span class="n">vendTrans</span><span class="p">.</span><span class="n">AccountNum</span> <span class="p">==</span> <span class="n">vendTable</span><span class="p">.</span><span class="n">AccountNum</span>
+</span></span><span class="line"><span class="cl">                <span class="p">&amp;&amp;</span> <span class="n">vendTrans</span><span class="p">.</span><span class="n">TransDate</span> <span class="p">&gt;=</span> <span class="n">beginDate</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//Set the vendor blocked</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ttsBegin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vendTable</span><span class="p">.</span><span class="n">Blocked</span> <span class="p">=</span> <span class="n">CustVendorBlocked</span><span class="p">::</span><span class="n">All</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vendTable</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ttsCommit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">//Send E-mail to vendor</span>
+</span></span><span class="line"><span class="cl">            <span class="n">email</span> <span class="p">=</span> <span class="n">vendTable</span><span class="p">.</span><span class="n">email</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">email</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">this</span><span class="p">.</span><span class="n">sendEmail</span><span class="p">(</span><span class="n">vendTable</span><span class="p">.</span><span class="n">AccountNum</span><span class="p">,</span> <span class="n">email</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">warning</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="err">&#39;</span><span class="n">The</span> <span class="n">vendor</span> <span class="p">%</span><span class="m">1</span> <span class="n">did</span> <span class="n">not</span> <span class="n">have</span> <span class="n">E</span><span class="p">-</span><span class="n">mail</span> <span class="n">address</span><span class="p">.</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">vendTable</span><span class="p">.</span><span class="n">AccountNum</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span><span class="p">::</span><span class="n">Deadlock</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">retry</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Provides an enter point for the <c>Batch</c> class.</p>
 <div class="highlight"><div class="chroma">
@@ -893,16 +891,16 @@ OData-MaxVersion: 4.0
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">MAX_VendorBlockedBatch</span> <span class="n">vendorBlockedBatch</span> <span class="p">=</span> <span class="n">MAX_VendorBlockedBatch</span><span class="p">::</span><span class="n">construct</span><span class="p">();</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="n">vendorBlockedBatch</span><span class="p">.</span><span class="n">prompt</span><span class="p">())</span>
-    <span class="p">{</span>
-        <span class="n">vendorBlockedBatch</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">MAX_VendorBlockedBatch</span> <span class="n">vendorBlockedBatch</span> <span class="p">=</span> <span class="n">MAX_VendorBlockedBatch</span><span class="p">::</span><span class="n">construct</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">vendorBlockedBatch</span><span class="p">.</span><span class="n">prompt</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">vendorBlockedBatch</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>From here you can run class and set up recurrence for batch job.</p>
 <p>Thank you for reading!</p>]]></description>
