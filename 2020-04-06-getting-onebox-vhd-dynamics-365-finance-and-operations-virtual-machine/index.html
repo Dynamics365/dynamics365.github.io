@@ -12,7 +12,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://nuxulu.com/2020-04-06-getting-onebox-vhd-dynamics-365-finance-and-operations-virtual-machine/" /><meta property="og:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-04-06T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-04-07T17:22:55+07:00" />
+<meta property="article:modified_time" content="2022-04-07T17:30:12+07:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/>
@@ -31,8 +31,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/nuxulu.com\/2020-04-06-getting-onebox-vhd-dynamics-365-finance-and-operations-virtual-machine\/"
-        },"genre": "posts","keywords": "onebox vhd, Dynamics 365 finance and operations, upgrade, LCS, OneBox","wordcount":  813 ,
-        "url": "https:\/\/nuxulu.com\/2020-04-06-getting-onebox-vhd-dynamics-365-finance-and-operations-virtual-machine\/","datePublished": "2020-04-06T00:00:00+00:00","dateModified": "2022-04-07T17:22:55+07:00","publisher": {
+        },"genre": "posts","keywords": "onebox vhd, Dynamics 365 finance and operations, upgrade, LCS, OneBox","wordcount":  805 ,
+        "url": "https:\/\/nuxulu.com\/2020-04-06-getting-onebox-vhd-dynamics-365-finance-and-operations-virtual-machine\/","datePublished": "2020-04-06T00:00:00+00:00","dateModified": "2022-04-07T17:30:12+07:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -122,7 +122,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Getting onebox VHD Dynamics 365 finance and operations virtual machine</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://nuxulu.com/about" title="Author" target="_blank" rel="noopener noreferrer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Max Nguyen</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="April 6, 2020">April 6, 2020</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;813 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="April 6, 2020">April 6, 2020</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;805 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -138,8 +138,6 @@
     <li><a href="#5-update-to-the-latest-version">5. Update to the latest version</a></li>
     <li><a href="#register-a-new-application-in-azure-active-directory">Register a new application in Azure Active Directory</a></li>
     <li><a href="#run-the-setup-script">Run the setup script</a></li>
-    <li><a href="#register-a-new-application-in-azure-active-directory-1">Register a new application in Azure Active Directory</a></li>
-    <li><a href="#run-the-setup-script-1">Run the setup script</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="1-download-dynamics-365-finance-and-operations-vhd-files">1. Download Dynamics 365 finance and operations VHD files</h2>
@@ -199,10 +197,20 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
-<li>
-<p>Restart SQL service</p>
+</ul>
 </li>
 </ul>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>Tip<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">In these commands, be sure to replace old_name with the old name of the server and new_name with the new name. By default, the old name is MININT-F36S5EH, but you can run select @@servername to get the old name. Additionally, be sure to restart the SQL Server service after the commands have finished running.</div>
+        </div>
+    </div>
+<ul>
+<li>
+<p>Restart SQL service</p>
 </li>
 <li>
 <p>Open Reporting Services Configuration Manager for SQL Server 2016, then Select Database, select Change Database, and use the new server name.</p>
@@ -294,21 +302,13 @@
         </div>
     </div>
 <h2 id="register-a-new-application-in-azure-active-directory">Register a new application in Azure Active Directory</h2>
-<p>To register a new application in Microsoft Azure Active Directory (Azure AD), follow the steps outlined in Register app or web API. The new app registration should be for a web application, and the following redirect URIs should be added:</p>
-<ul>
-<li><code>https://usnconeboxax1aos.cloud.onebox.dynamics.com/</code></li>
-<li><code>https://usnconeboxax1aos.cloud.onebox.dynamics.com/oauth/</code></li>
-</ul>
-<p>Once created, make note of the <strong>Application (client) ID</strong>.</p>
-<h2 id="run-the-setup-script">Run the setup script</h2>
-<h2 id="register-a-new-application-in-azure-active-directory-1">Register a new application in Azure Active Directory</h2>
 <p>To register a new application in Microsoft Azure Active Directory (Azure AD), follow the steps outlined in <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app" target="_blank" rel="noopener noreferrer">Register app or web API</a>. The new app registration should be for a web application, and the following redirect URIs should be added:</p>
 <ul>
 <li><code>https://usnconeboxax1aos.cloud.onebox.dynamics.com/</code></li>
 <li><code>https://usnconeboxax1aos.cloud.onebox.dynamics.com/oauth/</code></li>
 </ul>
 <p>Once created, make note of the <strong>Application (client) ID</strong>.</p>
-<h2 id="run-the-setup-script-1">Run the setup script</h2>
+<h2 id="run-the-setup-script">Run the setup script</h2>
 <p>After you sign in with the <strong>Administrator</strong> account, right-click the desktop shortcut <strong>Generate Self-Signed Certificates</strong>, and select <strong>Run as administrator</strong>. When the script prompts for the application ID, provide the <strong>Application (client) ID</strong> created in Azure Active Directory.</p>
 <p>When the script finishes, the environment is ready for use. At this time, you can run the Admin Provisioning tool to set the administrator account, permissions, and tenant. Make sure that the email provided is for the Azure Active Directory tenant in which the application registration was created.</p>
 </div><div class="post-footer" id="post-footer">

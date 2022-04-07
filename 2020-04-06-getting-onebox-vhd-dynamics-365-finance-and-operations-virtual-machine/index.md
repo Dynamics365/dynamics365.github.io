@@ -35,6 +35,9 @@
     sp_dropserver [old_name]
     sp_addserver [new_name], local
     ```
+{{< admonition tip>}}
+  In these commands, be sure to replace old_name with the old name of the server and new_name with the new name. By default, the old name is MININT-F36S5EH, but you can run select @@servername to get the old name. Additionally, be sure to restart the SQL Server service after the commands have finished running.
+{{< /admonition >}}
 
   * Restart SQL service
 
@@ -104,17 +107,6 @@ update for virtual hard drive (VHD) that was released for versions 10.0.24
 {{< admonition note >}}
 For (VHD) that was released for versions 10.0.24 and later.
 {{< /admonition >}}
-
-## Register a new application in Azure Active Directory
-
-To register a new application in Microsoft Azure Active Directory (Azure AD), follow the steps outlined in Register app or web API. The new app registration should be for a web application, and the following redirect URIs should be added:
-
--   `https://usnconeboxax1aos.cloud.onebox.dynamics.com/`
--   `https://usnconeboxax1aos.cloud.onebox.dynamics.com/oauth/`
-
-Once created, make note of the **Application (client) ID**.
-
-## Run the setup script
 
 ## Register a new application in Azure Active Directory
 
