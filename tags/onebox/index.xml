@@ -56,9 +56,11 @@
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
+</span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">sp_dropserver</span><span class="w"> </span><span class="p">[</span><span class="n">old_name</span><span class="p">]</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">--MININT-57EHFHJ
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">sp_dropserver</span><span class="w"> </span><span class="p">[</span><span class="n">old_name</span><span class="p">]</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">sp_addserver</span><span class="w"> </span><span class="p">[</span><span class="n">new_name</span><span class="p">],</span><span class="w"> </span><span class="k">local</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -148,7 +150,33 @@
 <h2 id="5-update-to-the-latest-version">5. Update to the latest version</h2>
 <p>Please check this document
 <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/deployment/install-deployable-package" target="_blank" rel="noopener noreferrer">https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/deployment/install-deployable-package</a></p>
-<p>That&rsquo;s it, thank you for reading.</p>
+<p>update for virtual hard drive (VHD) that was released for versions 10.0.24</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">For (VHD) that was released for versions 10.0.24 and later.</div>
+        </div>
+    </div>
+<h2 id="register-a-new-application-in-azure-active-directory">Register a new application in Azure Active Directory</h2>
+<p>To register a new application in Microsoft Azure Active Directory (Azure AD), follow the steps outlined in Register app or web API. The new app registration should be for a web application, and the following redirect URIs should be added:</p>
+<ul>
+<li><code>https://usnconeboxax1aos.cloud.onebox.dynamics.com/</code></li>
+<li><code>https://usnconeboxax1aos.cloud.onebox.dynamics.com/oauth/</code></li>
+</ul>
+<p>Once created, make note of the <strong>Application (client) ID</strong>.</p>
+<h2 id="run-the-setup-script">Run the setup script</h2>
+<h2 id="register-a-new-application-in-azure-active-directory-1">Register a new application in Azure Active Directory</h2>
+<p>To register a new application in Microsoft Azure Active Directory (Azure AD), follow the steps outlined in <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app" target="_blank" rel="noopener noreferrer">Register app or web API</a>. The new app registration should be for a web application, and the following redirect URIs should be added:</p>
+<ul>
+<li><code>https://usnconeboxax1aos.cloud.onebox.dynamics.com/</code></li>
+<li><code>https://usnconeboxax1aos.cloud.onebox.dynamics.com/oauth/</code></li>
+</ul>
+<p>Once created, make note of the <strong>Application (client) ID</strong>.</p>
+<h2 id="run-the-setup-script-1">Run the setup script</h2>
+<p>After you sign in with the <strong>Administrator</strong> account, right-click the desktop shortcut <strong>Generate Self-Signed Certificates</strong>, and select <strong>Run as administrator</strong>. When the script prompts for the application ID, provide the <strong>Application (client) ID</strong> created in Azure Active Directory.</p>
+<p>When the script finishes, the environment is ready for use. At this time, you can run the Admin Provisioning tool to set the administrator account, permissions, and tenant. Make sure that the email provided is for the Azure Active Directory tenant in which the application registration was created.</p>
 ]]></description>
 </item><item>
     <title>Azure Storage Emulator &#39;Port conflict with existing application&#39;, Dynamics 365 finance and operations</title>

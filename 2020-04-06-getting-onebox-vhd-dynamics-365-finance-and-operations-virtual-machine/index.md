@@ -31,6 +31,7 @@
   * Run following query
 
     ```sql
+    --MININT-57EHFHJ
     sp_dropserver [old_name]
     sp_addserver [new_name], local
     ```
@@ -98,5 +99,35 @@ This process might take a while. The process is completed when the cmd.exe windo
 Please check this document
 <https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/deployment/install-deployable-package>
 
-That's it, thank you for reading.
+update for virtual hard drive (VHD) that was released for versions 10.0.24
+
+{{< admonition note >}}
+For (VHD) that was released for versions 10.0.24 and later.
+{{< /admonition >}}
+
+## Register a new application in Azure Active Directory
+
+To register a new application in Microsoft Azure Active Directory (Azure AD), follow the steps outlined in Register app or web API. The new app registration should be for a web application, and the following redirect URIs should be added:
+
+-   `https://usnconeboxax1aos.cloud.onebox.dynamics.com/`
+-   `https://usnconeboxax1aos.cloud.onebox.dynamics.com/oauth/`
+
+Once created, make note of the **Application (client) ID**.
+
+## Run the setup script
+
+## Register a new application in Azure Active Directory
+
+To register a new application in Microsoft Azure Active Directory (Azure AD), follow the steps outlined in [Register app or web API](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app). The new app registration should be for a web application, and the following redirect URIs should be added:
+
+-   `https://usnconeboxax1aos.cloud.onebox.dynamics.com/`
+-   `https://usnconeboxax1aos.cloud.onebox.dynamics.com/oauth/`
+
+Once created, make note of the **Application (client) ID**.
+
+## Run the setup script
+
+After you sign in with the **Administrator** account, right-click the desktop shortcut **Generate Self-Signed Certificates**, and select **Run as administrator**. When the script prompts for the application ID, provide the **Application (client) ID** created in Azure Active Directory.
+
+When the script finishes, the environment is ready for use. At this time, you can run the Admin Provisioning tool to set the administrator account, permissions, and tenant. Make sure that the email provided is for the Azure Active Directory tenant in which the application registration was created.
 
