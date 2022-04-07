@@ -104,9 +104,7 @@ Please check this document
 
 update for virtual hard drive (VHD) that was released for versions 10.0.24
 
-{{< admonition note >}}
-For (VHD) that was released for versions 10.0.24 and later.
-{{< /admonition >}}
+## 6. For (VHD) that was released for versions 10.0.24 and later
 
 ## Register a new application in Azure Active Directory
 
