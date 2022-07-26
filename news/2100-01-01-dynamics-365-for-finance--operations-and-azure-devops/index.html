@@ -10,7 +10,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://nuxulu.com/news/2100-01-01-dynamics-365-for-finance--operations-and-azure-devops/" /><meta property="og:image" content="https://nuxulu.com/news/2100-01-01-dynamics-365-for-finance--operations-and-azure-devops/AzureDevOpsSign.png"/><meta property="article:section" content="news" />
 <meta property="article:published_time" content="2021-05-01T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-04-08T00:29:59+07:00" />
+<meta property="article:modified_time" content="2022-07-26T14:51:47-04:00" />
 <meta property="og:see_also" content="https://nuxulu.com/news/2100-01-01-data-entity-tips/" /><meta property="og:see_also" content="https://nuxulu.com/news/2100-01-01-lcs-api-database-movement-with-powerautomate/" /><meta property="og:see_also" content="https://nuxulu.com/news/2100-01-01-azure-devtest-labs-powered-builds-for-dynamics-365-finops/" /><meta property="og:see_also" content="https://nuxulu.com/news/2100-01-01-develop-custom-data-entities-for-dual-write/" /><meta property="og:see_also" content="https://nuxulu.com/news/2100-01-01-automate-your-tests-for-dynamics-365-finance/" />
 
 <meta name="twitter:card" content="summary_large_image"/>
@@ -32,8 +32,8 @@
                             "url": "https:\/\/nuxulu.com\/news\/2100-01-01-dynamics-365-for-finance--operations-and-azure-devops\/AzureDevOpsSign.png",
                             "width":  694 ,
                             "height":  477 
-                        }],"genre": "news","wordcount":  16109 ,
-        "url": "https:\/\/nuxulu.com\/news\/2100-01-01-dynamics-365-for-finance--operations-and-azure-devops\/","datePublished": "2021-05-01T00:00:00+00:00","dateModified": "2022-04-08T00:29:59+07:00","publisher": {
+                        }],"genre": "news","wordcount":  14801 ,
+        "url": "https:\/\/nuxulu.com\/news\/2100-01-01-dynamics-365-for-finance--operations-and-azure-devops\/","datePublished": "2021-05-01T00:00:00+00:00","dateModified": "2022-07-26T14:51:47-04:00","publisher": {
             "@type": "Organization",
             "name": ""},"description": "Dynamics 365 for Finance Operations and Azure DevOps"
     }
@@ -2210,7 +2210,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="n">and</span><span class="p">(</span><span class="n">always</span><span class="p">(),</span> <span class="n">eq</span><span class="p">(</span><span class="n">dependencies</span><span class="p">.</span><span class="n">Job</span><span class="err">\</span><span class="m">_1.</span><span class="n">status</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Succeeded</span><span class="err">&#39;</span><span class="p">))</span>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="n">and</span><span class="p">(</span><span class="n">always</span><span class="p">(),</span> <span class="n">eq</span><span class="p">(</span><span class="n">dependencies</span><span class="p">.</span><span class="n">Job</span><span class="err">\</span><span class="n">_1</span><span class="p">.</span><span class="n">status</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Succeeded</span><span class="err">&#39;</span><span class="p">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>If you need to know your first step’s job name just export the pipeline to YAML and you’ll find it there:</p>
@@ -2498,7 +2498,7 @@
 <pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">AASBuildNetDemoLibrary</span><span class="p">;</span> 
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">AASBuildNetTest</span> 
 </span></span><span class="line"><span class="cl"><span class="p">{</span> 
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="err">\</span><span class="m">_</span><span class="n">args</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="err">\</span><span class="n">_args</span><span class="p">)</span> 
 </span></span><span class="line"><span class="cl">    <span class="p">{</span> 
 </span></span><span class="line"><span class="cl">        <span class="kt">var</span> <span class="n">calc</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Calculator</span><span class="p">();</span> 
 </span></span><span class="line"><span class="cl">        <span class="n">calc</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">);</span> 
@@ -2511,7 +2511,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"> <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="err">\</span><span class="m">_</span><span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="err">\</span><span class="n">_args</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">
@@ -2936,7 +2936,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="err">$</span><span class="n">ReleaseVariableName</span> <span class="err">\</span><span class="p">=</span> <span class="err">&#39;</span><span class="n">axzfileid</span><span class="err">&#39;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="err">$</span><span class="n">releaseurl</span> <span class="err">\</span><span class="p">=</span> <span class="p">(</span><span class="err">&#39;</span><span class="p">{</span><span class="m">0</span><span class="p">}{</span><span class="m">1</span><span class="p">}/</span><span class="err">\</span><span class="m">_</span><span class="n">apis</span><span class="p">/</span><span class="n">release</span><span class="p">/</span><span class="n">releases</span><span class="p">/{</span><span class="m">2</span><span class="p">}?</span><span class="n">api</span><span class="p">-</span><span class="n">version</span><span class="p">=</span><span class="m">5.0</span><span class="err">&#39;</span> <span class="err">\</span><span class="p">-</span><span class="n">f</span> <span class="err">$</span><span class="p">(</span><span class="err">$</span><span class="n">env</span><span class="p">:</span><span class="n">SYSTEM</span><span class="err">\</span><span class="m">_</span><span class="n">TEAMFOUNDATIONSERVERURI</span><span class="p">),</span> <span class="err">$</span><span class="p">(</span><span class="err">$</span><span class="n">env</span><span class="p">:</span><span class="n">SYSTEM</span><span class="err">\</span><span class="m">_</span><span class="n">TEAMPROJECTID</span><span class="p">),</span> <span class="err">$</span><span class="p">(</span><span class="err">$</span><span class="n">env</span><span class="p">:</span><span class="n">RELEASE</span><span class="err">\</span><span class="m">_</span><span class="n">RELEASEID</span><span class="p">)</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">$</span><span class="n">releaseurl</span> <span class="err">\</span><span class="p">=</span> <span class="p">(</span><span class="err">&#39;</span><span class="p">{</span><span class="m">0</span><span class="p">}{</span><span class="m">1</span><span class="p">}/</span><span class="err">\</span><span class="n">_apis</span><span class="p">/</span><span class="n">release</span><span class="p">/</span><span class="n">releases</span><span class="p">/{</span><span class="m">2</span><span class="p">}?</span><span class="n">api</span><span class="p">-</span><span class="n">version</span><span class="p">=</span><span class="m">5.0</span><span class="err">&#39;</span> <span class="err">\</span><span class="p">-</span><span class="n">f</span> <span class="err">$</span><span class="p">(</span><span class="err">$</span><span class="n">env</span><span class="p">:</span><span class="n">SYSTEM</span><span class="err">\</span><span class="n">_TEAMFOUNDATIONSERVERURI</span><span class="p">),</span> <span class="err">$</span><span class="p">(</span><span class="err">$</span><span class="n">env</span><span class="p">:</span><span class="n">SYSTEM</span><span class="err">\</span><span class="n">_TEAMPROJECTID</span><span class="p">),</span> <span class="err">$</span><span class="p">(</span><span class="err">$</span><span class="n">env</span><span class="p">:</span><span class="n">RELEASE</span><span class="err">\</span><span class="n">_RELEASEID</span><span class="p">)</span> <span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="err">#</span><span class="n">endregion</span>
 </span></span><span class="line"><span class="cl">
@@ -3064,11 +3064,11 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="err">$</span><span class="n">tokenBody</span> <span class="err">\</span><span class="p">=</span> <span class="err">@</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"> <span class="n">grant</span><span class="err">\</span><span class="m">_</span><span class="n">type</span> <span class="err">\</span><span class="p">=</span> <span class="s">&#34;password&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="n">grant</span><span class="err">\</span><span class="n">_type</span> <span class="err">\</span><span class="p">=</span> <span class="s">&#34;password&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"> <span class="n">client</span><span class="err">\</span><span class="m">_</span><span class="n">id</span> <span class="err">\</span><span class="p">=</span> <span class="err">$</span><span class="n">clientId</span>
+</span></span><span class="line"><span class="cl"> <span class="n">client</span><span class="err">\</span><span class="n">_id</span> <span class="err">\</span><span class="p">=</span> <span class="err">$</span><span class="n">clientId</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"> <span class="n">client</span><span class="err">\</span><span class="m">_</span><span class="n">secret</span> <span class="err">\</span><span class="p">=</span> <span class="err">$</span><span class="n">clientSecret</span>
+</span></span><span class="line"><span class="cl"> <span class="n">client</span><span class="err">\</span><span class="n">_secret</span> <span class="err">\</span><span class="p">=</span> <span class="err">$</span><span class="n">clientSecret</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"> <span class="n">resource</span> <span class="err">\</span><span class="p">=</span> <span class="s">&#34;https://lcsapi.lcs.dynamics.com&#34;</span>
 </span></span><span class="line"><span class="cl">
@@ -3080,7 +3080,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="err">$</span><span class="n">tokenResponse</span> <span class="err">\</span><span class="p">=</span> <span class="n">Invoke</span><span class="err">\</span><span class="p">-</span><span class="n">RestMethod</span> <span class="err">\</span><span class="p">-</span><span class="n">Method</span> <span class="err">&#39;</span><span class="n">POST</span><span class="err">&#39;</span> <span class="err">\</span><span class="p">-</span><span class="n">Uri</span> <span class="err">$</span><span class="n">tokenUrl</span> <span class="err">\</span><span class="p">-</span><span class="n">Body</span> <span class="err">$</span><span class="n">tokenBody</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="err">$</span><span class="n">token</span> <span class="err">\</span><span class="p">=</span> <span class="err">$</span><span class="n">tokenResponse</span><span class="p">.</span><span class="n">access</span><span class="err">\</span><span class="m">_</span><span class="n">token</span>
+</span></span><span class="line"><span class="cl"><span class="err">$</span><span class="n">token</span> <span class="err">\</span><span class="p">=</span> <span class="err">$</span><span class="n">tokenResponse</span><span class="p">.</span><span class="n">access</span><span class="err">\</span><span class="n">_token</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>To get the token we’ll use this script. Just change the variables for the ones of your project, AAD App registration, user (remember it needs access to the preview) and password and run it. If everything is OK you’ll get the JSON response in the $tokenResponse variable and from there you can get the token’s value using dot notation.</p>

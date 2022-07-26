@@ -1058,18 +1058,6 @@ TargetObject : An error was encountered while updating the Financial Reporting c
 <p><strong>Web</strong> Web framework</p>
 <p><strong>WMS</strong> Warehouse management</p>]]></description>
 </item><item>
-    <title>Batch rename files to lowercase?</title>
-    <link>https://nuxulu.com/2021-10-10-batch-rename-files-to-lowercase/</link>
-    <pubDate>Sun, 10 Oct 2021 16:29:41 &#43;0800</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2021-10-10-batch-rename-files-to-lowercase/</guid>
-    <description><![CDATA[<p>Go to the directory and run the following command:</p>
-<p><code>for /f &quot;Tokens=*&quot; %f in ('dir /l/b/a-d') do (rename &quot;%f&quot; &quot;%f&quot;)</code></p>
-<p>for /f &ldquo;Tokens=*&rdquo; %%f in (&lsquo;dir /l/b/a-d&rsquo;) do (rename &ldquo;%%f&rdquo; &ldquo;%%f&rdquo;)</p>
-<p>rename folders</p>
-<p><code>for /f &quot;Tokens=*&quot; %f in ('dir /l/b') do (rename &quot;%f&quot; &quot;%f&quot;)</code></p>
-<p>Recursive version (added /r to dir)</p>
-<p><code>for /f &quot;Tokens=*&quot; %f in ('dir /l/b/a-d/s') do (rename &quot;%f&quot; &quot;%f&quot;)</code></p>
-]]></description>
-</item><item>
     <title>Extend Microsoft 365 with office add-ins</title>
     <link>https://nuxulu.com/2021-10-07-extend-microsoft-365/</link>
     <pubDate>Fri, 08 Oct 2021 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2021-10-07-extend-microsoft-365/</guid>
@@ -2484,13 +2472,13 @@ or you can duplicate any standard entity. I created <strong>AutomationDataEntity
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">//1st example</span>
 </span></span><span class="line"><span class="cl"><span class="na">    [SysODataActionAttribute(&#34;assignUserToCompany&#34;, false)]</span>
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">assignUserToCompany</span><span class="p">(</span><span class="n">NetworkAlias</span> <span class="m">_</span><span class="n">networkAlias</span><span class="p">,</span> <span class="n">DataAreaName</span> <span class="m">_</span><span class="n">company</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">assignUserToCompany</span><span class="p">(</span><span class="n">NetworkAlias</span> <span class="n">_networkAlias</span><span class="p">,</span> <span class="n">DataAreaName</span> <span class="n">_company</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">UserInfo</span> <span class="n">userInfo</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">ttsbegin</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="k">select</span> <span class="n">firstonly</span> <span class="n">forupdate</span> <span class="n">userInfo</span>
-</span></span><span class="line"><span class="cl">            <span class="k">where</span> <span class="n">userInfo</span><span class="p">.</span><span class="n">networkAlias</span> <span class="p">==</span> <span class="m">_</span><span class="n">networkAlias</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">userInfo</span><span class="p">.</span><span class="n">company</span> <span class="p">=</span> <span class="m">_</span><span class="n">company</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">where</span> <span class="n">userInfo</span><span class="p">.</span><span class="n">networkAlias</span> <span class="p">==</span> <span class="n">_networkAlias</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">userInfo</span><span class="p">.</span><span class="n">company</span> <span class="p">=</span> <span class="n">_company</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">userInfo</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">        <span class="n">ttscommit</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
@@ -3052,5 +3040,37 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 <p>Starting August 3, 2020, customers and partners will be able to validate the latest features in a non-production environment. These features include user experience enhancements that will be automatically enabled for users in production environments during October 2020. Take advantage of the early access period, try out the latest updates in a non-production environment, and get ready to roll out updates to your users with confidence. To see the early access features, check out the <a href="https://aka.ms/Dynamics365Wave2EAFeatures" target="_blank" rel="noopener noreferrer">Dynamics 365</a> and <a href="https://aka.ms/PowerPlatformWave2EAFeatures" target="_blank" rel="noopener noreferrer">Power Platform</a> pages. For questions, please visit the <a href="https://aka.ms/EarlyAccessFAQ" target="_blank" rel="noopener noreferrer">Early Access FAQ page</a>.</p>
 <p>We&rsquo;ve done this work to help you&mdash;our partners, customers, and users&mdash;drive the digital transformation of your business on your terms. Get ready and learn more about latest <a href="https://dynamics.microsoft.com/business-applications/product-updates/" target="_blank" rel="noopener noreferrer">product updates</a> and <a href="https://roadmap.dynamics.com/" target="_blank" rel="noopener noreferrer">plans</a>, and share your feedback in the community forum for <a href="https://community.dynamics.com/" target="_blank" rel="noopener noreferrer">Dynamics 365</a> or <a href="https://powerusers.microsoft.com/" target="_blank" rel="noopener noreferrer">Power Platform</a>.</p>
 ]]></description>
+</item><item>
+    <title>Database movement from Tier 1 to Tier 1</title>
+    <link>https://nuxulu.com/2020-07-14-database-movement-tier1-to-tier1/</link>
+    <pubDate>Tue, 14 Jul 2020 00:00:00 &#43;0000</pubDate><author>luan52@outlook.com</author><dc:creator>Max Nguyen</dc:creator><guid>https://nuxulu.com/2020-07-14-database-movement-tier1-to-tier1/</guid>
+    <description><![CDATA[<ol>
+<li>In GOLD, export GOLD bak file</li>
+<li>In MIG, stop all services: Batch, DIXF, MR</li>
+<li>In MIG, backup AXDB MIG</li>
+<li>in MIG, AxDB to AxDB_Orgi</li>
+<li>In MIG, Create AxDB_New</li>
+<li>In MIG,resotre GOLD to AxDB_New</li>
+<li>AxDB_Gold to AxDB</li>
+<li>Start all the services and resett IIS in LCS</li>
+<li>DB Sync</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">ALTER</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">AxDB</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">Single_user</span><span class="w"> </span><span class="k">With</span><span class="w"> </span><span class="k">Rollback</span><span class="w"> </span><span class="k">immediate</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">alter</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">AxDB</span><span class="w"> </span><span class="k">Modify</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AxDB_Orig</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">alter</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">AxDB_Orig</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">MULTI_USER</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">alter</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">AxDB_Gold</span><span class="w"> </span><span class="k">Modify</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AxDB</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="p">[</span><span class="n">USERINFO</span><span class="p">]</span><span class="w"> 
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div>]]></description>
 </item></channel>
 </rss>

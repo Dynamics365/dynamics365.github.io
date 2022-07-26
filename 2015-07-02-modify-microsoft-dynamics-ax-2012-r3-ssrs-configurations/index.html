@@ -7,18 +7,18 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>Modify Microsoft Dynamics AX 2012 R3 SSRS configurations using PowerShell - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><meta name="description" content="Dynamics 365 Finance &amp; Operations"><meta property="og:title" content="Modify Microsoft Dynamics AX 2012 R3 SSRS configurations using PowerShell" />
 <meta property="og:description" content="reportManagerWebConfig.ps1
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  #Modify the Report Server Web.config file. ie replace MSRS11.VAS with your folder name Set-ExecutionPolicy Unrestricted $webConfig = &#34;C:Program FilesMicrosoft SQL ServerMSRS11.VASReporting ServicesReportManagerWeb.config&#34; $currentDate = (get-date).tostring(&#34;mm_dd_yyyy-hh_mm_s&#34;) # month_day_year - hours_mins_seconds $backup = $webConfig &#43; &#34;_$currentDate&#34; $doc = new-object System.Xml.XmlDocument $doc.Load($webConfig) #save a backup copy $doc.Save($backup) Write-Host &#34;Backup saved as &#34; &#43; $backup $node = $doc." />
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 #Modify the Report Server Web.config file. ie replace MSRS11.VAS with your folder name Set-ExecutionPolicy Unrestricted $webConfig = &#34;C:Program FilesMicrosoft SQL ServerMSRS11.VASReporting ServicesReportManagerWeb.config&#34; $currentDate = (get-date).tostring(&#34;mm_dd_yyyy-hh_mm_s&#34;) # month_day_year - hours_mins_seconds $backup = $webConfig &#43; &#34;_$currentDate&#34; $doc = new-object System.Xml.XmlDocument $doc.Load($webConfig) #save a backup copy $doc.Save($backup) Write-Host &#34;Backup saved as &#34; &#43; $backup $node = $doc." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://nuxulu.com/2015-07-02-modify-microsoft-dynamics-ax-2012-r3-ssrs-configurations/" /><meta property="og:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2015-07-02T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-04-08T00:29:59+07:00" />
+<meta property="article:modified_time" content="2022-07-26T14:51:47-04:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/>
 
 <meta name="twitter:title" content="Modify Microsoft Dynamics AX 2012 R3 SSRS configurations using PowerShell"/>
 <meta name="twitter:description" content="reportManagerWebConfig.ps1
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  #Modify the Report Server Web.config file. ie replace MSRS11.VAS with your folder name Set-ExecutionPolicy Unrestricted $webConfig = &#34;C:Program FilesMicrosoft SQL ServerMSRS11.VASReporting ServicesReportManagerWeb.config&#34; $currentDate = (get-date).tostring(&#34;mm_dd_yyyy-hh_mm_s&#34;) # month_day_year - hours_mins_seconds $backup = $webConfig &#43; &#34;_$currentDate&#34; $doc = new-object System.Xml.XmlDocument $doc.Load($webConfig) #save a backup copy $doc.Save($backup) Write-Host &#34;Backup saved as &#34; &#43; $backup $node = $doc."/>
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 #Modify the Report Server Web.config file. ie replace MSRS11.VAS with your folder name Set-ExecutionPolicy Unrestricted $webConfig = &#34;C:Program FilesMicrosoft SQL ServerMSRS11.VASReporting ServicesReportManagerWeb.config&#34; $currentDate = (get-date).tostring(&#34;mm_dd_yyyy-hh_mm_s&#34;) # month_day_year - hours_mins_seconds $backup = $webConfig &#43; &#34;_$currentDate&#34; $doc = new-object System.Xml.XmlDocument $doc.Load($webConfig) #save a backup copy $doc.Save($backup) Write-Host &#34;Backup saved as &#34; &#43; $backup $node = $doc."/>
 <meta name="application-name" content="Dynamics 365 Finance &amp; Operations">
 <meta name="apple-mobile-web-app-title" content="Dynamics 365 Finance &amp; Operations"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/Icon/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://nuxulu.com/2015-07-02-modify-microsoft-dynamics-ax-2012-r3-ssrs-configurations/" /><link rel="prev" href="https://nuxulu.com/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/" /><link rel="next" href="https://nuxulu.com/2015-08-04-web-services-on-iis-exception-has-been-thrown-by-the-target-of-an-invocation-ax-installation/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><meta name="google-site-verification" content="f08c47fec0942fa0" /><script type="application/ld+json">
     {
@@ -30,7 +30,7 @@
             "@type": "WebPage",
             "@id": "https:\/\/nuxulu.com\/2015-07-02-modify-microsoft-dynamics-ax-2012-r3-ssrs-configurations\/"
         },"genre": "posts","wordcount":  826 ,
-        "url": "https:\/\/nuxulu.com\/2015-07-02-modify-microsoft-dynamics-ax-2012-r3-ssrs-configurations\/","datePublished": "2015-07-02T00:00:00+00:00","dateModified": "2022-04-08T00:29:59+07:00","publisher": {
+        "url": "https:\/\/nuxulu.com\/2015-07-02-modify-microsoft-dynamics-ax-2012-r3-ssrs-configurations\/","datePublished": "2015-07-02T00:00:00+00:00","dateModified": "2022-07-26T14:51:47-04:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -603,7 +603,7 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on April 8, 2022</span>
+                <span>Updated on July 26, 2022</span>
             </div>
             <div class="post-info-license"></div>
         </div>

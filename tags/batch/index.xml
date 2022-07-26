@@ -514,7 +514,7 @@ This can be done from POSTMAN too and you need to use header and body as you see
 </span><span class="lnt">42
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">UpdateVendorEmail</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">UpdateVendorEmail</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">VendTable</span>                   <span class="n">vendTable</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">LogisticsElectronicAddress</span>  <span class="n">electronicAddress</span><span class="p">;</span>
@@ -696,7 +696,7 @@ This can be done from POSTMAN too and you need to use header and body as you see
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">sendEmail</span><span class="p">(</span><span class="n">AccountNum</span> <span class="m">_</span><span class="n">vendor</span><span class="p">,</span> <span class="n">str</span> <span class="m">_</span><span class="n">recipient</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">sendEmail</span><span class="p">(</span><span class="n">AccountNum</span> <span class="n">_vendor</span><span class="p">,</span> <span class="n">str</span> <span class="n">_recipient</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">str</span>                                     <span class="n">sender</span>  <span class="p">=</span> <span class="err">&#39;</span><span class="n">sender@email</span><span class="p">.</span><span class="n">com</span><span class="err">&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">str</span>                                     <span class="n">subject</span> <span class="p">=</span> <span class="err">&#39;</span><span class="n">Account</span> <span class="n">blocked</span><span class="err">&#39;</span><span class="p">;</span>
@@ -715,7 +715,7 @@ This can be done from POSTMAN too and you need to use header and body as you see
 </span></span><span class="line"><span class="cl"> 
 </span></span><span class="line"><span class="cl">    <span class="k">try</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">toList</span> <span class="p">=</span> <span class="n">strSplit</span><span class="p">(</span><span class="m">_</span><span class="n">recipient</span><span class="p">,</span> <span class="sc">&#39;;&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">toList</span> <span class="p">=</span> <span class="n">strSplit</span><span class="p">(</span><span class="n">_recipient</span><span class="p">,</span> <span class="sc">&#39;;&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">         
 </span></span><span class="line"><span class="cl">        <span class="n">permissionSet</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Set</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Class</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="n">permissionSet</span><span class="p">.</span><span class="k">add</span><span class="p">(</span><span class="k">new</span> <span class="n">InteropPermission</span><span class="p">(</span><span class="n">InteropKind</span><span class="p">::</span><span class="n">ClrInterop</span><span class="p">));</span>
@@ -746,7 +746,7 @@ This can be done from POSTMAN too and you need to use header and body as you see
 </span></span><span class="line"><span class="cl">        <span class="n">mailMessage</span><span class="p">.</span><span class="n">Dispose</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl"> 
 </span></span><span class="line"><span class="cl">        <span class="n">CodeAccessPermission</span><span class="p">::</span><span class="n">revertAssert</span><span class="p">();</span> 
-</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Email</span> <span class="n">was</span> <span class="n">sent</span> <span class="n">to</span> <span class="n">vendor</span> <span class="p">%</span><span class="m">1.</span><span class="err">&#39;</span><span class="p">,</span> <span class="m">_</span><span class="n">vendor</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Email</span> <span class="n">was</span> <span class="n">sent</span> <span class="n">to</span> <span class="n">vendor</span> <span class="p">%</span><span class="m">1.</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">_vendor</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span><span class="p">::</span><span class="n">CLRError</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
@@ -891,7 +891,7 @@ This can be done from POSTMAN too and you need to use header and body as you see
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">MAX_VendorBlockedBatch</span> <span class="n">vendorBlockedBatch</span> <span class="p">=</span> <span class="n">MAX_VendorBlockedBatch</span><span class="p">::</span><span class="n">construct</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">

@@ -189,17 +189,17 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="na">[DataMemberAttribute(&#39;HcmWorkerName&#39;)]</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="n">HcmWorkerName</span> <span class="n">parmName</span><span class="p">(</span><span class="n">HcmWorkerName</span> <span class="m">_</span><span class="n">name</span> <span class="p">=</span> <span class="n">gName</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="n">HcmWorkerName</span> <span class="n">parmName</span><span class="p">(</span><span class="n">HcmWorkerName</span> <span class="n">_name</span> <span class="p">=</span> <span class="n">gName</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">gName</span> <span class="p">=</span> <span class="m">_</span><span class="n">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">gName</span> <span class="p">=</span> <span class="n">_name</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">gName</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="na">
 </span></span></span><span class="line"><span class="cl"><span class="na">[DataMemberAttribute(&#39;HcmPersonnelNumberId&#39;)]</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="n">HcmPersonnelNumberId</span> <span class="n">parmId</span><span class="p">(</span><span class="n">HcmPersonnelNumberId</span> <span class="m">_</span><span class="n">id</span> <span class="p">=</span> <span class="n">gId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="n">HcmPersonnelNumberId</span> <span class="n">parmId</span><span class="p">(</span><span class="n">HcmPersonnelNumberId</span> <span class="n">_id</span> <span class="p">=</span> <span class="n">gId</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">gId</span> <span class="p">=</span> <span class="m">_</span><span class="n">id</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">gId</span> <span class="p">=</span> <span class="n">_id</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">gId</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
@@ -335,13 +335,13 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="n">AifEntityKeyList</span> <span class="n">createList</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="n">AifDocumentXml</span>                  <span class="m">_</span><span class="n">xml</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="n">AifEndpointActionPolicyInfo</span>     <span class="m">_</span><span class="n">actionPolicyInfo</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="n">AifConstraintListCollection</span>     <span class="m">_</span><span class="n">constraintListCollection</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifDocumentXml</span>                  <span class="n">_xml</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifEndpointActionPolicyInfo</span>     <span class="n">_actionPolicyInfo</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifConstraintListCollection</span>     <span class="n">_constraintListCollection</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">AifEntityKeyList</span> <span class="n">aifEntityKeyList</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">aifEntityKeyList</span> <span class="p">=</span> <span class="n">super</span><span class="p">(</span><span class="m">_</span><span class="n">xml</span><span class="p">,</span> <span class="m">_</span><span class="n">actionPolicyInfo</span><span class="p">,</span> <span class="m">_</span><span class="n">constraintListCollection</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">aifEntityKeyList</span> <span class="p">=</span> <span class="n">super</span><span class="p">(</span><span class="n">_xml</span><span class="p">,</span> <span class="n">_actionPolicyInfo</span><span class="p">,</span> <span class="n">_constraintListCollection</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">// Sales orders are committed - master planning explosion can be executed and confirmed dates be set</span>
 </span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="n">postSalesOrderCreation</span><span class="p">(</span><span class="n">aifEntityKeyList</span><span class="p">);</span>
@@ -413,9 +413,9 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="n">AifEntityKeyList</span> <span class="n">createList</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="n">AifDocumentXml</span>                  <span class="m">_</span><span class="n">xml</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="n">AifEndpointActionPolicyInfo</span>     <span class="m">_</span><span class="n">actionPolicyInfo</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="n">AifConstraintListCollection</span>     <span class="m">_</span><span class="n">constraintListCollection</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifDocumentXml</span>                  <span class="n">_xml</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifEndpointActionPolicyInfo</span>     <span class="n">_actionPolicyInfo</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifConstraintListCollection</span>     <span class="n">_constraintListCollection</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">AifEntityKeyList</span> <span class="n">aifEntityKeyList</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    
@@ -427,7 +427,7 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl">    <span class="n">Map</span>                             <span class="n">salesOrderMap</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">MapEnumerator</span>                   <span class="n">mapEnumerator</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">aifEntityKeyList</span> <span class="p">=</span> <span class="n">super</span><span class="p">(</span><span class="m">_</span><span class="n">xml</span><span class="p">,</span> <span class="m">_</span><span class="n">actionPolicyInfo</span><span class="p">,</span> <span class="m">_</span><span class="n">constraintListCollection</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">aifEntityKeyList</span> <span class="p">=</span> <span class="n">super</span><span class="p">(</span><span class="n">_xml</span><span class="p">,</span> <span class="n">_actionPolicyInfo</span><span class="p">,</span> <span class="n">_constraintListCollection</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">// Sales orders are committed - master planning explosion can be executed and confirmed dates be set</span>
 </span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="n">postSalesOrderCreation</span><span class="p">(</span><span class="n">aifEntityKeyList</span><span class="p">);</span>
@@ -571,7 +571,7 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span><span class="lnt">42
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">UpdateVendorEmail</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">UpdateVendorEmail</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">VendTable</span>                   <span class="n">vendTable</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">LogisticsElectronicAddress</span>  <span class="n">electronicAddress</span><span class="p">;</span>
@@ -753,7 +753,7 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">sendEmail</span><span class="p">(</span><span class="n">AccountNum</span> <span class="m">_</span><span class="n">vendor</span><span class="p">,</span> <span class="n">str</span> <span class="m">_</span><span class="n">recipient</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">sendEmail</span><span class="p">(</span><span class="n">AccountNum</span> <span class="n">_vendor</span><span class="p">,</span> <span class="n">str</span> <span class="n">_recipient</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">str</span>                                     <span class="n">sender</span>  <span class="p">=</span> <span class="err">&#39;</span><span class="n">sender@email</span><span class="p">.</span><span class="n">com</span><span class="err">&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">str</span>                                     <span class="n">subject</span> <span class="p">=</span> <span class="err">&#39;</span><span class="n">Account</span> <span class="n">blocked</span><span class="err">&#39;</span><span class="p">;</span>
@@ -772,7 +772,7 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl"> 
 </span></span><span class="line"><span class="cl">    <span class="k">try</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">toList</span> <span class="p">=</span> <span class="n">strSplit</span><span class="p">(</span><span class="m">_</span><span class="n">recipient</span><span class="p">,</span> <span class="sc">&#39;;&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">toList</span> <span class="p">=</span> <span class="n">strSplit</span><span class="p">(</span><span class="n">_recipient</span><span class="p">,</span> <span class="sc">&#39;;&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">         
 </span></span><span class="line"><span class="cl">        <span class="n">permissionSet</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Set</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Class</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="n">permissionSet</span><span class="p">.</span><span class="k">add</span><span class="p">(</span><span class="k">new</span> <span class="n">InteropPermission</span><span class="p">(</span><span class="n">InteropKind</span><span class="p">::</span><span class="n">ClrInterop</span><span class="p">));</span>
@@ -803,7 +803,7 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl">        <span class="n">mailMessage</span><span class="p">.</span><span class="n">Dispose</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl"> 
 </span></span><span class="line"><span class="cl">        <span class="n">CodeAccessPermission</span><span class="p">::</span><span class="n">revertAssert</span><span class="p">();</span> 
-</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Email</span> <span class="n">was</span> <span class="n">sent</span> <span class="n">to</span> <span class="n">vendor</span> <span class="p">%</span><span class="m">1.</span><span class="err">&#39;</span><span class="p">,</span> <span class="m">_</span><span class="n">vendor</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Email</span> <span class="n">was</span> <span class="n">sent</span> <span class="n">to</span> <span class="n">vendor</span> <span class="p">%</span><span class="m">1.</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">_vendor</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span><span class="p">::</span><span class="n">CLRError</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
@@ -948,7 +948,7 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">MAX_VendorBlockedBatch</span> <span class="n">vendorBlockedBatch</span> <span class="p">=</span> <span class="n">MAX_VendorBlockedBatch</span><span class="p">::</span><span class="n">construct</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">
@@ -2063,12 +2063,12 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span><span class="lnt">1042
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">container</span> <span class="n">list2Con</span> <span class="p">(</span><span class="n">List</span> <span class="m">_l</span><span class="n">ist</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">container</span> <span class="n">list2Con</span> <span class="p">(</span><span class="n">List</span> <span class="n">_list</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">container</span> <span class="n">con</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">ListEnumerator</span> <span class="n">listEnum</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">listEnum</span> <span class="p">=</span> <span class="m">_l</span><span class="n">ist</span><span class="p">.</span><span class="n">getEnumerator</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">listEnum</span> <span class="p">=</span> <span class="n">_list</span><span class="p">.</span><span class="n">getEnumerator</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">listEnum</span><span class="p">.</span><span class="n">moveNext</span><span class="p">())</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
@@ -2080,22 +2080,22 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="cs">///Creates a file named _file with the content specified in _content parameter.</span>
 </span></span><span class="line"><span class="cl"><span class="c1">//See the class SysImportUtil class for file related functions like get temfolder,tempfilename..etc.</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">createFile</span><span class="p">(</span><span class="n">str</span> <span class="m">_f</span><span class="n">ile</span><span class="p">,</span> <span class="n">str</span> <span class="m">_</span><span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">createFile</span><span class="p">(</span><span class="n">str</span> <span class="n">_file</span><span class="p">,</span> <span class="n">str</span> <span class="n">_content</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="err">#</span><span class="n">File</span>
 </span></span><span class="line"><span class="cl">    <span class="n">TextIo</span> <span class="n">file</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">new</span> <span class="n">FileIOPermission</span><span class="p">(</span><span class="m">_f</span><span class="n">ile</span><span class="p">,</span> <span class="err">#</span><span class="n">io_write</span><span class="p">).</span><span class="n">assert</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">new</span> <span class="n">FileIOPermission</span><span class="p">(</span><span class="n">_file</span><span class="p">,</span> <span class="err">#</span><span class="n">io_write</span><span class="p">).</span><span class="n">assert</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">// BP Deviation Documented</span>
-</span></span><span class="line"><span class="cl">    <span class="n">file</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TextIo</span><span class="p">(</span><span class="m">_f</span><span class="n">ile</span><span class="p">,</span> <span class="err">#</span><span class="n">io_write</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">file</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="m">_</span><span class="n">content</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">file</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TextIo</span><span class="p">(</span><span class="n">_file</span><span class="p">,</span> <span class="err">#</span><span class="n">io_write</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">file</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">_content</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">file</span><span class="p">.</span><span class="n">finalize</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="cs">///Creates an XML file named _file with the content specified in _content parameter. If the XML file</span>
 </span></span><span class="line"><span class="cl"><span class="cs">///can&#39;t be created then it will try to create a normal file by calling createFile method.</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">createXmlFile</span><span class="p">(</span><span class="n">str</span> <span class="m">_f</span><span class="n">ile</span><span class="p">,</span> <span class="n">str</span> <span class="m">_</span><span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">createXmlFile</span><span class="p">(</span><span class="n">str</span> <span class="n">_file</span><span class="p">,</span> <span class="n">str</span> <span class="n">_content</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="err">#</span><span class="n">File</span>
 </span></span><span class="line"><span class="cl">
@@ -2103,20 +2103,20 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl">    <span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">try</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">document</span> <span class="p">=</span> <span class="n">XmlDocument</span><span class="p">::</span><span class="n">newXml</span><span class="p">(</span><span class="m">_</span><span class="n">content</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">document</span> <span class="p">=</span> <span class="n">XmlDocument</span><span class="p">::</span><span class="n">newXml</span><span class="p">(</span><span class="n">_content</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="k">new</span> <span class="n">FileIOPermission</span><span class="p">(</span><span class="m">_f</span><span class="n">ile</span><span class="p">,</span> <span class="err">#</span><span class="n">io_write</span><span class="p">).</span><span class="n">assert</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">new</span> <span class="n">FileIOPermission</span><span class="p">(</span><span class="n">_file</span><span class="p">,</span> <span class="err">#</span><span class="n">io_write</span><span class="p">).</span><span class="n">assert</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">// BP Deviation Documented</span>
-</span></span><span class="line"><span class="cl">        <span class="n">document</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="m">_f</span><span class="n">ile</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">document</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="n">_file</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">catch</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">SysImportUtil</span><span class="p">::</span><span class="n">createFile</span><span class="p">(</span><span class="m">_f</span><span class="n">ile</span><span class="p">,</span> <span class="m">_</span><span class="n">content</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SysImportUtil</span><span class="p">::</span><span class="n">createFile</span><span class="p">(</span><span class="n">_file</span><span class="p">,</span> <span class="n">_content</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="cs">///Reads an XML file specified by _file parameter.</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">str</span> <span class="n">readXmlFile</span><span class="p">(</span><span class="n">str</span> <span class="m">_f</span><span class="n">ile</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">str</span> <span class="n">readXmlFile</span><span class="p">(</span><span class="n">str</span> <span class="n">_file</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="err">#</span><span class="n">File</span>
 </span></span><span class="line"><span class="cl">
@@ -2124,9 +2124,9 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl">    <span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">try</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">new</span> <span class="n">FileIOPermission</span><span class="p">(</span><span class="m">_f</span><span class="n">ile</span><span class="p">,</span> <span class="err">#</span><span class="n">io_read</span><span class="p">).</span><span class="n">assert</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">new</span> <span class="n">FileIOPermission</span><span class="p">(</span><span class="n">_file</span><span class="p">,</span> <span class="err">#</span><span class="n">io_read</span><span class="p">).</span><span class="n">assert</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">// BP Deviation Documented</span>
-</span></span><span class="line"><span class="cl">        <span class="n">file</span> <span class="p">=</span> <span class="n">XmlDocument</span><span class="p">::</span><span class="n">newFile</span><span class="p">(</span><span class="m">_f</span><span class="n">ile</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">file</span> <span class="p">=</span> <span class="n">XmlDocument</span><span class="p">::</span><span class="n">newFile</span><span class="p">(</span><span class="n">_file</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">file</span><span class="p">.</span><span class="n">xml</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">catch</span>
@@ -2141,7 +2141,7 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl"><span class="cs">/// &lt;param name=&#34;_address&#34;&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="cs">/// The address to map.</span>
 </span></span><span class="line"><span class="cl"><span class="cs">/// &lt;/param&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">mapIt</span><span class="p">(</span><span class="n">LogisticsPostalAddress</span> <span class="m">_</span><span class="n">address</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">mapIt</span><span class="p">(</span><span class="n">LogisticsPostalAddress</span> <span class="n">_address</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="err">#</span><span class="n">DEFINE</span><span class="p">.</span><span class="n">MapURL</span><span class="p">(</span><span class="err">&#39;</span><span class="n">http</span><span class="p">:</span><span class="c1">//maps.bing.com/default.aspx?where1=\%1&#39;)</span>
 </span></span><span class="line"><span class="cl">    <span class="err">#</span><span class="n">DEFINE</span><span class="p">.</span><span class="n">comma</span><span class="p">(</span><span class="sc">&#39;,&#39;</span><span class="p">)</span>
@@ -2149,13 +2149,13 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">str</span>     <span class="n">address</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="m">_</span><span class="n">address</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">_address</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">address</span> <span class="p">=</span> <span class="m">_</span><span class="n">address</span><span class="p">.</span><span class="n">Street</span> <span class="p">+</span> <span class="err">#</span><span class="n">comma</span> <span class="p">+</span>
-</span></span><span class="line"><span class="cl">                  <span class="m">_</span><span class="n">address</span><span class="p">.</span><span class="n">City</span> <span class="p">+</span> <span class="err">#</span><span class="n">comma</span> <span class="p">+</span>
-</span></span><span class="line"><span class="cl">                  <span class="m">_</span><span class="n">address</span><span class="p">.</span><span class="n">State</span> <span class="p">+</span> <span class="err">#</span><span class="n">comma</span> <span class="p">+</span>
-</span></span><span class="line"><span class="cl">                  <span class="m">_</span><span class="n">address</span><span class="p">.</span><span class="n">ZipCode</span> <span class="p">+</span> <span class="err">#</span><span class="n">comma</span> <span class="p">+</span>
-</span></span><span class="line"><span class="cl">                  <span class="m">_</span><span class="n">address</span><span class="p">.</span><span class="n">CountryRegionId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">address</span> <span class="p">=</span> <span class="n">_address</span><span class="p">.</span><span class="n">Street</span> <span class="p">+</span> <span class="err">#</span><span class="n">comma</span> <span class="p">+</span>
+</span></span><span class="line"><span class="cl">                  <span class="n">_address</span><span class="p">.</span><span class="n">City</span> <span class="p">+</span> <span class="err">#</span><span class="n">comma</span> <span class="p">+</span>
+</span></span><span class="line"><span class="cl">                  <span class="n">_address</span><span class="p">.</span><span class="n">State</span> <span class="p">+</span> <span class="err">#</span><span class="n">comma</span> <span class="p">+</span>
+</span></span><span class="line"><span class="cl">                  <span class="n">_address</span><span class="p">.</span><span class="n">ZipCode</span> <span class="p">+</span> <span class="err">#</span><span class="n">comma</span> <span class="p">+</span>
+</span></span><span class="line"><span class="cl">                  <span class="n">_address</span><span class="p">.</span><span class="n">CountryRegionId</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="c1">// Replace the newline with comma</span>
 </span></span><span class="line"><span class="cl">        <span class="n">address</span> <span class="p">=</span> <span class="n">strReplace</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="err">#</span><span class="n">newline</span><span class="p">,</span> <span class="err">#</span><span class="n">comma</span><span class="p">);</span>
@@ -2318,7 +2318,7 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// get enum values to container</span>
-</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">Enum2container</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">Enum2container</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">   
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span>         <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
@@ -2335,29 +2335,29 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl">    <span class="n">info</span><span class="p">(</span><span class="n">strfmt</span><span class="p">(</span><span class="s">&#34;%1&#34;</span><span class="p">,</span><span class="n">con2Str</span><span class="p">(</span><span class="n">ret</span><span class="p">)));</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">boolean</span> <span class="n">checkDateIsInPeriod</span><span class="p">(</span><span class="n">TransDate</span> <span class="m">_</span><span class="n">transDate</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                                            <span class="n">PeriodCode</span>  <span class="m">_</span><span class="n">periodCode</span> <span class="p">=</span> <span class="n">PeriodCode</span><span class="p">::</span><span class="n">Regular</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">boolean</span> <span class="n">checkDateIsInPeriod</span><span class="p">(</span><span class="n">TransDate</span> <span class="n">_transDate</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                            <span class="n">PeriodCode</span>  <span class="n">_periodCode</span> <span class="p">=</span> <span class="n">PeriodCode</span><span class="p">::</span><span class="n">Regular</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">BudgetTransactionManager</span><span class="p">::</span><span class="n">validateTransactionDate</span><span class="p">(</span><span class="m">_</span><span class="n">transDate</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">BudgetTransactionManager</span><span class="p">::</span><span class="n">validateTransactionDate</span><span class="p">(</span><span class="n">_transDate</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// New method for returning ledgerperiod last date</span>
-</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="n">transDate</span> <span class="n">findLastOpenPeriod</span><span class="p">(</span><span class="n">transdate</span> <span class="m">_l</span><span class="n">edgerTransDate</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="n">transDate</span> <span class="n">findLastOpenPeriod</span><span class="p">(</span><span class="n">transdate</span> <span class="n">_ledgerTransDate</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">FiscalCalendarRecId</span>     <span class="n">fiscalCalendarRecId</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">fiscalCalendarRecId</span> <span class="p">=</span> <span class="n">Ledger</span><span class="p">::</span><span class="n">fiscalCalendar</span><span class="p">(</span><span class="n">CompanyInfo</span><span class="p">::</span><span class="n">find</span><span class="p">().</span><span class="n">RecId</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">FiscalCalendars</span><span class="p">::</span><span class="n">findLastDayofPeriod</span><span class="p">(</span> <span class="n">fiscalCalendarRecId</span><span class="p">,</span> <span class="m">_l</span><span class="n">edgerTransDate</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">FiscalCalendars</span><span class="p">::</span><span class="n">findLastDayofPeriod</span><span class="p">(</span> <span class="n">fiscalCalendarRecId</span><span class="p">,</span> <span class="n">_ledgerTransDate</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// New method for returning first open ledgerperiod first date</span>
-</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="n">transDate</span> <span class="n">findFirstOpenPeriod</span><span class="p">(</span><span class="n">transdate</span> <span class="m">_l</span><span class="n">edgerTransDate</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="n">transDate</span> <span class="n">findFirstOpenPeriod</span><span class="p">(</span><span class="n">transdate</span> <span class="n">_ledgerTransDate</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">FiscalCalendarRecId</span>     <span class="n">fiscalCalendarRecId</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">fiscalCalendarRecId</span> <span class="p">=</span> <span class="n">Ledger</span><span class="p">::</span><span class="n">fiscalCalendar</span><span class="p">(</span><span class="n">CompanyInfo</span><span class="p">::</span><span class="n">find</span><span class="p">().</span><span class="n">RecId</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">FiscalCalendars</span><span class="p">::</span><span class="n">findFirstDayofPeriod</span><span class="p">(</span> <span class="n">fiscalCalendarRecId</span><span class="p">,</span> <span class="m">_l</span><span class="n">edgerTransDate</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">FiscalCalendars</span><span class="p">::</span><span class="n">findFirstDayofPeriod</span><span class="p">(</span> <span class="n">fiscalCalendarRecId</span><span class="p">,</span> <span class="n">_ledgerTransDate</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
@@ -2515,32 +2515,32 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">//Converts from string to Time.</span>
-</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="kt">int</span> <span class="n">str2Time</span><span class="p">(</span><span class="n">str</span> <span class="m">8</span> <span class="m">_</span><span class="n">timeStr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="kt">int</span> <span class="n">str2Time</span><span class="p">(</span><span class="n">str</span> <span class="m">8</span> <span class="n">_timeStr</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span>     <span class="n">time</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">time</span> <span class="p">+=</span> <span class="n">str2int</span><span class="p">(</span><span class="n">substr</span><span class="p">(</span><span class="m">_</span><span class="n">timeStr</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">2</span><span class="p">))</span> <span class="p">*</span> <span class="m">3600</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">time</span> <span class="p">+=</span> <span class="n">str2int</span><span class="p">(</span><span class="n">substr</span><span class="p">(</span><span class="m">_</span><span class="n">timeStr</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">2</span><span class="p">))</span> <span class="p">*</span> <span class="m">60</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">time</span> <span class="p">+=</span> <span class="n">str2int</span><span class="p">(</span><span class="n">substr</span><span class="p">(</span><span class="m">_</span><span class="n">timeStr</span><span class="p">,</span><span class="m">7</span><span class="p">,</span><span class="m">2</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">time</span> <span class="p">+=</span> <span class="n">str2int</span><span class="p">(</span><span class="n">substr</span><span class="p">(</span><span class="n">_timeStr</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">2</span><span class="p">))</span> <span class="p">*</span> <span class="m">3600</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">time</span> <span class="p">+=</span> <span class="n">str2int</span><span class="p">(</span><span class="n">substr</span><span class="p">(</span><span class="n">_timeStr</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">2</span><span class="p">))</span> <span class="p">*</span> <span class="m">60</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">time</span> <span class="p">+=</span> <span class="n">str2int</span><span class="p">(</span><span class="n">substr</span><span class="p">(</span><span class="n">_timeStr</span><span class="p">,</span><span class="m">7</span><span class="p">,</span><span class="m">2</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">time</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">//This function is used to get xml string from xml file.</span>
-</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="k">public</span> <span class="n">str</span> <span class="n">getXMLstringFromFile</span><span class="p">(</span><span class="n">str</span> <span class="m">_f</span><span class="n">ilepath</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="k">public</span> <span class="n">str</span> <span class="n">getXMLstringFromFile</span><span class="p">(</span><span class="n">str</span> <span class="n">_filepath</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">str</span> <span class="n">xmlstring</span><span class="p">=</span><span class="err">&#39;&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">XmlDocument</span> <span class="n">document</span><span class="p">=</span><span class="k">new</span> <span class="n">XmlDocument</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">    <span class="n">document</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="m">_f</span><span class="n">ilepath</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">document</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">_filepath</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">xmlstring</span><span class="p">=</span><span class="n">document</span><span class="p">.</span><span class="n">innerXml</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">xmlstring</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// this function is used to convert string to array.</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">Array</span> <span class="n">str2array</span><span class="p">(</span><span class="n">str</span> <span class="m">_</span><span class="n">inputString</span><span class="p">,</span> <span class="n">str</span> <span class="m">_d</span><span class="n">elimiter</span> <span class="p">=</span> <span class="err">&#39;</span><span class="s">&#34;,&#34;</span><span class="err">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">Array</span> <span class="n">str2array</span><span class="p">(</span><span class="n">str</span> <span class="n">_inputString</span><span class="p">,</span> <span class="n">str</span> <span class="n">_delimiter</span> <span class="p">=</span> <span class="err">&#39;</span><span class="s">&#34;,&#34;</span><span class="err">&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">List</span>            <span class="n">list</span>        <span class="p">=</span> <span class="n">AmcBankFunctions</span><span class="p">::</span><span class="n">strSplit</span><span class="p">(</span><span class="m">_</span><span class="n">inputString</span><span class="p">,</span> <span class="m">_d</span><span class="n">elimiter</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span>            <span class="n">list</span>        <span class="p">=</span> <span class="n">AmcBankFunctions</span><span class="p">::</span><span class="n">strSplit</span><span class="p">(</span><span class="n">_inputString</span><span class="p">,</span> <span class="n">_delimiter</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">ListEnumerator</span>  <span class="n">enumerator</span>  <span class="p">=</span> <span class="n">list</span><span class="p">.</span><span class="n">getEnumerator</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">Array</span>           <span class="n">a</span>           <span class="p">=</span> <span class="k">new</span> <span class="n">Array</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">String</span><span class="p">);</span>
@@ -2548,7 +2548,7 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl">    <span class="n">str</span>             <span class="n">tmpString</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">strLen</span><span class="p">(</span><span class="m">_</span><span class="n">inputString</span><span class="p">)</span> <span class="p">==</span> <span class="m">0</span> <span class="p">||</span> <span class="n">strScan</span><span class="p">(</span><span class="m">_</span><span class="n">inputString</span><span class="p">,</span> <span class="m">_d</span><span class="n">elimiter</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="n">strLen</span><span class="p">(</span><span class="m">_</span><span class="n">inputString</span><span class="p">))</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">strLen</span><span class="p">(</span><span class="n">_inputString</span><span class="p">)</span> <span class="p">==</span> <span class="m">0</span> <span class="p">||</span> <span class="n">strScan</span><span class="p">(</span><span class="n">_inputString</span><span class="p">,</span> <span class="n">_delimiter</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="n">strLen</span><span class="p">(</span><span class="n">_inputString</span><span class="p">))</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">a</span><span class="p">;</span> <span class="c1">// this is not a XTL record</span>
 </span></span><span class="line"><span class="cl">    <span class="n">enumerator</span><span class="p">.</span><span class="n">reset</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">enumerator</span><span class="p">.</span><span class="n">moveNext</span><span class="p">())</span>
@@ -2629,10 +2629,10 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// send email using smtp</span>
 </span></span><span class="line"><span class="cl"><span class="c1">//Please change the parameters accordingly for your client</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">boolean</span> <span class="n">emailSmtpSend</span><span class="p">(</span><span class="n">str</span>         <span class="m">_</span><span class="n">receiver</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                                    <span class="n">str</span>         <span class="m">_</span><span class="n">subject</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                                    <span class="n">str</span>         <span class="m">_</span><span class="n">body</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                                    <span class="n">Filename</span>    <span class="m">_</span><span class="n">attachment</span> <span class="p">=</span> <span class="err">&#39;&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">boolean</span> <span class="n">emailSmtpSend</span><span class="p">(</span><span class="n">str</span>         <span class="n">_receiver</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                    <span class="n">str</span>         <span class="n">_subject</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                    <span class="n">str</span>         <span class="n">_body</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                    <span class="n">Filename</span>    <span class="n">_attachment</span> <span class="p">=</span> <span class="err">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">AmcBankParameters</span>                       <span class="n">amcBankParameters</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
@@ -2644,7 +2644,7 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">SmtpClient</span>              <span class="n">smtpClient</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(!</span><span class="m">_</span><span class="n">receiver</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(!</span><span class="n">_receiver</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">checkFailed</span><span class="p">(</span><span class="s">&#34;@ABA32081&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">amcBankParameters</span> <span class="p">=</span> <span class="n">AmcBankParameters</span><span class="p">::</span><span class="n">find</span><span class="p">();</span>
@@ -2652,15 +2652,15 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl">    <span class="k">try</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">mailFrom</span>    <span class="p">=</span> <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailAddress</span><span class="p">(</span><span class="n">amcBankParameters</span><span class="p">.</span><span class="n">SmtpSenderAddress</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">mailTo</span>      <span class="p">=</span> <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailAddress</span><span class="p">(</span><span class="m">_</span><span class="n">receiver</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mailTo</span>      <span class="p">=</span> <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailAddress</span><span class="p">(</span><span class="n">_receiver</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="n">mailMessage</span> <span class="p">=</span> <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailMessage</span><span class="p">(</span><span class="n">mailFrom</span><span class="p">,</span> <span class="n">mailTo</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">mailmessage</span><span class="p">.</span><span class="n">set_Subject</span><span class="p">(</span><span class="m">_</span><span class="n">subject</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">mailmessage</span><span class="p">.</span><span class="n">set_Body</span><span class="p">(</span><span class="m">_</span><span class="n">body</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mailmessage</span><span class="p">.</span><span class="n">set_Subject</span><span class="p">(</span><span class="n">_subject</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mailmessage</span><span class="p">.</span><span class="n">set_Body</span><span class="p">(</span><span class="n">_body</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="c1">// Adding attachment</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="m">_</span><span class="n">attachment</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">_attachment</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">attachment</span> <span class="p">=</span> <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">Attachment</span><span class="p">(</span><span class="m">_</span><span class="n">attachment</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">attachment</span> <span class="p">=</span> <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">Attachment</span><span class="p">(</span><span class="n">_attachment</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">            <span class="n">attachmentCollection</span> <span class="p">=</span> <span class="n">mailMessage</span><span class="p">.</span><span class="n">get_Attachments</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">            <span class="n">attachmentCollection</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">attachment</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
@@ -2670,7 +2670,7 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl"><span class="n">amcBankParameters</span><span class="p">.</span><span class="n">SmtpPortNumber</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="n">smtpClient</span><span class="p">.</span><span class="n">Send</span><span class="p">(</span><span class="n">mailmessage</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;@SYS80635&#34;</span><span class="p">,</span> <span class="m">_</span><span class="n">receiver</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;@SYS80635&#34;</span><span class="p">,</span> <span class="n">_receiver</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="n">attachmentCollection</span><span class="p">.</span><span class="n">Dispose</span><span class="p">();</span> <span class="c1">// Releases attachement resources (files)</span>
 </span></span><span class="line"><span class="cl">
@@ -2681,13 +2681,13 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl">        <span class="n">error</span><span class="p">(</span><span class="n">CLRInterop</span><span class="p">::</span><span class="n">getLastException</span><span class="p">());</span>
 </span></span><span class="line"><span class="cl">        <span class="n">attachmentCollection</span><span class="p">.</span><span class="n">Dispose</span><span class="p">();</span> <span class="c1">// Releases attachement resources (files)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">checkFailed</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;@ABA32082&#34;</span><span class="p">,</span>  <span class="m">_</span><span class="n">receiver</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">checkFailed</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;@ABA32082&#34;</span><span class="p">,</span>  <span class="n">_receiver</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">catch</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">attachmentCollection</span><span class="p">.</span><span class="n">Dispose</span><span class="p">();</span> <span class="c1">// Releases attachement resources (files)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">checkFailed</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;@ABA32082&#34;</span><span class="p">,</span>  <span class="m">_</span><span class="n">receiver</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">checkFailed</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;@ABA32082&#34;</span><span class="p">,</span>  <span class="n">_receiver</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
@@ -2695,44 +2695,44 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// archive the files.</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">fileArchive</span><span class="p">(</span><span class="n">Filename</span> <span class="m">_f</span><span class="n">ile</span><span class="p">,</span> <span class="n">FilePath</span> <span class="m">_</span><span class="n">archivePath</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">fileArchive</span><span class="p">(</span><span class="n">Filename</span> <span class="n">_file</span><span class="p">,</span> <span class="n">FilePath</span> <span class="n">_archivePath</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">Filename</span>            <span class="n">filenameArchive</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">InteropPermission</span>   <span class="n">interopPermission</span> <span class="p">=</span> <span class="k">new</span> <span class="n">InteropPermission</span><span class="p">(</span><span class="n">InteropKind</span><span class="p">::</span><span class="n">ClrInterop</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">Set</span>                 <span class="n">interopPermissionSet</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Set</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Class</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(!</span><span class="m">_</span><span class="n">archivePath</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(!</span><span class="n">_archivePath</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">// Granting file permission rights</span>
 </span></span><span class="line"><span class="cl">    <span class="n">interopPermissionSet</span><span class="p">.</span><span class="k">add</span><span class="p">(</span><span class="n">interopPermission</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">CodeAccessPermission</span><span class="p">::</span><span class="n">assertMultiple</span><span class="p">(</span><span class="n">interopPermissionSet</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">filenameArchive</span> <span class="p">=</span> <span class="m">_</span><span class="n">archivePath</span> <span class="p">+</span> <span class="n">AmcBankFile</span><span class="p">::</span><span class="n">getFileNameAndExtension</span><span class="p">(</span><span class="m">_f</span><span class="n">ile</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">filenameArchive</span> <span class="p">=</span> <span class="n">_archivePath</span> <span class="p">+</span> <span class="n">AmcBankFile</span><span class="p">::</span><span class="n">getFileNameAndExtension</span><span class="p">(</span><span class="n">_file</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="p">.</span><span class="n">IO</span><span class="p">.</span><span class="n">File</span><span class="p">::</span><span class="n">Delete</span><span class="p">(</span><span class="n">filenameArchive</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="p">.</span><span class="n">IO</span><span class="p">.</span><span class="n">File</span><span class="p">::</span><span class="n">Move</span><span class="p">(</span><span class="m">_f</span><span class="n">ile</span><span class="p">,</span> <span class="n">filenameArchive</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="p">.</span><span class="n">IO</span><span class="p">.</span><span class="n">File</span><span class="p">::</span><span class="n">Move</span><span class="p">(</span><span class="n">_file</span><span class="p">,</span> <span class="n">filenameArchive</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">// Reverting file permission rights</span>
 </span></span><span class="line"><span class="cl">    <span class="n">CodeAccessPermission</span><span class="p">::</span><span class="n">revertAssert</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// getting the filename and extesion in container.</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">Filename</span> <span class="n">getFileNameAndExtension</span><span class="p">(</span><span class="n">Filename</span> <span class="m">_f</span><span class="n">ilename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">Filename</span> <span class="n">getFileNameAndExtension</span><span class="p">(</span><span class="n">Filename</span> <span class="n">_filename</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(!</span><span class="m">_f</span><span class="n">ilename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(!</span><span class="n">_filename</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="err">&#39;&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">strFmt</span><span class="p">(</span><span class="err">&#39;</span><span class="p">%</span><span class="m">1</span><span class="p">%</span><span class="m">2</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">conPeek</span><span class="p">(</span><span class="n">Global</span><span class="p">::</span><span class="n">fileNameSplit</span><span class="p">(</span><span class="m">_f</span><span class="n">ilename</span><span class="p">),</span> <span class="m">2</span><span class="p">),</span>     <span class="c1">// Filename</span>
-</span></span><span class="line"><span class="cl">                          <span class="n">conPeek</span><span class="p">(</span><span class="n">Global</span><span class="p">::</span><span class="n">fileNameSplit</span><span class="p">(</span><span class="m">_f</span><span class="n">ilename</span><span class="p">),</span> <span class="m">3</span><span class="p">));</span>    <span class="c1">// File extension (including</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">strFmt</span><span class="p">(</span><span class="err">&#39;</span><span class="p">%</span><span class="m">1</span><span class="p">%</span><span class="m">2</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">conPeek</span><span class="p">(</span><span class="n">Global</span><span class="p">::</span><span class="n">fileNameSplit</span><span class="p">(</span><span class="n">_filename</span><span class="p">),</span> <span class="m">2</span><span class="p">),</span>     <span class="c1">// Filename</span>
+</span></span><span class="line"><span class="cl">                          <span class="n">conPeek</span><span class="p">(</span><span class="n">Global</span><span class="p">::</span><span class="n">fileNameSplit</span><span class="p">(</span><span class="n">_filename</span><span class="p">),</span> <span class="m">3</span><span class="p">));</span>    <span class="c1">// File extension (including</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">prefixed</span> <span class="n">dot</span> <span class="p">(.))</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">//FolderExists</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">boolean</span> <span class="n">folderExists</span><span class="p">(</span><span class="n">FilePath</span> <span class="m">_d</span><span class="n">irectory</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">boolean</span> <span class="n">folderExists</span><span class="p">(</span><span class="n">FilePath</span> <span class="n">_directory</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">boolean</span>             <span class="n">dirExists</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
@@ -2744,7 +2744,7 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl">    <span class="n">interopPermissionSet</span><span class="p">.</span><span class="k">add</span><span class="p">(</span><span class="n">interopPermission</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">CodeAccessPermission</span><span class="p">::</span><span class="n">assertMultiple</span><span class="p">(</span><span class="n">interopPermissionSet</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">dirExists</span> <span class="p">=</span> <span class="n">System</span><span class="p">.</span><span class="n">IO</span><span class="p">.</span><span class="n">Directory</span><span class="p">::</span><span class="n">Exists</span><span class="p">(</span><span class="m">_d</span><span class="n">irectory</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dirExists</span> <span class="p">=</span> <span class="n">System</span><span class="p">.</span><span class="n">IO</span><span class="p">.</span><span class="n">Directory</span><span class="p">::</span><span class="n">Exists</span><span class="p">(</span><span class="n">_directory</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">// Reverting file permission rights</span>
 </span></span><span class="line"><span class="cl">    <span class="n">CodeAccessPermission</span><span class="p">::</span><span class="n">revertAssert</span><span class="p">();</span>
@@ -2885,11 +2885,11 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// get the sequence number for the dateformat.</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="kt">int</span> <span class="n">getSequenceForDateFormat</span><span class="p">(</span> <span class="n">DateFormat</span> <span class="m">_d</span><span class="n">ateFormat</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="kt">int</span> <span class="n">getSequenceForDateFormat</span><span class="p">(</span> <span class="n">DateFormat</span> <span class="n">_dateFormat</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">switch</span> <span class="p">(</span><span class="m">_d</span><span class="n">ateFormat</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">switch</span> <span class="p">(</span><span class="n">_dateFormat</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="n">DateFormat</span><span class="p">::</span><span class="n">YMD</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="m">321</span><span class="p">;</span>
@@ -2909,23 +2909,23 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// returns time from str.</span>
-</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="kt">int</span> <span class="n">str2Time</span><span class="p">(</span><span class="n">str</span> <span class="m">8</span> <span class="m">_</span><span class="n">timeStr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="kt">int</span> <span class="n">str2Time</span><span class="p">(</span><span class="n">str</span> <span class="m">8</span> <span class="n">_timeStr</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span>     <span class="n">time</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">time</span> <span class="p">+=</span> <span class="n">str2int</span><span class="p">(</span><span class="n">substr</span><span class="p">(</span><span class="m">_</span><span class="n">timeStr</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">2</span><span class="p">))</span> <span class="p">*</span> <span class="m">3600</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">time</span> <span class="p">+=</span> <span class="n">str2int</span><span class="p">(</span><span class="n">substr</span><span class="p">(</span><span class="m">_</span><span class="n">timeStr</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">2</span><span class="p">))</span> <span class="p">*</span> <span class="m">60</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">time</span> <span class="p">+=</span> <span class="n">str2int</span><span class="p">(</span><span class="n">substr</span><span class="p">(</span><span class="m">_</span><span class="n">timeStr</span><span class="p">,</span><span class="m">7</span><span class="p">,</span><span class="m">2</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">time</span> <span class="p">+=</span> <span class="n">str2int</span><span class="p">(</span><span class="n">substr</span><span class="p">(</span><span class="n">_timeStr</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">2</span><span class="p">))</span> <span class="p">*</span> <span class="m">3600</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">time</span> <span class="p">+=</span> <span class="n">str2int</span><span class="p">(</span><span class="n">substr</span><span class="p">(</span><span class="n">_timeStr</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">2</span><span class="p">))</span> <span class="p">*</span> <span class="m">60</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">time</span> <span class="p">+=</span> <span class="n">str2int</span><span class="p">(</span><span class="n">substr</span><span class="p">(</span><span class="n">_timeStr</span><span class="p">,</span><span class="m">7</span><span class="p">,</span><span class="m">2</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">time</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// &lt;CostCenter:Department&gt; _dimaatributesString,</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// &lt;1010:MBS&gt; dimValueString</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">RecId</span> <span class="n">generateDefaultDimension</span><span class="p">(</span><span class="n">Str</span>                        <span class="m">_d</span><span class="n">imValueString</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                                             <span class="n">str</span>                        <span class="m">_d</span><span class="n">imaatributesString</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                                             <span class="n">str</span>                        <span class="m">_d</span><span class="n">elimeter</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">RecId</span> <span class="n">generateDefaultDimension</span><span class="p">(</span><span class="n">Str</span>                        <span class="n">_dimValueString</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                             <span class="n">str</span>                        <span class="n">_dimaatributesString</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                             <span class="n">str</span>                        <span class="n">_delimeter</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">container</span>                           <span class="n">dimAttributeList</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">                                        <span class="n">dimValueList</span><span class="p">;</span>
@@ -2934,10 +2934,10 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl">    <span class="n">RecId</span>                               <span class="n">defDimRecId</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">DimensionAttributeValueSetStorage</span>   <span class="n">storage</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="m">_d</span><span class="n">imaatributesString</span> <span class="p">&amp;&amp;</span> <span class="m">_d</span><span class="n">imValueString</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">_dimaatributesString</span> <span class="p">&amp;&amp;</span> <span class="n">_dimValueString</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">dimAttributeList</span> <span class="p">=</span> <span class="n">str2con</span><span class="p">(</span><span class="m">_</span><span class="n">sourceProperties</span><span class="p">,</span> <span class="m">_d</span><span class="n">elimeter</span><span class="p">,</span><span class="k">false</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">dimValueList</span>     <span class="p">=</span> <span class="n">str2con</span><span class="p">(</span><span class="m">_d</span><span class="n">imValueString</span><span class="p">,</span> <span class="m">_d</span><span class="n">elimeter</span><span class="p">,</span><span class="k">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dimAttributeList</span> <span class="p">=</span> <span class="n">str2con</span><span class="p">(</span><span class="n">_sourceProperties</span><span class="p">,</span> <span class="n">_delimeter</span><span class="p">,</span><span class="k">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dimValueList</span>     <span class="p">=</span> <span class="n">str2con</span><span class="p">(</span><span class="n">_dimValueString</span><span class="p">,</span> <span class="n">_delimeter</span><span class="p">,</span><span class="k">false</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(!</span><span class="n">dimValueList</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="p">{</span>
@@ -2966,8 +2966,8 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl"><span class="c1">//Generate the Dimension String from default dimension</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// &lt;CostCenter:Department&gt; dimAttributeString</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// &lt;1010:MBS&gt; dimValueString</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">str</span> <span class="n">generateDefaultDimensionStr</span><span class="p">(</span><span class="n">RefRecId</span>  <span class="m">_d</span><span class="n">efaultDimension</span><span class="p">,</span><span class="n">str</span> <span class="m">_d</span><span class="n">imattrString</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                                                  <span class="n">str</span> <span class="m">_d</span><span class="n">elimeter</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">str</span> <span class="n">generateDefaultDimensionStr</span><span class="p">(</span><span class="n">RefRecId</span>  <span class="n">_defaultDimension</span><span class="p">,</span><span class="n">str</span> <span class="n">_dimattrString</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                                  <span class="n">str</span> <span class="n">_delimeter</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">DMFDefaultDimensionStr</span>              <span class="n">defaultDimensionStr</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">DimensionAttributeValueSetItem</span>      <span class="n">setItem</span><span class="p">;</span>
@@ -2977,15 +2977,15 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl">    <span class="n">Int</span>                                 <span class="n">i</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">DimensionValue</span>                      <span class="n">displayValue</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">con</span> <span class="p">=</span> <span class="n">str2con</span><span class="p">(</span><span class="m">_d</span><span class="n">imattrString</span><span class="p">,</span><span class="m">_d</span><span class="n">elimeter</span><span class="p">,</span><span class="k">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">con</span> <span class="p">=</span> <span class="n">str2con</span><span class="p">(</span><span class="n">_dimattrString</span><span class="p">,</span><span class="n">_delimeter</span><span class="p">,</span><span class="k">false</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="m">_d</span><span class="n">imattrString</span> <span class="p">&amp;&amp;</span> <span class="m">_d</span><span class="n">efaultDimension</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">_dimattrString</span> <span class="p">&amp;&amp;</span> <span class="n">_defaultDimension</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="p">(</span> <span class="n">i</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;=</span> <span class="n">conLen</span><span class="p">(</span><span class="n">con</span><span class="p">);</span> <span class="n">i</span> <span class="p">++)</span>
 </span></span><span class="line"><span class="cl">        <span class="p">{</span>
 </span></span><span class="line"><span class="cl">            <span class="n">displayValue</span> <span class="p">=</span> <span class="n">conPeek</span><span class="p">(</span><span class="n">con</span><span class="p">,</span><span class="n">i</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">            <span class="k">select</span> <span class="n">RecId</span><span class="p">,</span> <span class="n">DisplayValue</span> <span class="k">from</span> <span class="n">setItem</span> <span class="k">where</span> <span class="n">setItem</span><span class="p">.</span><span class="n">DimensionAttributeValueSet</span> <span class="p">==</span> <span class="m">_d</span><span class="n">efaultDimension</span>
+</span></span><span class="line"><span class="cl">            <span class="k">select</span> <span class="n">RecId</span><span class="p">,</span> <span class="n">DisplayValue</span> <span class="k">from</span> <span class="n">setItem</span> <span class="k">where</span> <span class="n">setItem</span><span class="p">.</span><span class="n">DimensionAttributeValueSet</span> <span class="p">==</span> <span class="n">_defaultDimension</span>
 </span></span><span class="line"><span class="cl">                <span class="k">join</span> <span class="n">RecId</span> <span class="k">from</span> <span class="n">dimAttrValue</span> <span class="k">where</span>
 </span></span><span class="line"><span class="cl">                     <span class="n">dimAttrValue</span><span class="p">.</span><span class="n">RecId</span> <span class="p">==</span> <span class="n">setItem</span><span class="p">.</span><span class="n">DimensionAttributeValue</span> <span class="p">&amp;&amp;</span>
 </span></span><span class="line"><span class="cl">                     <span class="n">dimAttrValue</span><span class="p">.</span><span class="n">IsDeleted</span> <span class="p">==</span> <span class="k">false</span>
@@ -2995,7 +2995,7 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="n">defaultDimensionStr</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">                <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                    <span class="n">defaultDimensionStr</span> <span class="p">+=</span> <span class="m">_d</span><span class="n">elimeter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">defaultDimensionStr</span> <span class="p">+=</span> <span class="n">_delimeter</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">                <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">                <span class="n">defaultDimensionStr</span> <span class="p">+=</span> <span class="n">setItem</span><span class="p">.</span><span class="n">DisplayValue</span><span class="p">;</span>
@@ -3049,7 +3049,7 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl"><span class="cs">/// Input can have a format like &#34;5/7/2010 12:00:00 AM&#34; or &#34;2010-05-07T00:00:00”. Both cases will be</span>
 </span></span><span class="line"><span class="cl"><span class="cs">/// handled.</span>
 </span></span><span class="line"><span class="cl"><span class="cs">/// &lt;/remarks&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">boolean</span> <span class="n">isDateTimeStr</span><span class="p">(</span><span class="n">str</span> <span class="m">_</span><span class="k">value</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">boolean</span> <span class="n">isDateTimeStr</span><span class="p">(</span><span class="n">str</span> <span class="n">_value</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">boolean</span> <span class="n">isDateTime</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="n">RegularExpressions</span><span class="p">.</span><span class="n">Regex</span> <span class="n">regex</span><span class="p">;</span>
@@ -3060,7 +3060,7 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl">    <span class="cp">#define.DefaultLCID(1033)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">// check if in ISO format.</span>
-</span></span><span class="line"><span class="cl">    <span class="n">isDateTime</span> <span class="p">=</span> <span class="n">strFind</span><span class="p">(</span><span class="m">_</span><span class="k">value</span><span class="p">,</span> <span class="err">#</span><span class="n">ISODateTimeIdentifier</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">strLen</span><span class="p">(</span><span class="m">_</span><span class="k">value</span><span class="p">))</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">isDateTime</span> <span class="p">=</span> <span class="n">strFind</span><span class="p">(</span><span class="n">_value</span><span class="p">,</span> <span class="err">#</span><span class="n">ISODateTimeIdentifier</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">strLen</span><span class="p">(</span><span class="n">_value</span><span class="p">))</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(!</span><span class="n">isDateTime</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">
@@ -3069,7 +3069,7 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl">        <span class="n">regex</span> <span class="p">=</span> <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="n">RegularExpressions</span><span class="p">.</span><span class="n">Regex</span><span class="p">(</span><span class="err">#</span><span class="n">MatchTimeRegex</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="c1">// BP deviation documented</span>
-</span></span><span class="line"><span class="cl">        <span class="n">regexMatch</span> <span class="p">=</span> <span class="n">regex</span><span class="p">.</span><span class="n">Match</span><span class="p">(</span><span class="m">_</span><span class="k">value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">regexMatch</span> <span class="p">=</span> <span class="n">regex</span><span class="p">.</span><span class="n">Match</span><span class="p">(</span><span class="n">_value</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="n">isDateTime</span> <span class="p">=</span> <span class="n">regexMatch</span><span class="p">.</span><span class="n">get_Success</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
@@ -3087,16 +3087,16 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl"><span class="cs">/// &lt;returns&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="cs">/// A map that has the value switched with the keys.</span>
 </span></span><span class="line"><span class="cl"><span class="cs">/// &lt;/returns&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">Map</span> <span class="n">getValue2KeyMap</span><span class="p">(</span><span class="n">Map</span> <span class="m">_</span><span class="n">key2ValueMap</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">Map</span> <span class="n">getValue2KeyMap</span><span class="p">(</span><span class="n">Map</span> <span class="n">_key2ValueMap</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// reverses the valid values map. The original map contains &lt;key, label&gt;, we will create a &lt;label, key&gt;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">Map</span> <span class="n">value2KeyMap</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">MapEnumerator</span> <span class="n">mapEnum</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="m">_</span><span class="n">key2ValueMap</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">_key2ValueMap</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">value2KeyMap</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Map</span><span class="p">(</span><span class="m">_</span><span class="n">key2ValueMap</span><span class="p">.</span><span class="n">valueType</span><span class="p">(),</span> <span class="m">_</span><span class="n">key2ValueMap</span><span class="p">.</span><span class="n">keyType</span><span class="p">());</span>
-</span></span><span class="line"><span class="cl">        <span class="n">mapEnum</span> <span class="p">=</span> <span class="m">_</span><span class="n">key2ValueMap</span><span class="p">.</span><span class="n">getEnumerator</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">value2KeyMap</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Map</span><span class="p">(</span><span class="n">_key2ValueMap</span><span class="p">.</span><span class="n">valueType</span><span class="p">(),</span> <span class="n">_key2ValueMap</span><span class="p">.</span><span class="n">keyType</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mapEnum</span> <span class="p">=</span> <span class="n">_key2ValueMap</span><span class="p">.</span><span class="n">getEnumerator</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">        <span class="k">while</span><span class="p">(</span><span class="n">mapEnum</span><span class="p">.</span><span class="n">moveNext</span><span class="p">())</span>
 </span></span><span class="line"><span class="cl">        <span class="p">{</span>
 </span></span><span class="line"><span class="cl">            <span class="n">value2KeyMap</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">mapEnum</span><span class="p">.</span><span class="n">currentValue</span><span class="p">(),</span> <span class="n">mapEnum</span><span class="p">.</span><span class="n">currentKey</span><span class="p">());</span>
@@ -3322,30 +3322,30 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl">    <span class="n">Super</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="k">public</span> <span class="k">void</span> <span class="n">buttonHistoryClick</span><span class="p">(</span><span class="n">FormRun</span> <span class="m">_f</span><span class="n">ormRun</span><span class="p">,</span> <span class="n">FormButtonControl</span> <span class="m">_f</span><span class="n">bc</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="k">public</span> <span class="k">void</span> <span class="n">buttonHistoryClick</span><span class="p">(</span><span class="n">FormRun</span> <span class="n">_formRun</span><span class="p">,</span> <span class="n">FormButtonControl</span> <span class="n">_fbc</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">void</span> <span class="n">changeDataSources</span><span class="p">(</span><span class="n">ValidTimeStateAutoQuery</span> <span class="m">_f</span><span class="n">rom</span><span class="p">,</span> <span class="n">ValidTimeStateAutoQuery</span> <span class="m">_</span><span class="n">to</span><span class="p">,</span> <span class="n">boolean</span> <span class="m">_</span><span class="n">allowDelete</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">void</span> <span class="n">changeDataSources</span><span class="p">(</span><span class="n">ValidTimeStateAutoQuery</span> <span class="n">_from</span><span class="p">,</span> <span class="n">ValidTimeStateAutoQuery</span> <span class="n">_to</span><span class="p">,</span> <span class="n">boolean</span> <span class="n">_allowDelete</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">Counter</span>         <span class="n">dataSourceNo</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">FormDataSource</span>  <span class="n">formDataSource</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="n">dataSourceNo</span><span class="p">=</span><span class="m">1</span><span class="p">;</span><span class="m">_f</span><span class="n">ormRun</span><span class="p">.</span><span class="n">dataSourceCount</span><span class="p">()&gt;=</span><span class="n">dataSourceNo</span><span class="p">;</span><span class="n">dataSourceNo</span><span class="p">++)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="n">dataSourceNo</span><span class="p">=</span><span class="m">1</span><span class="p">;</span><span class="n">_formRun</span><span class="p">.</span><span class="n">dataSourceCount</span><span class="p">()&gt;=</span><span class="n">dataSourceNo</span><span class="p">;</span><span class="n">dataSourceNo</span><span class="p">++)</span>
 </span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">formDataSource</span> <span class="p">=</span> <span class="m">_f</span><span class="n">ormRun</span><span class="p">.</span><span class="n">dataSource</span><span class="p">(</span><span class="n">dataSourceNo</span><span class="p">)</span> <span class="k">as</span> <span class="n">FormDataSource</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">formDataSource</span><span class="p">.</span><span class="n">validTimeStateAutoQuery</span><span class="p">()</span> <span class="p">==</span> <span class="m">_f</span><span class="n">rom</span> <span class="p">&amp;&amp;</span> <span class="k">new</span> <span class="n">DictTable</span><span class="p">(</span><span class="n">formDataSource</span><span class="p">.</span><span class="n">table</span><span class="p">()).</span><span class="n">isValidTimeStateTable</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">            <span class="n">formDataSource</span> <span class="p">=</span> <span class="n">_formRun</span><span class="p">.</span><span class="n">dataSource</span><span class="p">(</span><span class="n">dataSourceNo</span><span class="p">)</span> <span class="k">as</span> <span class="n">FormDataSource</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">formDataSource</span><span class="p">.</span><span class="n">validTimeStateAutoQuery</span><span class="p">()</span> <span class="p">==</span> <span class="n">_from</span> <span class="p">&amp;&amp;</span> <span class="k">new</span> <span class="n">DictTable</span><span class="p">(</span><span class="n">formDataSource</span><span class="p">.</span><span class="n">table</span><span class="p">()).</span><span class="n">isValidTimeStateTable</span><span class="p">())</span>
 </span></span><span class="line"><span class="cl">            <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                <span class="n">formDataSource</span><span class="p">.</span><span class="n">validTimeStateAutoQuery</span><span class="p">(</span><span class="m">_</span><span class="n">to</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">                <span class="k">switch</span> <span class="p">(</span><span class="m">_</span><span class="n">to</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="n">formDataSource</span><span class="p">.</span><span class="n">validTimeStateAutoQuery</span><span class="p">(</span><span class="n">_to</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="k">switch</span> <span class="p">(</span><span class="n">_to</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">                <span class="p">{</span>
 </span></span><span class="line"><span class="cl">                    <span class="k">case</span> <span class="n">ValidTimeStateAutoQuery</span><span class="p">::</span><span class="n">AsOfDate</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">                        <span class="n">formDataSource</span><span class="p">.</span><span class="n">validTimeStateAutoQuery</span><span class="p">(</span><span class="n">ValidTimeStateAutoQuery</span><span class="p">::</span><span class="n">AsOfDate</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">                        <span class="n">formDataSource</span><span class="p">.</span><span class="n">query</span><span class="p">().</span><span class="n">resetValidTimeStateQueryType</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">                        <span class="n">formDataSource</span><span class="p">.</span><span class="n">allowDelete</span><span class="p">(</span><span class="m">_</span><span class="n">allowDelete</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">formDataSource</span><span class="p">.</span><span class="n">allowDelete</span><span class="p">(</span><span class="n">_allowDelete</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">                        <span class="k">break</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">                    <span class="k">case</span> <span class="n">ValidTimeStateAutoQuery</span><span class="p">::</span><span class="n">DateRange</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">                        <span class="n">formDataSource</span><span class="p">.</span><span class="n">validTimeStateAutoQuery</span><span class="p">(</span><span class="n">ValidTimeStateAutoQuery</span><span class="p">::</span><span class="n">DateRange</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">                        <span class="n">formDataSource</span><span class="p">.</span><span class="n">query</span><span class="p">().</span><span class="n">validTimeStateDateTimeRange</span><span class="p">(</span><span class="n">DateTimeUtil</span><span class="p">::</span><span class="n">minValue</span><span class="p">(),</span> <span class="n">DateTimeUtil</span><span class="p">::</span><span class="n">maxValue</span><span class="p">());</span>
-</span></span><span class="line"><span class="cl">                        <span class="n">formDataSource</span><span class="p">.</span><span class="n">allowDelete</span><span class="p">(</span><span class="m">_</span><span class="n">allowDelete</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">formDataSource</span><span class="p">.</span><span class="n">allowDelete</span><span class="p">(</span><span class="n">_allowDelete</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">                        <span class="k">break</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">                <span class="p">}</span>
 </span></span><span class="line"><span class="cl">                <span class="n">formDataSource</span><span class="p">.</span><span class="n">executeQuery</span><span class="p">();</span>
@@ -3353,17 +3353,17 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="m">_f</span><span class="n">bc</span><span class="p">.</span><span class="n">labelText</span><span class="p">()</span> <span class="p">==</span> <span class="s">&#34;@SYS110266&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">_fbc</span><span class="p">.</span><span class="n">labelText</span><span class="p">()</span> <span class="p">==</span> <span class="s">&#34;@SYS110266&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">changeDataSources</span><span class="p">(</span><span class="n">ValidTimeStateAutoQuery</span><span class="p">::</span><span class="n">AsOfDate</span><span class="p">,</span> <span class="n">ValidTimeStateAutoQuery</span><span class="p">::</span><span class="n">DateRange</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="m">_f</span><span class="n">bc</span><span class="p">.</span><span class="n">text</span><span class="p">(</span><span class="s">&#34;Stoping History&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="m">_f</span><span class="n">bc</span><span class="p">.</span><span class="n">normalImage</span><span class="p">(</span><span class="s">&#34;10006&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">_fbc</span><span class="p">.</span><span class="n">text</span><span class="p">(</span><span class="s">&#34;Stoping History&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">_fbc</span><span class="p">.</span><span class="n">normalImage</span><span class="p">(</span><span class="s">&#34;10006&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">else</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">changeDataSources</span><span class="p">(</span><span class="n">ValidTimeStateAutoQuery</span><span class="p">::</span><span class="n">DateRange</span><span class="p">,</span> <span class="n">ValidTimeStateAutoQuery</span><span class="p">::</span><span class="n">AsOfDate</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="m">_f</span><span class="n">bc</span><span class="p">.</span><span class="n">Text</span><span class="p">(</span><span class="s">&#34;@SYS110266
-</span></span></span><span class="line"><span class="cl"><span class="s"></span>        <span class="m">_f</span><span class="n">bc</span><span class="p">.</span><span class="n">normalImage</span><span class="p">(</span><span class="s">&#34;10007&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">_fbc</span><span class="p">.</span><span class="n">Text</span><span class="p">(</span><span class="s">&#34;@SYS110266
+</span></span></span><span class="line"><span class="cl"><span class="s"></span>        <span class="n">_fbc</span><span class="p">.</span><span class="n">normalImage</span><span class="p">(</span><span class="s">&#34;10007&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
@@ -3384,24 +3384,24 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// This method is used to split the string, and returns the conatiner with the position defined in the parameter</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">str</span> <span class="n">rsaStrSplit</span><span class="p">(</span><span class="n">str</span> <span class="m">_</span><span class="n">splitString</span><span class="p">,</span><span class="n">str</span> <span class="m">_</span><span class="n">splitchar</span><span class="p">,</span><span class="kt">int</span> <span class="m">_</span><span class="n">pos</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">str</span> <span class="n">rsaStrSplit</span><span class="p">(</span><span class="n">str</span> <span class="n">_splitString</span><span class="p">,</span><span class="n">str</span> <span class="n">_splitchar</span><span class="p">,</span><span class="kt">int</span> <span class="n">_pos</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">List</span> <span class="n">strlist</span><span class="p">=</span><span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">String</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">ListIterator</span>    <span class="n">iterator</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">container</span>       <span class="n">packedList</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">strlist</span><span class="p">=</span><span class="n">strSplit</span><span class="p">(</span><span class="m">_</span><span class="n">splitString</span><span class="p">,</span><span class="m">_</span><span class="n">splitchar</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">strlist</span><span class="p">=</span><span class="n">strSplit</span><span class="p">(</span><span class="n">_splitString</span><span class="p">,</span><span class="n">_splitchar</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">iterator</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ListIterator</span><span class="p">(</span><span class="n">strlist</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">iterator</span><span class="p">.</span><span class="n">more</span><span class="p">())</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">packedList</span> <span class="p">+=</span> <span class="n">iterator</span><span class="p">.</span><span class="k">value</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">        <span class="n">iterator</span><span class="p">.</span><span class="n">next</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">conPeek</span><span class="p">(</span><span class="n">packedList</span><span class="p">,</span><span class="m">_</span><span class="n">pos</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">conPeek</span><span class="p">(</span><span class="n">packedList</span><span class="p">,</span><span class="n">_pos</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">str</span> <span class="n">encrypt</span><span class="p">(</span><span class="n">str</span> <span class="m">_</span><span class="n">input</span><span class="p">,</span> <span class="n">str</span> <span class="m">_</span><span class="n">salt</span> <span class="p">=</span> <span class="err">&#39;&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">str</span> <span class="n">encrypt</span><span class="p">(</span><span class="n">str</span> <span class="n">_input</span><span class="p">,</span> <span class="n">str</span> <span class="n">_salt</span> <span class="p">=</span> <span class="err">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Cryptography</span><span class="p">.</span><span class="n">SHA512Managed</span>  <span class="n">sha512managed</span> <span class="p">=</span> <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Cryptography</span><span class="p">.</span><span class="n">SHA512Managed</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="n">Encoding</span>                        <span class="n">encoding</span> <span class="p">=</span> <span class="n">System</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="n">Encoding</span><span class="p">::</span><span class="n">get_UTF8</span><span class="p">();</span>
@@ -3415,7 +3415,7 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">new</span> <span class="n">InteropPermission</span><span class="p">(</span><span class="n">InteropKind</span><span class="p">::</span><span class="n">ClrInterop</span><span class="p">).</span><span class="n">assert</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">inputBytes</span> <span class="p">=</span> <span class="n">encoding</span><span class="p">.</span><span class="n">GetBytes</span><span class="p">(</span><span class="n">strLwr</span><span class="p">(</span><span class="m">_</span><span class="n">salt</span><span class="p">)</span> <span class="p">+</span> <span class="m">_</span><span class="n">input</span><span class="p">);</span> <span class="c1">// Convert lower case salt + input into byte array</span>
+</span></span><span class="line"><span class="cl">    <span class="n">inputBytes</span> <span class="p">=</span> <span class="n">encoding</span><span class="p">.</span><span class="n">GetBytes</span><span class="p">(</span><span class="n">strLwr</span><span class="p">(</span><span class="n">_salt</span><span class="p">)</span> <span class="p">+</span> <span class="n">_input</span><span class="p">);</span> <span class="c1">// Convert lower case salt + input into byte array</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">// The input is hashed 1024 times for attack resiliency</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="m">1024</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
@@ -3431,7 +3431,7 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">returnString</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">private</span> <span class="k">static</span> <span class="n">Map</span> <span class="n">fileGetList</span><span class="p">(</span><span class="n">FilePath</span>            <span class="m">_f</span><span class="n">ilePathArchive</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span> <span class="k">static</span> <span class="n">Map</span> <span class="n">fileGetList</span><span class="p">(</span><span class="n">FilePath</span>            <span class="n">_filePathArchive</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">  
@@ -3450,18 +3450,18 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">mapFiles</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Map</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">Types</span><span class="p">::</span><span class="n">String</span><span class="p">);</span> <span class="c1">// Key = return file | Value = archive path</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(!</span><span class="n">System</span><span class="p">.</span><span class="n">IO</span><span class="p">.</span><span class="n">Directory</span><span class="p">::</span><span class="n">Exists</span><span class="p">(</span><span class="m">_f</span><span class="n">ilePathArchive</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(!</span><span class="n">System</span><span class="p">.</span><span class="n">IO</span><span class="p">.</span><span class="n">Directory</span><span class="p">::</span><span class="n">Exists</span><span class="p">(</span><span class="n">_filePathArchive</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">        <span class="p">{</span>
 </span></span><span class="line"><span class="cl">             <span class="k">throw</span>  <span class="n">error</span><span class="p">(</span><span class="s">&#34;Path doesnt exist&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="n">arrayFiles</span> <span class="p">=</span> <span class="n">System</span><span class="p">.</span><span class="n">IO</span><span class="p">.</span><span class="n">Directory</span><span class="p">::</span><span class="n">GetFiles</span><span class="p">(</span><span class="m">_f</span><span class="n">ilePathArchive</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">arrayFiles</span> <span class="p">=</span> <span class="n">System</span><span class="p">.</span><span class="n">IO</span><span class="p">.</span><span class="n">Directory</span><span class="p">::</span><span class="n">GetFiles</span><span class="p">(</span><span class="n">_filePathArchive</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="c1">// CLRInterop::getAnyTypeForObject method is used to handle difference in AX and System types (e.g. System.Int32 != int)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">CLRInterop</span><span class="p">::</span><span class="n">getAnyTypeForObject</span><span class="p">(</span><span class="n">arrayFiles</span><span class="p">.</span><span class="n">get_Length</span><span class="p">());</span> <span class="n">i</span><span class="p">++)</span>
 </span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">       <span class="n">mapFiles</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">CLRInterop</span><span class="p">::</span><span class="n">getAnyTypeForObject</span><span class="p">(</span><span class="n">arrayFiles</span><span class="p">.</span><span class="n">GetValue</span><span class="p">(</span><span class="n">i</span><span class="p">)),</span> <span class="m">_f</span><span class="n">ilePathArchive</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">       <span class="n">mapFiles</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">CLRInterop</span><span class="p">::</span><span class="n">getAnyTypeForObject</span><span class="p">(</span><span class="n">arrayFiles</span><span class="p">.</span><span class="n">GetValue</span><span class="p">(</span><span class="n">i</span><span class="p">)),</span> <span class="n">_filePathArchive</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
@@ -4245,7 +4245,7 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">purchTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchTable</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="m">_D</span><span class="n">ocumentHash</span> <span class="p">=</span> <span class="n">purchOrders</span><span class="p">.</span><span class="n">PurchTable</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="m">_D</span><span class="n">ocumentHash</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">_DocumentHash</span> <span class="p">=</span> <span class="n">purchOrders</span><span class="p">.</span><span class="n">PurchTable</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">_DocumentHash</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">OrderAccount</span> <span class="p">=</span> <span class="s">&#34;101-01-75441&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">LanguageId</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">CurrencyCode</span> <span class="p">=</span> <span class="s">&#34;KRW&#34;</span><span class="p">,</span>

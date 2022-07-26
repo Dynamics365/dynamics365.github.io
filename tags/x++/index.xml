@@ -73,7 +73,7 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CustCreateCustomer</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">CustCreateCustomer</span> <span class="n">custCreateCustomer</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CustCreateCustomer</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">        <span class="n">custCreateCustomer</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
@@ -350,7 +350,7 @@ then the <code>UpdateConflictNotRecovered</code> exception is thrown. This means
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">loadNumSeq</span> <span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">loadNumSeq</span> <span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="c1">//define the class variable</span>
 </span></span><span class="line"><span class="cl">	<span class="n">NumberSeqModuleContoso</span> <span class="n">seqMod</span> <span class="p">=</span> <span class="k">new</span> <span class="n">NumberSeqModuleContoso</span> <span class="p">();</span>
@@ -456,13 +456,13 @@ then the <code>UpdateConflictNotRecovered</code> exception is thrown. This means
 </span></span><span class="line"><span class="cl">	<span class="c1">// Key is set to mandatory so set it to 1</span>
 </span></span><span class="line"><span class="cl">	<span class="k">this</span><span class="p">.</span><span class="n">Key</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="n">ContosoParameters</span> <span class="n">find</span><span class="p">(</span><span class="n">boolean</span> <span class="m">_f</span><span class="n">orupdate</span> <span class="p">=</span> <span class="k">false</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="n">ContosoParameters</span> <span class="n">find</span><span class="p">(</span><span class="n">boolean</span> <span class="n">_forupdate</span> <span class="p">=</span> <span class="k">false</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="n">ContosoParameters</span> <span class="n">parameter</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="m">_f</span><span class="n">orupdate</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">_forupdate</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">parameter</span><span class="p">.</span><span class="n">selectForUpdate</span><span class="p">(</span><span class="m">_f</span><span class="n">orupdate</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">parameter</span><span class="p">.</span><span class="n">selectForUpdate</span><span class="p">(</span><span class="n">_forupdate</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">	<span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">	<span class="k">select</span> <span class="n">firstonly</span> <span class="n">RecId</span> <span class="k">from</span> <span class="n">parameter</span>
@@ -815,7 +815,7 @@ then the <code>UpdateConflictNotRecovered</code> exception is thrown. This means
 </span><span class="lnt">45
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">create</span><span class="p">(</span><span class="n">boolean</span> <span class="m">_</span><span class="n">append</span> <span class="p">=</span> <span class="k">false</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">create</span><span class="p">(</span><span class="n">boolean</span> <span class="n">_append</span> <span class="p">=</span> <span class="k">false</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="c1">//before create, (ensure the number seuence has not run out of numbers)</span>
 </span></span><span class="line"><span class="cl">	<span class="n">element</span><span class="p">.</span><span class="n">numSeqFormHandlerContosoId</span><span class="p">().</span><span class="n">formMethodDataSourceCreatePre</span><span class="p">();</span>
@@ -823,7 +823,7 @@ then the <code>UpdateConflictNotRecovered</code> exception is thrown. This means
 </span></span><span class="line"><span class="cl">	<span class="c1">// start: inherited table code</span>
 </span></span><span class="line"><span class="cl">	<span class="c1">// we need to let the create happen so the user can</span>
 </span></span><span class="line"><span class="cl">	<span class="c1">// choose the type</span>
-</span></span><span class="line"><span class="cl">	<span class="n">super</span><span class="p">(</span><span class="m">_</span><span class="n">append</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">super</span><span class="p">(</span><span class="n">_append</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">	<span class="c1">//number sequence, create action, (get next number)</span>
 </span></span><span class="line"><span class="cl">	<span class="n">element</span><span class="p">.</span><span class="n">numSeqFormHandlerContosoId</span><span class="p">().</span><span class="n">formMethodDataSourceCreate</span><span class="p">();</span>
@@ -910,7 +910,7 @@ then the <code>UpdateConflictNotRecovered</code> exception is thrown. This means
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">Max_numberSeqRefCustAccount</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">Max_numberSeqRefCustAccount</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="n">NumberSequenceReference</span> <span class="n">numberSeqRefCustAccount</span> <span class="p">=</span> <span class="n">CustParameters</span><span class="p">::</span><span class="n">numRefCustAccount</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">	<span class="n">NumberSeq</span>               <span class="n">numSeqCustAccount</span><span class="p">;</span>

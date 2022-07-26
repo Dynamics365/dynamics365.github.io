@@ -10,7 +10,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://nuxulu.com/2017-01-11-aif-custom-response-value-in-dynamics-ax-2012-r3/" /><meta property="og:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2017-01-11T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-04-08T00:29:59+07:00" />
+<meta property="article:modified_time" content="2022-07-26T14:51:47-04:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/>
@@ -28,7 +28,7 @@
             "@type": "WebPage",
             "@id": "https:\/\/nuxulu.com\/2017-01-11-aif-custom-response-value-in-dynamics-ax-2012-r3\/"
         },"genre": "posts","keywords": "xpp, aif","wordcount":  509 ,
-        "url": "https:\/\/nuxulu.com\/2017-01-11-aif-custom-response-value-in-dynamics-ax-2012-r3\/","datePublished": "2017-01-11T00:00:00+00:00","dateModified": "2022-04-08T00:29:59+07:00","publisher": {
+        "url": "https:\/\/nuxulu.com\/2017-01-11-aif-custom-response-value-in-dynamics-ax-2012-r3\/","datePublished": "2017-01-11T00:00:00+00:00","dateModified": "2022-07-26T14:51:47-04:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -157,13 +157,13 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="n">AifEntityKeyList</span> <span class="n">createList</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="n">AifDocumentXml</span>                  <span class="m">_</span><span class="n">xml</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="n">AifEndpointActionPolicyInfo</span>     <span class="m">_</span><span class="n">actionPolicyInfo</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="n">AifConstraintListCollection</span>     <span class="m">_</span><span class="n">constraintListCollection</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifDocumentXml</span>                  <span class="n">_xml</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifEndpointActionPolicyInfo</span>     <span class="n">_actionPolicyInfo</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifConstraintListCollection</span>     <span class="n">_constraintListCollection</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">AifEntityKeyList</span> <span class="n">aifEntityKeyList</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">aifEntityKeyList</span> <span class="p">=</span> <span class="n">super</span><span class="p">(</span><span class="m">_</span><span class="n">xml</span><span class="p">,</span> <span class="m">_</span><span class="n">actionPolicyInfo</span><span class="p">,</span> <span class="m">_</span><span class="n">constraintListCollection</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">aifEntityKeyList</span> <span class="p">=</span> <span class="n">super</span><span class="p">(</span><span class="n">_xml</span><span class="p">,</span> <span class="n">_actionPolicyInfo</span><span class="p">,</span> <span class="n">_constraintListCollection</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">// Sales orders are committed - master planning explosion can be executed and confirmed dates be set</span>
 </span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="n">postSalesOrderCreation</span><span class="p">(</span><span class="n">aifEntityKeyList</span><span class="p">);</span>
@@ -235,9 +235,9 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="n">AifEntityKeyList</span> <span class="n">createList</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="n">AifDocumentXml</span>                  <span class="m">_</span><span class="n">xml</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="n">AifEndpointActionPolicyInfo</span>     <span class="m">_</span><span class="n">actionPolicyInfo</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="n">AifConstraintListCollection</span>     <span class="m">_</span><span class="n">constraintListCollection</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifDocumentXml</span>                  <span class="n">_xml</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifEndpointActionPolicyInfo</span>     <span class="n">_actionPolicyInfo</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifConstraintListCollection</span>     <span class="n">_constraintListCollection</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">AifEntityKeyList</span> <span class="n">aifEntityKeyList</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    
@@ -249,7 +249,7 @@
 </span></span><span class="line"><span class="cl">    <span class="n">Map</span>                             <span class="n">salesOrderMap</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">MapEnumerator</span>                   <span class="n">mapEnumerator</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">aifEntityKeyList</span> <span class="p">=</span> <span class="n">super</span><span class="p">(</span><span class="m">_</span><span class="n">xml</span><span class="p">,</span> <span class="m">_</span><span class="n">actionPolicyInfo</span><span class="p">,</span> <span class="m">_</span><span class="n">constraintListCollection</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">aifEntityKeyList</span> <span class="p">=</span> <span class="n">super</span><span class="p">(</span><span class="n">_xml</span><span class="p">,</span> <span class="n">_actionPolicyInfo</span><span class="p">,</span> <span class="n">_constraintListCollection</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">// Sales orders are committed - master planning explosion can be executed and confirmed dates be set</span>
 </span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="n">postSalesOrderCreation</span><span class="p">(</span><span class="n">aifEntityKeyList</span><span class="p">);</span>
@@ -347,7 +347,7 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on April 8, 2022</span>
+                <span>Updated on July 26, 2022</span>
             </div>
             <div class="post-info-license"></div>
         </div>

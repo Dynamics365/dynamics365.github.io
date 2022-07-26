@@ -125,17 +125,17 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">SrsPrintMgmtFormLetterController</span> <span class="n">controller</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MaxCustAccountStatementExtController_Ext</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="n">controller</span><span class="p">.</span><span class="n">parmReportName</span><span class="p">(</span><span class="n">PrintMgmtDocType</span><span class="p">::</span><span class="n">construct</span><span class="p">(</span><span class="n">PrintMgmtDocumentType</span><span class="p">::</span><span class="n">CustAccountStatement</span><span class="p">).</span><span class="n">getDefaultReportFormat</span><span class="p">());</span>
-</span></span><span class="line"><span class="cl">    <span class="n">controller</span><span class="p">.</span><span class="n">parmArgs</span><span class="p">(</span><span class="m">_</span><span class="n">args</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">MaxCustAccountStatementExtController_Ext</span><span class="p">::</span><span class="n">startControllerOperation</span><span class="p">(</span><span class="n">controller</span><span class="p">,</span> <span class="m">_</span><span class="n">args</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">controller</span><span class="p">.</span><span class="n">parmArgs</span><span class="p">(</span><span class="n">_args</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">MaxCustAccountStatementExtController_Ext</span><span class="p">::</span><span class="n">startControllerOperation</span><span class="p">(</span><span class="n">controller</span><span class="p">,</span> <span class="n">_args</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"> 
-</span></span><span class="line"><span class="cl"><span class="k">protected</span> <span class="k">static</span> <span class="k">void</span> <span class="n">startControllerOperation</span><span class="p">(</span><span class="n">SrsPrintMgmtFormLetterController</span> <span class="m">_</span><span class="n">controller</span><span class="p">,</span> <span class="n">Args</span> <span class="m">_</span><span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">protected</span> <span class="k">static</span> <span class="k">void</span> <span class="n">startControllerOperation</span><span class="p">(</span><span class="n">SrsPrintMgmtFormLetterController</span> <span class="n">_controller</span><span class="p">,</span> <span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="m">_</span><span class="n">controller</span><span class="p">.</span><span class="n">startOperation</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">_controller</span><span class="p">.</span><span class="n">startOperation</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -245,12 +245,12 @@
 <pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MaxPrintMgtDocTypeHandlersExt</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl"><span class="na">    [SubscribesTo(classstr(PrintMgmtDocType), delegatestr(PrintMgmtDocType, getDefaultReportFormatDelegate))]</span>
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">getDefaultReportFormatDelegate</span><span class="p">(</span><span class="n">PrintMgmtDocumentType</span> <span class="m">_d</span><span class="n">ocType</span><span class="p">,</span> <span class="n">EventHandlerResult</span> <span class="m">_</span><span class="n">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">getDefaultReportFormatDelegate</span><span class="p">(</span><span class="n">PrintMgmtDocumentType</span> <span class="n">_docType</span><span class="p">,</span> <span class="n">EventHandlerResult</span> <span class="n">_result</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">switch</span> <span class="p">(</span><span class="m">_d</span><span class="n">ocType</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">switch</span> <span class="p">(</span><span class="n">_docType</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="p">{</span>
 </span></span><span class="line"><span class="cl">            <span class="k">case</span> <span class="n">PrintMgmtDocumentType</span><span class="p">::</span><span class="n">CustAccountStatement</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">                <span class="m">_</span><span class="n">result</span><span class="p">.</span><span class="n">result</span><span class="p">(</span><span class="n">ssrsReportStr</span><span class="p">(</span><span class="n">MaxCustAccountStatementExt</span><span class="p">,</span> <span class="n">Report</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">                <span class="n">_result</span><span class="p">.</span><span class="n">result</span><span class="p">(</span><span class="n">ssrsReportStr</span><span class="p">(</span><span class="n">MaxCustAccountStatementExt</span><span class="p">,</span> <span class="n">Report</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl">                <span class="k">break</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>

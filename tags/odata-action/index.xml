@@ -57,13 +57,13 @@ or you can duplicate any standard entity. I created <strong>AutomationDataEntity
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">//1st example</span>
 </span></span><span class="line"><span class="cl"><span class="na">    [SysODataActionAttribute(&#34;assignUserToCompany&#34;, false)]</span>
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">assignUserToCompany</span><span class="p">(</span><span class="n">NetworkAlias</span> <span class="m">_</span><span class="n">networkAlias</span><span class="p">,</span> <span class="n">DataAreaName</span> <span class="m">_</span><span class="n">company</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">assignUserToCompany</span><span class="p">(</span><span class="n">NetworkAlias</span> <span class="n">_networkAlias</span><span class="p">,</span> <span class="n">DataAreaName</span> <span class="n">_company</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">UserInfo</span> <span class="n">userInfo</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">ttsbegin</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="k">select</span> <span class="n">firstonly</span> <span class="n">forupdate</span> <span class="n">userInfo</span>
-</span></span><span class="line"><span class="cl">            <span class="k">where</span> <span class="n">userInfo</span><span class="p">.</span><span class="n">networkAlias</span> <span class="p">==</span> <span class="m">_</span><span class="n">networkAlias</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">userInfo</span><span class="p">.</span><span class="n">company</span> <span class="p">=</span> <span class="m">_</span><span class="n">company</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">where</span> <span class="n">userInfo</span><span class="p">.</span><span class="n">networkAlias</span> <span class="p">==</span> <span class="n">_networkAlias</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">userInfo</span><span class="p">.</span><span class="n">company</span> <span class="p">=</span> <span class="n">_company</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">userInfo</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">        <span class="n">ttscommit</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>

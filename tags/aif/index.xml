@@ -189,17 +189,17 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="na">[DataMemberAttribute(&#39;HcmWorkerName&#39;)]</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="n">HcmWorkerName</span> <span class="n">parmName</span><span class="p">(</span><span class="n">HcmWorkerName</span> <span class="m">_</span><span class="n">name</span> <span class="p">=</span> <span class="n">gName</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="n">HcmWorkerName</span> <span class="n">parmName</span><span class="p">(</span><span class="n">HcmWorkerName</span> <span class="n">_name</span> <span class="p">=</span> <span class="n">gName</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">gName</span> <span class="p">=</span> <span class="m">_</span><span class="n">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">gName</span> <span class="p">=</span> <span class="n">_name</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">gName</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="na">
 </span></span></span><span class="line"><span class="cl"><span class="na">[DataMemberAttribute(&#39;HcmPersonnelNumberId&#39;)]</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="n">HcmPersonnelNumberId</span> <span class="n">parmId</span><span class="p">(</span><span class="n">HcmPersonnelNumberId</span> <span class="m">_</span><span class="n">id</span> <span class="p">=</span> <span class="n">gId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="n">HcmPersonnelNumberId</span> <span class="n">parmId</span><span class="p">(</span><span class="n">HcmPersonnelNumberId</span> <span class="n">_id</span> <span class="p">=</span> <span class="n">gId</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">gId</span> <span class="p">=</span> <span class="m">_</span><span class="n">id</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">gId</span> <span class="p">=</span> <span class="n">_id</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">gId</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
@@ -335,13 +335,13 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="n">AifEntityKeyList</span> <span class="n">createList</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="n">AifDocumentXml</span>                  <span class="m">_</span><span class="n">xml</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="n">AifEndpointActionPolicyInfo</span>     <span class="m">_</span><span class="n">actionPolicyInfo</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="n">AifConstraintListCollection</span>     <span class="m">_</span><span class="n">constraintListCollection</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifDocumentXml</span>                  <span class="n">_xml</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifEndpointActionPolicyInfo</span>     <span class="n">_actionPolicyInfo</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifConstraintListCollection</span>     <span class="n">_constraintListCollection</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">AifEntityKeyList</span> <span class="n">aifEntityKeyList</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">aifEntityKeyList</span> <span class="p">=</span> <span class="n">super</span><span class="p">(</span><span class="m">_</span><span class="n">xml</span><span class="p">,</span> <span class="m">_</span><span class="n">actionPolicyInfo</span><span class="p">,</span> <span class="m">_</span><span class="n">constraintListCollection</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">aifEntityKeyList</span> <span class="p">=</span> <span class="n">super</span><span class="p">(</span><span class="n">_xml</span><span class="p">,</span> <span class="n">_actionPolicyInfo</span><span class="p">,</span> <span class="n">_constraintListCollection</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">// Sales orders are committed - master planning explosion can be executed and confirmed dates be set</span>
 </span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="n">postSalesOrderCreation</span><span class="p">(</span><span class="n">aifEntityKeyList</span><span class="p">);</span>
@@ -413,9 +413,9 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="n">AifEntityKeyList</span> <span class="n">createList</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="n">AifDocumentXml</span>                  <span class="m">_</span><span class="n">xml</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="n">AifEndpointActionPolicyInfo</span>     <span class="m">_</span><span class="n">actionPolicyInfo</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="n">AifConstraintListCollection</span>     <span class="m">_</span><span class="n">constraintListCollection</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifDocumentXml</span>                  <span class="n">_xml</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifEndpointActionPolicyInfo</span>     <span class="n">_actionPolicyInfo</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifConstraintListCollection</span>     <span class="n">_constraintListCollection</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">AifEntityKeyList</span> <span class="n">aifEntityKeyList</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    
@@ -427,7 +427,7 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl">    <span class="n">Map</span>                             <span class="n">salesOrderMap</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">MapEnumerator</span>                   <span class="n">mapEnumerator</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">aifEntityKeyList</span> <span class="p">=</span> <span class="n">super</span><span class="p">(</span><span class="m">_</span><span class="n">xml</span><span class="p">,</span> <span class="m">_</span><span class="n">actionPolicyInfo</span><span class="p">,</span> <span class="m">_</span><span class="n">constraintListCollection</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">aifEntityKeyList</span> <span class="p">=</span> <span class="n">super</span><span class="p">(</span><span class="n">_xml</span><span class="p">,</span> <span class="n">_actionPolicyInfo</span><span class="p">,</span> <span class="n">_constraintListCollection</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">// Sales orders are committed - master planning explosion can be executed and confirmed dates be set</span>
 </span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="n">postSalesOrderCreation</span><span class="p">(</span><span class="n">aifEntityKeyList</span><span class="p">);</span>
@@ -1244,7 +1244,7 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">purchTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchTable</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="m">_D</span><span class="n">ocumentHash</span> <span class="p">=</span> <span class="n">purchOrders</span><span class="p">.</span><span class="n">PurchTable</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="m">_D</span><span class="n">ocumentHash</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">_DocumentHash</span> <span class="p">=</span> <span class="n">purchOrders</span><span class="p">.</span><span class="n">PurchTable</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">_DocumentHash</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">OrderAccount</span> <span class="p">=</span> <span class="s">&#34;101-01-75441&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">LanguageId</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">CurrencyCode</span> <span class="p">=</span> <span class="s">&#34;KRW&#34;</span><span class="p">,</span>
