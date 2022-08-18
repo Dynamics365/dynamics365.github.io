@@ -91,7 +91,18 @@ TargetObject : An error was encountered while updating the Financial Reporting c
 
 ### 2.3 Solution
 
-To resolve this, we will need to reset [financial reporting data mart](https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/analytics/reset-financial-reporting-datamart-after-restore#reset-the-financial-reporting-data-mart-through-windows-powershell)
+To resolve this, we will need to reset [financial reporting data mart](https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/analytics/reset-financial-reporting-datamart-after-restore#reset-the-financial-reporting-data-mart-through-windows-powershell), following the steps
+
+* Stops AX services
+
+- World wide web publishing service (on all Application Object Servers [AOS] computers)
+- Batch Management Service (on non-private AOS computers only)
+- Management Reporter 2012 Process Service (on Business intelligence [BI] computers only)
+
+{{< admonition note >}}
+We can use command line too
+`NET STOP "MR2012ProcessService"`
+{{< /admonition >}}
 
 * Open PowerShell and execute the following script, this will execute reset datamart
 
@@ -102,9 +113,7 @@ Reset-DatamartIntegration -Reason OTHER -ReasonDetail "<reason for resetting>" -
 ```
 
 {{< admonition note >}}
-You need to stop MR2012ProcessService service.
-
-`NET STOP "MR2012ProcessService"`
+To ensure that old data isn't inserted, a data mart reset can be started only after existing tasks are completed. If you try to reset the data mart before all tasks are completed, you might receive a message such as, "The data mart reset was unable to be processed because of an active task. Please try again later."
 {{< /admonition >}}
 
 * After reset datamart, we need to execute the step 73 again, find the latest deployable package applied to the environment. It will be under folder `<ServiceVolue>:\DeployablePackages\<PackageGUID>\MROneBox\Scripts\Update`

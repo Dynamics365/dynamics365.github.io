@@ -155,7 +155,24 @@ TargetObject : An error was encountered while updating the Financial Reporting c
         </div>
     </div>
 <h3 id="23-solution">2.3 Solution</h3>
-<p>To resolve this, we will need to reset <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/analytics/reset-financial-reporting-datamart-after-restore#reset-the-financial-reporting-data-mart-through-windows-powershell" target="_blank" rel="noopener noreferrer">financial reporting data mart</a></p>
+<p>To resolve this, we will need to reset <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/analytics/reset-financial-reporting-datamart-after-restore#reset-the-financial-reporting-data-mart-through-windows-powershell" target="_blank" rel="noopener noreferrer">financial reporting data mart</a>, following the steps</p>
+<ul>
+<li>Stops AX services</li>
+</ul>
+<ul>
+<li>World wide web publishing service (on all Application Object Servers [AOS] computers)</li>
+<li>Batch Management Service (on non-private AOS computers only)</li>
+<li>Management Reporter 2012 Process Service (on Business intelligence [BI] computers only)</li>
+</ul>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">We can use command line too
+<code>NET STOP &quot;MR2012ProcessService&quot;</code></div>
+        </div>
+    </div>
 <ul>
 <li>Open PowerShell and execute the following script, this will execute reset datamart</li>
 </ul>
@@ -176,9 +193,7 @@ TargetObject : An error was encountered while updating the Financial Reporting c
             <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content"><p>You need to stop MR2012ProcessService service.</p>
-<p><code>NET STOP &quot;MR2012ProcessService&quot;</code></p>
-</div>
+            <div class="admonition-content">To ensure that old data isn&rsquo;t inserted, a data mart reset can be started only after existing tasks are completed. If you try to reset the data mart before all tasks are completed, you might receive a message such as, &ldquo;The data mart reset was unable to be processed because of an active task. Please try again later.&rdquo;</div>
         </div>
     </div>
 <ul>
