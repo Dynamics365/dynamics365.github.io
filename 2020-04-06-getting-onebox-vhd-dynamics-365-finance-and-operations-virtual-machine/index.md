@@ -22,12 +22,22 @@
 
 * Provision the administrator user.
 
+{{< admonition note>}}
+   The "Admin user provisioning" tool is deleted from 10.0.24
+{{< /admonition >}}
+
 ## 2. Rename VM
 
 * Rename and restart the machine before you start development or connect to Azure DevOps.
 * Update the server name in SQL Server
 
-  * To be able to login, Start SQL Server with **administrator** or using the user **axdbadmin** has password **AOSWebSite@12**
+  * The default credential for SQL server is **axdbadmin** and password **AOSWebSite@12**
+  You can also see the passwork in the `C:\AOSService\webroot\web.config`
+  To decrypt run this command:
+  `C:\AOSService\webroot\bin\Microsoft.Dynamics.AX.Framework.ConfigEncryptor.exe -decrypt C:\AOSService\webroot\web.config`
+  To encrypt run this command:
+  `C:\AOSService\webroot\bin\Microsoft.Dynamics.AX.Framework.ConfigEncryptor.exe -encrypt C:\AOSService\webroot\web.config`
+
   * Run following query
 
     ```sql
@@ -41,8 +51,9 @@
 
   * Restart SQL service
 
-* Open Reporting Services Configuration Manager for SQL Server 2016, then Select Database, select Change Database, and use the new server name.
-* Update the Azure Storage Emulator
+  * Open Reporting Services Configuration Manager for SQL Server 2016, then **Select Database**, select **Change Database**, and use the new server name.
+    
+  * Update the Azure Storage Emulator
 
   * From the Start menu, open Microsoft Azure Storage Emulator - v4.0, and run the following commands.
 
@@ -106,7 +117,7 @@ update for virtual hard drive (VHD) that was released for versions 10.0.24
 
 ## 6. For (VHD) that was released for versions 10.0.24 and later
 
-## Register a new application in Azure Active Directory
+## 6.1 Register a new application in Azure Active Directory
 
 To register a new application in Microsoft Azure Active Directory (Azure AD), follow the steps outlined in [Register app or web API](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app). The new app registration should be for a web application, and the following redirect URIs should be added:
 
@@ -115,7 +126,7 @@ To register a new application in Microsoft Azure Active Directory (Azure AD), fo
 
 Once created, make note of the **Application (client) ID**.
 
-## Run the setup script
+## 6.2 Run the setup script
 
 After you sign in with the **Administrator** account, right-click the desktop shortcut **Generate Self-Signed Certificates**, and select **Run as administrator**. When the script prompts for the application ID, provide the **Application (client) ID** created in Azure Active Directory.
 

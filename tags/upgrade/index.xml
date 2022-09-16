@@ -39,6 +39,14 @@
 <p>Provision the administrator user.</p>
 </li>
 </ul>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">The &ldquo;Admin user provisioning&rdquo; tool is deleted from 10.0.24</div>
+        </div>
+    </div>
 <h2 id="2-rename-vm">2. Rename VM</h2>
 <ul>
 <li>
@@ -48,7 +56,12 @@
 <p>Update the server name in SQL Server</p>
 <ul>
 <li>
-<p>To be able to login, Start SQL Server with <strong>administrator</strong> or using the user <strong>axdbadmin</strong> has password <strong>AOSWebSite@12</strong></p>
+<p>The default credential for SQL server is <strong>axdbadmin</strong> and password <strong>AOSWebSite@12</strong>
+You can also see the passwork in the <code>C:\AOSService\webroot\web.config</code>
+To decrypt run this command:
+<code>C:\AOSService\webroot\bin\Microsoft.Dynamics.AX.Framework.ConfigEncryptor.exe -decrypt C:\AOSService\webroot\web.config</code>
+To encrypt run this command:
+<code>C:\AOSService\webroot\bin\Microsoft.Dynamics.AX.Framework.ConfigEncryptor.exe -encrypt C:\AOSService\webroot\web.config</code></p>
 </li>
 <li>
 <p>Run following query</p>
@@ -81,11 +94,11 @@
 <p>Restart SQL service</p>
 </li>
 <li>
-<p>Open Reporting Services Configuration Manager for SQL Server 2016, then Select Database, select Change Database, and use the new server name.</p>
+<p>Open Reporting Services Configuration Manager for SQL Server 2016, then <strong>Select Database</strong>, select <strong>Change Database</strong>, and use the new server name.</p>
 </li>
 <li>
 <p>Update the Azure Storage Emulator</p>
-<ul>
+</li>
 <li>
 <p>From the Start menu, open Microsoft Azure Storage Emulator - v4.0, and run the following commands.</p>
 <p><code>AzureStorageEmulator.exe start</code></p>
@@ -107,18 +120,11 @@
 </li>
 </ul>
 <p>Open a Microsoft Windows PowerShell command window as an admin, and run the following command. This command contains the default passwords that might have to be updated. Be sure to replace <strong>new_name</strong> with the new name.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">cd </span><span class="p">&lt;</span><span class="n">update</span> <span class="n">folder</span><span class="p">&gt;\</span><span class="n">MROneBox</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">Update</span>
-</span></span><span class="line"><span class="cl"><span class="p">.\</span><span class="n">ConfigureMRDatabase</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-NewAosDatabaseName</span> <span class="n">AxDB</span> <span class="n">-NewAosDatabaseServerName</span> <span class="n">new_name</span> <span class="n">-NewMRDatabaseName</span> <span class="n">ManagementReporter</span> <span class="n">-NewAxAdminUserPassword</span> <span class="n">AOSWebSite</span><span class="nv">@123</span> <span class="n">-NewMRAdminUserName</span> <span class="n">MRUser</span> <span class="n">-NewMRAdminUserPassword</span> <span class="n">MRWebSite</span><span class="nv">@123</span> <span class="n">-NewMRRuntimeUserName</span> <span class="n">MRUSer</span> <span class="n">-NewMRRuntimeUserPassword</span> <span class="n">MRWebSite</span><span class="nv">@123</span> <span class="n">-NewAxMRRuntimeUserName</span> <span class="n">MRUser</span> <span class="n">-NewAxMRRuntimeUserPassword</span> <span class="n">MRWebSite</span><span class="nv">@123</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div></li>
-</ul>
+<pre><code>```powershell
+cd &lt;update folder&gt;\MROneBox\Scripts\Update
+.\ConfigureMRDatabase.ps1 -NewAosDatabaseName AxDB -NewAosDatabaseServerName new_name -NewMRDatabaseName ManagementReporter -NewAxAdminUserPassword AOSWebSite@123 -NewMRAdminUserName MRUser -NewMRAdminUserPassword MRWebSite@123 -NewMRRuntimeUserName MRUSer -NewMRRuntimeUserPassword MRWebSite@123 -NewAxMRRuntimeUserName MRUser -NewAxMRRuntimeUserPassword MRWebSite@123
+```
+</code></pre>
 <h2 id="3-location-of-packages-source-code-and-other-aos-configurations">3. Location of packages, source code, and other AOS configurations</h2>
 <p>On a VM, you can find most of the application configuration by opening the web.config file of AOSWebApplication.</p>
 <ol>
@@ -162,14 +168,14 @@
 <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/deployment/install-deployable-package" target="_blank" rel="noopener noreferrer">https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/deployment/install-deployable-package</a></p>
 <p>update for virtual hard drive (VHD) that was released for versions 10.0.24</p>
 <h2 id="6-for-vhd-that-was-released-for-versions-10024-and-later">6. For (VHD) that was released for versions 10.0.24 and later</h2>
-<h2 id="register-a-new-application-in-azure-active-directory">Register a new application in Azure Active Directory</h2>
+<h2 id="61-register-a-new-application-in-azure-active-directory">6.1 Register a new application in Azure Active Directory</h2>
 <p>To register a new application in Microsoft Azure Active Directory (Azure AD), follow the steps outlined in <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app" target="_blank" rel="noopener noreferrer">Register app or web API</a>. The new app registration should be for a web application, and the following redirect URIs should be added:</p>
 <ul>
 <li><code>https://usnconeboxax1aos.cloud.onebox.dynamics.com/</code></li>
 <li><code>https://usnconeboxax1aos.cloud.onebox.dynamics.com/oauth/</code></li>
 </ul>
 <p>Once created, make note of the <strong>Application (client) ID</strong>.</p>
-<h2 id="run-the-setup-script">Run the setup script</h2>
+<h2 id="62-run-the-setup-script">6.2 Run the setup script</h2>
 <p>After you sign in with the <strong>Administrator</strong> account, right-click the desktop shortcut <strong>Generate Self-Signed Certificates</strong>, and select <strong>Run as administrator</strong>. When the script prompts for the application ID, provide the <strong>Application (client) ID</strong> created in Azure Active Directory.</p>
 <p>When the script finishes, the environment is ready for use. At this time, you can run the Admin Provisioning tool to set the administrator account, permissions, and tenant. Make sure that the email provided is for the Azure Active Directory tenant in which the application registration was created.</p>
 ]]></description>

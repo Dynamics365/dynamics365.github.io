@@ -95,9 +95,9 @@ To resolve this, we will need to reset [financial reporting data mart](https://d
 
 * Stops AX services
 
-- World wide web publishing service (on all Application Object Servers [AOS] computers)
-- Batch Management Service (on non-private AOS computers only)
-- Management Reporter 2012 Process Service (on Business intelligence [BI] computers only)
+  - World wide web publishing service (on all Application Object Servers [AOS] computers)
+  - Batch Management Service (on non-private AOS computers only)
+  - Management Reporter 2012 Process Service (on Business intelligence [BI] computers only)
 
 {{< admonition note >}}
 We can use command line too
