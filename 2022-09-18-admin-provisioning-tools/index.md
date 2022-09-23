@@ -5,7 +5,9 @@ After restoring database backup, you want to be able to login to Dynamics 365 Fi
 
 <!--adsense-->
 
-From 10.0.24 verison, the admin provisioning tool can be found at
+1. Before 10.0.24 verison
+
+The admin provisioning tool can be found at
 
 VHD: `C:\AOSService\PackagesLocalDirectory\bin\AdminUserProvisioning.exe`
 
@@ -54,4 +56,24 @@ Login failed for user 'axdbadmin'.
 {{< /admonition >}}
 
 Please this post for getting [VHD Database password](https://nuxulu.com/2020-04-06-getting-onebox-vhd-dynamics-365-finance-and-operations-virtual-machine/#2-rename-vm).
+
+2. After 10.0.24
+
+The Admin user provisioning tool is typically used to change the tenant of the environment. You can update the sign in information in the database for the Admin user or any other user. You only need the `SID` and `network alias` (email address) from a user that can access the environment or another environment on the same tenant.
+
+To get the SID:
+
+```ps
+wmic useraccount get name,sid
+```
+
+![Image](get-sid-cmd.png "get-sid-cmd")
+
+Once you have admin SID, you can update the tenant in SQL by using.
+
+```sql
+select ID, SID, NETWORKALIAS from USERINFO where ID = 'Admin'
+
+update USERINFO set SID = 'new_SID', NETWORKALIAS = 'new_NetworkAlias' where ID = 'Admin'
+```
 
