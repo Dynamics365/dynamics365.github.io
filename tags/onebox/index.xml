@@ -1,0 +1,291 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>OneBox - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://nuxulu.com/tags/onebox/</link><description>OneBox - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><copyright>copyright text</copyright><lastBuildDate>Sun, 18 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/onebox/" rel="self" type="application/rss+xml"/><item><title>Admin provisioning tools in Dynamics 365 Finance Operations</title><link>https://nuxulu.com/2022-09-18-admin-provisioning-tools/</link><pubDate>Sun, 18 Sep 2022 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2022-09-18-admin-provisioning-tools/</guid><description><![CDATA[<p>After restoring database backup, you want to be able to login to Dynamics 365 Finance Operations with different ternant, you need to use the admin provisioning tool to assign a new tenant.</p>
+<!--adsense-->
+<ol>
+<li>Before 10.0.24 verison</li>
+</ol>
+<p>The admin provisioning tool can be found at</p>
+<p>VHD: <code>C:\AOSService\PackagesLocalDirectory\bin\AdminUserProvisioning.exe</code></p>
+<p>Cloud- hosted: <code>K:\AOSService\PackagesLocalDirectory\bin\AdminUserProvisioning.exe</code></p>
+<p>After running <code>Provisioning.exe</code> wtih admin right, you will see the update for the admin user in SQL.</p>
+<p><figure><a class="lightgallery" href="/2022-09-18-admin-provisioning-tools/userinfo.png" title="Image" data-thumbnail="/2022-09-18-admin-provisioning-tools/userinfo.png" data-sub-html="<h2>userinfo</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">userinfo</figcaption>
+    </figure></p>
+<p>Some errors you might face:</p>
+<div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Can not stop the DynamicsAXBatch service on computer</div>
+        </div>
+    </div>
+<div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Execution Timeout Expired. The timeout period elapsed prior to completion of the operation or the server is not responding.</div>
+        </div>
+    </div>
+<div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">The remote server returned an error: (500) Internal Server Error.</div>
+        </div>
+    </div>
+<p>Resolution, you can simply stop and start the services manually:</p>
+<ul>
+<li>World Wide Web Publishing Service</li>
+<li>Microsoft Dynamics 365 Unified Operations: Batch Management Service</li>
+</ul>
+<p>Or you can restart VM using LCS or Azure portal.</p>
+<p>If the issue <strong>Can not stop the DynamicsAXBatch service on computer</strong> still persist</p>
+<p>You can kill the batch service using cmd:</p>
+<ol>
+<li>Open CMD</li>
+<li><code>sc queryex DynamicsAxBatch</code></li>
+<li><code>taskkill /f /pid 8064</code></li>
+</ol>
+<p><figure><a class="lightgallery" href="/2022-09-18-admin-provisioning-tools/queryex.png" title="Image" data-thumbnail="/2022-09-18-admin-provisioning-tools/queryex.png" data-sub-html="<h2>queryex</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">queryex</figcaption>
+    </figure></p>
+<p>There is another error about Database</p>
+<div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Cannot open database &ldquo;AxDB&rdquo; requested by the login. The login failed.
+Login failed for user &lsquo;axdbadmin&rsquo;.</div>
+        </div>
+    </div>
+<p>Please this post for getting <a href="https://nuxulu.com/2020-04-06-getting-onebox-vhd-dynamics-365-finance-and-operations-virtual-machine/#2-rename-vm" target="_blank" rel="noopener noreffer ">VHD Database password</a>.</p>
+<ol start="2">
+<li>After 10.0.24</li>
+</ol>
+<p>The Admin user provisioning tool is typically used to change the tenant of the environment. You can update the sign in information in the database for the Admin user or any other user. You only need the <code>SID</code> and <code>network alias</code> (email address) from a user that can access the environment or another environment on the same tenant.</p>
+<p>To get the SID:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ps" data-lang="ps"><span class="line"><span class="cl"><span class="nf">wmic</span> <span class="nf">useraccount</span> <span class="nf">get</span> <span class="nf">name,sid</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/2022-09-18-admin-provisioning-tools/get-sid-cmd.png" title="Image" data-thumbnail="/2022-09-18-admin-provisioning-tools/get-sid-cmd.png" data-sub-html="<h2>get-sid-cmd</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">get-sid-cmd</figcaption>
+    </figure></p>
+<p>Once you have admin SID, you can update the tenant in SQL by using.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">SID</span><span class="p">,</span><span class="w"> </span><span class="n">NETWORKALIAS</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">USERINFO</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Admin&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">update</span><span class="w"> </span><span class="n">USERINFO</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">SID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;new_SID&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">NETWORKALIAS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;new_NetworkAlias&#39;</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Admin&#39;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div>]]></description></item><item><title>Getting onebox VHD Dynamics 365 finance and operations virtual machine</title><link>https://nuxulu.com/2020-04-06-getting-onebox-vhd-dynamics-365-finance-and-operations-virtual-machine/</link><pubDate>Mon, 06 Apr 2020 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2020-04-06-getting-onebox-vhd-dynamics-365-finance-and-operations-virtual-machine/</guid><description><![CDATA[<h2 id="1-download-dynamics-365-finance-and-operations-vhd-files">1. Download Dynamics 365 finance and operations VHD files</h2>
+<ul>
+<li>
+<p>Go to the LCS main page and select <strong>Shared asset library</strong> or go to Shared Asset Library.</p>
+</li>
+<li>
+<p>Select the asset type <strong>Downloadable VHD</strong>.</p>
+</li>
+<li>
+<p>Find the VHD you are looking for based on the desired Finance and Operation version. The VHD is divided into multiple file parts that you need to download. For example, the asset files that start with &ldquo;VHD - 10.0.5&rdquo; are the different files you need in order to install version 10.0.5.</p>
+</li>
+<li>
+<p>Download all files (parts) associated with the desired VHD to a local folder.</p>
+</li>
+<li>
+<p>After the download is complete, run the executable file that you downloaded, accept the software license agreement, and choose a file path to extract the VHD to.</p>
+</li>
+<li>
+<p>This creates a local VHD file that you can use to run a local virtual machine.</p>
+</li>
+<li>
+<p>Sign in to the VM by using the following credentials:</p>
+<ul>
+<li>User name: <strong>Administrator</strong></li>
+<li>Password: <strong>pass@word1</strong></li>
+</ul>
+</li>
+<li>
+<p>Provision the administrator user.</p>
+</li>
+</ul>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>Note<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">The &ldquo;Admin user provisioning&rdquo; tool is deleted from 10.0.24</div>
+        </div>
+    </div>
+<h2 id="2-rename-vm">2. Rename VM</h2>
+<ul>
+<li>
+<p>Rename and restart the machine before you start development or connect to Azure DevOps.</p>
+</li>
+<li>
+<p>Update the server name in SQL Server</p>
+<ul>
+<li>The default credential for SQL server is <strong>axdbadmin</strong> and password <strong>AOSWebSite@12</strong></li>
+</ul>
+</li>
+</ul>
+<p>You can also see the passwork in the <code>C:\AOSService\webroot\web.config</code></p>
+<p>To decrypt run this command:
+<code>C:\AOSService\webroot\bin\Microsoft.Dynamics.AX.Framework.ConfigEncryptor.exe -decrypt C:\AOSService\webroot\web.config</code></p>
+<p>To encrypt run this command:
+<code>C:\AOSService\webroot\bin\Microsoft.Dynamics.AX.Framework.ConfigEncryptor.exe -encrypt C:\AOSService\webroot\web.config</code></p>
+<ul>
+<li>
+<p>Run following query</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">--MININT-57EHFHJ
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">sp_dropserver</span><span class="w"> </span><span class="p">[</span><span class="n">old_name</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">sp_addserver</span><span class="w"> </span><span class="p">[</span><span class="n">new_name</span><span class="p">],</span><span class="w"> </span><span class="k">local</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Tip<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">In these commands, be sure to replace old_name with the old name of the server and new_name with the new name. By default, the old name is MININT-F36S5EH, but you can run select @@servername to get the old name. Additionally, be sure to restart the SQL Server service after the commands have finished running.</div>
+        </div>
+    </div>
+<ul>
+<li>
+<p>Restart SQL service</p>
+</li>
+<li>
+<p>Open Reporting Services Configuration Manager for SQL Server 2016, then <strong>Select Database</strong>, select <strong>Change Database</strong>, and use the new server name.</p>
+</li>
+<li>
+<p>Update the Azure Storage Emulator</p>
+</li>
+<li>
+<p>From the Start menu, open Microsoft Azure Storage Emulator - v4.0, and run the following commands.</p>
+<p><code>AzureStorageEmulator.exe start</code></p>
+<blockquote>
+<p>If you got an error <strong><em>Port conflict with existing application</em></strong>, please check this <a href="../2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/" rel="">post</a>.</p>
+</blockquote>
+</li>
+<li>
+<p>This command verifies that the emulator is running.</p>
+<p><code>AzureStorageEmulator.exe status</code></p>
+</li>
+<li>
+<p>Update the server name</p>
+<p><code>AzureStorageEmulator.exe init -server new_name</code></p>
+<p>For more information about Azure storage emulator please follow <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator" target="_blank" rel="noopener noreffer ">https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator</a></p>
+</li>
+<li>
+<p>Update financial reporting</p>
+</li>
+</ul>
+<p>Open a Microsoft Windows PowerShell command window as an admin, and run the following command. This command contains the default passwords that might have to be updated. Be sure to replace <strong>new_name</strong> with the new name.</p>
+<pre><code>```powershell
+cd &lt;update folder&gt;\MROneBox\Scripts\Update
+.\ConfigureMRDatabase.ps1 -NewAosDatabaseName AxDB -NewAosDatabaseServerName new_name -NewMRDatabaseName ManagementReporter -NewAxAdminUserPassword AOSWebSite@123 -NewMRAdminUserName MRUser -NewMRAdminUserPassword MRWebSite@123 -NewMRRuntimeUserName MRUSer -NewMRRuntimeUserPassword MRWebSite@123 -NewAxMRRuntimeUserName MRUser -NewAxMRRuntimeUserPassword MRWebSite@123
+```
+</code></pre>
+<h2 id="3-location-of-packages-source-code-and-other-aos-configurations">3. Location of packages, source code, and other AOS configurations</h2>
+<p>On a VM, you can find most of the application configuration by opening the web.config file of AOSWebApplication.</p>
+<ol>
+<li>
+<p>Start IIS.</p>
+</li>
+<li>
+<p>Go to <em>Sites &gt; AOSWebApplication</em>.</p>
+</li>
+<li>
+<p>Right-click, and then click <strong>Explore</strong> to open File Explorer.</p>
+</li>
+<li>
+<p>Open the <strong>web.config</strong> file in Notepad or another text editor. The following keys are of interest to many developers and administrators:</p>
+<ul>
+<li>
+<p><strong>Aos.MetadataDirectory</strong> – This key points to the location of the packages folder that contains platform and application binaries, and also source code. (Source code is available only in development environments.) Typical values are: <em>c:\packages, c:\AosServicePackagesLocalDirectory</em>, and <em>J:AosServicePackagesLocalDirectory</em>.</p>
+</li>
+<li>
+<p><strong>DataAccess.Database</strong> – This key holds the name of the database.</p>
+</li>
+<li>
+<p><strong>Aos.AppRoot</strong> – This key points to the root folder of the Application Object Server (AOS) web application.</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="4-redeploying-or-restarting-the-runtime-on-the-vm">4. Redeploying or restarting the runtime on the VM</h2>
+<p>To restart the local runtime and redeploy all the packages, follow these steps.</p>
+<ol>
+<li>
+<p>Open File Explorer, and go to <em>C:\CustomerServiceUnit</em>.</p>
+</li>
+<li>
+<p>Right-click <strong>AOSDeploy.cmd</strong>, and then click <strong>Run as administrator</strong>.</p>
+</li>
+</ol>
+<p>This process might take a while. The process is completed when the cmd.exe window closes. If you just want to restart AOS (without redeploying the runtime), run iisreset from an administrator Command Prompt window, or restart AOSWebApplication from IIS.</p>
+<h2 id="5-update-to-the-latest-version">5. Update to the latest version</h2>
+<p>Please check this document
+<a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/deployment/install-deployable-package" target="_blank" rel="noopener noreffer ">https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/deployment/install-deployable-package</a></p>
+<p>update for virtual hard drive (VHD) that was released for versions 10.0.24</p>
+<h2 id="6-for-vhd-that-was-released-for-versions-10024-and-later">6. For (VHD) that was released for versions 10.0.24 and later</h2>
+<h2 id="61-register-a-new-application-in-azure-active-directory">6.1 Register a new application in Azure Active Directory</h2>
+<p>To register a new application in Microsoft Azure Active Directory (Azure AD), follow the steps outlined in <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app" target="_blank" rel="noopener noreffer ">Register app or web API</a>. The new app registration should be for a web application, and the following redirect URIs should be added:</p>
+<ul>
+<li><code>https://usnconeboxax1aos.cloud.onebox.dynamics.com/</code></li>
+<li><code>https://usnconeboxax1aos.cloud.onebox.dynamics.com/oauth/</code></li>
+</ul>
+<p>Once created, make note of the <strong>Application (client) ID</strong>.</p>
+<h2 id="62-run-the-setup-script">6.2 Run the setup script</h2>
+<p>After you sign in with the <strong>Administrator</strong> account, right-click the desktop shortcut <strong>Generate Self-Signed Certificates</strong>, and select <strong>Run as administrator</strong>. When the script prompts for the application ID, provide the <strong>Application (client) ID</strong> created in Azure Active Directory.</p>
+<p>When the script finishes, the environment is ready for use. At this time, you can run the Admin Provisioning tool to set the administrator account, permissions, and tenant. Make sure that the email provided is for the Azure Active Directory tenant in which the application registration was created.</p>
+]]></description></item><item><title>Azure Storage Emulator 'Port conflict with existing application', Dynamics 365 finance and operations</title><link>https://nuxulu.com/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/</link><pubDate>Sun, 05 Apr 2020 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/</guid><description><![CDATA[<p>The Microsoft Azure storage emulator is a tool that emulates the Azure Blob, Queue, and Table services for local development purposes. You can test your application against the storage services locally without creating an Azure subscription or incurring any costs. When you&rsquo;re satisfied with how your application is working in the emulator, switch to using an Azure storage account in the cloud.</p>
+<p>In Dynamics 365 finance and operations onebox environment, we also use Microsoft Azure Storage Emulator for same purposes. There is a common problem when you try to start its service or using Data entity Import/Export</p>
+<p></p>
+<p>Port conflict with existing application
+{:.error}</p>
+<h2 id="reason">Reason</h2>
+<p>By default, Azure storage emulator is using port number 10000, 10001, 10002 for Blob, Queue and Table services respectively. And there is a progress/system takes those ports already, so you are not able to start its service.
+We can simply use this command in CMD to see which one has conflict</p>
+<p><code>netstat -p tcp -ano | findstr :10001</code></p>
+<p></p>
+<p>The process ID 4 is currently taking port 10001.</p>
+<h2 id="resolution">Resolution</h2>
+<p>You can either terminate the conflict program or change the default port for Azure Storage Emulator.</p>
+<h3 id="to-determine-the-conflict-program-we-can-use-this-command-in-cmd">To determine the conflict program we can use this command in CMD</h3>
+<p>Run following command to check which application/process has the same port, then simply go to task manager and terminate it.</p>
+<p><code>tasklist /fi &quot;pid eq 4&quot;</code></p>
+<p></p>
+<h3 id="to-change-the-default-port-for-azure-storage-emulator">To change the default port for Azure storage Emulator</h3>
+<p>Go to your storage emulator default installation folder, which is located at <em><strong>C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator</strong></em>, open the <strong>AzureStorageEmulator.exe.config</strong> by notepad and edit the port number to different number</p>
+<p></p>
+<p>When done, try to start its service again using</p>
+<p><code>AzureStorageEmulator.exe start</code></p>
+<p></p>
+<p>Thank you for reading.</p>
+]]></description></item></channel></rss>

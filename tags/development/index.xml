@@ -1,0 +1,97 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Development - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://nuxulu.com/tags/development/</link><description>Development - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><copyright>copyright text</copyright><lastBuildDate>Sun, 18 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/development/" rel="self" type="application/rss+xml"/><item><title>Admin provisioning tools in Dynamics 365 Finance Operations</title><link>https://nuxulu.com/2022-09-18-admin-provisioning-tools/</link><pubDate>Sun, 18 Sep 2022 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2022-09-18-admin-provisioning-tools/</guid><description><![CDATA[<p>After restoring database backup, you want to be able to login to Dynamics 365 Finance Operations with different ternant, you need to use the admin provisioning tool to assign a new tenant.</p>
+<!--adsense-->
+<ol>
+<li>Before 10.0.24 verison</li>
+</ol>
+<p>The admin provisioning tool can be found at</p>
+<p>VHD: <code>C:\AOSService\PackagesLocalDirectory\bin\AdminUserProvisioning.exe</code></p>
+<p>Cloud- hosted: <code>K:\AOSService\PackagesLocalDirectory\bin\AdminUserProvisioning.exe</code></p>
+<p>After running <code>Provisioning.exe</code> wtih admin right, you will see the update for the admin user in SQL.</p>
+<p><figure><a class="lightgallery" href="/2022-09-18-admin-provisioning-tools/userinfo.png" title="Image" data-thumbnail="/2022-09-18-admin-provisioning-tools/userinfo.png" data-sub-html="<h2>userinfo</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">userinfo</figcaption>
+    </figure></p>
+<p>Some errors you might face:</p>
+<div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Can not stop the DynamicsAXBatch service on computer</div>
+        </div>
+    </div>
+<div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Execution Timeout Expired. The timeout period elapsed prior to completion of the operation or the server is not responding.</div>
+        </div>
+    </div>
+<div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">The remote server returned an error: (500) Internal Server Error.</div>
+        </div>
+    </div>
+<p>Resolution, you can simply stop and start the services manually:</p>
+<ul>
+<li>World Wide Web Publishing Service</li>
+<li>Microsoft Dynamics 365 Unified Operations: Batch Management Service</li>
+</ul>
+<p>Or you can restart VM using LCS or Azure portal.</p>
+<p>If the issue <strong>Can not stop the DynamicsAXBatch service on computer</strong> still persist</p>
+<p>You can kill the batch service using cmd:</p>
+<ol>
+<li>Open CMD</li>
+<li><code>sc queryex DynamicsAxBatch</code></li>
+<li><code>taskkill /f /pid 8064</code></li>
+</ol>
+<p><figure><a class="lightgallery" href="/2022-09-18-admin-provisioning-tools/queryex.png" title="Image" data-thumbnail="/2022-09-18-admin-provisioning-tools/queryex.png" data-sub-html="<h2>queryex</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">queryex</figcaption>
+    </figure></p>
+<p>There is another error about Database</p>
+<div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Cannot open database &ldquo;AxDB&rdquo; requested by the login. The login failed.
+Login failed for user &lsquo;axdbadmin&rsquo;.</div>
+        </div>
+    </div>
+<p>Please this post for getting <a href="https://nuxulu.com/2020-04-06-getting-onebox-vhd-dynamics-365-finance-and-operations-virtual-machine/#2-rename-vm" target="_blank" rel="noopener noreffer ">VHD Database password</a>.</p>
+<ol start="2">
+<li>After 10.0.24</li>
+</ol>
+<p>The Admin user provisioning tool is typically used to change the tenant of the environment. You can update the sign in information in the database for the Admin user or any other user. You only need the <code>SID</code> and <code>network alias</code> (email address) from a user that can access the environment or another environment on the same tenant.</p>
+<p>To get the SID:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ps" data-lang="ps"><span class="line"><span class="cl"><span class="nf">wmic</span> <span class="nf">useraccount</span> <span class="nf">get</span> <span class="nf">name,sid</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/2022-09-18-admin-provisioning-tools/get-sid-cmd.png" title="Image" data-thumbnail="/2022-09-18-admin-provisioning-tools/get-sid-cmd.png" data-sub-html="<h2>get-sid-cmd</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">get-sid-cmd</figcaption>
+    </figure></p>
+<p>Once you have admin SID, you can update the tenant in SQL by using.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">SID</span><span class="p">,</span><span class="w"> </span><span class="n">NETWORKALIAS</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">USERINFO</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Admin&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">update</span><span class="w"> </span><span class="n">USERINFO</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">SID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;new_SID&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">NETWORKALIAS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;new_NetworkAlias&#39;</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Admin&#39;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div>]]></description></item></channel></rss>
