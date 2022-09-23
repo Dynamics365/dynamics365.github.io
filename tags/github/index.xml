@@ -1,0 +1,152 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Github - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</title>
+        <link>https://nuxulu.com/tags/github/</link>
+        <description>Github - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><copyright>copyright text</copyright><lastBuildDate>Fri, 08 Oct 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/github/" rel="self" type="application/rss+xml" /><item>
+    <title>Git &amp; Github cheatsheet</title>
+    <link>https://nuxulu.com/2021-10-08-git-cheatsheet/</link>
+    <pubDate>Fri, 08 Oct 2021 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2021-10-08-git-cheatsheet/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/git-basic-design.png" referrerpolicy="no-referrer">
+            </div><h2 id="1-install">1. Install</h2>
+<blockquote>
+<p>Configure user information for all local repositories</p>
+</blockquote>
+<p><code>$ git config --global user.name &quot;[name]&quot;</code></p>
+<p>Sets the name you want attached to your commit transactions</p>
+<p><code>$ git config --global user.email &quot;[email address]&quot;</code></p>
+<p>Sets the email you want attached to your commit transactions</p>
+<p><code>$ git config --global color.ui auto</code></p>
+<p>Enables helpful colorization of command line output</p>
+<h2 id="2-branches">2. Branches</h2>
+<p><figure><a class="lightgallery" href="/imagesposts/braching.png" title="braching" data-thumbnail="/imagesposts/braching.png" data-sub-html="<h2>Branching</h2><p>braching</p>">
+        
+    </a><figcaption class="image-caption">Branching</figcaption>
+    </figure></p>
+<blockquote>
+<p>Branches are an important part of working with Git. Any commits you make will be made on the branch you’re currently “checked out” to. Use <code>git status</code> to see which branch that is.</p>
+</blockquote>
+<p><code>$ git branch [branch-name]</code></p>
+<p>Creates a new branch</p>
+<p><code>$ git switch -c [branch-name]</code></p>
+<p>Switches to the specified branch and updates the working directory</p>
+<p><code>$ git merge [branch]</code></p>
+<p>Combines the specified branch’s history into the current branch. This is usually done in pull requests, but is an important Git operation.</p>
+<p><code>$ git branch -d [branch-name]</code></p>
+<p>Deletes the specified branch</p>
+<h2 id="3-create-repositories">3. Create repositories</h2>
+<blockquote>
+<p>A new repository can either be created locally, or an existing repository can be cloned. When a repository was initialized locally, you have to push it to GitHub afterwards.</p>
+</blockquote>
+<p><code>$ git init</code></p>
+<p>The git init command turns an existing directory into a new Git repository inside the folder you are running this command. After using the <code>git init</code> command, link the local repository to an empty GitHub repository using the following command:</p>
+<p><code>$ git remote add origin [url]</code></p>
+<p>Specifies the remote repository for your local repository. The url points to a repository on GitHub.</p>
+<p><code>$ git clone [url]</code></p>
+<p>Clone (download) a repository that already exists on GitHub, including all of the files, branches, and commits</p>
+<p><code>git clone https://&lt;username&gt;:&lt;password&gt;@github.com/&lt;username&gt;/&lt;repository&gt;.git</code></p>
+<p>Clone with authentication.</p>
+<h2 id="4-the-gitignore-file">4. The .gitignore file</h2>
+<p>Sometimes it may be a good idea to exclude files from being tracked with Git. This is typically done in a special file named <code>.gitignore</code>. You can find helpful templates for <code>.gitignore</code> files at <a href="https://github.com/github/gitignore" target="_blank" rel="noopener noreffer ">github.com/github/gitignore</a>.</p>
+<p><code>logs/ *.notes pattern*/</code></p>
+<p>Save a file with desired patterns as .gitignore with either direct string
+matches or wildcard globs.</p>
+<p><code>git config --global core.excludesfile [file]</code></p>
+<p>system wide ignore pattern for all local repositories</p>
+<h2 id="5-synchronize-changes">5. Synchronize changes</h2>
+<blockquote>
+<p>Synchronize your local repository with the remote repository on GitHub.com</p>
+</blockquote>
+<p><code>$ git fetch</code></p>
+<p>Downloads all history from the remote tracking branches</p>
+<p><code>$ git merge</code></p>
+<p>Combines remote tracking branches into current local branch</p>
+<p><code>$ git push</code></p>
+<p>Uploads all local branch commits to GitHub</p>
+<p><code>$ git pull</code></p>
+<p>Updates your current local working branch with all new commits from the corresponding remote branch on GitHub. <code>git pull</code> is a combination of <code>git fetch</code> and <code>git merge</code></p>
+<h2 id="6-make-changes">6. Make changes</h2>
+<p><code>git status</code></p>
+<p>Show modified files in working directory, staged for your next commit</p>
+<p><code>$ git log</code></p>
+<p>Browse and inspect the evolution of project files</p>
+<p><code>$ git log --follow [file]</code></p>
+<p>Lists version history for a file, beyond renames (works only for a single file)</p>
+<p><code>$ git diff [first-branch]...[second-branch]</code></p>
+<p>Shows content differences between two branches</p>
+<p><code>git diff --staged</code></p>
+<p>Diff of what is staged but not yet committed</p>
+<p><code>$ git show [commit]</code></p>
+<p>Outputs metadata and content changes of the specified commit</p>
+<p><code>$ git add [file]</code></p>
+<p>Snapshots the file in preparation for versioning</p>
+<p><code>$ git commit -m &quot;[descriptive message]&quot;</code></p>
+<p>Records file snapshots permanently in version history</p>
+<p><code>git commit -am &quot;Your commit message&quot;</code></p>
+<p>Combine <code>add</code> and <code>commit</code> for tracked files</p>
+<p><code>git config --global alias.ac '!git add -A &amp;&amp; git commit -m'</code></p>
+<p>Create a new command, eg combine <code>add</code> and <code>commit</code> in to <code>ac</code> command</p>
+<h2 id="7-temporary-commits">7. Temporary commits</h2>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Tip<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Temporarily store modified, tracked files in order to change branches</div>
+        </div>
+    </div>
+<p><code>git stash</code></p>
+<p>Save modified and staged changes</p>
+<p><code>git stash list</code></p>
+<p>List stack-order of stashed file changes</p>
+<p><code>git stash pop</code></p>
+<p>Write working from top of stash stack</p>
+<p><code>git stash drop</code></p>
+<p>Discard the changes from top of stash stack</p>
+<h2 id="8-redo-commits">8. Redo commits</h2>
+<p>Erase mistakes and craft replacement history</p>
+<p><code>$ git reset [commit]</code></p>
+<p>Undoes all commits after <code>[commit]</code>, preserving changes locally</p>
+<p><code>$ git reset --hard [commit]</code></p>
+<p>Discards all history and changes back to the specified commit</p>
+<blockquote>
+<p>CAUTION! Changing history can have nasty side effects. If you need to change commits that exist on GitHub (the remote), proceed with caution. If you need help, reach out at <a href="https://github.community/" target="_blank" rel="noopener noreffer ">github.community</a> or contact support.</p>
+</blockquote>
+<h2 id="9-search">9. Search</h2>
+<p><code>$ git grep &quot;hello&quot;</code></p>
+<p>A text search on all files in the directory</p>
+<p><code>$ git grep &quot;hello&quot; v2.5</code></p>
+<p>In any version of a text search:</p>
+<p><code>$ git log -s 'keyword'</code></p>
+<p>Show commits that introduced a specific keyword</p>
+<p><code>$ git log -S 'keyword' --pickaxe-regex</code></p>
+<p>Show commits that introduced a specific keyword (using a regular expression)</p>
+<h2 id="9-github-flow">9. Github flow</h2>
+<p><figure><a class="lightgallery" href="/2021-10-08-git-cheatsheet/Github-flow.png" title="Git flow" data-thumbnail="/2021-10-08-git-cheatsheet/Github-flow.png" data-sub-html="<h2>Git flow</h2><p>Git flow</p>">
+        
+    </a><figcaption class="image-caption">Git flow</figcaption>
+    </figure></p>
+<p><figure><a class="lightgallery" href="/2021-10-08-git-cheatsheet/The-zoo-of-working-areas.png" title="The zoo of working areas" data-thumbnail="/2021-10-08-git-cheatsheet/The-zoo-of-working-areas.png" data-sub-html="<h2>The zoo of working areas</h2><p>The zoo of working areas</p>">
+        
+    </a><figcaption class="image-caption">The zoo of working areas</figcaption>
+    </figure></p>
+<h2 id="10-glossary">10. Glossary</h2>
+<ul>
+<li><strong>git</strong>: an open source, distributed version-control system</li>
+<li><strong>GitHub</strong>: a platform for hosting and collaborating on Git repositories</li>
+<li><strong>commit</strong>: a Git object, a snapshot of your entire repository compressed into a SHA</li>
+<li><strong>branch</strong>: a lightweight movable pointer to a commit</li>
+<li><strong>clone</strong>: a local version of a repository, including all commits and branches</li>
+<li><strong>remote</strong>: a common repository on GitHub that all team members use to exchange their changes</li>
+<li><strong>fork</strong>: a copy of a repository on GitHub owned by a different user</li>
+<li><strong>pull request</strong>: a place to compare and discuss the differences introduced on a branch with reviews, comments, integrated tests, and more</li>
+<li><strong>HEAD</strong>: representing your current working directory, the HEAD pointer can be moved to different branches, tags, or commits when using <code>git switch</code></li>
+</ul>
+]]></description>
+</item>
+</channel>
+</rss>

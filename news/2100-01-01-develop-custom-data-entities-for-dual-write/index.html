@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Develop custom Data Entities for Dual-write - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><meta name="Description" content="Dynamics 365 Finance &amp; Operations"><meta property="og:title" content="Develop custom Data Entities for Dual-write" />
+<meta property="og:description" content="Dual-write has been around for almost two years now. It’s one of the ways of integrating Dynamics 365 Finance and Operations and Dataverse along with Virtual Entities.
+The standard solution comes with many out-of-the-box entities available to synchronize. This has been one of the great improvements since Dual-write was made available in preview, when Juanan and I demoed it in the 2019 Dynamics Saturday in Madrid.
+Develop custom Data Entities for Dual-write 1This is how Dual write really works" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nuxulu.com/news/2100-01-01-develop-custom-data-entities-for-dual-write/" /><meta property="og:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/><meta property="article:section" content="news" />
+<meta property="article:published_time" content="2021-05-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-12-05T01:22:28+07:00" /><meta property="og:site_name" content="Dynamics 365 Finance &amp; Operations" />
+<meta property="og:see_also" content="https://nuxulu.com/news/2100-01-01-data-entity-tips/" /><meta property="og:see_also" content="https://nuxulu.com/news/2100-01-01-lcs-api-database-movement-with-powerautomate/" /><meta property="og:see_also" content="https://nuxulu.com/news/2100-01-01-azure-devtest-labs-powered-builds-for-dynamics-365-finops/" /><meta property="og:see_also" content="https://nuxulu.com/news/2100-01-01-dynamics-365-for-finance--operations-and-azure-devops/" /><meta property="og:see_also" content="https://nuxulu.com/news/2100-01-01-automate-your-tests-for-dynamics-365-finance/" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/>
+
+<meta name="twitter:title" content="Develop custom Data Entities for Dual-write"/>
+<meta name="twitter:description" content="Dual-write has been around for almost two years now. It’s one of the ways of integrating Dynamics 365 Finance and Operations and Dataverse along with Virtual Entities.
+The standard solution comes with many out-of-the-box entities available to synchronize. This has been one of the great improvements since Dual-write was made available in preview, when Juanan and I demoed it in the 2019 Dynamics Saturday in Madrid.
+Develop custom Data Entities for Dual-write 1This is how Dual write really works"/>
+<meta name="application-name" content="Dynamics 365 Finance &amp; Operations">
+<meta name="apple-mobile-web-app-title" content="Dynamics 365 Finance &amp; Operations"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://nuxulu.com/news/2100-01-01-develop-custom-data-entities-for-dual-write/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="f08c47fec0942fa0" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Develop custom Data Entities for Dual-write",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/nuxulu.com\/news\/2100-01-01-develop-custom-data-entities-for-dual-write\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/nuxulu.com\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "news","wordcount":  1141 ,
+        "url": "https:\/\/nuxulu.com\/news\/2100-01-01-develop-custom-data-entities-for-dual-write\/","datePublished": "2021-05-02T00:00:00+00:00","dateModified": "2021-12-05T01:22:28+07:00","license": "copyright text","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/nuxulu.com\/images\/avatar.png",
+                    "width":  528 ,
+                    "height":  560 
+                }},"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3534873375492458" crossorigin="anonymous"></script>
+            <a href="/" title="Dynamics 365 Finance &amp; Operations | nuxulu.com"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/Icon/favicon-32x32.png"
+        data-srcset="/Icon/favicon-32x32.png, /Icon/favicon-32x32.png 1.5x, /Icon/favicon-32x32.png 2x"
+        data-sizes="auto"
+        alt="/Icon/favicon-32x32.png"
+        title="/Icon/favicon-32x32.png" /><span class="header-title-pre">  </span>Dynamics 365 Finance &amp; Operations</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/finopsnews/"> X&#43;&#43; Feed </a><a class="menu-item" href="/ERD/default.htm"> Dynamics AX ERD </a><a class="menu-item" href="/posts/index.xml"> Rss Feed </a><a class="menu-item" href="/about/"> About me </a><a class="menu-item" href="/series/" title="Series post"> Series post </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3534873375492458" crossorigin="anonymous"></script>
+                <a href="/" title="Dynamics 365 Finance &amp; Operations | nuxulu.com"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/Icon/favicon-32x32.png"
+        data-srcset="/Icon/favicon-32x32.png, /Icon/favicon-32x32.png 1.5x, /Icon/favicon-32x32.png 2x"
+        data-sizes="auto"
+        alt="/Icon/favicon-32x32.png"
+        title="/Icon/favicon-32x32.png" /><span class="header-title-pre">  </span>Dynamics 365 Finance &amp; Operations</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/finopsnews/" title="">X&#43;&#43; Feed</a><a class="menu-item" href="/ERD/default.htm" title="">Dynamics AX ERD</a><a class="menu-item" href="/posts/index.xml" title="">Rss Feed</a><a class="menu-item" href="/about/" title="">About me</a><a class="menu-item" href="/series/" title="Series post">Series post</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animate__animated animate__pulse animate__faster">Develop custom Data Entities for Dual-write</h1><div class="content" id="content"><p><a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/dual-write/dual-write-home-page?WT.mc_id=BA-MVP-5003976" target="_blank" rel="noopener noreffer ">Dual-write</a> has been around for almost two years now. It’s one of the ways of <strong>integrating Dynamics 365 Finance and Operations and <a href="https://docs.microsoft.com/en-us/powerapps/maker/data-platform?WT.mc_id=BA-MVP-5003976" target="_blank" rel="noopener noreffer ">Dataverse</a></strong> along with <a href="https://ariste.info/en/2020/09/dynamics-365-odata-cds-virtual-entities/" target="_blank" rel="noopener noreffer ">Virtual Entities</a>.</p>
+<p>The standard solution comes with many <strong>out-of-the-box entities</strong> available to synchronize. This has been one of the great improvements since Dual-write was made available in preview, when <a href="https://jatomas.com/" target="_blank" rel="noopener noreffer ">Juanan</a> and I <a href="https://www.youtube.com/watch?v=z_dLGDF7Ci0" target="_blank" rel="noopener noreffer ">demoed it in the 2019 Dynamics Saturday in Madrid</a>.</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/03/DW-1024x1024.png" title="Dual write" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/03/DW-1024x1024.png" data-sub-html="<h2>Develop custom Data Entities for Dual-write 1</h2><p>Dual write</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/03/DW-1024x1024.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/03/DW-1024x1024.png, https://static.ariste.info/wp-content/uploads/2021/03/DW-1024x1024.png 1.5x, https://static.ariste.info/wp-content/uploads/2021/03/DW-1024x1024.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/03/DW-1024x1024.png" />
+    </a><figcaption class="image-caption">Develop custom Data Entities for Dual-write 1</figcaption>
+    </figure></p>
+<p>This is how Dual write really works</p>
+<p>But what if we need to develop a <strong>new custom Data Entity in MSDyn365FO</strong> and use it in Dual-write? It’s easy but there’s some things we need to remember when doing it.</p>
+<h2 id="httpsaristeinfoen202103develop-custom-data-entities-dual-writedual-writedual-write"><a href="https://ariste.info/en/2021/03/develop-custom-data-entities-dual-write/#dual-write" target="_blank" rel="noopener noreffer "></a>Dual-write</h2>
+<p><a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/dual-write/dual-write-home-page?WT.mc_id=BA-MVP-5003976" target="_blank" rel="noopener noreffer ">Dual-write</a> is a bidirectional integration that will synchronously write in Dataverse when data is created, updated or deleted in MSDyn365FO in near-real-time. On the Finance and Operations side it uses data entities to export data to Dataverse.</p>
+<p>Right now there’s a set of several OOB entities that come ready to be synchronized, and thanks to <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/dual-write/initial-sync-guidance?WT.mc_id=BA-MVP-5003976" target="_blank" rel="noopener noreffer ">Initial Sync</a> we can populate data in Dataverse choosing FnO as the source when starting the sync, or also choose Dataverse as the source.</p>
+<p>If you want to learn more about Dual-write you can:</p>
+<ul>
+<li>Read <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/dual-write/dual-write-home-page?WT.mc_id=BA-MVP-5003976" target="_blank" rel="noopener noreffer ">the docs</a> which have plenty of information. <strong>Read the docs</strong>. Always.</li>
+<li><a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/dual-write/connection-setup?WT.mc_id=BA-MVP-5003976" target="_blank" rel="noopener noreffer ">Guidance for Dual-Write setup</a></li>
+<li><a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/dual-write/requirements-and-prerequisites?WT.mc_id=BA-MVP-5003976" target="_blank" rel="noopener noreffer ">System requirements and prerequisites</a></li>
+<li>Watch some of <a href="https://daxture.blogspot.com/" target="_blank" rel="noopener noreffer ">Faisal Fareed</a>‘s sessions about Dual-write: <a href="https://dynamicscon.com/" target="_blank" rel="noopener noreffer ">DynamicsCon</a> 2020: <a href="https://www.youtube.com/watch?v=DbyLLQswM5o" target="_blank" rel="noopener noreffer ">The Power of Dual-write</a> or Scottish Summit 2021: <a href="https://www.youtube.com/watch?v=O2iuM6dWklI" target="_blank" rel="noopener noreffer ">D365 FO integration with Dataverse – Dual write, Virtual Entities, OR Data Integrator</a>. He’s got some more which you can find on Youtube.</li>
+</ul>
+<h2 id="httpsaristeinfoen202103develop-custom-data-entities-dual-writecreate-the-data-entitycreate-the-data-entity"><a href="https://ariste.info/en/2021/03/develop-custom-data-entities-dual-write/#create-the-data-entity" target="_blank" rel="noopener noreffer "></a>Create the Data-entity</h2>
+<p>In Visual Studio we need to create the entity from our table. I’ve created a new table called AASBookTable with just four fields: BookId, Author, Name and ISBN. Its primary key is the BookId field which is also its <strong>alternate key</strong> and will be used as natural key in the entity.</p>
+<p>Next, we create the data entity and make sure we’re marking the “<strong>Enable data management capabilities</strong>” checkbox:</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/03/DW1.png" title="Dynamics 365 Finance and Operations Data entity wizard" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/03/DW1.png" data-sub-html="<h2>Develop custom Data Entities for Dual-write 2</h2><p>Dynamics 365 Finance and Operations Data entity wizard</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/03/DW1.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/03/DW1.png, https://static.ariste.info/wp-content/uploads/2021/03/DW1.png 1.5x, https://static.ariste.info/wp-content/uploads/2021/03/DW1.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/03/DW1.png" />
+    </a><figcaption class="image-caption">Develop custom Data Entities for Dual-write 2</figcaption>
+    </figure></p>
+<p>Enable data management capabilities must be checked</p>
+<p>If the entity doesn’t have data management enabled it won’t be displayed in the list in the Dual-write tables setup.</p>
+<h2 id="httpsaristeinfoen202103develop-custom-data-entities-dual-writecreate-a-table-in-dataversecreate-a-table-in-dataverse"><a href="https://ariste.info/en/2021/03/develop-custom-data-entities-dual-write/#create-a-table-in-dataverse" target="_blank" rel="noopener noreffer "></a>Create a table in Dataverse</h2>
+<p>Now we need to create a table in our Dataverse environment. This table must have at least some of the fields we want to synchronize to Dataverse <strong>AND</strong> a company field. <strong>The <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/dual-write/company-data?WT.mc_id=BA-MVP-5003976" target="_blank" rel="noopener noreffer ">company</a> concept doesn’t exist in Dataverse/CRM</strong> but thanks to the OOB mappings and <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/dual-write/initial-sync-guidance?WT.mc_id=BA-MVP-5003976" target="_blank" rel="noopener noreffer ">Initial Sync</a> we can solve this with just a few clicks and will have a company table in Dataverse with all our FnO legal entities.</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/03/DW2.png" title="Company field related to table company" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/03/DW2.png" data-sub-html="<h2>Develop custom Data Entities for Dual-write 3</h2><p>Company field related to table company</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/03/DW2.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/03/DW2.png, https://static.ariste.info/wp-content/uploads/2021/03/DW2.png 1.5x, https://static.ariste.info/wp-content/uploads/2021/03/DW2.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/03/DW2.png" />
+    </a><figcaption class="image-caption">Develop custom Data Entities for Dual-write 3</figcaption>
+    </figure></p>
+<p>Company field related to table company</p>
+<p>Following my example I’ve created a table with the same four fields and a company field with the <strong>data type Lookup</strong> and its related table Company, where the FnO legal entities are synchronized.</p>
+<p>As I said, if we don’t create this field we won-t be able to setup Dual-write for this table.</p>
+<h2 id="httpsaristeinfoen202103develop-custom-data-entities-dual-writecreate-table-mapcreate-table-map"><a href="https://ariste.info/en/2021/03/develop-custom-data-entities-dual-write/#create-table-map" target="_blank" rel="noopener noreffer "></a>Create table map</h2>
+<p>Our table and data entity are ready, and now <strong>we need to <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/dual-write/enable-entity-map?WT.mc_id=BA-MVP-5003976" target="_blank" rel="noopener noreffer ">create a mapping</a> between them</strong> in the Dual-write workspace in FnO. Click the “Add table map” button:</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/03/DW3.png" title="Dynamics 365 Dual-write add table map" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/03/DW3.png" data-sub-html="<h2>Develop custom Data Entities for Dual-write 4</h2><p>Dynamics 365 Dual-write add table map</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/03/DW3.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/03/DW3.png, https://static.ariste.info/wp-content/uploads/2021/03/DW3.png 1.5x, https://static.ariste.info/wp-content/uploads/2021/03/DW3.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/03/DW3.png" />
+    </a><figcaption class="image-caption">Develop custom Data Entities for Dual-write 4</figcaption>
+    </figure></p>
+<p>Dynamics 365 Dual-write add table map</p>
+<p>A new dialog will open and we need to select the FnO entity and the Dataverse table:</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/03/DW4-edited.png" title="Entity map" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/03/DW4-edited.png" data-sub-html="<h2>Develop custom Data Entities for Dual-write 5</h2><p>Entity map</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/03/DW4-edited.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/03/DW4-edited.png, https://static.ariste.info/wp-content/uploads/2021/03/DW4-edited.png 1.5x, https://static.ariste.info/wp-content/uploads/2021/03/DW4-edited.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/03/DW4-edited.png" />
+    </a><figcaption class="image-caption">Develop custom Data Entities for Dual-write 5</figcaption>
+    </figure></p>
+<p>Entity map</p>
+<p>Select the entity and table we’ve created and click save. Then we can define the field mapping:</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/03/DW13-1024x629.png" title="Dynamics 365 Dual-write field maps" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/03/DW13-1024x629.png" data-sub-html="<h2>Develop custom Data Entities for Dual-write 6</h2><p>Dynamics 365 Dual-write field maps</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/03/DW13-1024x629.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/03/DW13-1024x629.png, https://static.ariste.info/wp-content/uploads/2021/03/DW13-1024x629.png 1.5x, https://static.ariste.info/wp-content/uploads/2021/03/DW13-1024x629.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/03/DW13-1024x629.png" />
+    </a><figcaption class="image-caption">Develop custom Data Entities for Dual-write 6</figcaption>
+    </figure></p>
+<p>Dynamics 365 Dual-write field maps</p>
+<p>Because I’ve created both it’s clear what to map. And after doing this we can click save and it’s done, right? No! <strong>WRONG</strong>! If we do just this we’ll get an error, this error:</p>
+<blockquote>
+<p>Project validation failed. SourceEntitySchema: Books has a primaryCompanyField set to DataAreaId and DestinationEntitySchema: cr008_bookses doesn’t have primary company field set. Dual-write only supports mapping between cross-company entities or company-specific entities from both sides..keys are missing for either AX or CRM.keys are missing for either CRM or AX</p>
+</blockquote>
+<p>Or we can also get an error regarding a missing integration key for the company field. In the end both are caused because <strong>we’ve missed defining the integration key</strong> for this new Dataverse table:</p>
+<h2 id="httpsaristeinfoen202103develop-custom-data-entities-dual-writeintegration-keyintegration-key"><a href="https://ariste.info/en/2021/03/develop-custom-data-entities-dual-write/#integration-key" target="_blank" rel="noopener noreffer "></a>Integration key</h2>
+<p>Go back to the main Dual-write form and click on the “Integration key” button:</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/03/DW7.png" title="Dual/write integration key" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/03/DW7.png" data-sub-html="<h2>Develop custom Data Entities for Dual-write 7</h2><p>Dual/write integration key</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/03/DW7.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/03/DW7.png, https://static.ariste.info/wp-content/uploads/2021/03/DW7.png 1.5x, https://static.ariste.info/wp-content/uploads/2021/03/DW7.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/03/DW7.png" />
+    </a><figcaption class="image-caption">Develop custom Data Entities for Dual-write 7</figcaption>
+    </figure></p>
+<p>Dual-write integration key</p>
+<p>The integration key will be <strong>the same as the FnO data entity key, plus the company</strong> if your data entity has a company context. Remember that when we create indexes in FnO the DataAreaId field isn’t included in the field, but it is in the SQL Server index along the partition field.</p>
+<p>The integration key for our custom Dual-write mapping will look like this:</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/03/DW11.png" title="Dual/write integration key" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/03/DW11.png" data-sub-html="<h2>Develop custom Data Entities for Dual-write 8</h2><p>Dual/write integration key</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/03/DW11.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/03/DW11.png, https://static.ariste.info/wp-content/uploads/2021/03/DW11.png 1.5x, https://static.ariste.info/wp-content/uploads/2021/03/DW11.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/03/DW11.png" />
+    </a><figcaption class="image-caption">Develop custom Data Entities for Dual-write 8</figcaption>
+    </figure></p>
+<p>Dual/write integration key</p>
+<p>Remember we’ve added the company field to our Dataverse table? You can see in the image above that the field includes the relation to the Company table in Dataverse. We won’t be able to save the field mapping if we create the key using our Dataverse table’s company field instead of its Company table relation, like this:</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/03/DW9.png" title="Dual/write integration key" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/03/DW9.png" data-sub-html="<h2>Develop custom Data Entities for Dual-write 9</h2><p>Dual/write integration key</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/03/DW9.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/03/DW9.png, https://static.ariste.info/wp-content/uploads/2021/03/DW9.png 1.5x, https://static.ariste.info/wp-content/uploads/2021/03/DW9.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/03/DW9.png" />
+    </a><figcaption class="image-caption">Develop custom Data Entities for Dual-write 9</figcaption>
+    </figure></p>
+<p>Dual/write integration key</p>
+<p>See the difference? In the first image the field reads <em>c008_company.cdm_companycode</em> while in the second one it’s <em>c008_company</em>. If we set the integration key using the field in our table instead of the related table and save the fields’ mapping we’ll get an error saying the company is missing in the key because it’s expecting the relation!</p>
+<h2 id="httpsaristeinfoen202103develop-custom-data-entities-dual-writeactionaction"><a href="https://ariste.info/en/2021/03/develop-custom-data-entities-dual-write/#action" target="_blank" rel="noopener noreffer "></a>Action!</h2>
+<p>The table and field mappings are ready, just click run and go create a new book in the FnO form:</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/03/DW14.png" title="Finance and Operations form" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/03/DW14.png" data-sub-html="<h2>Develop custom Data Entities for Dual-write 10</h2><p>Finance and Operations form</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/03/DW14.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/03/DW14.png, https://static.ariste.info/wp-content/uploads/2021/03/DW14.png 1.5x, https://static.ariste.info/wp-content/uploads/2021/03/DW14.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/03/DW14.png" />
+    </a><figcaption class="image-caption">Develop custom Data Entities for Dual-write 10</figcaption>
+    </figure></p>
+<p>Finance and Operations form</p>
+<p>Then we go to our Dataverse table and check its data…</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/03/DW15.png" title="Dataverse table data" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/03/DW15.png" data-sub-html="<h2>Develop custom Data Entities for Dual-write 11</h2><p>Dataverse table data</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/03/DW15.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/03/DW15.png, https://static.ariste.info/wp-content/uploads/2021/03/DW15.png 1.5x, https://static.ariste.info/wp-content/uploads/2021/03/DW15.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/03/DW15.png" />
+    </a><figcaption class="image-caption">Develop custom Data Entities for Dual-write 11</figcaption>
+    </figure></p>
+<p>Dataverse table data</p>
+<p>It’s there! And of course it’s working in both directions. If I create a record in Dataverse it’ll be created in FnO too. I’ll use the Excel add-in to add a new book:</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/03/DW16.png" title="Dataverse Excel add-in" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/03/DW16.png" data-sub-html="<h2>Develop custom Data Entities for Dual-write 12</h2><p>Dataverse Excel add-in</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/03/DW16.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/03/DW16.png, https://static.ariste.info/wp-content/uploads/2021/03/DW16.png 1.5x, https://static.ariste.info/wp-content/uploads/2021/03/DW16.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/03/DW16.png" />
+    </a><figcaption class="image-caption">Develop custom Data Entities for Dual-write 12</figcaption>
+    </figure></p>
+<p>Dataverse Excel add-in</p>
+<p>And after refreshing the form in FnO we can see it there too:</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/03/DW17.png" title="Develop custom Data Entities for Dual-write 1" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/03/DW17.png" data-sub-html="<h2>Develop custom Data Entities for Dual-write 13</h2><p>Develop custom Data Entities for Dual-write 1</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/03/DW17.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/03/DW17.png, https://static.ariste.info/wp-content/uploads/2021/03/DW17.png 1.5x, https://static.ariste.info/wp-content/uploads/2021/03/DW17.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/03/DW17.png" />
+    </a><figcaption class="image-caption">Develop custom Data Entities for Dual-write 13</figcaption>
+    </figure></p>
+<p>This is a really simple example of how we can create a custom table, use it in a data entity and then use this entity in our dual-write setup. It’s something that can be easily done but we need to <strong>remember the “company thing”</strong>, otherwise this will never work!</p>
+<p>Dual-write is even easier to configure nowadays thanks to <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/dual-write/lcs-setup?WT.mc_id=BA-MVP-5003976" target="_blank" rel="noopener noreffer ">LCS allowing us to create and link a new Dataverse environment when we deploy a new Finance and Operations environment</a>.</p>
+</div><div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Have a nice day!</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2013 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://nuxulu.com/about" target="_blank">Max Nguyen</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="https://https-dynamics365-github-io.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":300},"comment":{},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'UA-57379422-3', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-57379422-3" async></script></body>
+</html>

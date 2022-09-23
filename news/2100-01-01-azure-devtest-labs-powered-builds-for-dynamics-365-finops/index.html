@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Azure DevTest Labs powered builds for Dynamics 365 FinOps - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><meta name="Description" content="Dynamics 365 Finance &amp; Operations"><meta property="og:title" content="Azure DevTest Labs powered builds for Dynamics 365 FinOps" />
+<meta property="og:description" content="This post has been written thanks to Joris de Gruyter‘s session in the past DynamicsCon: Azure Devops Automation for Finance and Operations Like You’ve Never Seen! And there’s also been some investigation and (a lot of) trial-and-error from my side until everything has been working.
+Azure DevTest Labs powered builds for Dynamics 365 FnO 1Configuring the build VM in Azure DevTest Labs
+If you want to know more about builds, releases, and the Dev ALM of Dynamics 365 you can read my full guide on MSDyn365 &amp; Azure DevOps ALM." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nuxulu.com/news/2100-01-01-azure-devtest-labs-powered-builds-for-dynamics-365-finops/" /><meta property="og:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/><meta property="article:section" content="news" />
+<meta property="article:published_time" content="2021-05-03T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-12-05T01:36:35+07:00" /><meta property="og:site_name" content="Dynamics 365 Finance &amp; Operations" />
+<meta property="og:see_also" content="https://nuxulu.com/news/2100-01-01-data-entity-tips/" /><meta property="og:see_also" content="https://nuxulu.com/news/2100-01-01-lcs-api-database-movement-with-powerautomate/" /><meta property="og:see_also" content="https://nuxulu.com/news/2100-01-01-develop-custom-data-entities-for-dual-write/" /><meta property="og:see_also" content="https://nuxulu.com/news/2100-01-01-dynamics-365-for-finance--operations-and-azure-devops/" /><meta property="og:see_also" content="https://nuxulu.com/news/2100-01-01-automate-your-tests-for-dynamics-365-finance/" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/>
+
+<meta name="twitter:title" content="Azure DevTest Labs powered builds for Dynamics 365 FinOps"/>
+<meta name="twitter:description" content="This post has been written thanks to Joris de Gruyter‘s session in the past DynamicsCon: Azure Devops Automation for Finance and Operations Like You’ve Never Seen! And there’s also been some investigation and (a lot of) trial-and-error from my side until everything has been working.
+Azure DevTest Labs powered builds for Dynamics 365 FnO 1Configuring the build VM in Azure DevTest Labs
+If you want to know more about builds, releases, and the Dev ALM of Dynamics 365 you can read my full guide on MSDyn365 &amp; Azure DevOps ALM."/>
+<meta name="application-name" content="Dynamics 365 Finance &amp; Operations">
+<meta name="apple-mobile-web-app-title" content="Dynamics 365 Finance &amp; Operations"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://nuxulu.com/news/2100-01-01-azure-devtest-labs-powered-builds-for-dynamics-365-finops/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="f08c47fec0942fa0" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Azure DevTest Labs powered builds for Dynamics 365 FinOps",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/nuxulu.com\/news\/2100-01-01-azure-devtest-labs-powered-builds-for-dynamics-365-finops\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/nuxulu.com\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "news","wordcount":  4469 ,
+        "url": "https:\/\/nuxulu.com\/news\/2100-01-01-azure-devtest-labs-powered-builds-for-dynamics-365-finops\/","datePublished": "2021-05-03T00:00:00+00:00","dateModified": "2021-12-05T01:36:35+07:00","license": "copyright text","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/nuxulu.com\/images\/avatar.png",
+                    "width":  528 ,
+                    "height":  560 
+                }},"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3534873375492458" crossorigin="anonymous"></script>
+            <a href="/" title="Dynamics 365 Finance &amp; Operations | nuxulu.com"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/Icon/favicon-32x32.png"
+        data-srcset="/Icon/favicon-32x32.png, /Icon/favicon-32x32.png 1.5x, /Icon/favicon-32x32.png 2x"
+        data-sizes="auto"
+        alt="/Icon/favicon-32x32.png"
+        title="/Icon/favicon-32x32.png" /><span class="header-title-pre">  </span>Dynamics 365 Finance &amp; Operations</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/finopsnews/"> X&#43;&#43; Feed </a><a class="menu-item" href="/ERD/default.htm"> Dynamics AX ERD </a><a class="menu-item" href="/posts/index.xml"> Rss Feed </a><a class="menu-item" href="/about/"> About me </a><a class="menu-item" href="/series/" title="Series post"> Series post </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3534873375492458" crossorigin="anonymous"></script>
+                <a href="/" title="Dynamics 365 Finance &amp; Operations | nuxulu.com"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/Icon/favicon-32x32.png"
+        data-srcset="/Icon/favicon-32x32.png, /Icon/favicon-32x32.png 1.5x, /Icon/favicon-32x32.png 2x"
+        data-sizes="auto"
+        alt="/Icon/favicon-32x32.png"
+        title="/Icon/favicon-32x32.png" /><span class="header-title-pre">  </span>Dynamics 365 Finance &amp; Operations</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/finopsnews/" title="">X&#43;&#43; Feed</a><a class="menu-item" href="/ERD/default.htm" title="">Dynamics AX ERD</a><a class="menu-item" href="/posts/index.xml" title="">Rss Feed</a><a class="menu-item" href="/about/" title="">About me</a><a class="menu-item" href="/series/" title="Series post">Series post</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animate__animated animate__pulse animate__faster">Azure DevTest Labs powered builds for Dynamics 365 FinOps</h1><div class="content" id="content"><p><strong>This post has been written thanks to <a href="https://twitter.com/jorisdg" target="_blank" rel="noopener noreffer ">Joris de Gruyter</a>‘s session in the past <a href="https://dynamicscon.com/" target="_blank" rel="noopener noreffer ">DynamicsCon</a></strong>: <a href="https://www.youtube.com/watch?v=VIib-m6Q8LQ" target="_blank" rel="noopener noreffer ">Azure Devops Automation for Finance and Operations Like You’ve Never Seen!</a> And there’s also been some investigation and (a lot of) trial-and-error from my side until everything has been working.</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/01/adtl-1024x1024.png" title="Azure DevTest Labs" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/01/adtl-1024x1024.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 1</h2><p>Azure DevTest Labs</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/01/adtl-1024x1024.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/01/adtl-1024x1024.png, https://static.ariste.info/wp-content/uploads/2021/01/adtl-1024x1024.png 1.5x, https://static.ariste.info/wp-content/uploads/2021/01/adtl-1024x1024.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/01/adtl-1024x1024.png" />
+    </a><figcaption class="image-caption">Azure DevTest Labs powered builds for Dynamics 365 FnO 1</figcaption>
+    </figure></p>
+<p>Configuring the build VM in Azure DevTest Labs</p>
+<p>If you want to know more about builds, releases, and the Dev ALM of Dynamics 365 you can read my full guide on <a href="https://ariste.info/en/msdyn365-azure-devops-alm/" target="_blank" rel="noopener noreffer ">MSDyn365 &amp; Azure DevOps ALM</a>.</p>
+<h2 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnobut-firstbut-first"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#but-first" target="_blank" rel="noopener noreffer "></a>But first…</h2>
+<p>What I’m showing in this post is not a perfect blueprint. There’s a high probability that if you try exactly the same as I do here, you won’t get the same result. But it’s a good guide to get started and do some investigation on your own and learn.</p>
+<h2 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnoazure-devtest-labsazure-devtest-labs"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#azure-devtest-labs" target="_blank" rel="noopener noreffer "></a>Azure DevTest Labs</h2>
+<p><a href="https://azure.microsoft.com/en-us/services/devtest-lab?WT.mc_id=BA-MVP-5003976" target="_blank" rel="noopener noreffer ">Azure DevTest Labs</a> is an Azure tool/service that allows us to <strong>deploy virtual machines and integrate them with Azure DevOps pipelines</strong>, and many other things, but what I’m going to explain is just the VM and pipeline part.</p>
+<p>What will I show in this post? How to <strong>prepare a Dynamics 365 Finance and Operations VHD image to be used as the base to create a build virtual machine from an Azure DevOps pipeline</strong>, build our codebase, synchronize the DB, run tests, even deploy the reports, generate the deployable package and delete the VM.</p>
+<h2 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnogetting-and-preparing-the-vhdgetting-and-preparing-the-vhd"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#getting-and-preparing-the-vhd" target="_blank" rel="noopener noreffer "></a>Getting and preparing the VHD</h2>
+<p>This is by far the most tedious part of all the process because you need to download 11 ZIP files from LCS’ Shared Asset Library, and we all know how fast things download from LCS.</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2020/12/fast.png" title="LCS download speed" data-thumbnail="https://static.ariste.info/wp-content/uploads/2020/12/fast.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 2</h2><p>LCS download speed</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2020/12/fast.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2020/12/fast.png, https://static.ariste.info/wp-content/uploads/2020/12/fast.png 1.5x, https://static.ariste.info/wp-content/uploads/2020/12/fast.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2020/12/fast.png" />
+    </a><figcaption class="image-caption">Azure DevTest Labs powered builds for Dynamics 365 FnO 2</figcaption>
+    </figure></p>
+<p>How is LCS download speed?</p>
+<p>And to speed it up we can create a blob storage account on Azure and once more turn to <a href="https://mobile.twitter.com/splaxi" target="_blank" rel="noopener noreffer ">Mötz Jensen</a>‘s <a href="https://github.com/d365collaborative/d365fo.tools" target="_blank" rel="noopener noreffer ">d365fo.tools</a> and use the Invoke-D365AzCopyTransfer cmdlet. Just go to LCS, click on the “Generate SAS link” button for each file, use it as the source parameter in the command and your blob SAS URL as the destination one. Once you have all the files in your blob you can download them to your local PC at a good speed.</p>
+<p>Once you’ve unzipped the VHD you need to change it from Dynamic to Fixed using this PowerShell command:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="line"><span class="cl"><span class="nb">Convert-VHD</span> <span class="err">–</span><span class="n">Path</span> <span class="n">VHDLOCATION</span><span class="p">.</span><span class="n">vhd</span> <span class="err">–</span><span class="n">DestinationPath</span> <span class="n">NEWVHD</span><span class="p">.</span><span class="n">vhd</span> <span class="err">–</span><span class="n">VHDType</span> <span class="n">Fixed</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The reason is <strong>you can’t create an Azure VM from a dynamically-sized VHD</strong>. And it took me several attempts to notice this 🙂</p>
+<h2 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocreate-a-devtest-labs-accountcreate-a-devtest-labs-account"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#create-a-devtest-labs-account" target="_blank" rel="noopener noreffer "></a>Create a DevTest Labs account</h2>
+<p>To do this part <strong>you need an Azure account</strong>. If you don’t have one you can <a href="https://azure.microsoft.com/en-us/free?WT.mc_id=BA-MVP-5003976" target="_blank" rel="noopener noreffer ">sign up for a free Azure account</a> with a credit of 180 Euros (200 US Dollars) to be spent during 30 days, plus many other free services during 12 months.</p>
+<p>Search for DevTest Labs in the top bar and create a new DevTest Lab. Once it’s created open the details and you should see something like this:</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2020/12/DevTest1.png" title="Azure DevTest Labs" data-thumbnail="https://static.ariste.info/wp-content/uploads/2020/12/DevTest1.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 3</h2><p>Azure DevTest Labs</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2020/12/DevTest1.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2020/12/DevTest1.png, https://static.ariste.info/wp-content/uploads/2020/12/DevTest1.png 1.5x, https://static.ariste.info/wp-content/uploads/2020/12/DevTest1.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2020/12/DevTest1.png" />
+    </a><figcaption class="image-caption">Azure DevTest Labs powered builds for Dynamics 365 FnO 3</figcaption>
+    </figure></p>
+<p>Azure DevTest Labs</p>
+<p>Click on the “Configuration and policies” menu item at the bottom of the list and scroll down in the menu until you see the “Virtual machine bases” section:</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2020/12/DevTest2.png" title="DevTest Labs custom VHD image" data-thumbnail="https://static.ariste.info/wp-content/uploads/2020/12/DevTest2.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 4</h2><p>DevTest Labs custom VHD image</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2020/12/DevTest2.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2020/12/DevTest2.png, https://static.ariste.info/wp-content/uploads/2020/12/DevTest2.png 1.5x, https://static.ariste.info/wp-content/uploads/2020/12/DevTest2.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2020/12/DevTest2.png" />
+    </a><figcaption class="image-caption">Azure DevTest Labs powered builds for Dynamics 365 FnO 4</figcaption>
+    </figure></p>
+<p>DevTest Labs custom image</p>
+<p>And now comes the second funniest part of the process: <strong>we need to upload the 130GB VHD image to a blob storage account</strong>! So, click the “Add” button on top and in the new dialog that will open click the “Upload a VHD using PowerShell”. This will generate a PowerShell script to upload the VHD to the DevTest Labs blob. For example:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="line"><span class="cl"><span class="cm">&lt;#
+</span></span></span><span class="line"><span class="cl"><span class="cm">Generated script to upload a local VHD to Azure.
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">WARNING: The destination will be publicly available for 24 hours, after which it will expire.
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm"> Ensure you complete your upload by then.
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">Run the following command in a Azure PowerShell console after entering
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">the LocalFilePath to your VHD.
+</span></span></span><span class="line"><span class="cl"><span class="cm">#&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">Add-AzureRmVhd</span> <span class="p">\</span><span class="n">-Destination</span> <span class="s2">&#34;https://YOURBLOB.blob.core.windows.net/uploads/tempImage.vhd?sv=2019-07-07&amp;st=2020-12-27T09%3A08%3A26Z&amp;se=2020-12-28T09%3A23%3A26Z&amp;sr=b&amp;sp=rcw&amp;sig=YTeXpxpVEJdSM7KZle71w8NVw9oznNizSnYj8Q3hngI%3D&#34;</span> <span class="p">\</span><span class="n">-LocalFilePath</span> <span class="s2">&#34;&lt;Enter VHD location here&gt;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2020/12/DevTest3.png" title="DevTest Labs custom image upload" data-thumbnail="https://static.ariste.info/wp-content/uploads/2020/12/DevTest3.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 5</h2><p>DevTest Labs custom image upload</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2020/12/DevTest3.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2020/12/DevTest3.png, https://static.ariste.info/wp-content/uploads/2020/12/DevTest3.png 1.5x, https://static.ariste.info/wp-content/uploads/2020/12/DevTest3.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2020/12/DevTest3.png" />
+    </a><figcaption class="image-caption">Azure DevTest Labs powered builds for Dynamics 365 FnO 5</figcaption>
+    </figure></p>
+<p>DevTest Labs custom image upload</p>
+<p>An alternative to this is using the Azure Storage Explorer as you can see in the image on the left.</p>
+<p>You should upload the VHD to the uploads blob.</p>
+<p>Any of these methods is good to upload the VHD and I don’t really know which one is faster.</p>
+<p>Once the VHD is uploaded open the “Custom images” option again and you should see the VHD in the drop-down:</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2020/12/DevTest4.png" title="DevTest Labs custom image" data-thumbnail="https://static.ariste.info/wp-content/uploads/2020/12/DevTest4.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 6</h2><p>DevTest Labs custom image</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2020/12/DevTest4.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2020/12/DevTest4.png, https://static.ariste.info/wp-content/uploads/2020/12/DevTest4.png 1.5x, https://static.ariste.info/wp-content/uploads/2020/12/DevTest4.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2020/12/DevTest4.png" />
+    </a><figcaption class="image-caption">Azure DevTest Labs powered builds for Dynamics 365 FnO 6</figcaption>
+    </figure></p>
+<p>DevTest Labs custom image</p>
+<p>Give the image a name and click OK.</p>
+<p>What we have now is the <strong>base for a Dynamics 365 Finance and Operations dev VM</strong> which we need to prepare to use it as a build VM.</p>
+<h2 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocreating-the-vmcreating-the-vm"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#creating-the-vm" target="_blank" rel="noopener noreffer "></a>Creating the VM</h2>
+<p>We’ve got the essential, a VHD ready to be used as a base to create a virtual machine in Azure. Our next step is finding a way to make the deployment of this VM <strong>predictable and automated</strong>. We will attain this thanks to <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/overview?WT.mc_id=BA-MVP-5003976" target="_blank" rel="noopener noreffer ">Azure ARM templates</a>.</p>
+<p>Go back to your DevTest Labs overview page and click the “Add” button, on the “Choose base” page select the base you’ve just created, and on the next screen click on the “Add or Remove Artifacts” link:</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2020/12/DevTest5.png" title="Add artifacts to the VM" data-thumbnail="https://static.ariste.info/wp-content/uploads/2020/12/DevTest5.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 7</h2><p>Add artifacts to the VM</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2020/12/DevTest5.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2020/12/DevTest5.png, https://static.ariste.info/wp-content/uploads/2020/12/DevTest5.png 1.5x, https://static.ariste.info/wp-content/uploads/2020/12/DevTest5.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2020/12/DevTest5.png" />
+    </a><figcaption class="image-caption">Azure DevTest Labs powered builds for Dynamics 365 FnO 7</figcaption>
+    </figure></p>
+<p>Add artifacts to the VM</p>
+<p>Search for <strong>WinRM</strong>, select “Configure WinRM”, and on the next screen enter “Shared IP address” as the hostname box and click “Add”.</p>
+<p><strong>Note</strong>: if when the VM runs the artifacts can’t be installed check whether the <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/extensions/agent-windows?WT.mc_id=BA-MVP-5003976#manual-installation" target="_blank" rel="noopener noreffer ">Azure VM Agent</a> is installed on the base VHD. Thanks to Joris for pointing this out!</p>
+<h3 id="51-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnoconfigure-azure-devops-agent-serviceconfigure-azure-devops-agent-service">5.1. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#configure-azure-devops-agent-service" target="_blank" rel="noopener noreffer "></a>Configure Azure DevOps Agent Service</h3>
+<h3 id="52-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooption-a-use-an-artifactoption-a-use-an-artifact">5.2. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#option-a-use-an-artifact" target="_blank" rel="noopener noreffer "></a>Option A: use an artifact</h3>
+<p><strong>Update</strong>: thanks to <strong><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#comment-7107" target="_blank" rel="noopener noreffer ">Florian Hopfner</a></strong> for reminding me this because I forgot… If you choose Option A to install the agent service you need to do some things first!</p>
+<p>The first thing we need to do is running some PowerShell scripts that create registry entries and environment variables in the VM, go to C:\DynamicsSDK and run these:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="line"><span class="cl"><span class="nb">Import-Module</span> <span class="p">$(</span><span class="nb">Join-Path</span> <span class="p">\</span><span class="n">-Path</span> <span class="s2">&#34;C:\\DynamicsSDK&#34;</span> <span class="p">\</span><span class="n">-ChildPath</span> <span class="s2">&#34;DynamicsSDKCommon.psm1&#34;</span><span class="p">)</span> <span class="p">\</span><span class="n">-Function</span> <span class="s2">&#34;Write-Message&#34;</span><span class="p">,</span> <span class="s2">&#34;Set-AX7SdkRegistryValues&#34;</span><span class="p">,</span> <span class="s2">&#34;Set-AX7SdkEnvironmentVariables&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Set</span><span class="p">\</span><span class="n">-AX7SdkEnvironmentVariables</span> <span class="p">\</span><span class="n">-DynamicsSDK</span> <span class="s2">&#34;C:\\DynamicsSDK&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Set</span><span class="p">\</span><span class="n">-AX7SdkRegistryValues</span> <span class="p">\</span><span class="n">-DynamicsSDK</span> <span class="s2">&#34;c:\\DynamicsSDK&#34;</span> <span class="p">\</span><span class="n">-TeamFoundationServerUrl</span> <span class="s2">&#34;https://dev.azure.com/YOUR\_ORG&#34;</span> <span class="p">\</span><span class="n">-AosWebsiteName</span> <span class="nv">$AosWebsiteName</span> <span class="s2">&#34;AosService&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The first one will load the functions and make them available in the command-line and the other two create the registry entries and environment variables.</p>
+<p>Now we need to <strong>add an artifact for the Azure DevOps agent service</strong>. This will configure the agent service on the VM each time the VM is deployed. Search for “Azure Pipelines Agent” and click it. You will see this:</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/01/DevTest1-311x1024.png" title="DevTest Labs Azure DevOps Agent" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/01/DevTest1-311x1024.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 8</h2><p>DevTest Labs Azure DevOps Agent</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/01/DevTest1-311x1024.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/01/DevTest1-311x1024.png, https://static.ariste.info/wp-content/uploads/2021/01/DevTest1-311x1024.png 1.5x, https://static.ariste.info/wp-content/uploads/2021/01/DevTest1-311x1024.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/01/DevTest1-311x1024.png" />
+    </a><figcaption class="image-caption">Azure DevTest Labs powered builds for Dynamics 365 FnO 8</figcaption>
+    </figure></p>
+<p>DevTest Labs Azure DevOps Agent</p>
+<p>We need to fill some information:</p>
+<p>On “<strong>Azure DevOps Organization Name</strong>” you need to provide the name of your organization. For example if your AZDO URL is <a href="https://dev.azure.com/blackbeltcorp" target="_blank" rel="noopener noreffer ">https://dev.azure.com/blackbeltcorp</a> you need to use blackbeltcorp.</p>
+<p>On “<strong>AZDO Personal Access Token</strong>” you need to provide a token generated from AZDO.</p>
+<p>On “<strong>Agent Name</strong>” give your agent a name, like DevTestAgent. And on “Agent Pool” a name for your pool, a new like DevTestPool or an existing one as Default.</p>
+<p>On “<strong>Account Name</strong>” use the same user that we’ll use in our pipeline later. Remember this. And on “<strong>Account Password</strong>” its password. Using secrets with a KeyVault is better, but I won’t explain this here.</p>
+<p>And, finally, set “<strong>Replace Agent</strong>” to true.</p>
+<h3 id="53-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooption-b-configure-azure-devops-agent-in-the-vmoption-b-configure-azure-devops-agent-in-the-vm">5.3. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#option-b-configure-azure-devops-agent-in-the-vm" target="_blank" rel="noopener noreffer "></a>Option B: Configure Azure DevOps Agent in the VM</h3>
+<p>To do this you have to create a VM from the base image you created before and then go to C:\DynamicsSDK and run the SetupBuildAgent script with the needed parameters:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="line"><span class="cl"><span class="n">SetupBuildAgent</span><span class="p">.</span><span class="n">ps1</span> <span class="p">\</span><span class="n">-VSO</span><span class="p">\</span><span class="n">_ProjectCollection</span> <span class="s2">&#34;https://dev.azure.com/YOUR\_ORG&#34;</span> <span class="p">\</span><span class="n">-ServiceAccountName</span> <span class="s2">&#34;myUser&#34;</span> <span class="p">\</span><span class="n">-ServiceAccountPassword</span> <span class="s2">&#34;mYPassword&#34;</span> <span class="p">\</span><span class="n">-AgentName</span> <span class="s2">&#34;DevTestAgent&#34;</span> <span class="p">\</span><span class="n">-AgentPoolName</span> <span class="s2">&#34;DevTestPool&#34;</span> <span class="p">\</span><span class="n">-VSOAccessToken</span> <span class="s2">&#34;YOUR\_VSTS\_TOKEN&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>WARNING</strong>: If you choose option B you must create a new base image from the VM where you’ve run the script. Then repeat the WinRM steps to generate the new ARM template which we’ll see next.</p>
+<h3 id="54-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnoarm-templatearm-template">5.4. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#arm-template" target="_blank" rel="noopener noreffer "></a>ARM template</h3>
+<p>Then go to the “Advanced Settings” tab and click the “<strong>View ARM template</strong>” button:</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2020/12/DevTest6.png" title="Get the ARM template" data-thumbnail="https://static.ariste.info/wp-content/uploads/2020/12/DevTest6.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 9</h2><p>Get the ARM template</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2020/12/DevTest6.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2020/12/DevTest6.png, https://static.ariste.info/wp-content/uploads/2020/12/DevTest6.png 1.5x, https://static.ariste.info/wp-content/uploads/2020/12/DevTest6.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2020/12/DevTest6.png" />
+    </a><figcaption class="image-caption">Azure DevTest Labs powered builds for Dynamics 365 FnO 9</figcaption>
+    </figure></p>
+<p>Get the ARM template</p>
+<p>This will display the ARM template to create the VM from our pipeline. It’s something like this:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span><span class="lnt">214
+</span><span class="lnt">215
+</span><span class="lnt">216
+</span><span class="lnt">217
+</span><span class="lnt">218
+</span><span class="lnt">219
+</span><span class="lnt">220
+</span><span class="lnt">221
+</span><span class="lnt">222
+</span><span class="lnt">223
+</span><span class="lnt">224
+</span><span class="lnt">225
+</span><span class="lnt">226
+</span><span class="lnt">227
+</span><span class="lnt">228
+</span><span class="lnt">229
+</span><span class="lnt">230
+</span><span class="lnt">231
+</span><span class="lnt">232
+</span><span class="lnt">233
+</span><span class="lnt">234
+</span><span class="lnt">235
+</span><span class="lnt">236
+</span><span class="lnt">237
+</span><span class="lnt">238
+</span><span class="lnt">239
+</span><span class="lnt">240
+</span><span class="lnt">241
+</span><span class="lnt">242
+</span><span class="lnt">243
+</span><span class="lnt">244
+</span><span class="lnt">245
+</span><span class="lnt">246
+</span><span class="lnt">247
+</span><span class="lnt">248
+</span><span class="lnt">249
+</span><span class="lnt">250
+</span><span class="lnt">251
+</span><span class="lnt">252
+</span><span class="lnt">253
+</span><span class="lnt">254
+</span><span class="lnt">255
+</span><span class="lnt">256
+</span><span class="lnt">257
+</span><span class="lnt">258
+</span><span class="lnt">259
+</span><span class="lnt">260
+</span><span class="lnt">261
+</span><span class="lnt">262
+</span><span class="lnt">263
+</span><span class="lnt">264
+</span><span class="lnt">265
+</span><span class="lnt">266
+</span><span class="lnt">267
+</span><span class="lnt">268
+</span><span class="lnt">269
+</span><span class="lnt">270
+</span><span class="lnt">271
+</span><span class="lnt">272
+</span><span class="lnt">273
+</span><span class="lnt">274
+</span><span class="lnt">275
+</span><span class="lnt">276
+</span><span class="lnt">277
+</span><span class="lnt">278
+</span><span class="lnt">279
+</span><span class="lnt">280
+</span><span class="lnt">281
+</span><span class="lnt">282
+</span><span class="lnt">283
+</span><span class="lnt">284
+</span><span class="lnt">285
+</span><span class="lnt">286
+</span><span class="lnt">287
+</span><span class="lnt">288
+</span><span class="lnt">289
+</span><span class="lnt">290
+</span><span class="lnt">291
+</span><span class="lnt">292
+</span><span class="lnt">293
+</span><span class="lnt">294
+</span><span class="lnt">295
+</span><span class="lnt">296
+</span><span class="lnt">297
+</span><span class="lnt">298
+</span><span class="lnt">299
+</span><span class="lnt">300
+</span><span class="lnt">301
+</span><span class="lnt">302
+</span><span class="lnt">303
+</span><span class="lnt">304
+</span><span class="lnt">305
+</span><span class="lnt">306
+</span><span class="lnt">307
+</span><span class="lnt">308
+</span><span class="lnt">309
+</span><span class="lnt">310
+</span><span class="lnt">311
+</span><span class="lnt">312
+</span><span class="lnt">313
+</span><span class="lnt">314
+</span><span class="lnt">315
+</span><span class="lnt">316
+</span><span class="lnt">317
+</span><span class="lnt">318
+</span><span class="lnt">319
+</span><span class="lnt">320
+</span><span class="lnt">321
+</span><span class="lnt">322
+</span><span class="lnt">323
+</span><span class="lnt">324
+</span><span class="lnt">325
+</span><span class="lnt">326
+</span><span class="lnt">327
+</span><span class="lnt">328
+</span><span class="lnt">329
+</span><span class="lnt">330
+</span><span class="lnt">331
+</span><span class="lnt">332
+</span><span class="lnt">333
+</span><span class="lnt">334
+</span><span class="lnt">335
+</span><span class="lnt">336
+</span><span class="lnt">337
+</span><span class="lnt">338
+</span><span class="lnt">339
+</span><span class="lnt">340
+</span><span class="lnt">341
+</span><span class="lnt">342
+</span><span class="lnt">343
+</span><span class="lnt">344
+</span><span class="lnt">345
+</span><span class="lnt">346
+</span><span class="lnt">347
+</span><span class="lnt">348
+</span><span class="lnt">349
+</span><span class="lnt">350
+</span><span class="lnt">351
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;$schema&#34;</span><span class="p">:</span> <span class="s">&#34;https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;contentVersion&#34;</span><span class="p">:</span> <span class="s">&#34;1.0.0.0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;parameters&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;newVMName&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;aariste001&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;labName&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;aristeinfo&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;size&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;Standard\_B4ms&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;userName&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;myUser&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;password&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;securestring&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;\[\[\[VmPassword\]\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;Configure\_WinRM\_hostName&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;Public IP address&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;Azure\_Pipelines\_Agent\_vstsAccount&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;ariste&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;Azure\_Pipelines\_Agent\_vstsPassword&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;securestring&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;Azure\_Pipelines\_Agent\_agentName&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;DevTestAgent&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;Azure\_Pipelines\_Agent\_agentNameSuffix&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;Azure\_Pipelines\_Agent\_poolName&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;DevTestPool&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;Azure\_Pipelines\_Agent\_RunAsAutoLogon&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;bool&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="k">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;Azure\_Pipelines\_Agent\_windowsLogonAccount&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;aariste&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;Azure\_Pipelines\_Agent\_windowsLogonPassword&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;securestring&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;Azure\_Pipelines\_Agent\_driveLetter&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;C&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;Azure\_Pipelines\_Agent\_workDirectory&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s">&#34;DevTestAgent&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;Azure\_Pipelines\_Agent\_replaceAgent&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;bool&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="k">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;variables&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;labSubnetName&#34;</span><span class="p">:</span> <span class="s">&#34;\[concat(variables(&#39;labVirtualNetworkName&#39;), &#39;Subnet&#39;)\]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;labVirtualNetworkId&#34;</span><span class="p">:</span> <span class="s">&#34;\[resourceId(&#39;Microsoft.DevTestLab/labs/virtualnetworks&#39;, parameters(&#39;labName&#39;), variables(&#39;labVirtualNetworkName&#39;))\]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;labVirtualNetworkName&#34;</span><span class="p">:</span> <span class="s">&#34;\[concat(&#39;Dtl&#39;, parameters(&#39;labName&#39;))\]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;vmId&#34;</span><span class="p">:</span> <span class="s">&#34;\[resourceId (&#39;Microsoft.DevTestLab/labs/virtualmachines&#39;, parameters(&#39;labName&#39;), parameters(&#39;newVMName&#39;))\]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;vmName&#34;</span><span class="p">:</span> <span class="s">&#34;\[concat(parameters(&#39;labName&#39;), &#39;/&#39;, parameters(&#39;newVMName&#39;))\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;resources&#34;</span><span class="p">:</span> <span class="err">\</span><span class="p">[</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;apiVersion&#34;</span><span class="p">:</span> <span class="s">&#34;2018-10-15-preview&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;Microsoft.DevTestLab/labs/virtualmachines&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;\[variables(&#39;vmName&#39;)\]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;location&#34;</span><span class="p">:</span> <span class="s">&#34;\[resourceGroup().location\]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;properties&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;labVirtualNetworkId&#34;</span><span class="p">:</span> <span class="s">&#34;\[variables(&#39;labVirtualNetworkId&#39;)\]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;notes&#34;</span><span class="p">:</span> <span class="s">&#34;Dynamics365FnO10013AgentLessV2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;customImageId&#34;</span><span class="p">:</span> <span class="s">&#34;/subscriptions/6715778f-c852-453d-b6bb-907ac34f280f/resourcegroups/devtestlabs365/providers/microsoft.devtestlab/labs/devtestd365/customimages/dynamics365fno10013agentlessv2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;size&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;size&#39;)\]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;userName&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;userName&#39;)\]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;password&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;password&#39;)\]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;isAuthenticationWithSshKey&#34;</span><span class="p">:</span> <span class="k">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;artifacts&#34;</span><span class="p">:</span> <span class="err">\</span><span class="p">[</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;artifactId&#34;</span><span class="p">:</span> <span class="s">&#34;\[resourceId(&#39;Microsoft.DevTestLab/labs/artifactSources/artifacts&#39;, parameters(&#39;labName&#39;), &#39;public repo&#39;, &#39;windows-winrm&#39;)\]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;parameters&#34;</span><span class="p">:</span> <span class="err">\</span><span class="p">[</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;hostName&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Configure\_WinRM\_hostName&#39;)\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="err">\</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;artifactId&#34;</span><span class="p">:</span> <span class="s">&#34;\[resourceId(&#39;Microsoft.DevTestLab/labs/artifactSources/artifacts&#39;, parameters(&#39;labName&#39;), &#39;public repo&#39;, &#39;windows-vsts-build-agent&#39;)\]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;parameters&#34;</span><span class="p">:</span> <span class="err">\</span><span class="p">[</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;vstsAccount&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_vstsAccount&#39;)\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;vstsPassword&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_vstsPassword&#39;)\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;agentName&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_agentName&#39;)\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;agentNameSuffix&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_agentNameSuffix&#39;)\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;poolName&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_poolName&#39;)\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;RunAsAutoLogon&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_RunAsAutoLogon&#39;)\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;windowsLogonAccount&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_windowsLogonAccount&#39;)\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;windowsLogonPassword&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_windowsLogonPassword&#39;)\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;driveLetter&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_driveLetter&#39;)\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;workDirectory&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_workDirectory&#39;)\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;name&#34;</span><span class="p">:</span> <span class="s">&#34;replaceAgent&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[parameters(&#39;Azure\_Pipelines\_Agent\_replaceAgent&#39;)\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="err">\</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="err">\</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;labSubnetName&#34;</span><span class="p">:</span> <span class="s">&#34;\[variables(&#39;labSubnetName&#39;)\]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;disallowPublicIpAddress&#34;</span><span class="p">:</span> <span class="k">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;storageType&#34;</span><span class="p">:</span> <span class="s">&#34;Premium&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;allowClaim&#34;</span><span class="p">:</span> <span class="k">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;networkInterface&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;sharedPublicIpAddressConfiguration&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;inboundNatRules&#34;</span><span class="p">:</span> <span class="err">\</span><span class="p">[</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;transportProtocol&#34;</span><span class="p">:</span> <span class="s">&#34;tcp&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;backendPort&#34;</span><span class="p">:</span> <span class="m">3389</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="err">\</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="err">\</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;outputs&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;labVMId&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;type&#34;</span><span class="p">:</span> <span class="s">&#34;string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;value&#34;</span><span class="p">:</span> <span class="s">&#34;\[variables(&#39;vmId&#39;)\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>NOTE</strong>: if you’re using option B you won’t have the artifact node for the VSTS agent.</p>
+<p>This JSON file will be used as the base to create our VMs from the Azure DevOps pipeline. This is known as <a href="https://docs.microsoft.com/en-us/azure/devops/learn/what-is-infrastructure-as-code?WT.mc_id=BA-MVP-5003976" target="_blank" rel="noopener noreffer ">Infrastructure as Code</a> (IaC) and it’s a way of defining our infrastructure in a file as it were code. It’s another part of the DevOps practice that should solve the “it works on my machine” issue.</p>
+<p>If we take a look to the JSON’s parameters node there’s the following information:</p>
+<ul>
+<li>newVMName and labName will be the name of the VM and the DevTest Labs lab we’re using. The VM name is not really important because we’ll set the name later in the pipeline.</li>
+<li>size is the VM size, a D3 V2 in the example above, but we can change it and will do it later.</li>
+<li>userName &amp; passWord will be the credentials to access the VM and must be the same we’ve used to configure the Azure DevOps agent.</li>
+<li>Configure_WinRM_hostName is the artifact we added to the VM template that will allow the pipelines to run in this machine.</li>
+</ul>
+<p>To do it faster and for demo purposes I’m using a plain text password in the ARM template, changing the password node to something like this:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="s2">&#34;password&#34;</span><span class="err">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="nt">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s2">&#34;yourPassword&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">}</span><span class="err">,</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>I will do the same with all the <em>secureString</em> nodes, but you shouldn’t and should instead use an Azure KeyVault which comes with the DevTest Labs account.</p>
+<p>Of course <strong>you would never upload this template to Azure DevOps with a password in plain text</strong>. There’s plenty of resources online that teach how to use parameters, Azure KeyVault, etc. to accomplish this, for example this one: <a href="https://devkimchi.com/2019/04/24/6-ways-passing-secrets-to-arm-templates/" target="_blank" rel="noopener noreffer ">6 Ways Passing Secrets to ARM Templates</a>.</p>
+<p>OK, now grab that file and save it to your Azure DevOps repo. I’ve created a folder in my repo’s root called ARM where I’m saving all the ARM templates:</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs2.png" title="ARM templates on Azure DevOps" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs2.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 10</h2><p>ARM templates on Azure DevOps</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs2.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs2.png, https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs2.png 1.5x, https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs2.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs2.png" />
+    </a><figcaption class="image-caption">Azure DevTest Labs powered builds for Dynamics 365 FnO 10</figcaption>
+    </figure></p>
+<p>ARM templates on Azure DevOps</p>
+<h2 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnopreparing-the-vmpreparing-the-vm"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#preparing-the-vm" target="_blank" rel="noopener noreffer "></a>Preparing the VM</h2>
+<p>The VHD image you download can be used as a developer VM with no additional work, just run Visual Studio, connect it to your AZDO project and done. But if you want to use it as a build box you need to do several things first.</p>
+<p>Remember that the default user and password for these VHDs are Administrator and Pass@word1.</p>
+<h3 id="61-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnodisable-servicesdisable-services">6.1. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#disable-services" target="_blank" rel="noopener noreffer "></a>Disable services</h3>
+<p>First of all we will stop and disable services like the Batch, Management Reporter, SSAS, SSIS, etc. Anything you see that’s not needed to run a build.</p>
+<h3 id="62-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocreate-a-new-sql-usercreate-a-new-sql-user">6.2. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#create-a-new-sql-user" target="_blank" rel="noopener noreffer "></a>Create a new SQL user</h3>
+<p>Open <a href="https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15&amp;WT.mc_id=BA-MVP-5003976" target="_blank" rel="noopener noreffer ">SSMS</a> (as an Administrator) and create a new SQL user as a copy of the axdbadmin one. Then open the web.config file and update the DB user and password to use the one you’ve just created.</p>
+<h3 id="63-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnoprepare-ssrs-optionalprepare-ssrs-optional">6.3. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#prepare-ssrs-optional" target="_blank" rel="noopener noreffer "></a>Prepare SSRS (optional)</h3>
+<p>If you want to deploy reports as part of your build pipeline you need to go to SSMS again (and as an Admin again), and open a new query in the reporting DB to execute the following query:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">exec</span><span class="w"> </span><span class="n">DeleteEncryptedContent</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="64-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnopowershell-scriptspowershell-scripts">6.4. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#powershell-scripts" target="_blank" rel="noopener noreffer "></a>PowerShell Scripts</h3>
+<p>The default build definition that runs on a build VM uses several PowerShell scripts to run some tasks. I’m adding an additional script called PrepareForAgent.</p>
+<p>The scripts can be found in the C:\DynamicsSDK folder of the VM.</p>
+<h4 id="641-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnoprepareforbuildprepareforbuild">6.4.1. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#prepareforbuild" target="_blank" rel="noopener noreffer "></a>PrepareForBuild</h4>
+<p>This script comes with the VM and <strong>we need to modify it</strong> to avoid one thing: the PackagesLocalDirectory backup which is usually done in the first build. We need to get rid of this or we’ll waste around an hour per run until the files are copied.</p>
+<p>We don’t need this because our VM will be new each time we run the pipeline!</p>
+<p>So open the script, go to line 696 and look for this piece of code:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">\</span><span class="c"># Create packages backup (if it does not exist).</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$NewBackupCreated</span> <span class="p">\=</span> <span class="nb">Backup-AX7Packages</span> <span class="p">\</span><span class="n">-BackupPath</span> <span class="nv">$PackagesBackupPath</span> <span class="p">\</span><span class="n">-DeploymentPackagesPath</span> <span class="nv">$DeploymentPackagesPath</span> <span class="p">\</span><span class="n">-LogLocation</span> <span class="nv">$LogLocation</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">\</span><span class="c"># Restore packages backup (unless a new backup was just created).</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(!</span><span class="nv">$NewBackupCreated</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="nb">Restore-AX7Packages</span> <span class="p">\</span><span class="n">-BackupPath</span> <span class="nv">$PackagesBackupPath</span> <span class="p">\</span><span class="n">-DeploymentPackagesPath</span> <span class="nv">$DeploymentPackagesPath</span> <span class="p">\</span><span class="n">-LogLocation</span> <span class="nv">$LogLocation</span> <span class="p">\</span><span class="n">-RestoreAllFiles</span><span class="err">:</span><span class="nv">$RestorePackagesAllFiles</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(!</span><span class="nv">$DatabaseBackupToRestore</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="nv">$DatabaseBackupPath</span> <span class="p">\=</span> <span class="nb">Get-BackupPath</span> <span class="p">\</span><span class="n">-Purpose</span> <span class="s2">&#34;Databases&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="nb">Backup-AX7Database</span> <span class="p">\</span><span class="n">-BackupPath</span> <span class="nv">$DatabaseBackupPath</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="p">\</span><span class="c"># Restore a database backup (if specified).</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="nb">Restore-AX7Database</span> <span class="p">\</span><span class="n">-DatabaseBackupToRestore</span> <span class="nv">$DatabaseBackupToRestore</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>We need to modify it until we end up with this:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nv">$DatabaseBackupToRestore</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="nb">Restore-AX7Database</span> <span class="p">\</span><span class="n">-DatabaseBackupToRestore</span> <span class="nv">$DatabaseBackupToRestore</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>We just need the DB restore part and skip the backup, otherwise we’ll be losing 45 minutes in each run for something we don’t need because the VM will be deleted when the build is completed.</p>
+<h3 id="65-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooptional-but-recommended-install-d365fo-toolsoptional-but-recommended-install-d365fotoolshttpsgithubcomd365collaboratived365fotools">6.5. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#optional-but-recommended-install-d365fo-tools" target="_blank" rel="noopener noreffer "></a><strong>Optional (but recommended)</strong>: install <a href="https://github.com/d365collaborative/d365fo.tools" target="_blank" rel="noopener noreffer ">d365fo.tools</a></h3>
+<p>Just run this:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="line"><span class="cl"><span class="nb">Install-Module</span> <span class="p">\</span><span class="n">-Name</span> <span class="n">d365fo</span><span class="p">.</span><span class="n">tools</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>We can use the tools to do a module sync, partial sync or deploy just our reports instead of all.</p>
+<h2 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocreate-a-new-imagecreate-a-new-image"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#create-a-new-image" target="_blank" rel="noopener noreffer "></a>Create a new image</h2>
+<p>Once we’ve done all these prepare steps we can log out of this VM and stop it. <strong>Do not delete it yet!</strong> Go to “Create custom image”, give the new image a name, select “I have not generalized this virtual machine” and click the “OK” button.</p>
+<p>This will generate a new image that you can use as a base image with all the changes you’ve done to the original VHD.</p>
+<h2 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnoazure-devops-pipelinesazure-devops-pipelines"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#azure-devops-pipelines" target="_blank" rel="noopener noreffer "></a>Azure DevOps Pipelines</h2>
+<p>We’re ready to setup our new build pipeline in Azure DevOps. This pipeline will consist of three steps: create a new VM, run all the build steps, and delete the VM:</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs4.png" title="Azure DevTest Labs powered builds for Dynamics 365 FnO 1" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs4.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 11</h2><p>Azure DevTest Labs powered builds for Dynamics 365 FnO 1</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs4.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs4.png, https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs4.png 1.5x, https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs4.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs4.png" />
+    </a><figcaption class="image-caption">Azure DevTest Labs powered builds for Dynamics 365 FnO 11</figcaption>
+    </figure></p>
+<p>First of all check that your pipeline runs on Azure pipelines (aka Azure-hosted):</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/01/image-2.png" title="DevTest Labs Azure Pipelines" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/01/image-2.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 12</h2><p>DevTest Labs Azure Pipelines</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/01/image-2.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/01/image-2.png, https://static.ariste.info/wp-content/uploads/2021/01/image-2.png 1.5x, https://static.ariste.info/wp-content/uploads/2021/01/image-2.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/01/image-2.png" />
+    </a><figcaption class="image-caption">Azure DevTest Labs powered builds for Dynamics 365 FnO 12</figcaption>
+    </figure></p>
+<p>DevTest Labs Azure Pipelines</p>
+<p>The create and delete steps will run on the Azure Pipelines pool. The build step will run on our DevTestLabs pool, or the name you gave it when configuring the artifact on DevTest Labs or the script on the VM.</p>
+<h3 id="81-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocreate-azure-devtest-labs-vmcreate-azure-devtest-labs-vm">8.1. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#create-azure-devtest-labs-vm" target="_blank" rel="noopener noreffer "></a>Create Azure DevTest Labs VM</h3>
+<p>Create a new pipeline and choose the “Use the classic editor” option. Make sure you’ve selected TFVC as your source and click “Continue” and “Empty job”. Add a new task to the pipeline, look for “Azure DevTest Labs Create VM”. We just need to fill in the missing parameters with our subscription, lab, etc.</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs5.png" title="Create VM Azure DevTest Labs" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs5.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 13</h2><p>Create VM Azure DevTest Labs</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs5.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs5.png, https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs5.png 1.5x, https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs5.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/01/DevTestLabs5.png" />
+    </a><figcaption class="image-caption">Azure DevTest Labs powered builds for Dynamics 365 FnO 13</figcaption>
+    </figure></p>
+<p>Create VM Azure DevTest Labs</p>
+<p>Remember this step must run on the Azure-hosted pipeline.</p>
+<h3 id="82-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnobuildbuild">8.2. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#build" target="_blank" rel="noopener noreffer "></a>Build</h3>
+<p>This is an easy one. Just export a working pipeline and import it. And this step needs to run on your self-hosted pool:</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/01/image-3.png" title="Runs on self-hosted pool" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/01/image-3.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 14</h2><p>Runs on self-hosted pool</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/01/image-3.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/01/image-3.png, https://static.ariste.info/wp-content/uploads/2021/01/image-3.png 1.5x, https://static.ariste.info/wp-content/uploads/2021/01/image-3.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/01/image-3.png" />
+    </a><figcaption class="image-caption">Azure DevTest Labs powered builds for Dynamics 365 FnO 14</figcaption>
+    </figure></p>
+<p>Runs on self-hosted pool</p>
+<h4 id="821-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooptional-use-selectivesync-not-recommended-see-next-optionoptional-use-selectivesync-not-recommended-see-next-option">8.2.1. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#optional-use-selectivesync-not-recommended-see-next-option" target="_blank" rel="noopener noreffer "></a>Optional: use SelectiveSync (not recommended, see next option)</h4>
+<p>You can replace the Database Sync task for a PowerShell script that will only sync the tables in your models:</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/01/image-9.png" title="SelectiveSync.ps1" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/01/image-9.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 15</h2><p>SelectiveSync.ps1</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/01/image-9.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/01/image-9.png, https://static.ariste.info/wp-content/uploads/2021/01/image-9.png 1.5x, https://static.ariste.info/wp-content/uploads/2021/01/image-9.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/01/image-9.png" />
+    </a><figcaption class="image-caption">Azure DevTest Labs powered builds for Dynamics 365 FnO 15</figcaption>
+    </figure></p>
+<p>SelectiveSync.ps1</p>
+<p>Thanks Joris for the tip!</p>
+<h4 id="822-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooptional-use-d365fo-tools-to-sync-your-packages-modelsoptional-use-d365fotools-to-sync-your-packagesmodels">8.2.2. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#optional-use-d365fo-tools-to-sync-your-packages-models" target="_blank" rel="noopener noreffer "></a>Optional: use d365fo.tools to sync your packages/models</h4>
+<p>This is a better option than the SelectiveSync above. You can synchronize your packages or models only to gain some time. This cmdlet uses sync.exe like Visual Studio does and should be better than SelectiveSync.</p>
+<p>Add a new PowerShell task, select Inline Script and this is the command:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="line"><span class="cl"><span class="nb">Invoke-D365DbSyncModule</span> <span class="p">\</span><span class="n">-Module</span> <span class="s2">&#34;Module1&#34;</span><span class="p">,</span> <span class="s2">&#34;Module2&#34;</span> <span class="p">\</span><span class="n">-ShowOriginalProgress</span> <span class="p">\</span><span class="n">-Verbose</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="823-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnooptional-use-d365fo-tools-to-deploy-ssrs-reportsoptional-use-d365fotools-to-deploy-ssrs-reports">8.2.3. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#optional-use-d365fo-tools-to-deploy-ssrs-reports" target="_blank" rel="noopener noreffer "></a>Optional: use d365fo.tools to deploy SSRS reports</h4>
+<p>If you really want to add the report deployment step to your pipeline you can save some more extra time using <a href="https://github.com/d365collaborative/d365fo.tools" target="_blank" rel="noopener noreffer ">d365fo.tools</a> and just deploy the reports in your models like we’ve done with the DB sync.</p>
+<p>Run this in a new PowerShell task to do it:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-PowerShell" data-lang="PowerShell"><span class="line"><span class="cl"><span class="nb">Publish-D365SsrsReport</span> <span class="p">\</span><span class="n">-Module</span> <span class="n">YOUR</span><span class="p">\</span><span class="n">_MODULE</span> <span class="p">\</span><span class="n">-ReportName</span> <span class="p">\*</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="83-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnodelete-azure-devtest-labs-vmdelete-azure-devtest-labs-vm">8.3. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#delete-azure-devtest-labs-vm" target="_blank" rel="noopener noreffer "></a>Delete Azure DevTest Labs VM</h3>
+<p>It’s almost the same as the create step, complete the subscription, lab and VM fields and done:</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/01/image.png" title="Delete VM" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/01/image.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 16</h2><p>Delete VM</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/01/image.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/01/image.png, https://static.ariste.info/wp-content/uploads/2021/01/image.png 1.5x, https://static.ariste.info/wp-content/uploads/2021/01/image.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/01/image.png" />
+    </a><figcaption class="image-caption">Azure DevTest Labs powered builds for Dynamics 365 FnO 16</figcaption>
+    </figure></p>
+<p>Delete VM</p>
+<p>And this step, like the create one, will run on the Azure-hosted agent.</p>
+<h3 id="84-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnodependencies-and-conditionsdependencies-and-conditions">8.4. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#dependencies-and-conditions" target="_blank" rel="noopener noreffer "></a>Dependencies and conditions</h3>
+<p>When all three steps are configured we need to add dependencies and conditions to some of them. For example, to make sure that the delete VM step runs when the build step fails, but it doesn’t when the create VM step fails.</p>
+<h4 id="841-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnobuildbuild">8.4.1. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#build" target="_blank" rel="noopener noreffer "></a>Build</h4>
+<p>The build step depends on the create VM step, and will only run if the previous step succeeds:</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/01/image-4.png" title="Build step dependencies and conditions" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/01/image-4.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 17</h2><p>Build step dependencies and conditions</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/01/image-4.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/01/image-4.png, https://static.ariste.info/wp-content/uploads/2021/01/image-4.png 1.5x, https://static.ariste.info/wp-content/uploads/2021/01/image-4.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/01/image-4.png" />
+    </a><figcaption class="image-caption">Azure DevTest Labs powered builds for Dynamics 365 FnO 17</figcaption>
+    </figure></p>
+<p>Build step dependencies and conditions</p>
+<h4 id="842-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnodelete-vmdelete-vm">8.4.2. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#delete-vm" target="_blank" rel="noopener noreffer "></a>Delete VM</h4>
+<p>The delete step depends on all previous steps and must run when the create VM step succeeds. If the create step fails there’s no VM and we don’t need to delete it:</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/01/image-5.png" title="Dependencies and conditions on delete VM step" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/01/image-5.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 18</h2><p>Dependencies and conditions on delete VM step</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/01/image-5.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/01/image-5.png, https://static.ariste.info/wp-content/uploads/2021/01/image-5.png 1.5x, https://static.ariste.info/wp-content/uploads/2021/01/image-5.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/01/image-5.png" />
+    </a><figcaption class="image-caption">Azure DevTest Labs powered builds for Dynamics 365 FnO 18</figcaption>
+    </figure></p>
+<p>Dependencies and conditions on delete VM step</p>
+<p>This is the custom condition we’ll use:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">and(always(), eq(dependencies.Job\_1.status, &#39;Succeeded&#39;))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>If you need to know your first step’s job name just export the pipeline to YAML and you’ll find it there:</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/01/image-6.png" title="Export pipeline to YAML" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/01/image-6.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 19</h2><p>Export pipeline to YAML</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/01/image-6.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/01/image-6.png, https://static.ariste.info/wp-content/uploads/2021/01/image-6.png 1.5x, https://static.ariste.info/wp-content/uploads/2021/01/image-6.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/01/image-6.png" />
+    </a><figcaption class="image-caption">Azure DevTest Labs powered builds for Dynamics 365 FnO 19</figcaption>
+    </figure></p>
+<p>Export pipeline to YAML</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/01/image-7.png" title="Job name on YAML" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/01/image-7.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 20</h2><p>Job name on YAML</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/01/image-7.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/01/image-7.png, https://static.ariste.info/wp-content/uploads/2021/01/image-7.png 1.5x, https://static.ariste.info/wp-content/uploads/2021/01/image-7.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/01/image-7.png" />
+    </a><figcaption class="image-caption">Azure DevTest Labs powered builds for Dynamics 365 FnO 20</figcaption>
+    </figure></p>
+<p>Job name on YAML</p>
+<p>If this step fails when the pipeline is run, wait to delete the VM manually, first change the VM name in the delete step, save your pipeline and then use the dropdown to show the VMs in the selected subscription, and save the pipeline.</p>
+<h2 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnorun-the-buildrun-the-build"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#run-the-build" target="_blank" rel="noopener noreffer "></a>Run the build</h2>
+<p>And, I think, we’re done and ready to run our Azure DevTest Labs pipeline for Dynamics 365 Finance and Operations… click “Run pipeline” and wait…</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/01/image-10-382x1024.png" title="Azure DevTest Labs powered builds for Dynamics 365 FnO 2" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/01/image-10-382x1024.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 21</h2><p>Azure DevTest Labs powered builds for Dynamics 365 FnO 2</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/01/image-10-382x1024.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/01/image-10-382x1024.png, https://static.ariste.info/wp-content/uploads/2021/01/image-10-382x1024.png 1.5x, https://static.ariste.info/wp-content/uploads/2021/01/image-10-382x1024.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/01/image-10-382x1024.png" />
+    </a><figcaption class="image-caption">Azure DevTest Labs powered builds for Dynamics 365 FnO 21</figcaption>
+    </figure></p>
+<p>Tadaaaa!!</p>
+<h2 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnotimestimes"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#times" target="_blank" rel="noopener noreffer "></a>Times</h2>
+<p>The pipeline from the image above is one with real code from a customer but I can’t compare the times with the Azure-hosted builds because there’s no sync, or tests there. Regarding the build time the Azure-hosted takes one minute less, but it needs to install the nugets first.</p>
+<p>But for example this is a comparison I did:</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/01/B2msVSB4ms.png" title="Azure DevTest Labs B2ms vs B4ms" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/01/B2msVSB4ms.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 22</h2><p>Azure DevTest Labs B2ms vs B4ms</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/01/B2msVSB4ms.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/01/B2msVSB4ms.png, https://static.ariste.info/wp-content/uploads/2021/01/B2msVSB4ms.png 1.5x, https://static.ariste.info/wp-content/uploads/2021/01/B2msVSB4ms.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/01/B2msVSB4ms.png" />
+    </a><figcaption class="image-caption">Azure DevTest Labs powered builds for Dynamics 365 FnO 22</figcaption>
+    </figure></p>
+<p>Azure DevTest Labs B2ms vs B4ms</p>
+<p>It takes around 1 hour to create the VM, build, do a full DB synch, deploy reports, run tests, generate a Deployable Package and, finally, delete the VM:</p>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/01/Full.jpg" title="Azure DevTest Labs powered builds for Dynamics 365 FnO 3" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/01/Full.jpg" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 23</h2><p>Azure DevTest Labs powered builds for Dynamics 365 FnO 3</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/01/Full.jpg"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/01/Full.jpg, https://static.ariste.info/wp-content/uploads/2021/01/Full.jpg 1.5x, https://static.ariste.info/wp-content/uploads/2021/01/Full.jpg 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/01/Full.jpg" />
+    </a><figcaption class="image-caption">Azure DevTest Labs powered builds for Dynamics 365 FnO 23</figcaption>
+    </figure></p>
+<p>If you skip deploying the SSRS reports your build will run in 15 minutes less, that’s around 45 minutes.</p>
+<p>If you use the partial sync process instead of a full DB sync it’ll be 5-7 minutes less.</p>
+<p>This would leave us with a 35-40 minutes build.</p>
+<h3 id="101-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocomparison-1comparison-1">10.1. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#comparison-1" target="_blank" rel="noopener noreffer "></a>Comparison 1</h3>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/01/Dtcomp1.png" title="Azure DevTest Labs powered builds for Dynamics 365 FnO 4" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/01/Dtcomp1.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 24</h2><p>Azure DevTest Labs powered builds for Dynamics 365 FnO 4</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/01/Dtcomp1.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/01/Dtcomp1.png, https://static.ariste.info/wp-content/uploads/2021/01/Dtcomp1.png 1.5x, https://static.ariste.info/wp-content/uploads/2021/01/Dtcomp1.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/01/Dtcomp1.png" />
+    </a><figcaption class="image-caption">Azure DevTest Labs powered builds for Dynamics 365 FnO 24</figcaption>
+    </figure></p>
+<p>No DB Sync</p>
+<p>The image above shows a simple package being compiled, without any table, so the selective sync goes really fast. The build times improve with VM size.</p>
+<h3 id="102-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocomparison-2comparison-2">10.2. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#comparison-2" target="_blank" rel="noopener noreffer "></a>Comparison 2</h3>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/01/Dtcomp2.png" title="Azure DevTest Labs powered builds for Dynamics 365 FnO 5" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/01/Dtcomp2.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 25</h2><p>Azure DevTest Labs powered builds for Dynamics 365 FnO 5</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/01/Dtcomp2.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/01/Dtcomp2.png, https://static.ariste.info/wp-content/uploads/2021/01/Dtcomp2.png 1.5x, https://static.ariste.info/wp-content/uploads/2021/01/Dtcomp2.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/01/Dtcomp2.png" />
+    </a><figcaption class="image-caption">Azure DevTest Labs powered builds for Dynamics 365 FnO 25</figcaption>
+    </figure></p>
+<p>Same code Full DB Sync</p>
+<p>This one is compiling the same codebase but is doing a full DB sync. The sync time improves in the B4ms VM compared to the B2ms but it’s almost the same in the B8ms. Build times are better for larger VM sizes.</p>
+<h3 id="103-httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnocomparison-3comparison-3">10.3. <a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#comparison-3" target="_blank" rel="noopener noreffer "></a>Comparison 3</h3>
+<p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/01/image-14.png" title="Azure DevTest Labs powered builds for Dynamics 365 FnO 6" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/01/image-14.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 26</h2><p>Azure DevTest Labs powered builds for Dynamics 365 FnO 6</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://static.ariste.info/wp-content/uploads/2021/01/image-14.png"
+            data-srcset="https://static.ariste.info/wp-content/uploads/2021/01/image-14.png, https://static.ariste.info/wp-content/uploads/2021/01/image-14.png 1.5x, https://static.ariste.info/wp-content/uploads/2021/01/image-14.png 2x"
+            data-sizes="auto"
+            alt="https://static.ariste.info/wp-content/uploads/2021/01/image-14.png" />
+    </a><figcaption class="image-caption">Azure DevTest Labs powered builds for Dynamics 365 FnO 26</figcaption>
+    </figure></p>
+<p>Real code + full sync</p>
+<p>And in the image above we see a more realistic build. The codebase is larger and we’re doing a full DB sync.</p>
+<p>Similar as the comparison before there a good enhancement between a B2ms and a B4ms, but not between a B4ms and B8ms.</p>
+<h2 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnoshow-me-the-moneyshow-me-the-money"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#show-me-the-money" target="_blank" rel="noopener noreffer "></a>Show me the money!</h2>
+<p>I think this is the interesting comparison. How did a Tier-1 MS-hosted build VM cost? Around 400€? How does it compare to using the Azure DevTest Labs alternative?</p>
+<p>There’s only one fix cost when using Azure DevTest Labs: the blob storage where the VHD is uploaded. The VHD’s size is around 130GB and this should have a cost of, more or less, 5 euros/month. Keep in mind that <strong>you need to clean up your custom images when yours is prepared</strong>, the new ones are created as snapshots and also take space in the storage account.</p>
+<p>Then we have the variable costs that come with the deployment of a VM each build but it’s just <strong>absurd</strong>. Imagine we’re using a B4ms VM, with a 256GB Premium SSD disk, we would pay 0.18€/hour for the VM plus the proportional part of 35.26€/month of the SSD disk, which would be like 5 cents/hour?</p>
+<p>But this can run on a B2ms VM too which is half the compute price of the VM, down to 9 cents per hour.</p>
+<p>If we run this build once a day each month, 30 times, the cost of a B4ms would be like… 7€? Add the blob storage and we’ll be paying <strong>12€ per month to run our builds with DB sync and tests</strong>.</p>
+<p>Is it cheaper than deploying a cloud-hosted environment, and starting and stopping it using <a href="https://github.com/d365collaborative/d365fo.tools" target="_blank" rel="noopener noreffer ">the new d365fo.tools Cmdlets</a> each time we run the build? <strong>Yes it is!</strong> Because if we deploy a CHE we’ll be paying the price of the SSD disk for the whole month!</p>
+<h2 id="httpsaristeinfoen202102azure-devtest-labs-build-dynamics-365-fnosome-final-remarkssome-final-remarks"><a href="https://ariste.info/en/2021/02/azure-devtest-labs-build-dynamics-365-fno/#some-final-remarks" target="_blank" rel="noopener noreffer "></a>Some final remarks</h2>
+<ol>
+<li>I have accomplished this <strong>mostly through trial-and-error</strong>. There’s lots of enhancements and best practices to be applied to all the process, specially using an <a href="https://docs.microsoft.com/en-us/azure/key-vault/general/overview?WT.mc_id=BA-MVP-5003976" target="_blank" rel="noopener noreffer ">Azure Key Vault</a> to store all the secrets to be used in the Azure DevOps Agent artifact and the pipeline.</li>
+<li>This in another clear example that <a href="https://ariste.info/en/2019/07/do-you-want-to-become-a-better-x-developer/" target="_blank" rel="noopener noreffer ">X++ developers need to step outside of X++</a> and Dynamics 365 FnO. We’re not X++ only developers anymore, we’re very lucky to be working on a product that is using Azure.</li>
+<li>I’m sure there’s scenarios where using DevTest Labs to create a build VM is useful. Maybe not for an implementation partner, but maybe it is for an ISV partner. It’s just an additional option.</li>
+<li>The only bad thing to me is that we need to apply the version upgrades manually to the VHDs because they’re published only twice a year.</li>
+<li>As I said at the beginning of the post, it may have worked to me with all these steps, but if you try you maybe need to change some things. But it’s a good way to start.</li>
+</ol>
+</div><div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Have a nice day!</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2013 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://nuxulu.com/about" target="_blank">Max Nguyen</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="https://https-dynamics365-github-io.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":300},"comment":{},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'UA-57379422-3', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-57379422-3" async></script></body>
+</html>

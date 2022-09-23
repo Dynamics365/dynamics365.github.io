@@ -1,0 +1,93 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>general - Category - Dynamics 365 Finance &amp; Operations | nuxulu.com</title>
+        <link>https://nuxulu.com/categories/general/</link>
+        <description>general - Category - Dynamics 365 Finance &amp; Operations | nuxulu.com</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><copyright>copyright text</copyright><lastBuildDate>Tue, 08 Nov 2016 15:47:00 &#43;0900</lastBuildDate><atom:link href="https://nuxulu.com/categories/general/" rel="self" type="application/rss+xml" /><item>
+    <title>Understanding modifedField() Table method in DAX 2012</title>
+    <link>https://nuxulu.com/2016-11-08-understanding_modifedfield_table_method_in_dax_2012/</link>
+    <pubDate>Tue, 08 Nov 2016 15:47:00 &#43;0900</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2016-11-08-understanding_modifedfield_table_method_in_dax_2012/</guid>
+    <description><![CDATA[<p>Dear all,</p>
+<p>We use <code>modifiedField()</code> method to perform any actions  after the field is modifed</p>
+<p><em>Ex:</em></p>
+<p>Create new table with 2 fields <strong>ItemId</strong> and <strong>ItemNameDisplay</strong>  from Extended Data Types node in AOT then Override <code>modifiedField()</code> in Table&rsquo;s method node, something likes:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">public</span> <span class="kt">void</span> <span class="nf">modifiedField</span><span class="p">(</span><span class="n">FieldId</span> <span class="n">_fieldId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">InventTable</span> <span class="n">inventTable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">super</span><span class="p">(</span><span class="n">_fieldId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">switch</span> <span class="p">(</span><span class="n">_fieldId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="n">fieldNum</span><span class="p">(</span><span class="n">IBD_Invent</span><span class="p">,</span><span class="n">itemid</span><span class="p">)</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">this</span><span class="p">.</span><span class="n">ItemNameDisplay</span> <span class="o">=</span> <span class="n">inventTable</span><span class="o">::</span><span class="n">find</span><span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="n">itemid</span><span class="p">).</span><span class="n">NameAlias</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>the <code>modifiedField()</code> method is located on tables and it is called by a form (or a dataset) when any field is changed. It has field ID as a parameter and therefore it is very easy to write code reacting to a change of a particular field. It is so easy that the <code>modifiedField()</code> method is often used even in such cases, when it really shouldn’t be used.</p>
+<p>If you want to get previous field value in the <code>modifiedField()</code> for comparative purpose, you can use <code>this.orig()</code> method:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">public</span> <span class="kt">void</span> <span class="nf">modifiedField</span><span class="p">(</span><span class="n">fieldId</span> <span class="n">_fieldId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">super</span><span class="p">(</span><span class="n">_fieldId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">info</span><span class="p">(</span><span class="n">strfmt</span><span class="p">(</span><span class="s">&#34;Field number %1 changed from %2 to %3&#34;</span><span class="p">,</span><span class="n">_fieldId</span><span class="p">,</span><span class="n">this</span><span class="p">.</span><span class="n">orig</span><span class="p">().(</span><span class="n">_fieldId</span><span class="p">),</span><span class="n">this</span><span class="p">.(</span><span class="n">_fieldId</span><span class="p">)));</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>]]></description>
+</item>
+<item>
+    <title>Evolution of programming languages</title>
+    <link>https://nuxulu.com/2016-09-06-evolution-of-programming-languages/</link>
+    <pubDate>Tue, 06 Sep 2016 18:47:00 &#43;0900</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2016-09-06-evolution-of-programming-languages/</guid>
+    <description><![CDATA[<p></p>
+<p></p>
+]]></description>
+</item>
+<item>
+    <title>Square License</title>
+    <link>https://nuxulu.com/news/square-license/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/news/square-license/</guid>
+    <description><![CDATA[<p>A license (American English) or licence (British English) is an official permission or permit to do, use, or own something (as well as the document of that permission or permit).</p>
+<p>A license can be granted by a party to another party as an element of an agreement between those parties. A shorthand definition of a license is &ldquo;an authorization to use licensed material.&rdquo;</p>
+<p>In particular, a license may be issued by authorities, to allow an activity that would otherwise be forbidden. It may require paying a fee or proving a capability. The requirement may also serve to keep the authorities informed on a type of activity, and to give them the opportunity to set conditions and limitations.</p>
+<p>A licensor may grant a license under intellectual property laws to authorize a use (such as copying software or using a (patented) invention) to a licensee, sparing the licensee from a claim of infringement brought by the licensor. A license under intellectual property commonly has several components beyond the grant itself, including a term, territory, renewal provisions, and other limitations deemed vital to the licensor.</p>
+<p>Term: many licenses are valid for a particular length of time. This protects the licensor should the value of the license increase, or market conditions change. It also preserves enforceability by ensuring that no license extends beyond the term of the agreement.</p>
+<p>Territory: a license may stipulate what territory the rights pertain to. For example, a license with a territory limited to &ldquo;North America&rdquo; (Mexico/United States/Canada) would not permit a licensee any protection from actions for use in Japan.</p>
+<p>A shorthand definition of license is &ldquo;a promise by the licensor not to sue the licensee&rdquo;. That means without a license any use or exploitation of intellectual property by a third party would amount to copying or infringement. Such copying would be improper and could, by using the legal system, be stopped if the intellectual property owner wanted to do so.</p>
+<p>Intellectual property licensing plays a major role in business, academia and broadcasting. Business practices such as franchising, technology transfer, publication and character merchandising entirely depend on the licensing of intellectual property. Land licensing (proprietary licensing) and IP licensing form sub-branches of law born out of the interplay of general laws of contract and specific principles and statutory laws relating to these respective assets.</p>
+<p>Content from <a href="https://en.wikipedia.org/wiki/License" target="_blank" rel="noopener noreffer ">wikipedia</a>.</p>
+]]></description>
+</item>
+</channel>
+</rss>
