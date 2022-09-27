@@ -1,4 +1,16 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Azure - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://nuxulu.com/tags/azure/</link><description>Azure - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><copyright>copyright text</copyright><lastBuildDate>Tue, 05 Nov 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/azure/" rel="self" type="application/rss+xml"/><item><title>Business events and HTTPs endpoint</title><link>https://nuxulu.com/2019-11-05-business-events-and-https-endpoint/</link><pubDate>Tue, 05 Nov 2019 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2019-11-05-business-events-and-https-endpoint/</guid><description><![CDATA[<p>In Dynamics 365 finance and operations, Business events provide a mechanism that lets external systems receive notifications from FinOps applications. In this way, the systems can perform business actions in response to business events.</p>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Azure - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</title>
+        <link>https://nuxulu.com/tags/azure/</link>
+        <description>Azure - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><copyright>copyright text</copyright><lastBuildDate>Tue, 05 Nov 2019 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/azure/" rel="self" type="application/rss+xml" /><item>
+    <title>Business events and HTTPs endpoint</title>
+    <link>https://nuxulu.com/2019-11-05-business-events-and-https-endpoint/</link>
+    <pubDate>Tue, 05 Nov 2019 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2019-11-05-business-events-and-https-endpoint/</guid>
+    <description><![CDATA[<p>In Dynamics 365 finance and operations, Business events provide a mechanism that lets external systems receive notifications from FinOps applications. In this way, the systems can perform business actions in response to business events.</p>
 <p>There are 3 types of business events: <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/business-events/app-business-events" target="_blank" rel="noopener noreffer ">Application business events</a>, <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/business-events/business-events-workflow" target="_blank" rel="noopener noreffer ">Workflow business events</a>, and <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/business-events/alerts-business-events" target="_blank" rel="noopener noreffer ">Alerts as business events</a>. You can also implement <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/business-events/business-events-dev-doc" target="_blank" rel="noopener noreffer ">a new business event</a>.</p>
 <p>Business events can be consumed using Microsoft Flow and Azure messaging services, and we use endpoint to manage the destinations for sending business events to, Microsoft supports many endpoints: Azure Service Bus Queue, Azure Service Bus Topic, Azure Event Grid, Azure Event Hub, HTTPS, Microsoft Flow.
 In this article I will show how to send business event to HTTPs endpoint that leveraging on Azure functions.</p>
@@ -86,4 +98,7 @@ That&rsquo;s it, now I will create a free text invoice and post it, this is what
 <p>In <strong>BusinessEventsParameters</strong>, the value will be <code>Enabled = 1 , BatchEnabled = 0</code>.
 If you have just upgraded from PU26 to higher version, the Business events are not getting triggered because the value might not be changed in <strong>BusinessEventsParameters</strong> and there is no batch. You should check this table according to the situation.</p>
 <p>Thank you for reading.</p>
-]]></description></item></channel></rss>
+]]></description>
+</item>
+</channel>
+</rss>
