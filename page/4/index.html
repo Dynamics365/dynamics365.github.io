@@ -119,6 +119,18 @@
         alt="https://www.gravatar.com/avatar/5f37503bf3732a71d97f59e3308edea9?s=240&amp;d=mp"
         title="https://www.gravatar.com/avatar/5f37503bf3732a71d97f59e3308edea9?s=240&amp;d=mp" /></a></div><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://linkedin.com/in/luannx" title="LinkedIn" target="_blank" rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw" aria-hidden="true"></i></a><a href="mailto:100max@outlook.com" title="Email" rel="me"><i class="far fa-envelope fa-fw" aria-hidden="true"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw" aria-hidden="true"></i></a></div><h3 class="home-disclaimer">This post is our own opinion and does not necessarily reflect the opinion or view of our companies or Microsoft.</h3></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/2017-08-07-exception-handling-in-dynamics-365-for-finance-and-operation/">Exception Handling in Dynamics 365 For Finance and Operation</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="August 7, 2017">August 7, 2017</time></span></div><div class="content"><p>When we write a code, or make a customization to Dynamics 365 For Operation which is using X++ should make use of Exception Handling to provide some context for the message or a different more useful message. In this article, I will be exploring how I can come up with a uniform way to catch multiple types of exception that can be raised in X++.</p>
+<h3 id="1-exception-type">1. Exception type</h3>
+<p>There are many several types of exception and the type differs depending on what caused the error. Much of exception types are determined by the kernel and are not normally thrown by application code. All <strong>exception types</strong>, however, can be caught, and it is the developers’ responsibility to decide which exceptions need to be handled.</p>
+<p>The exception type is identified using the system-based enumeration called an exception. Because it is a system Enum, it cannot be modified, so users cannot add new exception types.</p>
+<p>The following table shows the exception literals that are the values of the Exception enumeration.</p>
+<figure class='center '>
+  <a href="/imagesposts/2017-08-07_10h00_37.png"><img src="/imagesposts/2017-08-07_10h00_37.png" alt=""></a>
+</figure></div><div class="post-footer">
+        <a href="/2017-08-07-exception-handling-in-dynamics-365-for-finance-and-operation/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/exception-handling/">Exception Handling</a>,&nbsp;<a href="/tags/dynamics-365-for-finance-and-operations/">Dynamics 365 for finance and operations</a>,&nbsp;<a href="/tags/x&#43;&#43;/">X&#43;&#43;</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/2017-07-24-management-reporter-in-dynamics-365-for-operation/">Management reporter in new AX, Dynamics 365 For Operation</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="July 24, 2017">July 24, 2017</time></span></div><div class="content"><h3 id="1-overview-management-reporter-in-new-ax">1. Overview Management Reporter in New AX</h3>
 <p>Management Reporter is now <strong>Financial reports</strong>.</p>
@@ -225,22 +237,6 @@
 <p>As my experience, if we use <code>NETTCP</code> adapter for consuming by Java system, we will need add some extension or 3rd party due to binding and mismatch schema and of course client doesn’t want to do that either me.</p>
 <p>So, my solution is creating HTTP adapter for Java, you can also use .NET system to consume HTTP adapter without any problems</p></div><div class="post-footer">
         <a href="/2017-01-12-how-to-create-http-adapter-port/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/xpp/">xpp</a>,&nbsp;<a href="/tags/aif/">aif</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/2017-01-12-respone-in-aif-custom-service-class/">Response in AIF custom service class</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="January 12, 2017">January 12, 2017</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax-2012/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AX 2012</a></span></div><div class="content"><p>At the previous <a href="../2017-01-11-aif-custom-response-value-in-dynamics-ax-2012-r3" rel="">post</a> I already show how to customize Response Value list in AIF Document standard service, today we will talk about response in Custom AIF service class.</p>
-<p>We already know for Custom AIF service we actually need 2 classes, one is <code>contract</code> for data input and one is <code>service</code> to process a logic. With <code>Response</code> class, it&rsquo;s literally same with <code>contract</code> class. They both hold parm value.</p>
-<ul>
-<li>
-<p><strong><code>contract</code> class</strong> gets parametters.</p>
-</li>
-<li>
-<p><strong><code>Response</code> class</strong> sets return values.</p>
-</li>
-</ul>
-<h3 id="scenario">Scenario</h3>
-<p>I want to get <code>HcmPersonnelNumberId</code> and <code>HcmWorkerName</code> of current userID on C#.NET application.</p></div><div class="post-footer">
-        <a href="/2017-01-12-respone-in-aif-custom-service-class/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/xpp/">xpp</a>,&nbsp;<a href="/tags/aif/">aif</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">

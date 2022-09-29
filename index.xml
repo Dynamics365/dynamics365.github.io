@@ -4,9 +4,44 @@
         <link>https://nuxulu.com/</link>
         <description>Dynamics 365 Finance &amp; Operations</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
-            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Sun, 18 Sep 2022 00:00:00 &#43;0000</lastBuildDate>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Fri, 23 Sep 2022 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://nuxulu.com/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Add new fields to data entity or composite entity Dynamics 365</title>
+    <link>https://nuxulu.com/2022-09-23-add-custom-fields-to-composite-entity/</link>
+    <pubDate>Fri, 23 Sep 2022 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2022-09-23-add-custom-fields-to-composite-entity/</guid>
+    <description><![CDATA[<p>Let&rsquo;s take a composite entity <code>SalesOrderV3Entity</code> as an example.</p>
+<h3 id="scenario">Scenario</h3>
+<p>I will need to add new fields to Sales order header that can be used in the composite entity <code>SalesOrderV3Entity</code>.
+the composite entity <code>SalesOrderV3Entity</code> uses a standard data entity <code>SalesOrderHeaderV2Entity</code> for sales order header; so, we need to extend <code>SalesOrderHeaderV2Entity</code>.</p>
+<h3 id="the-steps">The Steps</h3>
+<ol>
+<li>
+<p>Add new fields to Main table <code>SalesTable</code></p>
+</li>
+<li>
+<p>Add new fields to the entity <code>SalesOrderHeaderV2Entity</code></p>
+</li>
+<li>
+<p>Add new fields to the staging table <code>SalesOrderHeaderV2Staging</code></p>
+</li>
+<li>
+<p>Build and sync.</p>
+</li>
+<li>
+<p>Go to Workspaces -&gt; Data Management -&gt; Framework parameters -&gt; Advanced entity configuration settings -&gt; Refresh entity list.</p>
+<p>You can automate the <code>Refresh entity list</code> task <a href="https://d365fostuff.wordpress.com/2021/03/31/d365fo-integrations-auto-refresh-your-data-entity-list/" target="_blank" rel="noopener noreffer ">here</a></p>
+</li>
+<li>
+<p>Go to Workspaces -&gt; Data Management -&gt; Data Entities, find <strong>SALES ORDER HEADERS V2</strong> and <em>Generate mapping</em> for it.
+The new custom fields will be generated for the entity mapping.</p>
+</li>
+</ol>
+]]></description>
+</item>
+<item>
     <title>Admin provisioning tools in Dynamics 365 Finance Operations</title>
     <link>https://nuxulu.com/2022-09-18-admin-provisioning-tools/</link>
     <pubDate>Sun, 18 Sep 2022 00:00:00 &#43;0000</pubDate>
@@ -14,9 +49,7 @@
     <guid>https://nuxulu.com/2022-09-18-admin-provisioning-tools/</guid>
     <description><![CDATA[<p>After restoring database backup, you want to be able to login to Dynamics 365 Finance Operations with different ternant, you need to use the admin provisioning tool to assign a new tenant.</p>
 <!--adsense-->
-<ol>
-<li>Before 10.0.23 verison</li>
-</ol>
+<h3 id="before-10023-verison">Before 10.0.23 verison</h3>
 <p>The admin provisioning tool can be found at</p>
 <p>VHD: <code>C:\AOSService\PackagesLocalDirectory\bin\AdminUserProvisioning.exe</code></p>
 <p>Cloud- hosted: <code>K:\AOSService\PackagesLocalDirectory\bin\AdminUserProvisioning.exe</code></p>
@@ -77,10 +110,8 @@
 Login failed for user &lsquo;axdbadmin&rsquo;.</div>
         </div>
     </div>
-<p>Please this post for getting <a href="https://nuxulu.com/2020-04-06-getting-onebox-vhd-dynamics-365-finance-and-operations-virtual-machine/#2-rename-vm" target="_blank" rel="noopener noreffer ">VHD Database password</a>.</p>
-<ol start="2">
-<li>From 10.0.23</li>
-</ol>
+<p>Please this post for getting <a href="/2020-04-06-getting-onebox-vhd-dynamics-365-finance-and-operations-virtual-machine/#2-rename-vm" rel="">VHD Database password</a>.</p>
+<h3 id="from-10023">From 10.0.23</h3>
 <p>From 10.0.23, the Admin user provisioning tool is removed due to security reasons, the reply URL setup for AAD was changed.
 It is typically used to change the tenant of the environment. You can update the sign in information in the database for the Admin user or any other user. You only need the <code>SID</code> and <code>network alias</code> (email address) from a user that can access the environment or another environment on the same tenant.</p>
 <p>To get the SID:</p>
@@ -109,7 +140,7 @@ It is typically used to change the tenant of the environment. You can update the
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">update</span><span class="w"> </span><span class="n">USERINFO</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">SID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;new_SID&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">NETWORKALIAS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;new_NetworkAlias&#39;</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Admin&#39;</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p>You might also got error
+</div><p>You might also got error</p>
 <div class="details admonition failure open">
         <div class="details-summary admonition-title">
             <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
@@ -117,8 +148,8 @@ It is typically used to change the tenant of the environment. You can update the
         <div class="details-content">
             <div class="admonition-content">AADSTS50011: The reply URL specified in the request does not match the reply URLs configured for the application: &lsquo;00000015-0000-0000-c000-000000000000&rsquo;</div>
         </div>
-    </div></p>
-<p>Go to C:\AOSService\webroot\web.config, get <code>Aad.Realm</code>, <code>Aad.TenantDomainGUID</code>, <code>Infrastructure.HostUrl</code></p>
+    </div>
+<p>Go to <code>C:\AOSService\webroot\web.config</code>, get <code>Aad.Realm</code>, <code>Aad.TenantDomainGUID</code>, <code>Infrastructure.HostUrl</code></p>
 <p>Run below script to add Dynamics 365  URL to ERP service principle application</p>
 <p><figure><a class="lightgallery" href="/2022-09-18-admin-provisioning-tools/00000015-0000-0000-c000-000000000000.png" title="Image" data-thumbnail="/2022-09-18-admin-provisioning-tools/00000015-0000-0000-c000-000000000000.png" data-sub-html="<h2>00000015-0000-0000-c000-000000000000</h2><p>Image</p>">
         
@@ -160,10 +191,23 @@ It is typically used to change the tenant of the environment. You can update the
 </span></span><span class="line"><span class="cl"><span class="nf">Set-AzureADServicePrincipal</span> <span class="nf">-ObjectId</span> <span class="nf">$SP.ObjectId</span> <span class="nf">-ReplyUrls</span> <span class="nf">$SP.ReplyUrls</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>If you are running VHD for the first time, please do this task <a href="https://nuxulu.com/2020-04-06-getting-onebox-vhd-dynamics-365-finance-and-operations-virtual-machine/#61-register-a-new-application-in-azure-active-directory" target="_blank" rel="noopener noreffer ">https://nuxulu.com/2020-04-06-getting-onebox-vhd-dynamics-365-finance-and-operations-virtual-machine/#61-register-a-new-application-in-azure-active-directory</a></p>
-<p>Refer:
-<a href="https://learn.microsoft.com/en-us/troubleshoot/azure/active-directory/error-code-aadsts50011-reply-url-mismatch" target="_blank" rel="noopener noreffer ">https://learn.microsoft.com/en-us/troubleshoot/azure/active-directory/error-code-aadsts50011-reply-url-mismatch</a></p>
+</div><p>If you are running VHD for the first time, please do this <a href="/2020-04-06-getting-onebox-vhd-dynamics-365-finance-and-operations-virtual-machine/#61-register-a-new-application-in-azure-active-directory" rel="">task</a></p>
+<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw" aria-hidden="true"></i>Reference<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ol>
+<li>
+<p><a href="https://learn.microsoft.com/en-us/troubleshoot/azure/active-directory/error-code-aadsts50011-reply-url-mismatch" target="_blank" rel="noopener noreffer ">https://learn.microsoft.com/en-us/troubleshoot/azure/active-directory/error-code-aadsts50011-reply-url-mismatch</a></p>
+</li>
+<li>
 <p><a href="https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/dev-tools/access-instances#i-have-run-the-admin-user-provisioning-tool-on-my-development-environment-and-now-i-receive-the-following-sign-in-error-error-aadsts50011-the-reply-url-specified-in-the-request-does-not-match-the-reply-urls-configured-for-the-application" target="_blank" rel="noopener noreffer ">https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/dev-tools/access-instances#i-have-run-the-admin-user-provisioning-tool-on-my-development-environment-and-now-i-receive-the-following-sign-in-error-error-aadsts50011-the-reply-url-specified-in-the-request-does-not-match-the-reply-urls-configured-for-the-application</a></p>
+</li>
+</ol>
+</div>
+        </div>
+    </div>
 ]]></description>
 </item>
 <item>
@@ -3078,209 +3122,6 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">./</span><span class="n">DeployAllReportsToSsrs</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-Module</span> <span class="n">ApplicatoinSuite</span> <span class="n">-ReportName</span> <span class="n">Cust</span><span class="p">*</span> <span class="n">-PackageInstallLocation</span> <span class="s2">&#34;C:\AosService\PackagesLocalDirectory&#34;</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div>]]></description>
-</item>
-<item>
-    <title>Testing Dynamics 365 Finance Database Movement API with Postman</title>
-    <link>https://nuxulu.com/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/</link>
-    <pubDate>Mon, 17 Aug 2020 00:00:00 &#43;0000</pubDate>
-    <author>Max Nguyen</author>
-    <guid>https://nuxulu.com/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/</guid>
-    <description><![CDATA[<div class="featured-image">
-                <img src="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman.png" referrerpolicy="no-referrer">
-            </div><p>Microsoft provides a versioned set of capabilities that you can currently use to copy databases between environments, and to list and download database backups.</p>
-<p>what you can do with Database movement API so far:</p>
-<ul>
-<li>List database backups</li>
-<li>Create database refresh</li>
-<li>Create a database export</li>
-<li>Get operation activity status</li>
-</ul>
-<p>More supported actions will be added in later releases.</p>
-<p>The endpoint uses <strong>impersonation authentication</strong> base, please follow to <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/database/api/dbmovement-api-authentication##register-a-new-application-by-using-the-azure-portal" target="_blank" rel="noopener noreffer ">register a new application by using the Azure portal</a></p>
-<h2 id="1-postman-environment-setup">1. Postman environment setup</h2>
-<blockquote>
-<p>Open Postman -&gt; manage environments -&gt; Add</p>
-</blockquote>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">tenant_id: {tenant_id get from AAD}
-</span></span><span class="line"><span class="cl">client_id: {get from the application that you have created before}
-</span></span><span class="line"><span class="cl">client_secret: {get from the application that you have created before}
-</span></span><span class="line"><span class="cl">username: {LCS user name with owner permission}
-</span></span><span class="line"><span class="cl">password: {LCS user password}
-</span></span><span class="line"><span class="cl">grant_type: password
-</span></span><span class="line"><span class="cl">resource: https://lcsapi.lcs.dynamics.com
-</span></span><span class="line"><span class="cl">projectId: {Your LCS Project ID}
-</span></span><span class="line"><span class="cl">bearerToken: {this will be populated when authentication}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><figure><a class="lightgallery" href="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_1.png" title="Postman environment setup" data-thumbnail="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_1.png" data-sub-html="<h2>Postman environment setup</h2><p>Postman environment setup</p>">
-        
-    </a><figcaption class="image-caption">Postman environment setup</figcaption>
-    </figure></p>
-<h2 id="2-authentication-with-postman">2. Authentication with Postman</h2>
-<p>You get the authentication bearer with <strong>POST</strong> method and <a href="https://login.microsoftonline.com/%7b%7btenant_id%7d%7d/oauth2/token" target="_blank" rel="noopener noreffer ">https://login.microsoftonline.com/{{tenant_id}}/oauth2/token</a> endpoint.</p>
-<p>In the request Body, please do following:</p>
-<p><figure><a class="lightgallery" href="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_2.png" title="Authentication with Postman" data-thumbnail="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_2.png" data-sub-html="<h2>Authentication with Postman</h2><p>Authentication with Postman</p>">
-        
-    </a><figcaption class="image-caption">Authentication with Postman</figcaption>
-    </figure></p>
-<p>Click <strong>Send</strong>, and you will have access token to start using the API.</p>
-<p><figure><a class="lightgallery" href="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_3.png" title="token" data-thumbnail="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_3.png" data-sub-html="<h2>token</h2><p>token</p>">
-        
-    </a><figcaption class="image-caption">token</figcaption>
-    </figure></p>
-<h2 id="3-cosnume-the-apis-with-postman">3. Cosnume the APIs with Postman</h2>
-<p>To call the Database Movement API, you attach the access token as a bearer token to the authorization header in your HTTP request. So in Postman, modify the headers tab like bellow</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Authorization:Bearer {{bearerToken}}
-</span></span><span class="line"><span class="cl">x-ms-version:&#39;2017-09-15&#39;
-</span></span><span class="line"><span class="cl">Content-Type:application/json
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><figure><a class="lightgallery" href="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_4.png" title="Cosnume" data-thumbnail="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_4.png" data-sub-html="<h2>Cosnume</h2><p>Cosnume</p>">
-        
-    </a><figcaption class="image-caption">Cosnume</figcaption>
-    </figure></p>
-<h3 id="31-list-database-backups">3.1. List database backups</h3>
-<p><code>GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/databases/project/{{projectId}}</code></p>
-<p>And we’ll get a JSON with a list of the DB backups on our LCS Asset Library:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;DatabaseAssets&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;Id&#34;</span><span class="p">:</span> <span class="s2">&#34;12314234-862e-4a6a-800d-0c64e982284a&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;ProjectId&#34;</span><span class="p">:</span> <span class="mi">123123</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;OrganizationId&#34;</span><span class="p">:</span> <span class="mi">123124</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;Name&#34;</span><span class="p">:</span> <span class="s2">&#34;backup&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;FileName&#34;</span><span class="p">:</span> <span class="s2">&#34;ATbackup.bacpac&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;FileDescription&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;FileLocation&#34;</span><span class="p">:</span> <span class="s2">&#34;https://uswedpl1catalog.blob.core.windows.net/product-ax7productname/******&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;ModifiedDateTime&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-08-17T09:52:50.077&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;CreatedDateTime&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-08-17T09:52:45.297&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;CreatedByName&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;ModifiedByName&#34;</span><span class="p">:</span> <span class="kc">null</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;IsSuccess&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;OperationActivityId&#34;</span><span class="p">:</span> <span class="s2">&#34;5053e0dd-66e3-4832-a9f8-1e2d621562e1&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ErrorMessage&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;VersionEOL&#34;</span><span class="p">:</span> <span class="s2">&#34;9999-12-31T23:59:59.9999999&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="32-create-database-refresh">3.2. Create database refresh</h3>
-<p><code>POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/refresh/project/{projectId}/source/{sourceEnvironmentId}/target/{targetEnvironmentId}</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;IsSuccess&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;OperationActivityId&#34;</span><span class="p">:</span> <span class="s2">&#34;55eb4327-9346-4c7b-82bd-fe8ef15112c6&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ErrorMessage&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;VersionEOL&#34;</span><span class="p">:</span> <span class="s2">&#34;9999-12-31T23:59:59.9999999&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="33-create-a-database-export">3.3. Create a database export</h3>
-<p><code>POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/export/project/{projectId}/environment/{environmentId}/backupName/{backupName}</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;IsSuccess&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;OperationActivityId&#34;</span><span class="p">:</span> <span class="s2">&#34;55eb4327-9346-4c7b-82bd-fe8ef15112c6&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ErrorMessage&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;VersionEOL&#34;</span><span class="p">:</span> <span class="s2">&#34;9999-12-31T23:59:59.9999999&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="34-get-operation-activity-status">3.4. Get operation activity status</h3>
-<p><code>GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/fetchstatus/project/{projectId}/environment/{environmentId}/operationactivity/{operationactivityId}</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;IsSuccess&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;OperationActivityId&#34;</span><span class="p">:</span> <span class="s2">&#34;6a90b45f-1764-4077-b924-3f4671540237&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ErrorMessage&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;VersionEOL&#34;</span><span class="p">:</span> <span class="s2">&#34;9999-12-31T23:59:59.9999999&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ProjectId&#34;</span><span class="p">:</span> <span class="s2">&#34;12345&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;EnvironmentId&#34;</span><span class="p">:</span> <span class="s2">&#34;5362377c-bc37-4f92-b30e-fe0c1e664cc0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ActivityId&#34;</span><span class="p">:</span> <span class="s2">&#34;55eb4327-9346-4c7b-82bd-fe8ef15112c6&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;CompletionDate&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;OperationStatus&#34;</span><span class="p">:</span> <span class="s2">&#34;InProgress&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div>]]></description>
