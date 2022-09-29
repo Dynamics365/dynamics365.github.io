@@ -370,6 +370,577 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 </div><p>Thank you for reading.</p>]]></description>
 </item>
 <item>
+    <title>Testing Dynamics 365 Finance Database Movement API with Postman</title>
+    <link>https://nuxulu.com/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/</link>
+    <pubDate>Mon, 17 Aug 2020 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman.png" referrerpolicy="no-referrer">
+            </div><p>Microsoft provides a versioned set of capabilities that you can currently use to copy databases between environments, and to list and download database backups.</p>
+<p>what you can do with Database movement API so far:</p>
+<ul>
+<li>List database backups</li>
+<li>Create database refresh</li>
+<li>Create a database export</li>
+<li>Get operation activity status</li>
+</ul>
+<p>More supported actions will be added in later releases.</p>
+<p>The endpoint uses <strong>impersonation authentication</strong> base, please follow to <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/database/api/dbmovement-api-authentication##register-a-new-application-by-using-the-azure-portal" target="_blank" rel="noopener noreffer ">register a new application by using the Azure portal</a></p>
+<h2 id="1-postman-environment-setup">1. Postman environment setup</h2>
+<blockquote>
+<p>Open Postman -&gt; manage environments -&gt; Add</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">tenant_id: {tenant_id get from AAD}
+</span></span><span class="line"><span class="cl">client_id: {get from the application that you have created before}
+</span></span><span class="line"><span class="cl">client_secret: {get from the application that you have created before}
+</span></span><span class="line"><span class="cl">username: {LCS user name with owner permission}
+</span></span><span class="line"><span class="cl">password: {LCS user password}
+</span></span><span class="line"><span class="cl">grant_type: password
+</span></span><span class="line"><span class="cl">resource: https://lcsapi.lcs.dynamics.com
+</span></span><span class="line"><span class="cl">projectId: {Your LCS Project ID}
+</span></span><span class="line"><span class="cl">bearerToken: {this will be populated when authentication}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_1.png" title="Postman environment setup" data-thumbnail="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_1.png" data-sub-html="<h2>Postman environment setup</h2><p>Postman environment setup</p>">
+        
+    </a><figcaption class="image-caption">Postman environment setup</figcaption>
+    </figure></p>
+<h2 id="2-authentication-with-postman">2. Authentication with Postman</h2>
+<p>You get the authentication bearer with <strong>POST</strong> method and <a href="https://login.microsoftonline.com/%7b%7btenant_id%7d%7d/oauth2/token" target="_blank" rel="noopener noreffer ">https://login.microsoftonline.com/{{tenant_id}}/oauth2/token</a> endpoint.</p>
+<p>In the request Body, please do following:</p>
+<p><figure><a class="lightgallery" href="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_2.png" title="Authentication with Postman" data-thumbnail="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_2.png" data-sub-html="<h2>Authentication with Postman</h2><p>Authentication with Postman</p>">
+        
+    </a><figcaption class="image-caption">Authentication with Postman</figcaption>
+    </figure></p>
+<p>Click <strong>Send</strong>, and you will have access token to start using the API.</p>
+<p><figure><a class="lightgallery" href="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_3.png" title="token" data-thumbnail="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_3.png" data-sub-html="<h2>token</h2><p>token</p>">
+        
+    </a><figcaption class="image-caption">token</figcaption>
+    </figure></p>
+<h2 id="3-cosnume-the-apis-with-postman">3. Cosnume the APIs with Postman</h2>
+<p>To call the Database Movement API, you attach the access token as a bearer token to the authorization header in your HTTP request. So in Postman, modify the headers tab like bellow</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Authorization:Bearer {{bearerToken}}
+</span></span><span class="line"><span class="cl">x-ms-version:&#39;2017-09-15&#39;
+</span></span><span class="line"><span class="cl">Content-Type:application/json
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_4.png" title="Cosnume" data-thumbnail="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_4.png" data-sub-html="<h2>Cosnume</h2><p>Cosnume</p>">
+        
+    </a><figcaption class="image-caption">Cosnume</figcaption>
+    </figure></p>
+<h3 id="31-list-database-backups">3.1. List database backups</h3>
+<p><code>GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/databases/project/{{projectId}}</code></p>
+<p>And we’ll get a JSON with a list of the DB backups on our LCS Asset Library:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;DatabaseAssets&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;Id&#34;</span><span class="p">:</span> <span class="s2">&#34;12314234-862e-4a6a-800d-0c64e982284a&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;ProjectId&#34;</span><span class="p">:</span> <span class="mi">123123</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;OrganizationId&#34;</span><span class="p">:</span> <span class="mi">123124</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;Name&#34;</span><span class="p">:</span> <span class="s2">&#34;backup&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;FileName&#34;</span><span class="p">:</span> <span class="s2">&#34;ATbackup.bacpac&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;FileDescription&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;FileLocation&#34;</span><span class="p">:</span> <span class="s2">&#34;https://uswedpl1catalog.blob.core.windows.net/product-ax7productname/******&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;ModifiedDateTime&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-08-17T09:52:50.077&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;CreatedDateTime&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-08-17T09:52:45.297&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;CreatedByName&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;ModifiedByName&#34;</span><span class="p">:</span> <span class="kc">null</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;IsSuccess&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;OperationActivityId&#34;</span><span class="p">:</span> <span class="s2">&#34;5053e0dd-66e3-4832-a9f8-1e2d621562e1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ErrorMessage&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;VersionEOL&#34;</span><span class="p">:</span> <span class="s2">&#34;9999-12-31T23:59:59.9999999&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="32-create-database-refresh">3.2. Create database refresh</h3>
+<p><code>POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/refresh/project/{projectId}/source/{sourceEnvironmentId}/target/{targetEnvironmentId}</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;IsSuccess&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;OperationActivityId&#34;</span><span class="p">:</span> <span class="s2">&#34;55eb4327-9346-4c7b-82bd-fe8ef15112c6&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ErrorMessage&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;VersionEOL&#34;</span><span class="p">:</span> <span class="s2">&#34;9999-12-31T23:59:59.9999999&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="33-create-a-database-export">3.3. Create a database export</h3>
+<p><code>POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/export/project/{projectId}/environment/{environmentId}/backupName/{backupName}</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;IsSuccess&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;OperationActivityId&#34;</span><span class="p">:</span> <span class="s2">&#34;55eb4327-9346-4c7b-82bd-fe8ef15112c6&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ErrorMessage&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;VersionEOL&#34;</span><span class="p">:</span> <span class="s2">&#34;9999-12-31T23:59:59.9999999&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="34-get-operation-activity-status">3.4. Get operation activity status</h3>
+<p><code>GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/fetchstatus/project/{projectId}/environment/{environmentId}/operationactivity/{operationactivityId}</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;IsSuccess&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;OperationActivityId&#34;</span><span class="p">:</span> <span class="s2">&#34;6a90b45f-1764-4077-b924-3f4671540237&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ErrorMessage&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;VersionEOL&#34;</span><span class="p">:</span> <span class="s2">&#34;9999-12-31T23:59:59.9999999&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ProjectId&#34;</span><span class="p">:</span> <span class="s2">&#34;12345&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;EnvironmentId&#34;</span><span class="p">:</span> <span class="s2">&#34;5362377c-bc37-4f92-b30e-fe0c1e664cc0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ActivityId&#34;</span><span class="p">:</span> <span class="s2">&#34;55eb4327-9346-4c7b-82bd-fe8ef15112c6&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;CompletionDate&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;OperationStatus&#34;</span><span class="p">:</span> <span class="s2">&#34;InProgress&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>]]></description>
+</item>
+<item>
+    <title>Dynamics 365 FinOps Data Integration using Microsoft Forms (Part 2)</title>
+    <link>https://nuxulu.com/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/</link>
+    <pubDate>Sun, 28 Jun 2020 00:00:00 &#43;0000</pubDate>
+    <author>Kome Hoang</author>
+    <guid>https://nuxulu.com/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/</guid>
+    <description><![CDATA[<h3 id="1-example-two-a-new-forms-response-is-submitted-then-flow-promts-for-an-approval-request-before-a-new-record-is-created-in-vendors-table">1. Example two: A new Forms response is submitted then Flow promts for an approval request before a new record is created in Vendors table</h3>
+<p>In the last example, we created a simple Flow to create a new Vendor Account from submitted Forms responses. The process was made as simple as it could be: When a new Forms response if submitted, a new Vendor Account will be created on D365FO client.</p>
+<p>To make the process more reliable, we will now add an approval step to the Flow. It means before a new Vendor Account is created, the user will have the right to <code>Approve</code> or <code>Reject</code> the request.</p>
+<h4 id="11-step-1-add-a-new-step-to-the-flow">1.1. <strong>Step 1: Add a new step to the Flow</strong></h4>
+<p>The flow that we have is like this.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E2-1-Flow-1.png" title="Flow step 1" data-thumbnail="/imagesposts/E2-1-Flow-1.png" data-sub-html="<h2>The old flow</h2><p>Flow step 1</p>">
+        
+    </a><figcaption class="image-caption">The old flow</figcaption>
+    </figure></p>
+<p>We will add a step right before the new record is created.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E2-2-Flow-2.png" title="Flow step 2" data-thumbnail="/imagesposts/E2-2-Flow-2.png" data-sub-html="<h2>Add a new step</h2><p>Flow step 2</p>">
+        
+    </a><figcaption class="image-caption">Add a new step</figcaption>
+    </figure></p>
+<p>We will go with <code>Approval &gt; Start and wait for an approval</code>.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E2-3-Flow-3.png" title="Flow step 3" data-thumbnail="/imagesposts/E2-3-Flow-3.png" data-sub-html="<h2>Add approval request</h2><p>Flow step 3</p>">
+        
+    </a><figcaption class="image-caption">Add approval request</figcaption>
+    </figure></p>
+<p>This step will offer several types of approval in which the most common ones are <code>All users must approve</code> or <code>First approve/reject from any user</code>. To make it simple, we will go with <code>First approval</code> because in this example, we will have only one user.</p>
+<p>As straightforward as they seem, the fields explain themselves. We will start an approval request, set a title for it and assign it to a user (only users in the same organisation as you).</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E2-4-Flow-4.png" title="Flow step 4" data-thumbnail="/imagesposts/E2-4-Flow-4.png" data-sub-html="<h2>Single approval</h2><p>Flow step 4</p>">
+        
+    </a><figcaption class="image-caption">Single approval</figcaption>
+    </figure></p>
+<p><em><strong>Note 2-1</strong></em></p>
+<blockquote>
+<p><em>Almost all fields including <code>Title</code>, <code>Details</code>, etc. are fully customisable by using <code>Dynamic content</code>.</em></p>
+</blockquote>
+<p>The flow now will look like this.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E2-5-Flow-5.png" title="Flow step 5" data-thumbnail="/imagesposts/E2-5-Flow-5.png" data-sub-html="<h2>Revised flow</h2><p>Flow step 5</p>">
+        
+    </a><figcaption class="image-caption">Revised flow</figcaption>
+    </figure></p>
+<h4 id="12-step-2-testing-out">1.2. <strong>Step 2: Testing out</strong></h4>
+<p>Trigger a <code>test</code> run of the flow.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E2-6-Flow-6.png" title="Flow step 6" data-thumbnail="/imagesposts/E2-6-Flow-6.png" data-sub-html="<h2>Test run</h2><p>Flow step 6</p>">
+        
+    </a><figcaption class="image-caption">Test run</figcaption>
+    </figure></p>
+<p><figure><a class="lightgallery" href="/imagesposts/E2-7-Flow-7.png" title="Flow step 7" data-thumbnail="/imagesposts/E2-7-Flow-7.png" data-sub-html="<h2>Test run triggered</h2><p>Flow step 7</p>">
+        
+    </a><figcaption class="image-caption">Test run triggered</figcaption>
+    </figure></p>
+<p>The <code>test</code> run is ready, waiting for the input from <code>MS Forms</code>.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E2-8-Flow-8.png" title="Flow step 8" data-thumbnail="/imagesposts/E2-8-Flow-8.png" data-sub-html="<h2>Test run ready</h2><p>Flow step 8</p>">
+        
+    </a><figcaption class="image-caption">Test run ready</figcaption>
+    </figure></p>
+<p>Submit a new response.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E2-9-Flow-9.png" title="Flow step 9" data-thumbnail="/imagesposts/E2-9-Flow-9.png" data-sub-html="<h2>Form new response</h2><p>Flow step 9</p>">
+        
+    </a><figcaption class="image-caption">Form new response</figcaption>
+    </figure></p>
+<p>The flow will run. The process will show that an approval is being waited from the assigned user.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E2-10-Flow-10.png" title="Flow step 10" data-thumbnail="/imagesposts/E2-10-Flow-10.png" data-sub-html="<h2>Waiting for an approval</h2><p>Flow step 10</p>">
+        
+    </a><figcaption class="image-caption">Waiting for an approval</figcaption>
+    </figure></p>
+<p>An approval request will be sent to the mailbox of the assigned user. That user can check the request in <code>Office.com &gt; Outlook</code>.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E2-11-Flow-11.png" title="Flow step 11" data-thumbnail="/imagesposts/E2-11-Flow-11.png" data-sub-html="<h2>Approval request</h2><p>Flow step 11</p>">
+        
+    </a><figcaption class="image-caption">Approval request</figcaption>
+    </figure></p>
+<p>Upon approval, the flow will finish its pending step and a new record will be created.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E2-12-Flow-12.png" title="Flow step 12" data-thumbnail="/imagesposts/E2-12-Flow-12.png" data-sub-html="<h2>Flow finishes</h2><p>Flow step 12</p>">
+        
+    </a><figcaption class="image-caption">Flow finishes</figcaption>
+    </figure></p>
+<h3 id="2-example-three-from-the-created-record-in-vendors-table-add-related-records-in-other-tables">2. Example three: From the created record in Vendors table, add related records in other tables</h3>
+<p>In the last example, we added an Approval step to the Flow which will allow users to give <code>Approve</code> or <code>Reject</code> action toward the request coming from the Form.</p>
+<p>We can actually utilise the Flow one step further: To create additional records on different tables that might depend on the created record in VendTable.</p>
+<p>To make it easier to understand, the process is like this:</p>
+<ul>
+<li>Create a new <code>Vendor Account</code> by using input from the Form.</li>
+<li>Create a new <code>Bank Account</code> with the <code>Bank Account ID</code> exactly similar to the <code>Vendor Account</code>.</li>
+<li>Add some contact details to the <code>Vendor Account</code>.</li>
+</ul>
+<p>Which entities should we target to? They are:</p>
+<ul>
+<li>For <code>Vendor Bank Account</code>: VendorBankAccounts</li>
+<li>For <code>Vendor Contact Details</code>: PartyContacts</li>
+</ul>
+<p>You can play around in Visual Studio to get used to looking for an Entity that might fulfil the requirements of your intergration. Check out the next part of this article to get some quick tips into that.</p>
+<p>Assuming that we now have a Flow as we configured in the last two examples, we can add some more steps like these underneath.</p>
+<h4 id="21-step-1-add-a-new-step-to-add-a-new-record-to-vendorbankaccounts-and-partycontacts">2.1. <strong>Step 1: Add a new step to add a new record to VendorBankAccounts and PartyContacts</strong></h4>
+<p>Given the case that we had a Vendor Account and Bank Account for that Vendor Account, the records would be like this.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E3-1-SSMSBank.png" title="SSMSBank" data-thumbnail="/imagesposts/E3-1-SSMSBank.png" data-sub-html="<h2>Relation in SSMS</h2><p>SSMSBank</p>">
+        
+    </a><figcaption class="image-caption">Relation in SSMS</figcaption>
+    </figure></p>
+<p>The relation should be: <code>VendTable.AccountNum</code> = <code>VendBankAccount.VendAccount</code></p>
+<p>On the client, the information should be illustrated like this.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E3-2-VendBank1.png" title="VendBank1" data-thumbnail="/imagesposts/E3-2-VendBank1.png" data-sub-html="<h2>Vendor Bank Account</h2><p>VendBank1</p>">
+        
+    </a><figcaption class="image-caption">Vendor Bank Account</figcaption>
+    </figure></p>
+<p>And, when checking the Bank Account details, we would find.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E3-3-VenkBank2.png" title="VendBank2" data-thumbnail="/imagesposts/E3-3-VenkBank2.png" data-sub-html="<h2>Vendor Bank Details</h2><p>VendBank2</p>">
+        
+    </a><figcaption class="image-caption">Vendor Bank Details</figcaption>
+    </figure></p>
+<p>Now, to do so, we will add a new step right after the creation of VendTable record.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E3-4-Flow-1.png" title="VendBank3" data-thumbnail="/imagesposts/E3-4-Flow-1.png" data-sub-html="<h2>A new step</h2><p>VendBank3</p>">
+        
+    </a><figcaption class="image-caption">A new step</figcaption>
+    </figure></p>
+<ul>
+<li><code>Instance</code> = <code>Environment URL</code> (same as any other steps)</li>
+<li><code>Entity name</code> = <code>VendorBankAccounts</code> (check my post about good tips with Visual Studio to know how to find the Data Entity)</li>
+<li><code>Supplier account</code> = <code>Supplier account</code> from last step</li>
+<li><code>Bank account</code>= <code>Supplier account</code> from last step (Because I would like to have same Vendor Account and Bank Account)</li>
+</ul>
+<p>When saying &ldquo;from the last step&rdquo;, I meant this.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E3-5-Flow-2.png" title="DynamicsContent" data-thumbnail="/imagesposts/E3-5-Flow-2.png" data-sub-html="<h2>Selecting Dynamic Content from former steps</h2><p>DynamicsContent</p>">
+        
+    </a><figcaption class="image-caption">Selecting Dynamic Content from former steps</figcaption>
+    </figure></p>
+<p>In MS FLow, any steps that are already executed will have outputs. We, in this step, are taking the <code>Supplier Account</code> from the last step of creating a new record in VendTable . This dynamic content was generated when the new record is created.</p>
+<p><em><strong>Note 3-1</strong></em></p>
+<blockquote>
+<p><em>Keep in mind that if the last step is not &ldquo;Creating a new record&rdquo;, chance is that you cannot take the output from it because there&rsquo;s simply none.</em></p>
+</blockquote>
+<p>Click on <code>Show advanced options</code> so we can add more information to the Vendor Bank Account.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E3-6-Flow-3.png" title="AdvancedOptions" data-thumbnail="/imagesposts/E3-6-Flow-3.png" data-sub-html="<h2>Select Show advanced options</h2><p>AdvancedOptions</p>">
+        
+    </a><figcaption class="image-caption">Select Show advanced options</figcaption>
+    </figure></p>
+<p>Add more details to the bank account:</p>
+<ul>
+<li><code>Name</code> = <code>Bank account name</code> chosen from the Form using Dynamic Content (we don&rsquo;t want to copy any more values from the VendTable record - we actually will specify a bank account name when composing a response on the Form)</li>
+<li><code>Bank account number</code> = <code>Bank account number</code> chosen from the Form using Dynamic Content</li>
+</ul>
+<p><figure><a class="lightgallery" href="/imagesposts/E3-7-Flow-4.png" title="BankDetails" data-thumbnail="/imagesposts/E3-7-Flow-4.png" data-sub-html="<h2>Add more details to bank account</h2><p>BankDetails</p>">
+        
+    </a><figcaption class="image-caption">Add more details to bank account</figcaption>
+    </figure></p>
+<p>We finished with Vendor Bank Account.</p>
+<p>We will do just the same with the record in PartyContacts.</p>
+<ul>
+<li><code>Party ID</code> = <code>Party ID</code> from VendTable record</li>
+<li><code>Contact number/address</code> = <code>Email</code> from the Form (in this case, I would like to add an email address - it is totally up to you to opt to add phone number, Skype, Twitter and some other contact detail that D365FO is supporting)</li>
+<li><code>Purpose</code> = I am &ldquo;hard-coding&rdquo; this <code>&quot;Business&quot;</code> (the supported purpose of Contact can be found on Vendor Card on D356FO client - this purpose should mainly be used when sending emails, i.e. D365FO want to send Purchase Order Confirmation to any email addresses with purpose <code>&quot;Invoice&quot;</code>)</li>
+</ul>
+<p><figure><a class="lightgallery" href="/imagesposts/E3-8-Flow-5.png" title="VendorContact" data-thumbnail="/imagesposts/E3-8-Flow-5.png" data-sub-html="<h2>Vendor Contact Details</h2><p>VendorContact</p>">
+        
+    </a><figcaption class="image-caption">Vendor Contact Details</figcaption>
+    </figure></p>
+<h4 id="22-step-2-testing-out">2.2. <strong>Step 2: Testing out</strong></h4>
+<p>Form input.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E3-9-Flow-6.png" title="FormInput1" data-thumbnail="/imagesposts/E3-9-Flow-6.png" data-sub-html="<h2>Company details</h2><p>FormInput1</p>">
+        
+    </a><figcaption class="image-caption">Company details</figcaption>
+    </figure></p>
+<p><figure><a class="lightgallery" href="/imagesposts/E3-10-Flow-7.png" title="FormInput2" data-thumbnail="/imagesposts/E3-10-Flow-7.png" data-sub-html="<h2>Bank details</h2><p>FormInput2</p>">
+        
+    </a><figcaption class="image-caption">Bank details</figcaption>
+    </figure></p>
+<p><figure><a class="lightgallery" href="/imagesposts/E3-11-Flow-8.png" title="FormInput3" data-thumbnail="/imagesposts/E3-11-Flow-8.png" data-sub-html="<h2>Contact details</h2><p>FormInput3</p>">
+        
+    </a><figcaption class="image-caption">Contact details</figcaption>
+    </figure></p>
+<p>Results on D365FO client.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E3-12-Flow-9.png" title="Result1" data-thumbnail="/imagesposts/E3-12-Flow-9.png" data-sub-html="<h2>Contact details</h2><p>Result1</p>">
+        
+    </a><figcaption class="image-caption">Contact details</figcaption>
+    </figure></p>
+<p><figure><a class="lightgallery" href="/imagesposts/E3-13-Flow-10.png" title="Result2" data-thumbnail="/imagesposts/E3-13-Flow-10.png" data-sub-html="<h2>Bank account</h2><p>Result2</p>">
+        
+    </a><figcaption class="image-caption">Bank account</figcaption>
+    </figure></p>
+<p><figure><a class="lightgallery" href="/imagesposts/E3-14-Flow-11.png" title="Result3" data-thumbnail="/imagesposts/E3-14-Flow-11.png" data-sub-html="<h2>Bank account details</h2><p>Result3</p>">
+        
+    </a><figcaption class="image-caption">Bank account details</figcaption>
+    </figure></p>
+<p>There you go, simple integration between MS Forms, MS Automate and D365FO client. I am seeing that Microsoft is improving such by adding more actions on MS Automate. I believe we will be able to do many more jobs with the built-in utilities of MS Automate.</p>
+<h3 id="3-how-to-determine-the-data-entity-that-should-be-used-in-the-power-automate">3. How to determine the Data Entity that should be used in the Power Automate</h3>
+<p>The names of the target entity on <code>D365FO client</code> and being found in <code>Power Automate</code> should be different. You can always find them out by testing several import/export but, with the help of <code>Visual Studio</code>, you will be able to save a lot of time. This, however, requires a certain extent of experience working with data integration on D365FO.</p>
+<p>Given the case that we would like to import data to All Vendors, we will start our search in <code>Workspaces &gt; Data Management &gt; Data Entities</code>. Apply several filters here and there, and looking for potential ones that we usually do, we will finally end our search at the VendVendorV2Entity</p>
+<p><figure><a class="lightgallery" href="/imagesposts/VS-1-Entity-1.png" title="Data Entities" data-thumbnail="/imagesposts/VS-1-Entity-1.png" data-sub-html="<h2>Data Entities</h2><p>Data Entities</p>">
+        
+    </a><figcaption class="image-caption">Data Entities</figcaption>
+    </figure></p>
+<p>Making our way to <code>Visual Studio</code>, it is not a difficult task for us to find out the Entity.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/VS-2-Entity-2.png" title="VendVendorV2Entity" data-thumbnail="/imagesposts/VS-2-Entity-2.png" data-sub-html="<h2>VendVendorV2Entity</h2><p>VendVendorV2Entity</p>">
+        
+    </a><figcaption class="image-caption">VendVendorV2Entity</figcaption>
+    </figure></p>
+<p>Check out the <code>Properties</code>, we will need to get details in the <code>Public</code> group.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/VS-3-Properties.png" title="Properties" data-thumbnail="/imagesposts/VS-3-Properties.png" data-sub-html="<h2>Properties</h2><p>Properties</p>">
+        
+    </a><figcaption class="image-caption">Properties</figcaption>
+    </figure></p>
+<p>In <code>Public</code>:</p>
+<ul>
+<li>Is Public: If it is <code>Yes</code>, the entity can be found in Power Automate; otherwise, <code>No</code>.</li>
+<li>Public Collection Name: <code>Entity name</code> on Power Automate.</li>
+</ul>
+<p>The information should be displayed here:</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-12-Flow-10.png" title="Info on Automate" data-thumbnail="/imagesposts/E1-12-Flow-10.png" data-sub-html="<h2>Info on Automate</h2><p>Info on Automate</p>">
+        
+    </a><figcaption class="image-caption">Info on Automate</figcaption>
+    </figure></p>
+<p>Furthermore, by checking the <code>Entity</code>&rsquo;s fields, we can get the information of mapping between the <code>Entity</code> and the physical table <code>VendTable</code>.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/VS-4-EntityFields.png" title="Entity fields" data-thumbnail="/imagesposts/VS-4-EntityFields.png" data-sub-html="<h2>Entity fields</h2><p>Entity fields</p>">
+        
+    </a><figcaption class="image-caption">Entity fields</figcaption>
+    </figure></p>
+<p>Give yourself some time to play around between <code>MS Forms</code>, <code>MS Automate</code> and <code>Visual Studio</code>. You will finally see the relations between them.</p>
+]]></description>
+</item>
+<item>
+    <title>Dynamics 365 FinOps Data Integration using Microsoft Forms (Part 1)</title>
+    <link>https://nuxulu.com/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/</link>
+    <pubDate>Sun, 24 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>Kome Hoang</author>
+    <guid>https://nuxulu.com/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/</guid>
+    <description><![CDATA[<p><em>With any D365FO users, Data Management workspace and Data Entities should have become one of the most used and well-known tools in the system. We all agree how powerful such integration framework is, especially when it comes to a large number of records that we would need to import into different tables.</em></p>
+<p><em>The classic method that we have been utilizing is to include all source data in a single (or multiple, much depending on the purpose and order of data integration) Excel sheet, trigger an import execution, pass any validation layers that present and ultimately have the data available on D365FO. Now, I would like to propose another method that might come useful in some circumstances: Using Microsoft Forms.</em></p>
+<p><figure><a class="lightgallery" href="/imagesposts/Introduction.png" title="Introduction" data-thumbnail="/imagesposts/Introduction.png" data-sub-html="<h2>The trio</h2><p>Introduction</p>">
+        
+    </a><figcaption class="image-caption">The trio</figcaption>
+    </figure></p>
+<h2 id="when">When</h2>
+<p>This method should be at its finest when you are planning to outsource the input to any external users.</p>
+<p>Imagine you are a company who is using D365FO to leverage your daily work. You now want to add many local vendors to your system in form of new Vendor Accounts. It is fine to collect all information from them (i.e. Vendor Company’s name, their address, their contact details and so on), put everything in an Excel sheet and import it. Yet, chance is that it would take (a lot of) time for you to finish this task. You would then be very likely to try coming up with some methods to cut down time for it.</p>
+<p>That demand should raise two questions:</p>
+<ul>
+<li>How can we let the vendors enter their information by themselves?</li>
+<li>And, how can we then have all such information in our system?</li>
+</ul>
+<h2 id="what">What</h2>
+<p>What should be needed?</p>
+<ul>
+<li><a href="https://forms.office.com/" target="_blank" rel="noopener noreffer ">Microsoft Forms</a>: To establish a process in which you will publish a prepared form. Any vendors out there will have the access to it and they can fill any fields on in.</li>
+<li><a href="https://flow.microsoft.com/" target="_blank" rel="noopener noreffer ">Microsoft Power Automate aka. Microsoft Flow</a>: To set up a protocol to push the input information (form responses) to the target (D365FO Data Entities).</li>
+<li><em>(Optional)</em> Access to Visual Studio on your virtual machine: To help you determine the target Data Entities more easily and efficiently.</li>
+</ul>
+<h2 id="how">How</h2>
+<p>The flow should go like this.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/Biggest-Flow.png" title="Biggest FLow" data-thumbnail="/imagesposts/Biggest-Flow.png" data-sub-html="<h2>The Biggest FLow</h2><p>Biggest FLow</p>">
+        
+    </a><figcaption class="image-caption">The Biggest FLow</figcaption>
+    </figure></p>
+<p>To make it short, when a response is submitted in Microsoft Form, the Flow in MS Power Automate is triggered automatically. An approval request will be sent to your Outlook mailbox and if it is approved, a new record will be created in the target data entity.</p>
+<p>Let go through three examples in the next articles in the series (from the simplest to a more complicated) so we will see the logic behind this process.</p>
+<p>As easy as it sounds, in this example, we will create a new Vendor Account from Microsoft Forms with only a small number of fields being populate.
+<strong>Note</strong></p>
+<blockquote>
+<p><em>To help simplify the example, the number of fields is minimised. In other words, we will import just enough fields so the new Vendor Account is valid.</em>
+<em>Given that, only <code>Vendor Account</code> and <code>Vendor Group</code> are chosen to be imported.</em></p>
+</blockquote>
+<h3 id="step-1-create-a-ms-form">Step 1: Create a MS Form</h3>
+<p>To do so, we will access <a href="https://forms.office.com/" target="_blank" rel="noopener noreffer ">Microsoft Forms</a> and create a new form. To make the new form usable, we will create two questions asking for inputs of Vendor Account and Vendor Group.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-1-NewForm.png" title="Example 1 Form" data-thumbnail="/imagesposts/E1-1-NewForm.png" data-sub-html="<h2>Example 1 Form</h2><p>Example 1 Form</p>">
+        
+    </a><figcaption class="image-caption">Example 1 Form</figcaption>
+    </figure></p>
+<p>Note all information on the form is customisable.
+<strong>Note 1-1</strong></p>
+<blockquote>
+<p>We can make the questions&hellip;any questions that suit the purpose of the form. Say, in reality, the question can be <code>&quot;What is your company's name?&quot;</code> if you want to send this form to any external vendor users. The question does not change the usability of the returned response&rsquo;s value. It can still be mapped to VendAccount not matter what the question is.
+<strong>Note 1-2</strong>
+The second question is being set in form of a Choice question. The given choices should match with available Vendor Group values found on your D365FO client. If this question is a Text one, chance is that its response might not match with any available Vendor Group values, thus, will return an error during Flow runtime.
+Vendor Groups can be found under <code>Account Payable &gt; Vendors &gt; Vendor Groups</code>. In this example, <code>TopVendor</code> and <code>Others</code> are two available Vendor Groups in my D365FO client.</p>
+</blockquote>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-2-VendorGroups.png" title="Vendor Groups" data-thumbnail="/imagesposts/E1-2-VendorGroups.png" data-sub-html="<h2>Vendor Groups</h2><p>Vendor Groups</p>">
+        
+    </a><figcaption class="image-caption">Vendor Groups</figcaption>
+    </figure></p>
+<h3 id="step-2-create-a-ms-flow">Step 2: Create a MS Flow</h3>
+<p>To do so, we will access <a href="https://flow.microsoft.com/" target="_blank" rel="noopener noreffer ">Microsoft Power Automate</a> and create a new flow. We will go with an <code>Automated</code> one in this case.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-3-Flow-1.png" title="Flow step 1" data-thumbnail="/imagesposts/E1-3-Flow-1.png" data-sub-html="<h2>Automated flow</h2><p>Flow step 1</p>">
+        
+    </a><figcaption class="image-caption">Automated flow</figcaption>
+    </figure></p>
+<p>Search for <code>form</code> and choose the trigger <code>When a new response is submitted</code>. Hit <code>Create</code> to create a new flow.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-4-Flow-2.png" title="Flow step 2" data-thumbnail="/imagesposts/E1-4-Flow-2.png" data-sub-html="<h2>Form trigger</h2><p>Flow step 2</p>">
+        
+    </a><figcaption class="image-caption">Form trigger</figcaption>
+    </figure></p>
+<p>Choose the <code>form</code> that we just created using the dropdown list.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-5-Flow-3.png" title="Flow step 3" data-thumbnail="/imagesposts/E1-5-Flow-3.png" data-sub-html="<h2>Choose form</h2><p>Flow step 3</p>">
+        
+    </a><figcaption class="image-caption">Choose form</figcaption>
+    </figure></p>
+<p>Press <code>New step</code>, search for <code>form</code> and go with <code>Get response details</code>.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-6-Flow-4.png" title="FLow step 4" data-thumbnail="/imagesposts/E1-6-Flow-4.png" data-sub-html="<h2>New step: Get response details</h2><p>FLow step 4</p>">
+        
+    </a><figcaption class="image-caption">New step: Get response details</figcaption>
+    </figure></p>
+<p>In the new step, choose the <code>Form ID</code>. As soon as we move the cursor to the <code>Response ID</code> field, the <code>FLow</code> will suggest the <code>Dynamics content</code> that we can use. In this case, there should be only one dynamic content, which is <code>List of response notifications Response ID</code>. We will go with it by choosing it.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-7-Flow-5.png" title="FLow step 5" data-thumbnail="/imagesposts/E1-7-Flow-5.png" data-sub-html="<h2>Get response details</h2><p>FLow step 5</p>">
+        
+    </a><figcaption class="image-caption">Get response details</figcaption>
+    </figure></p>
+<p>After doing so, the flow should look like this.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-8-Flow-6.png" title="FLow step 6" data-thumbnail="/imagesposts/E1-8-Flow-6.png" data-sub-html="<h2>Form done</h2><p>FLow step 6</p>">
+        
+    </a><figcaption class="image-caption">Form done</figcaption>
+    </figure></p>
+<p>Now, the reponse details will be sent from the <code>Form</code> to the <code>Flow</code> when a new response is submitted. Next, we will set up the step to create a new Vendor Account.</p>
+<p>Create a new step, search for <code>dynamics</code> and go with <code>Dynamics 365 for Finance and Operations</code>.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-9-Flow-7.png" title="FLow step 7" data-thumbnail="/imagesposts/E1-9-Flow-7.png" data-sub-html="<h2>Dynamics 365 FinOps</h2><p>FLow step 7</p>">
+        
+    </a><figcaption class="image-caption">Dynamics 365 FinOps</figcaption>
+    </figure></p>
+<p>Choose <code>Create record</code> action.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-10-Flow-8.png" title="FLow step 8" data-thumbnail="/imagesposts/E1-10-Flow-8.png" data-sub-html="<h2>Create record action</h2><p>FLow step 8</p>">
+        
+    </a><figcaption class="image-caption">Create record action</figcaption>
+    </figure></p>
+<p>Choose the Dynamics 365 FinOps <code>Instance</code> from the dropdown list. If your client does not appear here, choose <code>Enter custom value</code>. For privacy, environments&rsquo; name will be censored in our example.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-11-Flow-9.png" title="FLow step 9" data-thumbnail="/imagesposts/E1-11-Flow-9.png" data-sub-html="<h2>Set D365FO instance</h2><p>FLow step 9</p>">
+        
+    </a><figcaption class="image-caption">Set D365FO instance</figcaption>
+    </figure></p>
+<p>The <code>Instance</code> should be the <code>link</code> to your D365FO client. Set <code>Entity name</code> VendorsV2.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-12-Flow-10.png" title="FLow step 10" data-thumbnail="/imagesposts/E1-12-Flow-10.png" data-sub-html="<h2>Set Instance and Entity</h2><p>FLow step 10</p>">
+        
+    </a><figcaption class="image-caption">Set Instance and Entity</figcaption>
+    </figure></p>
+<p><code>Note 1-3</code></p>
+<blockquote>
+<p><em>Later in this series, we will see how to find the exact <code>Entity name</code> using <code>Visual Studio</code>. Also, we will see in which condition, the Entity can be used in <code>Power Automate</code>.</em></p>
+</blockquote>
+<p>Populate the fields that we want to import. In this example, we will populate only 3 fields: <code>Group (VendorGroupID)</code>, <code>Company (DataAreaId)</code> and <code>Supplier Account (VendorAccountNumber)</code>.</p>
+<p><code>Dynamic content</code> will be suggested automatically when the cursor is placed in each field.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-13-Flow-11.png" title="FLow step 11" data-thumbnail="/imagesposts/E1-13-Flow-11.png" data-sub-html="<h2>Map Form fields with Automate fields</h2><p>FLow step 11</p>">
+        
+    </a><figcaption class="image-caption">Map Form fields with Automate fields</figcaption>
+    </figure></p>
+<p>We can map <code>Form fields</code> with <code>Automate fields</code> or <code>hardcode</code> in these fields:</p>
+<ul>
+<li><code>Group</code> = Response of <code>What is the Vendor Group?</code> question.</li>
+<li><code>Company</code> = <em>(hardcode)</em> <code>usmf</code>.</li>
+<li><code>Supplier Account</code> = Response of <code>What is the Vendor Account?</code> question.</li>
+<li><code>Name</code> = <code>Supplier Account</code> =  Response of <code>What is the Vendor Account?</code> question (<code>Show advanced option</code> on the Flow to find the field <code>Name (VendorOrganisationName)</code>).
+These fields should be required when creating a new Vendor Account on D365FO client.</li>
+</ul>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-14-Flow-12.png" title="FLow step 12" data-thumbnail="/imagesposts/E1-14-Flow-12.png" data-sub-html="<h2>Map Form fields with Automate fields</h2><p>FLow step 12</p>">
+        
+    </a><figcaption class="image-caption">Map Form fields with Automate fields</figcaption>
+    </figure></p>
+<p>We are done here with the set up.</p>
+<h3 id="step-3-testing-out">Step 3: Testing out</h3>
+<p>On <code>Forms</code>, choose the form that we just created, click on <code>Preview</code> so we can submit a form response.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-15-Flow-13.png" title="FLow step 13" data-thumbnail="/imagesposts/E1-15-Flow-13.png" data-sub-html="<h2>Map Form fields with Automate fields</h2><p>FLow step 13</p>">
+        
+    </a><figcaption class="image-caption">Map Form fields with Automate fields</figcaption>
+    </figure></p>
+<p>Check out <code>All Vendors (VendTableListPage)</code> on the client to find a new Vendor Account is created.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-16-Flow-14.png" title="FLow step 14" data-thumbnail="/imagesposts/E1-16-Flow-14.png" data-sub-html="<h2>Map Form fields with Automate fields</h2><p>FLow step 14</p>">
+        
+    </a><figcaption class="image-caption">Map Form fields with Automate fields</figcaption>
+    </figure></p>
+<p><code>Note 1-4</code></p>
+<blockquote>
+<p><em>Use <code>Test</code> option in Power Automate to follow the process of the Flow. This, in other words, is so-called <code>&quot;Run Flow with Debug&quot;</code> option.</em></p>
+</blockquote>
+]]></description>
+</item>
+<item>
     <title>Handle AIF error messages in dynamics AX 2012 R3</title>
     <link>https://nuxulu.com/2017-01-12-handle-aif-error-messages-in-dynamics-ax-2012-r3/</link>
     <pubDate>Thu, 12 Jan 2017 00:00:00 &#43;0000</pubDate>
@@ -1403,1263 +1974,6 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 <p></p>
 <p>Please prefer previous <a href="https://dynamics365.github.io/ax2012/integration/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3/" target="_blank" rel="noopener noreffer ">post</a> for another operations</p>
 <p>Thank you for reading!</p>]]></description>
-</item>
-<item>
-    <title>CRUD Purchase order using AIF in Dynamics AX 2012 R3</title>
-    <link>https://nuxulu.com/2016-12-28-crud-purchase-order-using-aif-in-dynamics-ax-2012-r3/</link>
-    <pubDate>Wed, 28 Dec 2016 00:00:00 &#43;0000</pubDate>
-    <author>Max Nguyen</author>
-    <guid>https://nuxulu.com/2016-12-28-crud-purchase-order-using-aif-in-dynamics-ax-2012-r3/</guid>
-    <description><![CDATA[<p>Due to Purchase order doesn’t have Standard document service so we have to create new Document service for that using AIF wizards.</p>
-<p>I’m using AIF document service with <code>NETTCP</code> or <code>HTTP</code> Adapter to Create Purchase order service, here is steps</p>
-<h2 id="create-query">Create Query</h2>
-<p>with three <strong>datasouce</strong> (<code>PurchTable, PurchLine, InventDim</code>) likes below</p>
-<p></p>
-<blockquote>
-<p>As best practice for Document service, name of query should be start with Axd* prefix.</p>
-</blockquote>
-<h2 id="using-aif-wizards">Using AIF Wizards</h2>
-<p>In AX development environment, go to <em>Tools &gt; Wizards &gt; AIF document service wizards</em></p>
-<p></p>
-<p>Choose recent created query and click <strong>next</strong>.</p>
-<h2 id="create-service-operation-and-axbc-class">Create Service operation and <code>AxBC class</code></h2>
-<p></p>
-<p>Click <code>next</code> and then <code>Generate</code>.</p>
-<p>You will get service project in <strong>Private</strong> project</p>
-<h2 id="deploy-and-create-service">Deploy and create service</h2>
-<p>•	Right click on <code>PurchOrderService</code> &gt; Add-Ins &gt; Register service</p>
-<p>•	System administration &gt; Setup &gt; Services and AIF &gt; Inbound ports</p>
-<p>•	Click <code>New</code> on <code>Inbound ports form</code> and name the Service.</p>
-<p>•	Adapter: NETTCP (it also works with HTTP adapter)</p>
-<p>•	In <em>Service contract customizations</em> fast tab click <code>Service operations</code></p>
-<p></p>
-<p><code>Active</code> recent created Service</p>
-<h2 id="consume-service-using-cnet">Consume service using C#.NET</h2>
-<p>After service is activated, you can get <strong>WSDL URI</strong> likes</p>
-<p><code> http://servername:port/DynamicsAx/Services/PurchaseOrder</code></p>
-<p>Create console project and Add Service References, the code below
-</p>
-<p>In Class, I will write method to return list of <code>EnityKey</code> PurchId</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">private</span> <span class="k">static</span> <span class="n">EntityKey</span><span class="p">[]</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="kt">string</span> <span class="n">purchId</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="n">KeyField</span> <span class="n">field</span> <span class="p">=</span> <span class="k">new</span> <span class="n">KeyField</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">Field</span> <span class="p">=</span> <span class="s">&#34;PurchId&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="n">Value</span> <span class="p">=</span> <span class="n">purchId</span>
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">EntityKey</span> <span class="n">key</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EntityKey</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">KeyData</span> <span class="p">=</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">field</span> <span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">key</span> <span class="p">};</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><code>Code for create purchase order </code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">dim</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_InventDim</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="n">InventSiteId</span> <span class="p">=</span> <span class="s">&#34;DN&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">InventLocationId</span> <span class="p">=</span> <span class="s">&#34;F10-S120&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">InventBatchId</span> <span class="p">=</span> <span class="s">&#34;BATCH001&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">purchLine</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchLine</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;220067&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">PurchQty</span> <span class="p">=</span> <span class="m">15</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">PurchUnit</span><span class="p">=</span>  <span class="s">&#34;ea&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">InventDim</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_InventDim</span><span class="p">[]</span> <span class="p">{</span> <span class="n">dim</span> <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">purchTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchTable</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="n">OrderAccount</span> <span class="p">=</span> <span class="s">&#34;101-01-75441&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">LanguageId</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">CurrencyCode</span> <span class="p">=</span> <span class="s">&#34;KRW&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">PurchName</span> <span class="p">=</span> <span class="s">&#34;AIF PO Test&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">PurchLine</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchLine</span><span class="p">[]</span> <span class="p">{</span> <span class="n">purchLine</span> <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">AxdMav_PurchOrderService</span> <span class="n">purchOrder</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdMav_PurchOrderService</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">purchOrder</span><span class="p">.</span><span class="n">PurchTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchTable</span><span class="p">[]</span> <span class="p">{</span> <span class="n">purchTable</span> <span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">CallContext</span> <span class="n">callContext</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">Language</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">Mav_PurchOrderServiceServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mav_PurchOrderServiceServiceClient</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">try</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="n">EntityKey</span><span class="p">[]</span> <span class="n">purchOrderCreatedEntity</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">purchOrder</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="n">EntityKey</span> <span class="n">purchOrderCreated</span> <span class="p">=</span> <span class="p">(</span><span class="n">EntityKey</span><span class="p">)</span><span class="n">purchOrderCreatedEntity</span><span class="p">.</span><span class="n">GetValue</span><span class="p">(</span><span class="m">0</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;The purch order created has a Purch ID of &#34;</span> <span class="p">+</span> <span class="n">purchOrderCreated</span><span class="p">.</span><span class="n">KeyData</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">Value</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
-</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><code>Code for read purchase order </code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">EntityKey</span><span class="p">[]</span> <span class="n">entityKeyList</span> <span class="p">=</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="s">&#34;BGR-000054&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">CallContext</span> <span class="n">callContext</span>      <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="n">callContext</span><span class="p">.</span><span class="n">Company</span>          <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">Mav_PurchOrderServiceServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mav_PurchOrderServiceServiceClient</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">AxdMav_PurchOrderService</span> <span class="n">purchOrders</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">AxdEntity_PurchTable</span><span class="p">[]</span> <span class="n">purchTables</span> <span class="p">=</span> <span class="n">purchOrders</span><span class="p">.</span><span class="n">PurchTable</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">AxdEntity_PurchTable</span>    <span class="n">purchTable</span> <span class="p">=</span> <span class="n">purchTables</span><span class="p">[</span><span class="m">0</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl"><span class="n">AxdEntity_PurchLine</span> <span class="n">purchLine</span> <span class="p">=</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchLine</span><span class="p">[</span><span class="m">0</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Purch Name: &#34;</span> <span class="p">+</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchName</span><span class="p">);</span>            
-</span></span><span class="line"><span class="cl"><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Order Account: &#34;</span> <span class="p">+</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">OrderAccount</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Language Id: &#34;</span> <span class="p">+</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">LanguageId</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Qty: &#34;</span> <span class="p">+</span> <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchQty</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Item Id: &#34;</span> <span class="p">+</span> <span class="n">purchLine</span><span class="p">.</span><span class="n">ItemId</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">client</span><span class="p">.</span><span class="n">Close</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">			
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><code>Code for update purchase order </code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">Mav_PurchOrderServiceServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mav_PurchOrderServiceServiceClient</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="n">CallContext</span> <span class="n">callContext</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="n">callContext</span><span class="p">.</span><span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">EntityKey</span><span class="p">[]</span> <span class="n">entityKeyList</span> <span class="p">=</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="s">&#34;BGR-000078&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">AxdMav_PurchOrderService</span> <span class="n">purchOrders</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">//salesOrders.GetHashCode();</span>
-</span></span><span class="line"><span class="cl"><span class="n">AxdEntity_PurchTable</span><span class="p">[]</span> <span class="n">purchTables</span> <span class="p">=</span> <span class="n">purchOrders</span><span class="p">.</span><span class="n">PurchTable</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">AxdEntity_PurchTable</span> <span class="n">purchTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchTable</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="n">purchTable</span> <span class="p">=</span> <span class="n">purchTables</span><span class="p">.</span><span class="n">First</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">//salesTable.GetHashCode();</span>
-</span></span><span class="line"><span class="cl"><span class="n">AxdEntity_PurchLine</span> <span class="n">purchLine</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchLine</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="n">purchLine</span> <span class="p">=</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchLine</span><span class="p">.</span><span class="n">First</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">decimal</span> <span class="n">purchQty</span> <span class="p">=</span> <span class="m">20</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">purchLine</span><span class="p">.</span><span class="n">PurchQty</span> <span class="p">=</span> <span class="n">purchQty</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">try</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="n">client</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">,</span> <span class="n">purchOrders</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="n">EntityKey</span> <span class="n">purchOrdersUpdated</span> <span class="p">=</span> <span class="p">(</span><span class="n">EntityKey</span><span class="p">)</span><span class="n">entityKeyList</span><span class="p">.</span><span class="n">GetValue</span><span class="p">(</span><span class="m">0</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;The purchase order has been updated has a Purch ID of &#34;</span> <span class="p">+</span> <span class="n">purchOrdersUpdated</span><span class="p">.</span><span class="n">KeyData</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">Value</span> <span class="p">+</span> <span class="s">&#34; with Qty &#34;</span> <span class="p">+</span> <span class="n">purchQty</span><span class="p">.</span><span class="n">ToString</span><span class="p">()</span> <span class="p">+</span> <span class="s">&#34;&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">ex</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
-</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><code>Code for delete purchase order </code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">Mav_PurchOrderServiceServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mav_PurchOrderServiceServiceClient</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="n">CallContext</span> <span class="n">callContext</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="n">callContext</span><span class="p">.</span><span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">EntityKey</span><span class="p">[]</span> <span class="n">entityKeyList</span> <span class="p">=</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="s">&#34;BGR-000054&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="k">try</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="n">client</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="n">EntityKey</span> <span class="n">purchOrdersDeleted</span> <span class="p">=</span> <span class="p">(</span><span class="n">EntityKey</span><span class="p">)</span><span class="n">entityKeyList</span><span class="p">.</span><span class="n">GetValue</span><span class="p">(</span><span class="m">0</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;The purch order has been deleted has a purch ID of &#34;</span> <span class="p">+</span> <span class="n">purchOrdersDeleted</span><span class="p">.</span><span class="n">KeyData</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">Value</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">ex</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
-</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>Thank you for reading!</p>]]></description>
-</item>
-<item>
-    <title>Insert, update, Delete order line through AIF In AX 2012 R3</title>
-    <link>https://nuxulu.com/2016-12-28-insert-update-delete-order-line-through-aif-in-ax-2012-r3/</link>
-    <pubDate>Wed, 28 Dec 2016 00:00:00 &#43;0000</pubDate>
-    <author>Max Nguyen</author>
-    <guid>https://nuxulu.com/2016-12-28-insert-update-delete-order-line-through-aif-in-ax-2012-r3/</guid>
-    <description><![CDATA[<p>In previous <a href="https://dynamics365.github.io/ax2012/integration/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3/" target="_blank" rel="noopener noreffer ">post</a>, I already show how to create purchase order through AIF with <code>NETTCP</code> or <code>HTTP adapter</code>. In this post, we will get little deep more about action on line of order.</p>
-<p>The following code sample shows how to <code>insert</code>, <code>update</code>, <code>delete</code> a line of an existing purchase order through AIF, currently I’m using C#.NET console project for demo.</p>
-<p>As Partial update, we must include just the fields to change and any fields required by the document (you can check <code>Data policies</code> in AIF Service ports form for that).</p>
-<p>Also, notice how action properties are specified – no matter we do with the line, which means updating the order.</p>
-<p>I’m giving you an idea how it looks like, here is the code</p>
-<p><code>The first method will handle the key of AIF Service</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">private</span> <span class="k">static</span> <span class="n">EntityKey</span><span class="p">[]</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="kt">string</span> <span class="n">purchId</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="n">KeyField</span> <span class="n">field</span> <span class="p">=</span> <span class="k">new</span> <span class="n">KeyField</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">Field</span> <span class="p">=</span> <span class="s">&#34;PurchId&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="n">Value</span> <span class="p">=</span> <span class="n">purchId</span>
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">EntityKey</span> <span class="n">key</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EntityKey</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">KeyData</span> <span class="p">=</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">field</span> <span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">key</span> <span class="p">};</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><code>create Line, delete Line, update line in Purchase order</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">EntityKey</span><span class="p">[]</span> <span class="n">entityKeyList</span> <span class="p">=</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="s">&#34;BGR-000054&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">CallContext</span> <span class="n">callContext</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="n">callContext</span><span class="p">.</span><span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">Mav_PurchOrderServiceServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mav_PurchOrderServiceServiceClient</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="n">AxdMav_PurchOrderService</span> <span class="n">purchOrders</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">//Define which line need to be update or delete</span>
-</span></span><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">lastLine</span> <span class="p">=</span> <span class="n">purchOrders</span><span class="p">.</span><span class="n">PurchTable</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">PurchLine</span><span class="p">.</span><span class="n">Last</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">purchLine</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchLine</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;110329&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">PurchQty</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">CurrencyCode</span> <span class="p">=</span> <span class="s">&#34;KRW&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">RecIdSpecified</span>      <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">LineNumberSpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">action</span>              <span class="p">=</span> <span class="n">AxdEnum_AxdEntityAction</span><span class="p">.</span><span class="n">create</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">actionSpecified</span>     <span class="p">=</span> <span class="k">true</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="c1">//for delete</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">//RecId               = lastLine.RecId,</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">//RecIdSpecified      = true,</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">//action              = AxdEnum_AxdEntityAction.delete,</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">//actionSpecified     = true</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="c1">//for Update</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">//RecId               = lastLine.RecId,</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">//RecIdSpecified      = true,</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">//action              = AxdEnum_AxdEntityAction.update,</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">//actionSpecified     = true</span>
-</span></span><span class="line"><span class="cl">	
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">purchTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchTable</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="n">_DocumentHash</span> <span class="p">=</span> <span class="n">purchOrders</span><span class="p">.</span><span class="n">PurchTable</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">_DocumentHash</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">OrderAccount</span> <span class="p">=</span> <span class="s">&#34;101-01-75441&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">LanguageId</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">CurrencyCode</span> <span class="p">=</span> <span class="s">&#34;KRW&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">PurchName</span> <span class="p">=</span> <span class="s">&#34;AIF PO Test&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">action</span> <span class="p">=</span> <span class="n">AxdEnum_AxdEntityAction</span><span class="p">.</span><span class="n">update</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">actionSpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">PurchLine</span> <span class="p">=</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">purchLine</span> <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">AxdMav_PurchOrderService</span> <span class="n">purchOrder</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdMav_PurchOrderService</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="n">PurchTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchTable</span><span class="p">[]</span> <span class="p">{</span><span class="n">purchTable</span><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">client</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">,</span> <span class="n">purchOrder</span><span class="p">);</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>Thank you for reading!</p>]]></description>
-</item>
-<item>
-    <title>CRUD Items, products, products master dimension, variants using AIF in Dynamics AX 2012 R3</title>
-    <link>https://nuxulu.com/2016-12-27-crud-items-products-products-master-dimension-variants-using-aif-in-dynamics-ax-2012-r3/</link>
-    <pubDate>Tue, 27 Dec 2016 00:00:00 &#43;0000</pubDate>
-    <author>Max Nguyen</author>
-    <guid>https://nuxulu.com/2016-12-27-crud-items-products-products-master-dimension-variants-using-aif-in-dynamics-ax-2012-r3/</guid>
-    <description><![CDATA[<h2 id="scenarios">Scenarios:</h2>
-<p>I’m trying to create <strong>product/master product</strong> in Dynamics AX using AIF inbound port, the AIF services consume by C#.NET.</p>
-<p>From AX 2012 R2, Item is replaced with Product. Item master was in Inventory Management Module, now there is a separate module for item/product creation <code>Product information Management</code>.</p>
-<p>Some definitions you should know
-There are two types of Products in 2012 they are:</p>
-<ol>
-<li>
-<p><strong>Product</strong></p>
-<p><em>Product information management/Common/Products/Products</em></p>
-</li>
-<li>
-<p><strong>Product Master</strong></p>
-<p><em>Product information management/Common/Products/Products master</em></p>
-<p>a. <strong>Variants:</strong></p>
-</li>
-</ol>
-<p>To create a product variant, you must define at least one product dimension for a product master. You can also rename dimensions.
-To create product variants, you must complete the following tasks:</p>
-<ul>
-<li>
-<p>Set up dimensions, such as size, color, and style.</p>
-</li>
-<li>
-<p>Set up variant groups.</p>
-</li>
-<li>
-<p>Assign variant groups to a retail hierarchy.</p>
-</li>
-<li>
-<p>Create a product master and variants.</p>
-</li>
-</ul>
-<p>b. <strong>Product dimensions</strong></p>
-<p>Product dimensions are characteristics that serve to identify a product variant. You can use combinations of product dimensions to define product variants. You must define at least one product dimension for a product master to create a product variant.</p>
-<h2 id="process">Process:</h2>
-<p>Normally in AX, we create items master follow process:</p>
-<ul>
-<li>
-<p>Create product/product master.</p>
-</li>
-<li>
-<p>Assigning Dimensions Groups to a Product Master.</p>
-</li>
-<li>
-<p>Create Product dimension combinations (Product Variants)</p>
-</li>
-<li>
-<p>Release product to legal entities</p>
-</li>
-<li>
-<p>Assigning Item Model Group &amp; Item Groups to a Product Master</p>
-</li>
-</ul>
-<h2 id="how-to-do">How to do:</h2>
-<p>Ax provides us standard services for this purpose, so we don’t need to create any custom services for this. I will use 4 services for this purpose, descriptions below</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Service</th>
-<th style="text-align:center">Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"><code>EcoResProductService</code></td>
-<td style="text-align:center">Create products (all types). The service can also be used to                            retrieve data that has already been created (Create Product details in The EcoRes tables).</td>
-</tr>
-<tr>
-<td style="text-align:left">&mdash;-</td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:left"><code>EcoResProductMasterDimValueService</code></td>
-<td style="text-align:center">Specify values of product dimensions for a product master. These values become available for the creation of product variants. The service can also be used to retrieve data that has already been created.</td>
-</tr>
-<tr>
-<td style="text-align:left">&mdash;-</td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:left"><code>ItemService</code></td>
-<td style="text-align:center">Release distinct products and product masters. The service can also be used to retrieve data that has already been created.</td>
-</tr>
-<tr>
-<td style="text-align:left">&mdash;-</td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:left"><code>InventDimCombinationService</code></td>
-<td style="text-align:center">Release product variants. The service can also be used to retrieve data that has already been created.</td>
-</tr>
-<tr>
-<td style="text-align:left">{: rules=&ldquo;groups&rdquo;}</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>we have 4 steps</p>
-<ol>
-<li>
-<p>Create 4 AIF inbound services against Services operation above and active it
-<code>http://DEV-ERP:8103/DynamicsAx/Services/BCEcoResProduct</code>
-<code>http://DEV-ERP:8103/DynamicsAx/Services/BCEcoResProductMasterDimValue</code>
-<code>http://DEV-ERP:8103/DynamicsAx/Services/BCItemsMaster</code>
-<code>http://DEV-ERP:8103/DynamicsAx/Services/BCInventDimCombination</code></p>
-</li>
-<li>
-<p>After services creation, open visual studio then creates new Console project and add service References for that, you will get somethings like pic below:</p>
-<p></p>
-</li>
-<li>
-<p>Using C#.Net to consume service</p>
-</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">ItemsMaster.ItemsRef</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">ItemsMaster.EcoResProductRef</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">ItemsMaster.EcoResProductMasterRef</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">ItemsMaster.InventDimRef</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="n">Program</span> <span class="n">master</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Program</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">	<span class="n">master</span><span class="p">.</span><span class="n">createDistinctProduct</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">	<span class="n">Program</span><span class="p">.</span><span class="n">releaseProduct</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><code>EcoResProductServiceClient</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">createDistinctProduct</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="n">AxdEntity_Product_EcoResDistinctProduct</span> <span class="n">distinctProduct</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Product_EcoResDistinctProduct</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">DisplayProductNumber</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="n">ProductType</span> <span class="p">=</span> <span class="n">AxdEnum_EcoResProductType</span><span class="p">.</span><span class="n">Item</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="n">SearchName</span> <span class="p">=</span> <span class="s">&#34;Max&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	   
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">Translation</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Translation</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">Translation</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Translation</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">LanguageId</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Max Nguyen&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">Identifier</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Identifier</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">Identifier</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Identifier</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">ProductNumber</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">StorageDimGroup</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_StorageDimGroup</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">StorageDimGroup</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_StorageDimGroup</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">Product</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="n">StorageDimensionGroup</span> <span class="p">=</span> <span class="s">&#34;SW_P&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">TrackingDimGroup</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_TrackingDimGroup</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">	<span class="n">distinctProduct</span><span class="p">.</span><span class="n">TrackingDimGroup</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_TrackingDimGroup</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">Product</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="n">TrackingDimensionGroup</span> <span class="p">=</span> <span class="s">&#34;Batch Only&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">AxdEcoResProduct</span> <span class="n">product</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEcoResProduct</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">Product</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Product_EcoResProduct</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">distinctProduct</span> <span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">CallContext</span> <span class="n">EcoResProductSctx</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">CallContext</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="n">Language</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">EcoResProductServiceClient</span> <span class="n">ecoResProductSClient</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">EcoResProductServiceClient</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">	
-</span></span><span class="line"><span class="cl">	<span class="n">ecoResProductSClient</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">EcoResProductSctx</span><span class="p">,</span> <span class="n">product</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><code>EcoResProductServiceClient</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">createMaster</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="n">AxdEntity_Product_EcoResProductMaster</span> <span class="n">productMaster</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Product_EcoResProductMaster</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">DisplayProductNumber</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="n">ProductType</span> <span class="p">=</span> <span class="n">AxdEnum_EcoResProductType</span><span class="p">.</span><span class="n">Item</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="n">SearchName</span> <span class="p">=</span> <span class="s">&#34;Max Nguyen&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">productMaster</span><span class="p">.</span><span class="n">Translation</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Translation</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">	<span class="n">productMaster</span><span class="p">.</span><span class="n">Translation</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Translation</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">LanguageId</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Max Nguyen&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">productMaster</span><span class="p">.</span><span class="n">Identifier</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Identifier</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">	<span class="n">productMaster</span><span class="p">.</span><span class="n">Identifier</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Identifier</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">ProductNumber</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">	<span class="n">productMaster</span><span class="p">.</span><span class="n">ProductDimGroup</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_ProductDimGroup</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">	<span class="n">productMaster</span><span class="p">.</span><span class="n">ProductDimGroup</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_ProductDimGroup</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">Product</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="n">ProductDimensionGroup</span> <span class="p">=</span> <span class="s">&#34;MAX10&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">	<span class="n">productMaster</span><span class="p">.</span><span class="n">VariantConfigurationTechnology</span> <span class="p">=</span> <span class="n">AxdEnum_EcoResVariantConfigurationTechnologyType</span><span class="p">.</span><span class="n">PredefinedVariants</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">AxdEcoResProduct</span> <span class="n">axdProduct</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEcoResProduct</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">Product</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Product_EcoResProduct</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">productMaster</span> <span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">CallContext</span> <span class="n">EcoResProductSctx</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">CallContext</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="n">Language</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">EcoResProductServiceClient</span> <span class="n">ecoResProductSClient</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">EcoResProductServiceClient</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">	
-</span></span><span class="line"><span class="cl">	<span class="n">ecoResProductSClient</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">EcoResProductSctx</span><span class="p">,</span> <span class="n">axdProduct</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><code>EcoResProductMasterDimValueServiceClient</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">createMasterDimensions</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span> <span class="n">ecoResSizeL</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;L&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span> <span class="n">ecoResSizeM</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;M&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">//master dimensions definition (two sizes, L and M)</span>
-</span></span><span class="line"><span class="cl">	<span class="n">AxdEntity_MasterDim_EcoResProductMasterSize</span> <span class="n">sizeDimensionL</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_MasterDim_EcoResProductMasterSize</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">SizeProductMaster</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="n">Size</span> <span class="p">=</span> <span class="s">&#34;L&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="n">EcoResSize</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">ecoResSizeL</span> <span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">	<span class="n">AxdEntity_MasterDim_EcoResProductMasterSize</span> <span class="n">sizeDimensionM</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_MasterDim_EcoResProductMasterSize</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">SizeProductMaster</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="n">Size</span> <span class="p">=</span> <span class="s">&#34;M&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="n">EcoResSize</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">ecoResSizeM</span> <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">AxdEcoResProductMasterDimValue</span> <span class="n">axdDimValue</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEcoResProductMasterDimValue</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">MasterDim</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_MasterDim_EcoResProductMasterDimensionValue</span><span class="p">[</span><span class="m">2</span><span class="p">]</span> <span class="p">{</span> <span class="n">sizeDimensionL</span><span class="p">,</span> <span class="n">sizeDimensionM</span> <span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">CallContext</span> <span class="n">masterDimctx</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductMasterRef</span><span class="p">.</span><span class="n">CallContext</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">	<span class="n">EcoResProductMasterDimValueServiceClient</span> <span class="n">masterDimensionService</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductMasterDimValueServiceClient</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">	<span class="k">try</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">masterDimensionService</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">masterDimctx</span><span class="p">,</span> <span class="n">axdDimValue</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Message</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">		<span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><code>EcoResProductServiceClient</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">createVariant</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">//product variant definition</span>
-</span></span><span class="line"><span class="cl">	<span class="n">AxdEntity_Product_EcoResDistinctProductVariant</span> <span class="n">productVariant</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Product_EcoResDistinctProductVariant</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">DisplayProductNumber</span> <span class="p">=</span> <span class="s">&#34;MAXL&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="n">ProductType</span> <span class="p">=</span> <span class="n">AxdEnum_EcoResProductType</span><span class="p">.</span><span class="n">Item</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="n">SearchName</span> <span class="p">=</span> <span class="s">&#34;MAXL&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="n">ProductMaster</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">	<span class="n">productVariant</span><span class="p">.</span><span class="n">Translation</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Translation</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">	<span class="n">productVariant</span><span class="p">.</span><span class="n">Translation</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Translation</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">LanguageId</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;Max L size&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">	<span class="n">productVariant</span><span class="p">.</span><span class="n">VariantDimValue</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_VariantDimValue_EcoResProductVariantDimensionValue</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">	<span class="n">productVariant</span><span class="p">.</span><span class="n">VariantDimValue</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_VariantDimValue_EcoResProductVariantSize</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">DistinctProductVariant</span> <span class="p">=</span> <span class="s">&#34;MAXL&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="n">ProductDimensionAttribute</span> <span class="p">=</span> <span class="m">3173</span><span class="p">,</span><span class="c1">//The ID of the EcoResSize table</span>
-</span></span><span class="line"><span class="cl">		<span class="n">Size</span> <span class="p">=</span> <span class="s">&#34;L&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="n">EcoResSize</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span><span class="p">[</span><span class="m">1</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">		<span class="p">{</span>
-</span></span><span class="line"><span class="cl">			<span class="k">new</span> <span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">AxdEntity_EcoResSize</span><span class="p">()</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">&#34;L&#34;</span> <span class="p">}</span>
-</span></span><span class="line"><span class="cl">		<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">AxdEcoResProduct</span> <span class="n">axdProduct</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEcoResProduct</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">Product</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Product_EcoResProduct</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">productVariant</span> <span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">	<span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">CallContext</span> <span class="n">inventDimctx</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductRef</span><span class="p">.</span><span class="n">CallContext</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">	<span class="n">EcoResProductServiceClient</span> <span class="n">productService</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EcoResProductServiceClient</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">	<span class="k">try</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">productService</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">inventDimctx</span><span class="p">,</span> <span class="n">axdProduct</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Message</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">		<span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><code>this method can use to release a distinct product or a product master</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span><span class="lnt">55
-</span><span class="lnt">56
-</span><span class="lnt">57
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">releaseProduct</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="kt">var</span> <span class="n">invent</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Invent</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="n">UnitId</span> <span class="p">=</span> <span class="s">&#34;box&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="kt">var</span> <span class="n">purch</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Purch</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="n">UnitId</span> <span class="p">=</span> <span class="s">&#34;box&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="kt">var</span> <span class="n">sales</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Sales</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="n">UnitId</span> <span class="p">=</span> <span class="s">&#34;box&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="kt">var</span> <span class="n">inventTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_InventTable</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="n">PmfProductType</span> <span class="p">=</span> <span class="n">AxdEnum_PmfProductType</span><span class="p">.</span><span class="n">MainItem</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="n">Product</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="n">Invent</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Invent</span><span class="p">[]</span> <span class="p">{</span> <span class="n">invent</span> <span class="p">},</span>
-</span></span><span class="line"><span class="cl">		<span class="n">Purch</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Purch</span><span class="p">[]</span> <span class="p">{</span> <span class="n">purch</span> <span class="p">},</span>
-</span></span><span class="line"><span class="cl">		<span class="n">Sales</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Sales</span><span class="p">[]</span> <span class="p">{</span> <span class="n">sales</span> <span class="p">},</span>
-</span></span><span class="line"><span class="cl">		
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="kt">var</span> <span class="n">item</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdItem</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">InventTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_InventTable</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">inventTable</span> <span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">ItemsRef</span><span class="p">.</span><span class="n">CallContext</span> <span class="n">callContext</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ItemsRef</span><span class="p">.</span><span class="n">CallContext</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">	<span class="n">ItemsRef</span><span class="p">.</span><span class="n">ItemServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ItemsRef</span><span class="p">.</span><span class="n">ItemServiceClient</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">callContext</span><span class="p">.</span><span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">	<span class="n">callContext</span><span class="p">.</span><span class="n">Language</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="k">try</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">ItemsRef</span><span class="p">.</span><span class="n">EntityKey</span><span class="p">[]</span> <span class="n">itemCreatedEntity</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">item</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">		<span class="n">ItemsRef</span><span class="p">.</span><span class="n">EntityKey</span> <span class="n">itemCreated</span> <span class="p">=</span> <span class="p">(</span><span class="n">ItemsRef</span><span class="p">.</span><span class="n">EntityKey</span><span class="p">)</span><span class="n">itemCreatedEntity</span><span class="p">.</span><span class="n">GetValue</span><span class="p">(</span><span class="m">0</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">		<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;AxdEntity_Invent &#34;</span> <span class="p">+</span> <span class="n">itemCreated</span><span class="p">.</span><span class="n">KeyData</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">Value</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">		<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
-</span></span><span class="line"><span class="cl">		<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><code>Release product Variants</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">releaseProductVariants</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="n">AxdEntity_InventDimCombination</span> <span class="n">releasedVariant</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_InventDimCombination</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">DistinctProductVariant</span> <span class="p">=</span> <span class="s">&#34;MAX00002&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">AxdInventDimCombination</span> <span class="n">inventDimCombination</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdInventDimCombination</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">InventDimCombination</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_InventDimCombination</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">releasedVariant</span> <span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">InventDimRef</span><span class="p">.</span><span class="n">CallContext</span> <span class="n">itemsctx</span> <span class="p">=</span> <span class="k">new</span> <span class="n">InventDimRef</span><span class="p">.</span><span class="n">CallContext</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;bgr&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">		<span class="n">Language</span> <span class="p">=</span> <span class="s">&#34;en-us&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="p">};</span>
-</span></span><span class="line"><span class="cl">	<span class="n">InventDimCombinationServiceClient</span> <span class="n">inventDimCombinationService</span> <span class="p">=</span> <span class="k">new</span> <span class="n">InventDimCombinationServiceClient</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">	<span class="k">try</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">inventDimCombinationService</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">itemsctx</span><span class="p">,</span> <span class="n">inventDimCombination</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Message</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">		<span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>Just for example, in <code>main</code> I only create Distinct product and release it, but you can use another method to create master, variant, masterDim and so on.</p>
-<pre><code>4. Try to run it and here is a result
-</code></pre>
-<p></p>
-<p>Thank you for reading and feel free to give me a question.</p>]]></description>
 </item>
 </channel>
 </rss>

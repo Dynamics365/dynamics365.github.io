@@ -3368,22 +3368,107 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 ]]></description>
 </item>
 <item>
-    <title>Database movement from Tier 1 to Tier 1</title>
-    <link>https://nuxulu.com/2020-07-14-database-movement-tier1-to-tier1/</link>
+    <title>How To d365fo.tools</title>
+    <link>https://nuxulu.com/2020-07-14-d365fo.tools/</link>
     <pubDate>Tue, 14 Jul 2020 00:00:00 &#43;0000</pubDate>
     <author>Max Nguyen</author>
-    <guid>https://nuxulu.com/2020-07-14-database-movement-tier1-to-tier1/</guid>
-    <description><![CDATA[<ol>
-<li>In GOLD, export GOLD bak file</li>
-<li>In MIG, stop all services: Batch, DIXF, MR</li>
-<li>In MIG, backup AXDB MIG</li>
-<li>in MIG, AxDB to AxDB_Orgi</li>
-<li>In MIG, Create AxDB_New</li>
-<li>In MIG,resotre GOLD to AxDB_New</li>
-<li>AxDB_Gold to AxDB</li>
-<li>Start all the services and resett IIS in LCS</li>
-<li>DB Sync</li>
-</ol>
+    <guid>https://nuxulu.com/2020-07-14-d365fo.tools/</guid>
+    <description><![CDATA[<h2 id="basic">Basic</h2>
+<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw" aria-hidden="true"></i>Reference<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li><a href="https://github.com/d365collaborative/d365fo.tools/wiki" target="_blank" rel="noopener noreffer ">https://github.com/d365collaborative/d365fo.tools/wiki</a></li>
+</ul>
+</div>
+        </div>
+    </div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="c">#Installation</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Set-ExecutionPolicy</span> <span class="n">-ExecutionPolicy</span> <span class="n">RemoteSigned</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">d365fo</span><span class="p">.</span><span class="n">tools</span> <span class="c">#-AllowClobber</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Import-Module</span> <span class="n">-Name</span> <span class="n">d365fo</span><span class="p">.</span><span class="n">tools</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Uninstall-Module</span> <span class="n">-Name</span> <span class="n">d365fo</span><span class="p">.</span><span class="n">tools</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Update-Module</span> <span class="n">-Name</span> <span class="n">d365fo</span><span class="p">.</span><span class="n">tools</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">#help</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Get-Command</span> <span class="n">-Module</span> <span class="n">d365fo</span><span class="p">.</span><span class="n">tools</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Get-Help</span> <span class="nb">New-D365Bacpac</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Get-Help</span> <span class="nb">New-D365Bacpac</span> <span class="n">-Full</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Get-Help</span> <span class="nb">New-D365Bacpac</span> <span class="n">-Examples</span> 
+</span></span><span class="line"><span class="cl"><span class="nb">Get-Help</span> <span class="nb">Get-D365AzureDevOpsNuget</span>  <span class="n">-Full</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">#deploy report</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Publish-D365SsrsReport</span> <span class="n">-Module</span> <span class="n">Kaynecustomization</span> <span class="n">-ReportName</span> <span class="n">KACheque_US</span><span class="p">.</span><span class="n">Report</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">#environment</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Get-D365Environment</span> <span class="n">-All</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Stop-D365Environment</span> <span class="n">-All</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Stop-D365Environment</span> <span class="n">-Aos</span> <span class="n">-Batch</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Start-D365Environment</span> <span class="n">-All</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Restart-D365Environment</span> <span class="n">-All</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">#users</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Import-D365ExternalUser</span> <span class="n">-Id</span> <span class="s2">&#34;mnguyen&#34;</span> <span class="n">-Name</span> <span class="s2">&#34;Max Nguyen&#34;</span> <span class="n">-Email</span> <span class="s2">&#34;max@automaly.com&#34;</span> <span class="n">-Company</span> <span class="s2">&#34;002&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Get-D365Module</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Get-Help</span> <span class="nb">Set-D365Admin</span> <span class="n">-Full</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Get-Help</span> <span class="nb">Set-D365SysAdmin</span> <span class="n">-Full</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Set-D365Admin</span> <span class="s2">&#34;max@automaly.com&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Get-D365User</span> <span class="n">-Email</span> <span class="s2">&#34;max@automaly.com&#34;</span> <span class="p">|</span> <span class="nb">Enable-D365User</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="lcs">LCS</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">Get-D365LcsApiToken</span> <span class="n">-ClientId</span> <span class="s2">&#34;***&#34;</span> <span class="n">-Username</span> <span class="s2">&#34;&#34;</span> <span class="n">-Password</span> <span class="s2">&#34;&#34;</span> <span class="n">-LcsApiUri</span> <span class="s2">&#34;https://lcsapi.lcs.dynamics.com&#34;</span> <span class="p">|</span> <span class="nb">Set-D365LcsApiConfig</span> <span class="n">-ProjectId</span> <span class="n">000000</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">Invoke-D365LcsEnvironmentStart</span> <span class="n">-ProjectId</span> <span class="n">1269585</span> <span class="n">-EnvironmentId</span> <span class="s2">&#34;d5dc45bb-&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Invoke-D365LcsEnvironmentStop</span> <span class="n">-ProjectId</span> <span class="n">1269585</span> <span class="n">-EnvironmentId</span> <span class="s2">&#34;d5dc45bb-&#34;</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="import-a-bacpac-file-into-a-tier1-environment">Import a bacpac file into a Tier1 environment</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -3391,14 +3476,37 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">ALTER</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">AxDB</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">Single_user</span><span class="w"> </span><span class="k">With</span><span class="w"> </span><span class="k">Rollback</span><span class="w"> </span><span class="k">immediate</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">alter</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">AxDB</span><span class="w"> </span><span class="k">Modify</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AxDB_Orig</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">alter</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">AxDB_Orig</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">MULTI_USER</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">alter</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">AxDB_Gold</span><span class="w"> </span><span class="k">Modify</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AxDB</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="p">[</span><span class="n">USERINFO</span><span class="p">]</span><span class="w"> 
-</span></span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">Invoke-D365InstallSqlPackage</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Import-D365Bacpac</span> <span class="n">-BacpacFile</span> <span class="s2">&#34;J:\MSSQL_BACKUP\AxDB_UAT.bacpac&#34;</span> <span class="n">-ImportModeTier1</span> <span class="n">-NewDatabaseName</span> <span class="n">AxDB_UAT</span> <span class="n">-ShowOriginalProgress</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Stop-D365Environment</span> <span class="n">-All</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Switch-D365ActiveDatabase</span> <span class="n">-NewDatabaseName</span> <span class="s2">&#34;AxDB_UAT&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Invoke-D365DBSync</span> <span class="n">-ShowOriginalProgress</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Start-D365Environment</span> <span class="n">-All</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="db-sync--build">DB Sync &amp; Build</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="c"># Get database backup</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Get-D365LcsDatabaseBackups</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="c"># Build</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Invoke-D365DbSyncModule</span> <span class="n">-Module</span> <span class="s2">&#34;Kaynecustomization&#34;</span> <span class="n">-ShowOriginalProgress</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Invoke-D365ModuleCompile</span> <span class="n">-Module</span> <span class="s2">&#34;Kaynecustomization&#34;</span> <span class="n">-ShowOriginalProgress</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Invoke-D365DBSync</span> <span class="n">-ShowOriginalProgress</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>]]></description>
 </item>
