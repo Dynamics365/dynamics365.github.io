@@ -1,0 +1,331 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Report - Category - Dynamics 365 Finance &amp; Operations | nuxulu.com</title>
+        <link>https://nuxulu.com/categories/report/</link>
+        <description>Report - Category - Dynamics 365 Finance &amp; Operations | nuxulu.com</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Thu, 10 Oct 2019 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/categories/report/" rel="self" type="application/rss+xml" /><item>
+    <title>Extend the standard reports in Dynamics 365 finance and operations</title>
+    <link>https://nuxulu.com/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/</link>
+    <pubDate>Thu, 10 Oct 2019 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/</guid>
+    <description><![CDATA[<p>In this article, I will show the procedure for the SSRS Reports development and customization in Dynamics 365 finance and operations (Version 8.1 and above).</p>
+<p>The scenario is you would like to extend <strong>the customer account statement</strong> report with 2 main tasks</p>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/analytics/custom-designs-business-docs?toc=/dynamics365/commerce/toc.json" target="_blank" rel="noopener noreffer ">Create custom design for the report</a></li>
+<li><a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/analytics/expand-app-suite-report-data-sets?toc=/dynamics365/commerce/toc.json" target="_blank" rel="noopener noreffer ">Expand the standard report data sets</a></li>
+</ul>
+<p>Same with AX 2012 version, there is no change on how you developer a new SSRS report with query based and report data provider. But if you want to extend or modify the standard one you need to understand how to use extensions in general, Event handlers and Chain of Command.</p>
+<p>The steps</p>
+<h3 id="1-adding-a-new-field">1. Adding a new field</h3>
+<p>The main temp table is <strong>CustAccountStatementExtTmp</strong>, right click and create an extension; I&rsquo;m going to add a new string field <strong>MaxTxT</strong></p>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_1.png"></a>
+</figure>
+<h3 id="2-duplicate-the-report">2. Duplicate the report</h3>
+<p>Duplicate the <strong>CustAccountStatementExt</strong> report in <em>the Application explorer &gt; AOT &gt; Reports &gt; CustAccountStatementExt</em> as shown in below screen shot:</p>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_2.png"></a>
+</figure>
+<p>Rename the report and provide any appropriate name: <strong>MaxCustAccountStatementExt</strong></p>
+<h3 id="3-modifythe-report-design-right-click-on-report-dataset-and-choose-restore-to-refresh-the-new-field">3. Modify the report design, right click on report dataset and choose restore to refresh the new field</h3>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_3.png"></a>
+</figure>
+<p>Open report designer and add that field into a table</p>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_4.png"></a>
+</figure>
+<h3 id="4-create-a-new-extension-classthat-extends-the-standard-report-controller-class">4. Create a new Extension class that extends the standard report controller class.</h3>
+<p><em><strong>class MaxCustAccountStatementExtController_Ext extends CustAccountStatementExtController{}</strong></em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="c1">//Add construct</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">MaxCustAccountStatementExtController_Ext</span> <span class="n">construct</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="n">MaxCustAccountStatementExtController_Ext</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Copy the main method from the standard controller class and add references to the new Controller class</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SrsPrintMgmtFormLetterController</span> <span class="n">controller</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MaxCustAccountStatementExtController_Ext</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">controller</span><span class="p">.</span><span class="n">parmReportName</span><span class="p">(</span><span class="n">PrintMgmtDocType</span><span class="p">::</span><span class="n">construct</span><span class="p">(</span><span class="n">PrintMgmtDocumentType</span><span class="p">::</span><span class="n">CustAccountStatement</span><span class="p">).</span><span class="n">getDefaultReportFormat</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">controller</span><span class="p">.</span><span class="n">parmArgs</span><span class="p">(</span><span class="n">_args</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">MaxCustAccountStatementExtController_Ext</span><span class="p">::</span><span class="n">startControllerOperation</span><span class="p">(</span><span class="n">controller</span><span class="p">,</span> <span class="n">_args</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="k">protected</span> <span class="k">static</span> <span class="k">void</span> <span class="n">startControllerOperation</span><span class="p">(</span><span class="n">SrsPrintMgmtFormLetterController</span> <span class="n">_controller</span><span class="p">,</span> <span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">_controller</span><span class="p">.</span><span class="n">startOperation</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Optional method, determine which default design for report</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">protected</span> <span class="k">void</span> <span class="n">outputReport</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SRSCatalogItemName</span>  <span class="n">reportDesign</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">reportDesign</span> <span class="p">=</span> <span class="n">ssrsReportStr</span><span class="p">(</span><span class="n">MaxCustAccountStatementExt</span><span class="p">,</span><span class="n">Report</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="n">parmReportName</span><span class="p">(</span><span class="n">reportDesign</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="n">parmReportContract</span><span class="p">().</span><span class="n">parmReportName</span><span class="p">(</span><span class="n">reportDesign</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">formletterReport</span><span class="p">.</span><span class="n">parmReportRun</span><span class="p">().</span><span class="n">settingDetail</span><span class="p">().</span><span class="n">parmReportFormatName</span><span class="p">(</span><span class="n">reportDesign</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="5-create-new-report-handler-class">5. Create new report handler class</h3>
+<p><em><strong>class MaxCustAccountStatementHandler {}</strong></em></p>
+<p>We have two different ways to Populate the data in the Report handler class:</p>
+<ul>
+<li>Add a temp table Inserting event, row-by-row calculations.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="na">[DataEventHandlerAttribute(tableStr(CustAccountStatementExtTmp), DataEventType::Inserting)]</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">CustAccountStatementExtTmpInsertEvent</span><span class="p">(</span><span class="n">Common</span> <span class="n">c</span><span class="p">,</span> <span class="n">DataEventArgs</span> <span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">CustAccountStatementExtTmp</span>    <span class="n">tempTable</span> <span class="p">=</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tempTable</span><span class="p">.</span><span class="n">MaxTxT</span> <span class="p">=</span> <span class="s">&#34;Hello world&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Add a data processing post-handler, inserting operations that use a single pass over the result set of the standard solution.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="na">[PostHandlerFor(classStr(CustAccountStatementExtDP), methodstr(CustAccountStatementExtDP, processReport))]</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">TmpTablePostHandler</span><span class="p">(</span><span class="n">XppPrePostArgs</span> <span class="n">arguments</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">CustAccountStatementExtDP</span> <span class="n">dpInstance</span> <span class="p">=</span> <span class="n">arguments</span><span class="p">.</span><span class="n">getThis</span><span class="p">()</span> <span class="k">as</span> <span class="n">CustAccountStatementExtDP</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">CustAccountStatementExtTmp</span> <span class="n">tmpTable</span> <span class="p">=</span> <span class="n">dpInstance</span><span class="p">.</span><span class="n">getCustAccountStatementExtTmp</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ttsbegin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="k">select</span> <span class="n">forUpdate</span> <span class="n">tmpTable</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">tmpTable</span><span class="p">.</span><span class="n">MaxTxT</span> <span class="p">=</span> <span class="s">&#34;Hello world&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">tmpTable</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ttscommit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="6-add-a-delegate-handler-method-to-start-to-use-your-custom-report">6. Add a delegate handler method to start to use your custom report.</h3>
+<p>In this example, extend the <em><strong>getDefaultReportFormatDelegate</strong></em> method in the <em><strong>PrintMgtDocTypeHandlerExt</strong></em> class by using the following code.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MaxPrintMgtDocTypeHandlersExt</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="na">    [SubscribesTo(classstr(PrintMgmtDocType), delegatestr(PrintMgmtDocType, getDefaultReportFormatDelegate))]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">getDefaultReportFormatDelegate</span><span class="p">(</span><span class="n">PrintMgmtDocumentType</span> <span class="n">_docType</span><span class="p">,</span> <span class="n">EventHandlerResult</span> <span class="n">_result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">switch</span> <span class="p">(</span><span class="n">_docType</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">case</span> <span class="n">PrintMgmtDocumentType</span><span class="p">::</span><span class="n">CustAccountStatement</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">_result</span><span class="p">.</span><span class="n">result</span><span class="p">(</span><span class="n">ssrsReportStr</span><span class="p">(</span><span class="n">MaxCustAccountStatementExt</span><span class="p">,</span> <span class="n">Report</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="7-create-extension-for-the-existing-menu-items">7. Create extension for the existing menu items</h3>
+<p>Navigating to the <strong>CustAccountStatementExt</strong> output menu item and create extension.</p>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_5.png"></a>
+</figure>
+<p>Also make sure to set the value of the Object property to <strong>MaxCustAccountStatementExtController_Ext</strong> to redirect user navigation to the extended solution.</p>
+<p>That&rsquo;s all, this is what you should have</p>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_9.png"></a>
+</figure>
+<h3 id="8-update-the-print-management-settings-to-use-the-custom-business-document">8. Update the Print management settings to use the custom business document</h3>
+<p>Go to <em>Account payable &gt; Inquiries and reports &gt; Setup &gt; Forms &gt; Form setup</em>
+Click <strong>Print Management</strong>, find the document configuration settings, and then select the custom design</p>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_6.png"></a>
+</figure>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_7.png"></a>
+</figure>
+<h3 id="9-run-report-and-test-the-result">9. Run report and test the result</h3>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_8.png"></a>
+</figure>]]></description>
+</item>
+<item>
+    <title>Management reporter in new AX, Dynamics 365 For Operation</title>
+    <link>https://nuxulu.com/2017-07-24-management-reporter-in-dynamics-365-for-operation/</link>
+    <pubDate>Mon, 24 Jul 2017 01:33:44 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2017-07-24-management-reporter-in-dynamics-365-for-operation/</guid>
+    <description><![CDATA[<h3 id="1-overview-management-reporter-in-new-ax">1. Overview Management Reporter in New AX</h3>
+<p>Management Reporter is now <strong>Financial reports</strong>.</p>
+<p>As you know Management Reporter is a real-time financial reporting application that is designed to empower information workers to quickly and easily create, generate, secure, and publish financial statements, such as Profit and Loss statements, balance sheets, and cash flow reports.</p>
+<p>In Dynamics 365 For Operation, I can access these reports within AX means directly <em>from the web client in the browser</em>. This feature allows me to run financial statements, such as a balance sheet and income statements.</p>
+<p>The <strong>22 default</strong> reports that are included, default financial reports including income statements, balance sheet reports, cash flow statements, and general ledger reports, which can be modified depending on your company’s requirements.</p>
+<p>Here is the list</p>
+<figure class='center '>
+  <a href="/imagesposts/Financial_reports.png"></a>
+</figure>
+<h3 id="2-access">2. Access</h3>
+<p>You can find the financial reporting menu in Dynamics 365 For Operation by visiting</p>
+<p><em><strong>General Ledger &gt; Inquiries and reports &gt; Financial reporting.</strong></em></p>
+<p>Although, there are some privileges and duties relating to this. These report functions are available to users that have their appropriate privileges and duties assigned to them already.
+In order to view, edit, and manage reports in Management Reporter you need to add security administrator role to business Users. Besides, if you only need users can run the financial reports then you have to add the appropriate privileges and duties assigned to them.</p>
+<p>Before creating and generating financial reports for a legal entity, you must be done set up for that legal entity:</p>
+<ul>
+<li>Fiscal calendar</li>
+<li>Ledger</li>
+<li>Chart of Accounts</li>
+<li>Currency</li>
+</ul>
+<h3 id="3-management-reporter-benefits">3. Management Reporter Benefits</h3>
+<p>With Management Reporter, business users can:</p>
+<ul>
+<li>Create their own boardroom-quality reports without IT assistance.</li>
+<li>Take advantage of secure report distribution through the centralized Report Library.</li>
+<li>Gain strong support for regulatory compliance (Change the report date, currency, view in Summary view or a detailed view, Add either dimension filters or attribute filters).</li>
+<li>Report design flexibility likes Save dimension combinations, and reuse the dimensions for multiple reports. Management Report Components.</li>
+<li>Financial report collaboration:
+<ul>
+<li>Schedule reports so that they are automatically generated on a daily, weekly, monthly, or annual basis.</li>
+<li>Export to the read-only XPS format, which provides better document security through digital signatures.</li>
+<li>Export to a Microsoft Excel worksheet.</li>
+<li>To share reports, you can create email messages that contain links to the reports.</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-management-report-components">4. Management Report Components</h3>
+<p>Some important components I want to mention here:</p>
+<ul>
+<li><strong>Report Designer</strong>
+Create report building blocks that can be combined to define and generate a report. The report wizard guides less experienced users through the design process. Advanced users can create new report building blocks or modify existing building blocks to meet their requirements.</li>
+<li><strong>Desktop Viewer</strong>
+Used to organize and view reports and supporting files. It also stores the report library.</li>
+<li><strong>Web Viewer</strong>
+Displays Management Reporter reports in a web browser. The Web Viewer does not require an installation of Management Reporter server components.</li>
+<li><strong>Report schedules</strong>
+A user can schedule a single report or a group of reports to generate regularly.</li>
+<li><strong>Management Reporter database</strong>
+This SQL database stores the components, known as building blocks, which are used to generate reports. It also stores report definitions and previously generated reports.</li>
+<li><strong>Application service</strong>
+Controls access to the data provider and provides connectivity to clients.</li>
+<li><strong>Process service</strong>
+Generates the reports that are created and queued by the Management Reporter client.</li>
+</ul>
+<h3 id="5-generate-financial-reports">5. Generate financial reports</h3>
+<p>We are currently at Financial reports screen as picture below</p>
+<figure class='center '>
+  <a href="/imagesposts/2017-04-10_11h56_15.png"></a>
+</figure>
+<p>As you can see there&rsquo;s nowhere on the screen or anything that indicates that there&rsquo;s the Management Reporter available, but if we click this <code>edit</code> button and entering your email account and password. After you log in, it will open the <strong>Report Definitions</strong> Management Reporter window for us.</p>
+<figure class='center '>
+  <a href="/imagesposts/2017-04-10_11h57_20.png"></a>
+</figure>
+<p>On the left, here we have a list of all the same reports that we were looking at in AX.
+Let&rsquo;s look at <code>the income statement - default report</code>, So I have a couple parameter fields we need to change before we can generate our report. Please prefer below picture</p>
+<figure class='center '>
+  <a href="/imagesposts/2017-04-10_12h08_53.png"></a>
+</figure>
+After we click **generate** button, Financial will be generated on current web browser
+<figure class='center '>
+  <a href="/imagesposts/2017-04-10_12h11_29.png"></a>
+</figure>
+we can see here by the report date.  So, on our income statement, we have all the usual fields here.  We have total revenues, gross profit, total operating experiences, net operating income and net income. That all is pretty standard and it all looks good.
+<h3 id="6-conclusion">6. Conclusion</h3>
+<p>Row, Column, Tree, Report definitions work essentially the same as they did in <strong>Dynamics AX 2012</strong>. I can still use row, column, and tree definitions with multiple reports, and options for the Report definition tabs.</p>
+<figure class='center '>
+  <a href="/imagesposts/2017-04-10_14h57_51.png"></a>
+</figure>
+<p>Here are some of the functions that are not available in Financial Reporting for Dynamics 365 for Operations:</p>
+<ul>
+<li>Publishing/distributing reports to SharePoint and/or SharePoint Online locations is not available.</li>
+<li>Report Viewer/Library has been removed.</li>
+<li>Import data from an Excel file is not available.</li>
+<li>XBRL (extensible Business Reporting Language) is no longer available.</li>
+<li>Comments are not currently available in the web client.</li>
+<li>Running a consolidation between companies in different instances of AX is not available.</li>
+<li>The Wizard has been removed.</li>
+<li>Management Reporter includes direct integration with the Microsoft Dynamics AX general ledger so that there is no need to create a custom connection to the data source.</li>
+</ul>
+<p>Nevertheless, with custom reporting structures, ledger accounts, and dimensions mapping, creation and the capabilities to publish reports to multiple channels and formats from the desktop, and embedding transactional and analytical reports into a customizable dashboard, Financial Reporting in Dynamics 365 For Operation is all set to simplify the financial reporting process, providing instant insight into your financials.</p>
+<p>Thank you for reading!</p>]]></description>
+</item>
+</channel>
+</rss>

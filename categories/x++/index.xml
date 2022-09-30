@@ -1,0 +1,271 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>X&#43;&#43; - Category - Dynamics 365 Finance &amp; Operations | nuxulu.com</title>
+        <link>https://nuxulu.com/categories/x&#43;&#43;/</link>
+        <description>X&#43;&#43; - Category - Dynamics 365 Finance &amp; Operations | nuxulu.com</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Mon, 07 Aug 2017 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/categories/x&#43;&#43;/" rel="self" type="application/rss+xml" /><item>
+    <title>Exception Handling in Dynamics 365 For Finance and Operation</title>
+    <link>https://nuxulu.com/2017-08-07-exception-handling-in-dynamics-365-for-finance-and-operation/</link>
+    <pubDate>Mon, 07 Aug 2017 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2017-08-07-exception-handling-in-dynamics-365-for-finance-and-operation/</guid>
+    <description><![CDATA[<p>When we write a code, or make a customization to Dynamics 365 For Operation which is using X++ should make use of Exception Handling to provide some context for the message or a different more useful message. In this article, I will be exploring how I can come up with a uniform way to catch multiple types of exception that can be raised in X++.</p>
+<h3 id="1-exception-type">1. Exception type</h3>
+<p>There are many several types of exception and the type differs depending on what caused the error. Much of exception types are determined by the kernel and are not normally thrown by application code. All <strong>exception types</strong>, however, can be caught, and it is the developers’ responsibility to decide which exceptions need to be handled.</p>
+<p>The exception type is identified using the system-based enumeration called an exception. Because it is a system Enum, it cannot be modified, so users cannot add new exception types.</p>
+<p>The following table shows the exception literals that are the values of the Exception enumeration.</p>
+<figure class='center '>
+  <a href="/imagesposts/2017-08-07_10h00_37.png"></a>
+</figure>
+<h3 id="2-key-commands">2. Key commands</h3>
+<p>The <strong>Try</strong> command signifies the start of a block of code that you want to control with the X++ exception handling system. Any exceptions that are thrown in that block of code can be caught and handled accordingly. The block of code inside the Try statement must be contained between brackets ( { } ).</p>
+<p><strong>Catch</strong> statements come after the block of code and define what code is executed when each exception is thrown.</p>
+<p>You do not have to define a catch statement for every possible exception; however, each try statement must have at least one catch statement.</p>
+<p>A <strong>Retry</strong> command tells the system to go back to the Try statement and attempt to execute the code again. Any data that was loaded before the Try command will remain as it was, but any data retrieved or modified after the Try statement will be refreshed.</p>
+<p>When a deadlock exception is thrown, all locks on tables that this process holds are released, which may allow the other process or processes that are also deadlocked to continue.</p>
+<p>By calling a retry, the process can attempt to update the record again and may now be able to complete. It is a best practice that a retry uses a counter so that the number of retries can be controlled, and a user does not become stuck in a loop.</p>
+<p>The <strong>final</strong> keyword is now available to follow the try and catch keywords. The semantics are identical to the semantics in C#. The statements provided in the final clause is executed irrespective of whether the try block threw any exceptions.</p>
+<h3 id="3-code-statement">3. Code Statement</h3>
+<p>We will use these lines of code example here for testing Exception handling</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CustCreateCustomer</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">CustCreateCustomer</span> <span class="n">custCreateCustomer</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CustCreateCustomer</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">custCreateCustomer</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">void</span> <span class="n">run</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Dialog</span>          <span class="n">dlg</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dialog</span><span class="p">(</span><span class="s">&#34;Create new customer&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">DialogField</span>     <span class="n">dlgCust</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">DialogField</span>     <span class="n">dlgGrp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">CustTable</span> <span class="n">custTable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">dlgCust</span> <span class="p">=</span> <span class="n">dlg</span><span class="p">.</span><span class="n">addField</span><span class="p">(</span><span class="n">extendedTypeStr</span><span class="p">(</span><span class="n">CustVendAc</span><span class="p">),</span> <span class="s">&#34;Customer account&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dlgGrp</span>  <span class="p">=</span> <span class="n">dlg</span><span class="p">.</span><span class="n">addField</span><span class="p">(</span><span class="n">extendedTypeStr</span><span class="p">(</span><span class="n">CustGroupId</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">dlg</span><span class="p">.</span><span class="n">run</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">try</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">custTable</span><span class="p">.</span><span class="n">AccountNum</span>    <span class="p">=</span> <span class="n">dlgCust</span><span class="p">.</span><span class="k">value</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                <span class="n">custTable</span><span class="p">.</span><span class="n">CustGroup</span>     <span class="p">=</span> <span class="n">dlgGrp</span><span class="p">.</span><span class="k">value</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(!</span><span class="n">custTable</span><span class="p">.</span><span class="n">validateWrite</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">throw</span> <span class="n">error</span><span class="p">(</span><span class="s">&#34;Please enter all required fields.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="k">else</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">custTable</span><span class="p">.</span><span class="n">insert</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span><span class="p">::</span><span class="n">Error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">error</span><span class="p">(</span><span class="s">&#34;An error occurred. Please try again&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This code will try to create a customer after revived inputted value from users, this code also handling errors when user do not input enough information. A <code>Throw</code> statement is used to throw an error that can be caught by a Catch statement. When the system throws an exception <code>ttsabort</code> is called automatically, and so does not have to be called in a Catch statement.</p>
+<h3 id="4-optimistic-concurrency-exceptions">4. Optimistic Concurrency Exceptions</h3>
+<p>The <strong>optimistic concurrency check</strong> (OCC) is a performance enhancing function within Microsoft Dynamics 365 For Operation. It presumes that any record retrieved from the database is not updated until it is proven to be updated by the database. This means that fewer locks must be placed on records in the database. This allows for faster access for other users.</p>
+<p>This also means that one user can update a record after another user has retrieved it from the database. This can cause data inconsistency. If the second user then also tries to update the record, an <code>UpdateConflict</code> exception is thrown. The system does this by comparing the <code>recVersion</code> field on the record buffer at runtime and the actual record in the database. The <code>recVersion</code> field value is changed every time that an update is successfully made to a record.</p>
+<p>There are two main table update exceptions, <code>UpdateConflict</code> and <code>DeadLock</code>. An update conﬂict occurs due to the optimistic concurrency failing, whereas a deadlock is the classic database scenario where both transactions have each locked a table that the other needs.</p>
+<p><strong>Update conﬂicts</strong> are normally handled within the insert, delete, and update methods of a table. The <strong>BOM table</strong> is a good example of this. You may also hard to find many examples where this has been used. We use this pattern only if we deem it to be required. The code within the table&rsquo;s update method also updates other records, so it has been written to handle update conﬂicts.</p>
+<p>The following code is an example of how to handle the UpdateConflict exception that might be thrown.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">update</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="err">#</span><span class="n">OCCRetryCount</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ttsbegin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// code that updates records in other tables</span>
+</span></span><span class="line"><span class="cl">        <span class="n">super</span><span class="p">();</span> <span class="c1">// do the update</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// other code that updates records in other tables</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ttscommit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//Deadlock</span>
+</span></span><span class="line"><span class="cl">    <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span><span class="p">::</span><span class="n">Deadlock</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">retry</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//UpdateConflict</span>
+</span></span><span class="line"><span class="cl">    <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span><span class="p">::</span><span class="n">UpdateConflict</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">appl</span><span class="p">.</span><span class="n">ttsLevel</span><span class="p">()</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">xSession</span><span class="p">::</span><span class="n">currentRetryCount</span><span class="p">()</span> <span class="p">&gt;=</span> <span class="err">#</span><span class="n">RetryNum</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">throw</span> <span class="n">Exception</span><span class="p">::</span><span class="n">UpdateConflictNotRecovered</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">retry</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="n">Exception</span><span class="p">::</span><span class="n">UpdateConflict</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>If a conflict due to OCC occurs, the system throws the <code>UpdateConflict</code> exception and it is caught by the catch statement.</p>
+<p>The other new element here is <code>ttsLevel</code>. Since transactions can be nested, we do want the exception to falling through to the parent transaction if one exists. If <code>ttsabort</code> is issued (directly or due to a throwing error) at any level, the whole transaction will be rolled back; we can&rsquo;t roll back just the level where the error is thrown.</p>
+<p>The code checks the current TTS level. If it is not Zero, in other words, it is still in a TTS transaction, it throws another <code>UpdateConflict</code> exception to the next Catch list of the next outer Try statement in scope. This continues until it is no longer inside a TTS transaction. We must make sure that when the code is retired, all data is refreshed.</p>
+<p>It is important that we don&rsquo;t retry indefinitely, as this may cause the client to hang. To control this, we use <code>xSession::currentRetryCount()</code> to get the number of retries and check this against the <code>#RetryNum</code> macro. The macro defines the standard number of retries deemed appropriate by Microsoft, which is five.
+then the <code>UpdateConflictNotRecovered</code> exception is thrown. This means the whole transaction is aborted and stops retrying.</p>
+<h3 id="5-conclusion">5. Conclusion</h3>
+<p>We do not, in any case, want an error to be thrown that stops the form from opening. Also, if there is an error, we need to decide whether the user actually needs to know that an error occurred. It may be enough for our purposes that the fields don&rsquo;t appear, and we can use the debugger to trace through the code to determine why.</p>
+<p>Thank you for reading!</p>]]></description>
+</item>
+<item>
+    <title>How to create main menu in Dynamics AX 2012</title>
+    <link>https://nuxulu.com/2017-03-29-how-to-create-main-menu-in-dynamics-ax-2012/</link>
+    <pubDate>Wed, 29 Mar 2017 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2017-03-29-how-to-create-main-menu-in-dynamics-ax-2012/</guid>
+    <description><![CDATA[<p>All main entry points to the UI and reports are access though the menu structure. This is presented in three ways: the left-hand navigation pane, the content area, and the navigation bar (at the top of the client). The menu design is controlled from the Menus node in the AOT.</p>
+<p>Each module will have a menu, which is created by adding a menu reference (or shortcut) to the main menu:</p>
+<figure class='center '>
+  <a href="/imagesposts/reference_menu.png"></a>
+  <figcaption></figcaption>
+</figure>
+<p>This matches the list of modules shown in the client&rsquo;s left-hand navigation pane.</p>
+<h4 id="create-menu-in-aot">Create Menu in AOT</h4>
+<ol>
+<li>
+<p>Open your project.</p>
+</li>
+<li>
+<p>Right-click on the <strong>Menus node</strong> and select <strong>New</strong> &gt; <strong>Menu</strong>.</p>
+</li>
+<li>
+<p>Rename the menu as <strong>YourMainMeunuName</strong> and open the property sheet.</p>
+</li>
+<li>
+<p>For Porperties of created Menu:</p>
+<p>. Enter the <strong>label</strong> and create a label.</p>
+<p>. As this menu will be a module with company-specifc information, set the <strong>SetCompany</strong> property to Yes.</p>
+<p>. Choose the icons in the <strong>NormalImage</strong> property and set <strong>ImageLocation</strong> to EmbeddedResource.</p>
+</li>
+<li>
+<p>Create <strong>Submenu</strong>, by right-clicking on the menu and navigating to <strong>New | Submenu</strong>.</p>
+</li>
+</ol>
+<h4 id="finally-we-need-to-add-our-menu-as-a-module-to-the-main-menu-which-is-done-as-follows">Finally, we need to add our menu as a module to the main menu, which is done as follows:</h4>
+<ol>
+<li>
+<p>Place the AOT window next to our project window (if required, open the AOT window by pressing Ctrl + D).</p>
+</li>
+<li>
+<p>Scroll down to Menus and expand MainMenu.</p>
+</li>
+<li>
+<p>Right-click on <strong>MainMenu</strong> and navigate to <strong>New &gt; Menu reference</strong>.</p>
+</li>
+<li>
+<p>This opens a new window titled Select: Menus. Locate <strong>your menu</strong> and drag it to <strong>MainMenu</strong>, as shown in the following screenshot (the title changes from Select: Menus to the path of the select node when you click on it):</p>
+</li>
+</ol>
+<figure class='center '>
+  <a href=""></a>
+  <figcaption></figcaption>
+</figure>
+<p><em>Note: Do not drag the menu from your project!</em></p>
+<p>Save AOT and you can check new menu on AX client.</p>
+<p>Thank you for reading!</p>]]></description>
+</item>
+</channel>
+</rss>
