@@ -4,9 +4,27 @@
         <link>https://nuxulu.com/</link>
         <description>Dynamics 365 Finance &amp; Operations</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
-            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Fri, 23 Sep 2022 00:00:00 &#43;0000</lastBuildDate>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Wed, 28 Sep 2022 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://nuxulu.com/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Remove a person from an user Dynamics 365 Finance Operations</title>
+    <link>https://nuxulu.com/2022-09-28-remove-person-from-users/</link>
+    <pubDate>Wed, 28 Sep 2022 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2022-09-28-remove-person-from-users/</guid>
+    <description><![CDATA[<p>Whenever you add a new person to an user in the user <strong>SysUserInfoPage</strong> form, the person field grays out.</p>
+<p><figure><a class="lightgallery" href="/2022-09-28-remove-person-from-users/2022-09-28-remove-person-from-users.png" title="Image" data-thumbnail="/2022-09-28-remove-person-from-users/2022-09-28-remove-person-from-users.png" data-sub-html="<h2>userinfo</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">userinfo</figcaption>
+    </figure></p>
+<p>To remove the person from that user:</p>
+<ul>
+<li>In the user form <code>System administration &gt; Users &gt; Users</code>, go to <code>Maintain versions</code>.</li>
+<li>Delete the person.</li>
+</ul>
+]]></description>
+</item>
+<item>
     <title>Add new fields to data entity or composite entity Dynamics 365</title>
     <link>https://nuxulu.com/2022-09-23-add-custom-fields-to-composite-entity/</link>
     <pubDate>Fri, 23 Sep 2022 00:00:00 &#43;0000</pubDate>
@@ -3067,64 +3085,6 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Thank you for reading.</p>]]></description>
-</item>
-<item>
-    <title>Deploy SSRS reports in Dynamics 365 Finance, SCM using Powershell</title>
-    <link>https://nuxulu.com/2021-01-27-deploy-ssrs-reports-in-dynamics-365-finance-scm-using-powershell/</link>
-    <pubDate>Sun, 17 Jan 2021 00:00:00 &#43;0000</pubDate>
-    <author>Max Nguyen</author>
-    <guid>https://nuxulu.com/2021-01-27-deploy-ssrs-reports-in-dynamics-365-finance-scm-using-powershell/</guid>
-    <description><![CDATA[<p>Open Windows PowerShell in Admin mode</p>
-<p>Navigate to the PowerShell scripts</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-ps" data-lang="ps"><span class="line"><span class="cl"><span class="nf">cd</span> <span class="nf">K:\AosService\PackagesLocalDirectory\Plugins\AxReportVmRoleStartupTask\</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>Execute the below commands:</p>
-<ul>
-<li>For deploying all SSRS reports</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-ps" data-lang="ps"><span class="line"><span class="cl"><span class="nf">.</span><span class="nv">/DeployAllReportsToSSRS.ps1</span> <span class="nf">-PackageInstallLocation</span> <span class="nf">“K:\AosService\PackagesLocalDirectory”</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>For deploying the specific reports</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">./</span><span class="n">DeployAllReportsToSSRS</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-Module</span> <span class="n">ApplicationSuite</span> <span class="n">-ReportName</span> <span class="p">&lt;</span><span class="n">ReportName</span><span class="p">&gt;</span> <span class="n">-PackageInstallLocation</span> <span class="err">“</span><span class="n">K:</span><span class="p">\</span><span class="n">AosService</span><span class="p">\</span><span class="n">PackagesLocalDirectory</span><span class="err">”</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><strong>Example:</strong></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">./</span><span class="n">DeployAllReportsToSsrs</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-Module</span> <span class="n">MaxCustomization</span> <span class="n">-ReportName</span> <span class="n">MaxCheque_US</span><span class="p">.</span><span class="n">Report</span> <span class="n">-PackageInstallLocation</span> <span class="s2">&#34;K:\AosService\PackagesLocalDirectory&#34;</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">./</span><span class="n">DeployAllReportsToSsrs</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-Module</span> <span class="n">ApplicatoinSuite</span> <span class="n">-ReportName</span> <span class="n">Cust</span><span class="p">*</span> <span class="n">-PackageInstallLocation</span> <span class="s2">&#34;C:\AosService\PackagesLocalDirectory&#34;</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div>]]></description>
 </item>
 </channel>
 </rss>
