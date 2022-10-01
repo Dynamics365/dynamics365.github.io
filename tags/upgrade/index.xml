@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>upgrade - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</title>
+        <title>Upgrade - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</title>
         <link>https://nuxulu.com/tags/upgrade/</link>
-        <description>upgrade - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</description>
+        <description>Upgrade - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
             <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Mon, 06 Apr 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/upgrade/" rel="self" type="application/rss+xml" /><item>
     <title>Getting onebox VHD Dynamics 365 finance and operations virtual machine</title>
@@ -180,6 +180,100 @@ cd &lt;update folder&gt;\MROneBox\Scripts\Update
 <h2 id="62-run-the-setup-script">6.2 Run the setup script</h2>
 <p>After you sign in with the <strong>Administrator</strong> account, right-click the desktop shortcut <strong>Generate Self-Signed Certificates</strong>, and select <strong>Run as administrator</strong>. When the script prompts for the application ID, provide the <strong>Application (client) ID</strong> created in Azure Active Directory.</p>
 <p>When the script finishes, the environment is ready for use. At this time, you can run the Admin Provisioning tool to set the administrator account, permissions, and tenant. Make sure that the email provided is for the Azure Active Directory tenant in which the application registration was created.</p>
+]]></description>
+</item>
+<item>
+    <title>Microsoft Dynamics AX 2012 Update Process</title>
+    <link>https://nuxulu.com/2020-01-01-microsoft-dynamics-ax-2012-update-process/</link>
+    <pubDate>Wed, 01 Jan 2020 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2020-01-01-microsoft-dynamics-ax-2012-update-process/</guid>
+    <description><![CDATA[<h2 id="what-is-an-update">What is an Update?</h2>
+<p>Updates include hotfixes, cumulative updates, and feature packs.</p>
+<ul>
+<li><strong>Hotfix</strong>: A fix or set of fixes that address a specific issue, problem, or customer scenario.</li>
+<li><strong>Cumulative update</strong>: An update that contains all previous hotfixes to date.</li>
+<li><strong>Feature pack</strong>: A group of updates that relate to a feature area or group of functionality. Contains design changes.</li>
+</ul>
+<h3 id="1-types-of-hotfixes">1. Types of Hotfixes</h3>
+<p>To determine which type of update is in a package, download the package, and then extract contents and review
+them to determine which type of update it is.</p>
+<p><figure><a class="lightgallery" href="/2020-01-01-microsoft-dynamics-ax-2012-update-process/Types-of-Hotfixes.png" title="Image" data-thumbnail="/2020-01-01-microsoft-dynamics-ax-2012-update-process/Types-of-Hotfixes.png" data-sub-html="<h2>Types of Hotfixes</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Types of Hotfixes</figcaption>
+    </figure></p>
+<h3 id="2-how-can-i-tell-if-a-binary-update-requires-a-schema-update-and-model-store-reinitialization">2. How can I tell if a binary update requires a schema update, and model store reinitialization?</h3>
+<p>The KB article will indicate  that a hotfix requires a schema update, and that you should reinitialize the model store.
+You should assume that all cumulative updates require a schema update, and reinitialize the model store.</p>
+<h3 id="3-how-can-i-tell-if-an-application-update-contains-a-report-or-web-part">3. How can I tell if an application update contains a report or web part?</h3>
+<p>There is currently no simple way to tell if a hotfix contains a report or web part. We recommend that you assume that all cumulative updates, service packs, and feature packs contain reports and web parts, and re-deploy reports and Enterprise Portal.</p>
+<p>If you encounter an error after installing a hotfix, try deploying reports and web parts.</p>
+<h2 id="installation-order">Installation Order</h2>
+<p>This diagram describes the order in which updates are applied in a test environment, and then applied in a production environment.</p>
+<ol>
+<li>Apply updates to the database.</li>
+<li>Apply updates to a single local AOS instance.</li>
+<li>Apply updates to a single local client. (Compile, Synchronize, and get the environment running)</li>
+<li>Deploy reports to the report server.</li>
+<li>Deploy web parts to the Enterprise Portal server.</li>
+<li>Deploy updates to any retail components.</li>
+</ol>
+<p>The differences in a production environment are:</p>
+<ol>
+<li>Import the model store from the test environment to apply updates to the database.</li>
+<li>Mass deploy client updates (optional).</li>
+</ol>
+<p><figure><a class="lightgallery" href="/2020-01-01-microsoft-dynamics-ax-2012-update-process/Installation-Order.png" title="Image" data-thumbnail="/2020-01-01-microsoft-dynamics-ax-2012-update-process/Installation-Order.png" data-sub-html="<h2>Installation-Order</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Installation-Order</figcaption>
+    </figure></p>
+<h2 id="detailed-update-process">Detailed Update Process</h2>
+<p>This diagram describes the update process in detail, in both the test and production environments.</p>
+<p><figure><a class="lightgallery" href="/2020-01-01-microsoft-dynamics-ax-2012-update-process/Detailed-Update-Process.png" title="Image" data-thumbnail="/2020-01-01-microsoft-dynamics-ax-2012-update-process/Detailed-Update-Process.png" data-sub-html="<h2>Detailed Update Process</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Detailed Update Process</figcaption>
+    </figure></p>
+<h2 id="update-tips-and-tricks">Update Tips and Tricks</h2>
+<ul>
+<li>
+<p><strong>Always update in a test environment first and run the Impact Wizard for application updates</strong>
+You can reduce the downtime of your production environment by fixing all code conflicts in a test environment, and identifying them early.</p>
+</li>
+<li>
+<p><strong>Make sure that you have the correct product version</strong>
+Most updates apply only to released versions of a product.
+<em>Note: Many demonstration virtual machines run pre-release versions of Microsoft Dynamics AX, and cannot run updates.</em></p>
+</li>
+<li>
+<p><strong>Install binary updates first, and if needed, reinitialize the model store before installing application updates</strong>
+If you do not reinitialize the model store, you will encounter many more errors in the Data Upgrade Cockpit.</p>
+</li>
+<li>
+<p><strong>Do not skip the Software Update Checklist</strong>
+After you install an update, on the Model store has been modified form, select Start the software update checklist.</p>
+</li>
+<li>
+<p><strong>If you must generate CIL, restart all AOS instances</strong></p>
+</li>
+<li>
+<p><strong>Install updates on all appropriate components (reports andweb parts)</strong>
+It is difficult to tell whether an update contains modified or new reports, or web parts—we recommend that redeploy reports and web parts with all CUs.</p>
+</li>
+<li>
+<p><strong>Check to see whether all of your current hotfixes are contained in the most recent cumulative update or feature pack—if not, reinstall it</strong>
+If you have a recent hotfix that is not included in the cumulative update or feature pack that you are installing, it will be removed. Reinstall the hotfix after you have applied update.</p>
+</li>
+<li>
+<p><strong>Consider slipstreaming updates if you are doing a fresh install</strong></p>
+</li>
+<li>
+<p><strong>If you are installing industry solutions, install them before installing updates</strong></p>
+</li>
+<li>
+<p><strong>To minimize downtime, consider importing the model store into a non-default schema in the production environment, and then switching it to be the default schema</strong>
+For information about using non-default schemas, read How to: Create, Drop, or Reinitialize a Model Store.</p>
+</li>
+</ul>
 ]]></description>
 </item>
 </channel>
