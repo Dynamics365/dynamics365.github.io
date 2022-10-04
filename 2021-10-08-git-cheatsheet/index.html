@@ -32,7 +32,7 @@
                             "url": "https:\/\/nuxulu.com\/2021-10-08-git-cheatsheet\/git-basic-design.png",
                             "width":  1350 ,
                             "height":  480 
-                        }],"genre": "posts","keywords": "Version Control, Git, Github, cheatsheet","wordcount":  873 ,
+                        }],"genre": "posts","keywords": "Version Control, Git, Github, cheatsheet","wordcount":  953 ,
         "url": "https:\/\/nuxulu.com\/2021-10-08-git-cheatsheet\/","datePublished": "2021-10-08T00:00:00+00:00","dateModified": "2021-10-08T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -46,12 +46,11 @@
             },"description": "Git \u0026 Github cheatsheet"
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3534873375492458" crossorigin="anonymous"></script>
             <a href="/" title="Dynamics 365 Finance &amp; Operations | nuxulu.com"><img
         class="lazyload logo"
         src="/svg/loading.min.svg"
@@ -82,7 +81,6 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3534873375492458" crossorigin="anonymous"></script>
                 <a href="/" title="Dynamics 365 Finance &amp; Operations | nuxulu.com"><img
         class="lazyload logo"
         src="/svg/loading.min.svg"
@@ -127,7 +125,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Git & Github cheatsheet</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/about/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-category">included in <a href="/categories/version-control/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Version Control</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="October 8, 2021">October 8, 2021</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;873 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="October 8, 2021">October 8, 2021</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;953 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
@@ -153,7 +151,8 @@
     <li><a href="#8-redo-commits">8. Redo commits</a></li>
     <li><a href="#9-search">9. Search</a></li>
     <li><a href="#9-github-flow">9. Github flow</a></li>
-    <li><a href="#10-glossary">10. Glossary</a></li>
+    <li><a href="#10-git-submodule">10. Git Submodule</a></li>
+    <li><a href="#11-glossary">11. Glossary</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="1-install">1. Install</h2>
@@ -296,7 +295,42 @@ matches or wildcard globs.</p>
             alt="/2021-10-08-git-cheatsheet/The-zoo-of-working-areas.png" width="864" height="815" />
     </a><figcaption class="image-caption">The zoo of working areas</figcaption>
     </figure></p>
-<h2 id="10-glossary">10. Glossary</h2>
+<h2 id="10-git-submodule">10. Git Submodule</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Add a Git Submodule</span>
+</span></span><span class="line"><span class="cl">git submodule add &lt;remote_url&gt; &lt;destination_folder&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Pull a Git Submodule</span>
+</span></span><span class="line"><span class="cl">git submodule update --init --recursive
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Remove the submodule entry from .git/config</span>
+</span></span><span class="line"><span class="cl">git submodule deinit -f path/to/submodule
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Remove the submodule directory from the superproject&#39;s .git/modules directory</span>
+</span></span><span class="line"><span class="cl">rm -rf .git/modules/path/to/submodule
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Remove the entry in .gitmodules and remove the submodule directory located at path/to/submodule</span>
+</span></span><span class="line"><span class="cl">git rm -f path/to/submodule
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="11-glossary">11. Glossary</h2>
 <ul>
 <li><strong>git</strong>: an open source, distributed version-control system</li>
 <li><strong>GitHub</strong>: a platform for hosting and collaborating on Git repositories</li>
