@@ -50,7 +50,7 @@ Invoke-D365LcsEnvironmentStart -ProjectId 1269585 -EnvironmentId "d5dc45bb-"
 Invoke-D365LcsEnvironmentStop -ProjectId 1269585 -EnvironmentId "d5dc45bb-" 
 ```
 
-### Import a bacpac file into a Tier1 environment
+## Import a bacpac file into a Tier1 environment
 
 ```powershell
 Invoke-D365InstallSqlPackage
@@ -61,7 +61,7 @@ Invoke-D365DBSync -ShowOriginalProgress
 Start-D365Environment -All
 ```
 
-### DB Sync & Build
+## DB Sync & Build
 
 ```powershell
 # Get database backup
@@ -71,4 +71,10 @@ Get-D365LcsDatabaseBackups
 Invoke-D365DbSyncModule -Module "Kaynecustomization" -ShowOriginalProgress
 Invoke-D365ModuleCompile -Module "Kaynecustomization" -ShowOriginalProgress
 Invoke-D365DBSync -ShowOriginalProgress
+```
+
+## SSRS
+
+```powershell
+Publish-D365SsrsReport -Module GR -ReportName GR_InvSalesVelocityRpt.AutoDesign1
 ```
