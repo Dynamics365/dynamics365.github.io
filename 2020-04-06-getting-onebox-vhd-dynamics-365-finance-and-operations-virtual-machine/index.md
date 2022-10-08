@@ -69,6 +69,13 @@ To decrypt run this command:
 To encrypt run this command:
 `C:\AOSService\webroot\bin\Microsoft.Dynamics.AX.Framework.ConfigEncryptor.exe -encrypt C:\AOSService\webroot\web.config`
 
+If you see the error
+
+{{< admonition failure>}}
+   No certificate found for id '7366E25DC94FA8A400FA0037FFF3BB300D9482D4'
+{{< /admonition >}}
+Please follow [this step](#7-for-vhd-that-was-released-for-versions-10024-and-later) first.
+
 * Run following query
 
     ```sql
