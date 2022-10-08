@@ -178,7 +178,21 @@ For example, I created a project and add a new runnable class named Alex:</p>
     <pubDate>Mon, 06 Apr 2020 00:00:00 &#43;0000</pubDate>
     <author>Max Nguyen</author>
     <guid>https://nuxulu.com/2020-04-06-getting-onebox-vhd-dynamics-365-finance-and-operations-virtual-machine/</guid>
-    <description><![CDATA[<h2 id="1-download-dynamics-365-finance-and-operations-vhd-files">1. Download Dynamics 365 finance and operations VHD files</h2>
+    <description><![CDATA[<ul>
+<li><a href="#1-download-dynamics-365-finance-and-operations-vhd-files" rel="">1. Download Dynamics 365 finance and operations VHD files</a></li>
+<li><a href="#2-extend-the-evaluattion-license" rel="">2. Extend the Evaluattion license</a></li>
+<li><a href="#3-rename-vm" rel="">3. Rename VM</a></li>
+<li><a href="#4-location-of-packages-source-code-and-other-aos-configurations" rel="">4. Location of packages, source code, and other AOS configurations</a></li>
+<li><a href="#5-redeploying-or-restarting-the-runtime-on-the-vm" rel="">5. Redeploying or restarting the runtime on the VM</a></li>
+<li><a href="#6-update-to-the-latest-version" rel="">6. Update to the latest version</a></li>
+<li><a href="#7-for-vhd-that-was-released-for-versions-10024-and-later" rel="">7. For (VHD) that was released for versions 10.0.24 and later</a>
+<ul>
+<li><a href="#71-register-a-new-application-in-azure-active-directory" rel="">7.1 Register a new application in Azure Active Directory</a></li>
+<li><a href="#72-run-the-setup-script" rel="">7.2 Run the setup script</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="1-download-dynamics-365-finance-and-operations-vhd-files">1. Download Dynamics 365 finance and operations VHD files</h2>
 <ul>
 <li>
 <p>Go to the LCS main page and select <strong>Shared asset library</strong> or go to Shared Asset Library.</p>
@@ -214,10 +228,37 @@ For example, I created a project and add a new runnable class named Alex:</p>
             <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>Note<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content">The &ldquo;Admin user provisioning&rdquo; tool is deleted from 10.0.24</div>
+            <div class="admonition-content"><p>For security reasons the reply URL setup for AAD was changed, The &ldquo;Admin user provisioning&rdquo; tool is deleted from 10.0.24 <strong>cloud hosted</strong> VM. More info here <a href="https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/dev-tools/access-instances#frequently-asked-questions" target="_blank" rel="noopener noreffer ">https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/dev-tools/access-instances#frequently-asked-questions</a>.</p>
+<p>You still have it in the VHD machine.</p>
+</div>
         </div>
     </div>
-<h2 id="2-rename-vm">2. Rename VM</h2>
+<h2 id="2-extend-the-evaluattion-license">2. Extend the Evaluattion license</h2>
+<ul>
+<li>Run cmd with Admin right.</li>
+<li>Run <code>slmgr -dli</code> to check the current period status.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">Name: Windows(R), ServerDatacenterEval edition
+</span></span><span class="line"><span class="cl">Description: Windows(R) Operating System, TIMEBASED_EVAL channel
+</span></span><span class="line"><span class="cl">Partial Product Key: H6F8M
+</span></span><span class="line"><span class="cl">License Status: Licensed
+</span></span><span class="line"><span class="cl">Timebased activation expiration: 259199 minute(s) (180 day(s))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Run <code>slmgr –rearm</code> to extend the evaluation period.</li>
+<li>Run <code>slmgr –dlv</code> to see how many extensions do you have left. You can only extend the license a limited number of times.</li>
+</ul>
+<h2 id="3-rename-vm">3. Rename VM</h2>
 <ul>
 <li>
 <p>Rename and restart the machine before you start development or connect to Azure DevOps.</p>
@@ -287,15 +328,20 @@ For example, I created a project and add a new runnable class named Alex:</p>
 </li>
 <li>
 <p>Update financial reporting</p>
+<p>Open a Microsoft Windows PowerShell command window as an admin, and run the following command. This command contains the default passwords that might have to be updated. Be sure to replace <strong>new_name</strong> with the new name.</p>
 </li>
 </ul>
-<p>Open a Microsoft Windows PowerShell command window as an admin, and run the following command. This command contains the default passwords that might have to be updated. Be sure to replace <strong>new_name</strong> with the new name.</p>
-<pre><code>```powershell
-cd &lt;update folder&gt;\MROneBox\Scripts\Update
-.\ConfigureMRDatabase.ps1 -NewAosDatabaseName AxDB -NewAosDatabaseServerName new_name -NewMRDatabaseName ManagementReporter -NewAxAdminUserPassword AOSWebSite@123 -NewMRAdminUserName MRUser -NewMRAdminUserPassword MRWebSite@123 -NewMRRuntimeUserName MRUSer -NewMRRuntimeUserPassword MRWebSite@123 -NewAxMRRuntimeUserName MRUser -NewAxMRRuntimeUserPassword MRWebSite@123
-```
-</code></pre>
-<h2 id="3-location-of-packages-source-code-and-other-aos-configurations">3. Location of packages, source code, and other AOS configurations</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">cd </span><span class="p">&lt;</span><span class="n">update</span> <span class="n">folder</span><span class="p">&gt;\</span><span class="n">MROneBox</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">Update</span>
+</span></span><span class="line"><span class="cl"><span class="p">.\</span><span class="n">ConfigureMRDatabase</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-NewAosDatabaseName</span> <span class="n">AxDB</span> <span class="n">-NewAosDatabaseServerName</span> <span class="n">new_name</span> <span class="n">-NewMRDatabaseName</span> <span class="n">ManagementReporter</span> <span class="n">-NewAxAdminUserPassword</span> <span class="n">AOSWebSite</span><span class="nv">@123</span> <span class="n">-NewMRAdminUserName</span> <span class="n">MRUser</span> <span class="n">-NewMRAdminUserPassword</span> <span class="n">MRWebSite</span><span class="nv">@123</span> <span class="n">-NewMRRuntimeUserName</span> <span class="n">MRUSer</span> <span class="n">-NewMRRuntimeUserPassword</span> <span class="n">MRWebSite</span><span class="nv">@123</span> <span class="n">-NewAxMRRuntimeUserName</span> <span class="n">MRUser</span> <span class="n">-NewAxMRRuntimeUserPassword</span> <span class="n">MRWebSite</span><span class="nv">@123</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="4-location-of-packages-source-code-and-other-aos-configurations">4. Location of packages, source code, and other AOS configurations</h2>
 <p>On a VM, you can find most of the application configuration by opening the web.config file of AOSWebApplication.</p>
 <ol>
 <li>
@@ -322,7 +368,7 @@ cd &lt;update folder&gt;\MROneBox\Scripts\Update
 </ul>
 </li>
 </ol>
-<h2 id="4-redeploying-or-restarting-the-runtime-on-the-vm">4. Redeploying or restarting the runtime on the VM</h2>
+<h2 id="5-redeploying-or-restarting-the-runtime-on-the-vm">5. Redeploying or restarting the runtime on the VM</h2>
 <p>To restart the local runtime and redeploy all the packages, follow these steps.</p>
 <ol>
 <li>
@@ -333,19 +379,19 @@ cd &lt;update folder&gt;\MROneBox\Scripts\Update
 </li>
 </ol>
 <p>This process might take a while. The process is completed when the cmd.exe window closes. If you just want to restart AOS (without redeploying the runtime), run iisreset from an administrator Command Prompt window, or restart AOSWebApplication from IIS.</p>
-<h2 id="5-update-to-the-latest-version">5. Update to the latest version</h2>
+<h2 id="6-update-to-the-latest-version">6. Update to the latest version</h2>
 <p>Please check this document
 <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/deployment/install-deployable-package" target="_blank" rel="noopener noreffer ">https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/deployment/install-deployable-package</a></p>
 <p>update for virtual hard drive (VHD) that was released for versions 10.0.24</p>
-<h2 id="6-for-vhd-that-was-released-for-versions-10024-and-later">6. For (VHD) that was released for versions 10.0.24 and later</h2>
-<h2 id="61-register-a-new-application-in-azure-active-directory">6.1 Register a new application in Azure Active Directory</h2>
+<h2 id="7-for-vhd-that-was-released-for-versions-10024-and-later">7. For (VHD) that was released for versions 10.0.24 and later</h2>
+<h3 id="71-register-a-new-application-in-azure-active-directory">7.1 Register a new application in Azure Active Directory</h3>
 <p>To register a new application in Microsoft Azure Active Directory (Azure AD), follow the steps outlined in <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app" target="_blank" rel="noopener noreffer ">Register app or web API</a>. The new app registration should be for a web application, and the following redirect URIs should be added:</p>
 <ul>
 <li><code>https://usnconeboxax1aos.cloud.onebox.dynamics.com/</code></li>
 <li><code>https://usnconeboxax1aos.cloud.onebox.dynamics.com/oauth/</code></li>
 </ul>
 <p>Once created, make note of the <strong>Application (client) ID</strong>.</p>
-<h2 id="62-run-the-setup-script">6.2 Run the setup script</h2>
+<h3 id="72-run-the-setup-script">7.2 Run the setup script</h3>
 <p>After you sign in with the <strong>Administrator</strong> account, right-click the desktop shortcut <strong>Generate Self-Signed Certificates</strong>, and select <strong>Run as administrator</strong>. When the script prompts for the application ID, provide the <strong>Application (client) ID</strong> created in Azure Active Directory.</p>
 <p>When the script finishes, the environment is ready for use. At this time, you can run the Admin Provisioning tool to set the administrator account, permissions, and tenant. Make sure that the email provided is for the Azure Active Directory tenant in which the application registration was created.</p>
 ]]></description>

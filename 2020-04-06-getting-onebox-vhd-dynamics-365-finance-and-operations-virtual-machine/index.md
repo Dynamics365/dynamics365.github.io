@@ -1,6 +1,16 @@
 # Getting onebox VHD Dynamics 365 finance and operations virtual machine
 
 
+- [1. Download Dynamics 365 finance and operations VHD files](#1-download-dynamics-365-finance-and-operations-vhd-files)
+- [2. Extend the Evaluattion license](#2-extend-the-evaluattion-license)
+- [3. Rename VM](#3-rename-vm)
+- [4. Location of packages, source code, and other AOS configurations](#4-location-of-packages-source-code-and-other-aos-configurations)
+- [5. Redeploying or restarting the runtime on the VM](#5-redeploying-or-restarting-the-runtime-on-the-vm)
+- [6. Update to the latest version](#6-update-to-the-latest-version)
+- [7. For (VHD) that was released for versions 10.0.24 and later](#7-for-vhd-that-was-released-for-versions-10024-and-later)
+  - [7.1 Register a new application in Azure Active Directory](#71-register-a-new-application-in-azure-active-directory)
+  - [7.2 Run the setup script](#72-run-the-setup-script)
+
 ## 1. Download Dynamics 365 finance and operations VHD files
 
 * Go to the LCS main page and select **Shared asset library** or go to Shared Asset Library.
@@ -23,10 +33,28 @@
 * Provision the administrator user.
 
 {{< admonition note>}}
-   The "Admin user provisioning" tool is deleted from 10.0.24
+   For security reasons the reply URL setup for AAD was changed, The "Admin user provisioning" tool is deleted from 10.0.24 **cloud hosted** VM. More info here <https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/dev-tools/access-instances#frequently-asked-questions>.
+
+   You still have it in the VHD machine.
 {{< /admonition >}}
 
-## 2. Rename VM
+## 2. Extend the Evaluattion license
+
+* Run cmd with Admin right.
+* Run `slmgr -dli` to check the current period status.
+
+```cmd
+Name: Windows(R), ServerDatacenterEval edition
+Description: Windows(R) Operating System, TIMEBASED_EVAL channel
+Partial Product Key: H6F8M
+License Status: Licensed
+Timebased activation expiration: 259199 minute(s) (180 day(s))
+```
+
+* Run `slmgr –rearm` to extend the evaluation period.
+* Run `slmgr –dlv` to see how many extensions do you have left. You can only extend the license a limited number of times.
+
+## 3. Rename VM
 
 * Rename and restart the machine before you start development or connect to Azure DevOps.
 * Update the server name in SQL Server
@@ -41,49 +69,50 @@ To decrypt run this command:
 To encrypt run this command:
 `C:\AOSService\webroot\bin\Microsoft.Dynamics.AX.Framework.ConfigEncryptor.exe -encrypt C:\AOSService\webroot\web.config`
 
-  * Run following query
+* Run following query
 
     ```sql
     --MININT-57EHFHJ
     sp_dropserver [old_name]
     sp_addserver [new_name], local
     ```
+
 {{< admonition tip>}}
   In these commands, be sure to replace old_name with the old name of the server and new_name with the new name. By default, the old name is MININT-F36S5EH, but you can run select @@servername to get the old name. Additionally, be sure to restart the SQL Server service after the commands have finished running.
 {{< /admonition >}}
 
-  * Restart SQL service
+* Restart SQL service
 
-  * Open Reporting Services Configuration Manager for SQL Server 2016, then **Select Database**, select **Change Database**, and use the new server name.
-    
-  * Update the Azure Storage Emulator
+* Open Reporting Services Configuration Manager for SQL Server 2016, then **Select Database**, select **Change Database**, and use the new server name.
 
-  * From the Start menu, open Microsoft Azure Storage Emulator - v4.0, and run the following commands.
+* Update the Azure Storage Emulator
+
+* From the Start menu, open Microsoft Azure Storage Emulator - v4.0, and run the following commands.
 
     ```AzureStorageEmulator.exe start```
 
     > If you got an error **_Port conflict with existing application_**, please check this [post](../2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/).
 
-  * This command verifies that the emulator is running.
+* This command verifies that the emulator is running.
 
     ```AzureStorageEmulator.exe status```
 
-  * Update the server name
+* Update the server name
 
     ```AzureStorageEmulator.exe init -server new_name```
 
     For more information about Azure storage emulator please follow <https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator>
 
-  * Update financial reporting
+* Update financial reporting
 
   Open a Microsoft Windows PowerShell command window as an admin, and run the following command. This command contains the default passwords that might have to be updated. Be sure to replace **new_name** with the new name.
 
-    ```powershell
-    cd <update folder>\MROneBox\Scripts\Update
-    .\ConfigureMRDatabase.ps1 -NewAosDatabaseName AxDB -NewAosDatabaseServerName new_name -NewMRDatabaseName ManagementReporter -NewAxAdminUserPassword AOSWebSite@123 -NewMRAdminUserName MRUser -NewMRAdminUserPassword MRWebSite@123 -NewMRRuntimeUserName MRUSer -NewMRRuntimeUserPassword MRWebSite@123 -NewAxMRRuntimeUserName MRUser -NewAxMRRuntimeUserPassword MRWebSite@123
-    ```
+```powershell
+cd <update folder>\MROneBox\Scripts\Update
+.\ConfigureMRDatabase.ps1 -NewAosDatabaseName AxDB -NewAosDatabaseServerName new_name -NewMRDatabaseName ManagementReporter -NewAxAdminUserPassword AOSWebSite@123 -NewMRAdminUserName MRUser -NewMRAdminUserPassword MRWebSite@123 -NewMRRuntimeUserName MRUSer -NewMRRuntimeUserPassword MRWebSite@123 -NewAxMRRuntimeUserName MRUser -NewAxMRRuntimeUserPassword MRWebSite@123
+```
 
-## 3. Location of packages, source code, and other AOS configurations
+## 4. Location of packages, source code, and other AOS configurations
 
 On a VM, you can find most of the application configuration by opening the web.config file of AOSWebApplication.
 
@@ -101,7 +130,7 @@ On a VM, you can find most of the application configuration by opening the web.c
 
     * **Aos.AppRoot** – This key points to the root folder of the Application Object Server (AOS) web application.
 
-## 4. Redeploying or restarting the runtime on the VM
+## 5. Redeploying or restarting the runtime on the VM
 
 To restart the local runtime and redeploy all the packages, follow these steps.
 
@@ -111,25 +140,25 @@ To restart the local runtime and redeploy all the packages, follow these steps.
 
 This process might take a while. The process is completed when the cmd.exe window closes. If you just want to restart AOS (without redeploying the runtime), run iisreset from an administrator Command Prompt window, or restart AOSWebApplication from IIS.
 
-## 5. Update to the latest version
+## 6. Update to the latest version
 
 Please check this document
 <https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/deployment/install-deployable-package>
 
 update for virtual hard drive (VHD) that was released for versions 10.0.24
 
-## 6. For (VHD) that was released for versions 10.0.24 and later
+## 7. For (VHD) that was released for versions 10.0.24 and later
 
-## 6.1 Register a new application in Azure Active Directory
+### 7.1 Register a new application in Azure Active Directory
 
 To register a new application in Microsoft Azure Active Directory (Azure AD), follow the steps outlined in [Register app or web API](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app). The new app registration should be for a web application, and the following redirect URIs should be added:
 
--   `https://usnconeboxax1aos.cloud.onebox.dynamics.com/`
--   `https://usnconeboxax1aos.cloud.onebox.dynamics.com/oauth/`
+* `https://usnconeboxax1aos.cloud.onebox.dynamics.com/`
+* `https://usnconeboxax1aos.cloud.onebox.dynamics.com/oauth/`
 
 Once created, make note of the **Application (client) ID**.
 
-## 6.2 Run the setup script
+### 7.2 Run the setup script
 
 After you sign in with the **Administrator** account, right-click the desktop shortcut **Generate Self-Signed Certificates**, and select **Run as administrator**. When the script prompts for the application ID, provide the **Application (client) ID** created in Azure Active Directory.
 
