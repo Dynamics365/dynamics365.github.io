@@ -4,6 +4,8 @@
 - [1. Download Dynamics 365 finance and operations VHD files](#1-download-dynamics-365-finance-and-operations-vhd-files)
 - [2. Extend the Evaluattion license](#2-extend-the-evaluattion-license)
 - [3. Rename VM](#3-rename-vm)
+  - [Update financial reporting](#update-financial-reporting)
+  - [Update the Azure Storage Emulator](#update-the-azure-storage-emulator)
 - [4. Location of packages, source code, and other AOS configurations](#4-location-of-packages-source-code-and-other-aos-configurations)
 - [5. Redeploying or restarting the runtime on the VM](#5-redeploying-or-restarting-the-runtime-on-the-vm)
 - [6. Update to the latest version](#6-update-to-the-latest-version)
@@ -92,7 +94,16 @@ Please follow [this step](#7-for-vhd-that-was-released-for-versions-10024-and-la
 
 * Open Reporting Services Configuration Manager for SQL Server 2016, then **Select Database**, select **Change Database**, and use the new server name.
 
-* Update the Azure Storage Emulator
+### Update financial reporting
+
+Go to LCS portal and download a one version package, we will need the scripts from it. Open a Microsoft Windows PowerShell command window as an admin, and run the following command. This command contains the default passwords that might have to be updated. Be sure to replace **new_name** with the new name.
+
+```powershell
+cd <update folder>\MROneBox\Scripts\Update
+.\ConfigureMRDatabase.ps1 -NewAosDatabaseName AxDB -NewAosDatabaseServerName new_name -NewMRDatabaseName ManagementReporter -NewAxAdminUserPassword AOSWebSite@123 -NewMRAdminUserName MRUser -NewMRAdminUserPassword MRWebSite@123 -NewMRRuntimeUserName MRUSer -NewMRRuntimeUserPassword MRWebSite@123 -NewAxMRRuntimeUserName MRUser -NewAxMRRuntimeUserPassword MRWebSite@123
+```
+
+### Update the Azure Storage Emulator
 
 * From the Start menu, open Microsoft Azure Storage Emulator - v4.0, and run the following commands.
 
@@ -109,15 +120,6 @@ Please follow [this step](#7-for-vhd-that-was-released-for-versions-10024-and-la
     ```AzureStorageEmulator.exe init -server new_name```
 
     For more information about Azure storage emulator please follow <https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator>
-
-* Update financial reporting
-
-  Open a Microsoft Windows PowerShell command window as an admin, and run the following command. This command contains the default passwords that might have to be updated. Be sure to replace **new_name** with the new name.
-
-```powershell
-cd <update folder>\MROneBox\Scripts\Update
-.\ConfigureMRDatabase.ps1 -NewAosDatabaseName AxDB -NewAosDatabaseServerName new_name -NewMRDatabaseName ManagementReporter -NewAxAdminUserPassword AOSWebSite@123 -NewMRAdminUserName MRUser -NewMRAdminUserPassword MRWebSite@123 -NewMRRuntimeUserName MRUSer -NewMRRuntimeUserPassword MRWebSite@123 -NewAxMRRuntimeUserName MRUser -NewAxMRRuntimeUserPassword MRWebSite@123
-```
 
 ## 4. Location of packages, source code, and other AOS configurations
 
@@ -170,4 +172,8 @@ Once created, make note of the **Application (client) ID**.
 After you sign in with the **Administrator** account, right-click the desktop shortcut **Generate Self-Signed Certificates**, and select **Run as administrator**. When the script prompts for the application ID, provide the **Application (client) ID** created in Azure Active Directory.
 
 When the script finishes, the environment is ready for use. At this time, you can run the Admin Provisioning tool to set the administrator account, permissions, and tenant. Make sure that the email provided is for the Azure Active Directory tenant in which the application registration was created.
+
+{{< admonition info Reference >}}
+https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/migration-upgrade/vso-machine-renaming
+{{< /admonition >}}
 

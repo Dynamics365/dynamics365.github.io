@@ -4094,7 +4094,12 @@ These fields should be required when creating a new Vendor Account on D365FO cli
     <description><![CDATA[<ul>
 <li><a href="#1-download-dynamics-365-finance-and-operations-vhd-files" rel="">1. Download Dynamics 365 finance and operations VHD files</a></li>
 <li><a href="#2-extend-the-evaluattion-license" rel="">2. Extend the Evaluattion license</a></li>
-<li><a href="#3-rename-vm" rel="">3. Rename VM</a></li>
+<li><a href="#3-rename-vm" rel="">3. Rename VM</a>
+<ul>
+<li><a href="#update-financial-reporting" rel="">Update financial reporting</a></li>
+<li><a href="#update-the-azure-storage-emulator" rel="">Update the Azure Storage Emulator</a></li>
+</ul>
+</li>
 <li><a href="#4-location-of-packages-source-code-and-other-aos-configurations" rel="">4. Location of packages, source code, and other AOS configurations</a></li>
 <li><a href="#5-redeploying-or-restarting-the-runtime-on-the-vm" rel="">5. Redeploying or restarting the runtime on the VM</a></li>
 <li><a href="#6-update-to-the-latest-version" rel="">6. Update to the latest version</a></li>
@@ -4230,9 +4235,21 @@ Please follow <a href="#7-for-vhd-that-was-released-for-versions-10024-and-later
 <li>
 <p>Open Reporting Services Configuration Manager for SQL Server 2016, then <strong>Select Database</strong>, select <strong>Change Database</strong>, and use the new server name.</p>
 </li>
-<li>
-<p>Update the Azure Storage Emulator</p>
-</li>
+</ul>
+<h3 id="update-financial-reporting">Update financial reporting</h3>
+<p>Go to LCS portal and download a one version package, we will need the scripts from it. Open a Microsoft Windows PowerShell command window as an admin, and run the following command. This command contains the default passwords that might have to be updated. Be sure to replace <strong>new_name</strong> with the new name.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">cd </span><span class="p">&lt;</span><span class="n">update</span> <span class="n">folder</span><span class="p">&gt;\</span><span class="n">MROneBox</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">Update</span>
+</span></span><span class="line"><span class="cl"><span class="p">.\</span><span class="n">ConfigureMRDatabase</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-NewAosDatabaseName</span> <span class="n">AxDB</span> <span class="n">-NewAosDatabaseServerName</span> <span class="n">new_name</span> <span class="n">-NewMRDatabaseName</span> <span class="n">ManagementReporter</span> <span class="n">-NewAxAdminUserPassword</span> <span class="n">AOSWebSite</span><span class="nv">@123</span> <span class="n">-NewMRAdminUserName</span> <span class="n">MRUser</span> <span class="n">-NewMRAdminUserPassword</span> <span class="n">MRWebSite</span><span class="nv">@123</span> <span class="n">-NewMRRuntimeUserName</span> <span class="n">MRUSer</span> <span class="n">-NewMRRuntimeUserPassword</span> <span class="n">MRWebSite</span><span class="nv">@123</span> <span class="n">-NewAxMRRuntimeUserName</span> <span class="n">MRUser</span> <span class="n">-NewAxMRRuntimeUserPassword</span> <span class="n">MRWebSite</span><span class="nv">@123</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="update-the-azure-storage-emulator">Update the Azure Storage Emulator</h3>
+<ul>
 <li>
 <p>From the Start menu, open Microsoft Azure Storage Emulator - v4.0, and run the following commands.</p>
 <p><code>AzureStorageEmulator.exe start</code></p>
@@ -4249,22 +4266,8 @@ Please follow <a href="#7-for-vhd-that-was-released-for-versions-10024-and-later
 <p><code>AzureStorageEmulator.exe init -server new_name</code></p>
 <p>For more information about Azure storage emulator please follow <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator" target="_blank" rel="noopener noreffer ">https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator</a></p>
 </li>
-<li>
-<p>Update financial reporting</p>
-<p>Open a Microsoft Windows PowerShell command window as an admin, and run the following command. This command contains the default passwords that might have to be updated. Be sure to replace <strong>new_name</strong> with the new name.</p>
-</li>
 </ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">cd </span><span class="p">&lt;</span><span class="n">update</span> <span class="n">folder</span><span class="p">&gt;\</span><span class="n">MROneBox</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">Update</span>
-</span></span><span class="line"><span class="cl"><span class="p">.\</span><span class="n">ConfigureMRDatabase</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-NewAosDatabaseName</span> <span class="n">AxDB</span> <span class="n">-NewAosDatabaseServerName</span> <span class="n">new_name</span> <span class="n">-NewMRDatabaseName</span> <span class="n">ManagementReporter</span> <span class="n">-NewAxAdminUserPassword</span> <span class="n">AOSWebSite</span><span class="nv">@123</span> <span class="n">-NewMRAdminUserName</span> <span class="n">MRUser</span> <span class="n">-NewMRAdminUserPassword</span> <span class="n">MRWebSite</span><span class="nv">@123</span> <span class="n">-NewMRRuntimeUserName</span> <span class="n">MRUSer</span> <span class="n">-NewMRRuntimeUserPassword</span> <span class="n">MRWebSite</span><span class="nv">@123</span> <span class="n">-NewAxMRRuntimeUserName</span> <span class="n">MRUser</span> <span class="n">-NewAxMRRuntimeUserPassword</span> <span class="n">MRWebSite</span><span class="nv">@123</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="4-location-of-packages-source-code-and-other-aos-configurations">4. Location of packages, source code, and other AOS configurations</h2>
+<h2 id="4-location-of-packages-source-code-and-other-aos-configurations">4. Location of packages, source code, and other AOS configurations</h2>
 <p>On a VM, you can find most of the application configuration by opening the web.config file of AOSWebApplication.</p>
 <ol>
 <li>
@@ -4317,6 +4320,14 @@ Please follow <a href="#7-for-vhd-that-was-released-for-versions-10024-and-later
 <h3 id="72-run-the-setup-script">7.2 Run the setup script</h3>
 <p>After you sign in with the <strong>Administrator</strong> account, right-click the desktop shortcut <strong>Generate Self-Signed Certificates</strong>, and select <strong>Run as administrator</strong>. When the script prompts for the application ID, provide the <strong>Application (client) ID</strong> created in Azure Active Directory.</p>
 <p>When the script finishes, the environment is ready for use. At this time, you can run the Admin Provisioning tool to set the administrator account, permissions, and tenant. Make sure that the email provided is for the Azure Active Directory tenant in which the application registration was created.</p>
+<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw" aria-hidden="true"></i>Reference<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><a href="https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/migration-upgrade/vso-machine-renaming" target="_blank" rel="noopener noreffer ">https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/migration-upgrade/vso-machine-renaming</a></div>
+        </div>
+    </div>
 ]]></description>
 </item>
 <item>
