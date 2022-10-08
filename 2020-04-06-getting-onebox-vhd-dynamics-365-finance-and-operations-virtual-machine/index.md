@@ -61,7 +61,7 @@ Timebased activation expiration: 259199 minute(s) (180 day(s))
 
   * The default credential for SQL server is **axdbadmin** and password **AOSWebSite@12**
   
-You can also see the passwork in the `C:\AOSService\webroot\web.config`
+You can also see the password (`DataAccess.AxAdminSqlPwd`) in the `C:\AOSService\webroot\web.config`
 
 To decrypt run this command:
 `C:\AOSService\webroot\bin\Microsoft.Dynamics.AX.Framework.ConfigEncryptor.exe -decrypt C:\AOSService\webroot\web.config`
