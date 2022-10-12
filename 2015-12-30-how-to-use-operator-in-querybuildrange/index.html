@@ -35,7 +35,7 @@
                             "url": "https:\/\/nuxulu.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "xpp","wordcount":  157 ,
+                        }],"genre": "posts","keywords": "xpp","wordcount":  171 ,
         "url": "https:\/\/nuxulu.com\/2015-12-30-how-to-use-operator-in-querybuildrange\/","datePublished": "2015-12-30T04:23:09+07:00","dateModified": "2015-12-30T04:23:09+07:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -130,7 +130,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">How to use operator "or" in QueryBuildRange</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/about/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-category">included in <a href="/categories/ax2012/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AX2012</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="December 30, 2015">December 30, 2015</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;157 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="December 30, 2015">December 30, 2015</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;171 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -168,6 +168,11 @@
 </span><span class="lnt">16
 </span><span class="lnt">17
 </span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">Job12</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
@@ -186,6 +191,11 @@
 </span></span><span class="line"><span class="cl">    <span class="n">queryRange2</span> <span class="p">=</span> <span class="n">qbds</span><span class="p">.</span><span class="n">addRange</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">CustTable</span><span class="p">,</span> <span class="n">AccountNum</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl">    <span class="n">queryRange2</span><span class="p">.</span><span class="k">value</span><span class="p">(</span><span class="err">&#39;</span><span class="m">9034518</span><span class="err">&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">qbds</span><span class="p">.</span><span class="n">addRange</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">CustTable</span><span class="p">,</span> <span class="n">createdDateTime</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">queryRange1</span><span class="p">.</span><span class="k">value</span><span class="p">(</span><span class="n">queryValue</span><span class="p">(</span><span class="n">dateNull</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">qbds</span><span class="p">.</span><span class="n">addRange</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">CustTable</span><span class="p">,</span> <span class="n">createdDateTime</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">queryRange1</span><span class="p">.</span><span class="k">value</span><span class="p">(</span><span class="n">queryRange</span><span class="p">(</span><span class="n">today</span><span class="p">()+</span><span class="m">1</span><span class="p">,</span> <span class="n">dateMax</span><span class="p">()));</span>
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">info</span><span class="p">(</span><span class="n">qbds</span><span class="p">.</span><span class="n">toString</span><span class="p">());</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
@@ -200,6 +210,7 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>Thanks for reading :). Happy New Year.</p>
+<p>Ref: <a href="https://learn.microsoft.com/en-us/dynamicsax-2012/developer/using-expressions-in-query-ranges?redirectedfrom=MSDN" target="_blank" rel="noopener noreffer ">https://learn.microsoft.com/en-us/dynamicsax-2012/developer/using-expressions-in-query-ranges?redirectedfrom=MSDN</a></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

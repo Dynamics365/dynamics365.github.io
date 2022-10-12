@@ -26,6 +26,11 @@ static void Job12(Args _args)
     queryRange2 = qbds.addRange(fieldNum(CustTable, AccountNum));
     queryRange2.value('9034518');
 
+    qbds.addRange(fieldNum(CustTable, createdDateTime));
+    queryRange1.value(queryValue(dateNull());
+    qbds.addRange(fieldNum(CustTable, createdDateTime));
+    queryRange1.value(queryRange(today()+1, dateMax()));
+
     info(qbds.toString());
 }
 ```
@@ -35,5 +40,7 @@ Result in string format as below image :
 SELECT * FROM CustTable(CustTable_1) WHERE ((AccountNum = N'1168201') OR (AccountNum = N'9034518'))
 ```
 
-Thanks for reading :). Happy New Year.  
+Thanks for reading :). Happy New Year.
+
+Ref: https://learn.microsoft.com/en-us/dynamicsax-2012/developer/using-expressions-in-query-ranges?redirectedfrom=MSDN
 

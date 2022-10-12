@@ -14585,6 +14585,11 @@ For this, best way to redeploy them, create a new report folder, open Microsoft 
 </span><span class="lnt">16
 </span><span class="lnt">17
 </span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">Job12</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
@@ -14603,6 +14608,11 @@ For this, best way to redeploy them, create a new report folder, open Microsoft 
 </span></span><span class="line"><span class="cl">    <span class="n">queryRange2</span> <span class="p">=</span> <span class="n">qbds</span><span class="p">.</span><span class="n">addRange</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">CustTable</span><span class="p">,</span> <span class="n">AccountNum</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl">    <span class="n">queryRange2</span><span class="p">.</span><span class="k">value</span><span class="p">(</span><span class="err">&#39;</span><span class="m">9034518</span><span class="err">&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">qbds</span><span class="p">.</span><span class="n">addRange</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">CustTable</span><span class="p">,</span> <span class="n">createdDateTime</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">queryRange1</span><span class="p">.</span><span class="k">value</span><span class="p">(</span><span class="n">queryValue</span><span class="p">(</span><span class="n">dateNull</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">qbds</span><span class="p">.</span><span class="n">addRange</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">CustTable</span><span class="p">,</span> <span class="n">createdDateTime</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">queryRange1</span><span class="p">.</span><span class="k">value</span><span class="p">(</span><span class="n">queryRange</span><span class="p">(</span><span class="n">today</span><span class="p">()+</span><span class="m">1</span><span class="p">,</span> <span class="n">dateMax</span><span class="p">()));</span>
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">info</span><span class="p">(</span><span class="n">qbds</span><span class="p">.</span><span class="n">toString</span><span class="p">());</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
@@ -14617,6 +14627,7 @@ For this, best way to redeploy them, create a new report folder, open Microsoft 
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>Thanks for reading :). Happy New Year.</p>
+<p>Ref: <a href="https://learn.microsoft.com/en-us/dynamicsax-2012/developer/using-expressions-in-query-ranges?redirectedfrom=MSDN" target="_blank" rel="noopener noreffer ">https://learn.microsoft.com/en-us/dynamicsax-2012/developer/using-expressions-in-query-ranges?redirectedfrom=MSDN</a></p>
 ]]></description>
 </item>
 <item>
