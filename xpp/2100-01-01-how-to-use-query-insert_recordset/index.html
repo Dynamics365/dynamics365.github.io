@@ -37,7 +37,7 @@ Also, which fields I want to insert, I have to mark them using Map. I should hav
                             "url": "https:\/\/nuxulu.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "xpp","wordcount":  179 ,
+                        }],"genre": "xpp","wordcount":  180 ,
         "url": "https:\/\/nuxulu.com\/xpp\/2100-01-01-how-to-use-query-insert_recordset\/","datePublished": "2022-10-10T00:00:00+00:00","dateModified": "2022-10-10T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -132,6 +132,17 @@ Also, which fields I want to insert, I have to mark them using Map. I should hav
 <p>Also, which fields I want to insert, I have to mark them using Map. I should have written it with the classical method as follows.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">insert_recordset</span> <span class="n">billsIncominTest</span> <span class="p">(</span><span class="n">BillsIncomingId</span><span class="p">,</span> <span class="n">Description</span>  <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">select</span> <span class="n">BillsIncomingId</span><span class="p">,</span> <span class="n">Description</span> <span class="k">from</span> <span class="n">DmrBillsIncomingHeader</span> <span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Now let&rsquo;s write this with Query.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
@@ -162,48 +173,38 @@ Also, which fields I want to insert, I have to mark them using Map. I should hav
 </span><span class="lnt">28
 </span><span class="lnt">29
 </span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">        select BillsIncomingId, Description from DmrBillsIncomingHeader ;```
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">Now let&#39;s write this with Query.
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">```C#
-</span></span><span class="line"><span class="cl">internal final class DmrFDJobQueryInsertRecordList
-</span></span><span class="line"><span class="cl">{
-</span></span><span class="line"><span class="cl">    public static void main(Args _args)
-</span></span><span class="line"><span class="cl">    {
-</span></span><span class="line"><span class="cl">        DmrBillsIncominTest     billsIncominTest;
-</span></span><span class="line"><span class="cl">        Map                     fieldMap;
-</span></span><span class="line"><span class="cl">        Query                   q;
-</span></span><span class="line"><span class="cl">        QueryBuildDataSource    qbdsBillsIncomingHeader;
-</span></span><span class="line"><span class="cl">        QueryBuildFieldList     flBills;
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">internal</span> <span class="n">final</span> <span class="k">class</span> <span class="nc">DmrFDJobQueryInsertRecordList</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">DmrBillsIncominTest</span>     <span class="n">billsIncominTest</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Map</span>                     <span class="n">fieldMap</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Query</span>                   <span class="n">q</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">QueryBuildDataSource</span>    <span class="n">qbdsBillsIncomingHeader</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">QueryBuildFieldList</span>     <span class="n">flBills</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"> 
-</span></span><span class="line"><span class="cl">        delete_from billsIncominTest;
+</span></span><span class="line"><span class="cl">        <span class="n">delete_from</span> <span class="n">billsIncominTest</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"> 
-</span></span><span class="line"><span class="cl">        q = new Query();
-</span></span><span class="line"><span class="cl">        qbdsBillsIncomingHeader = q.addDataSource(tableNum(DmrBillsIncomingHeader));
+</span></span><span class="line"><span class="cl">        <span class="n">q</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Query</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">qbdsBillsIncomingHeader</span> <span class="p">=</span> <span class="n">q</span><span class="p">.</span><span class="n">addDataSource</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">DmrBillsIncomingHeader</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl"> 
-</span></span><span class="line"><span class="cl">        flBills = qbdsBillsIncomingHeader.fields();
-</span></span><span class="line"><span class="cl">        flBills.addField(fieldNum(DmrBillsIncomingHeader, BillsIncomingId));
-</span></span><span class="line"><span class="cl">        flBills.addField(fieldNum(DmrBillsIncomingHeader, Description));
+</span></span><span class="line"><span class="cl">        <span class="n">flBills</span> <span class="p">=</span> <span class="n">qbdsBillsIncomingHeader</span><span class="p">.</span><span class="n">fields</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">flBills</span><span class="p">.</span><span class="n">addField</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">DmrBillsIncomingHeader</span><span class="p">,</span> <span class="n">BillsIncomingId</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">flBills</span><span class="p">.</span><span class="n">addField</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">DmrBillsIncomingHeader</span><span class="p">,</span> <span class="n">Description</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl"> 
-</span></span><span class="line"><span class="cl">        fieldMap = new Map(Types::String, Types::Container);
-</span></span><span class="line"><span class="cl">        fieldMap.insert( fieldStr(DmrBillsIncominTest, BillsIncomingId), [qbdsBillsIncomingHeader.uniqueId(),
-</span></span><span class="line"><span class="cl">                                    fieldStr(DmrBillsIncomingHeader, BillsIncomingId)]);
-</span></span><span class="line"><span class="cl">        fieldMap.insert(fieldStr(DmrBillsIncominTest, Description), [qbdsBillsIncomingHeader.uniqueId(),
-</span></span><span class="line"><span class="cl">                                    fieldStr(DmrBillsIncomingHeader, Description)]);
+</span></span><span class="line"><span class="cl">        <span class="n">fieldMap</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Map</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">String</span><span class="p">,</span> <span class="n">Types</span><span class="p">::</span><span class="n">Container</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fieldMap</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span> <span class="n">fieldStr</span><span class="p">(</span><span class="n">DmrBillsIncominTest</span><span class="p">,</span> <span class="n">BillsIncomingId</span><span class="p">),</span> <span class="p">[</span><span class="n">qbdsBillsIncomingHeader</span><span class="p">.</span><span class="n">uniqueId</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">                                    <span class="n">fieldStr</span><span class="p">(</span><span class="n">DmrBillsIncomingHeader</span><span class="p">,</span> <span class="n">BillsIncomingId</span><span class="p">)]);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fieldMap</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">fieldStr</span><span class="p">(</span><span class="n">DmrBillsIncominTest</span><span class="p">,</span> <span class="n">Description</span><span class="p">),</span> <span class="p">[</span><span class="n">qbdsBillsIncomingHeader</span><span class="p">.</span><span class="n">uniqueId</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">                                    <span class="n">fieldStr</span><span class="p">(</span><span class="n">DmrBillsIncomingHeader</span><span class="p">,</span> <span class="n">Description</span><span class="p">)]);</span>
 </span></span><span class="line"><span class="cl"> 
-</span></span><span class="line"><span class="cl">        query::insert_recordset(billsIncominTest, fieldMap, q);
+</span></span><span class="line"><span class="cl">        <span class="n">query</span><span class="p">::</span><span class="n">insert_recordset</span><span class="p">(</span><span class="n">billsIncominTest</span><span class="p">,</span> <span class="n">fieldMap</span><span class="p">,</span> <span class="n">q</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"> 
-</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"> 
-</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></div><div id="comments"><div id="disqus_thread" class="comment"></div><noscript>

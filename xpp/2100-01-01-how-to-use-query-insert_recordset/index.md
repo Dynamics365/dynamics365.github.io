@@ -7,8 +7,10 @@ I want to insert two fields of all records in DmrBillsIncomingHeader table into 
 
 Also, which fields I want to insert, I have to mark them using Map. I should have written it with the classical method as follows.
 
-```insert_recordset billsIncominTest (BillsIncomingId, Description  )
-        select BillsIncomingId, Description from DmrBillsIncomingHeader ;```
+```C#
+insert_recordset billsIncominTest (BillsIncomingId, Description  )
+        select BillsIncomingId, Description from DmrBillsIncomingHeader ;
+```
 
 Now let's write this with Query.
 
