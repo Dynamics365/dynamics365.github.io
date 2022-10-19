@@ -1,5 +1,7 @@
 # Series
 
 
-[Fin](/series/fin)
+[xpp](/xpp)
+[Test news](/news)
+[Theme](/series/docs/)
 
