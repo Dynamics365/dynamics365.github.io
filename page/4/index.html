@@ -111,6 +111,13 @@
         <div id="search-dropdown-mobile"></div>
     </div><main class="main">
                 <div class="container"><div class="page home" data-home="posts"><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/">Extend the standard reports in Dynamics 365 finance and operations</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="October 10, 2019">October 10, 2019</time></span>&nbsp;<span class="post-category">included in <a href="/categories/report/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Report</a></span></div><div class="content">In this article, I will show the procedure for the SSRS Reports development and customization in Dynamics 365 finance and operations (Version 8.1 and above).
+The scenario is you would like to extend the customer account statement report with 2 main tasks
+Create custom design for the report Expand the standard report data sets Same with AX 2012 version, there is no change on how you developer a new SSRS report with query based and report data provider.</div><div class="post-footer">
+        <a href="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/coc/">COC</a>,&nbsp;<a href="/tags/extension/">Extension</a>,&nbsp;<a href="/tags/ssrs/">ssrs</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/2019-09-28-technical-referece-report-data-entites-d365/">Technical reference - Data entity - Dynamics 365 finance and operations</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="September 28, 2019">September 28, 2019</time></span></div><div class="content">The following reports provide details about technical objects available in Dynamics 365 for Finance Operations version 10.0. This version was released in May 2019 and has a build number of 10.0.2.</div><div class="post-footer">
         <a href="/2019-09-28-technical-referece-report-data-entites-d365/">Read More</a><div class="post-tags">
@@ -180,48 +187,6 @@ Open PowerShell, run following script
 <p>The delete action has the following options: <strong>None, Restricted, Cascade, Cascade + Restricted</strong></p></div><div class="post-footer">
         <a href="/2017-01-19-overview-delete-action-in-dyanmics-ax-2012/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/delete-acitons/">delete acitons</a>,&nbsp;<a href="/tags/ax2012/">AX2012</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/2017-01-12-handle-aif-error-messages-in-dynamics-ax-2012-r3/">Handle AIF error messages in dynamics AX 2012 R3</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="January 12, 2017">January 12, 2017</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax2012/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AX2012</a>&nbsp;<a href="/categories/integration/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Integration</a></span></div><div class="content"><p>Normally, when we consume AIF Service, we use this code like below to handle Error messages</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">try</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="n">client</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">contract</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;items registed on Trans Id: &#34;</span> <span class="p">+</span> <span class="n">contract</span><span class="p">.</span><span class="n">InventTransId</span> <span class="p">+</span> <span class="s">&#34; with &#34;</span> <span class="p">+</span> <span class="n">contract</span><span class="p">.</span><span class="n">Qty</span> <span class="p">+</span> <span class="s">&#34; quantities.&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&#34;Ex: {0}&#34;</span><span class="p">,</span> <span class="n">ex</span><span class="p">.</span><span class="n">Message</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>If it cause error, message would return like this</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/imagesposts/Handle-AIF-error-messages-in-dynamics-AX-2012-R3-1.png"
-        data-srcset="/imagesposts/Handle-AIF-error-messages-in-dynamics-AX-2012-R3-1.png, /imagesposts/Handle-AIF-error-messages-in-dynamics-AX-2012-R3-1.png 1.5x, /imagesposts/Handle-AIF-error-messages-in-dynamics-AX-2012-R3-1.png 2x"
-        data-sizes="auto"
-        alt="/imagesposts/Handle-AIF-error-messages-in-dynamics-AX-2012-R3-1.png"
-        title="/imagesposts/Handle-AIF-error-messages-in-dynamics-AX-2012-R3-1.png" /></p></div><div class="post-footer">
-        <a href="/2017-01-12-handle-aif-error-messages-in-dynamics-ax-2012-r3/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/xpp/">xpp</a>,&nbsp;<a href="/tags/aif/">aif</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -250,7 +215,7 @@ Open PowerShell, run following script
                     <span class="page-link" aria-hidden="true">&hellip;</span>
                 </li><li class="page-item ">
                     <span class="page-link">
-                        <a href="/page/10/">10</a>
+                        <a href="/page/11/">11</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">

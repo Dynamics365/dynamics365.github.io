@@ -111,6 +111,48 @@
         <div id="search-dropdown-mobile"></div>
     </div><main class="main">
                 <div class="container"><div class="page home" data-home="posts"><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/2017-01-12-handle-aif-error-messages-in-dynamics-ax-2012-r3/">Handle AIF error messages in dynamics AX 2012 R3</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="January 12, 2017">January 12, 2017</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax2012/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AX2012</a>&nbsp;<a href="/categories/integration/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Integration</a></span></div><div class="content"><p>Normally, when we consume AIF Service, we use this code like below to handle Error messages</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">try</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">client</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">contract</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;items registed on Trans Id: &#34;</span> <span class="p">+</span> <span class="n">contract</span><span class="p">.</span><span class="n">InventTransId</span> <span class="p">+</span> <span class="s">&#34; with &#34;</span> <span class="p">+</span> <span class="n">contract</span><span class="p">.</span><span class="n">Qty</span> <span class="p">+</span> <span class="s">&#34; quantities.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&#34;Ex: {0}&#34;</span><span class="p">,</span> <span class="n">ex</span><span class="p">.</span><span class="n">Message</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>If it cause error, message would return like this</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/imagesposts/Handle-AIF-error-messages-in-dynamics-AX-2012-R3-1.png"
+        data-srcset="/imagesposts/Handle-AIF-error-messages-in-dynamics-AX-2012-R3-1.png, /imagesposts/Handle-AIF-error-messages-in-dynamics-AX-2012-R3-1.png 1.5x, /imagesposts/Handle-AIF-error-messages-in-dynamics-AX-2012-R3-1.png 2x"
+        data-sizes="auto"
+        alt="/imagesposts/Handle-AIF-error-messages-in-dynamics-AX-2012-R3-1.png"
+        title="/imagesposts/Handle-AIF-error-messages-in-dynamics-AX-2012-R3-1.png" /></p></div><div class="post-footer">
+        <a href="/2017-01-12-handle-aif-error-messages-in-dynamics-ax-2012-r3/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/xpp/">xpp</a>,&nbsp;<a href="/tags/aif/">aif</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/2017-01-12-how-to-create-http-adapter-port/">How to create HTTP adapter port</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="January 12, 2017">January 12, 2017</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax2012/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AX2012</a>&nbsp;<a href="/categories/integration/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Integration</a></span></div><div class="content"><p>We normally use <code>NETTCP</code> adapter for .NET system, It going to very easy to consume by.</p>
 <p>As my experience, if we use <code>NETTCP</code> adapter for consuming by Java system, we will need add some extension or 3rd party due to binding and mismatch schema and of course client doesn’t want to do that either me.</p>
@@ -216,12 +258,6 @@ What if you want to calculate for all items:
 1 2 3 4 5 6 7 8 9 InventTable InventTable; InventSumRecalcItem InventSumRecalcItem; WHILE SELECT InventTable WHERE (InventTable.</div><div class="post-footer">
         <a href="/2017-01-02-recalculate-inventsum/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/inventsum/">inventsum</a>,&nbsp;<a href="/tags/expression/">expression</a>,&nbsp;<a href="/tags/xpp/">xpp</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/2017-01-02-simple-summary-keys-are-in-dynamics-ax/">Simple summary Keys are in Dynamics AX</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="January 2, 2017">January 2, 2017</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax2012/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AX2012</a></span></div><div class="content">There is a maximum of one Primary Key per table, whereas a table can have several alternate keys. The primary key is usually the type of key that other tables, called child tables, refer to when a foreign key field in those other tables need a relational identifier.
-For new tables the default is a primary key based on the RecId field , incremented number or a completely meaningless number that is generated by the system surrogate key.</div><div class="post-footer">
-        <a href="/2017-01-02-simple-summary-keys-are-in-dynamics-ax/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/keys-are-in-dynamics-ax/">Keys are in Dynamics AX</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -252,7 +288,7 @@ For new tables the default is a primary key based on the RecId field , increment
                     <span class="page-link" aria-hidden="true">&hellip;</span>
                 </li><li class="page-item ">
                     <span class="page-link">
-                        <a href="/page/10/">10</a>
+                        <a href="/page/11/">11</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">
