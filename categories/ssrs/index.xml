@@ -4,7 +4,76 @@
         <link>https://nuxulu.com/categories/ssrs/</link>
         <description>SSRS - Category - Dynamics 365 Finance &amp; Operations | nuxulu.com</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
-            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Thu, 17 Nov 2016 09:11:11 &#43;0900</lastBuildDate><atom:link href="https://nuxulu.com/categories/ssrs/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Thu, 20 Oct 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/categories/ssrs/" rel="self" type="application/rss+xml" /><item>
+    <title>How to remove SSRS reports in FinOps Cloud-Hosted</title>
+    <link>https://nuxulu.com/post-2023/2022-10-20-how-to-remove-ssrs-reports-in-d365/</link>
+    <pubDate>Thu, 20 Oct 2022 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/post-2023/2022-10-20-how-to-remove-ssrs-reports-in-d365/</guid>
+    <description><![CDATA[<p>There are 2 ways that you can delete SSRS reports in FinOps cloud-Hosted</p>
+<h2 id="1-using-report-server-configuiration-manager-web-portal">1. Using Report server configuiration manager web portal</h2>
+<p>Open Report server configuiration manager from your VM FinOps Cloud-Hosted and active the <strong>Web Portal</strong></p>
+<p><figure><a class="lightgallery" href="/post-2023/2022-10-20-how-to-remove-ssrs-reports-in-d365/2022-10-20-how-to-remove-ssrs-reports-in-d365-1.png" title="Image" data-thumbnail="/post-2023/2022-10-20-how-to-remove-ssrs-reports-in-d365/2022-10-20-how-to-remove-ssrs-reports-in-d365-1.png" data-sub-html="<h2>2022-10-20-how-to-remove-ssrs-reports-in-d365-1</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">2022-10-20-how-to-remove-ssrs-reports-in-d365-1</figcaption>
+    </figure></p>
+<p>You can delete any report from <code>[Servername]/Reports/browse/Dynamics</code></p>
+<p><figure><a class="lightgallery" href="/post-2023/2022-10-20-how-to-remove-ssrs-reports-in-d365/2022-10-20-how-to-remove-ssrs-reports-in-d365-3.png" title="Image" data-thumbnail="/post-2023/2022-10-20-how-to-remove-ssrs-reports-in-d365/2022-10-20-how-to-remove-ssrs-reports-in-d365-3.png" data-sub-html="<h2>2022-10-20-how-to-remove-ssrs-reports-in-d365-3</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">2022-10-20-how-to-remove-ssrs-reports-in-d365-3</figcaption>
+    </figure></p>
+<h2 id="1-using-powershell-script">1. Using Powershell script</h2>
+<p>Go to <code>RemoveAllReportsFromSsrs.ps1</code> under <code>K:\AosService\PackagesLocalDirectory\Plugins\AxReportVmRoleStartupTask</code></p>
+<p>Run the script to remove all SSRS report.</p>
+<p>If you want to remove a specific report, you can manipulate the $ReportName</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="c">################################################################################</span>
+</span></span><span class="line"><span class="cl"><span class="c"># This script is used to manually remove reports to SSRS server</span>
+</span></span><span class="line"><span class="cl"><span class="c">################################################################################</span>
+</span></span><span class="line"><span class="cl"><span class="k">param</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">=</span><span class="nv">$false</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    <span class="no">[string]</span><span class="nv">$LogFilePath</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="k">Alias</span><span class="p">(</span><span class="s2">&#34;ReportServerFqdn&#34;</span><span class="p">,</span> <span class="s2">&#34;ReportServerName&#34;</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">=</span><span class="nv">$false</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    <span class="no">[string[]]</span><span class="nv">$ReportServerIp</span> <span class="p">=</span> <span class="s2">&#34;127.0.0.1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">=</span><span class="nv">$false</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">	<span class="no">[string[]]</span><span class="nv">$ReportName</span> <span class="p">=</span> <span class="s2">&#34;[report-name].[design-name]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">=</span><span class="nv">$false</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">	<span class="no">[switch]</span><span class="nv">$UseHttps</span> <span class="p">=</span> <span class="nv">$false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">=</span><span class="nv">$false</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">	<span class="no">[int]</span><span class="nv">$HttpsPort</span> <span class="p">=</span> <span class="n">443</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">=</span><span class="nv">$false</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    <span class="no">[switch]</span><span class="nv">$Help</span> <span class="p">=</span> <span class="nv">$false</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Check <a href="/2021-01-27-deploy-ssrs-reports-in-dynamics-365-finance-scm-using-powershell/" rel="">this article</a> for deploy report using PS script.</p>
+]]></description>
+</item>
+<item>
     <title>Step by Step How to build SSRS Report - Advanced RDP Class</title>
     <link>https://nuxulu.com/2016-11-23-step-by-step-how-to-build-ssrs-report---advanced-rdp-class/</link>
     <pubDate>Thu, 17 Nov 2016 09:11:11 &#43;0900</pubDate>
