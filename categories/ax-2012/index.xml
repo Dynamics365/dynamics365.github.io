@@ -71,12 +71,48 @@
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>Step by Step How to build SSRS Report - Advanced RDP Class</title>
+    <title>Step by Step to build SSRS Report - Advanced RDP Class</title>
     <link>https://nuxulu.com/2016-11-23-step-by-step-how-to-build-ssrs-report---advanced-rdp-class/</link>
-    <pubDate>Thu, 17 Nov 2016 09:11:11 &#43;0900</pubDate>
+    <pubDate>Thu, 17 Nov 2016 00:00:00 &#43;0000</pubDate>
     <author>Max Nguyen</author>
     <guid>https://nuxulu.com/2016-11-23-step-by-step-how-to-build-ssrs-report---advanced-rdp-class/</guid>
-    <description><![CDATA[]]></description>
+    <description><![CDATA[<h3 id="choosing-rdp-for-a-report">Choosing RDP for a report</h3>
+<ul>
+<li>Data to be rendered cannot be constructed as a query.</li>
+<li>Business logic to be processed depends on the parameters.</li>
+<li>Data can be rendered using existing business logic.</li>
+<li>More filters are to be added at runtime</li>
+</ul>
+<h3 id="rdp-comlex">RDP Comlex</h3>
+<p>When a dataset does not provide the complexity needs of your report, you can use the default SrsReportRunController class. A controller class runs the report by creating the user interface (UI), calling SQL Server Reporting Services, and pre-processing the parameters for the report. The following list describes scenarios that require that you extend the SrsReportRunController class to create a custom controller for the report.</p>
+<p>Report requires input data to be pre-processed.
+Report requires input data to be manipulated or modified.
+Multiple reports should be run from the same dialog box.
+Report requires that it be run from a form.</p>
+<h3 id="report-programming-model">Report programming model</h3>
+<h4 id="model">Model</h4>
+<p>A model for an SSRS report can be an AOT query/RDP/business logic.(RDPs class need to be extends SRSReportDataProvider)</p>
+<h4 id="controller">Controller</h4>
+<ol>
+<li>
+<p>Report data contract: Implemented by SRSReportDataContract
+holds the different contracts used in a report</p>
+</li>
+<li>
+<p>Report controller: Implemented by  SRSReportRunController
+starting from parsing the report rdl, binding the contracts, UI builder classes to the report, rendering the UI, invoking the report viewer, and post processing actions after the report is rendered.</p>
+</li>
+<li>
+<p>Report UI builder:  Implemented by SRSReportDataContractUIBuilder
+building the UI based on related contracts.</p>
+</li>
+</ol>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube-nocookie.com/embed/6B5cqeeNvH4" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+]]></description>
 </item>
 <item>
     <title>Microsoft AX 2012 Test Data Transfer Tool</title>
