@@ -13,7 +13,7 @@ You can delete any report from `[Servername]/Reports/browse/Dynamics`
 
 ![Image](2022-10-20-how-to-remove-ssrs-reports-in-d365-3.png "2022-10-20-how-to-remove-ssrs-reports-in-d365-3")
 
-## 1. Using Powershell script
+## 2. Using Powershell script
 
 Go to `RemoveAllReportsFromSsrs.ps1` under `K:\AosService\PackagesLocalDirectory\Plugins\AxReportVmRoleStartupTask`
 
