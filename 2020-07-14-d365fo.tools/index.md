@@ -39,6 +39,10 @@ Get-Help Set-D365Admin -Full
 Get-Help Set-D365SysAdmin -Full
 Set-D365Admin "max@automaly.com"
 Get-D365User -Email "max@automaly.com" | Enable-D365User
+
+#maintenance mode
+Enable-D365MaintenanceMode -ShowOriginalProgress
+Disable-D365MaintenanceMode -ShowOriginalProgress
 ```
 
 ## LCS
