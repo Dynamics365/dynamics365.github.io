@@ -144,7 +144,7 @@ Please follow <a href="#7-for-vhd-that-was-released-for-versions-10024-and-later
             <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Tip<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content">In these commands, be sure to replace old_name with the old name of the server and new_name with the new name. By default, the old name is MININT-F36S5EH, but you can run select @@servername to get the old name. Additionally, be sure to restart the SQL Server service after the commands have finished running.</div>
+            <div class="admonition-content">In these commands, be sure to replace old_name with the old name of the server and new_name with the new name. By default, the old name is <code>MININT-F36S5EH</code>, but you can run select @@servername to get the old name. Additionally, be sure to restart the SQL Server service after the commands have finished running.</div>
         </div>
     </div>
 <ul>
@@ -173,7 +173,7 @@ Please follow <a href="#7-for-vhd-that-was-released-for-versions-10024-and-later
 <p>From the Start menu, open Microsoft Azure Storage Emulator - v4.0, and run the following commands.</p>
 <p><code>AzureStorageEmulator.exe start</code></p>
 <blockquote>
-<p>If you got an error <strong><em>Port conflict with existing application</em></strong>, please check this <a href="../2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/" rel="">post</a>.</p>
+<p>If you got an error <strong><em>Port conflict with existing application</em></strong>, please check this <a href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/" rel="">post</a>.</p>
 </blockquote>
 </li>
 <li>
@@ -202,7 +202,7 @@ Please follow <a href="#7-for-vhd-that-was-released-for-versions-10024-and-later
 <p>Open the <strong>web.config</strong> file in Notepad or another text editor. The following keys are of interest to many developers and administrators:</p>
 <ul>
 <li>
-<p><strong>Aos.MetadataDirectory</strong> – This key points to the location of the packages folder that contains platform and application binaries, and also source code. (Source code is available only in development environments.) Typical values are: <em>c:\packages, c:\AosServicePackagesLocalDirectory</em>, and <em>J:AosServicePackagesLocalDirectory</em>.</p>
+<p><strong>Aos.MetadataDirectory</strong> – This key points to the location of the packages folder that contains platform and application binaries, and also source code. (Source code is available only in development environments.) Typical values are: <code>c:\packages</code>, <code>c:\AosServicePackagesLocalDirectory</code>, and <code>J:AosServicePackagesLocalDirectory</code>.</p>
 </li>
 <li>
 <p><strong>DataAccess.Database</strong> – This key holds the name of the database.</p>
@@ -217,7 +217,7 @@ Please follow <a href="#7-for-vhd-that-was-released-for-versions-10024-and-later
 <p>To restart the local runtime and redeploy all the packages, follow these steps.</p>
 <ol>
 <li>
-<p>Open File Explorer, and go to <em>C:\CustomerServiceUnit</em>.</p>
+<p>Open File Explorer, and go to <code>C:\CustomerServiceUnit</code>.</p>
 </li>
 <li>
 <p>Right-click <strong>AOSDeploy.cmd</strong>, and then click <strong>Run as administrator</strong>.</p>
@@ -225,9 +225,7 @@ Please follow <a href="#7-for-vhd-that-was-released-for-versions-10024-and-later
 </ol>
 <p>This process might take a while. The process is completed when the cmd.exe window closes. If you just want to restart AOS (without redeploying the runtime), run iisreset from an administrator Command Prompt window, or restart AOSWebApplication from IIS.</p>
 <h2 id="6-update-to-the-latest-version">6. Update to the latest version</h2>
-<p>Please check this document
-<a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/deployment/install-deployable-package" target="_blank" rel="noopener noreffer ">https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/deployment/install-deployable-package</a></p>
-<p>update for virtual hard drive (VHD) that was released for versions 10.0.24</p>
+<p>Please check this <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/deployment/install-deployable-package" target="_blank" rel="noopener noreffer ">document</a> for versions 10.0.24</p>
 <h2 id="7-for-vhd-that-was-released-for-versions-10024-and-later">7. For (VHD) that was released for versions 10.0.24 and later</h2>
 <h3 id="71-register-a-new-application-in-azure-active-directory">7.1 Register a new application in Azure Active Directory</h3>
 <p>To register a new application in Microsoft Azure Active Directory (Azure AD), follow the steps outlined in <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app" target="_blank" rel="noopener noreffer ">Register app or web API</a>. The new app registration should be for a web application, and the following redirect URIs should be added:</p>

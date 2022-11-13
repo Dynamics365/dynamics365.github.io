@@ -87,7 +87,7 @@ Please follow [this step](#7-for-vhd-that-was-released-for-versions-10024-and-la
     ```
 
 {{< admonition tip>}}
-  In these commands, be sure to replace old_name with the old name of the server and new_name with the new name. By default, the old name is MININT-F36S5EH, but you can run select @@servername to get the old name. Additionally, be sure to restart the SQL Server service after the commands have finished running.
+  In these commands, be sure to replace old_name with the old name of the server and new_name with the new name. By default, the old name is `MININT-F36S5EH`, but you can run select @@servername to get the old name. Additionally, be sure to restart the SQL Server service after the commands have finished running.
 {{< /admonition >}}
 
 * Restart SQL service
@@ -109,7 +109,7 @@ cd <update folder>\MROneBox\Scripts\Update
 
     ```AzureStorageEmulator.exe start```
 
-    > If you got an error **_Port conflict with existing application_**, please check this [post](../2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/).
+  > If you got an error **_Port conflict with existing application_**, please check this [post](/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/).
 
 * This command verifies that the emulator is running.
 
@@ -133,7 +133,7 @@ On a VM, you can find most of the application configuration by opening the web.c
 
 4. Open the **web.config** file in Notepad or another text editor. The following keys are of interest to many developers and administrators:
 
-    * **Aos.MetadataDirectory** – This key points to the location of the packages folder that contains platform and application binaries, and also source code. (Source code is available only in development environments.) Typical values are: _c:\packages, c:\AosServicePackagesLocalDirectory_, and _J:AosServicePackagesLocalDirectory_.
+    * **Aos.MetadataDirectory** – This key points to the location of the packages folder that contains platform and application binaries, and also source code. (Source code is available only in development environments.) Typical values are: `c:\packages`, `c:\AosServicePackagesLocalDirectory`, and `J:AosServicePackagesLocalDirectory`.
 
     * **DataAccess.Database** – This key holds the name of the database.
 
@@ -143,7 +143,7 @@ On a VM, you can find most of the application configuration by opening the web.c
 
 To restart the local runtime and redeploy all the packages, follow these steps.
 
-1. Open File Explorer, and go to _C:\CustomerServiceUnit_.
+1. Open File Explorer, and go to `C:\CustomerServiceUnit`.
 
 2. Right-click **AOSDeploy.cmd**, and then click **Run as administrator**.
 
@@ -151,10 +151,7 @@ This process might take a while. The process is completed when the cmd.exe windo
 
 ## 6. Update to the latest version
 
-Please check this document
-<https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/deployment/install-deployable-package>
-
-update for virtual hard drive (VHD) that was released for versions 10.0.24
+Please check this [document](https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/deployment/install-deployable-package) for versions 10.0.24
 
 ## 7. For (VHD) that was released for versions 10.0.24 and later
 

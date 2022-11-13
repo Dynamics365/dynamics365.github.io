@@ -13,26 +13,24 @@ For basic setting up Dynamics 365 for finance and operations and Postman please 
 ### 1. Get Dynamics 365 for finance and operations authorization
 
 This is a result
-<figure class='center'>
-  <a href="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_1.png"><img src="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_1.png" alt=""></a>
-</figure>
+
+![Insert-multiple-records](2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_1.png "2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_1.png")
 
 ### 2. Create a new POST request in Postman with header
 
-<figure class='center'>
-  <a href="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_2.png"><img src="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_2.png" alt=""></a>
-</figure>
+![Insert-multiple-records](2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_2.png "2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_2.png")
 
-***URL: {{resource}}/data/$batch***
-***Content-Type: multipart/mixed;boundary=batch_d63a-e9be-2927***
+`URL: {{resource}}/data/$batch*`
+
+`Content-Type: multipart/mixed;boundary=batch_d63a-e9be-2927`
 
 ### 3. Modify the Body in Postman
 
 I will place 2 records for customer groups
 
-<figure class='center'>
-  <a href="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_3.png"><img src="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_3.png" alt=""></a>
-</figure>
+
+![Insert-multiple-records](2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_3.png "2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_3.png")
+
 
 Full text here
 
@@ -74,9 +72,9 @@ OData-MaxVersion: 4.0
 
 Click send and this is what you got from response
 
-<figure class='center'>
-  <a href="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_4.png"><img src="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_4.png" alt=""></a>
-</figure>
+
+![Insert-multiple-records](2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_4.png "2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_4.png")
+
 
 Full Response
 
@@ -138,9 +136,9 @@ OData-Version: 4.0
 
 Check the data in Dynamics 365 for finance and operations 
 
-<figure class='center'>
-  <a href="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_5.png"><img src="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_5.png" alt=""></a>
-</figure>
+
+![Insert-multiple-records](2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_5.png "2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_5.png")
+
 
 Note: refer this article for an C# example:
 https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/odata#run-multiple-requests-in-a-single-transaction

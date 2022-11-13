@@ -47,7 +47,7 @@ When I run the _AlexExtension_, the original main method of the Alex class will 
 
 Now we will try with a sample scenario from D365 Finance and Operation. In **General Ledger** Module, we have **General journals** form
 
-![Image](/imagesposts/How-to-ignore-standard-code-in-Dynamics-365-finance-and-operations.png)
+![Image](How-to-ignore-standard-code-in-Dynamics-365-finance-and-operations.png)
 
 When you click the button for **Journal Print**, the menu item will be triggered and point to the controller name: *LedgerJournalController* with *LedgerJournalController* class and the report will be generated.
 
@@ -70,7 +70,7 @@ final class Alex_LedgerJournalController_Extension
 
 Using this I will ignore the the main method of *LedgerJournalController* class and instead of generate the report, the result will be only the **OK** info line in the extension class:
 
-![Image](/imagesposts/How-to-ignore-standard-code-in-Dynamics-365-finance-and-operations-1.png)
+![Image](How-to-ignore-standard-code-in-Dynamics-365-finance-and-operations-1.png)
 
 This is a little bit tricky because we still call next in our extension class as per the requirement of COC, but as we never call the method that "wrap" the next call so it will not be executed. You can try this to simply ignore or rewrite a method of a class in FinOps.
 

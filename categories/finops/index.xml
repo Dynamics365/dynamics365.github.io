@@ -4,369 +4,1352 @@
         <link>https://nuxulu.com/categories/finops/</link>
         <description>FinOps - Category - Dynamics 365 Finance &amp; Operations | nuxulu.com</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
-            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Mon, 05 Aug 2019 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/categories/finops/" rel="self" type="application/rss+xml" /><item>
-    <title>Dynamics 365 for finance and operations database synchronization using command line</title>
-    <link>https://nuxulu.com/2019-08-05-database-sync-d365fo/</link>
-    <pubDate>Mon, 05 Aug 2019 00:00:00 &#43;0000</pubDate>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Sun, 17 Jan 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/categories/finops/" rel="self" type="application/rss+xml" /><item>
+    <title>Deploy SSRS reports in Dynamics 365 Finance, SCM using Powershell</title>
+    <link>https://nuxulu.com/2021-01-27-deploy-ssrs-reports-in-dynamics-365-finance-scm-using-powershell/</link>
+    <pubDate>Sun, 17 Jan 2021 00:00:00 &#43;0000</pubDate>
     <author>Max Nguyen</author>
-    <guid>https://nuxulu.com/2019-08-05-database-sync-d365fo/</guid>
-    <description><![CDATA[<p>You can either execute the script for <em>cloud-hosted</em>, <em>onebox VHD</em>, or <em>UAT</em> environment. This is not applied with <strong>one-box Microsoft hosted</strong> environment.</p>
-<p>Open PowerShell, run following script</p>
+    <guid>https://nuxulu.com/2021-01-27-deploy-ssrs-reports-in-dynamics-365-finance-scm-using-powershell/</guid>
+    <description><![CDATA[<p>Open Windows PowerShell in Admin mode</p>
+<p>Navigate to the PowerShell scripts</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">K:</span><span class="p">\</span><span class="n">AOSService</span><span class="p">\</span><span class="n">webroot</span><span class="p">\</span><span class="n">bin</span><span class="p">\</span><span class="n">Microsoft</span><span class="p">.</span><span class="n">Dynamics</span><span class="p">.</span><span class="n">AX</span><span class="p">.</span><span class="n">Deployment</span><span class="p">.</span><span class="n">Setup</span><span class="p">.</span><span class="n">exe</span> 
-</span></span><span class="line"><span class="cl"><span class="n">-bindir</span> <span class="s2">&#34;K:\AosService\PackagesLocalDirectory&#34;</span> 
-</span></span><span class="line"><span class="cl"><span class="n">metadatadir</span> <span class="s2">&#34;K:\AosService\PackagesLocalDirectory&#34;</span> 
-</span></span><span class="line"><span class="cl"><span class="n">-sqluser</span> <span class="s2">&#34;axdbadmin&#34;</span> <span class="n">-sqlserver</span> <span class="s2">&#34;.&#34;</span> <span class="n">-sqldatabase</span> <span class="s2">&#34;AxDB&#34;</span> 
-</span></span><span class="line"><span class="cl"><span class="n">-setupmode</span> <span class="s2">&#34;sync&#34;</span> <span class="n">-syncmode</span> <span class="s2">&#34;fullall&#34;</span> 
-</span></span><span class="line"><span class="cl"><span class="n">-isazuresql</span> <span class="s2">&#34;false&#34;</span> <span class="n">-sqlpwd</span> <span class="s2">&#34;************&#34;</span> 
-</span></span><span class="line"><span class="cl"><span class="n">-logfilename</span> <span class="s2">&#34;C:\Temp\dbsync.log&#34;</span>
+<pre tabindex="0" class="chroma"><code class="language-ps" data-lang="ps"><span class="line"><span class="cl"><span class="nf">cd</span> <span class="nf">K:\AosService\PackagesLocalDirectory\Plugins\AxReportVmRoleStartupTask\</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>For example</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">K:</span><span class="p">\</span><span class="n">AOSService</span><span class="p">\</span><span class="n">webroot</span><span class="p">\</span><span class="n">bin</span><span class="p">\</span><span class="n">Microsoft</span><span class="p">.</span><span class="n">Dynamics</span><span class="p">.</span><span class="n">AX</span><span class="p">.</span><span class="n">Deployment</span><span class="p">.</span><span class="n">Setup</span><span class="p">.</span><span class="n">exe</span> 
-</span></span><span class="line"><span class="cl"><span class="n">-bindir</span> <span class="s2">&#34;K:\AosService\PackagesLocalDirectory&#34;</span> 
-</span></span><span class="line"><span class="cl"><span class="n">metadatadir</span> <span class="s2">&#34;K:\AosService\PackagesLocalDirectory&#34;</span> 
-</span></span><span class="line"><span class="cl"><span class="n">-sqluser</span> <span class="s2">&#34;axdbadmin&#34;</span> <span class="n">-sqlserver</span> <span class="s2">&#34;.&#34;</span> <span class="n">-sqldatabase</span> <span class="s2">&#34;AxDB&#34;</span> 
-</span></span><span class="line"><span class="cl"><span class="n">-setupmode</span> <span class="s2">&#34;sync&#34;</span> <span class="n">-syncmode</span> <span class="s2">&#34;fullall&#34;</span> 
-</span></span><span class="line"><span class="cl"><span class="n">-isazuresql</span> <span class="s2">&#34;false&#34;</span> <span class="n">-sqlpwd</span> <span class="s2">&#34;AOSWebSite@123&#34;</span> 
-</span></span><span class="line"><span class="cl"><span class="n">-logfilename</span> <span class="s2">&#34;C:\Temp\dbsync.log&#34;</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>AX DB user you can get from LCS, if you want to sync Azure DB please change <code>-isazuresql</code> to <em>True</em></p>
-]]></description>
-</item>
-<item>
-    <title>Exception Handling in Dynamics 365 For Finance and Operation</title>
-    <link>https://nuxulu.com/2017-08-07-exception-handling-in-dynamics-365-for-finance-and-operation/</link>
-    <pubDate>Mon, 07 Aug 2017 00:00:00 &#43;0000</pubDate>
-    <author>Max Nguyen</author>
-    <guid>https://nuxulu.com/2017-08-07-exception-handling-in-dynamics-365-for-finance-and-operation/</guid>
-    <description><![CDATA[<p>When we write a code, or make a customization to Dynamics 365 For Operation which is using X++ should make use of Exception Handling to provide some context for the message or a different more useful message. In this article, I will be exploring how I can come up with a uniform way to catch multiple types of exception that can be raised in X++.</p>
-<h3 id="1-exception-type">1. Exception type</h3>
-<p>There are many several types of exception and the type differs depending on what caused the error. Much of exception types are determined by the kernel and are not normally thrown by application code. All <strong>exception types</strong>, however, can be caught, and it is the developers’ responsibility to decide which exceptions need to be handled.</p>
-<p>The exception type is identified using the system-based enumeration called an exception. Because it is a system Enum, it cannot be modified, so users cannot add new exception types.</p>
-<p>The following table shows the exception literals that are the values of the Exception enumeration.</p>
-<p><figure><a class="lightgallery" href="/2017-08-07-exception-handling-in-dynamics-365-for-finance-and-operation/2017-08-07_10h00_37.png" title="Exception_Handling" data-thumbnail="/2017-08-07-exception-handling-in-dynamics-365-for-finance-and-operation/2017-08-07_10h00_37.png" data-sub-html="<h2>Exception_Handling</h2><p>Exception_Handling</p>">
-        
-    </a><figcaption class="image-caption">Exception_Handling</figcaption>
-    </figure></p>
-<h3 id="2-key-commands">2. Key commands</h3>
-<p>The <strong>Try</strong> command signifies the start of a block of code that you want to control with the X++ exception handling system. Any exceptions that are thrown in that block of code can be caught and handled accordingly. The block of code inside the Try statement must be contained between brackets ( { } ).</p>
-<p><strong>Catch</strong> statements come after the block of code and define what code is executed when each exception is thrown.</p>
-<p>You do not have to define a catch statement for every possible exception; however, each try statement must have at least one catch statement.</p>
-<p>A <strong>Retry</strong> command tells the system to go back to the Try statement and attempt to execute the code again. Any data that was loaded before the Try command will remain as it was, but any data retrieved or modified after the Try statement will be refreshed.</p>
-<p>When a deadlock exception is thrown, all locks on tables that this process holds are released, which may allow the other process or processes that are also deadlocked to continue.</p>
-<p>By calling a retry, the process can attempt to update the record again and may now be able to complete. It is a best practice that a retry uses a counter so that the number of retries can be controlled, and a user does not become stuck in a loop.</p>
-<p>The <strong>final</strong> keyword is now available to follow the try and catch keywords. The semantics are identical to the semantics in C#. The statements provided in the final clause is executed irrespective of whether the try block threw any exceptions.</p>
-<h3 id="3-code-statement">3. Code Statement</h3>
-<p>We will use these lines of code example here for testing Exception handling</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CustCreateCustomer</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">CustCreateCustomer</span> <span class="n">custCreateCustomer</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CustCreateCustomer</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">        <span class="n">custCreateCustomer</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">void</span> <span class="n">run</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">Dialog</span>          <span class="n">dlg</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dialog</span><span class="p">(</span><span class="s">&#34;Create new customer&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">DialogField</span>     <span class="n">dlgCust</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">DialogField</span>     <span class="n">dlgGrp</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">CustTable</span> <span class="n">custTable</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="n">dlgCust</span> <span class="p">=</span> <span class="n">dlg</span><span class="p">.</span><span class="n">addField</span><span class="p">(</span><span class="n">extendedTypeStr</span><span class="p">(</span><span class="n">CustVendAc</span><span class="p">),</span> <span class="s">&#34;Customer account&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">dlgGrp</span>  <span class="p">=</span> <span class="n">dlg</span><span class="p">.</span><span class="n">addField</span><span class="p">(</span><span class="n">extendedTypeStr</span><span class="p">(</span><span class="n">CustGroupId</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">        
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">dlg</span><span class="p">.</span><span class="n">run</span><span class="p">())</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="k">try</span>
-</span></span><span class="line"><span class="cl">            <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                <span class="n">custTable</span><span class="p">.</span><span class="n">AccountNum</span>    <span class="p">=</span> <span class="n">dlgCust</span><span class="p">.</span><span class="k">value</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">                <span class="n">custTable</span><span class="p">.</span><span class="n">CustGroup</span>     <span class="p">=</span> <span class="n">dlgGrp</span><span class="p">.</span><span class="k">value</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(!</span><span class="n">custTable</span><span class="p">.</span><span class="n">validateWrite</span><span class="p">())</span>
-</span></span><span class="line"><span class="cl">                <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                    <span class="k">throw</span> <span class="n">error</span><span class="p">(</span><span class="s">&#34;Please enter all required fields.&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">                <span class="p">}</span>
-</span></span><span class="line"><span class="cl">                <span class="k">else</span>
-</span></span><span class="line"><span class="cl">                <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                    <span class="n">custTable</span><span class="p">.</span><span class="n">insert</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">                <span class="p">}</span>
-</span></span><span class="line"><span class="cl">            <span class="p">}</span>
-</span></span><span class="line"><span class="cl">            <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span><span class="p">::</span><span class="n">Error</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">            <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                <span class="n">error</span><span class="p">(</span><span class="s">&#34;An error occurred. Please try again&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">            <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>This code will try to create a customer after revived inputted value from users, this code also handling errors when user do not input enough information. A <code>Throw</code> statement is used to throw an error that can be caught by a Catch statement. When the system throws an exception <code>ttsabort</code> is called automatically, and so does not have to be called in a Catch statement.</p>
-<h3 id="4-optimistic-concurrency-exceptions">4. Optimistic Concurrency Exceptions</h3>
-<p>The <strong>optimistic concurrency check</strong> (OCC) is a performance enhancing function within Microsoft Dynamics 365 For Operation. It presumes that any record retrieved from the database is not updated until it is proven to be updated by the database. This means that fewer locks must be placed on records in the database. This allows for faster access for other users.</p>
-<p>This also means that one user can update a record after another user has retrieved it from the database. This can cause data inconsistency. If the second user then also tries to update the record, an <code>UpdateConflict</code> exception is thrown. The system does this by comparing the <code>recVersion</code> field on the record buffer at runtime and the actual record in the database. The <code>recVersion</code> field value is changed every time that an update is successfully made to a record.</p>
-<p>There are two main table update exceptions, <code>UpdateConflict</code> and <code>DeadLock</code>. An update conﬂict occurs due to the optimistic concurrency failing, whereas a deadlock is the classic database scenario where both transactions have each locked a table that the other needs.</p>
-<p><strong>Update conﬂicts</strong> are normally handled within the insert, delete, and update methods of a table. The <strong>BOM table</strong> is a good example of this. You may also hard to find many examples where this has been used. We use this pattern only if we deem it to be required. The code within the table&rsquo;s update method also updates other records, so it has been written to handle update conﬂicts.</p>
-<p>The following code is an example of how to handle the UpdateConflict exception that might be thrown.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">update</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="err">#</span><span class="n">OCCRetryCount</span>
-</span></span><span class="line"><span class="cl">    <span class="k">try</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">ttsbegin</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// code that updates records in other tables</span>
-</span></span><span class="line"><span class="cl">        <span class="n">super</span><span class="p">();</span> <span class="c1">// do the update</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// other code that updates records in other tables</span>
-</span></span><span class="line"><span class="cl">        <span class="n">ttscommit</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">//Deadlock</span>
-</span></span><span class="line"><span class="cl">    <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span><span class="p">::</span><span class="n">Deadlock</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">retry</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">//UpdateConflict</span>
-</span></span><span class="line"><span class="cl">    <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span><span class="p">::</span><span class="n">UpdateConflict</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">appl</span><span class="p">.</span><span class="n">ttsLevel</span><span class="p">()</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">xSession</span><span class="p">::</span><span class="n">currentRetryCount</span><span class="p">()</span> <span class="p">&gt;=</span> <span class="err">#</span><span class="n">RetryNum</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">            <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                <span class="k">throw</span> <span class="n">Exception</span><span class="p">::</span><span class="n">UpdateConflictNotRecovered</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="p">}</span>
-</span></span><span class="line"><span class="cl">            <span class="k">else</span>
-</span></span><span class="line"><span class="cl">            <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                <span class="n">retry</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="k">else</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="n">Exception</span><span class="p">::</span><span class="n">UpdateConflict</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>If a conflict due to OCC occurs, the system throws the <code>UpdateConflict</code> exception and it is caught by the catch statement.</p>
-<p>The other new element here is <code>ttsLevel</code>. Since transactions can be nested, we do want the exception to falling through to the parent transaction if one exists. If <code>ttsabort</code> is issued (directly or due to a throwing error) at any level, the whole transaction will be rolled back; we can&rsquo;t roll back just the level where the error is thrown.</p>
-<p>The code checks the current TTS level. If it is not Zero, in other words, it is still in a TTS transaction, it throws another <code>UpdateConflict</code> exception to the next Catch list of the next outer Try statement in scope. This continues until it is no longer inside a TTS transaction. We must make sure that when the code is retired, all data is refreshed.</p>
-<p>It is important that we don&rsquo;t retry indefinitely, as this may cause the client to hang. To control this, we use <code>xSession::currentRetryCount()</code> to get the number of retries and check this against the <code>#RetryNum</code> macro. The macro defines the standard number of retries deemed appropriate by Microsoft, which is five.
-then the <code>UpdateConflictNotRecovered</code> exception is thrown. This means the whole transaction is aborted and stops retrying.</p>
-<h3 id="5-conclusion">5. Conclusion</h3>
-<p>We do not, in any case, want an error to be thrown that stops the form from opening. Also, if there is an error, we need to decide whether the user actually needs to know that an error occurred. It may be enough for our purposes that the fields don&rsquo;t appear, and we can use the debugger to trace through the code to determine why.</p>
-<p>Thank you for reading!</p>
-]]></description>
-</item>
-<item>
-    <title>Management reporter in new AX, Dynamics 365 For Operation</title>
-    <link>https://nuxulu.com/2017-07-24-management-reporter-in-dynamics-365-for-operation/</link>
-    <pubDate>Mon, 24 Jul 2017 00:00:00 &#43;0000</pubDate>
-    <author>Max Nguyen</author>
-    <guid>https://nuxulu.com/2017-07-24-management-reporter-in-dynamics-365-for-operation/</guid>
-    <description><![CDATA[<h3 id="1-overview-management-reporter-in-new-ax">1. Overview Management Reporter in New AX</h3>
-<p>Management Reporter is now <strong>Financial reports</strong>.</p>
-<p>As you know Management Reporter is a real-time financial reporting application that is designed to empower information workers to quickly and easily create, generate, secure, and publish financial statements, such as Profit and Loss statements, balance sheets, and cash flow reports.</p>
-<p>In Dynamics 365 For Operation, I can access these reports within AX means directly <em>from the web client in the browser</em>. This feature allows me to run financial statements, such as a balance sheet and income statements.</p>
-<p>The <strong>22 default</strong> reports that are included, default financial reports including income statements, balance sheet reports, cash flow statements, and general ledger reports, which can be modified depending on your company’s requirements.</p>
-<p>Here is the list</p>
-<p><figure><a class="lightgallery" href="/2017-07-24-management-reporter-in-dynamics-365-for-operation/Financial_reports.png" title="Financial_reports" data-thumbnail="/2017-07-24-management-reporter-in-dynamics-365-for-operation/Financial_reports.png" data-sub-html="<h2>Financial_reports</h2><p>Financial_reports</p>">
-        
-    </a><figcaption class="image-caption">Financial_reports</figcaption>
-    </figure></p>
-<h3 id="2-access">2. Access</h3>
-<p>You can find the financial reporting menu in Dynamics 365 For Operation by visiting <code>General Ledger &gt; Inquiries and reports &gt; Financial reporting</code></p>
-<p>Although, there are some privileges and duties relating to this. These report functions are available to users that have their appropriate privileges and duties assigned to them already.</p>
-<p>In order to view, edit, and manage reports in Management Reporter you need to add security administrator role to business Users. Besides, if you only need users can run the financial reports then you have to add the appropriate privileges and duties assigned to them.</p>
-<p>Before creating and generating financial reports for a legal entity, you must be done set up for that legal entity:</p>
+</div><p>Execute the below commands:</p>
 <ul>
-<li>Fiscal calendar</li>
-<li>Ledger</li>
-<li>Chart of Accounts</li>
-<li>Currency</li>
+<li>For deploying all SSRS reports</li>
 </ul>
-<h3 id="3-management-reporter-benefits">3. Management Reporter Benefits</h3>
-<p>With Management Reporter, business users can:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ps" data-lang="ps"><span class="line"><span class="cl"><span class="nf">.</span><span class="nv">/DeployAllReportsToSSRS.ps1</span> <span class="nf">-PackageInstallLocation</span> <span class="nf">“K:\AosService\PackagesLocalDirectory”</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>For deploying the specific reports</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">./</span><span class="n">DeployAllReportsToSSRS</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-Module</span> <span class="n">ApplicationSuite</span> <span class="n">-ReportName</span> <span class="p">&lt;</span><span class="n">ReportName</span><span class="p">&gt;</span> <span class="n">-PackageInstallLocation</span> <span class="err">“</span><span class="n">K:</span><span class="p">\</span><span class="n">AosService</span><span class="p">\</span><span class="n">PackagesLocalDirectory</span><span class="err">”</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Example:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">./</span><span class="n">DeployAllReportsToSsrs</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-Module</span> <span class="n">MaxCustomization</span> <span class="n">-ReportName</span> <span class="n">MaxCheque_US</span><span class="p">.</span><span class="n">Report</span> <span class="n">-PackageInstallLocation</span> <span class="s2">&#34;K:\AosService\PackagesLocalDirectory&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">./</span><span class="n">DeployAllReportsToSsrs</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-Module</span> <span class="n">ApplicatoinSuite</span> <span class="n">-ReportName</span> <span class="n">Cust</span><span class="p">*</span> <span class="n">-PackageInstallLocation</span> <span class="s2">&#34;C:\AosService\PackagesLocalDirectory&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>]]></description>
+</item>
+<item>
+    <title>Testing Dynamics 365 Finance Database Movement API with Postman</title>
+    <link>https://nuxulu.com/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/</link>
+    <pubDate>Mon, 17 Aug 2020 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/</guid>
+    <description><![CDATA[<p>Microsoft provides a versioned set of capabilities that you can currently use to copy databases between environments, and to list and download database backups.</p>
+<p>what you can do with Database movement API so far:</p>
 <ul>
-<li>Create their own boardroom-quality reports without IT assistance.</li>
-<li>Take advantage of secure report distribution through the centralized Report Library.</li>
-<li>Gain strong support for regulatory compliance (Change the report date, currency, view in Summary view or a detailed view, Add either dimension filters or attribute filters).</li>
-<li>Report design flexibility likes Save dimension combinations, and reuse the dimensions for multiple reports. Management Report Components.</li>
-<li>Financial report collaboration:
+<li>List database backups</li>
+<li>Create database refresh</li>
+<li>Create a database export</li>
+<li>Get operation activity status</li>
+</ul>
+<p>More supported actions will be added in later releases.</p>
+<p>The endpoint uses <strong>impersonation authentication</strong> base, please follow to <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/database/api/dbmovement-api-authentication##register-a-new-application-by-using-the-azure-portal" target="_blank" rel="noopener noreffer ">register a new application by using the Azure portal</a></p>
+<h2 id="1-postman-environment-setup">1. Postman environment setup</h2>
+<p><code>Open Postman -&gt; manage environments -&gt; Add</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">tenant_id: {tenant_id get from AAD}
+</span></span><span class="line"><span class="cl">client_id: {get from the application that you have created before}
+</span></span><span class="line"><span class="cl">client_secret: {get from the application that you have created before}
+</span></span><span class="line"><span class="cl">username: {LCS user name with owner permission}
+</span></span><span class="line"><span class="cl">password: {LCS user password}
+</span></span><span class="line"><span class="cl">grant_type: password
+</span></span><span class="line"><span class="cl">resource: https://lcsapi.lcs.dynamics.com
+</span></span><span class="line"><span class="cl">projectId: {Your LCS Project ID}
+</span></span><span class="line"><span class="cl">bearerToken: {this will be populated when authentication}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_1.png" title="Postman environment setup" data-thumbnail="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_1.png" data-sub-html="<h2>Postman environment setup</h2><p>Postman environment setup</p>">
+        
+    </a><figcaption class="image-caption">Postman environment setup</figcaption>
+    </figure></p>
+<h2 id="2-authentication-with-postman">2. Authentication with Postman</h2>
+<p>You get the authentication bearer with <strong>POST</strong> method and <a href="https://login.microsoftonline.com/%7b%7btenant_id%7d%7d/oauth2/token" target="_blank" rel="noopener noreffer ">https://login.microsoftonline.com/{{tenant_id}}/oauth2/token</a> endpoint.</p>
+<p>In the request Body, please do following:</p>
+<p><figure><a class="lightgallery" href="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_2.png" title="Authentication with Postman" data-thumbnail="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_2.png" data-sub-html="<h2>Authentication with Postman</h2><p>Authentication with Postman</p>">
+        
+    </a><figcaption class="image-caption">Authentication with Postman</figcaption>
+    </figure></p>
+<p>Click <strong>Send</strong>, and you will have access token to start using the API.</p>
+<p><figure><a class="lightgallery" href="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_3.png" title="token" data-thumbnail="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_3.png" data-sub-html="<h2>token</h2><p>token</p>">
+        
+    </a><figcaption class="image-caption">token</figcaption>
+    </figure></p>
+<h2 id="3-cosnume-the-apis-with-postman">3. Cosnume the APIs with Postman</h2>
+<p>To call the Database Movement API, you attach the access token as a bearer token to the authorization header in your HTTP request. So in Postman, modify the headers tab like bellow</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Authorization:Bearer {{bearerToken}}
+</span></span><span class="line"><span class="cl">x-ms-version:&#39;2017-09-15&#39;
+</span></span><span class="line"><span class="cl">Content-Type:application/json
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_4.png" title="Cosnume" data-thumbnail="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_4.png" data-sub-html="<h2>Cosnume</h2><p>Cosnume</p>">
+        
+    </a><figcaption class="image-caption">Cosnume</figcaption>
+    </figure></p>
+<h3 id="31-list-database-backups">3.1. List database backups</h3>
+<p><code> GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/databases/project/{{projectId}} </code></p>
+<p>And we’ll get a JSON with a list of the DB backups on our LCS Asset Library:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;DatabaseAssets&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;Id&#34;</span><span class="p">:</span> <span class="s2">&#34;12314234-862e-4a6a-800d-0c64e982284a&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;ProjectId&#34;</span><span class="p">:</span> <span class="mi">123123</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;OrganizationId&#34;</span><span class="p">:</span> <span class="mi">123124</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;Name&#34;</span><span class="p">:</span> <span class="s2">&#34;backup&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;FileName&#34;</span><span class="p">:</span> <span class="s2">&#34;ATbackup.bacpac&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;FileDescription&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;FileLocation&#34;</span><span class="p">:</span> <span class="s2">&#34;https://uswedpl1catalog.blob.core.windows.net/product-ax7productname/******&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;ModifiedDateTime&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-08-17T09:52:50.077&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;CreatedDateTime&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-08-17T09:52:45.297&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;CreatedByName&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;ModifiedByName&#34;</span><span class="p">:</span> <span class="kc">null</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;IsSuccess&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;OperationActivityId&#34;</span><span class="p">:</span> <span class="s2">&#34;5053e0dd-66e3-4832-a9f8-1e2d621562e1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ErrorMessage&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;VersionEOL&#34;</span><span class="p">:</span> <span class="s2">&#34;9999-12-31T23:59:59.9999999&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="32-create-database-refresh">3.2. Create database refresh</h3>
+<p><code> POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/refresh/project/{projectId}/source/{sourceEnvironmentId}/target/{targetEnvironmentId} </code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;IsSuccess&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;OperationActivityId&#34;</span><span class="p">:</span> <span class="s2">&#34;55eb4327-9346-4c7b-82bd-fe8ef15112c6&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ErrorMessage&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;VersionEOL&#34;</span><span class="p">:</span> <span class="s2">&#34;9999-12-31T23:59:59.9999999&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="33-create-a-database-export">3.3. Create a database export</h3>
+<p><code> POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/export/project/{projectId}/environment/{environmentId}/backupName/{backupName} </code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;IsSuccess&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;OperationActivityId&#34;</span><span class="p">:</span> <span class="s2">&#34;55eb4327-9346-4c7b-82bd-fe8ef15112c6&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ErrorMessage&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;VersionEOL&#34;</span><span class="p">:</span> <span class="s2">&#34;9999-12-31T23:59:59.9999999&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="34-get-operation-activity-status">3.4. Get operation activity status</h3>
+<p><code> GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/fetchstatus/project/{projectId}/environment/{environmentId}/operationactivity/{operationactivityId} </code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;IsSuccess&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;OperationActivityId&#34;</span><span class="p">:</span> <span class="s2">&#34;6a90b45f-1764-4077-b924-3f4671540237&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ErrorMessage&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;VersionEOL&#34;</span><span class="p">:</span> <span class="s2">&#34;9999-12-31T23:59:59.9999999&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ProjectId&#34;</span><span class="p">:</span> <span class="s2">&#34;12345&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;EnvironmentId&#34;</span><span class="p">:</span> <span class="s2">&#34;5362377c-bc37-4f92-b30e-fe0c1e664cc0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ActivityId&#34;</span><span class="p">:</span> <span class="s2">&#34;55eb4327-9346-4c7b-82bd-fe8ef15112c6&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;CompletionDate&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;OperationStatus&#34;</span><span class="p">:</span> <span class="s2">&#34;InProgress&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>]]></description>
+</item>
+<item>
+    <title>How to upgrade to Visual Studio 2017, .NET 4.7.2 for PU36/10.0.12 and higher</title>
+    <link>https://nuxulu.com/2020-06-30-how-to-upgrade-to-visual-studio-2017-.net-4.7.2/</link>
+    <pubDate>Tue, 30 Jun 2020 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2020-06-30-how-to-upgrade-to-visual-studio-2017-.net-4.7.2/</guid>
+    <description><![CDATA[<p>For the upcoming Dynamics 365 Finance Updates, Visual Studio 2017 and .NET runtime 4.7.2 required for PU36/10.0.12 or higher; New VMs deployed with PU36/10.0.12 or higher will have Visual Studio 2017 as well as .NET runtime 4.7.2 already installed.</p>
+<p>For your dev/test/build Tier1 VMs, Microsoft recommends just redeploying a new VM, and you will be all set!</p>
+<p>If you cannot deploy new VMs, please follow below steps to update .NET runtime, VS 2017 before installing PU36/10.0.12 or higher, this will be applied for <strong>cloud-hosted environment</strong></p>
+<h3 id="1-download-vs-professional-2017-159-herehttpsdownloadvisualstudiomicrosoftcomdownloadprac05c4f5-0da1-429f-8701-ce509ac699267b51a7b8db36f977745cf3e19ef1e9c62ebf29f704aebafce443626b779cb4f8vs_professionalexe-and-install-it">1. Download VS Professional 2017 15.9 <a href="https://download.visualstudio.microsoft.com/download/pr/ac05c4f5-0da1-429f-8701-ce509ac69926/7b51a7b8db36f977745cf3e19ef1e9c62ebf29f704aebafce443626b779cb4f8/vs_Professional.exe" target="_blank" rel="noopener noreffer ">here</a> and install it</h3>
+<h3 id="2-the-net-runtime-download-is-available-herehttpsdotnetmicrosoftcomdownloaddotnet-frameworknet472-by-clicking-on-the-_download-net-framework-472-runtime_-and-running-the-installation-restart-required">2. The .NET runtime download is available <a href="https://dotnet.microsoft.com/download/dotnet-framework/net472" target="_blank" rel="noopener noreffer ">here</a> by clicking on the <em>Download .NET Framework 4.7.2 Runtime</em> and running the installation, restart required.</h3>
+<h3 id="3-go-to-dynamics-lifecycle-services-and-download-pu3610012-or-any-higher-package-which-is-a-part-of-the-platform-and-application-binary-the-vsix-file-is-located-in-the-_devtoolsservicescripts_-folder">3. Go to Dynamics Lifecycle Services and download PU36/10.0.12 or any higher package which is a part of the Platform and application binary, the VSIX file is located in the <em>DevToolsService\Scripts</em> folder.</h3>
+<p></p>
+<p>You need to <code>install Microsoft.Dynamics.Framework.Tools.Installer</code> and then <code>Microsoft.Dynamics.Framework.Tools.InternalDevTools</code>.
+After the installation, open the VS2017 if you should see <strong>Dynamics 365</strong> menu extension like below</p>
+<p></p>
+<h3 id="4-if-you-try-to-access-the-client-before-applying-the-package-you-will-get-the-error-like-below-in-event-viewer-and-unable-to-access-the-environment-so-you-need-to-apply-an-update-first">4. If you try to access the client before applying the package you will get the error like below in event viewer and unable to access the environment, so you need to apply an update first.</h3>
+<div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">AX is shutting down due to an error. Serialization version mismatch detect, make sure the runtime dlls are in sync with the deployed metadata. Version of file &lsquo;194&rsquo;. Version of dll &lsquo;193&rsquo;.</div>
+        </div>
+    </div>
+<h3 id="5-in-lcs-navigate-to-your-cloud-hosted-environment-and-apply-platform-and-application-binary-package-pu3610012-or-higher-after-completed-upgrading-you-will-be-able-to-access-the-environment-client">5. In LCS, navigate to your cloud-hosted environment, and apply Platform and application binary package PU36/10.0.12 or higher. After completed upgrading, you will be able to access the environment client.</h3>
+<p>Overall, there is no change in the compiler, metadata; this is only an update to the Visual Studio extensions and NET runtime for the tier1 VMs.</p>
+]]></description>
+</item>
+<item>
+    <title>Dynamics 365 FinOps Data Integration using Microsoft Forms (Part 1)</title>
+    <link>https://nuxulu.com/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/</link>
+    <pubDate>Sun, 24 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>Kome Hoang</author>
+    <guid>https://nuxulu.com/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/</guid>
+    <description><![CDATA[<p>With any D365FO users, Data Management workspace and Data Entities should have become one of the most used and well-known tools in the system. We all agree how powerful such integration framework is, especially when it comes to a large number of records that we would need to import into different tables.</p>
+<p>The classic method that we have been utilizing is to include all source data in a single (or multiple, much depending on the purpose and order of data integration) Excel sheet, trigger an import execution, pass any validation layers that present and ultimately have the data available on D365FO. Now, I would like to propose another method that might come useful in some circumstances: Using Microsoft Forms.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/Introduction.png" title="Introduction" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/Introduction.png" data-sub-html="<h2>The trio</h2><p>Introduction</p>">
+        
+    </a><figcaption class="image-caption">The trio</figcaption>
+    </figure></p>
+<h2 id="when">When</h2>
+<p>This method should be at its finest when you are planning to outsource the input to any external users.</p>
+<p>Imagine you are a company who is using D365FO to leverage your daily work. You now want to add many local vendors to your system in form of new Vendor Accounts. It is fine to collect all information from them (i.e. Vendor Company’s name, their address, their contact details and so on), put everything in an Excel sheet and import it. Yet, chance is that it would take (a lot of) time for you to finish this task. You would then be very likely to try coming up with some methods to cut down time for it.</p>
+<p>That demand should raise two questions:</p>
 <ul>
-<li>Schedule reports so that they are automatically generated on a daily, weekly, monthly, or annual basis.</li>
-<li>Export to the read-only XPS format, which provides better document security through digital signatures.</li>
-<li>Export to a Microsoft Excel worksheet.</li>
-<li>To share reports, you can create email messages that contain links to the reports.</li>
+<li>How can we let the vendors enter their information by themselves?</li>
+<li>And, how can we then have all such information in our system?</li>
+</ul>
+<h2 id="what">What</h2>
+<p>What should be needed?</p>
+<ul>
+<li><a href="https://forms.office.com/" target="_blank" rel="noopener noreffer ">Microsoft Forms</a>: To establish a process in which you will publish a prepared form. Any vendors out there will have the access to it and they can fill any fields on in.</li>
+<li><a href="https://flow.microsoft.com/" target="_blank" rel="noopener noreffer ">Microsoft Power Automate aka. Microsoft Flow</a>: To set up a protocol to push the input information (form responses) to the target (D365FO Data Entities).</li>
+<li><em>(Optional)</em> Access to Visual Studio on your virtual machine: To help you determine the target Data Entities more easily and efficiently.</li>
+</ul>
+<h2 id="how">How</h2>
+<p>The flow should go like this.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/Biggest-Flow.png" title="Biggest FLow" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/Biggest-Flow.png" data-sub-html="<h2>The Biggest FLow</h2><p>Biggest FLow</p>">
+        
+    </a><figcaption class="image-caption">The Biggest FLow</figcaption>
+    </figure></p>
+<p>To make it short, when a response is submitted in Microsoft Form, the Flow in MS Power Automate is triggered automatically. An approval request will be sent to your Outlook mailbox and if it is approved, a new record will be created in the target data entity.</p>
+<p>Let go through three examples in the next articles in the series (from the simplest to a more complicated) so we will see the logic behind this process.</p>
+<p>As easy as it sounds, in this example, we will create a new Vendor Account from Microsoft Forms with only a small number of fields being populate.
+<strong>Note</strong></p>
+<blockquote>
+<p><em>To help simplify the example, the number of fields is minimised. In other words, we will import just enough fields so the new Vendor Account is valid.</em>
+<em>Given that, only <code>Vendor Account</code> and <code>Vendor Group</code> are chosen to be imported.</em></p>
+</blockquote>
+<h3 id="step-1-create-a-ms-form">Step 1: Create a MS Form</h3>
+<p>To do so, we will access <a href="https://forms.office.com/" target="_blank" rel="noopener noreffer ">Microsoft Forms</a> and create a new form. To make the new form usable, we will create two questions asking for inputs of Vendor Account and Vendor Group.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-1-NewForm.png" title="Example 1 Form" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-1-NewForm.png" data-sub-html="<h2>Example 1 Form</h2><p>Example 1 Form</p>">
+        
+    </a><figcaption class="image-caption">Example 1 Form</figcaption>
+    </figure></p>
+<p>Note all information on the form is customisable.
+<strong>Note 1-1</strong></p>
+<blockquote>
+<p>We can make the questions&hellip;any questions that suit the purpose of the form. Say, in reality, the question can be <code>&quot;What is your company's name?&quot;</code> if you want to send this form to any external vendor users. The question does not change the usability of the returned response&rsquo;s value. It can still be mapped to VendAccount not matter what the question is.
+<strong>Note 1-2</strong>
+The second question is being set in form of a Choice question. The given choices should match with available Vendor Group values found on your D365FO client. If this question is a Text one, chance is that its response might not match with any available Vendor Group values, thus, will return an error during Flow runtime.
+Vendor Groups can be found under <code>Account Payable &gt; Vendors &gt; Vendor Groups</code>. In this example, <code>TopVendor</code> and <code>Others</code> are two available Vendor Groups in my D365FO client.</p>
+</blockquote>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-2-VendorGroups.png" title="Vendor Groups" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-2-VendorGroups.png" data-sub-html="<h2>Vendor Groups</h2><p>Vendor Groups</p>">
+        
+    </a><figcaption class="image-caption">Vendor Groups</figcaption>
+    </figure></p>
+<h3 id="step-2-create-a-ms-flow">Step 2: Create a MS Flow</h3>
+<p>To do so, we will access <a href="https://flow.microsoft.com/" target="_blank" rel="noopener noreffer ">Microsoft Power Automate</a> and create a new flow. We will go with an <code>Automated</code> one in this case.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-3-Flow-1.png" title="Flow step 1" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-3-Flow-1.png" data-sub-html="<h2>Automated flow</h2><p>Flow step 1</p>">
+        
+    </a><figcaption class="image-caption">Automated flow</figcaption>
+    </figure></p>
+<p>Search for <code>form</code> and choose the trigger <code>When a new response is submitted</code>. Hit <code>Create</code> to create a new flow.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-4-Flow-2.png" title="Flow step 2" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-4-Flow-2.png" data-sub-html="<h2>Form trigger</h2><p>Flow step 2</p>">
+        
+    </a><figcaption class="image-caption">Form trigger</figcaption>
+    </figure></p>
+<p>Choose the <code>form</code> that we just created using the dropdown list.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-5-Flow-3.png" title="Flow step 3" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-5-Flow-3.png" data-sub-html="<h2>Choose form</h2><p>Flow step 3</p>">
+        
+    </a><figcaption class="image-caption">Choose form</figcaption>
+    </figure></p>
+<p>Press <code>New step</code>, search for <code>form</code> and go with <code>Get response details</code>.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-6-Flow-4.png" title="FLow step 4" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-6-Flow-4.png" data-sub-html="<h2>New step: Get response details</h2><p>FLow step 4</p>">
+        
+    </a><figcaption class="image-caption">New step: Get response details</figcaption>
+    </figure></p>
+<p>In the new step, choose the <code>Form ID</code>. As soon as we move the cursor to the <code>Response ID</code> field, the <code>FLow</code> will suggest the <code>Dynamics content</code> that we can use. In this case, there should be only one dynamic content, which is <code>List of response notifications Response ID</code>. We will go with it by choosing it.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-7-Flow-5.png" title="FLow step 5" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-7-Flow-5.png" data-sub-html="<h2>Get response details</h2><p>FLow step 5</p>">
+        
+    </a><figcaption class="image-caption">Get response details</figcaption>
+    </figure></p>
+<p>After doing so, the flow should look like this.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-8-Flow-6.png" title="FLow step 6" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-8-Flow-6.png" data-sub-html="<h2>Form done</h2><p>FLow step 6</p>">
+        
+    </a><figcaption class="image-caption">Form done</figcaption>
+    </figure></p>
+<p>Now, the reponse details will be sent from the <code>Form</code> to the <code>Flow</code> when a new response is submitted. Next, we will set up the step to create a new Vendor Account.</p>
+<p>Create a new step, search for <code>dynamics</code> and go with <code>Dynamics 365 for Finance and Operations</code>.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-9-Flow-7.png" title="FLow step 7" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-9-Flow-7.png" data-sub-html="<h2>Dynamics 365 FinOps</h2><p>FLow step 7</p>">
+        
+    </a><figcaption class="image-caption">Dynamics 365 FinOps</figcaption>
+    </figure></p>
+<p>Choose <code>Create record</code> action.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-10-Flow-8.png" title="FLow step 8" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-10-Flow-8.png" data-sub-html="<h2>Create record action</h2><p>FLow step 8</p>">
+        
+    </a><figcaption class="image-caption">Create record action</figcaption>
+    </figure></p>
+<p>Choose the Dynamics 365 FinOps <code>Instance</code> from the dropdown list. If your client does not appear here, choose <code>Enter custom value</code>. For privacy, environments&rsquo; name will be censored in our example.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-11-Flow-9.png" title="FLow step 9" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-11-Flow-9.png" data-sub-html="<h2>Set D365FO instance</h2><p>FLow step 9</p>">
+        
+    </a><figcaption class="image-caption">Set D365FO instance</figcaption>
+    </figure></p>
+<p>The <code>Instance</code> should be the <code>link</code> to your D365FO client. Set <code>Entity name</code> VendorsV2.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-12-Flow-10.png" title="FLow step 10" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-12-Flow-10.png" data-sub-html="<h2>Set Instance and Entity</h2><p>FLow step 10</p>">
+        
+    </a><figcaption class="image-caption">Set Instance and Entity</figcaption>
+    </figure></p>
+<p><code>Note 1-3</code></p>
+<blockquote>
+<p><em>Later in this series, we will see how to find the exact <code>Entity name</code> using <code>Visual Studio</code>. Also, we will see in which condition, the Entity can be used in <code>Power Automate</code>.</em></p>
+</blockquote>
+<p>Populate the fields that we want to import. In this example, we will populate only 3 fields: <code>Group (VendorGroupID)</code>, <code>Company (DataAreaId)</code> and <code>Supplier Account (VendorAccountNumber)</code>.</p>
+<p><code>Dynamic content</code> will be suggested automatically when the cursor is placed in each field.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-13-Flow-11.png" title="FLow step 11" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-13-Flow-11.png" data-sub-html="<h2>Map Form fields with Automate fields</h2><p>FLow step 11</p>">
+        
+    </a><figcaption class="image-caption">Map Form fields with Automate fields</figcaption>
+    </figure></p>
+<p>We can map <code>Form fields</code> with <code>Automate fields</code> or <code>hardcode</code> in these fields:</p>
+<ul>
+<li><code>Group</code> = Response of <code>What is the Vendor Group?</code> question.</li>
+<li><code>Company</code> = <em>(hardcode)</em> <code>usmf</code>.</li>
+<li><code>Supplier Account</code> = Response of <code>What is the Vendor Account?</code> question.</li>
+<li><code>Name</code> = <code>Supplier Account</code> =  Response of <code>What is the Vendor Account?</code> question (<code>Show advanced option</code> on the Flow to find the field <code>Name (VendorOrganisationName)</code>).
+These fields should be required when creating a new Vendor Account on D365FO client.</li>
+</ul>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-14-Flow-12.png" title="FLow step 12" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-14-Flow-12.png" data-sub-html="<h2>Map Form fields with Automate fields</h2><p>FLow step 12</p>">
+        
+    </a><figcaption class="image-caption">Map Form fields with Automate fields</figcaption>
+    </figure></p>
+<p>We are done here with the set up.</p>
+<h3 id="step-3-testing-out">Step 3: Testing out</h3>
+<p>On <code>Forms</code>, choose the form that we just created, click on <code>Preview</code> so we can submit a form response.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-15-Flow-13.png" title="FLow step 13" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-15-Flow-13.png" data-sub-html="<h2>Map Form fields with Automate fields</h2><p>FLow step 13</p>">
+        
+    </a><figcaption class="image-caption">Map Form fields with Automate fields</figcaption>
+    </figure></p>
+<p>Check out <code>All Vendors (VendTableListPage)</code> on the client to find a new Vendor Account is created.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-16-Flow-14.png" title="FLow step 14" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-16-Flow-14.png" data-sub-html="<h2>Map Form fields with Automate fields</h2><p>FLow step 14</p>">
+        
+    </a><figcaption class="image-caption">Map Form fields with Automate fields</figcaption>
+    </figure></p>
+<p><code>Note 1-4</code></p>
+<blockquote>
+<p><em>Use <code>Test</code> option in Power Automate to follow the process of the Flow. This, in other words, is so-called <code>&quot;Run Flow with Debug&quot;</code> option.</em></p>
+</blockquote>
+]]></description>
+</item>
+<item>
+    <title>Database Sync after data type on field has been changed</title>
+    <link>https://nuxulu.com/2020-05-10-database-sync-after-data-type-on-field-has-been-changed/</link>
+    <pubDate>Sun, 10 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2020-05-10-database-sync-after-data-type-on-field-has-been-changed/</guid>
+    <description><![CDATA[<p>You will got an error like this when doing Database Synchronization after changing the data type of the field on the table:</p>
+<div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">InvalidOperationException: Table &hellip; : Converting Field &lsquo;..&rsquo; of Type &lsquo;..&rsquo; to &lsquo;..&rsquo; is not support. Please drop the original field, sync the table and add new field with same name if needed.</div>
+        </div>
+    </div>
+<p>Solution:</p>
+<ul>
+<li>Drop the table and delete references from SQLDictionary</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">AXDB</span><span class="p">.</span><span class="n">dbo</span><span class="p">.</span><span class="n">NAMEOFTABLE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DELETE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">AXDB</span><span class="p">.</span><span class="n">dbo</span><span class="p">.</span><span class="n">SQLDICTIONARY</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">TABLEID</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">TABLEID</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SQLDICTIONARY</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;NAMEOFTABLE&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">FIELDID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Restart IIS</li>
+<li>In VS 2015, run DB sync again.</li>
+</ul>
+<p>Thank you for reading.</p>
+]]></description>
+</item>
+<item>
+    <title>Getting onebox VHD Dynamics 365 finance and operations virtual machine</title>
+    <link>https://nuxulu.com/2020-04-06-getting-onebox-vhd-dynamics-365-finance-and-operations-virtual-machine/</link>
+    <pubDate>Mon, 06 Apr 2020 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2020-04-06-getting-onebox-vhd-dynamics-365-finance-and-operations-virtual-machine/</guid>
+    <description><![CDATA[<ul>
+<li><a href="#1-download-dynamics-365-finance-and-operations-vhd-files" rel="">1. Download Dynamics 365 finance and operations VHD files</a></li>
+<li><a href="#2-extend-the-evaluattion-license" rel="">2. Extend the Evaluattion license</a></li>
+<li><a href="#3-rename-vm" rel="">3. Rename VM</a>
+<ul>
+<li><a href="#update-financial-reporting" rel="">Update financial reporting</a></li>
+<li><a href="#update-the-azure-storage-emulator" rel="">Update the Azure Storage Emulator</a></li>
+</ul>
+</li>
+<li><a href="#4-location-of-packages-source-code-and-other-aos-configurations" rel="">4. Location of packages, source code, and other AOS configurations</a></li>
+<li><a href="#5-redeploying-or-restarting-the-runtime-on-the-vm" rel="">5. Redeploying or restarting the runtime on the VM</a></li>
+<li><a href="#6-update-to-the-latest-version" rel="">6. Update to the latest version</a></li>
+<li><a href="#7-for-vhd-that-was-released-for-versions-10024-and-later" rel="">7. For (VHD) that was released for versions 10.0.24 and later</a>
+<ul>
+<li><a href="#71-register-a-new-application-in-azure-active-directory" rel="">7.1 Register a new application in Azure Active Directory</a></li>
+<li><a href="#72-run-the-setup-script" rel="">7.2 Run the setup script</a></li>
 </ul>
 </li>
 </ul>
-<h3 id="4-management-report-components">4. Management Report Components</h3>
-<p>Some important components I want to mention here:</p>
+<h2 id="1-download-dynamics-365-finance-and-operations-vhd-files">1. Download Dynamics 365 finance and operations VHD files</h2>
 <ul>
-<li><strong>Report Designer</strong>
-Create report building blocks that can be combined to define and generate a report. The report wizard guides less experienced users through the design process. Advanced users can create new report building blocks or modify existing building blocks to meet their requirements.</li>
-<li><strong>Desktop Viewer</strong>
-Used to organize and view reports and supporting files. It also stores the report library.</li>
-<li><strong>Web Viewer</strong>
-Displays Management Reporter reports in a web browser. The Web Viewer does not require an installation of Management Reporter server components.</li>
-<li><strong>Report schedules</strong>
-A user can schedule a single report or a group of reports to generate regularly.</li>
-<li><strong>Management Reporter database</strong>
-This SQL database stores the components, known as building blocks, which are used to generate reports. It also stores report definitions and previously generated reports.</li>
-<li><strong>Application service</strong>
-Controls access to the data provider and provides connectivity to clients.</li>
-<li><strong>Process service</strong>
-Generates the reports that are created and queued by the Management Reporter client.</li>
-</ul>
-<h3 id="5-generate-financial-reports">5. Generate financial reports</h3>
-<p>We are currently at Financial reports screen as picture below</p>
-<p><figure><a class="lightgallery" href="/2017-07-24-management-reporter-in-dynamics-365-for-operation/2017-04-10_11h56_15.png" title="Financial_reports" data-thumbnail="/2017-07-24-management-reporter-in-dynamics-365-for-operation/2017-04-10_11h56_15.png" data-sub-html="<h2>Financial_reports</h2><p>Financial_reports</p>">
-        
-    </a><figcaption class="image-caption">Financial_reports</figcaption>
-    </figure></p>
-<p>As you can see there&rsquo;s nowhere on the screen or anything that indicates that there&rsquo;s the Management Reporter available, but if we click this <code>edit</code> button and entering your email account and password. After you log in, it will open the <strong>Report Definitions</strong> Management Reporter window for us.</p>
-<p><figure><a class="lightgallery" href="/2017-07-24-management-reporter-in-dynamics-365-for-operation/2017-04-10_11h57_20.png" title="Financial_reports" data-thumbnail="/2017-07-24-management-reporter-in-dynamics-365-for-operation/2017-04-10_11h57_20.png" data-sub-html="<h2>Financial_reports</h2><p>Financial_reports</p>">
-        
-    </a><figcaption class="image-caption">Financial_reports</figcaption>
-    </figure></p>
-<p>On the left, here we have a list of all the same reports that we were looking at in AX.
-Let&rsquo;s look at <code>the income statement - default report</code>, So I have a couple parameter fields we need to change before we can generate our report. Please prefer below picture</p>
-<p><figure><a class="lightgallery" href="/2017-07-24-management-reporter-in-dynamics-365-for-operation/2017-04-10_12h08_53.png" title="Financial_reports" data-thumbnail="/2017-07-24-management-reporter-in-dynamics-365-for-operation/2017-04-10_12h08_53.png" data-sub-html="<h2>Financial_reports</h2><p>Financial_reports</p>">
-        
-    </a><figcaption class="image-caption">Financial_reports</figcaption>
-    </figure></p>
-<p>After we click <strong>generate</strong> button, Financial will be generated on current web browser</p>
-<p><figure><a class="lightgallery" href="/2017-07-24-management-reporter-in-dynamics-365-for-operation/2017-04-10_12h11_29.png" title="Financial_reports" data-thumbnail="/2017-07-24-management-reporter-in-dynamics-365-for-operation/2017-04-10_12h11_29.png" data-sub-html="<h2>Financial_reports</h2><p>Financial_reports</p>">
-        
-    </a><figcaption class="image-caption">Financial_reports</figcaption>
-    </figure></p>
-<p>we can see here by the report date.  So, on our income statement, we have all the usual fields here.  We have total revenues, gross profit, total operating experiences, net operating income and net income. That all is pretty standard and it all looks good.</p>
-<h3 id="6-conclusion">6. Conclusion</h3>
-<p>Row, Column, Tree, Report definitions work essentially the same as they did in <strong>Dynamics AX 2012</strong>. I can still use row, column, and tree definitions with multiple reports, and options for the Report definition tabs.</p>
-<p><figure><a class="lightgallery" href="/2017-07-24-management-reporter-in-dynamics-365-for-operation/2017-04-10_14h57_51.png" title="Financial_reports" data-thumbnail="/2017-07-24-management-reporter-in-dynamics-365-for-operation/2017-04-10_14h57_51.png" data-sub-html="<h2>Financial_reports</h2><p>Financial_reports</p>">
-        
-    </a><figcaption class="image-caption">Financial_reports</figcaption>
-    </figure></p>
-<p>Here are some of the functions that are not available in Financial Reporting for Dynamics 365 for Operations:</p>
+<li>
+<p>Go to the LCS main page and select <strong>Shared asset library</strong> or go to Shared Asset Library.</p>
+</li>
+<li>
+<p>Select the asset type <strong>Downloadable VHD</strong>.</p>
+</li>
+<li>
+<p>Find the VHD you are looking for based on the desired Finance and Operation version. The VHD is divided into multiple file parts that you need to download. For example, the asset files that start with &ldquo;VHD - 10.0.5&rdquo; are the different files you need in order to install version 10.0.5.</p>
+</li>
+<li>
+<p>Download all files (parts) associated with the desired VHD to a local folder.</p>
+</li>
+<li>
+<p>After the download is complete, run the executable file that you downloaded, accept the software license agreement, and choose a file path to extract the VHD to.</p>
+</li>
+<li>
+<p>This creates a local VHD file that you can use to run a local virtual machine.</p>
+</li>
+<li>
+<p>Sign in to the VM by using the following credentials:</p>
 <ul>
-<li>Publishing/distributing reports to SharePoint and/or SharePoint Online locations is not available.</li>
-<li>Report Viewer/Library has been removed.</li>
-<li>Import data from an Excel file is not available.</li>
-<li>XBRL (extensible Business Reporting Language) is no longer available.</li>
-<li>Comments are not currently available in the web client.</li>
-<li>Running a consolidation between companies in different instances of AX is not available.</li>
-<li>The Wizard has been removed.</li>
-<li>Management Reporter includes direct integration with the Microsoft Dynamics AX general ledger so that there is no need to create a custom connection to the data source.</li>
+<li>User name: <strong>Administrator</strong></li>
+<li>Password: <strong>pass@word1</strong></li>
 </ul>
-<p>Nevertheless, with custom reporting structures, ledger accounts, and dimensions mapping, creation and the capabilities to publish reports to multiple channels and formats from the desktop, and embedding transactional and analytical reports into a customizable dashboard, Financial Reporting in Dynamics 365 For Operation is all set to simplify the financial reporting process, providing instant insight into your financials.</p>
-<p>Thank you for reading!</p>
+</li>
+<li>
+<p>Provision the administrator user.</p>
+</li>
+</ul>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>Note<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>For security reasons the reply URL setup for AAD was changed, The &ldquo;Admin user provisioning&rdquo; tool is deleted from 10.0.24 <strong>cloud hosted</strong> VM. More info here <a href="https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/dev-tools/access-instances#frequently-asked-questions" target="_blank" rel="noopener noreffer ">https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/dev-tools/access-instances#frequently-asked-questions</a>.</p>
+<p>You still have it in the VHD machine.</p>
+</div>
+        </div>
+    </div>
+<h2 id="2-extend-the-evaluattion-license">2. Extend the Evaluattion license</h2>
+<ul>
+<li>Run cmd with Admin right.</li>
+<li>Run <code>slmgr -dli</code> to check the current period status.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">Name: Windows(R), ServerDatacenterEval edition
+</span></span><span class="line"><span class="cl">Description: Windows(R) Operating System, TIMEBASED_EVAL channel
+</span></span><span class="line"><span class="cl">Partial Product Key: H6F8M
+</span></span><span class="line"><span class="cl">License Status: Licensed
+</span></span><span class="line"><span class="cl">Timebased activation expiration: 259199 minute(s) (180 day(s))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Run <code>slmgr –rearm</code> to extend the evaluation period.</li>
+<li>Run <code>slmgr –dlv</code> to see how many extensions do you have left. You can only extend the license a limited number of times.</li>
+</ul>
+<h2 id="3-rename-vm">3. Rename VM</h2>
+<ul>
+<li>
+<p>Rename and restart the machine before you start development or connect to Azure DevOps.</p>
+</li>
+<li>
+<p>Update the server name in SQL Server</p>
+<ul>
+<li>The default credential for SQL server is <strong>axdbadmin</strong> and password <strong>AOSWebSite@12</strong></li>
+</ul>
+</li>
+</ul>
+<p>You can also see the password (<code>DataAccess.AxAdminSqlPwd</code>) in the <code>C:\AOSService\webroot\web.config</code></p>
+<p>To decrypt run this command:
+<code>C:\AOSService\webroot\bin\Microsoft.Dynamics.AX.Framework.ConfigEncryptor.exe -decrypt C:\AOSService\webroot\web.config</code></p>
+<p>To encrypt run this command:
+<code>C:\AOSService\webroot\bin\Microsoft.Dynamics.AX.Framework.ConfigEncryptor.exe -encrypt C:\AOSService\webroot\web.config</code></p>
+<p>If you see the error</p>
+<p><div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">No certificate found for id &lsquo;7366E25DC94FA8A400FA0037FFF3BB300D9482D4&rsquo;</div>
+        </div>
+    </div>
+Please follow <a href="#7-for-vhd-that-was-released-for-versions-10024-and-later" rel="">this step</a> first.</p>
+<ul>
+<li>
+<p>Run following query</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">--MININT-57EHFHJ
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">sp_dropserver</span><span class="w"> </span><span class="p">[</span><span class="n">old_name</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">sp_addserver</span><span class="w"> </span><span class="p">[</span><span class="n">new_name</span><span class="p">],</span><span class="w"> </span><span class="k">local</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Tip<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">In these commands, be sure to replace old_name with the old name of the server and new_name with the new name. By default, the old name is <code>MININT-F36S5EH</code>, but you can run select @@servername to get the old name. Additionally, be sure to restart the SQL Server service after the commands have finished running.</div>
+        </div>
+    </div>
+<ul>
+<li>
+<p>Restart SQL service</p>
+</li>
+<li>
+<p>Open Reporting Services Configuration Manager for SQL Server 2016, then <strong>Select Database</strong>, select <strong>Change Database</strong>, and use the new server name.</p>
+</li>
+</ul>
+<h3 id="update-financial-reporting">Update financial reporting</h3>
+<p>Go to LCS portal and download a one version package, we will need the scripts from it. Open a Microsoft Windows PowerShell command window as an admin, and run the following command. This command contains the default passwords that might have to be updated. Be sure to replace <strong>new_name</strong> with the new name.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">cd </span><span class="p">&lt;</span><span class="n">update</span> <span class="n">folder</span><span class="p">&gt;\</span><span class="n">MROneBox</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">Update</span>
+</span></span><span class="line"><span class="cl"><span class="p">.\</span><span class="n">ConfigureMRDatabase</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-NewAosDatabaseName</span> <span class="n">AxDB</span> <span class="n">-NewAosDatabaseServerName</span> <span class="n">new_name</span> <span class="n">-NewMRDatabaseName</span> <span class="n">ManagementReporter</span> <span class="n">-NewAxAdminUserPassword</span> <span class="n">AOSWebSite</span><span class="nv">@123</span> <span class="n">-NewMRAdminUserName</span> <span class="n">MRUser</span> <span class="n">-NewMRAdminUserPassword</span> <span class="n">MRWebSite</span><span class="nv">@123</span> <span class="n">-NewMRRuntimeUserName</span> <span class="n">MRUSer</span> <span class="n">-NewMRRuntimeUserPassword</span> <span class="n">MRWebSite</span><span class="nv">@123</span> <span class="n">-NewAxMRRuntimeUserName</span> <span class="n">MRUser</span> <span class="n">-NewAxMRRuntimeUserPassword</span> <span class="n">MRWebSite</span><span class="nv">@123</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="update-the-azure-storage-emulator">Update the Azure Storage Emulator</h3>
+<ul>
+<li>
+<p>From the Start menu, open Microsoft Azure Storage Emulator - v4.0, and run the following commands.</p>
+<p><code>AzureStorageEmulator.exe start</code></p>
+<blockquote>
+<p>If you got an error <strong><em>Port conflict with existing application</em></strong>, please check this <a href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/" rel="">post</a>.</p>
+</blockquote>
+</li>
+<li>
+<p>This command verifies that the emulator is running.</p>
+<p><code>AzureStorageEmulator.exe status</code></p>
+</li>
+<li>
+<p>Update the server name</p>
+<p><code>AzureStorageEmulator.exe init -server new_name</code></p>
+<p>For more information about Azure storage emulator please follow <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator" target="_blank" rel="noopener noreffer ">https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator</a></p>
+</li>
+</ul>
+<h2 id="4-location-of-packages-source-code-and-other-aos-configurations">4. Location of packages, source code, and other AOS configurations</h2>
+<p>On a VM, you can find most of the application configuration by opening the web.config file of AOSWebApplication.</p>
+<ol>
+<li>
+<p>Start IIS.</p>
+</li>
+<li>
+<p>Go to <em>Sites &gt; AOSWebApplication</em>.</p>
+</li>
+<li>
+<p>Right-click, and then click <strong>Explore</strong> to open File Explorer.</p>
+</li>
+<li>
+<p>Open the <strong>web.config</strong> file in Notepad or another text editor. The following keys are of interest to many developers and administrators:</p>
+<ul>
+<li>
+<p><strong>Aos.MetadataDirectory</strong> – This key points to the location of the packages folder that contains platform and application binaries, and also source code. (Source code is available only in development environments.) Typical values are: <code>c:\packages</code>, <code>c:\AosServicePackagesLocalDirectory</code>, and <code>J:AosServicePackagesLocalDirectory</code>.</p>
+</li>
+<li>
+<p><strong>DataAccess.Database</strong> – This key holds the name of the database.</p>
+</li>
+<li>
+<p><strong>Aos.AppRoot</strong> – This key points to the root folder of the Application Object Server (AOS) web application.</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="5-redeploying-or-restarting-the-runtime-on-the-vm">5. Redeploying or restarting the runtime on the VM</h2>
+<p>To restart the local runtime and redeploy all the packages, follow these steps.</p>
+<ol>
+<li>
+<p>Open File Explorer, and go to <code>C:\CustomerServiceUnit</code>.</p>
+</li>
+<li>
+<p>Right-click <strong>AOSDeploy.cmd</strong>, and then click <strong>Run as administrator</strong>.</p>
+</li>
+</ol>
+<p>This process might take a while. The process is completed when the cmd.exe window closes. If you just want to restart AOS (without redeploying the runtime), run iisreset from an administrator Command Prompt window, or restart AOSWebApplication from IIS.</p>
+<h2 id="6-update-to-the-latest-version">6. Update to the latest version</h2>
+<p>Please check this <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/deployment/install-deployable-package" target="_blank" rel="noopener noreffer ">document</a> for versions 10.0.24</p>
+<h2 id="7-for-vhd-that-was-released-for-versions-10024-and-later">7. For (VHD) that was released for versions 10.0.24 and later</h2>
+<h3 id="71-register-a-new-application-in-azure-active-directory">7.1 Register a new application in Azure Active Directory</h3>
+<p>To register a new application in Microsoft Azure Active Directory (Azure AD), follow the steps outlined in <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app" target="_blank" rel="noopener noreffer ">Register app or web API</a>. The new app registration should be for a web application, and the following redirect URIs should be added:</p>
+<ul>
+<li><code>https://usnconeboxax1aos.cloud.onebox.dynamics.com/</code></li>
+<li><code>https://usnconeboxax1aos.cloud.onebox.dynamics.com/oauth/</code></li>
+</ul>
+<p>Once created, make note of the <strong>Application (client) ID</strong>.</p>
+<h3 id="72-run-the-setup-script">7.2 Run the setup script</h3>
+<p>After you sign in with the <strong>Administrator</strong> account, right-click the desktop shortcut <strong>Generate Self-Signed Certificates</strong>, and select <strong>Run as administrator</strong>. When the script prompts for the application ID, provide the <strong>Application (client) ID</strong> created in Azure Active Directory.</p>
+<p>When the script finishes, the environment is ready for use. At this time, you can run the Admin Provisioning tool to set the administrator account, permissions, and tenant. Make sure that the email provided is for the Azure Active Directory tenant in which the application registration was created.</p>
+<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw" aria-hidden="true"></i>Reference<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><a href="https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/migration-upgrade/vso-machine-renaming" target="_blank" rel="noopener noreffer ">https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/migration-upgrade/vso-machine-renaming</a></div>
+        </div>
+    </div>
+]]></description>
+</item>
+<item>
+    <title>Azure Storage Emulator &#39;Port conflict with existing application&#39;, Dynamics 365 finance and operations</title>
+    <link>https://nuxulu.com/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/</link>
+    <pubDate>Sun, 05 Apr 2020 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/</guid>
+    <description><![CDATA[<ul>
+<li><a href="#1-reason" rel="">1. Reason</a></li>
+<li><a href="#2-resolution" rel="">2. Resolution</a>
+<ul>
+<li><a href="#21-to-determine-the-conflict-program-we-can-use-this-command-in-cmd" rel="">2.1. To determine the conflict program we can use this command in CMD</a></li>
+<li><a href="#22-to-change-the-default-port-for-azure-storage-emulator" rel="">2.2. To change the default port for Azure storage Emulator</a></li>
+</ul>
+</li>
+</ul>
+<p>The Microsoft Azure storage emulator is a tool that emulates the Azure Blob, Queue, and Table services for local development purposes. You can test your application against the storage services locally without creating an Azure subscription or incurring any costs. When you&rsquo;re satisfied with how your application is working in the emulator, switch to using an Azure storage account in the cloud.</p>
+<p>In Dynamics 365 finance and operations onebox environment, we also use Microsoft Azure Storage Emulator for same purposes. There is a common problem when you try to start its service or using Data entity Import/Export</p>
+<p><figure><a class="lightgallery" href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-1.png" title="Image" data-thumbnail="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-1.png" data-sub-html="<h2>Azure-Storage-Emulator-Port-conflict-with-existing-application</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Azure-Storage-Emulator-Port-conflict-with-existing-application</figcaption>
+    </figure></p>
+<p><code>Port conflict with existing application</code></p>
+<h2 id="1-reason">1. Reason</h2>
+<p>By default, Azure storage emulator is using port number 10000, 10001, 10002 for Blob, Queue and Table services respectively. And there is a progress/system takes those ports already, so you are not able to start its service.
+We can simply use this command in CMD to see which one has conflict</p>
+<p><code>netstat -p tcp -ano | findstr :10001</code></p>
+<p><figure><a class="lightgallery" href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-2.png" title="Image" data-thumbnail="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-2.png" data-sub-html="<h2>Azure-Storage-Emulator-Port-conflict-with-existing-application</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Azure-Storage-Emulator-Port-conflict-with-existing-application</figcaption>
+    </figure></p>
+<p>The process ID 4 is currently taking port 10001.</p>
+<h2 id="2-resolution">2. Resolution</h2>
+<p>You can either terminate the conflict program or change the default port for Azure Storage Emulator.</p>
+<h3 id="21-to-determine-the-conflict-program-we-can-use-this-command-in-cmd">2.1. To determine the conflict program we can use this command in CMD</h3>
+<p>Run following command to check which application/process has the same port, then simply go to task manager and terminate it.</p>
+<p><code>tasklist /fi &quot;pid eq 4&quot;</code></p>
+<p><figure><a class="lightgallery" href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-5.png" title="Image" data-thumbnail="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-5.png" data-sub-html="<h2>Azure-Storage-Emulator-Port-conflict-with-existing-application</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Azure-Storage-Emulator-Port-conflict-with-existing-application</figcaption>
+    </figure></p>
+<h3 id="22-to-change-the-default-port-for-azure-storage-emulator">2.2. To change the default port for Azure storage Emulator</h3>
+<p>Go to your storage emulator default installation folder, which is located at <em><strong>C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator</strong></em>, open the <strong>AzureStorageEmulator.exe.config</strong> by notepad and edit the port number to different number</p>
+<p><figure><a class="lightgallery" href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-4.png" title="Image" data-thumbnail="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-4.png" data-sub-html="<h2>Azure-Storage-Emulator-Port-conflict-with-existing-application</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Azure-Storage-Emulator-Port-conflict-with-existing-application</figcaption>
+    </figure></p>
+<p>When done, try to start its service again using</p>
+<p><code>AzureStorageEmulator.exe start</code></p>
+<p><figure><a class="lightgallery" href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-3.png" title="Image" data-thumbnail="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-3.png" data-sub-html="<h2>Azure-Storage-Emulator-Port-conflict-with-existing-application</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Azure-Storage-Emulator-Port-conflict-with-existing-application</figcaption>
+    </figure></p>
+<p>Thank you for reading.</p>
+]]></description>
+</item>
+<item>
+    <title>Create Purchase Orders - Confirm - Product receipt - Post using X&#43;&#43; in Dynamics 365 Finance &amp; Operations</title>
+    <link>https://nuxulu.com/2020-01-25-create-po-confirm-receipt-post/</link>
+    <pubDate>Sat, 25 Jan 2020 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2020-01-25-create-po-confirm-receipt-post/</guid>
+    <description><![CDATA[<blockquote>
+<p>The script will work for Dynamics 365 Finance &amp; Operations version</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MaxGeneratePO</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="c1">// number of purchase orders</span>
+</span></span><span class="line"><span class="cl">        <span class="n">NumberSeq</span> <span class="n">numberSeq</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">PurchTable</span> <span class="n">purchTable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">PurchLine</span> <span class="n">purchLine</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">InventDim</span> <span class="n">inventDim</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="p">&lt;=</span> <span class="m">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ttsBegin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">MaxGeneratePO</span> <span class="n">createPO</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MaxGeneratePO</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">numberSeq</span> <span class="p">=</span> <span class="n">NumberSeq</span><span class="p">::</span><span class="n">newGetNum</span><span class="p">(</span><span class="n">PurchParameters</span><span class="p">::</span><span class="n">numRefPurchId</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">            <span class="n">numberSeq</span><span class="p">.</span><span class="n">used</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span> <span class="p">=</span> <span class="n">numberSeq</span><span class="p">.</span><span class="n">num</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchTable</span><span class="p">.</span><span class="n">initValue</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchTable</span><span class="p">.</span><span class="n">initFromVendTable</span><span class="p">(</span><span class="n">VendTable</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="err">&#39;</span><span class="n">US</span><span class="p">-</span><span class="m">101</span><span class="err">&#39;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(!</span><span class="n">purchTable</span><span class="p">.</span><span class="n">validateWrite</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">throw</span> <span class="n">Exception</span><span class="p">::</span><span class="n">Error</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">purchTable</span><span class="p">.</span><span class="n">insert</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">inventDim</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">initValue</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchId</span> <span class="p">=</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">ItemId</span> <span class="p">=</span> <span class="err">&#39;</span><span class="n">D0002</span><span class="err">&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">inventDim</span><span class="p">.</span><span class="n">InventSiteId</span> <span class="p">=</span> <span class="s">&#34;1&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">inventDim</span><span class="p">.</span><span class="n">InventLocationId</span> <span class="p">=</span> <span class="s">&#34;11&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">InventDimId</span><span class="p">=</span><span class="n">InventDim</span><span class="p">::</span><span class="n">findOrCreate</span><span class="p">(</span><span class="n">inventDim</span><span class="p">).</span><span class="n">inventDimId</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">createLine</span><span class="p">(</span><span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchQty</span> <span class="p">=</span> <span class="m">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchUnit</span> <span class="p">=</span> <span class="s">&#34;ea&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchPrice</span> <span class="p">=</span> <span class="n">createPO</span><span class="p">.</span><span class="n">randomAmount</span><span class="p">();</span> <span class="c1">// get random amount nubmer</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">LineAmount</span> <span class="p">=</span> <span class="n">purchLine</span><span class="p">.</span><span class="n">calcLineAmount</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="c1">//PO confirm</span>
+</span></span><span class="line"><span class="cl">            <span class="n">PurchFormLetter</span> <span class="n">purchFormLetter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">PurchFormLetter</span> <span class="n">purchFormLetterPack</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchFormLetter</span> <span class="p">=</span> <span class="n">PurchFormLetter</span><span class="p">::</span><span class="n">construct</span><span class="p">(</span><span class="n">DocumentStatus</span><span class="p">::</span><span class="n">PurchaseOrder</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">purchTable</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;ConNum_%1&#34;</span><span class="p">,</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">systemDateGet</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">PurchUpdate</span><span class="p">::</span><span class="n">All</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">AccountOrder</span><span class="p">::</span><span class="n">None</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">NoYes</span><span class="p">::</span><span class="n">No</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">NoYes</span><span class="p">::</span><span class="n">no</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//Product receipt</span>
+</span></span><span class="line"><span class="cl">            <span class="n">createPO</span><span class="p">.</span><span class="n">proceed</span><span class="p">(</span><span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">,</span> <span class="n">purchLine</span><span class="p">.</span><span class="n">ItemId</span><span class="p">,</span><span class="n">purchLine</span><span class="p">.</span><span class="n">InventDimId</span><span class="p">,</span><span class="n">purchLine</span><span class="p">.</span><span class="n">PurchQty</span><span class="p">,</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;RptNum_%1&#34;</span><span class="p">,</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//Post PO</span>
+</span></span><span class="line"><span class="cl">            <span class="n">createPO</span><span class="p">.</span><span class="n">postPOInvoice</span><span class="p">(</span><span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">,</span> <span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;RptNum_%1&#34;</span><span class="p">,</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">info</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;Purchase order &#39;%1&#39; has been created&#34;</span><span class="p">,</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ttsCommit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">i</span><span class="p">++;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">boolean</span> <span class="n">proceed</span><span class="p">(</span><span class="n">PurchId</span> <span class="n">_purchId</span><span class="p">,</span> <span class="n">ItemId</span> <span class="n">_itemId</span><span class="p">,</span><span class="n">inventDimId</span> <span class="n">_inventDimId</span><span class="p">,</span> <span class="n">PurchQty</span> <span class="n">_qty</span><span class="p">,</span> <span class="n">PackingSlipId</span> <span class="n">_productReceiptNumber</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span>
+</span></span><span class="line"><span class="cl">            <span class="k">this</span><span class="p">.</span><span class="n">generateProductReceipt</span><span class="p">(</span><span class="n">_purchId</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">addToPurchLineList</span><span class="p">(</span><span class="n">_purchId</span><span class="p">,</span> <span class="n">_itemId</span><span class="p">,</span> <span class="n">_inventDimId</span><span class="p">,</span> <span class="n">_qty</span><span class="p">),</span> <span class="n">_productReceiptNumber</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">boolean</span> <span class="n">generateProductReceipt</span><span class="p">(</span><span class="n">PurchId</span> <span class="n">_purchId</span><span class="p">,</span> <span class="n">List</span> <span class="n">_purchLineList</span><span class="p">,</span> <span class="n">PackingSlipId</span> <span class="n">_productReceiptNumber</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">boolean</span> <span class="n">ret</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">PurchFormLetter</span> <span class="n">purchFromLetter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">PurchTable</span> <span class="n">purchTable</span> <span class="p">=</span> <span class="n">PurchTable</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="n">_purchId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">try</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ttsbegin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchFromLetter</span> <span class="p">=</span> <span class="n">PurchFormLetter</span><span class="p">::</span><span class="n">construct</span><span class="p">(</span><span class="n">DocumentStatus</span><span class="p">::</span><span class="n">PackingSlip</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchFromLetter</span><span class="p">.</span><span class="n">createFromLines</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchFromLetter</span><span class="p">.</span><span class="n">parmLineList</span><span class="p">(</span><span class="n">_purchLineList</span><span class="p">.</span><span class="n">pack</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchFromLetter</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">purchTable</span><span class="p">,</span> <span class="n">_productReceiptNumber</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">DateTimeUtil</span><span class="p">::</span><span class="n">getToday</span><span class="p">(</span><span class="n">DateTimeUtil</span><span class="p">::</span><span class="n">getUserPreferredTimeZone</span><span class="p">()),</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">PurchUpdate</span><span class="p">::</span><span class="n">All</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ttscommit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">catch</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ret</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">List</span> <span class="n">addToPurchLineList</span><span class="p">(</span><span class="n">PurchId</span> <span class="n">_purchId</span><span class="p">,</span> <span class="n">ItemId</span> <span class="n">_itemId</span><span class="p">,</span><span class="n">inventDimId</span> <span class="n">_inventDimId</span><span class="p">,</span> <span class="n">PurchQty</span> <span class="n">_qty</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">List</span> <span class="n">purchLineList</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Record</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">PurchLine</span> <span class="n">purchLine</span> <span class="p">=</span> <span class="n">PurchLine</span><span class="p">::</span><span class="n">findItemIdInventDimId</span><span class="p">(</span><span class="n">_purchId</span><span class="p">,</span> <span class="n">_itemId</span><span class="p">,</span> <span class="n">_inventDimId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">purchLine</span> <span class="p">&amp;&amp;</span> <span class="n">_qty</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchReceivedNow</span> <span class="p">=</span> <span class="n">_qty</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchline</span><span class="p">.</span><span class="n">modifiedField</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchLine</span><span class="p">,</span> <span class="n">PurchReceivedNow</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLineList</span><span class="p">.</span><span class="n">addEnd</span><span class="p">(</span><span class="n">purchLine</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">purchLineList</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">void</span> <span class="n">postPOInvoice</span><span class="p">(</span><span class="n">PurchId</span> <span class="n">purchId</span><span class="p">,</span> <span class="n">PackingSlipId</span> <span class="n">packingSlipId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">TmpFrmVirtual</span>               <span class="n">tmpFrmVirtualVend</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">PurchFormLetter_Invoice</span>     <span class="n">purchFormLetter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">VendPackingSlipJour</span>         <span class="n">vendPackingSlipJour</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SysQueryRun</span>                 <span class="n">chooseLinesQuery</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SysQueryRun</span>                 <span class="n">chooseLinesPendingInvoiceQuery</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">container</span>                   <span class="n">conTmpFrmVirtual</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">List</span>                        <span class="n">selectedList</span>    <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Record</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">select</span> <span class="n">firstonly</span> <span class="n">vendPackingSlipJour</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">where</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">PurchId</span> <span class="p">==</span> <span class="n">purchId</span>
+</span></span><span class="line"><span class="cl">            <span class="p">&amp;&amp;</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">PackingSlipId</span> <span class="p">==</span> <span class="n">packingSlipId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">vendPackingSlipJour</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">TableNum</span>  <span class="p">=</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">TableId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">RecordNo</span>  <span class="p">=</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">RecId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">NoYes</span>     <span class="p">=</span> <span class="n">NoYes</span><span class="p">::</span><span class="n">Yes</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">Id</span>        <span class="p">=</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">PurchId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">insert</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">chooseLinesQuery</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SysQueryRun</span><span class="p">(</span><span class="n">queryStr</span><span class="p">(</span><span class="n">PurchUpdate</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chooseLinesQuery</span><span class="p">.</span><span class="n">query</span><span class="p">().</span><span class="n">addDataSource</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">VendInvoiceInfoTable</span><span class="p">)).</span><span class="n">enabled</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// chooseLinesPendingInvoiceQuery needs to be initialized, although it will not be used</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chooseLinesPendingInvoiceQuery</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SysQueryRun</span><span class="p">(</span><span class="n">queryStr</span><span class="p">(</span><span class="n">PurchUpdatePendingInvoice</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chooseLinesPendingInvoiceQuery</span><span class="p">.</span><span class="n">query</span><span class="p">().</span><span class="n">dataSourceTable</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">PurchTable</span><span class="p">)).</span><span class="n">addRange</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchTable</span><span class="p">,</span><span class="n">PurchId</span><span class="p">)).</span><span class="k">value</span><span class="p">(</span><span class="n">queryValue</span><span class="p">(</span><span class="err">&#39;&#39;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">           
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span> <span class="p">=</span> <span class="n">PurchFormLetter</span><span class="p">::</span><span class="n">construct</span><span class="p">(</span><span class="n">DocumentStatus</span><span class="p">::</span><span class="n">Invoice</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">chooseLinesQuery</span> <span class="p">(</span><span class="n">chooseLinesQuery</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">parmQueryChooseLinesPendingInvoice</span><span class="p">(</span><span class="n">chooseLinesPendingInvoiceQuery</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">purchTable</span> <span class="p">(</span><span class="n">PurchTable</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="n">PurchId</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">transDate</span> <span class="p">(</span><span class="n">systemDateGet</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">parmParmTableNum</span> <span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;%1&#34;</span><span class="p">,</span><span class="n">packingSlipId</span><span class="p">));</span> <span class="c1">//This is invoice number</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">printFormLetter</span> <span class="p">(</span><span class="n">NoYes</span><span class="p">::</span><span class="n">No</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">sumBy</span> <span class="p">(</span><span class="n">AccountOrder</span><span class="p">::</span><span class="n">Auto</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">specQty</span> <span class="p">(</span><span class="n">PurchUpdate</span><span class="p">::</span><span class="n">PackingSlip</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="k">select</span> <span class="n">tmpFrmVirtualVend</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">selectedList</span><span class="p">.</span><span class="n">addEnd</span><span class="p">(</span><span class="n">tmpFrmVirtualVend</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">conTmpFrmVirtual</span> <span class="p">=</span> <span class="n">selectedList</span><span class="p">.</span><span class="n">pack</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">selectFromJournal</span><span class="p">(</span><span class="n">conTmpFrmVirtual</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">reArrangeNow</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="kt">int</span> <span class="n">randomAmount</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">RandomGenerate</span> <span class="n">randomGenerate</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">randomGenerate</span> <span class="p">=</span> <span class="n">RandomGenerate</span><span class="p">::</span><span class="n">construct</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">randomGenerate</span><span class="p">.</span><span class="n">parmSeed</span><span class="p">(</span><span class="k">new</span> <span class="n">Random</span><span class="p">().</span><span class="n">nextInt</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">RandomGenerate</span><span class="p">.</span><span class="n">randomInt</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="m">800</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Thank you for reading.</p>
+]]></description>
+</item>
+<item>
+    <title>Dynamics 365 finance and operations ODATA consuming - Length cannot be less than zero</title>
+    <link>https://nuxulu.com/2019-12-17-dynamics-365-finance-and-operations-odata-consuming-length-cannot-be-less-than-zero/</link>
+    <pubDate>Tue, 17 Dec 2019 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2019-12-17-dynamics-365-finance-and-operations-odata-consuming-length-cannot-be-less-than-zero/</guid>
+    <description><![CDATA[<p>When you consume a custom data entity, you get an error</p>
+<div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">errorSystem.ArgumentOutOfRangeException : Length cannot be less than zero” and it works fine for standard data entities.</div>
+        </div>
+    </div>
+<p></p>
+<p>The reason is the temporary XML file where the metadata stored which mismatches with the metadata from <code>https://&lt;yourenvironment&gt;.cloudax.dynamics.com/data/$metadata</code></p>
+<p>You can follow this <a href="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/" rel="">post</a> to understand how to create the XML file.</p>
+<p>If you try to regenerate the metadata by saving the <strong>ODataClient.tt</strong> file, the XML will be accumulated, and the error keeps happening.
+The resolution here is simply delete it and regenerate metadata again by saving the <strong>ODataClient.tt</strong> file</p>
+<p></p>
+<p>Thank you for reading.</p>
+]]></description>
+</item>
+<item>
+    <title>Enable Power BI Embedded in cloud hosted Dynamics 365 finance and operations 8.0 &#43;</title>
+    <link>https://nuxulu.com/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/</link>
+    <pubDate>Tue, 17 Dec 2019 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/</guid>
+    <description><![CDATA[<p>In this article, we will go through how to enable Power BI embedded in Dynamics 365 finance and operations version 10 in a cloud-hosted environment (customer managed). From the previous version of FinOps, Power BI embedded uses workspace collections at Azure to display the report, since the workspace collections have been deprecated, Microsoft also disables power BI embedded in cloud-hosted environments. You can only enable Power BI embedded in multiple boxes environments like UAT and production.</p>
+<h2 id="1-create-workspace-collections">1. Create workspace collections</h2>
+<p>Although the workspace collections have been deprecated, it does not show in the Azure portal and you could not create it by using the Azure portal, but you can create and manage by using Azure CLI.</p>
+<p>Open PowerShell and run following</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">//</span> <span class="n">Allow</span> <span class="n">policy</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set-executionpolicy</span> <span class="n">remotesigned</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">//</span><span class="n">Install</span> <span class="n">AzureRM</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">AzureRM</span> <span class="n">-AllowClobber</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">//</span> <span class="n">Login</span> <span class="n">to</span> <span class="n">Azure</span> <span class="n">using</span> <span class="n">credentials</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Login-AzureRmAccount</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">//</span> <span class="nb">select </span><span class="n">the</span> <span class="n">subscription</span> <span class="n">ID</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Select-AzureRmSubscription</span> <span class="n">-SubscriptionId</span> <span class="nv">$subscriptionId</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$ResourceGroupName</span> <span class="p">=</span> <span class="err">“</span><span class="n">MaxWorkspaceCollections</span><span class="err">”</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$Location</span> <span class="p">=</span> <span class="s2">&#34;Southeast Asia&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">//</span> <span class="n">Create</span> <span class="n">workspace</span> <span class="n">collections</span>
+</span></span><span class="line"><span class="cl"><span class="nb">New-AzPowerBIWorkspaceCollection</span> <span class="n">-ResourceGroupName</span> <span class="nv">$ResourceGroupName</span> <span class="n">-WorkspaceCollectionName</span> <span class="nv">$WorkSpaceCollectionName</span> <span class="n">-Location</span> <span class="nv">$Location</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">//</span> <span class="n">Obtain</span> <span class="n">the</span> <span class="n">access</span> <span class="n">keys</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Get-AzPowerBIWorkspaceCollection</span> <span class="n">-ResourceGroupName</span> <span class="nv">$ResourceGroupName</span> <span class="n">-name</span> <span class="s2">&#34;&lt;yourWorkspacename&gt;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="2-create-axwd-azure-sql-database">2. Create AxWD Azure SQL Database</h2>
+<p>We must use the Azure SQL Database for the AxDW in Dynamics 365 finance and operations cloud-hosted environment.
+Please follow <a href="https://docs.microsoft.com/en-us/azure/sql-database/sql-database-single-database-get-started?tabs=azure-portal" target="_blank" rel="noopener noreffer ">this document to create Azure SQL DB</a>.</p>
+<p>We need at least <strong>5 GB storage for Database</strong>, for Pricing tier, I will recommend using from S1, and name the database AxDB</p>
+<p>This is my DB property</p>
+<p><figure><a class="lightgallery" href="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_1.png" title="Image" data-thumbnail="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_1.png" data-sub-html="<h2>Enable-Power-BI-Embedded-in-cloud-hosted</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Enable-Power-BI-Embedded-in-cloud-hosted</figcaption>
+    </figure></p>
+<p>I’m using Premium tier because I want to use <strong>the Columnstore Clustered indexes</strong> in Database; it helps performance a little bit faster.
+Once you have the Azure SQL Database, we can use SSMS to connect to the database and create a user for that DB. You need to get <strong>the user and password information in LCS</strong>, where the cloud-hosted provisioned.</p>
+<p><figure><a class="lightgallery" href="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_2.png" title="Image" data-thumbnail="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_2.png" data-sub-html="<h2>Enable-Power-BI-Embedded-in-cloud-hosted</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Enable-Power-BI-Embedded-in-cloud-hosted</figcaption>
+    </figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">Use</span><span class="w"> </span><span class="n">Master</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="n">LOGIN</span><span class="w"> </span><span class="n">axdwadmin</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">PASSWORD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="n">LOGIN</span><span class="w"> </span><span class="n">axdwruntimeuser</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">PASSWORD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Use</span><span class="w"> </span><span class="n">AxDw</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">axdwadmin</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">LOGIN</span><span class="w"> </span><span class="n">axdwadmin</span><span class="p">;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">axdwruntimeuser</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">LOGIN</span><span class="w"> </span><span class="n">axdwruntimeuser</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">ROLE</span><span class="w"> </span><span class="n">db_owner</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="n">MEMBER</span><span class="w"> </span><span class="n">axdwadmin</span><span class="p">;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">ROLE</span><span class="w"> </span><span class="n">db_datareader</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="n">MEMBER</span><span class="w"> </span><span class="n">axdwruntimeuser</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="3-configuring-to-enable-analytical-workspaces-and-reports">3. Configuring to enable Analytical Workspaces and Reports</h2>
+<p>What you are having now</p>
+<p>Power BI Embedded Service details from step 1</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Workspace Collection Name: The name of the Workspace Collection created when deploying the Power BI Embedded Service
+</span></span><span class="line"><span class="cl">Access Key1:  The secret key #1 used to access the Power BI Embedded service
+</span></span><span class="line"><span class="cl">Access Key2:  The secret key #2 used to access the Power BI Embedded service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Entity Store Database Service details from step 2</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Database name:  AxDW
+</span></span><span class="line"><span class="cl">Server name:  Azure SQL Server name (*.database.windows.net)
+</span></span><span class="line"><span class="cl">Server admin login:  Username supplied in the SQL Server settings
+</span></span><span class="line"><span class="cl">Password:  Account password supplied when configuring SQL Server
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Run Notepad in <strong>administrator</strong> mode, open web.config from <em>K:\AOSService\webroot</em> in Dynamics 365 for finance and operations environment.</p>
+<p>Update the configuration settings:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;BiReporting.DW&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Database name]&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;BiReporting.DWServer&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Server name]&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;BiReporting.DWRuntimeUser&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Server Admin login]&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;BiReporting.DWRuntimePwd&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Password]&#34;</span> <span class="p">/&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Update the Power BI Embedded Service configuration settings:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.AccessKey&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Access Key1]&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.AccessKey2&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Access Key2]&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.ApiUrl&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;https://api.powerbi.com&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.IsPowerBIEmbeddedEnabled&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;true&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.WorkspaceCollectionName&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Workspace Collection Name]&#34;</span> <span class="p">/&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>After that, you need to restart IIS and Dynamics 365 for finance and operations batch service</p>
+<h2 id="4-refresh-data-entity-store-to-axdw">4. Refresh data entity store to AxDW</h2>
+<p>In Dynamics 365 for finance and operations, navigate to <em>System administration &gt; Setup &gt; Entity Store</em>, select all the <strong>entity store</strong>, and click refresh.</p>
+<p>Allow this process to complete in the background (~5 - 10mins).  You can monitor the status of the background process using the Batch jobs.</p>
+<p>Once the Progress is made, you can check the event message in the same form to make sure the refreshing working properly</p>
+<p><figure><a class="lightgallery" href="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_3.png" title="Image" data-thumbnail="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_3.png" data-sub-html="<h2>Enable-Power-BI-Embedded-in-cloud-hosted</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Enable-Power-BI-Embedded-in-cloud-hosted</figcaption>
+    </figure></p>
+<h2 id="5-powerbi-configuration-this-is-optional">5. PowerBI configuration (this is optional)</h2>
+<p>Configuring power BI for the workspace; please follow the document <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/analytics/configure-power-bi-integration" target="_blank" rel="noopener noreffer ">here</a></p>
+<p>This is what you should have after the setup</p>
+<p><figure><a class="lightgallery" href="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_4.png" title="Image" data-thumbnail="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_4.png" data-sub-html="<h2>Enable-Power-BI-Embedded-in-cloud-hosted</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Enable-Power-BI-Embedded-in-cloud-hosted</figcaption>
+    </figure></p>
+<h2 id="check-the-result">Check the result</h2>
+<p>If you want to check the result, go to <em>Workspaces &gt; Customer credit and collections &gt; Analytics all companies</em></p>
+<p><figure><a class="lightgallery" href="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_5.png" title="Image" data-thumbnail="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_5.png" data-sub-html="<h2>Enable-Power-BI-Embedded-in-cloud-hosted</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Enable-Power-BI-Embedded-in-cloud-hosted</figcaption>
+    </figure></p>
+<p>Thank you for reading.</p>
 ]]></description>
 </item>
 </channel>

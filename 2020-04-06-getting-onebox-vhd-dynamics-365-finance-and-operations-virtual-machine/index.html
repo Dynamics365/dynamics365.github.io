@@ -33,7 +33,7 @@
                             "url": "https:\/\/nuxulu.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "onebox vhd, Dynamics 365 finance and operations, upgrade, LCS, OneBox","wordcount":  1056 ,
+                        }],"genre": "posts","keywords": "onebox vhd, Dynamics 365 finance and operations, upgrade, LCS, OneBox","wordcount":  1046 ,
         "url": "https:\/\/nuxulu.com\/2020-04-06-getting-onebox-vhd-dynamics-365-finance-and-operations-virtual-machine\/","datePublished": "2020-04-06T00:00:00+00:00","dateModified": "2022-10-08T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -127,8 +127,8 @@
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Getting onebox VHD Dynamics 365 finance and operations virtual machine</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="April 6, 2020">April 6, 2020</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1056 words&nbsp;
+            <div class="post-meta-line"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-category">included in <a href="/categories/finops/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>FinOps</a>&nbsp;<a href="/categories/troubleshooting/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Troubleshooting</a>&nbsp;<a href="/categories/onebox/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Onebox</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="April 6, 2020">April 6, 2020</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1046 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -290,7 +290,7 @@ Please follow <a href="#7-for-vhd-that-was-released-for-versions-10024-and-later
             <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Tip<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content">In these commands, be sure to replace old_name with the old name of the server and new_name with the new name. By default, the old name is MININT-F36S5EH, but you can run select @@servername to get the old name. Additionally, be sure to restart the SQL Server service after the commands have finished running.</div>
+            <div class="admonition-content">In these commands, be sure to replace old_name with the old name of the server and new_name with the new name. By default, the old name is <code>MININT-F36S5EH</code>, but you can run select @@servername to get the old name. Additionally, be sure to restart the SQL Server service after the commands have finished running.</div>
         </div>
     </div>
 <ul>
@@ -319,7 +319,7 @@ Please follow <a href="#7-for-vhd-that-was-released-for-versions-10024-and-later
 <p>From the Start menu, open Microsoft Azure Storage Emulator - v4.0, and run the following commands.</p>
 <p><code>AzureStorageEmulator.exe start</code></p>
 <blockquote>
-<p>If you got an error <strong><em>Port conflict with existing application</em></strong>, please check this <a href="../2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/" rel="">post</a>.</p>
+<p>If you got an error <strong><em>Port conflict with existing application</em></strong>, please check this <a href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/" rel="">post</a>.</p>
 </blockquote>
 </li>
 <li>
@@ -348,7 +348,7 @@ Please follow <a href="#7-for-vhd-that-was-released-for-versions-10024-and-later
 <p>Open the <strong>web.config</strong> file in Notepad or another text editor. The following keys are of interest to many developers and administrators:</p>
 <ul>
 <li>
-<p><strong>Aos.MetadataDirectory</strong> – This key points to the location of the packages folder that contains platform and application binaries, and also source code. (Source code is available only in development environments.) Typical values are: <em>c:\packages, c:\AosServicePackagesLocalDirectory</em>, and <em>J:AosServicePackagesLocalDirectory</em>.</p>
+<p><strong>Aos.MetadataDirectory</strong> – This key points to the location of the packages folder that contains platform and application binaries, and also source code. (Source code is available only in development environments.) Typical values are: <code>c:\packages</code>, <code>c:\AosServicePackagesLocalDirectory</code>, and <code>J:AosServicePackagesLocalDirectory</code>.</p>
 </li>
 <li>
 <p><strong>DataAccess.Database</strong> – This key holds the name of the database.</p>
@@ -363,7 +363,7 @@ Please follow <a href="#7-for-vhd-that-was-released-for-versions-10024-and-later
 <p>To restart the local runtime and redeploy all the packages, follow these steps.</p>
 <ol>
 <li>
-<p>Open File Explorer, and go to <em>C:\CustomerServiceUnit</em>.</p>
+<p>Open File Explorer, and go to <code>C:\CustomerServiceUnit</code>.</p>
 </li>
 <li>
 <p>Right-click <strong>AOSDeploy.cmd</strong>, and then click <strong>Run as administrator</strong>.</p>
@@ -371,9 +371,7 @@ Please follow <a href="#7-for-vhd-that-was-released-for-versions-10024-and-later
 </ol>
 <p>This process might take a while. The process is completed when the cmd.exe window closes. If you just want to restart AOS (without redeploying the runtime), run iisreset from an administrator Command Prompt window, or restart AOSWebApplication from IIS.</p>
 <h2 id="6-update-to-the-latest-version">6. Update to the latest version</h2>
-<p>Please check this document
-<a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/deployment/install-deployable-package" target="_blank" rel="noopener noreffer ">https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/deployment/install-deployable-package</a></p>
-<p>update for virtual hard drive (VHD) that was released for versions 10.0.24</p>
+<p>Please check this <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/deployment/install-deployable-package" target="_blank" rel="noopener noreffer ">document</a> for versions 10.0.24</p>
 <h2 id="7-for-vhd-that-was-released-for-versions-10024-and-later">7. For (VHD) that was released for versions 10.0.24 and later</h2>
 <h3 id="71-register-a-new-application-in-azure-active-directory">7.1 Register a new application in Azure Active Directory</h3>
 <p>To register a new application in Microsoft Azure Active Directory (Azure AD), follow the steps outlined in <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app" target="_blank" rel="noopener noreffer ">Register app or web API</a>. The new app registration should be for a web application, and the following redirect URIs should be added:</p>

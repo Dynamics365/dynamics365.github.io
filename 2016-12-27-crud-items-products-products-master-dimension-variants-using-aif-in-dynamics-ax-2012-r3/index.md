@@ -51,7 +51,7 @@ Ax provides us standard services for this purpose, so we don’t need to create 
 
 ### 2. After services creation, open visual studio then creates new Console project and add service References for that, you will get somethings like pic below:
 
-   ![](/imagesposts/CRUD-Items,-products,-products-master-dimension,-variants-using-AIF-in-Dynamics-AX-2012-R3-01.png)
+![CRUD](CRUD-Items,-products,-products-master-dimension,-variants-using-AIF-in-Dynamics-AX-2012-R3-01.png "CRUD")
 
 ### 3. Using C#.Net to consume service
 
@@ -368,5 +368,3 @@ static void releaseProductVariants()
 ```
 
 In `main` I only create Distinct product and release it, but you can use another method to create master, variant, masterDim and so on.
-
-

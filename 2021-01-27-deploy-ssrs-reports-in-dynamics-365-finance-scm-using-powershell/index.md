@@ -1,9 +1,7 @@
 # Deploy SSRS reports in Dynamics 365 Finance, SCM using Powershell
 
 
-Open Windows PowerShell in Admin mode 
-
-<!--more-->
+Open Windows PowerShell in Admin mode
 
 Navigate to the PowerShell scripts
 
@@ -34,6 +32,4 @@ Execute the below commands:
 ```powershell
 ./DeployAllReportsToSsrs.ps1 -Module ApplicatoinSuite -ReportName Cust* -PackageInstallLocation "C:\AosService\PackagesLocalDirectory"
 ```
-
-
 

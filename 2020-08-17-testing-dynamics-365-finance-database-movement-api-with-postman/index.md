@@ -16,7 +16,7 @@ The endpoint uses **impersonation authentication** base, please follow to [regis
 
 ## 1. Postman environment setup
 
-> Open Postman -> manage environments -> Add
+`Open Postman -> manage environments -> Add`
 
 ```text
 tenant_id: {tenant_id get from AAD}

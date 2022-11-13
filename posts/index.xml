@@ -3494,7 +3494,7 @@ Depending on your development choices, you can use one of the following librarie
 <p><code>$ git config --global color.ui auto</code></p>
 <p>Enables helpful colorization of command line output</p>
 <h2 id="2-branches">2. Branches</h2>
-<p><figure><a class="lightgallery" href="/imagesposts/braching.png" title="braching" data-thumbnail="/imagesposts/braching.png" data-sub-html="<h2>Branching</h2><p>braching</p>">
+<p><figure><a class="lightgallery" href="/2021-10-08-git-cheatsheet/braching.png" title="braching" data-thumbnail="/2021-10-08-git-cheatsheet/braching.png" data-sub-html="<h2>Branching</h2><p>braching</p>">
         
     </a><figcaption class="image-caption">Branching</figcaption>
     </figure></p>
@@ -3523,7 +3523,7 @@ Depending on your development choices, you can use one of the following librarie
 <p>Clone with authentication.</p>
 <h2 id="4-the-gitignore-file">4. The .gitignore file</h2>
 <p>Sometimes it may be a good idea to exclude files from being tracked with Git. This is typically done in a special file named <code>.gitignore</code>. You can find helpful templates for <code>.gitignore</code> files at <a href="https://github.com/github/gitignore" target="_blank" rel="noopener noreffer ">github.com/github/gitignore</a>.</p>
-<p><code>logs/ *.notes pattern*/</code></p>
+<p><code>logs/ *.notes pattern*/</code></p>
 <p>Save a file with desired patterns as .gitignore with either direct string
 matches or wildcard globs.</p>
 <p><code>git config --global core.excludesfile [file]</code></p>
@@ -3982,7 +3982,8 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>Thank you for reading.</p>]]></description>
+</div><p>Thank you for reading.</p>
+]]></description>
 </item>
 <item>
     <title>Deploy SSRS reports in Dynamics 365 Finance, SCM using Powershell</title>
@@ -4048,9 +4049,7 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
     <pubDate>Mon, 17 Aug 2020 00:00:00 &#43;0000</pubDate>
     <author>Max Nguyen</author>
     <guid>https://nuxulu.com/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/</guid>
-    <description><![CDATA[<div class="featured-image">
-                <img src="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman.png" referrerpolicy="no-referrer">
-            </div><p>Microsoft provides a versioned set of capabilities that you can currently use to copy databases between environments, and to list and download database backups.</p>
+    <description><![CDATA[<p>Microsoft provides a versioned set of capabilities that you can currently use to copy databases between environments, and to list and download database backups.</p>
 <p>what you can do with Database movement API so far:</p>
 <ul>
 <li>List database backups</li>
@@ -4061,9 +4060,7 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 <p>More supported actions will be added in later releases.</p>
 <p>The endpoint uses <strong>impersonation authentication</strong> base, please follow to <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/database/api/dbmovement-api-authentication##register-a-new-application-by-using-the-azure-portal" target="_blank" rel="noopener noreffer ">register a new application by using the Azure portal</a></p>
 <h2 id="1-postman-environment-setup">1. Postman environment setup</h2>
-<blockquote>
-<p>Open Postman -&gt; manage environments -&gt; Add</p>
-</blockquote>
+<p><code>Open Postman -&gt; manage environments -&gt; Add</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -4123,7 +4120,7 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
     </a><figcaption class="image-caption">Cosnume</figcaption>
     </figure></p>
 <h3 id="31-list-database-backups">3.1. List database backups</h3>
-<p><code>GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/databases/project/{{projectId}}</code></p>
+<p><code> GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/databases/project/{{projectId}} </code></p>
 <p>And we’ll get a JSON with a list of the DB backups on our LCS Asset Library:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -4174,7 +4171,7 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="32-create-database-refresh">3.2. Create database refresh</h3>
-<p><code>POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/refresh/project/{projectId}/source/{sourceEnvironmentId}/target/{targetEnvironmentId}</code></p>
+<p><code> POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/refresh/project/{projectId}/source/{sourceEnvironmentId}/target/{targetEnvironmentId} </code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -4194,7 +4191,7 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="33-create-a-database-export">3.3. Create a database export</h3>
-<p><code>POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/export/project/{projectId}/environment/{environmentId}/backupName/{backupName}</code></p>
+<p><code> POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/export/project/{projectId}/environment/{environmentId}/backupName/{backupName} </code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -4214,7 +4211,7 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="34-get-operation-activity-status">3.4. Get operation activity status</h3>
-<p><code>GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/fetchstatus/project/{projectId}/environment/{environmentId}/operationactivity/{operationactivityId}</code></p>
+<p><code> GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/fetchstatus/project/{projectId}/environment/{environmentId}/operationactivity/{operationactivityId} </code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -4253,6 +4250,7 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
     <guid>https://nuxulu.com/2020-08-15-dynamics365/</guid>
     <description><![CDATA[<p>Today, we published the 2020 release wave 2 plans for <a href="https://aka.ms/Dynamics365Wave2ReleasePlan" target="_blank" rel="noopener noreffer ">Microsoft Dynamics 365</a> and <a href="https://aka.ms/PowerPlatformWave2ReleasePlan" target="_blank" rel="noopener noreffer ">Microsoft Power Platform</a>, a compilation of new capabilities that will be released between October 2020 and March 2021. This second release wave of the year offers hundreds of new features and enhancements, demonstrating our continued investment to power digital transformation for our customers and partners.</p>
 <h2 id="highlights-from-dynamics-365">Highlights from Dynamics 365</h2>
+<hr>
 <ul>
 <li>Dynamics 365 Sales includes updates for more simplified experiences; including collaboration tools, a new mobile experience for quick access to customer information, and new enhancements to forecasting to natively create and manage bottom-up sales forecast processes.</li>
 <li>Dynamics 365 Sales Insights continues investments in digital selling across multiple areas: sales acceleration, conversation intelligence, relationship intelligence, and advanced forecasting and pipeline intelligence with predictive lead and opportunity scorings to help sales teams uncover top deals.</li>
@@ -4273,6 +4271,7 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 <li>Dynamics 365 Business Central investments for this release wave include service enhancements to meet the demands of a rapidly growing customer base, improved performance, handling of file storage, geographic expansion together with support for Group VAT, top customer requested features, and deeper integration with Microsoft Teams.</li>
 </ul>
 <h2 id="highlights-from-power-platform">Highlights from Power Platform</h2>
+<hr>
 <ul>
 <li>Power Apps includes significant improvements for Power Apps developers of all skill levels, improving the sophistication and usability of apps that are created across the web and mobile devices. Makers will be able to create Power Apps directly within Microsoft Teams in order to easily customize the Teams experience. Makers will also be able to add custom pages to model-driven apps using the app designer, bringing together the best of canvas and model capabilities, including creating custom layouts and components. Power Apps portals adds Microsoft Power Virtual Agents as a component in the Power Apps portals studio, as well as support for code components created using Power Apps component framework. AI Builder introduces new AI scenarios for receipt scanning and translation, and improvements to connect to remote training data. The AI builder home page and model details page are updated to improve discoverability and integration with Power Apps and Power Automate.</li>
 <li>Power BI is investing in three key areas that drive a data culture: amazing data experiences, modern enterprise BI, and insights where decisions are made. Power BI Desktop includes many new capabilities for users to create content quickly and easily, enabling authors to empower their users, enterprise grade content creation, and AI-infused authoring experiences. Power BI Mobile adds split view support for iPad and Power BI Service integrates with Azure Synapse to automatically create and manage materialized views on larger Power BI models as well as enhanced integration with SharePoint lists to build additional custom reports. We continue to enhance our Data protection capabilities enabling customers to classify and label sensitive data.</li>
@@ -4281,6 +4280,7 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 </ul>
 <p>For a complete list of new capabilities, please check out the <a href="https://aka.ms/Dynamics365Wave2ReleasePlan" target="_blank" rel="noopener noreffer ">Dynamics 365</a> and <a href="https://aka.ms/PowerPlatformWave2ReleasePlan" target="_blank" rel="noopener noreffer ">Power Platform</a> 2020 release wave 2 plans.</p>
 <h2 id="early-access-period">Early access period</h2>
+<hr>
 <p>Starting August 3, 2020, customers and partners will be able to validate the latest features in a non-production environment. These features include user experience enhancements that will be automatically enabled for users in production environments during October 2020. Take advantage of the early access period, try out the latest updates in a non-production environment, and get ready to roll out updates to your users with confidence. To see the early access features, check out the <a href="https://aka.ms/Dynamics365Wave2EAFeatures" target="_blank" rel="noopener noreffer ">Dynamics 365</a> and <a href="https://aka.ms/PowerPlatformWave2EAFeatures" target="_blank" rel="noopener noreffer ">Power Platform</a> pages. For questions, please visit the <a href="https://aka.ms/EarlyAccessFAQ" target="_blank" rel="noopener noreffer ">Early Access FAQ page</a>.</p>
 <p>We&rsquo;ve done this work to help you&mdash;our partners, customers, and users&mdash;drive the digital transformation of your business on your terms. Get ready and learn more about latest <a href="https://dynamics.microsoft.com/business-applications/product-updates/" target="_blank" rel="noopener noreffer ">product updates</a> and <a href="https://roadmap.dynamics.com/" target="_blank" rel="noopener noreffer ">plans</a>, and share your feedback in the community forum for <a href="https://community.dynamics.com/" target="_blank" rel="noopener noreffer ">Dynamics 365</a> or <a href="https://powerusers.microsoft.com/" target="_blank" rel="noopener noreffer ">Power Platform</a>.</p>
 ]]></description>
@@ -4728,7 +4728,7 @@ After the installation, open the VS2017 if you should see <strong>Dynamics 365</
 <li>Public Collection Name: <code>Entity name</code> on Power Automate.</li>
 </ul>
 <p>The information should be displayed here:</p>
-<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E1-12-Flow-10.png" title="Info on Automate" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E1-12-Flow-10.png" data-sub-html="<h2>Info on Automate</h2><p>Info on Automate</p>">
+<p><figure><a class="lightgallery" href="E1-12-Flow-10.png" title="Info on Automate" data-thumbnail="E1-12-Flow-10.png" data-sub-html="<h2>Info on Automate</h2><p>Info on Automate</p>">
         
     </a><figcaption class="image-caption">Info on Automate</figcaption>
     </figure></p>
@@ -4746,9 +4746,9 @@ After the installation, open the VS2017 if you should see <strong>Dynamics 365</
     <pubDate>Sun, 24 May 2020 00:00:00 &#43;0000</pubDate>
     <author>Kome Hoang</author>
     <guid>https://nuxulu.com/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/</guid>
-    <description><![CDATA[<p><em>With any D365FO users, Data Management workspace and Data Entities should have become one of the most used and well-known tools in the system. We all agree how powerful such integration framework is, especially when it comes to a large number of records that we would need to import into different tables.</em></p>
-<p><em>The classic method that we have been utilizing is to include all source data in a single (or multiple, much depending on the purpose and order of data integration) Excel sheet, trigger an import execution, pass any validation layers that present and ultimately have the data available on D365FO. Now, I would like to propose another method that might come useful in some circumstances: Using Microsoft Forms.</em></p>
-<p><figure><a class="lightgallery" href="/imagesposts/Introduction.png" title="Introduction" data-thumbnail="/imagesposts/Introduction.png" data-sub-html="<h2>The trio</h2><p>Introduction</p>">
+    <description><![CDATA[<p>With any D365FO users, Data Management workspace and Data Entities should have become one of the most used and well-known tools in the system. We all agree how powerful such integration framework is, especially when it comes to a large number of records that we would need to import into different tables.</p>
+<p>The classic method that we have been utilizing is to include all source data in a single (or multiple, much depending on the purpose and order of data integration) Excel sheet, trigger an import execution, pass any validation layers that present and ultimately have the data available on D365FO. Now, I would like to propose another method that might come useful in some circumstances: Using Microsoft Forms.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/Introduction.png" title="Introduction" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/Introduction.png" data-sub-html="<h2>The trio</h2><p>Introduction</p>">
         
     </a><figcaption class="image-caption">The trio</figcaption>
     </figure></p>
@@ -4769,7 +4769,7 @@ After the installation, open the VS2017 if you should see <strong>Dynamics 365</
 </ul>
 <h2 id="how">How</h2>
 <p>The flow should go like this.</p>
-<p><figure><a class="lightgallery" href="/imagesposts/Biggest-Flow.png" title="Biggest FLow" data-thumbnail="/imagesposts/Biggest-Flow.png" data-sub-html="<h2>The Biggest FLow</h2><p>Biggest FLow</p>">
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/Biggest-Flow.png" title="Biggest FLow" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/Biggest-Flow.png" data-sub-html="<h2>The Biggest FLow</h2><p>Biggest FLow</p>">
         
     </a><figcaption class="image-caption">The Biggest FLow</figcaption>
     </figure></p>
@@ -4783,7 +4783,7 @@ After the installation, open the VS2017 if you should see <strong>Dynamics 365</
 </blockquote>
 <h3 id="step-1-create-a-ms-form">Step 1: Create a MS Form</h3>
 <p>To do so, we will access <a href="https://forms.office.com/" target="_blank" rel="noopener noreffer ">Microsoft Forms</a> and create a new form. To make the new form usable, we will create two questions asking for inputs of Vendor Account and Vendor Group.</p>
-<p><figure><a class="lightgallery" href="/imagesposts/E1-1-NewForm.png" title="Example 1 Form" data-thumbnail="/imagesposts/E1-1-NewForm.png" data-sub-html="<h2>Example 1 Form</h2><p>Example 1 Form</p>">
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-1-NewForm.png" title="Example 1 Form" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-1-NewForm.png" data-sub-html="<h2>Example 1 Form</h2><p>Example 1 Form</p>">
         
     </a><figcaption class="image-caption">Example 1 Form</figcaption>
     </figure></p>
@@ -4795,59 +4795,59 @@ After the installation, open the VS2017 if you should see <strong>Dynamics 365</
 The second question is being set in form of a Choice question. The given choices should match with available Vendor Group values found on your D365FO client. If this question is a Text one, chance is that its response might not match with any available Vendor Group values, thus, will return an error during Flow runtime.
 Vendor Groups can be found under <code>Account Payable &gt; Vendors &gt; Vendor Groups</code>. In this example, <code>TopVendor</code> and <code>Others</code> are two available Vendor Groups in my D365FO client.</p>
 </blockquote>
-<p><figure><a class="lightgallery" href="/imagesposts/E1-2-VendorGroups.png" title="Vendor Groups" data-thumbnail="/imagesposts/E1-2-VendorGroups.png" data-sub-html="<h2>Vendor Groups</h2><p>Vendor Groups</p>">
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-2-VendorGroups.png" title="Vendor Groups" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-2-VendorGroups.png" data-sub-html="<h2>Vendor Groups</h2><p>Vendor Groups</p>">
         
     </a><figcaption class="image-caption">Vendor Groups</figcaption>
     </figure></p>
 <h3 id="step-2-create-a-ms-flow">Step 2: Create a MS Flow</h3>
 <p>To do so, we will access <a href="https://flow.microsoft.com/" target="_blank" rel="noopener noreffer ">Microsoft Power Automate</a> and create a new flow. We will go with an <code>Automated</code> one in this case.</p>
-<p><figure><a class="lightgallery" href="/imagesposts/E1-3-Flow-1.png" title="Flow step 1" data-thumbnail="/imagesposts/E1-3-Flow-1.png" data-sub-html="<h2>Automated flow</h2><p>Flow step 1</p>">
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-3-Flow-1.png" title="Flow step 1" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-3-Flow-1.png" data-sub-html="<h2>Automated flow</h2><p>Flow step 1</p>">
         
     </a><figcaption class="image-caption">Automated flow</figcaption>
     </figure></p>
 <p>Search for <code>form</code> and choose the trigger <code>When a new response is submitted</code>. Hit <code>Create</code> to create a new flow.</p>
-<p><figure><a class="lightgallery" href="/imagesposts/E1-4-Flow-2.png" title="Flow step 2" data-thumbnail="/imagesposts/E1-4-Flow-2.png" data-sub-html="<h2>Form trigger</h2><p>Flow step 2</p>">
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-4-Flow-2.png" title="Flow step 2" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-4-Flow-2.png" data-sub-html="<h2>Form trigger</h2><p>Flow step 2</p>">
         
     </a><figcaption class="image-caption">Form trigger</figcaption>
     </figure></p>
 <p>Choose the <code>form</code> that we just created using the dropdown list.</p>
-<p><figure><a class="lightgallery" href="/imagesposts/E1-5-Flow-3.png" title="Flow step 3" data-thumbnail="/imagesposts/E1-5-Flow-3.png" data-sub-html="<h2>Choose form</h2><p>Flow step 3</p>">
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-5-Flow-3.png" title="Flow step 3" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-5-Flow-3.png" data-sub-html="<h2>Choose form</h2><p>Flow step 3</p>">
         
     </a><figcaption class="image-caption">Choose form</figcaption>
     </figure></p>
 <p>Press <code>New step</code>, search for <code>form</code> and go with <code>Get response details</code>.</p>
-<p><figure><a class="lightgallery" href="/imagesposts/E1-6-Flow-4.png" title="FLow step 4" data-thumbnail="/imagesposts/E1-6-Flow-4.png" data-sub-html="<h2>New step: Get response details</h2><p>FLow step 4</p>">
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-6-Flow-4.png" title="FLow step 4" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-6-Flow-4.png" data-sub-html="<h2>New step: Get response details</h2><p>FLow step 4</p>">
         
     </a><figcaption class="image-caption">New step: Get response details</figcaption>
     </figure></p>
 <p>In the new step, choose the <code>Form ID</code>. As soon as we move the cursor to the <code>Response ID</code> field, the <code>FLow</code> will suggest the <code>Dynamics content</code> that we can use. In this case, there should be only one dynamic content, which is <code>List of response notifications Response ID</code>. We will go with it by choosing it.</p>
-<p><figure><a class="lightgallery" href="/imagesposts/E1-7-Flow-5.png" title="FLow step 5" data-thumbnail="/imagesposts/E1-7-Flow-5.png" data-sub-html="<h2>Get response details</h2><p>FLow step 5</p>">
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-7-Flow-5.png" title="FLow step 5" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-7-Flow-5.png" data-sub-html="<h2>Get response details</h2><p>FLow step 5</p>">
         
     </a><figcaption class="image-caption">Get response details</figcaption>
     </figure></p>
 <p>After doing so, the flow should look like this.</p>
-<p><figure><a class="lightgallery" href="/imagesposts/E1-8-Flow-6.png" title="FLow step 6" data-thumbnail="/imagesposts/E1-8-Flow-6.png" data-sub-html="<h2>Form done</h2><p>FLow step 6</p>">
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-8-Flow-6.png" title="FLow step 6" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-8-Flow-6.png" data-sub-html="<h2>Form done</h2><p>FLow step 6</p>">
         
     </a><figcaption class="image-caption">Form done</figcaption>
     </figure></p>
 <p>Now, the reponse details will be sent from the <code>Form</code> to the <code>Flow</code> when a new response is submitted. Next, we will set up the step to create a new Vendor Account.</p>
 <p>Create a new step, search for <code>dynamics</code> and go with <code>Dynamics 365 for Finance and Operations</code>.</p>
-<p><figure><a class="lightgallery" href="/imagesposts/E1-9-Flow-7.png" title="FLow step 7" data-thumbnail="/imagesposts/E1-9-Flow-7.png" data-sub-html="<h2>Dynamics 365 FinOps</h2><p>FLow step 7</p>">
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-9-Flow-7.png" title="FLow step 7" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-9-Flow-7.png" data-sub-html="<h2>Dynamics 365 FinOps</h2><p>FLow step 7</p>">
         
     </a><figcaption class="image-caption">Dynamics 365 FinOps</figcaption>
     </figure></p>
 <p>Choose <code>Create record</code> action.</p>
-<p><figure><a class="lightgallery" href="/imagesposts/E1-10-Flow-8.png" title="FLow step 8" data-thumbnail="/imagesposts/E1-10-Flow-8.png" data-sub-html="<h2>Create record action</h2><p>FLow step 8</p>">
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-10-Flow-8.png" title="FLow step 8" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-10-Flow-8.png" data-sub-html="<h2>Create record action</h2><p>FLow step 8</p>">
         
     </a><figcaption class="image-caption">Create record action</figcaption>
     </figure></p>
 <p>Choose the Dynamics 365 FinOps <code>Instance</code> from the dropdown list. If your client does not appear here, choose <code>Enter custom value</code>. For privacy, environments&rsquo; name will be censored in our example.</p>
-<p><figure><a class="lightgallery" href="/imagesposts/E1-11-Flow-9.png" title="FLow step 9" data-thumbnail="/imagesposts/E1-11-Flow-9.png" data-sub-html="<h2>Set D365FO instance</h2><p>FLow step 9</p>">
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-11-Flow-9.png" title="FLow step 9" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-11-Flow-9.png" data-sub-html="<h2>Set D365FO instance</h2><p>FLow step 9</p>">
         
     </a><figcaption class="image-caption">Set D365FO instance</figcaption>
     </figure></p>
 <p>The <code>Instance</code> should be the <code>link</code> to your D365FO client. Set <code>Entity name</code> VendorsV2.</p>
-<p><figure><a class="lightgallery" href="/imagesposts/E1-12-Flow-10.png" title="FLow step 10" data-thumbnail="/imagesposts/E1-12-Flow-10.png" data-sub-html="<h2>Set Instance and Entity</h2><p>FLow step 10</p>">
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-12-Flow-10.png" title="FLow step 10" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-12-Flow-10.png" data-sub-html="<h2>Set Instance and Entity</h2><p>FLow step 10</p>">
         
     </a><figcaption class="image-caption">Set Instance and Entity</figcaption>
     </figure></p>
@@ -4857,7 +4857,7 @@ Vendor Groups can be found under <code>Account Payable &gt; Vendors &gt; Vendor 
 </blockquote>
 <p>Populate the fields that we want to import. In this example, we will populate only 3 fields: <code>Group (VendorGroupID)</code>, <code>Company (DataAreaId)</code> and <code>Supplier Account (VendorAccountNumber)</code>.</p>
 <p><code>Dynamic content</code> will be suggested automatically when the cursor is placed in each field.</p>
-<p><figure><a class="lightgallery" href="/imagesposts/E1-13-Flow-11.png" title="FLow step 11" data-thumbnail="/imagesposts/E1-13-Flow-11.png" data-sub-html="<h2>Map Form fields with Automate fields</h2><p>FLow step 11</p>">
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-13-Flow-11.png" title="FLow step 11" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-13-Flow-11.png" data-sub-html="<h2>Map Form fields with Automate fields</h2><p>FLow step 11</p>">
         
     </a><figcaption class="image-caption">Map Form fields with Automate fields</figcaption>
     </figure></p>
@@ -4869,19 +4869,19 @@ Vendor Groups can be found under <code>Account Payable &gt; Vendors &gt; Vendor 
 <li><code>Name</code> = <code>Supplier Account</code> =  Response of <code>What is the Vendor Account?</code> question (<code>Show advanced option</code> on the Flow to find the field <code>Name (VendorOrganisationName)</code>).
 These fields should be required when creating a new Vendor Account on D365FO client.</li>
 </ul>
-<p><figure><a class="lightgallery" href="/imagesposts/E1-14-Flow-12.png" title="FLow step 12" data-thumbnail="/imagesposts/E1-14-Flow-12.png" data-sub-html="<h2>Map Form fields with Automate fields</h2><p>FLow step 12</p>">
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-14-Flow-12.png" title="FLow step 12" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-14-Flow-12.png" data-sub-html="<h2>Map Form fields with Automate fields</h2><p>FLow step 12</p>">
         
     </a><figcaption class="image-caption">Map Form fields with Automate fields</figcaption>
     </figure></p>
 <p>We are done here with the set up.</p>
 <h3 id="step-3-testing-out">Step 3: Testing out</h3>
 <p>On <code>Forms</code>, choose the form that we just created, click on <code>Preview</code> so we can submit a form response.</p>
-<p><figure><a class="lightgallery" href="/imagesposts/E1-15-Flow-13.png" title="FLow step 13" data-thumbnail="/imagesposts/E1-15-Flow-13.png" data-sub-html="<h2>Map Form fields with Automate fields</h2><p>FLow step 13</p>">
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-15-Flow-13.png" title="FLow step 13" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-15-Flow-13.png" data-sub-html="<h2>Map Form fields with Automate fields</h2><p>FLow step 13</p>">
         
     </a><figcaption class="image-caption">Map Form fields with Automate fields</figcaption>
     </figure></p>
 <p>Check out <code>All Vendors (VendTableListPage)</code> on the client to find a new Vendor Account is created.</p>
-<p><figure><a class="lightgallery" href="/imagesposts/E1-16-Flow-14.png" title="FLow step 14" data-thumbnail="/imagesposts/E1-16-Flow-14.png" data-sub-html="<h2>Map Form fields with Automate fields</h2><p>FLow step 14</p>">
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-16-Flow-14.png" title="FLow step 14" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-16-Flow-14.png" data-sub-html="<h2>Map Form fields with Automate fields</h2><p>FLow step 14</p>">
         
     </a><figcaption class="image-caption">Map Form fields with Automate fields</figcaption>
     </figure></p>
@@ -5083,7 +5083,7 @@ Please follow <a href="#7-for-vhd-that-was-released-for-versions-10024-and-later
             <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Tip<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content">In these commands, be sure to replace old_name with the old name of the server and new_name with the new name. By default, the old name is MININT-F36S5EH, but you can run select @@servername to get the old name. Additionally, be sure to restart the SQL Server service after the commands have finished running.</div>
+            <div class="admonition-content">In these commands, be sure to replace old_name with the old name of the server and new_name with the new name. By default, the old name is <code>MININT-F36S5EH</code>, but you can run select @@servername to get the old name. Additionally, be sure to restart the SQL Server service after the commands have finished running.</div>
         </div>
     </div>
 <ul>
@@ -5112,7 +5112,7 @@ Please follow <a href="#7-for-vhd-that-was-released-for-versions-10024-and-later
 <p>From the Start menu, open Microsoft Azure Storage Emulator - v4.0, and run the following commands.</p>
 <p><code>AzureStorageEmulator.exe start</code></p>
 <blockquote>
-<p>If you got an error <strong><em>Port conflict with existing application</em></strong>, please check this <a href="../2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/" rel="">post</a>.</p>
+<p>If you got an error <strong><em>Port conflict with existing application</em></strong>, please check this <a href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/" rel="">post</a>.</p>
 </blockquote>
 </li>
 <li>
@@ -5141,7 +5141,7 @@ Please follow <a href="#7-for-vhd-that-was-released-for-versions-10024-and-later
 <p>Open the <strong>web.config</strong> file in Notepad or another text editor. The following keys are of interest to many developers and administrators:</p>
 <ul>
 <li>
-<p><strong>Aos.MetadataDirectory</strong> – This key points to the location of the packages folder that contains platform and application binaries, and also source code. (Source code is available only in development environments.) Typical values are: <em>c:\packages, c:\AosServicePackagesLocalDirectory</em>, and <em>J:AosServicePackagesLocalDirectory</em>.</p>
+<p><strong>Aos.MetadataDirectory</strong> – This key points to the location of the packages folder that contains platform and application binaries, and also source code. (Source code is available only in development environments.) Typical values are: <code>c:\packages</code>, <code>c:\AosServicePackagesLocalDirectory</code>, and <code>J:AosServicePackagesLocalDirectory</code>.</p>
 </li>
 <li>
 <p><strong>DataAccess.Database</strong> – This key holds the name of the database.</p>
@@ -5156,7 +5156,7 @@ Please follow <a href="#7-for-vhd-that-was-released-for-versions-10024-and-later
 <p>To restart the local runtime and redeploy all the packages, follow these steps.</p>
 <ol>
 <li>
-<p>Open File Explorer, and go to <em>C:\CustomerServiceUnit</em>.</p>
+<p>Open File Explorer, and go to <code>C:\CustomerServiceUnit</code>.</p>
 </li>
 <li>
 <p>Right-click <strong>AOSDeploy.cmd</strong>, and then click <strong>Run as administrator</strong>.</p>
@@ -5164,9 +5164,7 @@ Please follow <a href="#7-for-vhd-that-was-released-for-versions-10024-and-later
 </ol>
 <p>This process might take a while. The process is completed when the cmd.exe window closes. If you just want to restart AOS (without redeploying the runtime), run iisreset from an administrator Command Prompt window, or restart AOSWebApplication from IIS.</p>
 <h2 id="6-update-to-the-latest-version">6. Update to the latest version</h2>
-<p>Please check this document
-<a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/deployment/install-deployable-package" target="_blank" rel="noopener noreffer ">https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/deployment/install-deployable-package</a></p>
-<p>update for virtual hard drive (VHD) that was released for versions 10.0.24</p>
+<p>Please check this <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/deployment/install-deployable-package" target="_blank" rel="noopener noreffer ">document</a> for versions 10.0.24</p>
 <h2 id="7-for-vhd-that-was-released-for-versions-10024-and-later">7. For (VHD) that was released for versions 10.0.24 and later</h2>
 <h3 id="71-register-a-new-application-in-azure-active-directory">7.1 Register a new application in Azure Active Directory</h3>
 <p>To register a new application in Microsoft Azure Active Directory (Azure AD), follow the steps outlined in <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app" target="_blank" rel="noopener noreffer ">Register app or web API</a>. The new app registration should be for a web application, and the following redirect URIs should be added:</p>
@@ -5194,29 +5192,52 @@ Please follow <a href="#7-for-vhd-that-was-released-for-versions-10024-and-later
     <pubDate>Sun, 05 Apr 2020 00:00:00 &#43;0000</pubDate>
     <author>Max Nguyen</author>
     <guid>https://nuxulu.com/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/</guid>
-    <description><![CDATA[<p>The Microsoft Azure storage emulator is a tool that emulates the Azure Blob, Queue, and Table services for local development purposes. You can test your application against the storage services locally without creating an Azure subscription or incurring any costs. When you&rsquo;re satisfied with how your application is working in the emulator, switch to using an Azure storage account in the cloud.</p>
+    <description><![CDATA[<ul>
+<li><a href="#1-reason" rel="">1. Reason</a></li>
+<li><a href="#2-resolution" rel="">2. Resolution</a>
+<ul>
+<li><a href="#21-to-determine-the-conflict-program-we-can-use-this-command-in-cmd" rel="">2.1. To determine the conflict program we can use this command in CMD</a></li>
+<li><a href="#22-to-change-the-default-port-for-azure-storage-emulator" rel="">2.2. To change the default port for Azure storage Emulator</a></li>
+</ul>
+</li>
+</ul>
+<p>The Microsoft Azure storage emulator is a tool that emulates the Azure Blob, Queue, and Table services for local development purposes. You can test your application against the storage services locally without creating an Azure subscription or incurring any costs. When you&rsquo;re satisfied with how your application is working in the emulator, switch to using an Azure storage account in the cloud.</p>
 <p>In Dynamics 365 finance and operations onebox environment, we also use Microsoft Azure Storage Emulator for same purposes. There is a common problem when you try to start its service or using Data entity Import/Export</p>
-<p></p>
-<p>Port conflict with existing application
-{:.error}</p>
-<h2 id="reason">Reason</h2>
+<p><figure><a class="lightgallery" href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-1.png" title="Image" data-thumbnail="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-1.png" data-sub-html="<h2>Azure-Storage-Emulator-Port-conflict-with-existing-application</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Azure-Storage-Emulator-Port-conflict-with-existing-application</figcaption>
+    </figure></p>
+<p><code>Port conflict with existing application</code></p>
+<h2 id="1-reason">1. Reason</h2>
 <p>By default, Azure storage emulator is using port number 10000, 10001, 10002 for Blob, Queue and Table services respectively. And there is a progress/system takes those ports already, so you are not able to start its service.
 We can simply use this command in CMD to see which one has conflict</p>
 <p><code>netstat -p tcp -ano | findstr :10001</code></p>
-<p></p>
+<p><figure><a class="lightgallery" href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-2.png" title="Image" data-thumbnail="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-2.png" data-sub-html="<h2>Azure-Storage-Emulator-Port-conflict-with-existing-application</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Azure-Storage-Emulator-Port-conflict-with-existing-application</figcaption>
+    </figure></p>
 <p>The process ID 4 is currently taking port 10001.</p>
-<h2 id="resolution">Resolution</h2>
+<h2 id="2-resolution">2. Resolution</h2>
 <p>You can either terminate the conflict program or change the default port for Azure Storage Emulator.</p>
-<h3 id="to-determine-the-conflict-program-we-can-use-this-command-in-cmd">To determine the conflict program we can use this command in CMD</h3>
+<h3 id="21-to-determine-the-conflict-program-we-can-use-this-command-in-cmd">2.1. To determine the conflict program we can use this command in CMD</h3>
 <p>Run following command to check which application/process has the same port, then simply go to task manager and terminate it.</p>
 <p><code>tasklist /fi &quot;pid eq 4&quot;</code></p>
-<p></p>
-<h3 id="to-change-the-default-port-for-azure-storage-emulator">To change the default port for Azure storage Emulator</h3>
+<p><figure><a class="lightgallery" href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-5.png" title="Image" data-thumbnail="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-5.png" data-sub-html="<h2>Azure-Storage-Emulator-Port-conflict-with-existing-application</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Azure-Storage-Emulator-Port-conflict-with-existing-application</figcaption>
+    </figure></p>
+<h3 id="22-to-change-the-default-port-for-azure-storage-emulator">2.2. To change the default port for Azure storage Emulator</h3>
 <p>Go to your storage emulator default installation folder, which is located at <em><strong>C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator</strong></em>, open the <strong>AzureStorageEmulator.exe.config</strong> by notepad and edit the port number to different number</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-4.png" title="Image" data-thumbnail="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-4.png" data-sub-html="<h2>Azure-Storage-Emulator-Port-conflict-with-existing-application</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Azure-Storage-Emulator-Port-conflict-with-existing-application</figcaption>
+    </figure></p>
 <p>When done, try to start its service again using</p>
 <p><code>AzureStorageEmulator.exe start</code></p>
-<p></p>
+<p><figure><a class="lightgallery" href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-3.png" title="Image" data-thumbnail="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-3.png" data-sub-html="<h2>Azure-Storage-Emulator-Port-conflict-with-existing-application</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Azure-Storage-Emulator-Port-conflict-with-existing-application</figcaption>
+    </figure></p>
 <p>Thank you for reading.</p>
 ]]></description>
 </item>
@@ -5573,7 +5594,8 @@ We can simply use this command in CMD to see which one has conflict</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>Thank you for reading.</p>]]></description>
+</div><p>Thank you for reading.</p>
+]]></description>
 </item>
 <item>
     <title>Microsoft Dynamics AX 2012 Update Process</title>
@@ -5686,7 +5708,7 @@ For information about using non-default schemas, read How to: Create, Drop, or R
     </div>
 <p></p>
 <p>The reason is the temporary XML file where the metadata stored which mismatches with the metadata from <code>https://&lt;yourenvironment&gt;.cloudax.dynamics.com/data/$metadata</code></p>
-<p>You can follow this <a href="https://nuxulu.com/2019/12/16/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET.html" target="_blank" rel="noopener noreffer ">post</a> to understand how to create the XML file.</p>
+<p>You can follow this <a href="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/" rel="">post</a> to understand how to create the XML file.</p>
 <p>If you try to regenerate the metadata by saving the <strong>ODataClient.tt</strong> file, the XML will be accumulated, and the error keeps happening.
 The resolution here is simply delete it and regenerate metadata again by saving the <strong>ODataClient.tt</strong> file</p>
 <p></p>
@@ -5754,10 +5776,16 @@ The resolution here is simply delete it and regenerate metadata again by saving 
 Please follow <a href="https://docs.microsoft.com/en-us/azure/sql-database/sql-database-single-database-get-started?tabs=azure-portal" target="_blank" rel="noopener noreffer ">this document to create Azure SQL DB</a>.</p>
 <p>We need at least <strong>5 GB storage for Database</strong>, for Pricing tier, I will recommend using from S1, and name the database AxDB</p>
 <p>This is my DB property</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_1.png" title="Image" data-thumbnail="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_1.png" data-sub-html="<h2>Enable-Power-BI-Embedded-in-cloud-hosted</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Enable-Power-BI-Embedded-in-cloud-hosted</figcaption>
+    </figure></p>
 <p>I’m using Premium tier because I want to use <strong>the Columnstore Clustered indexes</strong> in Database; it helps performance a little bit faster.
 Once you have the Azure SQL Database, we can use SSMS to connect to the database and create a user for that DB. You need to get <strong>the user and password information in LCS</strong>, where the cloud-hosted provisioned.</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_2.png" title="Image" data-thumbnail="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_2.png" data-sub-html="<h2>Enable-Power-BI-Embedded-in-cloud-hosted</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Enable-Power-BI-Embedded-in-cloud-hosted</figcaption>
+    </figure></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -5848,14 +5876,23 @@ Once you have the Azure SQL Database, we can use SSMS to connect to the database
 <p>In Dynamics 365 for finance and operations, navigate to <em>System administration &gt; Setup &gt; Entity Store</em>, select all the <strong>entity store</strong>, and click refresh.</p>
 <p>Allow this process to complete in the background (~5 - 10mins).  You can monitor the status of the background process using the Batch jobs.</p>
 <p>Once the Progress is made, you can check the event message in the same form to make sure the refreshing working properly</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_3.png" title="Image" data-thumbnail="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_3.png" data-sub-html="<h2>Enable-Power-BI-Embedded-in-cloud-hosted</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Enable-Power-BI-Embedded-in-cloud-hosted</figcaption>
+    </figure></p>
 <h2 id="5-powerbi-configuration-this-is-optional">5. PowerBI configuration (this is optional)</h2>
 <p>Configuring power BI for the workspace; please follow the document <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/analytics/configure-power-bi-integration" target="_blank" rel="noopener noreffer ">here</a></p>
 <p>This is what you should have after the setup</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_4.png" title="Image" data-thumbnail="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_4.png" data-sub-html="<h2>Enable-Power-BI-Embedded-in-cloud-hosted</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Enable-Power-BI-Embedded-in-cloud-hosted</figcaption>
+    </figure></p>
 <h2 id="check-the-result">Check the result</h2>
 <p>If you want to check the result, go to <em>Workspaces &gt; Customer credit and collections &gt; Analytics all companies</em></p>
-<p></p>
+<p><figure><a class="lightgallery" href="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_5.png" title="Image" data-thumbnail="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_5.png" data-sub-html="<h2>Enable-Power-BI-Embedded-in-cloud-hosted</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Enable-Power-BI-Embedded-in-cloud-hosted</figcaption>
+    </figure></p>
 <p>Thank you for reading.</p>
 ]]></description>
 </item>
@@ -5865,15 +5902,20 @@ Once you have the Azure SQL Database, we can use SSMS to connect to the database
     <pubDate>Mon, 16 Dec 2019 00:00:00 &#43;0000</pubDate>
     <author>Max Nguyen</author>
     <guid>https://nuxulu.com/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/</guid>
-    <description><![CDATA[<h1 id="1-authentication">1. Authentication</h1>
+    <description><![CDATA[<h2 id="1-authentication">1. Authentication</h2>
+<hr>
 <p>We need an authentication to connect Dynamics 365 finance and operations from .Net application by using service principal.</p>
 <p>How to create an app registration in Azure <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/app-registrations-training-guide-for-app-registrations-legacy-users" target="_blank" rel="noopener noreffer ">https://docs.microsoft.com/en-us/azure/active-directory/develop/app-registrations-training-guide-for-app-registrations-legacy-users</a></p>
 <p>You also need to add required permissions for Dynamics 365 finance and operations, please follow<br>
 <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/services-home-page#register-a-web-application-with-aad" target="_blank" rel="noopener noreffer ">https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/services-home-page#register-a-web-application-with-aad</a></p>
 <p>This is what you should have</p>
-<p></p>
-<h1 id="2-register-your-external-application">2. Register your external application</h1>
-<h3 id="a-in-the-finops-application-go-to-system-administration--setup--azure-active-directory-applications">a. In the FinOps application, go to <strong>System administration &gt; Setup &gt; Azure Active Directory applications</strong>.</h3>
+<p><figure><a class="lightgallery" href="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_1.png" title="Image" data-thumbnail="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_1.png" data-sub-html="<h2>Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET</figcaption>
+    </figure></p>
+<h2 id="2-register-your-external-application">2. Register your external application</h2>
+<hr>
+<h3 id="a-in-the-finops-application-go-to-system-administration--setup--azure-active-directory-applications">a. In the FinOps application, go to <code>System administration &gt; Setup &gt; Azure Active Directory applications</code>.</h3>
 <h3 id="bselect-new">b.	Select <strong>New</strong>.</h3>
 <h3 id="cfill-in-the-fields-for-the-new-record">c.	Fill in the fields for the new record:</h3>
 <ul>
@@ -5882,22 +5924,28 @@ Once you have the Azure SQL Database, we can use SSMS to connect to the database
 <li>In the <strong>User ID field</strong>, select an appropriate service account user ID. For this example, we have selected the Admin user. However, as a better practice, you should provision a dedicated service account that has the correct permissions for the operations that must be performed. When you&rsquo;ve finished, select <strong>Save</strong>.</li>
 </ul>
 <p>You&rsquo;ve now finished setting up the prerequisites. After the external application retrieves an Azure AD authentication token, it should now be able to use the token in an authorization HTTP header to make subsequent service calls via OData or SOAP, for example.</p>
-<h1 id="3-odata-client-configuration">3. OData client configuration</h1>
+<h2 id="3-odata-client-configuration">3. OData client configuration</h2>
 <ul>
 <li>Download the project here <a href="https://github.com/microsoft/Dynamics-AX-Integration" target="_blank" rel="noopener noreffer ">https://github.com/microsoft/Dynamics-AX-Integration</a></li>
 <li>Open <strong>ServiceSamples</strong> solution.</li>
 <li>We cannot use existing proxies and classes, so I need to regenerate them again. Under ODataUtility project, delete <strong>ODataClient.tt</strong> and <strong>ODataClient.ttinclude</strong>.</li>
-<li>To regenerate Odata client, right click on <em>ODataUtility project &gt; Add &gt; New item</em>, search for OData in Online and rename it to <strong>ODataClient.tt</strong>.</li>
-<li>Open <strong>ODataClient.tt</strong>, in MetadataDocumentUri add <em>&ldquo;https://<yourEnvironment>.cloudax.dynamics.com/data/$metadata&rdquo;</em></li>
+<li>To regenerate Odata client, right click on <code>ODataUtility project &gt; Add &gt; New item</code>, search for OData in Online and rename it to <strong>ODataClient.tt</strong>.</li>
+<li>Open <strong>ODataClient.tt</strong>, in MetadataDocumentUri add <code>https://&lt;yourEnvironment&gt;.cloudax.dynamics.com/data/$metadata</code></li>
 </ul>
 <p>If you save the ODataClient.tt file, it will generate Odata proxies and classes. From PU12 onward, there are so many entities so you will get an error after compiling</p>
 <p><code>Combined length of user strings used by the program exceeds allowed limit. Try to decrease use of string literals.</code></p>
 <p>There are 2 ways to fix it</p>
 <h3 id="a-using-temporary-file">a. Using temporary file</h3>
 <p>The simplest way to fix is add TempFilePath, ensure that you have write permission for this path, this is what you got</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_2.png" title="Image" data-thumbnail="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_2.png" data-sub-html="<h2>Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET</figcaption>
+    </figure></p>
 <p>Save the <strong>ODataClient.tt</strong> and there will be <strong>Test1.xml</strong> file created to store metadata, there should be a bug while generating the xml file, one more step you need to do is replace the double quote to single quote (a global replace of &quot;&quot; with &quot; ), and this is what you have</p>
-<p>
+<p><figure><a class="lightgallery" href="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_3.png" title="Image" data-thumbnail="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_3.png" data-sub-html="<h2>Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET</figcaption>
+    </figure>
 You can build the project without problem.</p>
 <h3 id="b-remove-unused-entities">b. Remove unused entities</h3>
 <p>Another work-around that works too, edit the ODataClient.ttinclude so that it parses only some of the entities that you want to use, this reducing the error. For instance, change the following foreach statement</p>
@@ -5977,13 +6025,16 @@ You can build the project without problem.</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="4-authentication-configuration">4. Authentication configuration</h1>
+</div><h2 id="4-authentication-configuration">4. Authentication configuration</h2>
 <p>Under AuthenticationUtility project, you need to modify ClientConfiguration.cs follow, you can get all related information for the first step.</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_4.png" title="Image" data-thumbnail="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_4.png" data-sub-html="<h2>Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET</figcaption>
+    </figure></p>
 <p>From now, you can freely test the integrations under <strong>ODataConsoleApplication</strong> project.
 If you are testing with a custom data entity and you get this error</p>
 <p><code>System.ArgumentOutOfRangeException : Length cannot be less than zero.</code></p>
-<p>Please check this <a href="https://nuxulu.com/2019/12/17/Dynamics-365-finance-and-operations-ODATA-consuming-Length-cannot-be-less-than-zero.html" target="_blank" rel="noopener noreffer ">post</a>.</p>
+<p>Please check this <a href="/2019-12-17-dynamics-365-finance-and-operations-odata-consuming-length-cannot-be-less-than-zero/" rel="">post</a>.</p>
 <p>Thank you for reading.</p>
 ]]></description>
 </item>
@@ -5997,7 +6048,7 @@ If you are testing with a custom data entity and you get this error</p>
 <p>There are 3 types of business events: <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/business-events/app-business-events" target="_blank" rel="noopener noreffer ">Application business events</a>, <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/business-events/business-events-workflow" target="_blank" rel="noopener noreffer ">Workflow business events</a>, and <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/business-events/alerts-business-events" target="_blank" rel="noopener noreffer ">Alerts as business events</a>. You can also implement <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/business-events/business-events-dev-doc" target="_blank" rel="noopener noreffer ">a new business event</a>.</p>
 <p>Business events can be consumed using Microsoft Flow and Azure messaging services, and we use endpoint to manage the destinations for sending business events to, Microsoft supports many endpoints: Azure Service Bus Queue, Azure Service Bus Topic, Azure Event Grid, Azure Event Hub, HTTPS, Microsoft Flow.
 In this article I will show how to send business event to HTTPs endpoint that leveraging on Azure functions.</p>
-<p>The scenario: Once a free text invoice is posted, Business event will be triggered and send messages to the HTTPs endpoint.</p>
+<p><strong>The scenario</strong>: Once a free text invoice is posted, Business event will be triggered and send messages to the HTTPs endpoint.</p>
 <h2 id="1-https-and-azure-function">1. HTTPs and Azure function</h2>
 <p>Ideally, I will create a new Azure function which has HTTPs endpoint to subscribe the business events in FinOps.
 To create Azure function please follow this <a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-azure-function" target="_blank" rel="noopener noreffer ">https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-azure-function</a></p>
@@ -6032,11 +6083,17 @@ To create Azure function please follow this <a href="https://docs.microsoft.com/
 </div>
 </div><p>This basically listens the JSON messages from Business events and display the Json message at Console.</p>
 <p>From the Azure function you can get the HTTPs endpoint, save it for later reference.</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_1.png" title="Image" data-thumbnail="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_1.png" data-sub-html="<h2>Business-events-and-HTTPs-endpoint</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Business-events-and-HTTPs-endpoint</figcaption>
+    </figure></p>
 <h2 id="2-application-registration-int-aad">2. Application registration int AAD</h2>
 <p>We need an application to authenticate with FinOps and Azure function HTTPs.
 Go to <em>Azure portal &gt; AAD &gt; App registrations &gt; New registration</em></p>
-<p></p>
+<p><figure><a class="lightgallery" href="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_2.png" title="Image" data-thumbnail="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_2.png" data-sub-html="<h2>Business-events-and-HTTPs-endpoint</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Business-events-and-HTTPs-endpoint</figcaption>
+    </figure></p>
 <ul>
 <li>Name of the application.</li>
 <li>Depend on you have multitenant or not</li>
@@ -6044,38 +6101,71 @@ Go to <em>Azure portal &gt; AAD &gt; App registrations &gt; New registration</em
 </ul>
 <h3 id="api-permissions">API Permissions</h3>
 <p>Go to the newly created application &gt; API permissions and adding permission as below</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_3.png" title="Image" data-thumbnail="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_3.png" data-sub-html="<h2>Business-events-and-HTTPs-endpoint</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Business-events-and-HTTPs-endpoint</figcaption>
+    </figure></p>
 <h3 id="secrets">Secrets</h3>
 <p>Go to Certificates &amp; secrets menu item and create a new client secret</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_4.png" title="Image" data-thumbnail="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_4.png" data-sub-html="<h2>Business-events-and-HTTPs-endpoint</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Business-events-and-HTTPs-endpoint</figcaption>
+    </figure></p>
 <p>After this you will have <strong>Application Id and Application Secret</strong>, save it for later.</p>
 <h2 id="3-key-vaults">3. Key Vaults</h2>
 <p>In Azure portal create a new keyVault to store the HTTPs endpoint URL information</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_5.png" title="Image" data-thumbnail="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_5.png" data-sub-html="<h2>Business-events-and-HTTPs-endpoint</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Business-events-and-HTTPs-endpoint</figcaption>
+    </figure></p>
 <h3 id="access-policy">Access policy</h3>
 <p>Click next to create access policy (you also can set up this later after creating Key Vault)</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_6.png" title="Image" data-thumbnail="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_6.png" data-sub-html="<h2>Business-events-and-HTTPs-endpoint</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Business-events-and-HTTPs-endpoint</figcaption>
+    </figure></p>
 <p>Select all the permissions in Key, Secret and Certificate, In select principal choose the application you have created before.</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_7.png" title="Image" data-thumbnail="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_7.png" data-sub-html="<h2>Business-events-and-HTTPs-endpoint</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Business-events-and-HTTPs-endpoint</figcaption>
+    </figure></p>
 <h3 id="key-vault-secret">Key Vault secret</h3>
 <p>Go to the newly <em>created Key vault &gt; secrets &gt; generate a new one</em></p>
-<p></p>
+<p><figure><a class="lightgallery" href="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_8.png" title="Image" data-thumbnail="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_8.png" data-sub-html="<h2>Business-events-and-HTTPs-endpoint</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Business-events-and-HTTPs-endpoint</figcaption>
+    </figure></p>
 <p>Value is the endpoint URL for D365 to call the one we got from the first step.
 After this step you will have the Key vault DNS name <em><a href="https://maxfokeyvault.vault.azure.net/" target="_blank" rel="noopener noreffer ">https://maxfokeyvault.vault.azure.net/</a></em> and Key Vault secret name <em>D365VaultSecretName</em>
 That information will be needed for Business events configuration in Dynamics 365 finance and operations</p>
 <h2 id="4-creating-https-endpoint">4. Creating HTTPs endpoint</h2>
 <p>Go to <em>System administrator &gt; Business events &gt; Business events catalog</em>, Click on <strong>Endpoints</strong> in <strong>Endpoint type</strong> choose <em>HTTPS</em> and <strong>click Next</strong>. Fill all the required information that you got from above steps.</p>
 <p>Click on <strong>Business events catalog</strong>, look for business event Id <em>CustFreeTextInvoicePostedBusinessEvent</em>, check the record and click <strong>Active</strong>; from there choose legal entity and the Endpoint that we have just created.</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_9.png" title="Image" data-thumbnail="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_9.png" data-sub-html="<h2>Business-events-and-HTTPs-endpoint</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Business-events-and-HTTPs-endpoint</figcaption>
+    </figure></p>
 <p>After that, if you check on <strong>Active events tab</strong>, there will be a new record created.
 That&rsquo;s it, now I will create a free text invoice and post it, this is what I got from the console log in Azure.</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_10.png" title="Image" data-thumbnail="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_10.png" data-sub-html="<h2>Business-events-and-HTTPs-endpoint</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Business-events-and-HTTPs-endpoint</figcaption>
+    </figure></p>
 <p>With the JSON messages, you can deserialize it and save to Cosmos DB or do whatever in Azure function.</p>
 <h2 id="5-about-platform-changes">5. About platform changes</h2>
 <p>Before PU26, Business event run in batch, following menu <em>System admin &gt; Business events &gt; Start business events batch job</em></p>
-<p>
-
-</p>
+<p><figure><a class="lightgallery" href="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_11.png" title="Image" data-thumbnail="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_11.png" data-sub-html="<h2>Business-events-and-HTTPs-endpoint</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Business-events-and-HTTPs-endpoint</figcaption>
+    </figure>
+<figure><a class="lightgallery" href="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_12.png" title="Image" data-thumbnail="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_12.png" data-sub-html="<h2>Business-events-and-HTTPs-endpoint</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Business-events-and-HTTPs-endpoint</figcaption>
+    </figure>
+<figure><a class="lightgallery" href="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_13.png" title="Image" data-thumbnail="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_13.png" data-sub-html="<h2>Business-events-and-HTTPs-endpoint</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Business-events-and-HTTPs-endpoint</figcaption>
+    </figure></p>
 <p>In <strong>BusinessEventsParameters</strong>, the value will be <code>Enabled = 0 , BatchEnabled = 1</code>.</p>
 <p>After PU26, the sending business events will be triggered directly from FinOps, you won&rsquo;t find the menu System admin &gt; Business events &gt; Start business events batch job</p>
 <p>In <strong>BusinessEventsParameters</strong>, the value will be <code>Enabled = 1 , BatchEnabled = 0</code>.
@@ -6096,20 +6186,23 @@ This can be done from POSTMAN too and you need to use header and body as you see
 <p>For basic setting up Dynamics 365 for finance and operations and Postman please follow <a href="https://docs.microsoft.com/en-us/dynamics365/unified-operations/dev-itpro/data-entities/third-party-service-test" target="_blank" rel="noopener noreffer ">this offical document</a></p>
 <h3 id="1-get-dynamics-365-for-finance-and-operations-authorization">1. Get Dynamics 365 for finance and operations authorization</h3>
 <p>This is a result</p>
-<figure class='center'>
-  <a href="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_1.png"></a>
-</figure>
+<p><figure><a class="lightgallery" href="/2019-10-15-insert-multiple-records-in-single-request-using-odata-from-postman/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_1.png" title="Insert-multiple-records" data-thumbnail="/2019-10-15-insert-multiple-records-in-single-request-using-odata-from-postman/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_1.png" data-sub-html="<h2>2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_1.png</h2><p>Insert-multiple-records</p>">
+        
+    </a><figcaption class="image-caption">2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_1.png</figcaption>
+    </figure></p>
 <h3 id="2-create-a-new-post-request-in-postman-with-header">2. Create a new POST request in Postman with header</h3>
-<figure class='center'>
-  <a href="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_2.png"></a>
-</figure>
-<p><em><strong>URL: {{resource}}/data/$batch</strong></em>
-<em><strong>Content-Type: multipart/mixed;boundary=batch_d63a-e9be-2927</strong></em></p>
+<p><figure><a class="lightgallery" href="/2019-10-15-insert-multiple-records-in-single-request-using-odata-from-postman/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_2.png" title="Insert-multiple-records" data-thumbnail="/2019-10-15-insert-multiple-records-in-single-request-using-odata-from-postman/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_2.png" data-sub-html="<h2>2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_2.png</h2><p>Insert-multiple-records</p>">
+        
+    </a><figcaption class="image-caption">2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_2.png</figcaption>
+    </figure></p>
+<p><code>URL: {{resource}}/data/$batch*</code></p>
+<p><code>Content-Type: multipart/mixed;boundary=batch_d63a-e9be-2927</code></p>
 <h3 id="3-modify-the-body-in-postman">3. Modify the Body in Postman</h3>
 <p>I will place 2 records for customer groups</p>
-<figure class='center'>
-  <a href="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_3.png"></a>
-</figure>
+<p><figure><a class="lightgallery" href="/2019-10-15-insert-multiple-records-in-single-request-using-odata-from-postman/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_3.png" title="Insert-multiple-records" data-thumbnail="/2019-10-15-insert-multiple-records-in-single-request-using-odata-from-postman/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_3.png" data-sub-html="<h2>2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_3.png</h2><p>Insert-multiple-records</p>">
+        
+    </a><figcaption class="image-caption">2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_3.png</figcaption>
+    </figure></p>
 <p>Full text here</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -6184,9 +6277,10 @@ This can be done from POSTMAN too and you need to use header and body as you see
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Click send and this is what you got from response</p>
-<figure class='center'>
-  <a href="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_4.png"></a>
-</figure>
+<p><figure><a class="lightgallery" href="/2019-10-15-insert-multiple-records-in-single-request-using-odata-from-postman/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_4.png" title="Insert-multiple-records" data-thumbnail="/2019-10-15-insert-multiple-records-in-single-request-using-odata-from-postman/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_4.png" data-sub-html="<h2>2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_4.png</h2><p>Insert-multiple-records</p>">
+        
+    </a><figcaption class="image-caption">2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_4.png</figcaption>
+    </figure></p>
 <p>Full Response</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -6301,9 +6395,10 @@ This can be done from POSTMAN too and you need to use header and body as you see
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Check the data in Dynamics 365 for finance and operations</p>
-<figure class='center'>
-  <a href="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_5.png"></a>
-</figure>
+<p><figure><a class="lightgallery" href="/2019-10-15-insert-multiple-records-in-single-request-using-odata-from-postman/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_5.png" title="Insert-multiple-records" data-thumbnail="/2019-10-15-insert-multiple-records-in-single-request-using-odata-from-postman/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_5.png" data-sub-html="<h2>2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_5.png</h2><p>Insert-multiple-records</p>">
+        
+    </a><figcaption class="image-caption">2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_5.png</figcaption>
+    </figure></p>
 <p>Note: refer this article for an C# example:
 <a href="https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/odata#run-multiple-requests-in-a-single-transaction" target="_blank" rel="noopener noreffer ">https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/odata#run-multiple-requests-in-a-single-transaction</a></p>
 <p>Thank you for reading.</p>
@@ -6315,7 +6410,18 @@ This can be done from POSTMAN too and you need to use header and body as you see
     <pubDate>Thu, 10 Oct 2019 00:00:00 &#43;0000</pubDate>
     <author>Max Nguyen</author>
     <guid>https://nuxulu.com/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/</guid>
-    <description><![CDATA[<p>In this article, I will show the procedure for the SSRS Reports development and customization in Dynamics 365 finance and operations (Version 8.1 and above).</p>
+    <description><![CDATA[<ul>
+<li><a href="#1-adding-a-new-field" rel="">1. Adding a new field</a></li>
+<li><a href="#2-duplicate-the-report" rel="">2. Duplicate the report</a></li>
+<li><a href="#3-modifythe-report-design-right-click-on-report-dataset-and-choose-restore-to-refresh-the-new-field" rel="">3. Modify the report design, right click on report dataset and choose restore to refresh the new field</a></li>
+<li><a href="#4-create-a-new-extension-classthat-extends-the-standard-report-controller-class" rel="">4. Create a new Extension class that extends the standard report controller class.</a></li>
+<li><a href="#5-create-new-report-handler-class" rel="">5. Create new report handler class</a></li>
+<li><a href="#6-add-a-delegate-handler-method-to-start-to-use-your-custom-report" rel="">6. Add a delegate handler method to start to use your custom report.</a></li>
+<li><a href="#7-create-extension-for-the-existing-menu-items" rel="">7. Create extension for the existing menu items</a></li>
+<li><a href="#8-update-the-print-management-settings-to-use-the-custom-business-document" rel="">8. Update the Print management settings to use the custom business document</a></li>
+<li><a href="#9-run-report-and-test-the-result" rel="">9. Run report and test the result</a></li>
+</ul>
+<p>In this article, I will show the procedure for the SSRS Reports development and customization in Dynamics 365 finance and operations (Version 8.1 and above).</p>
 <p>The scenario is you would like to extend <strong>the customer account statement</strong> report with 2 main tasks</p>
 <ul>
 <li><a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/analytics/custom-designs-business-docs?toc=/dynamics365/commerce/toc.json" target="_blank" rel="noopener noreffer ">Create custom design for the report</a></li>
@@ -6325,25 +6431,29 @@ This can be done from POSTMAN too and you need to use header and body as you see
 <p>The steps</p>
 <h3 id="1-adding-a-new-field">1. Adding a new field</h3>
 <p>The main temp table is <strong>CustAccountStatementExtTmp</strong>, right click and create an extension; I&rsquo;m going to add a new string field <strong>MaxTxT</strong></p>
-<figure class='center'>
-  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_1.png"></a>
-</figure>
+<p><figure><a class="lightgallery" href="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_1.png" title="Extend-the-standard-reports" data-thumbnail="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_1.png" data-sub-html="<h2>2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_1.png</h2><p>Extend-the-standard-reports</p>">
+        
+    </a><figcaption class="image-caption">2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_1.png</figcaption>
+    </figure></p>
 <h3 id="2-duplicate-the-report">2. Duplicate the report</h3>
 <p>Duplicate the <strong>CustAccountStatementExt</strong> report in <em>the Application explorer &gt; AOT &gt; Reports &gt; CustAccountStatementExt</em> as shown in below screen shot:</p>
-<figure class='center'>
-  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_2.png"></a>
-</figure>
+<p><figure><a class="lightgallery" href="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_2.png" title="Extend-the-standard-reports" data-thumbnail="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_2.png" data-sub-html="<h2>2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_2.png</h2><p>Extend-the-standard-reports</p>">
+        
+    </a><figcaption class="image-caption">2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_2.png</figcaption>
+    </figure></p>
 <p>Rename the report and provide any appropriate name: <strong>MaxCustAccountStatementExt</strong></p>
 <h3 id="3-modifythe-report-design-right-click-on-report-dataset-and-choose-restore-to-refresh-the-new-field">3. Modify the report design, right click on report dataset and choose restore to refresh the new field</h3>
-<figure class='center'>
-  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_3.png"></a>
-</figure>
+<p><figure><a class="lightgallery" href="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_3.png" title="Extend-the-standard-reports" data-thumbnail="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_3.png" data-sub-html="<h2>2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_3.png</h2><p>Extend-the-standard-reports</p>">
+        
+    </a><figcaption class="image-caption">2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_3.png</figcaption>
+    </figure></p>
 <p>Open report designer and add that field into a table</p>
-<figure class='center'>
-  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_4.png"></a>
-</figure>
+<p><figure><a class="lightgallery" href="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_4.png" title="Extend-the-standard-reports" data-thumbnail="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_4.png" data-sub-html="<h2>2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_4.png</h2><p>Extend-the-standard-reports</p>">
+        
+    </a><figcaption class="image-caption">2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_4.png</figcaption>
+    </figure></p>
 <h3 id="4-create-a-new-extension-classthat-extends-the-standard-report-controller-class">4. Create a new Extension class that extends the standard report controller class.</h3>
-<p><em><strong>class MaxCustAccountStatementExtController_Ext extends CustAccountStatementExtController{}</strong></em></p>
+<p><code>class MaxCustAccountStatementExtController_Ext extends CustAccountStatementExtController{}</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -6417,7 +6527,7 @@ This can be done from POSTMAN too and you need to use header and body as you see
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="5-create-new-report-handler-class">5. Create new report handler class</h3>
-<p><em><strong>class MaxCustAccountStatementHandler {}</strong></em></p>
+<p><code>class MaxCustAccountStatementHandler{}</code></p>
 <p>We have two different ways to Populate the data in the Report handler class:</p>
 <ul>
 <li>Add a temp table Inserting event, row-by-row calculations.</li>
@@ -6476,7 +6586,7 @@ This can be done from POSTMAN too and you need to use header and body as you see
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="6-add-a-delegate-handler-method-to-start-to-use-your-custom-report">6. Add a delegate handler method to start to use your custom report.</h3>
-<p>In this example, extend the <em><strong>getDefaultReportFormatDelegate</strong></em> method in the <em><strong>PrintMgtDocTypeHandlerExt</strong></em> class by using the following code.</p>
+<p>In this example, extend the <code>getDefaultReportFormatDelegate</code> method in the <code>PrintMgtDocTypeHandlerExt</code> class by using the following code.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -6510,28 +6620,34 @@ This can be done from POSTMAN too and you need to use header and body as you see
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="7-create-extension-for-the-existing-menu-items">7. Create extension for the existing menu items</h3>
-<p>Navigating to the <strong>CustAccountStatementExt</strong> output menu item and create extension.</p>
-<figure class='center'>
-  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_5.png"></a>
-</figure>
-<p>Also make sure to set the value of the Object property to <strong>MaxCustAccountStatementExtController_Ext</strong> to redirect user navigation to the extended solution.</p>
+<p>Navigating to the <code>CustAccountStatementExt</code> output menu item and create extension.</p>
+<p><figure><a class="lightgallery" href="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_5.png" title="Extend-the-standard-reports" data-thumbnail="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_5.png" data-sub-html="<h2>2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_5.png</h2><p>Extend-the-standard-reports</p>">
+        
+    </a><figcaption class="image-caption">2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_5.png</figcaption>
+    </figure></p>
+<p>Also make sure to set the value of the Object property <code>to MaxCustAccountStatementExtController_Ext</code> to redirect user navigation to the extended solution.</p>
 <p>That&rsquo;s all, this is what you should have</p>
-<figure class='center'>
-  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_9.png"></a>
-</figure>
+<p><figure><a class="lightgallery" href="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_9.png" title="Extend-the-standard-reports" data-thumbnail="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_9.png" data-sub-html="<h2>2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_9.png</h2><p>Extend-the-standard-reports</p>">
+        
+    </a><figcaption class="image-caption">2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_9.png</figcaption>
+    </figure></p>
 <h3 id="8-update-the-print-management-settings-to-use-the-custom-business-document">8. Update the Print management settings to use the custom business document</h3>
 <p>Go to <em>Account payable &gt; Inquiries and reports &gt; Setup &gt; Forms &gt; Form setup</em>
 Click <strong>Print Management</strong>, find the document configuration settings, and then select the custom design</p>
-<figure class='center'>
-  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_6.png"></a>
-</figure>
-<figure class='center'>
-  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_7.png"></a>
-</figure>
+<p><figure><a class="lightgallery" href="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_6.png" title="Extend-the-standard-reports" data-thumbnail="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_6.png" data-sub-html="<h2>2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_6.png</h2><p>Extend-the-standard-reports</p>">
+        
+    </a><figcaption class="image-caption">2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_6.png</figcaption>
+    </figure></p>
+<p><figure><a class="lightgallery" href="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_7.png" title="Extend-the-standard-reports" data-thumbnail="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_7.png" data-sub-html="<h2>2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_7.png</h2><p>Extend-the-standard-reports</p>">
+        
+    </a><figcaption class="image-caption">2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_7.png</figcaption>
+    </figure></p>
 <h3 id="9-run-report-and-test-the-result">9. Run report and test the result</h3>
-<figure class='center'>
-  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_8.png"></a>
-</figure>]]></description>
+<p><figure><a class="lightgallery" href="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_8.png" title="Extend-the-standard-reports" data-thumbnail="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_8.png" data-sub-html="<h2>2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_8.png</h2><p>Extend-the-standard-reports</p>">
+        
+    </a><figcaption class="image-caption">2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_8.png</figcaption>
+    </figure></p>
+]]></description>
 </item>
 <item>
     <title>Technical reference - Data entity - Dynamics 365 finance and operations</title>
@@ -13830,7 +13946,10 @@ Product dimensions are characteristics that serve to identify a product variant.
 <code>http://DEV-ERP:8103/DynamicsAx/Services/BCItemsMaster</code>
 <code>http://DEV-ERP:8103/DynamicsAx/Services/BCInventDimCombination</code></p>
 <h3 id="2-after-services-creation-open-visual-studio-then-creates-new-console-project-and-add-service-references-for-that-you-will-get-somethings-like-pic-below">2. After services creation, open visual studio then creates new Console project and add service References for that, you will get somethings like pic below:</h3>
-<p></p>
+<p><figure><a class="lightgallery" href="/2016-12-27-crud-items-products-products-master-dimension-variants-using-aif-in-dynamics-ax-2012-r3/CRUD-Items,-products,-products-master-dimension,-variants-using-AIF-in-Dynamics-AX-2012-R3-01.png" title="CRUD" data-thumbnail="/2016-12-27-crud-items-products-products-master-dimension-variants-using-aif-in-dynamics-ax-2012-r3/CRUD-Items,-products,-products-master-dimension,-variants-using-AIF-in-Dynamics-AX-2012-R3-01.png" data-sub-html="<h2>CRUD</h2><p>CRUD</p>">
+        
+    </a><figcaption class="image-caption">CRUD</figcaption>
+    </figure></p>
 <h3 id="3-using-cnet-to-consume-service">3. Using C#.Net to consume service</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -14947,49 +15066,49 @@ Returns the sin value</p>
 <p><code>Sinh=Sinh(Fields!EmployeeID.Value)</code>
 Returns the hyperbolic sin value</p>
 <h3 id="inspection">Inspection</h3>
-<p><code>IsArray =IsArray(Fields!EmployeeID.Value)</code></p>
+<p><code>IsArray =IsArray(Fields!EmployeeID.Value)</code></p>
 <p>Returns a boolean value indicating whether the specified object is array or not</p>
-<p><code>IsDate =IsDate(Fields!BirthDate.Value)</code></p>
+<p><code>IsDate =IsDate(Fields!BirthDate.Value)</code></p>
 <p>Returns a boolean value indicating whether the specified object is Date or not</p>
-<p><code>IsNothing =IsNothing(Fields!EmployeeID.Value)</code></p>
+<p><code>IsNothing =IsNothing(Fields!EmployeeID.Value)</code></p>
 <p>Returns a boolean value depends on specified object is Nothing or not</p>
-<p><code>IsNumeric =IsNumeric(Fields!EmployeeID.Value)</code></p>
+<p><code>IsNumeric =IsNumeric(Fields!EmployeeID.Value)</code></p>
 <p>Returns a boolean value depends on specified object is Numeric value or not</p>
 <h3 id="program-flow">Program Flow</h3>
-<p><code>Choose =CHOOSE(3, &quot;Red&quot;, &quot;Yellow&quot;, &quot;Green&quot;, &quot;White&quot;)</code></p>
+<p><code>Choose =CHOOSE(3, &quot;Red&quot;, &quot;Yellow&quot;, &quot;Green&quot;, &quot;White&quot;)</code></p>
 <p>Returns a specific value using index in a list of arguments</p>
-<p><code>IIf =IIF(Fields!EmployeeID.Value&gt;10,&quot;Yes&quot;,&quot;No&quot;)</code></p>
+<p><code>IIf =IIF(Fields!EmployeeID.Value&gt;10,&quot;Yes&quot;,&quot;No&quot;)</code></p>
 <p>Returns any one value depends on condition</p>
-<p><code>Switch =Switch(Fields!EmployeeID.Value&lt;10,&quot;Red&quot;,Fields!EmployeeID.Value&gt;10,&quot;Green&quot;)</code></p>
+<p><code>Switch =Switch(Fields!EmployeeID.Value&lt;10,&quot;Red&quot;,Fields!EmployeeID.Value&gt;10,&quot;Green&quot;)</code></p>
 <p>Evaluates list of expressions</p>
 <h3 id="aggregate">Aggregate</h3>
-<p><code>Avg =Avg(Fields!EmployeeID.Value)</code></p>
+<p><code>Avg =Avg(Fields!EmployeeID.Value)</code></p>
 <p>Returns average value for all specified values</p>
-<p><code>Count =Count(Fields!EmployeeID.Value)</code></p>
+<p><code>Count =Count(Fields!EmployeeID.Value)</code></p>
 <p>Returns count of all specified values</p>
-<p><code>CountDistinct =CountDistinct(Fields!EmployeeID.Value)</code></p>
+<p><code>CountDistinct =CountDistinct(Fields!EmployeeID.Value)</code></p>
 <p>Returns count of all distinct values</p>
-<p><code>CountRows =CountRows()</code></p>
+<p><code>CountRows =CountRows()</code></p>
 <p>Returns count of rows</p>
-<p><code>First =First(Fields!EmployeeID.Value)</code></p>
+<p><code>First =First(Fields!EmployeeID.Value)</code></p>
 <p>Returns first for all specified values</p>
-<p><code>Last =Last(Fields!EmployeeID.Value)</code></p>
+<p><code>Last =Last(Fields!EmployeeID.Value)</code></p>
 <p>Returns last for all specified values</p>
-<p><code>Max =Max(Fields!EmployeeID.Value)</code></p>
+<p><code>Max =Max(Fields!EmployeeID.Value)</code></p>
 <p>Returns max for all specified values</p>
-<p><code>Min =Min(Fields!EmployeeID.Value)</code></p>
+<p><code>Min =Min(Fields!EmployeeID.Value)</code></p>
 <p>Returns min for all specified values</p>
-<p><code>StDev =StDev(Fields!EmployeeID.Value)</code></p>
+<p><code>StDev =StDev(Fields!EmployeeID.Value)</code></p>
 <p>Returns standard deviation value</p>
-<p><code>StDevP =StDevP(Fields!EmployeeID.Value)</code></p>
+<p><code>StDevP =StDevP(Fields!EmployeeID.Value)</code></p>
 <p>Returns Population standard deviation value</p>
-<p><code>Sum =Sum(Fields!EmployeeID.Value)</code></p>
+<p><code>Sum =Sum(Fields!EmployeeID.Value)</code></p>
 <p>Returns sum of all values</p>
-<p><code>Var =Var(Fields!EmployeeID.Value)</code></p>
+<p><code>Var =Var(Fields!EmployeeID.Value)</code></p>
 <p>Returns variance of all values</p>
-<p><code>VarP =Var(Fields!EmployeeID.Value)</code></p>
+<p><code>VarP =Var(Fields!EmployeeID.Value)</code></p>
 <p>Returns population variance of all values</p>
-<p><code>RunningValue =RunningValue(Fields!EmployeeID.Value,sum,nothing)</code></p>
+<p><code>RunningValue =RunningValue(Fields!EmployeeID.Value,sum,nothing)</code></p>
 <p>Returns running aggregate of the specified
 expression</p>
 <h3 id="financial">Financial</h3>
@@ -17278,7 +17397,10 @@ Once compile complete, you can import compile log file at <code>C:\Program Files
 <p>The workflow infrastructure consists of two components that are hosted on Application Object Server (AOS): the X++ workflow run-time and the managed workflow run-time.</p>
 </li>
 </ul>
-<p>![](Workflow_system_arcitechture (1).gif)</p>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Workflow_system_arcitechture.png" title="Workflow_system_arcitechture" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Workflow_system_arcitechture.png" data-sub-html="<h2>Workflow_system_arcitechture</h2><p>Workflow_system_arcitechture</p>">
+        
+    </a><figcaption class="image-caption">Workflow_system_arcitechture</figcaption>
+    </figure></p>
 <h2 id="analytic-architecture">Analytic architecture</h2>
 <p>The following diagram shows the Microsoft SQL Server Analysis Services cubes that are included with Microsoft Dynamics AX, and the components that are used to access them.</p>
 <p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Analytic_architecture.gif" title="&amp;ldquo;Analytic_architecture&amp;rdquo;" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Analytic_architecture.gif" data-sub-html="<h2>Analytic_architecture</h2><p>&amp;ldquo;Analytic_architecture&amp;rdquo;</p>">
