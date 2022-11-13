@@ -1,0 +1,61 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>inventsum - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</title>
+        <link>https://nuxulu.com/tags/inventsum/</link>
+        <description>inventsum - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Mon, 02 Jan 2017 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/inventsum/" rel="self" type="application/rss+xml" /><item>
+    <title>Recalculate InventSum in Dynamics AX</title>
+    <link>https://nuxulu.com/2017-01-02-recalculate-inventsum/</link>
+    <pubDate>Mon, 02 Jan 2017 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2017-01-02-recalculate-inventsum/</guid>
+    <description><![CDATA[<p><code>InventSum</code> is needed to recalculate sometimes. We should use <code>InventSumRecalcItem</code> class in Dynamics AX.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="n">InventSumRecalcItem</span> <span class="n">InventSumRecalcItem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">InventSumRecalcItem</span> <span class="p">=</span> <span class="k">new</span> <span class="n">InventSumRecalcItem</span><span class="p">(</span><span class="s">&#34;ITEM001&#34;</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="n">checkfix</span><span class="p">::</span><span class="n">fix</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">InventSumRecalcItem</span><span class="p">.</span><span class="n">updatenow</span><span class="p">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>First parameter : <code>ItemId</code></p>
+<p>Second parameter : <code>Show errors</code></p>
+<p>Third parameter : <code>Fix or only check</code></p>
+<p>What if you want to calculate for all items:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="n">InventTable</span> <span class="n">InventTable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">InventSumRecalcItem</span> <span class="n">InventSumRecalcItem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">WHILE</span> <span class="n">SELECT</span> <span class="n">InventTable</span>
+</span></span><span class="line"><span class="cl">	<span class="n">WHERE</span> <span class="p">(</span><span class="n">InventTable</span><span class="p">.</span><span class="n">ItemType</span> <span class="p">==</span> <span class="n">ItemType</span><span class="p">::</span><span class="n">Item</span><span class="p">)</span> <span class="p">||</span> <span class="p">(</span><span class="n">InventTable</span><span class="p">.</span><span class="n">ItemType</span> <span class="p">==</span> <span class="n">ItemType</span><span class="p">::</span><span class="n">BOM</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">InventSumRecalcItem</span> <span class="p">=</span> <span class="k">new</span> <span class="n">InventSumRecalcItem</span><span class="p">(</span><span class="n">InventTable</span><span class="p">.</span><span class="n">ItemId</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="n">checkfix</span><span class="p">::</span><span class="n">fix</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">InventSumRecalcItem</span><span class="p">.</span><span class="n">updatenow</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This is outdate, please refer this <a href="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/" rel="">post</a>.</p>
+<p>Thank you for reading!</p>
+]]></description>
+</item>
+</channel>
+</rss>

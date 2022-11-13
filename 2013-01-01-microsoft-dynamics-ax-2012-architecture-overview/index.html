@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Architecture overview Microsoft Dynamics AX 2012 - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><meta name="Description" content="Architecture overview Microsoft Dynamics AX 2012"><meta property="og:title" content="Architecture overview Microsoft Dynamics AX 2012" />
+<meta property="og:description" content="Architecture overview Microsoft Dynamics AX 2012" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nuxulu.com/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/" /><meta property="og:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2013-01-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2013-01-01T00:00:00+00:00" /><meta property="og:site_name" content="Dynamics 365 Finance &amp; Operations" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/>
+
+<meta name="twitter:title" content="Architecture overview Microsoft Dynamics AX 2012"/>
+<meta name="twitter:description" content="Architecture overview Microsoft Dynamics AX 2012"/>
+<meta name="application-name" content="Dynamics 365 Finance &amp; Operations">
+<meta name="apple-mobile-web-app-title" content="Dynamics 365 Finance &amp; Operations"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/Icon/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://nuxulu.com/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/" /><link rel="prev" href="https://nuxulu.com/2011-01-01-start-programming/" /><link rel="next" href="https://nuxulu.com/2014-10-10-understand-model-store-architectural/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><meta name="google-site-verification" content="f08c47fec0942fa0" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Architecture overview Microsoft Dynamics AX 2012",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/nuxulu.com\/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/nuxulu.com\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "architectural, axbuild, xpp","wordcount":  966 ,
+        "url": "https:\/\/nuxulu.com\/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview\/","datePublished": "2013-01-01T00:00:00+00:00","dateModified": "2013-01-01T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/nuxulu.com\/images\/avatar.png",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Max Nguyen"
+            },"description": "Architecture overview Microsoft Dynamics AX 2012"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3534873375492458" crossorigin="anonymous"></script>
+            <a href="/" title="Dynamics 365 Finance &amp; Operations | nuxulu.com"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/Icon/favicon-32x32.png"
+        data-srcset="/Icon/favicon-32x32.png, /Icon/favicon-32x32.png 1.5x, /Icon/favicon-32x32.png 2x"
+        data-sizes="auto"
+        alt="/Icon/favicon-32x32.png"
+        title="/Icon/favicon-32x32.png" /><span class="header-title-pre">  </span>Dynamics 365 Finance &amp; Operations</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/finopsnews/"> X&#43;&#43; Feed </a><a class="menu-item" href="/erd/default.htm"> Entity Relationship </a><a class="menu-item" href="/posts/index.xml"> Rss Feed </a><a class="menu-item" href="/lab/"> Practice lab </a><a class="menu-item" href="/about/"> About me </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3534873375492458" crossorigin="anonymous"></script>
+                <a href="/" title="Dynamics 365 Finance &amp; Operations | nuxulu.com"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/Icon/favicon-32x32.png"
+        data-srcset="/Icon/favicon-32x32.png, /Icon/favicon-32x32.png 1.5x, /Icon/favicon-32x32.png 2x"
+        data-sizes="auto"
+        alt="/Icon/favicon-32x32.png"
+        title="/Icon/favicon-32x32.png" /><span class="header-title-pre">  </span>Dynamics 365 Finance &amp; Operations</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/finopsnews/" title="">X&#43;&#43; Feed</a><a class="menu-item" href="/erd/default.htm" title="">Entity Relationship</a><a class="menu-item" href="/posts/index.xml" title="">Rss Feed</a><a class="menu-item" href="/lab/" title="">Practice lab</a><a class="menu-item" href="/about/" title="">About me</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Architecture overview Microsoft Dynamics AX 2012</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-category">included in <a href="/categories/ax2012/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AX2012</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="January 1, 2013">January 1, 2013</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;966 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#system-architecture">System architecture</a>
+      <ul>
+        <li><a href="#1-application-object-server-aos-architecture">1. Application Object Server (AOS) architecture</a></li>
+        <li><a href="#2-business-connector-architecture">2. Business Connector architecture</a></li>
+        <li><a href="#3-application-file-server-architecture">3. Application file server architecture</a></li>
+      </ul>
+    </li>
+    <li><a href="#model-store-architecture">Model store architecture</a></li>
+    <li><a href="#client-architecture">Client architecture</a></li>
+    <li><a href="#clientserver-communication">Client/server communication</a></li>
+    <li><a href="#services-and-aif-architecture">Services and AIF architecture</a></li>
+    <li><a href="#enterprise-portal-architecture">Enterprise Portal architecture</a></li>
+    <li><a href="#security-architecture">Security architecture</a></li>
+    <li><a href="#workflow-system-architecture">Workflow system architecture</a></li>
+    <li><a href="#analytic-architecture">Analytic architecture</a></li>
+    <li><a href="#reporting-architecture">Reporting architecture</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>Understanding the internal architecture of Microsoft Dynamics AX 2012 can help you make decision when planning and developing a Microsoft Dynamics AX 2012 system. Here are some pointers on DAX 2012 architecture primarily for DAX 2012 architects &amp; solution developers. This topic provides a high-level overview of the system architecture of Microsoft Dynamics AX.</p>
+</blockquote>
+<h2 id="system-architecture">System architecture</h2>
+<p>This diagram provides a high-level over of a Microsoft Dynamics AX 2012 system with all components installed, and describes how communications flow between the components.</p>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/AXSystemArchitechture.gif" title="AXSystemArchitechture" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/AXSystemArchitechture.gif" data-sub-html="<h2>AXSystemArchitechture</h2><p>AXSystemArchitechture</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/AXSystemArchitechture.gif"
+            data-srcset="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/AXSystemArchitechture.gif, /2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/AXSystemArchitechture.gif 1.5x, /2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/AXSystemArchitechture.gif 2x"
+            data-sizes="auto"
+            alt="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/AXSystemArchitechture.gif" width="1174" height="968" />
+    </a><figcaption class="image-caption">AXSystemArchitechture</figcaption>
+    </figure></p>
+<h3 id="1-application-object-server-aos-architecture">1. Application Object Server (AOS) architecture</h3>
+<p>This diagram describes the functionality within the AOS Windows service, and describes how communications flow within it.</p>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/AOSWindowsService.gif" title="AOSWindowsService" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/AOSWindowsService.gif" data-sub-html="<h2>AOSWindowsService</h2><p>AOSWindowsService</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/AOSWindowsService.gif"
+            data-srcset="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/AOSWindowsService.gif, /2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/AOSWindowsService.gif 1.5x, /2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/AOSWindowsService.gif 2x"
+            data-sizes="auto"
+            alt="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/AOSWindowsService.gif" width="632" height="648" />
+    </a><figcaption class="image-caption">AOSWindowsService</figcaption>
+    </figure></p>
+<p><strong>Note</strong>: Clients communicate with an AOS by using remote procedure calls (RPCs), Windows Communication Foundation (WCF), or AOS services. In previous releases, other components and third-party programs could communicate with an AOS by using either .NET Business Connector or Application Integration Framework (AIF). For this release, we recommend that third-party programs use AOS services to communicate with AOS.</p>
+<h3 id="2-business-connector-architecture">2. Business Connector architecture</h3>
+<p>The differences between the client kernel as it runs on a standard client and a Business Connector client are:</p>
+<ul>
+<li>
+<p>The Session Manager in the client kernel manages only a single instance–in the Business Connector kernel, it manages multiple instances.</p>
+</li>
+<li>
+<p>he client kernel includes forms security, while the Business Connector kernel does not.</p>
+</li>
+</ul>
+<p>This diagram describes the architecture of the Business Connector version of the client kernel, and describes how communications flow within it.</p>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Business_Connector_Client.gif" title="&amp;ldquo;Business_Connector_Client&amp;rdquo;" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Business_Connector_Client.gif" data-sub-html="<h2>Business_Connector_Client</h2><p>&amp;ldquo;Business_Connector_Client&amp;rdquo;</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Business_Connector_Client.gif"
+            data-srcset="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Business_Connector_Client.gif, /2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Business_Connector_Client.gif 1.5x, /2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Business_Connector_Client.gif 2x"
+            data-sizes="auto"
+            alt="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Business_Connector_Client.gif" width="575" height="411" />
+    </a><figcaption class="image-caption">Business_Connector_Client</figcaption>
+    </figure></p>
+<h3 id="3-application-file-server-architecture">3. Application file server architecture</h3>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/App_file_server_architechture.gif" title="&amp;ldquo;App_file_server_architechture&amp;rdquo;" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/App_file_server_architechture.gif" data-sub-html="<h2>App_file_server_architechture</h2><p>&amp;ldquo;App_file_server_architechture&amp;rdquo;</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/App_file_server_architechture.gif"
+            data-srcset="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/App_file_server_architechture.gif, /2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/App_file_server_architechture.gif 1.5x, /2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/App_file_server_architechture.gif 2x"
+            data-sizes="auto"
+            alt="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/App_file_server_architechture.gif" width="331" height="211" />
+    </a><figcaption class="image-caption">App_file_server_architechture</figcaption>
+    </figure></p>
+<h2 id="model-store-architecture">Model store architecture</h2>
+<p>Microsoft Dynamics AX contains sixteen layers. Each layer consists of one or more logical parts called models. A model is generated for each layer. For example, VAR Model is the model that the system generates for the VAR layer. The system generated models let you install and work with the base Microsoft Dynamics AX system.</p>
+<p>When you customize the Microsoft Dynamics AX program, you can take advantage of the capabilities of models.</p>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Model_store_architecture.gif" title="&amp;ldquo;Model_store_architecture&amp;rdquo;" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Model_store_architecture.gif" data-sub-html="<h2>Model_store_architecture</h2><p>&amp;ldquo;Model_store_architecture&amp;rdquo;</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Model_store_architecture.gif"
+            data-srcset="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Model_store_architecture.gif, /2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Model_store_architecture.gif 1.5x, /2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Model_store_architecture.gif 2x"
+            data-sizes="auto"
+            alt="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Model_store_architecture.gif" width="720" height="776" />
+    </a><figcaption class="image-caption">Model_store_architecture</figcaption>
+    </figure></p>
+<p>The following table describes the application object layers in Microsoft Dynamics AX 2012:</p>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Layer.png" title="&amp;ldquo;Layer&amp;rdquo;" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Layer.png" data-sub-html="<h2>Layer</h2><p>&amp;ldquo;Layer&amp;rdquo;</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Layer.png"
+            data-srcset="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Layer.png, /2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Layer.png 1.5x, /2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Layer.png 2x"
+            data-sizes="auto"
+            alt="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Layer.png" width="499" height="389" />
+    </a><figcaption class="image-caption">Layer</figcaption>
+    </figure></p>
+<h2 id="client-architecture">Client architecture</h2>
+<p>This diagram describes the functionality within the client, and describes how communications flow within it.</p>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Client_architecture.gif" title="&amp;ldquo;Client_architecture&amp;rdquo;" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Client_architecture.gif" data-sub-html="<h2>Client_architecture</h2><p>&amp;ldquo;Client_architecture&amp;rdquo;</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Client_architecture.gif"
+            data-srcset="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Client_architecture.gif, /2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Client_architecture.gif 1.5x, /2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Client_architecture.gif 2x"
+            data-sizes="auto"
+            alt="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Client_architecture.gif" width="933" height="798" />
+    </a><figcaption class="image-caption">Client_architecture</figcaption>
+    </figure></p>
+<h2 id="clientserver-communication">Client/server communication</h2>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/ClientServer_communication.gif" title="&amp;ldquo;ClientServer_communication&amp;rdquo;" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/ClientServer_communication.gif" data-sub-html="<h2>ClientServer_communication</h2><p>&amp;ldquo;ClientServer_communication&amp;rdquo;</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/ClientServer_communication.gif"
+            data-srcset="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/ClientServer_communication.gif, /2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/ClientServer_communication.gif 1.5x, /2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/ClientServer_communication.gif 2x"
+            data-sizes="auto"
+            alt="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/ClientServer_communication.gif" width="1061" height="757" />
+    </a><figcaption class="image-caption">ClientServer_communication</figcaption>
+    </figure></p>
+<p>The client communicates with various Microsoft Dynamics AX components in the following ways:</p>
+<ul>
+<li>
+<p>The client uses the remote procedure call (RPC) protocol to communicate with Application Object Server (AOS). The client never accesses the database or metadata directly. AOS sends the application objects and data to the client.</p>
+</li>
+<li>
+<p>The data layer that the client uses is based on data sources that are specified in metadata for forms and queries. In addition, any X++ code that is required to retrieve data can use the built-in language support to query and adjust data.</p>
+</li>
+<li>
+<p>The client uses a report Web Part to interact with the report server. By calling the web services that are exposed by the report server, the report control in the Web Part displays information that is contained in Reporting Services reports. These reports can include either transnational data from the Microsoft Dynamics AX application or OLAP cubes from Microsoft SQL Server Analysis Services. Cubes provide business analytic and key performance indicators (KPIs).</p>
+</li>
+<li>
+<p>The client provides workflow forms, alerts, and controls so that users can participate in the business process by using the Workflow system. The Workflow system is a Microsoft Dynamics AX component that enables workflow processes by using Windows Communication Foundation classes.</p>
+</li>
+<li>
+<p>The client provides a Help viewer, which is an application that displays context-sensitive Help topics. The Help topics are retrieved from a Help server that is located on-premises.</p>
+</li>
+<li>
+<p>The client also provides Role Centers, or role-based home pages, for users. Role Centers provide role-specific tasks, activities, alerts, reports, and business intelligence that help users increase their productivity. To interact with the Role Centers that are provided by Enterprise Portal and hosted on Internet Information Services (IIS), the client uses a browser control.</p>
+</li>
+</ul>
+<h2 id="services-and-aif-architecture">Services and AIF architecture</h2>
+<blockquote>
+<p>AX 2012 exposes its functionality through services that are based on Windows Communication Foundation (WCF) and hosted on Application Object Server (AOS). External applications and client applications on the local area network consume AX services by accessing them directly from AOS.</p>
+</blockquote>
+<ul>
+<li>
+<p>These clients and applications include AX components such as the AX client, Office Add-, and Enterprise Portal.</p>
+</li>
+<li>
+<p>Internet-based external applications and clients access the AX services through Internet Information Services (IIS). IIS routes the incoming requests for AX services to AOS. All services requests, regardless of their origin, are handled by the WCF runtime that is hosted on AOS.</p>
+</li>
+<li>
+<p>The AIF request preprocessor, if it is configured, can intercept the inbound request messages for custom preprocessing, such as message transforms or value substitutions. The AX service invokes the necessary business logic to process the inbound request message.</p>
+</li>
+<li>
+<p>Similarly, the AIF response postprocessor, if it is configured, can intercept the outbound response messages for custom post-processing, such as message transforms or value substitutions. The AIF response postprocessor then returns the response to the client.</p>
+</li>
+</ul>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/WCF_architecture.png" title="&amp;ldquo;WCF_architecture&amp;rdquo;" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/WCF_architecture.png" data-sub-html="<h2>WCF_architecture</h2><p>&amp;ldquo;WCF_architecture&amp;rdquo;</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/WCF_architecture.png"
+            data-srcset="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/WCF_architecture.png, /2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/WCF_architecture.png 1.5x, /2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/WCF_architecture.png 2x"
+            data-sizes="auto"
+            alt="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/WCF_architecture.png" width="578" height="640" />
+    </a><figcaption class="image-caption">WCF_architecture</figcaption>
+    </figure></p>
+<h2 id="enterprise-portal-architecture">Enterprise Portal architecture</h2>
+<p>This diagram provides a logical overview of a Microsoft Dynamics AX 2012 system with an Enterprise Portal server, and also describes the various components of the Enterprise Portal architecture.</p>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/EP_Architecture.gif" title="&amp;ldquo;EP_Architecture&amp;rdquo;" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/EP_Architecture.gif" data-sub-html="<h2>EP_Architecture</h2><p>&amp;ldquo;EP_Architecture&amp;rdquo;</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/EP_Architecture.gif"
+            data-srcset="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/EP_Architecture.gif, /2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/EP_Architecture.gif 1.5x, /2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/EP_Architecture.gif 2x"
+            data-sizes="auto"
+            alt="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/EP_Architecture.gif" width="1020" height="836" />
+    </a><figcaption class="image-caption">EP_Architecture</figcaption>
+    </figure></p>
+<h2 id="security-architecture">Security architecture</h2>
+<p>This following diagram provides a high-level overview of the security architecture of Microsoft Dynamics AX 2012.</p>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Security_architecture.gif" title="&amp;ldquo;Security_architecture&amp;rdquo;" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Security_architecture.gif" data-sub-html="<h2>Security_architecture</h2><p>&amp;ldquo;Security_architecture&amp;rdquo;</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Security_architecture.gif"
+            data-srcset="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Security_architecture.gif, /2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Security_architecture.gif 1.5x, /2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Security_architecture.gif 2x"
+            data-sizes="auto"
+            alt="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Security_architecture.gif" width="722" height="756" />
+    </a><figcaption class="image-caption">Security_architecture</figcaption>
+    </figure></p>
+<h2 id="workflow-system-architecture">Workflow system architecture</h2>
+<ul>
+<li>
+<p>This following diagram provides a high-level architecture of the workflow infrastructure.</p>
+</li>
+<li>
+<p>The workflow infrastructure consists of two components that are hosted on Application Object Server (AOS): the X++ workflow run-time and the managed workflow run-time.</p>
+</li>
+</ul>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Workflow_system_arcitechture.png" title="Workflow_system_arcitechture" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Workflow_system_arcitechture.png" data-sub-html="<h2>Workflow_system_arcitechture</h2><p>Workflow_system_arcitechture</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Workflow_system_arcitechture.png"
+            data-srcset="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Workflow_system_arcitechture.png, /2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Workflow_system_arcitechture.png 1.5x, /2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Workflow_system_arcitechture.png 2x"
+            data-sizes="auto"
+            alt="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Workflow_system_arcitechture.png" width="721" height="666" />
+    </a><figcaption class="image-caption">Workflow_system_arcitechture</figcaption>
+    </figure></p>
+<h2 id="analytic-architecture">Analytic architecture</h2>
+<p>The following diagram shows the Microsoft SQL Server Analysis Services cubes that are included with Microsoft Dynamics AX, and the components that are used to access them.</p>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Analytic_architecture.gif" title="&amp;ldquo;Analytic_architecture&amp;rdquo;" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Analytic_architecture.gif" data-sub-html="<h2>Analytic_architecture</h2><p>&amp;ldquo;Analytic_architecture&amp;rdquo;</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Analytic_architecture.gif"
+            data-srcset="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Analytic_architecture.gif, /2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Analytic_architecture.gif 1.5x, /2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Analytic_architecture.gif 2x"
+            data-sizes="auto"
+            alt="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Analytic_architecture.gif" width="817" height="769" />
+    </a><figcaption class="image-caption">Analytic_architecture</figcaption>
+    </figure></p>
+<h2 id="reporting-architecture">Reporting architecture</h2>
+<p>The following diagram illustrates the architecture of the reporting functionality in Microsoft Dynamics AX.</p>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/reporting_architecture.png" title="&amp;ldquo;reporting_architecture&amp;rdquo;" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/reporting_architecture.png" data-sub-html="<h2>reporting_architecture</h2><p>&amp;ldquo;reporting_architecture&amp;rdquo;</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/reporting_architecture.png"
+            data-srcset="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/reporting_architecture.png, /2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/reporting_architecture.png 1.5x, /2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/reporting_architecture.png 2x"
+            data-sizes="auto"
+            alt="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/reporting_architecture.png" width="647" height="183" />
+    </a><figcaption class="image-caption">reporting_architecture</figcaption>
+    </figure></p>
+<p>Thank you for reading.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on January 1, 2013</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://nuxulu.com/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/" data-title="Architecture overview Microsoft Dynamics AX 2012" data-hashtags="architectural,axbuild,xpp"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://nuxulu.com/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/" data-hashtag="architectural"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Linkedin" data-sharer="linkedin" data-url="https://nuxulu.com/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/"><i class="fab fa-linkedin fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://nuxulu.com/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/" data-title="Architecture overview Microsoft Dynamics AX 2012" data-web><i class="fab fa-whatsapp fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://nuxulu.com/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/" data-title="Architecture overview Microsoft Dynamics AX 2012"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://nuxulu.com/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/" data-title="Architecture overview Microsoft Dynamics AX 2012"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://nuxulu.com/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/" data-title="Architecture overview Microsoft Dynamics AX 2012"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/architectural/">architectural</a>,&nbsp;<a href="/tags/axbuild/">axbuild</a>,&nbsp;<a href="/tags/xpp/">xpp</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2011-01-01-start-programming/" class="prev" rel="prev" title="Start programming"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Start programming</a>
+            <a href="/2014-10-10-understand-model-store-architectural/" class="next" rel="next" title="Understand model store architectural in AX 2012">Understand model store architectural in AX 2012<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Have a nice day!</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2013 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/series/" target="_blank">Max Nguyen</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://https-dynamics365-github-io.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":300},"comment":{},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'UA-57379422-3', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-57379422-3" async></script></body>
+</html>

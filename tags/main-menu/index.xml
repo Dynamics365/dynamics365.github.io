@@ -1,0 +1,72 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>main menu - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</title>
+        <link>https://nuxulu.com/tags/main-menu/</link>
+        <description>main menu - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Wed, 29 Mar 2017 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/main-menu/" rel="self" type="application/rss+xml" /><item>
+    <title>How to create main menu in Dynamics AX 2012</title>
+    <link>https://nuxulu.com/2017-03-29-how-to-create-main-menu-in-dynamics-ax-2012/</link>
+    <pubDate>Wed, 29 Mar 2017 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2017-03-29-how-to-create-main-menu-in-dynamics-ax-2012/</guid>
+    <description><![CDATA[<ul>
+<li><a href="#1-create-menu-in-aot" rel="">1. Create Menu in AOT</a></li>
+<li><a href="#2-finally-we-need-to-add-our-menu-as-a-module-to-the-main-menu-which-is-done-as-follows" rel="">2. Finally, we need to add our menu as a module to the main menu, which is done as follows:</a></li>
+</ul>
+<p>All main entry points to the UI and reports are access though the menu structure. This is presented in three ways: the left-hand navigation pane, the content area, and the navigation bar (at the top of the client). The menu design is controlled from the Menus node in the AOT.</p>
+<p>Each module will have a menu, which is created by adding a menu reference (or shortcut) to the main menu:</p>
+<p><figure><a class="lightgallery" href="/2017-03-29-how-to-create-main-menu-in-dynamics-ax-2012/reference_menu.png" title="reference_menu" data-thumbnail="/2017-03-29-how-to-create-main-menu-in-dynamics-ax-2012/reference_menu.png" data-sub-html="<h2>reference_menu</h2><p>reference_menu</p>">
+        
+    </a><figcaption class="image-caption">reference_menu</figcaption>
+    </figure></p>
+<p>This matches the list of modules shown in the client&rsquo;s left-hand navigation pane.</p>
+<h3 id="1-create-menu-in-aot">1. Create Menu in AOT</h3>
+<ol>
+<li>
+<p>Open your project.</p>
+</li>
+<li>
+<p>Right-click on the <strong>Menus node</strong> and select <strong>New</strong> &gt; <strong>Menu</strong>.</p>
+</li>
+<li>
+<p>Rename the menu as <strong>YourMainMeunuName</strong> and open the property sheet.</p>
+</li>
+<li>
+<p>For Porperties of created Menu:</p>
+<ul>
+<li>Enter the <strong>label</strong> and create a label.</li>
+<li>As this menu will be a module with company-specifc information, set the <strong>SetCompany</strong> property to Yes.</li>
+<li>Choose the icons in the <strong>NormalImage</strong> property and set <strong>ImageLocation</strong> to EmbeddedResource.</li>
+</ul>
+</li>
+<li>
+<p>Create <strong>Submenu</strong>, by right-clicking on the menu and navigating to <strong>New | Submenu</strong>.</p>
+</li>
+</ol>
+<h3 id="2-finally-we-need-to-add-our-menu-as-a-module-to-the-main-menu-which-is-done-as-follows">2. Finally, we need to add our menu as a module to the main menu, which is done as follows:</h3>
+<ol>
+<li>
+<p>Place the AOT window next to our project window (if required, open the AOT window by pressing Ctrl + D).</p>
+</li>
+<li>
+<p>Scroll down to Menus and expand MainMenu.</p>
+</li>
+<li>
+<p>Right-click on <strong>MainMenu</strong> and navigate to <strong>New &gt; Menu reference</strong>.</p>
+</li>
+<li>
+<p>This opens a new window titled Select: Menus. Locate <strong>your menu</strong> and drag it to <strong>MainMenu</strong>, as shown in the following screenshot (the title changes from Select: Menus to the path of the select node when you click on it):</p>
+</li>
+</ol>
+<p><figure><a class="lightgallery" href="/2017-03-29-how-to-create-main-menu-in-dynamics-ax-2012/mainmenu2.png" title="mainmenu2" data-thumbnail="/2017-03-29-how-to-create-main-menu-in-dynamics-ax-2012/mainmenu2.png" data-sub-html="<h2>mainmenu2</h2><p>mainmenu2</p>">
+        
+    </a><figcaption class="image-caption">mainmenu2</figcaption>
+    </figure></p>
+<p><em>Note: Do not drag the menu from your project!</em></p>
+<p>Save AOT and you can check new menu on AX client.</p>
+<p>Thank you for reading!</p>
+]]></description>
+</item>
+</channel>
+</rss>

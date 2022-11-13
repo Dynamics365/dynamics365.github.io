@@ -1,0 +1,174 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>.NET - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</title>
+        <link>https://nuxulu.com/tags/.net/</link>
+        <description>.NET - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Tue, 17 Dec 2019 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/.net/" rel="self" type="application/rss+xml" /><item>
+    <title>Dynamics 365 finance and operations ODATA consuming - Length cannot be less than zero</title>
+    <link>https://nuxulu.com/2019-12-17-dynamics-365-finance-and-operations-odata-consuming-length-cannot-be-less-than-zero/</link>
+    <pubDate>Tue, 17 Dec 2019 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2019-12-17-dynamics-365-finance-and-operations-odata-consuming-length-cannot-be-less-than-zero/</guid>
+    <description><![CDATA[<p>When you consume a custom data entity, you get an error</p>
+<div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">errorSystem.ArgumentOutOfRangeException : Length cannot be less than zero” and it works fine for standard data entities.</div>
+        </div>
+    </div>
+<p></p>
+<p>The reason is the temporary XML file where the metadata stored which mismatches with the metadata from <code>https://&lt;yourenvironment&gt;.cloudax.dynamics.com/data/$metadata</code></p>
+<p>You can follow this <a href="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/" rel="">post</a> to understand how to create the XML file.</p>
+<p>If you try to regenerate the metadata by saving the <strong>ODataClient.tt</strong> file, the XML will be accumulated, and the error keeps happening.
+The resolution here is simply delete it and regenerate metadata again by saving the <strong>ODataClient.tt</strong> file</p>
+<p></p>
+<p>Thank you for reading.</p>
+]]></description>
+</item>
+<item>
+    <title>Consuming Dynamics 365 Finance and Operations OData services from .NET</title>
+    <link>https://nuxulu.com/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/</link>
+    <pubDate>Mon, 16 Dec 2019 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/</guid>
+    <description><![CDATA[<h2 id="1-authentication">1. Authentication</h2>
+<hr>
+<p>We need an authentication to connect Dynamics 365 finance and operations from .Net application by using service principal.</p>
+<p>How to create an app registration in Azure <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/app-registrations-training-guide-for-app-registrations-legacy-users" target="_blank" rel="noopener noreffer ">https://docs.microsoft.com/en-us/azure/active-directory/develop/app-registrations-training-guide-for-app-registrations-legacy-users</a></p>
+<p>You also need to add required permissions for Dynamics 365 finance and operations, please follow<br>
+<a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/services-home-page#register-a-web-application-with-aad" target="_blank" rel="noopener noreffer ">https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/services-home-page#register-a-web-application-with-aad</a></p>
+<p>This is what you should have</p>
+<p><figure><a class="lightgallery" href="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_1.png" title="Image" data-thumbnail="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_1.png" data-sub-html="<h2>Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET</figcaption>
+    </figure></p>
+<h2 id="2-register-your-external-application">2. Register your external application</h2>
+<hr>
+<h3 id="a-in-the-finops-application-go-to-system-administration--setup--azure-active-directory-applications">a. In the FinOps application, go to <code>System administration &gt; Setup &gt; Azure Active Directory applications</code>.</h3>
+<h3 id="bselect-new">b.	Select <strong>New</strong>.</h3>
+<h3 id="cfill-in-the-fields-for-the-new-record">c.	Fill in the fields for the new record:</h3>
+<ul>
+<li>In the <strong>Client Id</strong> field, enter the application ID that you registered in Azure AD.</li>
+<li>In the <strong>Name field</strong>, enter a name for the application.</li>
+<li>In the <strong>User ID field</strong>, select an appropriate service account user ID. For this example, we have selected the Admin user. However, as a better practice, you should provision a dedicated service account that has the correct permissions for the operations that must be performed. When you&rsquo;ve finished, select <strong>Save</strong>.</li>
+</ul>
+<p>You&rsquo;ve now finished setting up the prerequisites. After the external application retrieves an Azure AD authentication token, it should now be able to use the token in an authorization HTTP header to make subsequent service calls via OData or SOAP, for example.</p>
+<h2 id="3-odata-client-configuration">3. OData client configuration</h2>
+<ul>
+<li>Download the project here <a href="https://github.com/microsoft/Dynamics-AX-Integration" target="_blank" rel="noopener noreffer ">https://github.com/microsoft/Dynamics-AX-Integration</a></li>
+<li>Open <strong>ServiceSamples</strong> solution.</li>
+<li>We cannot use existing proxies and classes, so I need to regenerate them again. Under ODataUtility project, delete <strong>ODataClient.tt</strong> and <strong>ODataClient.ttinclude</strong>.</li>
+<li>To regenerate Odata client, right click on <code>ODataUtility project &gt; Add &gt; New item</code>, search for OData in Online and rename it to <strong>ODataClient.tt</strong>.</li>
+<li>Open <strong>ODataClient.tt</strong>, in MetadataDocumentUri add <code>https://&lt;yourEnvironment&gt;.cloudax.dynamics.com/data/$metadata</code></li>
+</ul>
+<p>If you save the ODataClient.tt file, it will generate Odata proxies and classes. From PU12 onward, there are so many entities so you will get an error after compiling</p>
+<p><code>Combined length of user strings used by the program exceeds allowed limit. Try to decrease use of string literals.</code></p>
+<p>There are 2 ways to fix it</p>
+<h3 id="a-using-temporary-file">a. Using temporary file</h3>
+<p>The simplest way to fix is add TempFilePath, ensure that you have write permission for this path, this is what you got</p>
+<p><figure><a class="lightgallery" href="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_2.png" title="Image" data-thumbnail="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_2.png" data-sub-html="<h2>Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET</figcaption>
+    </figure></p>
+<p>Save the <strong>ODataClient.tt</strong> and there will be <strong>Test1.xml</strong> file created to store metadata, there should be a bug while generating the xml file, one more step you need to do is replace the double quote to single quote (a global replace of &quot;&quot; with &quot; ), and this is what you have</p>
+<p><figure><a class="lightgallery" href="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_3.png" title="Image" data-thumbnail="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_3.png" data-sub-html="<h2>Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET</figcaption>
+    </figure>
+You can build the project without problem.</p>
+<h3 id="b-remove-unused-entities">b. Remove unused entities</h3>
+<p>Another work-around that works too, edit the ODataClient.ttinclude so that it parses only some of the entities that you want to use, this reducing the error. For instance, change the following foreach statement</p>
+<ul>
+<li>Original code:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">foreach</span> <span class="p">(</span><span class="n">IEdmEntitySet</span> <span class="n">entitySet</span> <span class="k">in</span> <span class="n">container</span><span class="p">.</span><span class="n">EntitySets</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IEdmEntityType</span> <span class="n">entitySetElementType</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">EntityType</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">entitySetElementTypeName</span> <span class="p">=</span> <span class="n">GetElementTypeName</span><span class="p">(</span><span class="n">entitySetElementType</span><span class="p">,</span> <span class="n">container</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">EnableNamingAlias</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">Customization</span><span class="p">.</span><span class="n">CustomizeNaming</span><span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Modified code:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">foreach</span> <span class="p">(</span><span class="n">IEdmEntitySet</span> <span class="n">entitySet</span> <span class="k">in</span> <span class="n">container</span><span class="p">.</span><span class="n">EntitySets</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IEdmEntityType</span> <span class="n">entitySetElementType</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">EntityType</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">entitySetElementTypeName</span> <span class="p">=</span> <span class="n">GetElementTypeName</span><span class="p">(</span><span class="n">entitySetElementType</span><span class="p">,</span> <span class="n">container</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//start of manual fix </span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//only process entity names that containin a specific string, to reduce the string size</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(((</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;CUST&#34;</span><span class="p">))</span> <span class="p">||</span> <span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;VEND&#34;</span><span class="p">)))</span> <span class="p">||</span> <span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;SALES&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// emd of manual fix</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">EnableNamingAlias</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">Customization</span><span class="p">.</span><span class="n">CustomizeNaming</span><span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="4-authentication-configuration">4. Authentication configuration</h2>
+<p>Under AuthenticationUtility project, you need to modify ClientConfiguration.cs follow, you can get all related information for the first step.</p>
+<p><figure><a class="lightgallery" href="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_4.png" title="Image" data-thumbnail="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_4.png" data-sub-html="<h2>Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET</figcaption>
+    </figure></p>
+<p>From now, you can freely test the integrations under <strong>ODataConsoleApplication</strong> project.
+If you are testing with a custom data entity and you get this error</p>
+<p><code>System.ArgumentOutOfRangeException : Length cannot be less than zero.</code></p>
+<p>Please check this <a href="/2019-12-17-dynamics-365-finance-and-operations-odata-consuming-length-cannot-be-less-than-zero/" rel="">post</a>.</p>
+<p>Thank you for reading.</p>
+]]></description>
+</item>
+</channel>
+</rss>
