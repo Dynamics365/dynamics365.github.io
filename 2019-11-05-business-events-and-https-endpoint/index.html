@@ -37,7 +37,7 @@ Business events can be consumed using Microsoft Flow and Azure messaging service
                             "url": "https:\/\/nuxulu.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "Postman, Business events, BATCH, integration, Azure","wordcount":  722 ,
+                        }],"genre": "posts","keywords": "Postman, Business events, BATCH, integration, Azure","wordcount":  735 ,
         "url": "https:\/\/nuxulu.com\/2019-11-05-business-events-and-https-endpoint\/","datePublished": "2019-11-05T00:00:00+00:00","dateModified": "2019-11-05T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -131,8 +131,8 @@ Business events can be consumed using Microsoft Flow and Azure messaging service
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Business events and HTTPs endpoint</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="November 5, 2019">November 5, 2019</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;722 words&nbsp;
+            <div class="post-meta-line"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-category">included in <a href="/categories/finops/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>FinOps</a>&nbsp;<a href="/categories/business-events/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Business events</a>&nbsp;<a href="/categories/integration/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Integration</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="November 5, 2019">November 5, 2019</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;735 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -162,7 +162,7 @@ Business events can be consumed using Microsoft Flow and Azure messaging service
 <p>There are 3 types of business events: <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/business-events/app-business-events" target="_blank" rel="noopener noreffer ">Application business events</a>, <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/business-events/business-events-workflow" target="_blank" rel="noopener noreffer ">Workflow business events</a>, and <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/business-events/alerts-business-events" target="_blank" rel="noopener noreffer ">Alerts as business events</a>. You can also implement <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/business-events/business-events-dev-doc" target="_blank" rel="noopener noreffer ">a new business event</a>.</p>
 <p>Business events can be consumed using Microsoft Flow and Azure messaging services, and we use endpoint to manage the destinations for sending business events to, Microsoft supports many endpoints: Azure Service Bus Queue, Azure Service Bus Topic, Azure Event Grid, Azure Event Hub, HTTPS, Microsoft Flow.
 In this article I will show how to send business event to HTTPs endpoint that leveraging on Azure functions.</p>
-<p>The scenario: Once a free text invoice is posted, Business event will be triggered and send messages to the HTTPs endpoint.</p>
+<p><strong>The scenario</strong>: Once a free text invoice is posted, Business event will be triggered and send messages to the HTTPs endpoint.</p>
 <h2 id="1-https-and-azure-function">1. HTTPs and Azure function</h2>
 <p>Ideally, I will create a new Azure function which has HTTPs endpoint to subscribe the business events in FinOps.
 To create Azure function please follow this <a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-azure-function" target="_blank" rel="noopener noreffer ">https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-azure-function</a></p>
@@ -197,25 +197,29 @@ To create Azure function please follow this <a href="https://docs.microsoft.com/
 </div>
 </div><p>This basically listens the JSON messages from Business events and display the Json message at Console.</p>
 <p>From the Azure function you can get the HTTPs endpoint, save it for later reference.</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_1.png"
-        data-srcset="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_1.png, /imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_1.png 1.5x, /imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_1.png 2x"
-        data-sizes="auto"
-        alt="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_1.png"
-        title="Image" /></p>
+<p><figure><a class="lightgallery" href="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_1.png" title="Image" data-thumbnail="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_1.png" data-sub-html="<h2>Business-events-and-HTTPs-endpoint</h2><p>Image</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_1.png"
+            data-srcset="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_1.png, /2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_1.png 1.5x, /2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_1.png 2x"
+            data-sizes="auto"
+            alt="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_1.png" width="1346" height="568" />
+    </a><figcaption class="image-caption">Business-events-and-HTTPs-endpoint</figcaption>
+    </figure></p>
 <h2 id="2-application-registration-int-aad">2. Application registration int AAD</h2>
 <p>We need an application to authenticate with FinOps and Azure function HTTPs.
 Go to <em>Azure portal &gt; AAD &gt; App registrations &gt; New registration</em></p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_2.png"
-        data-srcset="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_2.png, /imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_2.png 1.5x, /imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_2.png 2x"
-        data-sizes="auto"
-        alt="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_2.png"
-        title="Image" /></p>
+<p><figure><a class="lightgallery" href="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_2.png" title="Image" data-thumbnail="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_2.png" data-sub-html="<h2>Business-events-and-HTTPs-endpoint</h2><p>Image</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_2.png"
+            data-srcset="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_2.png, /2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_2.png 1.5x, /2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_2.png 2x"
+            data-sizes="auto"
+            alt="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_2.png" width="1080" height="634" />
+    </a><figcaption class="image-caption">Business-events-and-HTTPs-endpoint</figcaption>
+    </figure></p>
 <ul>
 <li>Name of the application.</li>
 <li>Depend on you have multitenant or not</li>
@@ -223,115 +227,137 @@ Go to <em>Azure portal &gt; AAD &gt; App registrations &gt; New registration</em
 </ul>
 <h3 id="api-permissions">API Permissions</h3>
 <p>Go to the newly created application &gt; API permissions and adding permission as below</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_3.png"
-        data-srcset="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_3.png, /imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_3.png 1.5x, /imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_3.png 2x"
-        data-sizes="auto"
-        alt="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_3.png"
-        title="Image" /></p>
+<p><figure><a class="lightgallery" href="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_3.png" title="Image" data-thumbnail="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_3.png" data-sub-html="<h2>Business-events-and-HTTPs-endpoint</h2><p>Image</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_3.png"
+            data-srcset="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_3.png, /2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_3.png 1.5x, /2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_3.png 2x"
+            data-sizes="auto"
+            alt="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_3.png" width="1080" height="536" />
+    </a><figcaption class="image-caption">Business-events-and-HTTPs-endpoint</figcaption>
+    </figure></p>
 <h3 id="secrets">Secrets</h3>
 <p>Go to Certificates &amp; secrets menu item and create a new client secret</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_4.png"
-        data-srcset="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_4.png, /imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_4.png 1.5x, /imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_4.png 2x"
-        data-sizes="auto"
-        alt="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_4.png"
-        title="Image" /></p>
+<p><figure><a class="lightgallery" href="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_4.png" title="Image" data-thumbnail="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_4.png" data-sub-html="<h2>Business-events-and-HTTPs-endpoint</h2><p>Image</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_4.png"
+            data-srcset="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_4.png, /2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_4.png 1.5x, /2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_4.png 2x"
+            data-sizes="auto"
+            alt="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_4.png" width="1080" height="454" />
+    </a><figcaption class="image-caption">Business-events-and-HTTPs-endpoint</figcaption>
+    </figure></p>
 <p>After this you will have <strong>Application Id and Application Secret</strong>, save it for later.</p>
 <h2 id="3-key-vaults">3. Key Vaults</h2>
 <p>In Azure portal create a new keyVault to store the HTTPs endpoint URL information</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_5.png"
-        data-srcset="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_5.png, /imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_5.png 1.5x, /imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_5.png 2x"
-        data-sizes="auto"
-        alt="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_5.png"
-        title="Image" /></p>
+<p><figure><a class="lightgallery" href="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_5.png" title="Image" data-thumbnail="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_5.png" data-sub-html="<h2>Business-events-and-HTTPs-endpoint</h2><p>Image</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_5.png"
+            data-srcset="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_5.png, /2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_5.png 1.5x, /2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_5.png 2x"
+            data-sizes="auto"
+            alt="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_5.png" width="1080" height="664" />
+    </a><figcaption class="image-caption">Business-events-and-HTTPs-endpoint</figcaption>
+    </figure></p>
 <h3 id="access-policy">Access policy</h3>
 <p>Click next to create access policy (you also can set up this later after creating Key Vault)</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_6.png"
-        data-srcset="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_6.png, /imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_6.png 1.5x, /imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_6.png 2x"
-        data-sizes="auto"
-        alt="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_6.png"
-        title="Image" /></p>
+<p><figure><a class="lightgallery" href="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_6.png" title="Image" data-thumbnail="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_6.png" data-sub-html="<h2>Business-events-and-HTTPs-endpoint</h2><p>Image</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_6.png"
+            data-srcset="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_6.png, /2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_6.png 1.5x, /2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_6.png 2x"
+            data-sizes="auto"
+            alt="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_6.png" width="1080" height="322" />
+    </a><figcaption class="image-caption">Business-events-and-HTTPs-endpoint</figcaption>
+    </figure></p>
 <p>Select all the permissions in Key, Secret and Certificate, In select principal choose the application you have created before.</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_7.png"
-        data-srcset="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_7.png, /imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_7.png 1.5x, /imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_7.png 2x"
-        data-sizes="auto"
-        alt="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_7.png"
-        title="Image" /></p>
+<p><figure><a class="lightgallery" href="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_7.png" title="Image" data-thumbnail="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_7.png" data-sub-html="<h2>Business-events-and-HTTPs-endpoint</h2><p>Image</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_7.png"
+            data-srcset="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_7.png, /2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_7.png 1.5x, /2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_7.png 2x"
+            data-sizes="auto"
+            alt="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_7.png" width="1056" height="648" />
+    </a><figcaption class="image-caption">Business-events-and-HTTPs-endpoint</figcaption>
+    </figure></p>
 <h3 id="key-vault-secret">Key Vault secret</h3>
 <p>Go to the newly <em>created Key vault &gt; secrets &gt; generate a new one</em></p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_8.png"
-        data-srcset="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_8.png, /imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_8.png 1.5x, /imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_8.png 2x"
-        data-sizes="auto"
-        alt="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_8.png"
-        title="Image" /></p>
+<p><figure><a class="lightgallery" href="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_8.png" title="Image" data-thumbnail="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_8.png" data-sub-html="<h2>Business-events-and-HTTPs-endpoint</h2><p>Image</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_8.png"
+            data-srcset="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_8.png, /2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_8.png 1.5x, /2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_8.png 2x"
+            data-sizes="auto"
+            alt="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_8.png" width="770" height="576" />
+    </a><figcaption class="image-caption">Business-events-and-HTTPs-endpoint</figcaption>
+    </figure></p>
 <p>Value is the endpoint URL for D365 to call the one we got from the first step.
 After this step you will have the Key vault DNS name <em><a href="https://maxfokeyvault.vault.azure.net/" target="_blank" rel="noopener noreffer ">https://maxfokeyvault.vault.azure.net/</a></em> and Key Vault secret name <em>D365VaultSecretName</em>
 That information will be needed for Business events configuration in Dynamics 365 finance and operations</p>
 <h2 id="4-creating-https-endpoint">4. Creating HTTPs endpoint</h2>
 <p>Go to <em>System administrator &gt; Business events &gt; Business events catalog</em>, Click on <strong>Endpoints</strong> in <strong>Endpoint type</strong> choose <em>HTTPS</em> and <strong>click Next</strong>. Fill all the required information that you got from above steps.</p>
 <p>Click on <strong>Business events catalog</strong>, look for business event Id <em>CustFreeTextInvoicePostedBusinessEvent</em>, check the record and click <strong>Active</strong>; from there choose legal entity and the Endpoint that we have just created.</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_9.png"
-        data-srcset="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_9.png, /imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_9.png 1.5x, /imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_9.png 2x"
-        data-sizes="auto"
-        alt="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_9.png"
-        title="Image" /></p>
+<p><figure><a class="lightgallery" href="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_9.png" title="Image" data-thumbnail="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_9.png" data-sub-html="<h2>Business-events-and-HTTPs-endpoint</h2><p>Image</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_9.png"
+            data-srcset="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_9.png, /2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_9.png 1.5x, /2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_9.png 2x"
+            data-sizes="auto"
+            alt="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_9.png" width="544" height="360" />
+    </a><figcaption class="image-caption">Business-events-and-HTTPs-endpoint</figcaption>
+    </figure></p>
 <p>After that, if you check on <strong>Active events tab</strong>, there will be a new record created.
 That&rsquo;s it, now I will create a free text invoice and post it, this is what I got from the console log in Azure.</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_10.png"
-        data-srcset="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_10.png, /imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_10.png 1.5x, /imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_10.png 2x"
-        data-sizes="auto"
-        alt="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_10.png"
-        title="Image" /></p>
+<p><figure><a class="lightgallery" href="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_10.png" title="Image" data-thumbnail="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_10.png" data-sub-html="<h2>Business-events-and-HTTPs-endpoint</h2><p>Image</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_10.png"
+            data-srcset="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_10.png, /2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_10.png 1.5x, /2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_10.png 2x"
+            data-sizes="auto"
+            alt="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_10.png" width="1436" height="224" />
+    </a><figcaption class="image-caption">Business-events-and-HTTPs-endpoint</figcaption>
+    </figure></p>
 <p>With the JSON messages, you can deserialize it and save to Cosmos DB or do whatever in Azure function.</p>
 <h2 id="5-about-platform-changes">5. About platform changes</h2>
 <p>Before PU26, Business event run in batch, following menu <em>System admin &gt; Business events &gt; Start business events batch job</em></p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_11.png"
-        data-srcset="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_11.png, /imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_11.png 1.5x, /imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_11.png 2x"
-        data-sizes="auto"
-        alt="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_11.png"
-        title="Image" />
-<img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_12.png"
-        data-srcset="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_12.png, /imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_12.png 1.5x, /imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_12.png 2x"
-        data-sizes="auto"
-        alt="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_12.png"
-        title="Image" />
-<img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_13.png"
-        data-srcset="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_13.png, /imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_13.png 1.5x, /imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_13.png 2x"
-        data-sizes="auto"
-        alt="/imagesposts/2019-11-05-Business-events-and-HTTPs-endpoint_13.png"
-        title="Image" /></p>
+<p><figure><a class="lightgallery" href="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_11.png" title="Image" data-thumbnail="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_11.png" data-sub-html="<h2>Business-events-and-HTTPs-endpoint</h2><p>Image</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_11.png"
+            data-srcset="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_11.png, /2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_11.png 1.5x, /2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_11.png 2x"
+            data-sizes="auto"
+            alt="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_11.png" width="468" height="184" />
+    </a><figcaption class="image-caption">Business-events-and-HTTPs-endpoint</figcaption>
+    </figure>
+<figure><a class="lightgallery" href="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_12.png" title="Image" data-thumbnail="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_12.png" data-sub-html="<h2>Business-events-and-HTTPs-endpoint</h2><p>Image</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_12.png"
+            data-srcset="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_12.png, /2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_12.png 1.5x, /2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_12.png 2x"
+            data-sizes="auto"
+            alt="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_12.png" width="938" height="846" />
+    </a><figcaption class="image-caption">Business-events-and-HTTPs-endpoint</figcaption>
+    </figure>
+<figure><a class="lightgallery" href="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_13.png" title="Image" data-thumbnail="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_13.png" data-sub-html="<h2>Business-events-and-HTTPs-endpoint</h2><p>Image</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_13.png"
+            data-srcset="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_13.png, /2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_13.png 1.5x, /2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_13.png 2x"
+            data-sizes="auto"
+            alt="/2019-11-05-business-events-and-https-endpoint/2019-11-05-Business-events-and-HTTPs-endpoint_13.png" width="1544" height="312" />
+    </a><figcaption class="image-caption">Business-events-and-HTTPs-endpoint</figcaption>
+    </figure></p>
 <p>In <strong>BusinessEventsParameters</strong>, the value will be <code>Enabled = 0 , BatchEnabled = 1</code>.</p>
 <p>After PU26, the sending business events will be triggered directly from FinOps, you won&rsquo;t find the menu System admin &gt; Business events &gt; Start business events batch job</p>
 <p>In <strong>BusinessEventsParameters</strong>, the value will be <code>Enabled = 1 , BatchEnabled = 0</code>.

@@ -313,7 +313,7 @@ Please follow <a href="#7-for-vhd-that-was-released-for-versions-10024-and-later
             <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Tip<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content">In these commands, be sure to replace old_name with the old name of the server and new_name with the new name. By default, the old name is MININT-F36S5EH, but you can run select @@servername to get the old name. Additionally, be sure to restart the SQL Server service after the commands have finished running.</div>
+            <div class="admonition-content">In these commands, be sure to replace old_name with the old name of the server and new_name with the new name. By default, the old name is <code>MININT-F36S5EH</code>, but you can run select @@servername to get the old name. Additionally, be sure to restart the SQL Server service after the commands have finished running.</div>
         </div>
     </div>
 <ul>
@@ -342,7 +342,7 @@ Please follow <a href="#7-for-vhd-that-was-released-for-versions-10024-and-later
 <p>From the Start menu, open Microsoft Azure Storage Emulator - v4.0, and run the following commands.</p>
 <p><code>AzureStorageEmulator.exe start</code></p>
 <blockquote>
-<p>If you got an error <strong><em>Port conflict with existing application</em></strong>, please check this <a href="../2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/" rel="">post</a>.</p>
+<p>If you got an error <strong><em>Port conflict with existing application</em></strong>, please check this <a href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/" rel="">post</a>.</p>
 </blockquote>
 </li>
 <li>
@@ -371,7 +371,7 @@ Please follow <a href="#7-for-vhd-that-was-released-for-versions-10024-and-later
 <p>Open the <strong>web.config</strong> file in Notepad or another text editor. The following keys are of interest to many developers and administrators:</p>
 <ul>
 <li>
-<p><strong>Aos.MetadataDirectory</strong> – This key points to the location of the packages folder that contains platform and application binaries, and also source code. (Source code is available only in development environments.) Typical values are: <em>c:\packages, c:\AosServicePackagesLocalDirectory</em>, and <em>J:AosServicePackagesLocalDirectory</em>.</p>
+<p><strong>Aos.MetadataDirectory</strong> – This key points to the location of the packages folder that contains platform and application binaries, and also source code. (Source code is available only in development environments.) Typical values are: <code>c:\packages</code>, <code>c:\AosServicePackagesLocalDirectory</code>, and <code>J:AosServicePackagesLocalDirectory</code>.</p>
 </li>
 <li>
 <p><strong>DataAccess.Database</strong> – This key holds the name of the database.</p>
@@ -386,7 +386,7 @@ Please follow <a href="#7-for-vhd-that-was-released-for-versions-10024-and-later
 <p>To restart the local runtime and redeploy all the packages, follow these steps.</p>
 <ol>
 <li>
-<p>Open File Explorer, and go to <em>C:\CustomerServiceUnit</em>.</p>
+<p>Open File Explorer, and go to <code>C:\CustomerServiceUnit</code>.</p>
 </li>
 <li>
 <p>Right-click <strong>AOSDeploy.cmd</strong>, and then click <strong>Run as administrator</strong>.</p>
@@ -394,9 +394,7 @@ Please follow <a href="#7-for-vhd-that-was-released-for-versions-10024-and-later
 </ol>
 <p>This process might take a while. The process is completed when the cmd.exe window closes. If you just want to restart AOS (without redeploying the runtime), run iisreset from an administrator Command Prompt window, or restart AOSWebApplication from IIS.</p>
 <h2 id="6-update-to-the-latest-version">6. Update to the latest version</h2>
-<p>Please check this document
-<a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/deployment/install-deployable-package" target="_blank" rel="noopener noreffer ">https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/deployment/install-deployable-package</a></p>
-<p>update for virtual hard drive (VHD) that was released for versions 10.0.24</p>
+<p>Please check this <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/deployment/install-deployable-package" target="_blank" rel="noopener noreffer ">document</a> for versions 10.0.24</p>
 <h2 id="7-for-vhd-that-was-released-for-versions-10024-and-later">7. For (VHD) that was released for versions 10.0.24 and later</h2>
 <h3 id="71-register-a-new-application-in-azure-active-directory">7.1 Register a new application in Azure Active Directory</h3>
 <p>To register a new application in Microsoft Azure Active Directory (Azure AD), follow the steps outlined in <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app" target="_blank" rel="noopener noreffer ">Register app or web API</a>. The new app registration should be for a web application, and the following redirect URIs should be added:</p>
@@ -424,29 +422,52 @@ Please follow <a href="#7-for-vhd-that-was-released-for-versions-10024-and-later
     <pubDate>Sun, 05 Apr 2020 00:00:00 &#43;0000</pubDate>
     <author>Max Nguyen</author>
     <guid>https://nuxulu.com/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/</guid>
-    <description><![CDATA[<p>The Microsoft Azure storage emulator is a tool that emulates the Azure Blob, Queue, and Table services for local development purposes. You can test your application against the storage services locally without creating an Azure subscription or incurring any costs. When you&rsquo;re satisfied with how your application is working in the emulator, switch to using an Azure storage account in the cloud.</p>
+    <description><![CDATA[<ul>
+<li><a href="#1-reason" rel="">1. Reason</a></li>
+<li><a href="#2-resolution" rel="">2. Resolution</a>
+<ul>
+<li><a href="#21-to-determine-the-conflict-program-we-can-use-this-command-in-cmd" rel="">2.1. To determine the conflict program we can use this command in CMD</a></li>
+<li><a href="#22-to-change-the-default-port-for-azure-storage-emulator" rel="">2.2. To change the default port for Azure storage Emulator</a></li>
+</ul>
+</li>
+</ul>
+<p>The Microsoft Azure storage emulator is a tool that emulates the Azure Blob, Queue, and Table services for local development purposes. You can test your application against the storage services locally without creating an Azure subscription or incurring any costs. When you&rsquo;re satisfied with how your application is working in the emulator, switch to using an Azure storage account in the cloud.</p>
 <p>In Dynamics 365 finance and operations onebox environment, we also use Microsoft Azure Storage Emulator for same purposes. There is a common problem when you try to start its service or using Data entity Import/Export</p>
-<p></p>
-<p>Port conflict with existing application
-{:.error}</p>
-<h2 id="reason">Reason</h2>
+<p><figure><a class="lightgallery" href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-1.png" title="Image" data-thumbnail="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-1.png" data-sub-html="<h2>Azure-Storage-Emulator-Port-conflict-with-existing-application</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Azure-Storage-Emulator-Port-conflict-with-existing-application</figcaption>
+    </figure></p>
+<p><code>Port conflict with existing application</code></p>
+<h2 id="1-reason">1. Reason</h2>
 <p>By default, Azure storage emulator is using port number 10000, 10001, 10002 for Blob, Queue and Table services respectively. And there is a progress/system takes those ports already, so you are not able to start its service.
 We can simply use this command in CMD to see which one has conflict</p>
 <p><code>netstat -p tcp -ano | findstr :10001</code></p>
-<p></p>
+<p><figure><a class="lightgallery" href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-2.png" title="Image" data-thumbnail="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-2.png" data-sub-html="<h2>Azure-Storage-Emulator-Port-conflict-with-existing-application</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Azure-Storage-Emulator-Port-conflict-with-existing-application</figcaption>
+    </figure></p>
 <p>The process ID 4 is currently taking port 10001.</p>
-<h2 id="resolution">Resolution</h2>
+<h2 id="2-resolution">2. Resolution</h2>
 <p>You can either terminate the conflict program or change the default port for Azure Storage Emulator.</p>
-<h3 id="to-determine-the-conflict-program-we-can-use-this-command-in-cmd">To determine the conflict program we can use this command in CMD</h3>
+<h3 id="21-to-determine-the-conflict-program-we-can-use-this-command-in-cmd">2.1. To determine the conflict program we can use this command in CMD</h3>
 <p>Run following command to check which application/process has the same port, then simply go to task manager and terminate it.</p>
 <p><code>tasklist /fi &quot;pid eq 4&quot;</code></p>
-<p></p>
-<h3 id="to-change-the-default-port-for-azure-storage-emulator">To change the default port for Azure storage Emulator</h3>
+<p><figure><a class="lightgallery" href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-5.png" title="Image" data-thumbnail="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-5.png" data-sub-html="<h2>Azure-Storage-Emulator-Port-conflict-with-existing-application</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Azure-Storage-Emulator-Port-conflict-with-existing-application</figcaption>
+    </figure></p>
+<h3 id="22-to-change-the-default-port-for-azure-storage-emulator">2.2. To change the default port for Azure storage Emulator</h3>
 <p>Go to your storage emulator default installation folder, which is located at <em><strong>C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator</strong></em>, open the <strong>AzureStorageEmulator.exe.config</strong> by notepad and edit the port number to different number</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-4.png" title="Image" data-thumbnail="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-4.png" data-sub-html="<h2>Azure-Storage-Emulator-Port-conflict-with-existing-application</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Azure-Storage-Emulator-Port-conflict-with-existing-application</figcaption>
+    </figure></p>
 <p>When done, try to start its service again using</p>
 <p><code>AzureStorageEmulator.exe start</code></p>
-<p></p>
+<p><figure><a class="lightgallery" href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-3.png" title="Image" data-thumbnail="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-3.png" data-sub-html="<h2>Azure-Storage-Emulator-Port-conflict-with-existing-application</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Azure-Storage-Emulator-Port-conflict-with-existing-application</figcaption>
+    </figure></p>
 <p>Thank you for reading.</p>
 ]]></description>
 </item>

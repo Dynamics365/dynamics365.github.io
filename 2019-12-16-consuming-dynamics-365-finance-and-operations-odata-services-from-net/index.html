@@ -10,7 +10,7 @@ How to create an app registration in Azure https://docs.microsoft.com/en-us/azur
 You also need to add required permissions for Dynamics 365 finance and operations, please follow
 https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/services-home-page#register-a-web-application-with-aad
 This is what you should have
-2. Register your external application a. In the FinOps application, go to System administration &gt; Setup &gt; Azure Active Directory applications." />
+Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET 2. Register your external application a. In the FinOps application, go to System administration &gt; Setup &gt; Azure Active Directory applications." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://nuxulu.com/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/" /><meta property="og:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-12-16T00:00:00+00:00" />
@@ -25,7 +25,7 @@ How to create an app registration in Azure https://docs.microsoft.com/en-us/azur
 You also need to add required permissions for Dynamics 365 finance and operations, please follow
 https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/services-home-page#register-a-web-application-with-aad
 This is what you should have
-2. Register your external application a. In the FinOps application, go to System administration &gt; Setup &gt; Azure Active Directory applications."/>
+Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET 2. Register your external application a. In the FinOps application, go to System administration &gt; Setup &gt; Azure Active Directory applications."/>
 <meta name="application-name" content="Dynamics 365 Finance &amp; Operations">
 <meta name="apple-mobile-web-app-title" content="Dynamics 365 Finance &amp; Operations"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/Icon/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://nuxulu.com/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/" /><link rel="prev" href="https://nuxulu.com/2019-11-05-business-events-and-https-endpoint/" /><link rel="next" href="https://nuxulu.com/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -43,7 +43,7 @@ This is what you should have
                             "url": "https:\/\/nuxulu.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "Postman, OData, BATCH, integration, .NET","wordcount":  622 ,
+                        }],"genre": "posts","keywords": "Postman, OData, BATCH, integration, .NET","wordcount":  626 ,
         "url": "https:\/\/nuxulu.com\/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net\/","datePublished": "2019-12-16T00:00:00+00:00","dateModified": "2019-12-16T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -137,8 +137,8 @@ This is what you should have
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Consuming Dynamics 365 Finance and Operations OData services from .NET</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-category">included in <a href="/categories/integration/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Integration</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="December 16, 2019">December 16, 2019</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;622 words&nbsp;
+            <div class="post-meta-line"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-category">included in <a href="/categories/finops/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>FinOps</a>&nbsp;<a href="/categories/business-events/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Business events</a>&nbsp;<a href="/categories/integration/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Integration</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="December 16, 2019">December 16, 2019</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;626 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -147,40 +147,43 @@ This is what you should have
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#1-authentication">1. Authentication</a></li>
+    <li><a href="#2-register-your-external-application">2. Register your external application</a>
       <ul>
-        <li><a href="#a-in-the-finops-application-go-to-system-administration--setup--azure-active-directory-applications">a. In the FinOps application, go to <strong>System administration &gt; Setup &gt; Azure Active Directory applications</strong>.</a></li>
+        <li><a href="#a-in-the-finops-application-go-to-system-administration--setup--azure-active-directory-applications">a. In the FinOps application, go to <code>System administration &gt; Setup &gt; Azure Active Directory applications</code>.</a></li>
         <li><a href="#bselect-new">b.	Select <strong>New</strong>.</a></li>
         <li><a href="#cfill-in-the-fields-for-the-new-record">c.	Fill in the fields for the new record:</a></li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li>
+    <li><a href="#3-odata-client-configuration">3. OData client configuration</a>
       <ul>
         <li><a href="#a-using-temporary-file">a. Using temporary file</a></li>
         <li><a href="#b-remove-unused-entities">b. Remove unused entities</a></li>
       </ul>
     </li>
+    <li><a href="#4-authentication-configuration">4. Authentication configuration</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h1 id="1-authentication">1. Authentication</h1>
+            </div><div class="content" id="content"><h2 id="1-authentication">1. Authentication</h2>
+<hr>
 <p>We need an authentication to connect Dynamics 365 finance and operations from .Net application by using service principal.</p>
 <p>How to create an app registration in Azure <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/app-registrations-training-guide-for-app-registrations-legacy-users" target="_blank" rel="noopener noreffer ">https://docs.microsoft.com/en-us/azure/active-directory/develop/app-registrations-training-guide-for-app-registrations-legacy-users</a></p>
 <p>You also need to add required permissions for Dynamics 365 finance and operations, please follow<br>
 <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/services-home-page#register-a-web-application-with-aad" target="_blank" rel="noopener noreffer ">https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/services-home-page#register-a-web-application-with-aad</a></p>
 <p>This is what you should have</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_1.png"
-        data-srcset="/imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_1.png, /imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_1.png 1.5x, /imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_1.png 2x"
-        data-sizes="auto"
-        alt="/imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_1.png"
-        title="Image" /></p>
-<h1 id="2-register-your-external-application">2. Register your external application</h1>
-<h3 id="a-in-the-finops-application-go-to-system-administration--setup--azure-active-directory-applications">a. In the FinOps application, go to <strong>System administration &gt; Setup &gt; Azure Active Directory applications</strong>.</h3>
+<p><figure><a class="lightgallery" href="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_1.png" title="Image" data-thumbnail="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_1.png" data-sub-html="<h2>Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET</h2><p>Image</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_1.png"
+            data-srcset="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_1.png, /2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_1.png 1.5x, /2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_1.png 2x"
+            data-sizes="auto"
+            alt="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_1.png" width="836" height="606" />
+    </a><figcaption class="image-caption">Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET</figcaption>
+    </figure></p>
+<h2 id="2-register-your-external-application">2. Register your external application</h2>
+<hr>
+<h3 id="a-in-the-finops-application-go-to-system-administration--setup--azure-active-directory-applications">a. In the FinOps application, go to <code>System administration &gt; Setup &gt; Azure Active Directory applications</code>.</h3>
 <h3 id="bselect-new">b.	Select <strong>New</strong>.</h3>
 <h3 id="cfill-in-the-fields-for-the-new-record">c.	Fill in the fields for the new record:</h3>
 <ul>
@@ -189,36 +192,40 @@ This is what you should have
 <li>In the <strong>User ID field</strong>, select an appropriate service account user ID. For this example, we have selected the Admin user. However, as a better practice, you should provision a dedicated service account that has the correct permissions for the operations that must be performed. When you&rsquo;ve finished, select <strong>Save</strong>.</li>
 </ul>
 <p>You&rsquo;ve now finished setting up the prerequisites. After the external application retrieves an Azure AD authentication token, it should now be able to use the token in an authorization HTTP header to make subsequent service calls via OData or SOAP, for example.</p>
-<h1 id="3-odata-client-configuration">3. OData client configuration</h1>
+<h2 id="3-odata-client-configuration">3. OData client configuration</h2>
 <ul>
 <li>Download the project here <a href="https://github.com/microsoft/Dynamics-AX-Integration" target="_blank" rel="noopener noreffer ">https://github.com/microsoft/Dynamics-AX-Integration</a></li>
 <li>Open <strong>ServiceSamples</strong> solution.</li>
 <li>We cannot use existing proxies and classes, so I need to regenerate them again. Under ODataUtility project, delete <strong>ODataClient.tt</strong> and <strong>ODataClient.ttinclude</strong>.</li>
-<li>To regenerate Odata client, right click on <em>ODataUtility project &gt; Add &gt; New item</em>, search for OData in Online and rename it to <strong>ODataClient.tt</strong>.</li>
-<li>Open <strong>ODataClient.tt</strong>, in MetadataDocumentUri add <em>&ldquo;https://<yourEnvironment>.cloudax.dynamics.com/data/$metadata&rdquo;</em></li>
+<li>To regenerate Odata client, right click on <code>ODataUtility project &gt; Add &gt; New item</code>, search for OData in Online and rename it to <strong>ODataClient.tt</strong>.</li>
+<li>Open <strong>ODataClient.tt</strong>, in MetadataDocumentUri add <code>https://&lt;yourEnvironment&gt;.cloudax.dynamics.com/data/$metadata</code></li>
 </ul>
 <p>If you save the ODataClient.tt file, it will generate Odata proxies and classes. From PU12 onward, there are so many entities so you will get an error after compiling</p>
 <p><code>Combined length of user strings used by the program exceeds allowed limit. Try to decrease use of string literals.</code></p>
 <p>There are 2 ways to fix it</p>
 <h3 id="a-using-temporary-file">a. Using temporary file</h3>
 <p>The simplest way to fix is add TempFilePath, ensure that you have write permission for this path, this is what you got</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_2.png"
-        data-srcset="/imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_2.png, /imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_2.png 1.5x, /imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_2.png 2x"
-        data-sizes="auto"
-        alt="/imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_2.png"
-        title="Image" /></p>
+<p><figure><a class="lightgallery" href="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_2.png" title="Image" data-thumbnail="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_2.png" data-sub-html="<h2>Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET</h2><p>Image</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_2.png"
+            data-srcset="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_2.png, /2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_2.png 1.5x, /2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_2.png 2x"
+            data-sizes="auto"
+            alt="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_2.png" width="1125" height="458" />
+    </a><figcaption class="image-caption">Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET</figcaption>
+    </figure></p>
 <p>Save the <strong>ODataClient.tt</strong> and there will be <strong>Test1.xml</strong> file created to store metadata, there should be a bug while generating the xml file, one more step you need to do is replace the double quote to single quote (a global replace of &quot;&quot; with &quot; ), and this is what you have</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_3.png"
-        data-srcset="/imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_3.png, /imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_3.png 1.5x, /imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_3.png 2x"
-        data-sizes="auto"
-        alt="/imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_3.png"
-        title="Image" />
+<p><figure><a class="lightgallery" href="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_3.png" title="Image" data-thumbnail="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_3.png" data-sub-html="<h2>Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET</h2><p>Image</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_3.png"
+            data-srcset="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_3.png, /2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_3.png 1.5x, /2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_3.png 2x"
+            data-sizes="auto"
+            alt="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_3.png" width="1125" height="464" />
+    </a><figcaption class="image-caption">Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET</figcaption>
+    </figure>
 You can build the project without problem.</p>
 <h3 id="b-remove-unused-entities">b. Remove unused entities</h3>
 <p>Another work-around that works too, edit the ODataClient.ttinclude so that it parses only some of the entities that you want to use, this reducing the error. For instance, change the following foreach statement</p>
@@ -298,20 +305,22 @@ You can build the project without problem.</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="4-authentication-configuration">4. Authentication configuration</h1>
+</div><h2 id="4-authentication-configuration">4. Authentication configuration</h2>
 <p>Under AuthenticationUtility project, you need to modify ClientConfiguration.cs follow, you can get all related information for the first step.</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_4.png"
-        data-srcset="/imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_4.png, /imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_4.png 1.5x, /imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_4.png 2x"
-        data-sizes="auto"
-        alt="/imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_4.png"
-        title="Image" /></p>
+<p><figure><a class="lightgallery" href="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_4.png" title="Image" data-thumbnail="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_4.png" data-sub-html="<h2>Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET</h2><p>Image</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_4.png"
+            data-srcset="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_4.png, /2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_4.png 1.5x, /2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_4.png 2x"
+            data-sizes="auto"
+            alt="/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_4.png" width="1125" height="398" />
+    </a><figcaption class="image-caption">Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET</figcaption>
+    </figure></p>
 <p>From now, you can freely test the integrations under <strong>ODataConsoleApplication</strong> project.
 If you are testing with a custom data entity and you get this error</p>
 <p><code>System.ArgumentOutOfRangeException : Length cannot be less than zero.</code></p>
-<p>Please check this <a href="https://nuxulu.com/2019/12/17/Dynamics-365-finance-and-operations-ODATA-consuming-Length-cannot-be-less-than-zero.html" target="_blank" rel="noopener noreffer ">post</a>.</p>
+<p>Please check this <a href="/2019-12-17-dynamics-365-finance-and-operations-odata-consuming-length-cannot-be-less-than-zero/" rel="">post</a>.</p>
 <p>Thank you for reading.</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">

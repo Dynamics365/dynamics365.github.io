@@ -101,7 +101,7 @@ This following diagram provides a high-level overview of the security architectu
 
 * The workflow infrastructure consists of two components that are hosted on Application Object Server (AOS): the X++ workflow run-time and the managed workflow run-time.
 
-![](Workflow_system_arcitechture (1).gif)
+![Workflow_system_arcitechture](Workflow_system_arcitechture.png "Workflow_system_arcitechture")
 
 ## Analytic architecture
 

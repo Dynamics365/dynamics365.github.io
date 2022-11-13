@@ -1,11 +1,11 @@
 # Dynamics 365 FinOps Data Integration using Microsoft Forms (Part 1)
 
 
-*With any D365FO users, Data Management workspace and Data Entities should have become one of the most used and well-known tools in the system. We all agree how powerful such integration framework is, especially when it comes to a large number of records that we would need to import into different tables.*
+With any D365FO users, Data Management workspace and Data Entities should have become one of the most used and well-known tools in the system. We all agree how powerful such integration framework is, especially when it comes to a large number of records that we would need to import into different tables.
 
-*The classic method that we have been utilizing is to include all source data in a single (or multiple, much depending on the purpose and order of data integration) Excel sheet, trigger an import execution, pass any validation layers that present and ultimately have the data available on D365FO. Now, I would like to propose another method that might come useful in some circumstances: Using Microsoft Forms.*
+The classic method that we have been utilizing is to include all source data in a single (or multiple, much depending on the purpose and order of data integration) Excel sheet, trigger an import execution, pass any validation layers that present and ultimately have the data available on D365FO. Now, I would like to propose another method that might come useful in some circumstances: Using Microsoft Forms.
 
-![Introduction](/imagesposts/Introduction.png "The trio")
+![Introduction](Introduction.png "The trio")
 
 ## When
 
@@ -30,7 +30,7 @@ What should be needed?
 
 The flow should go like this.
 
-![Biggest FLow](/imagesposts/Biggest-Flow.png "The Biggest FLow")
+![Biggest FLow](Biggest-Flow.png "The Biggest FLow")
 
 To make it short, when a response is submitted in Microsoft Form, the Flow in MS Power Automate is triggered automatically. An approval request will be sent to your Outlook mailbox and if it is approved, a new record will be created in the target data entity.
 
@@ -45,7 +45,7 @@ As easy as it sounds, in this example, we will create a new Vendor Account from 
 
 To do so, we will access [Microsoft Forms](https://forms.office.com/) and create a new form. To make the new form usable, we will create two questions asking for inputs of Vendor Account and Vendor Group.
 
-![Example 1 Form](/imagesposts/E1-1-NewForm.png "Example 1 Form")
+![Example 1 Form](E1-1-NewForm.png "Example 1 Form")
 
 Note all information on the form is customisable.
 **Note 1-1**
@@ -54,51 +54,51 @@ Note all information on the form is customisable.
 > The second question is being set in form of a Choice question. The given choices should match with available Vendor Group values found on your D365FO client. If this question is a Text one, chance is that its response might not match with any available Vendor Group values, thus, will return an error during Flow runtime.
 > Vendor Groups can be found under `Account Payable > Vendors > Vendor Groups`. In this example, `TopVendor` and `Others` are two available Vendor Groups in my D365FO client.
 
-![Vendor Groups](/imagesposts/E1-2-VendorGroups.png "Vendor Groups")
+![Vendor Groups](E1-2-VendorGroups.png "Vendor Groups")
 
 ### Step 2: Create a MS Flow
 
 To do so, we will access [Microsoft Power Automate](https://flow.microsoft.com/) and create a new flow. We will go with an `Automated` one in this case.
 
-![Flow step 1](/imagesposts/E1-3-Flow-1.png "Automated flow")
+![Flow step 1](E1-3-Flow-1.png "Automated flow")
 
 Search for `form` and choose the trigger `When a new response is submitted`. Hit `Create` to create a new flow.
 
-![Flow step 2](/imagesposts/E1-4-Flow-2.png "Form trigger")
+![Flow step 2](E1-4-Flow-2.png "Form trigger")
 
 Choose the `form` that we just created using the dropdown list.
 
-![Flow step 3](/imagesposts/E1-5-Flow-3.png "Choose form")
+![Flow step 3](E1-5-Flow-3.png "Choose form")
 
 Press `New step`, search for `form` and go with `Get response details`.
 
-![FLow step 4](/imagesposts/E1-6-Flow-4.png "New step: Get response details")
+![FLow step 4](E1-6-Flow-4.png "New step: Get response details")
 
 In the new step, choose the `Form ID`. As soon as we move the cursor to the `Response ID` field, the `FLow` will suggest the `Dynamics content` that we can use. In this case, there should be only one dynamic content, which is `List of response notifications Response ID`. We will go with it by choosing it.
 
-![FLow step 5](/imagesposts/E1-7-Flow-5.png "Get response details")
+![FLow step 5](E1-7-Flow-5.png "Get response details")
 
 After doing so, the flow should look like this.
 
-![FLow step 6](/imagesposts/E1-8-Flow-6.png "Form done")
+![FLow step 6](E1-8-Flow-6.png "Form done")
 
 Now, the reponse details will be sent from the `Form` to the `Flow` when a new response is submitted. Next, we will set up the step to create a new Vendor Account.
 
 Create a new step, search for `dynamics` and go with `Dynamics 365 for Finance and Operations`.
 
-![FLow step 7](/imagesposts/E1-9-Flow-7.png "Dynamics 365 FinOps")
+![FLow step 7](E1-9-Flow-7.png "Dynamics 365 FinOps")
 
 Choose `Create record` action.
 
-![FLow step 8](/imagesposts/E1-10-Flow-8.png "Create record action")
+![FLow step 8](E1-10-Flow-8.png "Create record action")
 
 Choose the Dynamics 365 FinOps `Instance` from the dropdown list. If your client does not appear here, choose `Enter custom value`. For privacy, environments' name will be censored in our example.
 
-![FLow step 9](/imagesposts/E1-11-Flow-9.png "Set D365FO instance")
+![FLow step 9](E1-11-Flow-9.png "Set D365FO instance")
 
 The `Instance` should be the `link` to your D365FO client. Set `Entity name` VendorsV2.
 
-![FLow step 10](/imagesposts/E1-12-Flow-10.png "Set Instance and Entity")
+![FLow step 10](E1-12-Flow-10.png "Set Instance and Entity")
 
 `Note 1-3`
 
@@ -108,7 +108,7 @@ Populate the fields that we want to import. In this example, we will populate on
 
 `Dynamic content` will be suggested automatically when the cursor is placed in each field.
 
-![FLow step 11](/imagesposts/E1-13-Flow-11.png "Map Form fields with Automate fields")
+![FLow step 11](E1-13-Flow-11.png "Map Form fields with Automate fields")
 
 We can map `Form fields` with `Automate fields` or `hardcode` in these fields:
 
@@ -118,7 +118,7 @@ We can map `Form fields` with `Automate fields` or `hardcode` in these fields:
 - `Name` = `Supplier Account` =  Response of `What is the Vendor Account?` question (`Show advanced option` on the Flow to find the field `Name (VendorOrganisationName)`).
 These fields should be required when creating a new Vendor Account on D365FO client.
 
-![FLow step 12](/imagesposts/E1-14-Flow-12.png "Map Form fields with Automate fields")
+![FLow step 12](E1-14-Flow-12.png "Map Form fields with Automate fields")
 
 We are done here with the set up.
 
@@ -126,11 +126,11 @@ We are done here with the set up.
 
 On `Forms`, choose the form that we just created, click on `Preview` so we can submit a form response.
 
-![FLow step 13](/imagesposts/E1-15-Flow-13.png "Map Form fields with Automate fields")
+![FLow step 13](E1-15-Flow-13.png "Map Form fields with Automate fields")
 
 Check out `All Vendors (VendTableListPage)` on the client to find a new Vendor Account is created.
 
-![FLow step 14](/imagesposts/E1-16-Flow-14.png "Map Form fields with Automate fields")
+![FLow step 14](E1-16-Flow-14.png "Map Form fields with Automate fields")
 
 `Note 1-4`
 

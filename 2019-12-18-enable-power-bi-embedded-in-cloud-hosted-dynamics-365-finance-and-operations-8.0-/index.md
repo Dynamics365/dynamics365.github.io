@@ -40,12 +40,12 @@ We need at least **5 GB storage for Database**, for Pricing tier, I will recomme
 
 This is my DB property
 
-![Image](/imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_1.png)
+![Image](Enable-Power-BI-Embedded-in-cloud-hosted_1.png "Enable-Power-BI-Embedded-in-cloud-hosted")
 
 I’m using Premium tier because I want to use **the Columnstore Clustered indexes** in Database; it helps performance a little bit faster.
 Once you have the Azure SQL Database, we can use SSMS to connect to the database and create a user for that DB. You need to get **the user and password information in LCS**, where the cloud-hosted provisioned.
 
-![Image](/imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_2.png)
+![Image](Enable-Power-BI-Embedded-in-cloud-hosted_2.png "Enable-Power-BI-Embedded-in-cloud-hosted")
 
 ```sql
 Use Master
@@ -110,7 +110,7 @@ Allow this process to complete in the background (~5 - 10mins).  You can monitor
 
 Once the Progress is made, you can check the event message in the same form to make sure the refreshing working properly
 
-![Image](/imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_3.png)
+![Image](Enable-Power-BI-Embedded-in-cloud-hosted_3.png "Enable-Power-BI-Embedded-in-cloud-hosted")
 
 ## 5. PowerBI configuration (this is optional)
 
@@ -118,13 +118,13 @@ Configuring power BI for the workspace; please follow the document [here](https:
 
 This is what you should have after the setup
 
-![Image](/imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_4.png)
+![Image](Enable-Power-BI-Embedded-in-cloud-hosted_4.png "Enable-Power-BI-Embedded-in-cloud-hosted")
 
 ## Check the result
 
 If you want to check the result, go to *Workspaces > Customer credit and collections > Analytics all companies*
 
-![Image](/imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_5.png)
+![Image](Enable-Power-BI-Embedded-in-cloud-hosted_5.png "Enable-Power-BI-Embedded-in-cloud-hosted")
 
 Thank you for reading.
 

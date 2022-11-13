@@ -10,7 +10,18 @@
     <pubDate>Thu, 10 Oct 2019 00:00:00 &#43;0000</pubDate>
     <author>Max Nguyen</author>
     <guid>https://nuxulu.com/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/</guid>
-    <description><![CDATA[<p>In this article, I will show the procedure for the SSRS Reports development and customization in Dynamics 365 finance and operations (Version 8.1 and above).</p>
+    <description><![CDATA[<ul>
+<li><a href="#1-adding-a-new-field" rel="">1. Adding a new field</a></li>
+<li><a href="#2-duplicate-the-report" rel="">2. Duplicate the report</a></li>
+<li><a href="#3-modifythe-report-design-right-click-on-report-dataset-and-choose-restore-to-refresh-the-new-field" rel="">3. Modify the report design, right click on report dataset and choose restore to refresh the new field</a></li>
+<li><a href="#4-create-a-new-extension-classthat-extends-the-standard-report-controller-class" rel="">4. Create a new Extension class that extends the standard report controller class.</a></li>
+<li><a href="#5-create-new-report-handler-class" rel="">5. Create new report handler class</a></li>
+<li><a href="#6-add-a-delegate-handler-method-to-start-to-use-your-custom-report" rel="">6. Add a delegate handler method to start to use your custom report.</a></li>
+<li><a href="#7-create-extension-for-the-existing-menu-items" rel="">7. Create extension for the existing menu items</a></li>
+<li><a href="#8-update-the-print-management-settings-to-use-the-custom-business-document" rel="">8. Update the Print management settings to use the custom business document</a></li>
+<li><a href="#9-run-report-and-test-the-result" rel="">9. Run report and test the result</a></li>
+</ul>
+<p>In this article, I will show the procedure for the SSRS Reports development and customization in Dynamics 365 finance and operations (Version 8.1 and above).</p>
 <p>The scenario is you would like to extend <strong>the customer account statement</strong> report with 2 main tasks</p>
 <ul>
 <li><a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/analytics/custom-designs-business-docs?toc=/dynamics365/commerce/toc.json" target="_blank" rel="noopener noreffer ">Create custom design for the report</a></li>
@@ -20,25 +31,29 @@
 <p>The steps</p>
 <h3 id="1-adding-a-new-field">1. Adding a new field</h3>
 <p>The main temp table is <strong>CustAccountStatementExtTmp</strong>, right click and create an extension; I&rsquo;m going to add a new string field <strong>MaxTxT</strong></p>
-<figure class='center'>
-  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_1.png"></a>
-</figure>
+<p><figure><a class="lightgallery" href="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_1.png" title="Extend-the-standard-reports" data-thumbnail="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_1.png" data-sub-html="<h2>2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_1.png</h2><p>Extend-the-standard-reports</p>">
+        
+    </a><figcaption class="image-caption">2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_1.png</figcaption>
+    </figure></p>
 <h3 id="2-duplicate-the-report">2. Duplicate the report</h3>
 <p>Duplicate the <strong>CustAccountStatementExt</strong> report in <em>the Application explorer &gt; AOT &gt; Reports &gt; CustAccountStatementExt</em> as shown in below screen shot:</p>
-<figure class='center'>
-  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_2.png"></a>
-</figure>
+<p><figure><a class="lightgallery" href="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_2.png" title="Extend-the-standard-reports" data-thumbnail="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_2.png" data-sub-html="<h2>2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_2.png</h2><p>Extend-the-standard-reports</p>">
+        
+    </a><figcaption class="image-caption">2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_2.png</figcaption>
+    </figure></p>
 <p>Rename the report and provide any appropriate name: <strong>MaxCustAccountStatementExt</strong></p>
 <h3 id="3-modifythe-report-design-right-click-on-report-dataset-and-choose-restore-to-refresh-the-new-field">3. Modify the report design, right click on report dataset and choose restore to refresh the new field</h3>
-<figure class='center'>
-  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_3.png"></a>
-</figure>
+<p><figure><a class="lightgallery" href="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_3.png" title="Extend-the-standard-reports" data-thumbnail="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_3.png" data-sub-html="<h2>2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_3.png</h2><p>Extend-the-standard-reports</p>">
+        
+    </a><figcaption class="image-caption">2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_3.png</figcaption>
+    </figure></p>
 <p>Open report designer and add that field into a table</p>
-<figure class='center'>
-  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_4.png"></a>
-</figure>
+<p><figure><a class="lightgallery" href="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_4.png" title="Extend-the-standard-reports" data-thumbnail="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_4.png" data-sub-html="<h2>2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_4.png</h2><p>Extend-the-standard-reports</p>">
+        
+    </a><figcaption class="image-caption">2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_4.png</figcaption>
+    </figure></p>
 <h3 id="4-create-a-new-extension-classthat-extends-the-standard-report-controller-class">4. Create a new Extension class that extends the standard report controller class.</h3>
-<p><em><strong>class MaxCustAccountStatementExtController_Ext extends CustAccountStatementExtController{}</strong></em></p>
+<p><code>class MaxCustAccountStatementExtController_Ext extends CustAccountStatementExtController{}</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -112,7 +127,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="5-create-new-report-handler-class">5. Create new report handler class</h3>
-<p><em><strong>class MaxCustAccountStatementHandler {}</strong></em></p>
+<p><code>class MaxCustAccountStatementHandler{}</code></p>
 <p>We have two different ways to Populate the data in the Report handler class:</p>
 <ul>
 <li>Add a temp table Inserting event, row-by-row calculations.</li>
@@ -171,7 +186,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="6-add-a-delegate-handler-method-to-start-to-use-your-custom-report">6. Add a delegate handler method to start to use your custom report.</h3>
-<p>In this example, extend the <em><strong>getDefaultReportFormatDelegate</strong></em> method in the <em><strong>PrintMgtDocTypeHandlerExt</strong></em> class by using the following code.</p>
+<p>In this example, extend the <code>getDefaultReportFormatDelegate</code> method in the <code>PrintMgtDocTypeHandlerExt</code> class by using the following code.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -205,28 +220,34 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="7-create-extension-for-the-existing-menu-items">7. Create extension for the existing menu items</h3>
-<p>Navigating to the <strong>CustAccountStatementExt</strong> output menu item and create extension.</p>
-<figure class='center'>
-  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_5.png"></a>
-</figure>
-<p>Also make sure to set the value of the Object property to <strong>MaxCustAccountStatementExtController_Ext</strong> to redirect user navigation to the extended solution.</p>
+<p>Navigating to the <code>CustAccountStatementExt</code> output menu item and create extension.</p>
+<p><figure><a class="lightgallery" href="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_5.png" title="Extend-the-standard-reports" data-thumbnail="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_5.png" data-sub-html="<h2>2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_5.png</h2><p>Extend-the-standard-reports</p>">
+        
+    </a><figcaption class="image-caption">2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_5.png</figcaption>
+    </figure></p>
+<p>Also make sure to set the value of the Object property <code>to MaxCustAccountStatementExtController_Ext</code> to redirect user navigation to the extended solution.</p>
 <p>That&rsquo;s all, this is what you should have</p>
-<figure class='center'>
-  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_9.png"></a>
-</figure>
+<p><figure><a class="lightgallery" href="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_9.png" title="Extend-the-standard-reports" data-thumbnail="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_9.png" data-sub-html="<h2>2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_9.png</h2><p>Extend-the-standard-reports</p>">
+        
+    </a><figcaption class="image-caption">2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_9.png</figcaption>
+    </figure></p>
 <h3 id="8-update-the-print-management-settings-to-use-the-custom-business-document">8. Update the Print management settings to use the custom business document</h3>
 <p>Go to <em>Account payable &gt; Inquiries and reports &gt; Setup &gt; Forms &gt; Form setup</em>
 Click <strong>Print Management</strong>, find the document configuration settings, and then select the custom design</p>
-<figure class='center'>
-  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_6.png"></a>
-</figure>
-<figure class='center'>
-  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_7.png"></a>
-</figure>
+<p><figure><a class="lightgallery" href="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_6.png" title="Extend-the-standard-reports" data-thumbnail="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_6.png" data-sub-html="<h2>2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_6.png</h2><p>Extend-the-standard-reports</p>">
+        
+    </a><figcaption class="image-caption">2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_6.png</figcaption>
+    </figure></p>
+<p><figure><a class="lightgallery" href="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_7.png" title="Extend-the-standard-reports" data-thumbnail="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_7.png" data-sub-html="<h2>2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_7.png</h2><p>Extend-the-standard-reports</p>">
+        
+    </a><figcaption class="image-caption">2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_7.png</figcaption>
+    </figure></p>
 <h3 id="9-run-report-and-test-the-result">9. Run report and test the result</h3>
-<figure class='center'>
-  <a href="/imagesposts/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_8.png"></a>
-</figure>]]></description>
+<p><figure><a class="lightgallery" href="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_8.png" title="Extend-the-standard-reports" data-thumbnail="/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_8.png" data-sub-html="<h2>2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_8.png</h2><p>Extend-the-standard-reports</p>">
+        
+    </a><figcaption class="image-caption">2019-10-10-Extend-the-standard-reports-in-Dynamics-365-finance-and-operations_8.png</figcaption>
+    </figure></p>
+]]></description>
 </item>
 </channel>
 </rss>

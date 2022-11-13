@@ -7,8 +7,6 @@ You can add actions by adding a method to the data entity and then decorating th
 I use this Odata actions mostly in automation job like after refreshing data from PROD to UAT, we need to enable users, assign company to users, enable batches ...
 Or simply consume it in Power Automate.
 
-<!--more-->
-
 # 1. Create an action to OData entity
 
 You can create a new entity following [this standard docs](https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/build-consuming-data-entities#add-a-new-data-entity-to-your-project)

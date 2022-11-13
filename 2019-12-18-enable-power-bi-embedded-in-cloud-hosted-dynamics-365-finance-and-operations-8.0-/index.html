@@ -33,7 +33,7 @@
                             "url": "https:\/\/nuxulu.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "Power BI Embedded, Reports, cloud hosted, integration, Workspaces collections, AXDW, Entity Store, Azure SQL Database","wordcount":  702 ,
+                        }],"genre": "posts","keywords": "Power BI Embedded, Reports, cloud hosted, integration, Workspaces collections, AXDW, Entity Store, Azure SQL Database","wordcount":  707 ,
         "url": "https:\/\/nuxulu.com\/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-\/","datePublished": "2019-12-17T00:00:00+00:00","dateModified": "2019-12-17T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -127,8 +127,8 @@
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Enable Power BI Embedded in cloud hosted Dynamics 365 finance and operations 8.0 +</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="December 17, 2019">December 17, 2019</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;702 words&nbsp;
+            <div class="post-meta-line"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-category">included in <a href="/categories/finops/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>FinOps</a>&nbsp;<a href="/categories/power-bi/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Power BI</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="December 17, 2019">December 17, 2019</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;707 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -200,24 +200,28 @@
 Please follow <a href="https://docs.microsoft.com/en-us/azure/sql-database/sql-database-single-database-get-started?tabs=azure-portal" target="_blank" rel="noopener noreffer ">this document to create Azure SQL DB</a>.</p>
 <p>We need at least <strong>5 GB storage for Database</strong>, for Pricing tier, I will recommend using from S1, and name the database AxDB</p>
 <p>This is my DB property</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_1.png"
-        data-srcset="/imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_1.png, /imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_1.png 1.5x, /imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_1.png 2x"
-        data-sizes="auto"
-        alt="/imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_1.png"
-        title="Image" /></p>
+<p><figure><a class="lightgallery" href="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_1.png" title="Image" data-thumbnail="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_1.png" data-sub-html="<h2>Enable-Power-BI-Embedded-in-cloud-hosted</h2><p>Image</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_1.png"
+            data-srcset="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_1.png, /2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_1.png 1.5x, /2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_1.png 2x"
+            data-sizes="auto"
+            alt="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_1.png" width="1125" height="317" />
+    </a><figcaption class="image-caption">Enable-Power-BI-Embedded-in-cloud-hosted</figcaption>
+    </figure></p>
 <p>I’m using Premium tier because I want to use <strong>the Columnstore Clustered indexes</strong> in Database; it helps performance a little bit faster.
 Once you have the Azure SQL Database, we can use SSMS to connect to the database and create a user for that DB. You need to get <strong>the user and password information in LCS</strong>, where the cloud-hosted provisioned.</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_2.png"
-        data-srcset="/imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_2.png, /imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_2.png 1.5x, /imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_2.png 2x"
-        data-sizes="auto"
-        alt="/imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_2.png"
-        title="Image" /></p>
+<p><figure><a class="lightgallery" href="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_2.png" title="Image" data-thumbnail="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_2.png" data-sub-html="<h2>Enable-Power-BI-Embedded-in-cloud-hosted</h2><p>Image</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_2.png"
+            data-srcset="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_2.png, /2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_2.png 1.5x, /2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_2.png 2x"
+            data-sizes="auto"
+            alt="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_2.png" width="1125" height="829" />
+    </a><figcaption class="image-caption">Enable-Power-BI-Embedded-in-cloud-hosted</figcaption>
+    </figure></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -308,35 +312,41 @@ Once you have the Azure SQL Database, we can use SSMS to connect to the database
 <p>In Dynamics 365 for finance and operations, navigate to <em>System administration &gt; Setup &gt; Entity Store</em>, select all the <strong>entity store</strong>, and click refresh.</p>
 <p>Allow this process to complete in the background (~5 - 10mins).  You can monitor the status of the background process using the Batch jobs.</p>
 <p>Once the Progress is made, you can check the event message in the same form to make sure the refreshing working properly</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_3.png"
-        data-srcset="/imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_3.png, /imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_3.png 1.5x, /imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_3.png 2x"
-        data-sizes="auto"
-        alt="/imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_3.png"
-        title="Image" /></p>
+<p><figure><a class="lightgallery" href="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_3.png" title="Image" data-thumbnail="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_3.png" data-sub-html="<h2>Enable-Power-BI-Embedded-in-cloud-hosted</h2><p>Image</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_3.png"
+            data-srcset="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_3.png, /2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_3.png 1.5x, /2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_3.png 2x"
+            data-sizes="auto"
+            alt="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_3.png" width="1446" height="778" />
+    </a><figcaption class="image-caption">Enable-Power-BI-Embedded-in-cloud-hosted</figcaption>
+    </figure></p>
 <h2 id="5-powerbi-configuration-this-is-optional">5. PowerBI configuration (this is optional)</h2>
 <p>Configuring power BI for the workspace; please follow the document <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/analytics/configure-power-bi-integration" target="_blank" rel="noopener noreffer ">here</a></p>
 <p>This is what you should have after the setup</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_4.png"
-        data-srcset="/imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_4.png, /imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_4.png 1.5x, /imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_4.png 2x"
-        data-sizes="auto"
-        alt="/imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_4.png"
-        title="Image" /></p>
+<p><figure><a class="lightgallery" href="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_4.png" title="Image" data-thumbnail="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_4.png" data-sub-html="<h2>Enable-Power-BI-Embedded-in-cloud-hosted</h2><p>Image</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_4.png"
+            data-srcset="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_4.png, /2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_4.png 1.5x, /2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_4.png 2x"
+            data-sizes="auto"
+            alt="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_4.png" width="1154" height="771" />
+    </a><figcaption class="image-caption">Enable-Power-BI-Embedded-in-cloud-hosted</figcaption>
+    </figure></p>
 <h2 id="check-the-result">Check the result</h2>
 <p>If you want to check the result, go to <em>Workspaces &gt; Customer credit and collections &gt; Analytics all companies</em></p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_5.png"
-        data-srcset="/imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_5.png, /imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_5.png 1.5x, /imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_5.png 2x"
-        data-sizes="auto"
-        alt="/imagesposts/Enable-Power-BI-Embedded-in-cloud-hosted_5.png"
-        title="Image" /></p>
+<p><figure><a class="lightgallery" href="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_5.png" title="Image" data-thumbnail="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_5.png" data-sub-html="<h2>Enable-Power-BI-Embedded-in-cloud-hosted</h2><p>Image</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_5.png"
+            data-srcset="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_5.png, /2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_5.png 1.5x, /2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_5.png 2x"
+            data-sizes="auto"
+            alt="/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/Enable-Power-BI-Embedded-in-cloud-hosted_5.png" width="2081" height="1170" />
+    </a><figcaption class="image-caption">Enable-Power-BI-Embedded-in-cloud-hosted</figcaption>
+    </figure></p>
 <p>Thank you for reading.</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">

@@ -13,12 +13,12 @@ If you cannot deploy new VMs, please follow below steps to update .NET runtime, 
 
 ### 3. Go to Dynamics Lifecycle Services and download PU36/10.0.12 or any higher package which is a part of the Platform and application binary, the VSIX file is located in the _DevToolsService\Scripts_ folder.
 
-![Image](/imagesposts/How-to-upgrade-to-Visual-Studio-2017-1.png)
+![Image](How-to-upgrade-to-Visual-Studio-2017-1.png)
 
 You need to ```install Microsoft.Dynamics.Framework.Tools.Installer``` and then ```Microsoft.Dynamics.Framework.Tools.InternalDevTools```.
 After the installation, open the VS2017 if you should see **Dynamics 365** menu extension like below
 
-![Image](/imagesposts/How-to-upgrade-to-Visual-Studio-2017-2.png)
+![Image](How-to-upgrade-to-Visual-Studio-2017-2.png)
 
 ### 4. If you try to access the client before applying the package you will get the error like below in event viewer and unable to access the environment, so you need to apply an update first.
 
@@ -26,6 +26,6 @@ After the installation, open the VS2017 if you should see **Dynamics 365** menu 
 AX is shutting down due to an error. Serialization version mismatch detect, make sure the runtime dlls are in sync with the deployed metadata. Version of file '194'. Version of dll '193'.
 {{< /admonition >}}
 
-### 5. In LCS, navigate to your cloud-hosted environment, and apply Platform and application binary package PU36/10.0.12 or higher. After completed upgrading, you will be able to access the environment client. 
+### 5. In LCS, navigate to your cloud-hosted environment, and apply Platform and application binary package PU36/10.0.12 or higher. After completed upgrading, you will be able to access the environment client.
 
 Overall, there is no change in the compiler, metadata; this is only an update to the Visual Studio extensions and NET runtime for the tier1 VMs.

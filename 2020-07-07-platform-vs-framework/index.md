@@ -1,7 +1,7 @@
 # Framework vs. Platform
 
 
-![Framework-vs-Platform](/imagesposts/Framework-and-Platform.png)
+![Framework-vs-Platform](Framework-and-Platform.png)
 
 # Framework
 In programming, frameworks allow programmers to concentrate on the actual tasks they are faced with rather than to waste their time reinventing the wheel. Usually, frameworks are shipped with a set of predefined functions and classes. When using Spring (Java) or Symfony (PHP) for example, programmers do not need to think about things such as persistence, routing and session management too much because the work is done by standardized framework components.

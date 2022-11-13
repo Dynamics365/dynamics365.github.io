@@ -1,7 +1,8 @@
 # Consuming Dynamics 365 Finance and Operations OData services from .NET
 
 
-# 1. Authentication 
+## 1. Authentication 
+-------------------------------------------
 
 We need an authentication to connect Dynamics 365 finance and operations from .Net application by using service principal.  
 
@@ -12,11 +13,12 @@ You also need to add required permissions for Dynamics 365 finance and operation
 
 This is what you should have
 
-![Image](/imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_1.png)
+![Image](Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_1.png "Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET")
 
-# 2. Register your external application
+## 2. Register your external application
+-------------------------------------------
 
-### a. In the FinOps application, go to **System administration > Setup > Azure Active Directory applications**.
+### a. In the FinOps application, go to `System administration > Setup > Azure Active Directory applications`.
 ### b.	Select **New**.
 ### c.	Fill in the fields for the new record:
 
@@ -26,13 +28,13 @@ This is what you should have
 
 You've now finished setting up the prerequisites. After the external application retrieves an Azure AD authentication token, it should now be able to use the token in an authorization HTTP header to make subsequent service calls via OData or SOAP, for example.
 
-# 3. OData client configuration
+## 3. OData client configuration
 
 * Download the project here https://github.com/microsoft/Dynamics-AX-Integration
 * Open **ServiceSamples** solution.
 * We cannot use existing proxies and classes, so I need to regenerate them again. Under ODataUtility project, delete **ODataClient.tt** and **ODataClient.ttinclude**. 
-* To regenerate Odata client, right click on *ODataUtility project > Add > New item*, search for OData in Online and rename it to **ODataClient.tt**.
-* Open **ODataClient.tt**, in MetadataDocumentUri add *"https://<yourEnvironment>.cloudax.dynamics.com/data/$metadata"*
+* To regenerate Odata client, right click on `ODataUtility project > Add > New item`, search for OData in Online and rename it to **ODataClient.tt**.
+* Open **ODataClient.tt**, in MetadataDocumentUri add `https://<yourEnvironment>.cloudax.dynamics.com/data/$metadata`
 
 If you save the ODataClient.tt file, it will generate Odata proxies and classes. From PU12 onward, there are so many entities so you will get an error after compiling 
 
@@ -44,11 +46,11 @@ There are 2 ways to fix it
 
 The simplest way to fix is add TempFilePath, ensure that you have write permission for this path, this is what you got
 
-![Image](/imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_2.png)
+![Image](Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_2.png "Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET")
 
 Save the **ODataClient.tt** and there will be **Test1.xml** file created to store metadata, there should be a bug while generating the xml file, one more step you need to do is replace the double quote to single quote (a global replace of "" with " ), and this is what you have 
 
-![Image](/imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_3.png)
+![Image](Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_3.png "Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET")
 You can build the project without problem.
 
 ### b. Remove unused entities
@@ -94,18 +96,18 @@ foreach (IEdmEntitySet entitySet in container.EntitySets())
 }
 ```
 
-# 4. Authentication configuration
+## 4. Authentication configuration
 
 Under AuthenticationUtility project, you need to modify ClientConfiguration.cs follow, you can get all related information for the first step.
 
-![Image](/imagesposts/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_4.png)
+![Image](Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET_4.png "Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET")
  
 From now, you can freely test the integrations under **ODataConsoleApplication** project.
 If you are testing with a custom data entity and you get this error 
 
 `System.ArgumentOutOfRangeException : Length cannot be less than zero.`
 
-Please check this [post](https://nuxulu.com/2019/12/17/Dynamics-365-finance-and-operations-ODATA-consuming-Length-cannot-be-less-than-zero.html).
+Please check this [post](/2019-12-17-dynamics-365-finance-and-operations-odata-consuming-length-cannot-be-less-than-zero/).
 
 Thank you for reading.
 

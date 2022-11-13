@@ -3,8 +3,8 @@
 
 Today, we published the 2020 release wave 2 plans for [Microsoft Dynamics 365](https://aka.ms/Dynamics365Wave2ReleasePlan) and [Microsoft Power Platform](https://aka.ms/PowerPlatformWave2ReleasePlan), a compilation of new capabilities that will be released between October 2020 and March 2021. This second release wave of the year offers hundreds of new features and enhancements, demonstrating our continued investment to power digital transformation for our customers and partners.
 
-Highlights from Dynamics 365
-----------------------------
+## Highlights from Dynamics 365
+---------------------------------------------------------
 
 - Dynamics 365 Sales includes updates for more simplified experiences; including collaboration tools, a new mobile experience for quick access to customer information, and new enhancements to forecasting to natively create and manage bottom-up sales forecast processes.
 - Dynamics 365 Sales Insights continues investments in digital selling across multiple areas: sales acceleration, conversation intelligence, relationship intelligence, and advanced forecasting and pipeline intelligence with predictive lead and opportunity scorings to help sales teams uncover top deals.
@@ -24,7 +24,7 @@ Highlights from Dynamics 365
 - Dynamics 365 Guides prioritizes updates in this release wave on intelligent workflows. By taking advantage of data and AI innovations, work instructions can be configured to adjust on the fly based on operator inputs. In addition, insights will make it easier to use time-tracking data and connect that data to your business.
 - Dynamics 365 Business Central investments for this release wave include service enhancements to meet the demands of a rapidly growing customer base, improved performance, handling of file storage, geographic expansion together with support for Group VAT, top customer requested features, and deeper integration with Microsoft Teams.
 
-Highlights from Power Platform
+## Highlights from Power Platform
 ------------------------------
 
 - Power Apps includes significant improvements for Power Apps developers of all skill levels, improving the sophistication and usability of apps that are created across the web and mobile devices. Makers will be able to create Power Apps directly within Microsoft Teams in order to easily customize the Teams experience. Makers will also be able to add custom pages to model-driven apps using the app designer, bringing together the best of canvas and model capabilities, including creating custom layouts and components. Power Apps portals adds Microsoft Power Virtual Agents as a component in the Power Apps portals studio, as well as support for code components created using Power Apps component framework. AI Builder introduces new AI scenarios for receipt scanning and translation, and improvements to connect to remote training data. The AI builder home page and model details page are updated to improve discoverability and integration with Power Apps and Power Automate.
@@ -34,7 +34,7 @@ Highlights from Power Platform
 
 For a complete list of new capabilities, please check out the [Dynamics 365](https://aka.ms/Dynamics365Wave2ReleasePlan) and [Power Platform](https://aka.ms/PowerPlatformWave2ReleasePlan) 2020 release wave 2 plans.
 
-Early access period
+## Early access period
 -------------------
 
 Starting August 3, 2020, customers and partners will be able to validate the latest features in a non-production environment. These features include user experience enhancements that will be automatically enabled for users in production environments during October 2020. Take advantage of the early access period, try out the latest updates in a non-production environment, and get ready to roll out updates to your users with confidence. To see the early access features, check out the [Dynamics 365](https://aka.ms/Dynamics365Wave2EAFeatures) and [Power Platform](https://aka.ms/PowerPlatformWave2EAFeatures) pages. For questions, please visit the [Early Access FAQ page](https://aka.ms/EarlyAccessFAQ).

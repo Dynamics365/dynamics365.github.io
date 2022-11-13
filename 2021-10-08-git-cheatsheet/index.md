@@ -19,7 +19,7 @@ Enables helpful colorization of command line output
 
 ## 2. Branches
 
-![braching](/imagesposts/braching.png "Branching")
+![braching](braching.png "Branching")
 
 >Branches are an important part of working with Git. Any commits you make will be made on the branch you’re currently “checked out” to. Use `git status` to see which branch that is.
 

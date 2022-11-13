@@ -3,8 +3,6 @@
 
 > The script will work for Dynamics 365 Finance & Operations version
 
-<!--more-->
-
 ```cs
 class MaxGeneratePO
 {
