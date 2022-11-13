@@ -1,0 +1,238 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>QueryBuildRrange - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</title>
+        <link>https://nuxulu.com/tags/querybuildrrange/</link>
+        <description>QueryBuildRrange - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Sun, 01 Jan 2017 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/querybuildrrange/" rel="self" type="application/rss+xml" /><item>
+    <title>Difference between QueryFilter and QueryBuildRrange</title>
+    <link>https://nuxulu.com/2017-01-01-difference-between-queryfilter-and-querybuildrange/</link>
+    <pubDate>Sun, 01 Jan 2017 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2017-01-01-difference-between-queryfilter-and-querybuildrange/</guid>
+    <description><![CDATA[<p>In Dynamics AX, we have two way to filter the result set of records in joined query is using <code>QueryFilter</code> class and <code>QueryBuildRange</code> class.</p>
+<p>So what&rsquo;s difference between them? when do we use <code>QueryFilter</code> class? When do we use <code>QueryBuildRange</code> class?</p>
+<p>Today, i will make a simple sample to show what is difference between them. I have a table <code>DuyDang_ParentTable</code> which have 1 columns <code>ID</code>.</p>
+<p><figure><a class="lightgallery" href="/2017-01-01-difference-between-queryfilter-and-querybuildrange/Parent_Table.jpg" title="Parent_Table" data-thumbnail="/2017-01-01-difference-between-queryfilter-and-querybuildrange/Parent_Table.jpg" data-sub-html="<h2>Parent_Table</h2><p>Parent_Table</p>">
+        
+    </a><figcaption class="image-caption">Parent_Table</figcaption>
+    </figure></p>
+<p>And another table <code>DuyDang_ChildTable</code> which have 3 columns : <code>ID</code>, <code>ParentID</code>, <code>Qty</code>.</p>
+<p><figure><a class="lightgallery" href="/2017-01-01-difference-between-queryfilter-and-querybuildrange/Child_Table.jpg" title="Child_Table" data-thumbnail="/2017-01-01-difference-between-queryfilter-and-querybuildrange/Child_Table.jpg" data-sub-html="<h2>Child_Table</h2><p>Child_Table</p>">
+        
+    </a><figcaption class="image-caption">Child_Table</figcaption>
+    </figure></p>
+<p>With the relation <code>DuyDang_ParentTable.ID = DuyDang_ChildTable.ParentID</code>.</p>
+<p>I have the <strong>Outer Join</strong> query:</p>
+<h3 id="use-queryfilter-class">Use QueryFilter class:</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">DuyDang_QueryFilter</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Query</span> <span class="n">query</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">QueryBuildDataSource</span> <span class="n">qbds</span><span class="p">,</span> <span class="n">qbds1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">QueryRun</span> <span class="n">queryRun</span><span class="p">;</span>    
+</span></span><span class="line"><span class="cl">    <span class="n">DuyDang_ParentTable</span> <span class="n">parentTable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">DuyDang_ChildTable</span> <span class="n">childTable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">QueryFilter</span> <span class="n">qFilter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">QueryBuildRange</span> <span class="n">qRange</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">structSet</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">structSet</span> <span class="p">=</span> <span class="k">new</span> <span class="k">struct</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s">&#34;str ParentID;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">+</span> <span class="s">&#34;str ChildID;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">+</span> <span class="s">&#34;real Quantity&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">query</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Query</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">qbds</span> <span class="p">=</span> <span class="n">query</span><span class="p">.</span><span class="n">addDataSource</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">DuyDang_ParentTable</span><span class="p">));</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">qbds1</span> <span class="p">=</span> <span class="n">qbds</span><span class="p">.</span><span class="n">addDataSource</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">DuyDang_ChildTable</span><span class="p">));</span>    
+</span></span><span class="line"><span class="cl">    <span class="n">qbds1</span><span class="p">.</span><span class="n">joinMode</span><span class="p">(</span><span class="n">JoinMode</span><span class="p">::</span><span class="n">OuterJoin</span><span class="p">);</span> <span class="c1">// Set join type.   </span>
+</span></span><span class="line"><span class="cl">    <span class="n">qbds1</span><span class="p">.</span><span class="n">addLink</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">DuyDang_ParentTable</span><span class="p">,</span> <span class="n">ID</span><span class="p">),</span> <span class="n">fieldNum</span><span class="p">(</span><span class="n">DuyDang_ChildTable</span><span class="p">,</span> <span class="n">ParentID</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">qFilter</span> <span class="p">=</span> <span class="n">query</span><span class="p">.</span><span class="n">addQueryFilter</span><span class="p">(</span><span class="n">qbds1</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Qty</span><span class="err">&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">qFilter</span><span class="p">.</span><span class="k">value</span><span class="p">(</span><span class="n">queryValue</span><span class="p">(</span><span class="m">15</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">queryRun</span> <span class="p">=</span> <span class="k">new</span> <span class="n">QueryRun</span><span class="p">(</span><span class="n">query</span><span class="p">);</span>    
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">queryRun</span><span class="p">.</span><span class="n">next</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">parentTable</span> <span class="p">=</span> <span class="n">queryRun</span><span class="p">.</span><span class="k">get</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">DuyDang_ParentTable</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">childTable</span> <span class="p">=</span> <span class="n">queryRun</span><span class="p">.</span><span class="k">get</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">DuyDang_ChildTable</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">structSet</span><span class="p">.</span><span class="k">value</span><span class="p">(</span><span class="s">&#34;ParentID&#34;</span><span class="p">,</span> <span class="n">parentTable</span><span class="p">.</span><span class="n">ID</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">structSet</span><span class="p">.</span><span class="k">value</span><span class="p">(</span><span class="s">&#34;ChildID&#34;</span><span class="p">,</span> <span class="n">childTable</span><span class="p">.</span><span class="n">ID</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">structSet</span><span class="p">.</span><span class="k">value</span><span class="p">(</span><span class="s">&#34;Quantity&#34;</span><span class="p">,</span> <span class="n">childTable</span><span class="p">.</span><span class="n">Qty</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">(</span><span class="n">structSet</span><span class="p">.</span><span class="n">toString</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The result</p>
+<p><figure><a class="lightgallery" href="/2017-01-01-difference-between-queryfilter-and-querybuildrange/Result_Filter.jpg" title="Child_Table" data-thumbnail="/2017-01-01-difference-between-queryfilter-and-querybuildrange/Result_Filter.jpg" data-sub-html="<h2>Child_Table</h2><p>Child_Table</p>">
+        
+    </a><figcaption class="image-caption">Child_Table</figcaption>
+    </figure></p>
+<h3 id="use-querybuildrange-class">Use QueryBuildRange class:</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">DuyDang_QueryFilter</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Query</span> <span class="n">query</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">QueryBuildDataSource</span> <span class="n">qbds</span><span class="p">,</span> <span class="n">qbds1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">QueryRun</span> <span class="n">queryRun</span><span class="p">;</span>    
+</span></span><span class="line"><span class="cl">    <span class="n">DuyDang_ParentTable</span> <span class="n">parentTable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">DuyDang_ChildTable</span> <span class="n">childTable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">QueryFilter</span> <span class="n">qFilter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">QueryBuildRange</span> <span class="n">qRange</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">structSet</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">structSet</span> <span class="p">=</span> <span class="k">new</span> <span class="k">struct</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s">&#34;str ParentID;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">+</span> <span class="s">&#34;str ChildID;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">+</span> <span class="s">&#34;real Quantity&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">query</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Query</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">qbds</span> <span class="p">=</span> <span class="n">query</span><span class="p">.</span><span class="n">addDataSource</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">DuyDang_ParentTable</span><span class="p">));</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">qbds1</span> <span class="p">=</span> <span class="n">qbds</span><span class="p">.</span><span class="n">addDataSource</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">DuyDang_ChildTable</span><span class="p">));</span>    
+</span></span><span class="line"><span class="cl">    <span class="n">qbds1</span><span class="p">.</span><span class="n">joinMode</span><span class="p">(</span><span class="n">JoinMode</span><span class="p">::</span><span class="n">OuterJoin</span><span class="p">);</span> <span class="c1">// Set join type.   </span>
+</span></span><span class="line"><span class="cl">    <span class="n">qbds1</span><span class="p">.</span><span class="n">addLink</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">DuyDang_ParentTable</span><span class="p">,</span> <span class="n">ID</span><span class="p">),</span> <span class="n">fieldNum</span><span class="p">(</span><span class="n">DuyDang_ChildTable</span><span class="p">,</span> <span class="n">ParentID</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">qRange</span> <span class="p">=</span> <span class="n">qbds1</span><span class="p">.</span><span class="n">addRange</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">DuyDang_ChildTable</span><span class="p">,</span> <span class="n">Qty</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">qRange</span><span class="p">.</span><span class="k">value</span><span class="p">(</span><span class="n">queryValue</span><span class="p">(</span><span class="m">15</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">queryRun</span> <span class="p">=</span> <span class="k">new</span> <span class="n">QueryRun</span><span class="p">(</span><span class="n">query</span><span class="p">);</span>    
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">queryRun</span><span class="p">.</span><span class="n">next</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">parentTable</span> <span class="p">=</span> <span class="n">queryRun</span><span class="p">.</span><span class="k">get</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">DuyDang_ParentTable</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">childTable</span> <span class="p">=</span> <span class="n">queryRun</span><span class="p">.</span><span class="k">get</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">DuyDang_ChildTable</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">structSet</span><span class="p">.</span><span class="k">value</span><span class="p">(</span><span class="s">&#34;ParentID&#34;</span><span class="p">,</span> <span class="n">parentTable</span><span class="p">.</span><span class="n">ID</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">structSet</span><span class="p">.</span><span class="k">value</span><span class="p">(</span><span class="s">&#34;ChildID&#34;</span><span class="p">,</span> <span class="n">childTable</span><span class="p">.</span><span class="n">ID</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">structSet</span><span class="p">.</span><span class="k">value</span><span class="p">(</span><span class="s">&#34;Quantity&#34;</span><span class="p">,</span> <span class="n">childTable</span><span class="p">.</span><span class="n">Qty</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">(</span><span class="n">structSet</span><span class="p">.</span><span class="n">toString</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>and result <code>info</code> here:</p>
+<p><figure><a class="lightgallery" href="/2017-01-01-difference-between-queryfilter-and-querybuildrange/Result_Range.jpg" title="Child_Table" data-thumbnail="/2017-01-01-difference-between-queryfilter-and-querybuildrange/Result_Range.jpg" data-sub-html="<h2>Child_Table</h2><p>Child_Table</p>">
+        
+    </a><figcaption class="image-caption">Child_Table</figcaption>
+    </figure></p>
+<p>We can see the difference between them</p>
+<ul>
+<li>When you use <code>QueryFilter</code> class, the restriction is in the <code>WHERE</code> clause of the <code>OUTER JOIN</code> in the ANSI SQL select statement that is generated by the AOS for the underlying database system.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">DuyDang_ParentTable</span><span class="p">(</span><span class="n">DuyDang_ParentTable_1</span><span class="p">)</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">OUTER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">DuyDang_ChildTable</span><span class="p">(</span><span class="n">DuyDang_ChildTable_1</span><span class="p">)</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">ON</span><span class="w"> </span><span class="n">DuyDang_ParentTable</span><span class="p">.</span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DuyDang_ChildTable</span><span class="p">.</span><span class="n">ParentID</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">WHERE</span><span class="w"> </span><span class="p">((</span><span class="n">DuyDang_ChildTable</span><span class="p">(</span><span class="n">DuyDang_ChildTable_1</span><span class="p">).</span><span class="n">Qty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">15</span><span class="p">))</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>When you use <code>QueryBuidRange</code> class, the restriction is in the <code>ON</code> clause of the <code>OUTER JOIN</code> in the ANSI SQL select statement that is generated by the AOS for the underlying database system.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">DuyDang_ParentTable</span><span class="p">(</span><span class="n">DuyDang_ParentTable_1</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">OUTER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">DuyDang_ChildTable</span><span class="p">(</span><span class="n">DuyDang_ChildTable_1</span><span class="p">)</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">ON</span><span class="w"> </span><span class="n">DuyDang_ParentTable</span><span class="p">.</span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DuyDang_ChildTable</span><span class="p">.</span><span class="n">ParentID</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">AND</span><span class="w"> </span><span class="p">((</span><span class="n">Qty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">15</span><span class="p">))</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Thank you for reading!</p>
+]]></description>
+</item>
+</channel>
+</rss>
