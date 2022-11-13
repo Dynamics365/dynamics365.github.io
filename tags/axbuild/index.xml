@@ -1,0 +1,194 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>axbuild - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</title>
+        <link>https://nuxulu.com/tags/axbuild/</link>
+        <description>axbuild - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Wed, 01 Jul 2015 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/axbuild/" rel="self" type="application/rss+xml" /><item>
+    <title>AxBuild.exe for Parallel Compile on AOS</title>
+    <link>https://nuxulu.com/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/</link>
+    <pubDate>Wed, 01 Jul 2015 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/</guid>
+    <description><![CDATA[<p>If you have only 10 mins to build AX, try this</p>
+<p>In AOS server, go to <code>C:\Program Files\Microsoft Dynamics AX\60\Server\DAX\bin</code> and open <code>cmd</code> from here then run this command</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ps" data-lang="ps"><span class="line"><span class="cl"><span class="nf">axbuild.exe</span> <span class="nf">xppcompileall</span> <span class="nv">/s=01</span> <span class="nv">/altbin=&#34;C:\Program</span> <span class="nf">Files</span> <span class="s">(x86)</span><span class="nf">\Microsoft</span> <span class="nf">Dynamics</span> <span class="nf">AX\60\Client\Bin&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>/s</code> is your AOS number instance, you can check it in windows services <code>/altbin</code> the path to AX client</p>
+<p><figure><a class="lightgallery" href="/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/axbuild-exe-for-parallel-compile-on-aos_2.png" title="axbuild-exe-for-parallel-compile-on-aos_2" data-thumbnail="/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/axbuild-exe-for-parallel-compile-on-aos_2.png" data-sub-html="<h2>axbuild</h2><p>axbuild-exe-for-parallel-compile-on-aos_2</p>">
+        
+    </a><figcaption class="image-caption">axbuild</figcaption>
+    </figure></p>
+<p><strong>Here is the result</strong>
+<figure><a class="lightgallery" href="/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/axbuild-exe-for-parallel-compile-on-aos_3.png" title="axbuild-exe-for-parallel-compile-on-aos_2" data-thumbnail="/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/axbuild-exe-for-parallel-compile-on-aos_3.png" data-sub-html="<h2>axbuild</h2><p>axbuild-exe-for-parallel-compile-on-aos_2</p>">
+        
+    </a><figcaption class="image-caption">axbuild</figcaption>
+    </figure>
+Once compile complete, you can import compile log file at <code>C:\Program Files\Microsoft Dynamics AX\60\Server\DAX\log</code> into compiler output of AX client
+<figure><a class="lightgallery" href="/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/axbuild-exe-for-parallel-compile-on-aos_4.png" title="axbuild-exe-for-parallel-compile-on-aos_2" data-thumbnail="/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/axbuild-exe-for-parallel-compile-on-aos_4.png" data-sub-html="<h2>axbuild</h2><p>axbuild-exe-for-parallel-compile-on-aos_2</p>">
+        
+    </a><figcaption class="image-caption">axbuild</figcaption>
+    </figure></p>
+<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw" aria-hidden="true"></i>Reference<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><strong>MSDN</strong>: <a href="https://msdn.microsoft.com/en-us/library/dn528954.aspx" target="_blank" rel="noopener noreffer ">https://msdn.microsoft.com/en-us/library/dn528954.aspx</a></div>
+        </div>
+    </div>
+]]></description>
+</item>
+<item>
+    <title>Architecture overview Microsoft Dynamics AX 2012</title>
+    <link>https://nuxulu.com/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/</link>
+    <pubDate>Tue, 01 Jan 2013 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/</guid>
+    <description><![CDATA[<blockquote>
+<p>Understanding the internal architecture of Microsoft Dynamics AX 2012 can help you make decision when planning and developing a Microsoft Dynamics AX 2012 system. Here are some pointers on DAX 2012 architecture primarily for DAX 2012 architects &amp; solution developers. This topic provides a high-level overview of the system architecture of Microsoft Dynamics AX.</p>
+</blockquote>
+<h2 id="system-architecture">System architecture</h2>
+<p>This diagram provides a high-level over of a Microsoft Dynamics AX 2012 system with all components installed, and describes how communications flow between the components.</p>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/AXSystemArchitechture.gif" title="AXSystemArchitechture" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/AXSystemArchitechture.gif" data-sub-html="<h2>AXSystemArchitechture</h2><p>AXSystemArchitechture</p>">
+        
+    </a><figcaption class="image-caption">AXSystemArchitechture</figcaption>
+    </figure></p>
+<h3 id="1-application-object-server-aos-architecture">1. Application Object Server (AOS) architecture</h3>
+<p>This diagram describes the functionality within the AOS Windows service, and describes how communications flow within it.</p>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/AOSWindowsService.gif" title="AOSWindowsService" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/AOSWindowsService.gif" data-sub-html="<h2>AOSWindowsService</h2><p>AOSWindowsService</p>">
+        
+    </a><figcaption class="image-caption">AOSWindowsService</figcaption>
+    </figure></p>
+<p><strong>Note</strong>: Clients communicate with an AOS by using remote procedure calls (RPCs), Windows Communication Foundation (WCF), or AOS services. In previous releases, other components and third-party programs could communicate with an AOS by using either .NET Business Connector or Application Integration Framework (AIF). For this release, we recommend that third-party programs use AOS services to communicate with AOS.</p>
+<h3 id="2-business-connector-architecture">2. Business Connector architecture</h3>
+<p>The differences between the client kernel as it runs on a standard client and a Business Connector client are:</p>
+<ul>
+<li>
+<p>The Session Manager in the client kernel manages only a single instance–in the Business Connector kernel, it manages multiple instances.</p>
+</li>
+<li>
+<p>he client kernel includes forms security, while the Business Connector kernel does not.</p>
+</li>
+</ul>
+<p>This diagram describes the architecture of the Business Connector version of the client kernel, and describes how communications flow within it.</p>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Business_Connector_Client.gif" title="&amp;ldquo;Business_Connector_Client&amp;rdquo;" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Business_Connector_Client.gif" data-sub-html="<h2>Business_Connector_Client</h2><p>&amp;ldquo;Business_Connector_Client&amp;rdquo;</p>">
+        
+    </a><figcaption class="image-caption">Business_Connector_Client</figcaption>
+    </figure></p>
+<h3 id="3-application-file-server-architecture">3. Application file server architecture</h3>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/App_file_server_architechture.gif" title="&amp;ldquo;App_file_server_architechture&amp;rdquo;" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/App_file_server_architechture.gif" data-sub-html="<h2>App_file_server_architechture</h2><p>&amp;ldquo;App_file_server_architechture&amp;rdquo;</p>">
+        
+    </a><figcaption class="image-caption">App_file_server_architechture</figcaption>
+    </figure></p>
+<h2 id="model-store-architecture">Model store architecture</h2>
+<p>Microsoft Dynamics AX contains sixteen layers. Each layer consists of one or more logical parts called models. A model is generated for each layer. For example, VAR Model is the model that the system generates for the VAR layer. The system generated models let you install and work with the base Microsoft Dynamics AX system.</p>
+<p>When you customize the Microsoft Dynamics AX program, you can take advantage of the capabilities of models.</p>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Model_store_architecture.gif" title="&amp;ldquo;Model_store_architecture&amp;rdquo;" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Model_store_architecture.gif" data-sub-html="<h2>Model_store_architecture</h2><p>&amp;ldquo;Model_store_architecture&amp;rdquo;</p>">
+        
+    </a><figcaption class="image-caption">Model_store_architecture</figcaption>
+    </figure></p>
+<p>The following table describes the application object layers in Microsoft Dynamics AX 2012:</p>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Layer.png" title="&amp;ldquo;Layer&amp;rdquo;" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Layer.png" data-sub-html="<h2>Layer</h2><p>&amp;ldquo;Layer&amp;rdquo;</p>">
+        
+    </a><figcaption class="image-caption">Layer</figcaption>
+    </figure></p>
+<h2 id="client-architecture">Client architecture</h2>
+<p>This diagram describes the functionality within the client, and describes how communications flow within it.</p>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Client_architecture.gif" title="&amp;ldquo;Client_architecture&amp;rdquo;" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Client_architecture.gif" data-sub-html="<h2>Client_architecture</h2><p>&amp;ldquo;Client_architecture&amp;rdquo;</p>">
+        
+    </a><figcaption class="image-caption">Client_architecture</figcaption>
+    </figure></p>
+<h2 id="clientserver-communication">Client/server communication</h2>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/ClientServer_communication.gif" title="&amp;ldquo;ClientServer_communication&amp;rdquo;" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/ClientServer_communication.gif" data-sub-html="<h2>ClientServer_communication</h2><p>&amp;ldquo;ClientServer_communication&amp;rdquo;</p>">
+        
+    </a><figcaption class="image-caption">ClientServer_communication</figcaption>
+    </figure></p>
+<p>The client communicates with various Microsoft Dynamics AX components in the following ways:</p>
+<ul>
+<li>
+<p>The client uses the remote procedure call (RPC) protocol to communicate with Application Object Server (AOS). The client never accesses the database or metadata directly. AOS sends the application objects and data to the client.</p>
+</li>
+<li>
+<p>The data layer that the client uses is based on data sources that are specified in metadata for forms and queries. In addition, any X++ code that is required to retrieve data can use the built-in language support to query and adjust data.</p>
+</li>
+<li>
+<p>The client uses a report Web Part to interact with the report server. By calling the web services that are exposed by the report server, the report control in the Web Part displays information that is contained in Reporting Services reports. These reports can include either transnational data from the Microsoft Dynamics AX application or OLAP cubes from Microsoft SQL Server Analysis Services. Cubes provide business analytic and key performance indicators (KPIs).</p>
+</li>
+<li>
+<p>The client provides workflow forms, alerts, and controls so that users can participate in the business process by using the Workflow system. The Workflow system is a Microsoft Dynamics AX component that enables workflow processes by using Windows Communication Foundation classes.</p>
+</li>
+<li>
+<p>The client provides a Help viewer, which is an application that displays context-sensitive Help topics. The Help topics are retrieved from a Help server that is located on-premises.</p>
+</li>
+<li>
+<p>The client also provides Role Centers, or role-based home pages, for users. Role Centers provide role-specific tasks, activities, alerts, reports, and business intelligence that help users increase their productivity. To interact with the Role Centers that are provided by Enterprise Portal and hosted on Internet Information Services (IIS), the client uses a browser control.</p>
+</li>
+</ul>
+<h2 id="services-and-aif-architecture">Services and AIF architecture</h2>
+<blockquote>
+<p>AX 2012 exposes its functionality through services that are based on Windows Communication Foundation (WCF) and hosted on Application Object Server (AOS). External applications and client applications on the local area network consume AX services by accessing them directly from AOS.</p>
+</blockquote>
+<ul>
+<li>
+<p>These clients and applications include AX components such as the AX client, Office Add-, and Enterprise Portal.</p>
+</li>
+<li>
+<p>Internet-based external applications and clients access the AX services through Internet Information Services (IIS). IIS routes the incoming requests for AX services to AOS. All services requests, regardless of their origin, are handled by the WCF runtime that is hosted on AOS.</p>
+</li>
+<li>
+<p>The AIF request preprocessor, if it is configured, can intercept the inbound request messages for custom preprocessing, such as message transforms or value substitutions. The AX service invokes the necessary business logic to process the inbound request message.</p>
+</li>
+<li>
+<p>Similarly, the AIF response postprocessor, if it is configured, can intercept the outbound response messages for custom post-processing, such as message transforms or value substitutions. The AIF response postprocessor then returns the response to the client.</p>
+</li>
+</ul>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/WCF_architecture.png" title="&amp;ldquo;WCF_architecture&amp;rdquo;" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/WCF_architecture.png" data-sub-html="<h2>WCF_architecture</h2><p>&amp;ldquo;WCF_architecture&amp;rdquo;</p>">
+        
+    </a><figcaption class="image-caption">WCF_architecture</figcaption>
+    </figure></p>
+<h2 id="enterprise-portal-architecture">Enterprise Portal architecture</h2>
+<p>This diagram provides a logical overview of a Microsoft Dynamics AX 2012 system with an Enterprise Portal server, and also describes the various components of the Enterprise Portal architecture.</p>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/EP_Architecture.gif" title="&amp;ldquo;EP_Architecture&amp;rdquo;" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/EP_Architecture.gif" data-sub-html="<h2>EP_Architecture</h2><p>&amp;ldquo;EP_Architecture&amp;rdquo;</p>">
+        
+    </a><figcaption class="image-caption">EP_Architecture</figcaption>
+    </figure></p>
+<h2 id="security-architecture">Security architecture</h2>
+<p>This following diagram provides a high-level overview of the security architecture of Microsoft Dynamics AX 2012.</p>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Security_architecture.gif" title="&amp;ldquo;Security_architecture&amp;rdquo;" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Security_architecture.gif" data-sub-html="<h2>Security_architecture</h2><p>&amp;ldquo;Security_architecture&amp;rdquo;</p>">
+        
+    </a><figcaption class="image-caption">Security_architecture</figcaption>
+    </figure></p>
+<h2 id="workflow-system-architecture">Workflow system architecture</h2>
+<ul>
+<li>
+<p>This following diagram provides a high-level architecture of the workflow infrastructure.</p>
+</li>
+<li>
+<p>The workflow infrastructure consists of two components that are hosted on Application Object Server (AOS): the X++ workflow run-time and the managed workflow run-time.</p>
+</li>
+</ul>
+<p>![](Workflow_system_arcitechture (1).gif)</p>
+<h2 id="analytic-architecture">Analytic architecture</h2>
+<p>The following diagram shows the Microsoft SQL Server Analysis Services cubes that are included with Microsoft Dynamics AX, and the components that are used to access them.</p>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Analytic_architecture.gif" title="&amp;ldquo;Analytic_architecture&amp;rdquo;" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/Analytic_architecture.gif" data-sub-html="<h2>Analytic_architecture</h2><p>&amp;ldquo;Analytic_architecture&amp;rdquo;</p>">
+        
+    </a><figcaption class="image-caption">Analytic_architecture</figcaption>
+    </figure></p>
+<h2 id="reporting-architecture">Reporting architecture</h2>
+<p>The following diagram illustrates the architecture of the reporting functionality in Microsoft Dynamics AX.</p>
+<p><figure><a class="lightgallery" href="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/reporting_architecture.png" title="&amp;ldquo;reporting_architecture&amp;rdquo;" data-thumbnail="/2013-01-01-microsoft-dynamics-ax-2012-architecture-overview/reporting_architecture.png" data-sub-html="<h2>reporting_architecture</h2><p>&amp;ldquo;reporting_architecture&amp;rdquo;</p>">
+        
+    </a><figcaption class="image-caption">reporting_architecture</figcaption>
+    </figure></p>
+<p>Thank you for reading.</p>
+]]></description>
+</item>
+</channel>
+</rss>

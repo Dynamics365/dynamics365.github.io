@@ -1,0 +1,174 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Azure SQL Database - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</title>
+        <link>https://nuxulu.com/tags/azure-sql-database/</link>
+        <description>Azure SQL Database - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Tue, 17 Dec 2019 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/azure-sql-database/" rel="self" type="application/rss+xml" /><item>
+    <title>Enable Power BI Embedded in cloud hosted Dynamics 365 finance and operations 8.0 &#43;</title>
+    <link>https://nuxulu.com/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/</link>
+    <pubDate>Tue, 17 Dec 2019 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/</guid>
+    <description><![CDATA[<p>In this article, we will go through how to enable Power BI embedded in Dynamics 365 finance and operations version 10 in a cloud-hosted environment (customer managed). From the previous version of FinOps, Power BI embedded uses workspace collections at Azure to display the report, since the workspace collections have been deprecated, Microsoft also disables power BI embedded in cloud-hosted environments. You can only enable Power BI embedded in multiple boxes environments like UAT and production.</p>
+<h2 id="1-create-workspace-collections">1. Create workspace collections</h2>
+<p>Although the workspace collections have been deprecated, it does not show in the Azure portal and you could not create it by using the Azure portal, but you can create and manage by using Azure CLI.</p>
+<p>Open PowerShell and run following</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">//</span> <span class="n">Allow</span> <span class="n">policy</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set-executionpolicy</span> <span class="n">remotesigned</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">//</span><span class="n">Install</span> <span class="n">AzureRM</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">AzureRM</span> <span class="n">-AllowClobber</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">//</span> <span class="n">Login</span> <span class="n">to</span> <span class="n">Azure</span> <span class="n">using</span> <span class="n">credentials</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Login-AzureRmAccount</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">//</span> <span class="nb">select </span><span class="n">the</span> <span class="n">subscription</span> <span class="n">ID</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Select-AzureRmSubscription</span> <span class="n">-SubscriptionId</span> <span class="nv">$subscriptionId</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$ResourceGroupName</span> <span class="p">=</span> <span class="err">“</span><span class="n">MaxWorkspaceCollections</span><span class="err">”</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$Location</span> <span class="p">=</span> <span class="s2">&#34;Southeast Asia&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">//</span> <span class="n">Create</span> <span class="n">workspace</span> <span class="n">collections</span>
+</span></span><span class="line"><span class="cl"><span class="nb">New-AzPowerBIWorkspaceCollection</span> <span class="n">-ResourceGroupName</span> <span class="nv">$ResourceGroupName</span> <span class="n">-WorkspaceCollectionName</span> <span class="nv">$WorkSpaceCollectionName</span> <span class="n">-Location</span> <span class="nv">$Location</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">//</span> <span class="n">Obtain</span> <span class="n">the</span> <span class="n">access</span> <span class="n">keys</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Get-AzPowerBIWorkspaceCollection</span> <span class="n">-ResourceGroupName</span> <span class="nv">$ResourceGroupName</span> <span class="n">-name</span> <span class="s2">&#34;&lt;yourWorkspacename&gt;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="2-create-axwd-azure-sql-database">2. Create AxWD Azure SQL Database</h2>
+<p>We must use the Azure SQL Database for the AxDW in Dynamics 365 finance and operations cloud-hosted environment.
+Please follow <a href="https://docs.microsoft.com/en-us/azure/sql-database/sql-database-single-database-get-started?tabs=azure-portal" target="_blank" rel="noopener noreffer ">this document to create Azure SQL DB</a>.</p>
+<p>We need at least <strong>5 GB storage for Database</strong>, for Pricing tier, I will recommend using from S1, and name the database AxDB</p>
+<p>This is my DB property</p>
+<p></p>
+<p>I’m using Premium tier because I want to use <strong>the Columnstore Clustered indexes</strong> in Database; it helps performance a little bit faster.
+Once you have the Azure SQL Database, we can use SSMS to connect to the database and create a user for that DB. You need to get <strong>the user and password information in LCS</strong>, where the cloud-hosted provisioned.</p>
+<p></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">Use</span><span class="w"> </span><span class="n">Master</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="n">LOGIN</span><span class="w"> </span><span class="n">axdwadmin</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">PASSWORD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="n">LOGIN</span><span class="w"> </span><span class="n">axdwruntimeuser</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">PASSWORD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Use</span><span class="w"> </span><span class="n">AxDw</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">axdwadmin</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">LOGIN</span><span class="w"> </span><span class="n">axdwadmin</span><span class="p">;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">axdwruntimeuser</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">LOGIN</span><span class="w"> </span><span class="n">axdwruntimeuser</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">ROLE</span><span class="w"> </span><span class="n">db_owner</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="n">MEMBER</span><span class="w"> </span><span class="n">axdwadmin</span><span class="p">;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">ROLE</span><span class="w"> </span><span class="n">db_datareader</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="n">MEMBER</span><span class="w"> </span><span class="n">axdwruntimeuser</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="3-configuring-to-enable-analytical-workspaces-and-reports">3. Configuring to enable Analytical Workspaces and Reports</h2>
+<p>What you are having now</p>
+<p>Power BI Embedded Service details from step 1</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Workspace Collection Name: The name of the Workspace Collection created when deploying the Power BI Embedded Service
+</span></span><span class="line"><span class="cl">Access Key1:  The secret key #1 used to access the Power BI Embedded service
+</span></span><span class="line"><span class="cl">Access Key2:  The secret key #2 used to access the Power BI Embedded service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Entity Store Database Service details from step 2</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Database name:  AxDW
+</span></span><span class="line"><span class="cl">Server name:  Azure SQL Server name (*.database.windows.net)
+</span></span><span class="line"><span class="cl">Server admin login:  Username supplied in the SQL Server settings
+</span></span><span class="line"><span class="cl">Password:  Account password supplied when configuring SQL Server
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Run Notepad in <strong>administrator</strong> mode, open web.config from <em>K:\AOSService\webroot</em> in Dynamics 365 for finance and operations environment.</p>
+<p>Update the configuration settings:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;BiReporting.DW&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Database name]&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;BiReporting.DWServer&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Server name]&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;BiReporting.DWRuntimeUser&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Server Admin login]&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;BiReporting.DWRuntimePwd&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Password]&#34;</span> <span class="p">/&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Update the Power BI Embedded Service configuration settings:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.AccessKey&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Access Key1]&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.AccessKey2&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Access Key2]&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.ApiUrl&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;https://api.powerbi.com&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.IsPowerBIEmbeddedEnabled&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;true&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="k">add</span> <span class="n">key</span><span class="p">=</span><span class="s">&#34;PowerBIEmbedded.WorkspaceCollectionName&#34;</span> <span class="k">value</span><span class="p">=</span><span class="s">&#34;[Workspace Collection Name]&#34;</span> <span class="p">/&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>After that, you need to restart IIS and Dynamics 365 for finance and operations batch service</p>
+<h2 id="4-refresh-data-entity-store-to-axdw">4. Refresh data entity store to AxDW</h2>
+<p>In Dynamics 365 for finance and operations, navigate to <em>System administration &gt; Setup &gt; Entity Store</em>, select all the <strong>entity store</strong>, and click refresh.</p>
+<p>Allow this process to complete in the background (~5 - 10mins).  You can monitor the status of the background process using the Batch jobs.</p>
+<p>Once the Progress is made, you can check the event message in the same form to make sure the refreshing working properly</p>
+<p></p>
+<h2 id="5-powerbi-configuration-this-is-optional">5. PowerBI configuration (this is optional)</h2>
+<p>Configuring power BI for the workspace; please follow the document <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/analytics/configure-power-bi-integration" target="_blank" rel="noopener noreffer ">here</a></p>
+<p>This is what you should have after the setup</p>
+<p></p>
+<h2 id="check-the-result">Check the result</h2>
+<p>If you want to check the result, go to <em>Workspaces &gt; Customer credit and collections &gt; Analytics all companies</em></p>
+<p></p>
+<p>Thank you for reading.</p>
+]]></description>
+</item>
+</channel>
+</rss>

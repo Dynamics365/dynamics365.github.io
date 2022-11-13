@@ -1,0 +1,104 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Business events - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</title>
+        <link>https://nuxulu.com/tags/business-events/</link>
+        <description>Business events - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Tue, 05 Nov 2019 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/business-events/" rel="self" type="application/rss+xml" /><item>
+    <title>Business events and HTTPs endpoint</title>
+    <link>https://nuxulu.com/2019-11-05-business-events-and-https-endpoint/</link>
+    <pubDate>Tue, 05 Nov 2019 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2019-11-05-business-events-and-https-endpoint/</guid>
+    <description><![CDATA[<p>In Dynamics 365 finance and operations, Business events provide a mechanism that lets external systems receive notifications from FinOps applications. In this way, the systems can perform business actions in response to business events.</p>
+<p>There are 3 types of business events: <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/business-events/app-business-events" target="_blank" rel="noopener noreffer ">Application business events</a>, <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/business-events/business-events-workflow" target="_blank" rel="noopener noreffer ">Workflow business events</a>, and <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/business-events/alerts-business-events" target="_blank" rel="noopener noreffer ">Alerts as business events</a>. You can also implement <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/business-events/business-events-dev-doc" target="_blank" rel="noopener noreffer ">a new business event</a>.</p>
+<p>Business events can be consumed using Microsoft Flow and Azure messaging services, and we use endpoint to manage the destinations for sending business events to, Microsoft supports many endpoints: Azure Service Bus Queue, Azure Service Bus Topic, Azure Event Grid, Azure Event Hub, HTTPS, Microsoft Flow.
+In this article I will show how to send business event to HTTPs endpoint that leveraging on Azure functions.</p>
+<p>The scenario: Once a free text invoice is posted, Business event will be triggered and send messages to the HTTPs endpoint.</p>
+<h2 id="1-https-and-azure-function">1. HTTPs and Azure function</h2>
+<p>Ideally, I will create a new Azure function which has HTTPs endpoint to subscribe the business events in FinOps.
+To create Azure function please follow this <a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-azure-function" target="_blank" rel="noopener noreffer ">https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-azure-function</a></p>
+<p>Here is the simple line of code</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Net</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">Microsoft.AspNetCore.Mvc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">Microsoft.Extensions.Primitives</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">Newtonsoft.Json</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">IActionResult</span><span class="p">&gt;</span> <span class="n">Run</span><span class="p">(</span><span class="n">HttpRequest</span> <span class="n">req</span><span class="p">,</span> <span class="n">ILogger</span> <span class="n">log</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">log</span><span class="p">.</span><span class="n">LogInformation</span><span class="p">(</span><span class="s">&#34;Dynamics 365 finance and operations notifications&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">string</span> <span class="n">requestBody</span> <span class="p">=</span> <span class="k">await</span> <span class="k">new</span> <span class="n">StreamReader</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">Body</span><span class="p">).</span><span class="n">ReadToEndAsync</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="n">log</span><span class="p">.</span><span class="n">LogInformation</span><span class="p">(</span><span class="n">requestBody</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">(</span><span class="n">ActionResult</span><span class="p">)</span><span class="k">new</span> <span class="n">OkObjectResult</span><span class="p">(</span><span class="s">$&#34;Hello world&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This basically listens the JSON messages from Business events and display the Json message at Console.</p>
+<p>From the Azure function you can get the HTTPs endpoint, save it for later reference.</p>
+<p></p>
+<h2 id="2-application-registration-int-aad">2. Application registration int AAD</h2>
+<p>We need an application to authenticate with FinOps and Azure function HTTPs.
+Go to <em>Azure portal &gt; AAD &gt; App registrations &gt; New registration</em></p>
+<p></p>
+<ul>
+<li>Name of the application.</li>
+<li>Depend on you have multitenant or not</li>
+<li>Dynamics 365 finance and operations URL</li>
+</ul>
+<h3 id="api-permissions">API Permissions</h3>
+<p>Go to the newly created application &gt; API permissions and adding permission as below</p>
+<p></p>
+<h3 id="secrets">Secrets</h3>
+<p>Go to Certificates &amp; secrets menu item and create a new client secret</p>
+<p></p>
+<p>After this you will have <strong>Application Id and Application Secret</strong>, save it for later.</p>
+<h2 id="3-key-vaults">3. Key Vaults</h2>
+<p>In Azure portal create a new keyVault to store the HTTPs endpoint URL information</p>
+<p></p>
+<h3 id="access-policy">Access policy</h3>
+<p>Click next to create access policy (you also can set up this later after creating Key Vault)</p>
+<p></p>
+<p>Select all the permissions in Key, Secret and Certificate, In select principal choose the application you have created before.</p>
+<p></p>
+<h3 id="key-vault-secret">Key Vault secret</h3>
+<p>Go to the newly <em>created Key vault &gt; secrets &gt; generate a new one</em></p>
+<p></p>
+<p>Value is the endpoint URL for D365 to call the one we got from the first step.
+After this step you will have the Key vault DNS name <em><a href="https://maxfokeyvault.vault.azure.net/" target="_blank" rel="noopener noreffer ">https://maxfokeyvault.vault.azure.net/</a></em> and Key Vault secret name <em>D365VaultSecretName</em>
+That information will be needed for Business events configuration in Dynamics 365 finance and operations</p>
+<h2 id="4-creating-https-endpoint">4. Creating HTTPs endpoint</h2>
+<p>Go to <em>System administrator &gt; Business events &gt; Business events catalog</em>, Click on <strong>Endpoints</strong> in <strong>Endpoint type</strong> choose <em>HTTPS</em> and <strong>click Next</strong>. Fill all the required information that you got from above steps.</p>
+<p>Click on <strong>Business events catalog</strong>, look for business event Id <em>CustFreeTextInvoicePostedBusinessEvent</em>, check the record and click <strong>Active</strong>; from there choose legal entity and the Endpoint that we have just created.</p>
+<p></p>
+<p>After that, if you check on <strong>Active events tab</strong>, there will be a new record created.
+That&rsquo;s it, now I will create a free text invoice and post it, this is what I got from the console log in Azure.</p>
+<p></p>
+<p>With the JSON messages, you can deserialize it and save to Cosmos DB or do whatever in Azure function.</p>
+<h2 id="5-about-platform-changes">5. About platform changes</h2>
+<p>Before PU26, Business event run in batch, following menu <em>System admin &gt; Business events &gt; Start business events batch job</em></p>
+<p>
+
+</p>
+<p>In <strong>BusinessEventsParameters</strong>, the value will be <code>Enabled = 0 , BatchEnabled = 1</code>.</p>
+<p>After PU26, the sending business events will be triggered directly from FinOps, you won&rsquo;t find the menu System admin &gt; Business events &gt; Start business events batch job</p>
+<p>In <strong>BusinessEventsParameters</strong>, the value will be <code>Enabled = 1 , BatchEnabled = 0</code>.
+If you have just upgraded from PU26 to higher version, the Business events are not getting triggered because the value might not be changed in <strong>BusinessEventsParameters</strong> and there is no batch. You should check this table according to the situation.</p>
+<p>Thank you for reading.</p>
+]]></description>
+</item>
+</channel>
+</rss>

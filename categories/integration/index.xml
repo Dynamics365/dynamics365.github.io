@@ -1,0 +1,1464 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Integration - Category - Dynamics 365 Finance &amp; Operations | nuxulu.com</title>
+        <link>https://nuxulu.com/categories/integration/</link>
+        <description>Integration - Category - Dynamics 365 Finance &amp; Operations | nuxulu.com</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Thu, 27 Oct 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/categories/integration/" rel="self" type="application/rss+xml" /><item>
+    <title>How to get FinOps Azure storage blob connection string</title>
+    <link>https://nuxulu.com/2022-10-27-how-to-get-d365-azure-blob-storage-str/</link>
+    <pubDate>Thu, 27 Oct 2022 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2022-10-27-how-to-get-d365-azure-blob-storage-str/</guid>
+    <description><![CDATA[<p>In Dynamics 365 for Finance and Operations Azure storage is used to</p>
+<ul>
+<li>Store files for <a href="https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/fin-ops/organization-administration/configure-document-management" target="_blank" rel="noopener noreffer ">Attachments</a></li>
+<li><a href="https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/data-import-export-job" target="_blank" rel="noopener noreffer ">Data import and export jobs</a></li>
+<li>When FinOps prints a report via <a href="https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/analytics/document-reporting-services?context=%2Fdynamics365%2Fcontext%2Fcommerce" target="_blank" rel="noopener noreffer ">Document Reporting Services</a>, SSRS Reporting Services generates an <a href="https://ax.docentric.com/printing-reports-with-custom-fonts-in-dynamics-365-for-finance-and-operations/" target="_blank" rel="noopener noreffer ">EMF image</a> for each page of the generated document. FinOps then temporarily saves the generated EMF files to Azure Blob storage.</li>
+<li><a href="https://learn.microsoft.com/en-us/dynamicsax-2012/appuser-itpro/print-a-report-from-the-archive" target="_blank" rel="noopener noreffer ">Printing archive</a></li>
+</ul>
+<p>And more!</p>
+<p>If you are using tier 1 Cloud-Hosted environment, you can find the azure storage from the Azure resource group in Azure portal.</p>
+<p>For tier 1, UAT tier 2, and PROD Tier 3, you can create a runnable class and execute to get the Azure storage connection string.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">Microsoft.Dynamics.Clx.ServicesWrapper</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">GetAzureBlob</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">(</span><span class="err">&#39;</span><span class="n">AzureStorageConnectionString</span> <span class="p">=</span> <span class="err">&#39;</span> <span class="p">+</span> <span class="n">CloudInfrastructure</span><span class="p">::</span><span class="n">GetCsuStorageConnectionString</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">(</span><span class="err">&#39;</span><span class="n">ClientCertificateThumbprint</span> <span class="p">=</span> <span class="err">&#39;</span> <span class="p">+</span> <span class="n">CloudInfrastructure</span><span class="p">::</span><span class="n">GetCsuClientCertificateThumbprint</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Once you have the connection string, you can connect it to <a href="https://docs.microsoft.com/en-us/azure/vs-azure-tools-storage-manage-with-storage-explorer?tabs=windows" target="_blank" rel="noopener noreffer ">MS Azure Storage Explorer</a>, Power Automate, or consuming in any framwork/language for integration/backup purposes.</p>
+]]></description>
+</item>
+<item>
+    <title>Add new fields to data entity or composite entity Dynamics 365</title>
+    <link>https://nuxulu.com/2022-09-23-add-custom-fields-to-composite-entity/</link>
+    <pubDate>Fri, 23 Sep 2022 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2022-09-23-add-custom-fields-to-composite-entity/</guid>
+    <description><![CDATA[<p>Let&rsquo;s take a composite entity <code>SalesOrderV3Entity</code> as an example.</p>
+<h3 id="scenario">Scenario</h3>
+<p>I will need to add new fields to Sales order header that can be used in the composite entity <code>SalesOrderV3Entity</code>.
+the composite entity <code>SalesOrderV3Entity</code> uses a standard data entity <code>SalesOrderHeaderV2Entity</code> for sales order header; so, we need to extend <code>SalesOrderHeaderV2Entity</code>.</p>
+<h3 id="the-steps">The Steps</h3>
+<ol>
+<li>
+<p>Add new fields to Main table <code>SalesTable</code></p>
+</li>
+<li>
+<p>Add new fields to the entity <code>SalesOrderHeaderV2Entity</code></p>
+</li>
+<li>
+<p>Add new fields to the staging table <code>SalesOrderHeaderV2Staging</code></p>
+</li>
+<li>
+<p>Build and sync.</p>
+</li>
+<li>
+<p>Go to Workspaces -&gt; Data Management -&gt; Framework parameters -&gt; Advanced entity configuration settings -&gt; Refresh entity list.</p>
+<p>You can automate the <code>Refresh entity list</code> task <a href="https://d365fostuff.wordpress.com/2021/03/31/d365fo-integrations-auto-refresh-your-data-entity-list/" target="_blank" rel="noopener noreffer ">here</a></p>
+</li>
+<li>
+<p>Go to Workspaces -&gt; Data Management -&gt; Data Entities, find <strong>SALES ORDER HEADERS V2</strong> and <em>Generate mapping</em> for it.
+The new custom fields will be generated for the entity mapping.</p>
+</li>
+</ol>
+]]></description>
+</item>
+<item>
+    <title>All about Odata actions in Dynamics 365 Finance And Operations</title>
+    <link>https://nuxulu.com/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/</link>
+    <pubDate>Tue, 25 May 2021 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/</guid>
+    <description><![CDATA[<p>ODATA actions in Data Entities provide a way to inject behaviors into the data model, or expose custom business logic from Dynamics 365 Finance &amp; Operations.
+You can add actions by adding a method to the data entity and then decorating the method with specific attributes <em>[SysODataActionAttribute]</em></p>
+<p>I use this Odata actions mostly in automation job like after refreshing data from PROD to UAT, we need to enable users, assign company to users, enable batches &hellip;
+Or simply consume it in Power Automate.</p>
+<h1 id="1-create-an-action-to-odata-entity">1. Create an action to OData entity</h1>
+<p>You can create a new entity following <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/build-consuming-data-entities#add-a-new-data-entity-to-your-project" target="_blank" rel="noopener noreffer ">this standard docs</a>
+or you can duplicate any standard entity. I created <strong>AutomationDataEntity</strong>. Right-click the enitity, select View code and add the code</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">AutomationDataEntity</span> <span class="n">extends</span> <span class="n">common</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//1st example</span>
+</span></span><span class="line"><span class="cl"><span class="na">    [SysODataActionAttribute(&#34;assignUserToCompany&#34;, false)]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">assignUserToCompany</span><span class="p">(</span><span class="n">NetworkAlias</span> <span class="n">_networkAlias</span><span class="p">,</span> <span class="n">DataAreaName</span> <span class="n">_company</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">UserInfo</span> <span class="n">userInfo</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ttsbegin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">select</span> <span class="n">firstonly</span> <span class="n">forupdate</span> <span class="n">userInfo</span>
+</span></span><span class="line"><span class="cl">            <span class="k">where</span> <span class="n">userInfo</span><span class="p">.</span><span class="n">networkAlias</span> <span class="p">==</span> <span class="n">_networkAlias</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">userInfo</span><span class="p">.</span><span class="n">company</span> <span class="p">=</span> <span class="n">_company</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">userInfo</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ttscommit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//2nd example</span>
+</span></span><span class="line"><span class="cl"><span class="na">    [SysODataActionAttribute(&#34;ReturnRental&#34;, true)]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">str</span> <span class="n">ReturnRental</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;Rental was successfully returned. Thanks for your business&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//following 3rd example of an OData action takes in a parameter and returns a list</span>
+</span></span><span class="line"><span class="cl"><span class="na">    [SysODataActionAttribute(&#34;GetColors&#34;, true),
+</span></span></span><span class="line"><span class="cl"><span class="na">    SysODataCollectionAttribute(&#34;return&#34;, Types::Record, &#34;CarColor&#34;)]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">List</span> <span class="n">GetColorsByAvailability</span><span class="p">(</span><span class="n">boolean</span> <span class="n">onlyAvailableVehicles</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">List</span> <span class="n">returnList</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Record</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// do something</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">returnList</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>In this example, the <code>SysODataActionAttribute</code> class decorates the <code>assginUserToCompany</code> method that is exposed as an action. The first argument of the attribute is the publicly exposed name of the action, and the second argument indicates whether this action need an entity instance or not. If you set the second argument to <em>false</em>, the method has to be <code>static</code>.</p>
+<p>You might need reset IIS service to update Odata endpoint.</p>
+<h1 id="2-test-entity-odata-actions-with-postman-and-power-automate">2. Test Entity Odata actions with Postman and Power Automate</h1>
+<h2 id="21-with-postman">2.1. With Postman</h2>
+<p>Please follow <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/third-party-service-test" target="_blank" rel="noopener noreffer ">this document</a> for basic configurations in Dynamics 365 Finance &amp; Operation, Azure to work with Postman.</p>
+<h3 id="211-lets-use-the-first-example">2.1.1. Let&rsquo;s use the first example</h3>
+<p>Specify Odata endpoint request with POST method into Postman application</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">[finopsURL]/data/AutomationDatas/Microsoft.Dynamics.DataEntities.assignUserToCompany
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>[finopsURL] = <a href="https://yourenvironment.cloudax.dynamics.com" target="_blank" rel="noopener noreffer ">https://yourenvironment.cloudax.dynamics.com</a></p>
+<p>Here is the Json file contains the parameters for <code>assignUserToCompany</code> method</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;_networkAlias&#34;</span><span class="p">:</span><span class="s2">&#34;Max.Nguyen@Microsoft.com&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;_company&#34;</span><span class="p">:</span><span class="s2">&#34;USMF&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Click <strong>Send</strong> and you will get your logic executed.</p>
+<p><figure><a class="lightgallery" href="/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations_1.png" title="Image" data-thumbnail="/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations_1.png" data-sub-html="<h2>all-about-odata-actions-in-dynamics-365-finance-and-operations</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">all-about-odata-actions-in-dynamics-365-finance-and-operations</figcaption>
+    </figure></p>
+<h3 id="212-lets-try-with-the-second-example">2.1.2. Let&rsquo;s try with the second example</h3>
+<p>Everything should be remain the same, you just need to change the method to <code>ReturnRental</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">[finopsURL]/data/AutomationDatas/Microsoft.Dynamics.DataEntities.ReturnRental
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Click <strong>Send</strong> and you will get an error</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Message&#34;</span><span class="p">:</span> <span class="s2">&#34;No HTTP resource was found that matches the request URI &#39;https://[devaos].cloudax.dynamics.com/data/AutomationDatas/Microsoft.Dynamics.DataEntities.ReturnRental&#39;. No route data was found for this request.&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The reason is that you set the second argument to <code>true</code>, that means you need an instance for <code>AutomationDatas</code> entity before you can use <code>ReturnRental</code> method.
+My entity created based on <code>CustGroup</code> table, so to get an instance I need <code>DataAreaId</code> and <code>CustGroupID</code>. The correct endpoint should be</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">[finopsURL]/data/AutomationDatas(dataAreaId=&#39;USMF&#39;,CustomerGroupId=&#39;BRIDGE&#39;)/Microsoft.Dynamics.DataEntities.ReturnRental
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The result</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;@odata.context&#34;</span><span class="p">:</span> <span class="s2">&#34;https://[devaos].cloudax.dynamics.com/data/$metadata#Edm.String&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="s2">&#34;Rental was successfully returned. Thanks for your business&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="22-with-power-automate">2.2. With Power Automate</h2>
+<h3 id="221-with-the-first-example">2.2.1. With the first example</h3>
+<p>Create a simple Power Automate with Dynamics 365 Finance &amp; Operations connector, to consume Odata actions we use &ldquo;Execute action&rdquo; action following</p>
+<p><figure><a class="lightgallery" href="/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations_2.png" title="Image" data-thumbnail="/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations_2.png" data-sub-html="<h2>all-about-odata-actions-in-dynamics-365-finance-and-operations</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">all-about-odata-actions-in-dynamics-365-finance-and-operations</figcaption>
+    </figure></p>
+<h3 id="222-with-the-second-example">2.2.2. With the second example</h3>
+<p>when specify <code>action</code> in <code>Execute action</code>, Dynamics 365 Finance &amp; Operations connector understand that this needs an instance</p>
+<p><figure><a class="lightgallery" href="/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations_3.png" title="Image" data-thumbnail="/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations_3.png" data-sub-html="<h2>all-about-odata-actions-in-dynamics-365-finance-and-operations</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">all-about-odata-actions-in-dynamics-365-finance-and-operations</figcaption>
+    </figure></p>
+<h1 id="3-more">3. More</h1>
+<p>In Odata actions, you can return a list</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="na">[SysODataActionAttribute(&#34;GetColors&#34;, true),
+</span></span></span><span class="line"><span class="cl"><span class="na">SysODataCollectionAttribute(&#34;return&#34;, Types::Record, &#34;CarColor&#34;)]</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="n">List</span> <span class="n">GetColorsByAvailability</span><span class="p">(</span><span class="n">boolean</span> <span class="n">onlyAvailableVehicles</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span> <span class="n">returnList</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Record</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// do something</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">returnList</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The following example of an OData action takes in list a parameter.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="na">[SysODataActionAttribute(&#34;GetColorsByAvailability&#34;, false),
+</span></span></span><span class="line"><span class="cl"><span class="na">SysODataCollectionAttribute(&#34;InventSiteIdList&#34;, Types::String),
+</span></span></span><span class="line"><span class="cl"><span class="na">SysODataCollectionAttribute(&#34;return&#34;, Types::String)]</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">str</span> <span class="n">GetColorsByAvailability</span><span class="p">(</span><span class="n">List</span> <span class="n">InventSiteIdList</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">str</span> <span class="n">strCommaSeperated</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span> <span class="n">list</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">String</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ListEnumerator</span>  <span class="n">ListEnumerator</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ListEnumerator</span> <span class="p">=</span> <span class="n">InventSiteIdList</span><span class="p">.</span><span class="n">getEnumerator</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">ListEnumerator</span><span class="p">.</span><span class="n">moveNext</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">strCommaSeperated</span> <span class="p">+=</span> <span class="n">strFmt</span><span class="p">(</span><span class="err">&#39;</span><span class="p">%</span><span class="m">1</span><span class="p">,</span> <span class="err">&#39;</span><span class="p">,</span> <span class="n">ListEnumerator</span><span class="p">.</span><span class="n">current</span><span class="p">())</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">strCommaSeperated</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>In those examples,the <code>SysODataCollectionAttribute</code> class enables OData to expose strongly typed collections from X++. This class takes in three parameters:</p>
+<ul>
+<li>The name of the parameter that is a list (Use return for the return value of the method.).</li>
+<li>The X++ type of the members of this list.</li>
+<li>The public name of the OData resource that is contained in the collection.</li>
+</ul>
+<p>You can find actions that are defined on data entities by searching for the <code>SysODataActionAttribute</code> attribute in <code>metadatasearch</code>.</p>
+<p>If you want to check how many Odata actions available for an entity, you can go here and search for an entity.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">https://[devaos].cloudax.dynamics.com/data/$metadata
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;Action</span> <span class="na">Name=</span><span class="s">&#34;removeDeleteCT&#34;</span> <span class="na">IsBound=</span><span class="s">&#34;true&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;AutomationData&#34;</span> <span class="na">Type=</span><span class="s">&#34;Collection(Microsoft.Dynamics.DataEntities.AutomationData)&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;_entityName&#34;</span> <span class="na">Type=</span><span class="s">&#34;Edm.String&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/Action&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;Action</span> <span class="na">Name=</span><span class="s">&#34;assginUserToCompany&#34;</span> <span class="na">IsBound=</span><span class="s">&#34;true&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;AutomationData&#34;</span> <span class="na">Type=</span><span class="s">&#34;Collection(Microsoft.Dynamics.DataEntities.AutomationData)&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;_networkAlias&#34;</span> <span class="na">Type=</span><span class="s">&#34;Edm.String&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;_company&#34;</span> <span class="na">Type=</span><span class="s">&#34;Edm.String&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/Action&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;Action</span> <span class="na">Name=</span><span class="s">&#34;ReturnRental&#34;</span> <span class="na">IsBound=</span><span class="s">&#34;true&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;AutomationData&#34;</span> <span class="na">Type=</span><span class="s">&#34;Microsoft.Dynamics.DataEntities.AutomationData&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;ReturnType</span> <span class="na">Type=</span><span class="s">&#34;Edm.String&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/Action&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;Action</span> <span class="na">Name=</span><span class="s">&#34;addToAllUserGroups&#34;</span> <span class="na">IsBound=</span><span class="s">&#34;true&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;AutomationData&#34;</span> <span class="na">Type=</span><span class="s">&#34;Collection(Microsoft.Dynamics.DataEntities.AutomationData)&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;Parameter</span> <span class="na">Name=</span><span class="s">&#34;_userId&#34;</span> <span class="na">Type=</span><span class="s">&#34;Edm.String&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/Action&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>At the time I&rsquo;m writing this post, Odata actions does not support COC extension (A 18, P 42). So if you write some thing like this, it won&rsquo;t work.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="na">[ExtensionOf(dataentityviewstr(CustCustomerGroupEntity))]</span>
+</span></span><span class="line"><span class="cl"><span class="n">final</span> <span class="k">class</span> <span class="nc">CustCustomerGroupEntity_KA_Extension</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="na">    [SysODataActionAttribute(&#34;ReturnRental&#34;, false)]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="n">str</span> <span class="n">ReturnRental</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;Rental was successfully returned. Thanks for your business&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Thank you for reading.</p>]]></description>
+</item>
+<item>
+    <title>Testing Dynamics 365 Finance Database Movement API with Postman</title>
+    <link>https://nuxulu.com/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/</link>
+    <pubDate>Mon, 17 Aug 2020 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman.png" referrerpolicy="no-referrer">
+            </div><p>Microsoft provides a versioned set of capabilities that you can currently use to copy databases between environments, and to list and download database backups.</p>
+<p>what you can do with Database movement API so far:</p>
+<ul>
+<li>List database backups</li>
+<li>Create database refresh</li>
+<li>Create a database export</li>
+<li>Get operation activity status</li>
+</ul>
+<p>More supported actions will be added in later releases.</p>
+<p>The endpoint uses <strong>impersonation authentication</strong> base, please follow to <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/database/api/dbmovement-api-authentication##register-a-new-application-by-using-the-azure-portal" target="_blank" rel="noopener noreffer ">register a new application by using the Azure portal</a></p>
+<h2 id="1-postman-environment-setup">1. Postman environment setup</h2>
+<blockquote>
+<p>Open Postman -&gt; manage environments -&gt; Add</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">tenant_id: {tenant_id get from AAD}
+</span></span><span class="line"><span class="cl">client_id: {get from the application that you have created before}
+</span></span><span class="line"><span class="cl">client_secret: {get from the application that you have created before}
+</span></span><span class="line"><span class="cl">username: {LCS user name with owner permission}
+</span></span><span class="line"><span class="cl">password: {LCS user password}
+</span></span><span class="line"><span class="cl">grant_type: password
+</span></span><span class="line"><span class="cl">resource: https://lcsapi.lcs.dynamics.com
+</span></span><span class="line"><span class="cl">projectId: {Your LCS Project ID}
+</span></span><span class="line"><span class="cl">bearerToken: {this will be populated when authentication}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_1.png" title="Postman environment setup" data-thumbnail="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_1.png" data-sub-html="<h2>Postman environment setup</h2><p>Postman environment setup</p>">
+        
+    </a><figcaption class="image-caption">Postman environment setup</figcaption>
+    </figure></p>
+<h2 id="2-authentication-with-postman">2. Authentication with Postman</h2>
+<p>You get the authentication bearer with <strong>POST</strong> method and <a href="https://login.microsoftonline.com/%7b%7btenant_id%7d%7d/oauth2/token" target="_blank" rel="noopener noreffer ">https://login.microsoftonline.com/{{tenant_id}}/oauth2/token</a> endpoint.</p>
+<p>In the request Body, please do following:</p>
+<p><figure><a class="lightgallery" href="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_2.png" title="Authentication with Postman" data-thumbnail="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_2.png" data-sub-html="<h2>Authentication with Postman</h2><p>Authentication with Postman</p>">
+        
+    </a><figcaption class="image-caption">Authentication with Postman</figcaption>
+    </figure></p>
+<p>Click <strong>Send</strong>, and you will have access token to start using the API.</p>
+<p><figure><a class="lightgallery" href="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_3.png" title="token" data-thumbnail="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_3.png" data-sub-html="<h2>token</h2><p>token</p>">
+        
+    </a><figcaption class="image-caption">token</figcaption>
+    </figure></p>
+<h2 id="3-cosnume-the-apis-with-postman">3. Cosnume the APIs with Postman</h2>
+<p>To call the Database Movement API, you attach the access token as a bearer token to the authorization header in your HTTP request. So in Postman, modify the headers tab like bellow</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Authorization:Bearer {{bearerToken}}
+</span></span><span class="line"><span class="cl">x-ms-version:&#39;2017-09-15&#39;
+</span></span><span class="line"><span class="cl">Content-Type:application/json
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_4.png" title="Cosnume" data-thumbnail="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_4.png" data-sub-html="<h2>Cosnume</h2><p>Cosnume</p>">
+        
+    </a><figcaption class="image-caption">Cosnume</figcaption>
+    </figure></p>
+<h3 id="31-list-database-backups">3.1. List database backups</h3>
+<p><code>GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/databases/project/{{projectId}}</code></p>
+<p>And we’ll get a JSON with a list of the DB backups on our LCS Asset Library:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;DatabaseAssets&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;Id&#34;</span><span class="p">:</span> <span class="s2">&#34;12314234-862e-4a6a-800d-0c64e982284a&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;ProjectId&#34;</span><span class="p">:</span> <span class="mi">123123</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;OrganizationId&#34;</span><span class="p">:</span> <span class="mi">123124</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;Name&#34;</span><span class="p">:</span> <span class="s2">&#34;backup&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;FileName&#34;</span><span class="p">:</span> <span class="s2">&#34;ATbackup.bacpac&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;FileDescription&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;FileLocation&#34;</span><span class="p">:</span> <span class="s2">&#34;https://uswedpl1catalog.blob.core.windows.net/product-ax7productname/******&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;ModifiedDateTime&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-08-17T09:52:50.077&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;CreatedDateTime&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-08-17T09:52:45.297&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;CreatedByName&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;ModifiedByName&#34;</span><span class="p">:</span> <span class="kc">null</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;IsSuccess&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;OperationActivityId&#34;</span><span class="p">:</span> <span class="s2">&#34;5053e0dd-66e3-4832-a9f8-1e2d621562e1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ErrorMessage&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;VersionEOL&#34;</span><span class="p">:</span> <span class="s2">&#34;9999-12-31T23:59:59.9999999&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="32-create-database-refresh">3.2. Create database refresh</h3>
+<p><code>POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/refresh/project/{projectId}/source/{sourceEnvironmentId}/target/{targetEnvironmentId}</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;IsSuccess&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;OperationActivityId&#34;</span><span class="p">:</span> <span class="s2">&#34;55eb4327-9346-4c7b-82bd-fe8ef15112c6&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ErrorMessage&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;VersionEOL&#34;</span><span class="p">:</span> <span class="s2">&#34;9999-12-31T23:59:59.9999999&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="33-create-a-database-export">3.3. Create a database export</h3>
+<p><code>POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/export/project/{projectId}/environment/{environmentId}/backupName/{backupName}</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;IsSuccess&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;OperationActivityId&#34;</span><span class="p">:</span> <span class="s2">&#34;55eb4327-9346-4c7b-82bd-fe8ef15112c6&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ErrorMessage&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;VersionEOL&#34;</span><span class="p">:</span> <span class="s2">&#34;9999-12-31T23:59:59.9999999&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="34-get-operation-activity-status">3.4. Get operation activity status</h3>
+<p><code>GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/fetchstatus/project/{projectId}/environment/{environmentId}/operationactivity/{operationactivityId}</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;IsSuccess&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;OperationActivityId&#34;</span><span class="p">:</span> <span class="s2">&#34;6a90b45f-1764-4077-b924-3f4671540237&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ErrorMessage&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;VersionEOL&#34;</span><span class="p">:</span> <span class="s2">&#34;9999-12-31T23:59:59.9999999&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ProjectId&#34;</span><span class="p">:</span> <span class="s2">&#34;12345&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;EnvironmentId&#34;</span><span class="p">:</span> <span class="s2">&#34;5362377c-bc37-4f92-b30e-fe0c1e664cc0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ActivityId&#34;</span><span class="p">:</span> <span class="s2">&#34;55eb4327-9346-4c7b-82bd-fe8ef15112c6&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;CompletionDate&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;OperationStatus&#34;</span><span class="p">:</span> <span class="s2">&#34;InProgress&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>]]></description>
+</item>
+<item>
+    <title>Dynamics 365 FinOps Data Integration using Microsoft Forms (Part 2)</title>
+    <link>https://nuxulu.com/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/</link>
+    <pubDate>Sun, 28 Jun 2020 00:00:00 &#43;0000</pubDate>
+    <author>Kome Hoang</author>
+    <guid>https://nuxulu.com/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/</guid>
+    <description><![CDATA[<h3 id="1-example-two-a-new-forms-response-is-submitted-then-flow-promts-for-an-approval-request-before-a-new-record-is-created-in-vendors-table">1. Example two: A new Forms response is submitted then Flow promts for an approval request before a new record is created in Vendors table</h3>
+<p>In the last example, we created a simple Flow to create a new Vendor Account from submitted Forms responses. The process was made as simple as it could be: When a new Forms response if submitted, a new Vendor Account will be created on D365FO client.</p>
+<p>To make the process more reliable, we will now add an approval step to the Flow. It means before a new Vendor Account is created, the user will have the right to <code>Approve</code> or <code>Reject</code> the request.</p>
+<h4 id="11-step-1-add-a-new-step-to-the-flow">1.1. <strong>Step 1: Add a new step to the Flow</strong></h4>
+<p>The flow that we have is like this.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-1-Flow-1.png" title="Flow step 1" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-1-Flow-1.png" data-sub-html="<h2>The old flow</h2><p>Flow step 1</p>">
+        
+    </a><figcaption class="image-caption">The old flow</figcaption>
+    </figure></p>
+<p>We will add a step right before the new record is created.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-2-Flow-2.png" title="Flow step 2" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-2-Flow-2.png" data-sub-html="<h2>Add a new step</h2><p>Flow step 2</p>">
+        
+    </a><figcaption class="image-caption">Add a new step</figcaption>
+    </figure></p>
+<p>We will go with <code>Approval &gt; Start and wait for an approval</code>.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-3-Flow-3.png" title="Flow step 3" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-3-Flow-3.png" data-sub-html="<h2>Add approval request</h2><p>Flow step 3</p>">
+        
+    </a><figcaption class="image-caption">Add approval request</figcaption>
+    </figure></p>
+<p>This step will offer several types of approval in which the most common ones are <code>All users must approve</code> or <code>First approve/reject from any user</code>. To make it simple, we will go with <code>First approval</code> because in this example, we will have only one user.</p>
+<p>As straightforward as they seem, the fields explain themselves. We will start an approval request, set a title for it and assign it to a user (only users in the same organisation as you).</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-4-Flow-4.png" title="Flow step 4" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-4-Flow-4.png" data-sub-html="<h2>Single approval</h2><p>Flow step 4</p>">
+        
+    </a><figcaption class="image-caption">Single approval</figcaption>
+    </figure></p>
+<p><em><strong>Note 2-1</strong></em></p>
+<blockquote>
+<p><em>Almost all fields including <code>Title</code>, <code>Details</code>, etc. are fully customisable by using <code>Dynamic content</code>.</em></p>
+</blockquote>
+<p>The flow now will look like this.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-5-Flow-5.png" title="Flow step 5" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-5-Flow-5.png" data-sub-html="<h2>Revised flow</h2><p>Flow step 5</p>">
+        
+    </a><figcaption class="image-caption">Revised flow</figcaption>
+    </figure></p>
+<h4 id="12-step-2-testing-out">1.2. <strong>Step 2: Testing out</strong></h4>
+<p>Trigger a <code>test</code> run of the flow.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-6-Flow-6.png" title="Flow step 6" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-6-Flow-6.png" data-sub-html="<h2>Test run</h2><p>Flow step 6</p>">
+        
+    </a><figcaption class="image-caption">Test run</figcaption>
+    </figure></p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-7-Flow-7.png" title="Flow step 7" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-7-Flow-7.png" data-sub-html="<h2>Test run triggered</h2><p>Flow step 7</p>">
+        
+    </a><figcaption class="image-caption">Test run triggered</figcaption>
+    </figure></p>
+<p>The <code>test</code> run is ready, waiting for the input from <code>MS Forms</code>.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-8-Flow-8.png" title="Flow step 8" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-8-Flow-8.png" data-sub-html="<h2>Test run ready</h2><p>Flow step 8</p>">
+        
+    </a><figcaption class="image-caption">Test run ready</figcaption>
+    </figure></p>
+<p>Submit a new response.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-9-Flow-9.png" title="Flow step 9" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-9-Flow-9.png" data-sub-html="<h2>Form new response</h2><p>Flow step 9</p>">
+        
+    </a><figcaption class="image-caption">Form new response</figcaption>
+    </figure></p>
+<p>The flow will run. The process will show that an approval is being waited from the assigned user.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-10-Flow-10.png" title="Flow step 10" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-10-Flow-10.png" data-sub-html="<h2>Waiting for an approval</h2><p>Flow step 10</p>">
+        
+    </a><figcaption class="image-caption">Waiting for an approval</figcaption>
+    </figure></p>
+<p>An approval request will be sent to the mailbox of the assigned user. That user can check the request in <code>Office.com &gt; Outlook</code>.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-11-Flow-11.png" title="Flow step 11" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-11-Flow-11.png" data-sub-html="<h2>Approval request</h2><p>Flow step 11</p>">
+        
+    </a><figcaption class="image-caption">Approval request</figcaption>
+    </figure></p>
+<p>Upon approval, the flow will finish its pending step and a new record will be created.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-12-Flow-12.png" title="Flow step 12" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-12-Flow-12.png" data-sub-html="<h2>Flow finishes</h2><p>Flow step 12</p>">
+        
+    </a><figcaption class="image-caption">Flow finishes</figcaption>
+    </figure></p>
+<h3 id="2-example-three-from-the-created-record-in-vendors-table-add-related-records-in-other-tables">2. Example three: From the created record in Vendors table, add related records in other tables</h3>
+<p>In the last example, we added an Approval step to the Flow which will allow users to give <code>Approve</code> or <code>Reject</code> action toward the request coming from the Form.</p>
+<p>We can actually utilise the Flow one step further: To create additional records on different tables that might depend on the created record in VendTable.</p>
+<p>To make it easier to understand, the process is like this:</p>
+<ul>
+<li>Create a new <code>Vendor Account</code> by using input from the Form.</li>
+<li>Create a new <code>Bank Account</code> with the <code>Bank Account ID</code> exactly similar to the <code>Vendor Account</code>.</li>
+<li>Add some contact details to the <code>Vendor Account</code>.</li>
+</ul>
+<p>Which entities should we target to? They are:</p>
+<ul>
+<li>For <code>Vendor Bank Account</code>: VendorBankAccounts</li>
+<li>For <code>Vendor Contact Details</code>: PartyContacts</li>
+</ul>
+<p>You can play around in Visual Studio to get used to looking for an Entity that might fulfil the requirements of your intergration. Check out the next part of this article to get some quick tips into that.</p>
+<p>Assuming that we now have a Flow as we configured in the last two examples, we can add some more steps like these underneath.</p>
+<h4 id="21-step-1-add-a-new-step-to-add-a-new-record-to-vendorbankaccounts-and-partycontacts">2.1. <strong>Step 1: Add a new step to add a new record to VendorBankAccounts and PartyContacts</strong></h4>
+<p>Given the case that we had a Vendor Account and Bank Account for that Vendor Account, the records would be like this.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-1-SSMSBank.png" title="SSMSBank" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-1-SSMSBank.png" data-sub-html="<h2>Relation in SSMS</h2><p>SSMSBank</p>">
+        
+    </a><figcaption class="image-caption">Relation in SSMS</figcaption>
+    </figure></p>
+<p>The relation should be: <code>VendTable.AccountNum</code> = <code>VendBankAccount.VendAccount</code></p>
+<p>On the client, the information should be illustrated like this.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-2-VendBank1.png" title="VendBank1" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-2-VendBank1.png" data-sub-html="<h2>Vendor Bank Account</h2><p>VendBank1</p>">
+        
+    </a><figcaption class="image-caption">Vendor Bank Account</figcaption>
+    </figure></p>
+<p>And, when checking the Bank Account details, we would find.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-3-VenkBank2.png" title="VendBank2" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-3-VenkBank2.png" data-sub-html="<h2>Vendor Bank Details</h2><p>VendBank2</p>">
+        
+    </a><figcaption class="image-caption">Vendor Bank Details</figcaption>
+    </figure></p>
+<p>Now, to do so, we will add a new step right after the creation of VendTable record.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-4-Flow-1.png" title="VendBank3" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-4-Flow-1.png" data-sub-html="<h2>A new step</h2><p>VendBank3</p>">
+        
+    </a><figcaption class="image-caption">A new step</figcaption>
+    </figure></p>
+<ul>
+<li><code>Instance</code> = <code>Environment URL</code> (same as any other steps)</li>
+<li><code>Entity name</code> = <code>VendorBankAccounts</code> (check my post about good tips with Visual Studio to know how to find the Data Entity)</li>
+<li><code>Supplier account</code> = <code>Supplier account</code> from last step</li>
+<li><code>Bank account</code>= <code>Supplier account</code> from last step (Because I would like to have same Vendor Account and Bank Account)</li>
+</ul>
+<p>When saying &ldquo;from the last step&rdquo;, I meant this.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-5-Flow-2.png" title="DynamicsContent" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-5-Flow-2.png" data-sub-html="<h2>Selecting Dynamic Content from former steps</h2><p>DynamicsContent</p>">
+        
+    </a><figcaption class="image-caption">Selecting Dynamic Content from former steps</figcaption>
+    </figure></p>
+<p>In MS FLow, any steps that are already executed will have outputs. We, in this step, are taking the <code>Supplier Account</code> from the last step of creating a new record in VendTable . This dynamic content was generated when the new record is created.</p>
+<p><em><strong>Note 3-1</strong></em></p>
+<blockquote>
+<p><em>Keep in mind that if the last step is not &ldquo;Creating a new record&rdquo;, chance is that you cannot take the output from it because there&rsquo;s simply none.</em></p>
+</blockquote>
+<p>Click on <code>Show advanced options</code> so we can add more information to the Vendor Bank Account.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-6-Flow-3.png" title="AdvancedOptions" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-6-Flow-3.png" data-sub-html="<h2>Select Show advanced options</h2><p>AdvancedOptions</p>">
+        
+    </a><figcaption class="image-caption">Select Show advanced options</figcaption>
+    </figure></p>
+<p>Add more details to the bank account:</p>
+<ul>
+<li><code>Name</code> = <code>Bank account name</code> chosen from the Form using Dynamic Content (we don&rsquo;t want to copy any more values from the VendTable record - we actually will specify a bank account name when composing a response on the Form)</li>
+<li><code>Bank account number</code> = <code>Bank account number</code> chosen from the Form using Dynamic Content</li>
+</ul>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-7-Flow-4.png" title="BankDetails" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-7-Flow-4.png" data-sub-html="<h2>Add more details to bank account</h2><p>BankDetails</p>">
+        
+    </a><figcaption class="image-caption">Add more details to bank account</figcaption>
+    </figure></p>
+<p>We finished with Vendor Bank Account.</p>
+<p>We will do just the same with the record in PartyContacts.</p>
+<ul>
+<li><code>Party ID</code> = <code>Party ID</code> from VendTable record</li>
+<li><code>Contact number/address</code> = <code>Email</code> from the Form (in this case, I would like to add an email address - it is totally up to you to opt to add phone number, Skype, Twitter and some other contact detail that D365FO is supporting)</li>
+<li><code>Purpose</code> = I am &ldquo;hard-coding&rdquo; this <code>&quot;Business&quot;</code> (the supported purpose of Contact can be found on Vendor Card on D356FO client - this purpose should mainly be used when sending emails, i.e. D365FO want to send Purchase Order Confirmation to any email addresses with purpose <code>&quot;Invoice&quot;</code>)</li>
+</ul>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-8-Flow-5.png" title="VendorContact" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-8-Flow-5.png" data-sub-html="<h2>Vendor Contact Details</h2><p>VendorContact</p>">
+        
+    </a><figcaption class="image-caption">Vendor Contact Details</figcaption>
+    </figure></p>
+<h4 id="22-step-2-testing-out">2.2. <strong>Step 2: Testing out</strong></h4>
+<p>Form input.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-9-Flow-6.png" title="FormInput1" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-9-Flow-6.png" data-sub-html="<h2>Company details</h2><p>FormInput1</p>">
+        
+    </a><figcaption class="image-caption">Company details</figcaption>
+    </figure></p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-10-Flow-7.png" title="FormInput2" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-10-Flow-7.png" data-sub-html="<h2>Bank details</h2><p>FormInput2</p>">
+        
+    </a><figcaption class="image-caption">Bank details</figcaption>
+    </figure></p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-11-Flow-8.png" title="FormInput3" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-11-Flow-8.png" data-sub-html="<h2>Contact details</h2><p>FormInput3</p>">
+        
+    </a><figcaption class="image-caption">Contact details</figcaption>
+    </figure></p>
+<p>Results on D365FO client.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-12-Flow-9.png" title="Result1" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-12-Flow-9.png" data-sub-html="<h2>Contact details</h2><p>Result1</p>">
+        
+    </a><figcaption class="image-caption">Contact details</figcaption>
+    </figure></p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-13-Flow-10.png" title="Result2" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-13-Flow-10.png" data-sub-html="<h2>Bank account</h2><p>Result2</p>">
+        
+    </a><figcaption class="image-caption">Bank account</figcaption>
+    </figure></p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-14-Flow-11.png" title="Result3" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-14-Flow-11.png" data-sub-html="<h2>Bank account details</h2><p>Result3</p>">
+        
+    </a><figcaption class="image-caption">Bank account details</figcaption>
+    </figure></p>
+<p>There you go, simple integration between MS Forms, MS Automate and D365FO client. I am seeing that Microsoft is improving such by adding more actions on MS Automate. I believe we will be able to do many more jobs with the built-in utilities of MS Automate.</p>
+<h3 id="3-how-to-determine-the-data-entity-that-should-be-used-in-the-power-automate">3. How to determine the Data Entity that should be used in the Power Automate</h3>
+<p>The names of the target entity on <code>D365FO client</code> and being found in <code>Power Automate</code> should be different. You can always find them out by testing several import/export but, with the help of <code>Visual Studio</code>, you will be able to save a lot of time. This, however, requires a certain extent of experience working with data integration on D365FO.</p>
+<p>Given the case that we would like to import data to All Vendors, we will start our search in <code>Workspaces &gt; Data Management &gt; Data Entities</code>. Apply several filters here and there, and looking for potential ones that we usually do, we will finally end our search at the VendVendorV2Entity</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/VS-1-Entity-1.png" title="Data Entities" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/VS-1-Entity-1.png" data-sub-html="<h2>Data Entities</h2><p>Data Entities</p>">
+        
+    </a><figcaption class="image-caption">Data Entities</figcaption>
+    </figure></p>
+<p>Making our way to <code>Visual Studio</code>, it is not a difficult task for us to find out the Entity.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/VS-2-Entity-2.png" title="VendVendorV2Entity" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/VS-2-Entity-2.png" data-sub-html="<h2>VendVendorV2Entity</h2><p>VendVendorV2Entity</p>">
+        
+    </a><figcaption class="image-caption">VendVendorV2Entity</figcaption>
+    </figure></p>
+<p>Check out the <code>Properties</code>, we will need to get details in the <code>Public</code> group.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/VS-3-Properties.png" title="Properties" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/VS-3-Properties.png" data-sub-html="<h2>Properties</h2><p>Properties</p>">
+        
+    </a><figcaption class="image-caption">Properties</figcaption>
+    </figure></p>
+<p>In <code>Public</code>:</p>
+<ul>
+<li>Is Public: If it is <code>Yes</code>, the entity can be found in Power Automate; otherwise, <code>No</code>.</li>
+<li>Public Collection Name: <code>Entity name</code> on Power Automate.</li>
+</ul>
+<p>The information should be displayed here:</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E1-12-Flow-10.png" title="Info on Automate" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E1-12-Flow-10.png" data-sub-html="<h2>Info on Automate</h2><p>Info on Automate</p>">
+        
+    </a><figcaption class="image-caption">Info on Automate</figcaption>
+    </figure></p>
+<p>Furthermore, by checking the <code>Entity</code>&rsquo;s fields, we can get the information of mapping between the <code>Entity</code> and the physical table <code>VendTable</code>.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/VS-4-EntityFields.png" title="Entity fields" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/VS-4-EntityFields.png" data-sub-html="<h2>Entity fields</h2><p>Entity fields</p>">
+        
+    </a><figcaption class="image-caption">Entity fields</figcaption>
+    </figure></p>
+<p>Give yourself some time to play around between <code>MS Forms</code>, <code>MS Automate</code> and <code>Visual Studio</code>. You will finally see the relations between them.</p>
+]]></description>
+</item>
+<item>
+    <title>Dynamics 365 FinOps Data Integration using Microsoft Forms (Part 1)</title>
+    <link>https://nuxulu.com/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/</link>
+    <pubDate>Sun, 24 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>Kome Hoang</author>
+    <guid>https://nuxulu.com/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/</guid>
+    <description><![CDATA[<p><em>With any D365FO users, Data Management workspace and Data Entities should have become one of the most used and well-known tools in the system. We all agree how powerful such integration framework is, especially when it comes to a large number of records that we would need to import into different tables.</em></p>
+<p><em>The classic method that we have been utilizing is to include all source data in a single (or multiple, much depending on the purpose and order of data integration) Excel sheet, trigger an import execution, pass any validation layers that present and ultimately have the data available on D365FO. Now, I would like to propose another method that might come useful in some circumstances: Using Microsoft Forms.</em></p>
+<p><figure><a class="lightgallery" href="/imagesposts/Introduction.png" title="Introduction" data-thumbnail="/imagesposts/Introduction.png" data-sub-html="<h2>The trio</h2><p>Introduction</p>">
+        
+    </a><figcaption class="image-caption">The trio</figcaption>
+    </figure></p>
+<h2 id="when">When</h2>
+<p>This method should be at its finest when you are planning to outsource the input to any external users.</p>
+<p>Imagine you are a company who is using D365FO to leverage your daily work. You now want to add many local vendors to your system in form of new Vendor Accounts. It is fine to collect all information from them (i.e. Vendor Company’s name, their address, their contact details and so on), put everything in an Excel sheet and import it. Yet, chance is that it would take (a lot of) time for you to finish this task. You would then be very likely to try coming up with some methods to cut down time for it.</p>
+<p>That demand should raise two questions:</p>
+<ul>
+<li>How can we let the vendors enter their information by themselves?</li>
+<li>And, how can we then have all such information in our system?</li>
+</ul>
+<h2 id="what">What</h2>
+<p>What should be needed?</p>
+<ul>
+<li><a href="https://forms.office.com/" target="_blank" rel="noopener noreffer ">Microsoft Forms</a>: To establish a process in which you will publish a prepared form. Any vendors out there will have the access to it and they can fill any fields on in.</li>
+<li><a href="https://flow.microsoft.com/" target="_blank" rel="noopener noreffer ">Microsoft Power Automate aka. Microsoft Flow</a>: To set up a protocol to push the input information (form responses) to the target (D365FO Data Entities).</li>
+<li><em>(Optional)</em> Access to Visual Studio on your virtual machine: To help you determine the target Data Entities more easily and efficiently.</li>
+</ul>
+<h2 id="how">How</h2>
+<p>The flow should go like this.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/Biggest-Flow.png" title="Biggest FLow" data-thumbnail="/imagesposts/Biggest-Flow.png" data-sub-html="<h2>The Biggest FLow</h2><p>Biggest FLow</p>">
+        
+    </a><figcaption class="image-caption">The Biggest FLow</figcaption>
+    </figure></p>
+<p>To make it short, when a response is submitted in Microsoft Form, the Flow in MS Power Automate is triggered automatically. An approval request will be sent to your Outlook mailbox and if it is approved, a new record will be created in the target data entity.</p>
+<p>Let go through three examples in the next articles in the series (from the simplest to a more complicated) so we will see the logic behind this process.</p>
+<p>As easy as it sounds, in this example, we will create a new Vendor Account from Microsoft Forms with only a small number of fields being populate.
+<strong>Note</strong></p>
+<blockquote>
+<p><em>To help simplify the example, the number of fields is minimised. In other words, we will import just enough fields so the new Vendor Account is valid.</em>
+<em>Given that, only <code>Vendor Account</code> and <code>Vendor Group</code> are chosen to be imported.</em></p>
+</blockquote>
+<h3 id="step-1-create-a-ms-form">Step 1: Create a MS Form</h3>
+<p>To do so, we will access <a href="https://forms.office.com/" target="_blank" rel="noopener noreffer ">Microsoft Forms</a> and create a new form. To make the new form usable, we will create two questions asking for inputs of Vendor Account and Vendor Group.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-1-NewForm.png" title="Example 1 Form" data-thumbnail="/imagesposts/E1-1-NewForm.png" data-sub-html="<h2>Example 1 Form</h2><p>Example 1 Form</p>">
+        
+    </a><figcaption class="image-caption">Example 1 Form</figcaption>
+    </figure></p>
+<p>Note all information on the form is customisable.
+<strong>Note 1-1</strong></p>
+<blockquote>
+<p>We can make the questions&hellip;any questions that suit the purpose of the form. Say, in reality, the question can be <code>&quot;What is your company's name?&quot;</code> if you want to send this form to any external vendor users. The question does not change the usability of the returned response&rsquo;s value. It can still be mapped to VendAccount not matter what the question is.
+<strong>Note 1-2</strong>
+The second question is being set in form of a Choice question. The given choices should match with available Vendor Group values found on your D365FO client. If this question is a Text one, chance is that its response might not match with any available Vendor Group values, thus, will return an error during Flow runtime.
+Vendor Groups can be found under <code>Account Payable &gt; Vendors &gt; Vendor Groups</code>. In this example, <code>TopVendor</code> and <code>Others</code> are two available Vendor Groups in my D365FO client.</p>
+</blockquote>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-2-VendorGroups.png" title="Vendor Groups" data-thumbnail="/imagesposts/E1-2-VendorGroups.png" data-sub-html="<h2>Vendor Groups</h2><p>Vendor Groups</p>">
+        
+    </a><figcaption class="image-caption">Vendor Groups</figcaption>
+    </figure></p>
+<h3 id="step-2-create-a-ms-flow">Step 2: Create a MS Flow</h3>
+<p>To do so, we will access <a href="https://flow.microsoft.com/" target="_blank" rel="noopener noreffer ">Microsoft Power Automate</a> and create a new flow. We will go with an <code>Automated</code> one in this case.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-3-Flow-1.png" title="Flow step 1" data-thumbnail="/imagesposts/E1-3-Flow-1.png" data-sub-html="<h2>Automated flow</h2><p>Flow step 1</p>">
+        
+    </a><figcaption class="image-caption">Automated flow</figcaption>
+    </figure></p>
+<p>Search for <code>form</code> and choose the trigger <code>When a new response is submitted</code>. Hit <code>Create</code> to create a new flow.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-4-Flow-2.png" title="Flow step 2" data-thumbnail="/imagesposts/E1-4-Flow-2.png" data-sub-html="<h2>Form trigger</h2><p>Flow step 2</p>">
+        
+    </a><figcaption class="image-caption">Form trigger</figcaption>
+    </figure></p>
+<p>Choose the <code>form</code> that we just created using the dropdown list.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-5-Flow-3.png" title="Flow step 3" data-thumbnail="/imagesposts/E1-5-Flow-3.png" data-sub-html="<h2>Choose form</h2><p>Flow step 3</p>">
+        
+    </a><figcaption class="image-caption">Choose form</figcaption>
+    </figure></p>
+<p>Press <code>New step</code>, search for <code>form</code> and go with <code>Get response details</code>.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-6-Flow-4.png" title="FLow step 4" data-thumbnail="/imagesposts/E1-6-Flow-4.png" data-sub-html="<h2>New step: Get response details</h2><p>FLow step 4</p>">
+        
+    </a><figcaption class="image-caption">New step: Get response details</figcaption>
+    </figure></p>
+<p>In the new step, choose the <code>Form ID</code>. As soon as we move the cursor to the <code>Response ID</code> field, the <code>FLow</code> will suggest the <code>Dynamics content</code> that we can use. In this case, there should be only one dynamic content, which is <code>List of response notifications Response ID</code>. We will go with it by choosing it.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-7-Flow-5.png" title="FLow step 5" data-thumbnail="/imagesposts/E1-7-Flow-5.png" data-sub-html="<h2>Get response details</h2><p>FLow step 5</p>">
+        
+    </a><figcaption class="image-caption">Get response details</figcaption>
+    </figure></p>
+<p>After doing so, the flow should look like this.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-8-Flow-6.png" title="FLow step 6" data-thumbnail="/imagesposts/E1-8-Flow-6.png" data-sub-html="<h2>Form done</h2><p>FLow step 6</p>">
+        
+    </a><figcaption class="image-caption">Form done</figcaption>
+    </figure></p>
+<p>Now, the reponse details will be sent from the <code>Form</code> to the <code>Flow</code> when a new response is submitted. Next, we will set up the step to create a new Vendor Account.</p>
+<p>Create a new step, search for <code>dynamics</code> and go with <code>Dynamics 365 for Finance and Operations</code>.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-9-Flow-7.png" title="FLow step 7" data-thumbnail="/imagesposts/E1-9-Flow-7.png" data-sub-html="<h2>Dynamics 365 FinOps</h2><p>FLow step 7</p>">
+        
+    </a><figcaption class="image-caption">Dynamics 365 FinOps</figcaption>
+    </figure></p>
+<p>Choose <code>Create record</code> action.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-10-Flow-8.png" title="FLow step 8" data-thumbnail="/imagesposts/E1-10-Flow-8.png" data-sub-html="<h2>Create record action</h2><p>FLow step 8</p>">
+        
+    </a><figcaption class="image-caption">Create record action</figcaption>
+    </figure></p>
+<p>Choose the Dynamics 365 FinOps <code>Instance</code> from the dropdown list. If your client does not appear here, choose <code>Enter custom value</code>. For privacy, environments&rsquo; name will be censored in our example.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-11-Flow-9.png" title="FLow step 9" data-thumbnail="/imagesposts/E1-11-Flow-9.png" data-sub-html="<h2>Set D365FO instance</h2><p>FLow step 9</p>">
+        
+    </a><figcaption class="image-caption">Set D365FO instance</figcaption>
+    </figure></p>
+<p>The <code>Instance</code> should be the <code>link</code> to your D365FO client. Set <code>Entity name</code> VendorsV2.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-12-Flow-10.png" title="FLow step 10" data-thumbnail="/imagesposts/E1-12-Flow-10.png" data-sub-html="<h2>Set Instance and Entity</h2><p>FLow step 10</p>">
+        
+    </a><figcaption class="image-caption">Set Instance and Entity</figcaption>
+    </figure></p>
+<p><code>Note 1-3</code></p>
+<blockquote>
+<p><em>Later in this series, we will see how to find the exact <code>Entity name</code> using <code>Visual Studio</code>. Also, we will see in which condition, the Entity can be used in <code>Power Automate</code>.</em></p>
+</blockquote>
+<p>Populate the fields that we want to import. In this example, we will populate only 3 fields: <code>Group (VendorGroupID)</code>, <code>Company (DataAreaId)</code> and <code>Supplier Account (VendorAccountNumber)</code>.</p>
+<p><code>Dynamic content</code> will be suggested automatically when the cursor is placed in each field.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-13-Flow-11.png" title="FLow step 11" data-thumbnail="/imagesposts/E1-13-Flow-11.png" data-sub-html="<h2>Map Form fields with Automate fields</h2><p>FLow step 11</p>">
+        
+    </a><figcaption class="image-caption">Map Form fields with Automate fields</figcaption>
+    </figure></p>
+<p>We can map <code>Form fields</code> with <code>Automate fields</code> or <code>hardcode</code> in these fields:</p>
+<ul>
+<li><code>Group</code> = Response of <code>What is the Vendor Group?</code> question.</li>
+<li><code>Company</code> = <em>(hardcode)</em> <code>usmf</code>.</li>
+<li><code>Supplier Account</code> = Response of <code>What is the Vendor Account?</code> question.</li>
+<li><code>Name</code> = <code>Supplier Account</code> =  Response of <code>What is the Vendor Account?</code> question (<code>Show advanced option</code> on the Flow to find the field <code>Name (VendorOrganisationName)</code>).
+These fields should be required when creating a new Vendor Account on D365FO client.</li>
+</ul>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-14-Flow-12.png" title="FLow step 12" data-thumbnail="/imagesposts/E1-14-Flow-12.png" data-sub-html="<h2>Map Form fields with Automate fields</h2><p>FLow step 12</p>">
+        
+    </a><figcaption class="image-caption">Map Form fields with Automate fields</figcaption>
+    </figure></p>
+<p>We are done here with the set up.</p>
+<h3 id="step-3-testing-out">Step 3: Testing out</h3>
+<p>On <code>Forms</code>, choose the form that we just created, click on <code>Preview</code> so we can submit a form response.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-15-Flow-13.png" title="FLow step 13" data-thumbnail="/imagesposts/E1-15-Flow-13.png" data-sub-html="<h2>Map Form fields with Automate fields</h2><p>FLow step 13</p>">
+        
+    </a><figcaption class="image-caption">Map Form fields with Automate fields</figcaption>
+    </figure></p>
+<p>Check out <code>All Vendors (VendTableListPage)</code> on the client to find a new Vendor Account is created.</p>
+<p><figure><a class="lightgallery" href="/imagesposts/E1-16-Flow-14.png" title="FLow step 14" data-thumbnail="/imagesposts/E1-16-Flow-14.png" data-sub-html="<h2>Map Form fields with Automate fields</h2><p>FLow step 14</p>">
+        
+    </a><figcaption class="image-caption">Map Form fields with Automate fields</figcaption>
+    </figure></p>
+<p><code>Note 1-4</code></p>
+<blockquote>
+<p><em>Use <code>Test</code> option in Power Automate to follow the process of the Flow. This, in other words, is so-called <code>&quot;Run Flow with Debug&quot;</code> option.</em></p>
+</blockquote>
+]]></description>
+</item>
+<item>
+    <title>Dynamics 365 finance and operations ODATA consuming - Length cannot be less than zero</title>
+    <link>https://nuxulu.com/2019-12-17-dynamics-365-finance-and-operations-odata-consuming-length-cannot-be-less-than-zero/</link>
+    <pubDate>Tue, 17 Dec 2019 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2019-12-17-dynamics-365-finance-and-operations-odata-consuming-length-cannot-be-less-than-zero/</guid>
+    <description><![CDATA[<p>When you consume a custom data entity, you get an error</p>
+<div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">errorSystem.ArgumentOutOfRangeException : Length cannot be less than zero” and it works fine for standard data entities.</div>
+        </div>
+    </div>
+<p></p>
+<p>The reason is the temporary XML file where the metadata stored which mismatches with the metadata from <code>https://&lt;yourenvironment&gt;.cloudax.dynamics.com/data/$metadata</code></p>
+<p>You can follow this <a href="https://nuxulu.com/2019/12/16/Consuming-Dynamics-365-Finance-and-Operations-OData-services-from-NET.html" target="_blank" rel="noopener noreffer ">post</a> to understand how to create the XML file.</p>
+<p>If you try to regenerate the metadata by saving the <strong>ODataClient.tt</strong> file, the XML will be accumulated, and the error keeps happening.
+The resolution here is simply delete it and regenerate metadata again by saving the <strong>ODataClient.tt</strong> file</p>
+<p></p>
+<p>Thank you for reading.</p>
+]]></description>
+</item>
+<item>
+    <title>Consuming Dynamics 365 Finance and Operations OData services from .NET</title>
+    <link>https://nuxulu.com/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/</link>
+    <pubDate>Mon, 16 Dec 2019 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/</guid>
+    <description><![CDATA[<h1 id="1-authentication">1. Authentication</h1>
+<p>We need an authentication to connect Dynamics 365 finance and operations from .Net application by using service principal.</p>
+<p>How to create an app registration in Azure <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/app-registrations-training-guide-for-app-registrations-legacy-users" target="_blank" rel="noopener noreffer ">https://docs.microsoft.com/en-us/azure/active-directory/develop/app-registrations-training-guide-for-app-registrations-legacy-users</a></p>
+<p>You also need to add required permissions for Dynamics 365 finance and operations, please follow<br>
+<a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/services-home-page#register-a-web-application-with-aad" target="_blank" rel="noopener noreffer ">https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/services-home-page#register-a-web-application-with-aad</a></p>
+<p>This is what you should have</p>
+<p></p>
+<h1 id="2-register-your-external-application">2. Register your external application</h1>
+<h3 id="a-in-the-finops-application-go-to-system-administration--setup--azure-active-directory-applications">a. In the FinOps application, go to <strong>System administration &gt; Setup &gt; Azure Active Directory applications</strong>.</h3>
+<h3 id="bselect-new">b.	Select <strong>New</strong>.</h3>
+<h3 id="cfill-in-the-fields-for-the-new-record">c.	Fill in the fields for the new record:</h3>
+<ul>
+<li>In the <strong>Client Id</strong> field, enter the application ID that you registered in Azure AD.</li>
+<li>In the <strong>Name field</strong>, enter a name for the application.</li>
+<li>In the <strong>User ID field</strong>, select an appropriate service account user ID. For this example, we have selected the Admin user. However, as a better practice, you should provision a dedicated service account that has the correct permissions for the operations that must be performed. When you&rsquo;ve finished, select <strong>Save</strong>.</li>
+</ul>
+<p>You&rsquo;ve now finished setting up the prerequisites. After the external application retrieves an Azure AD authentication token, it should now be able to use the token in an authorization HTTP header to make subsequent service calls via OData or SOAP, for example.</p>
+<h1 id="3-odata-client-configuration">3. OData client configuration</h1>
+<ul>
+<li>Download the project here <a href="https://github.com/microsoft/Dynamics-AX-Integration" target="_blank" rel="noopener noreffer ">https://github.com/microsoft/Dynamics-AX-Integration</a></li>
+<li>Open <strong>ServiceSamples</strong> solution.</li>
+<li>We cannot use existing proxies and classes, so I need to regenerate them again. Under ODataUtility project, delete <strong>ODataClient.tt</strong> and <strong>ODataClient.ttinclude</strong>.</li>
+<li>To regenerate Odata client, right click on <em>ODataUtility project &gt; Add &gt; New item</em>, search for OData in Online and rename it to <strong>ODataClient.tt</strong>.</li>
+<li>Open <strong>ODataClient.tt</strong>, in MetadataDocumentUri add <em>&ldquo;https://<yourEnvironment>.cloudax.dynamics.com/data/$metadata&rdquo;</em></li>
+</ul>
+<p>If you save the ODataClient.tt file, it will generate Odata proxies and classes. From PU12 onward, there are so many entities so you will get an error after compiling</p>
+<p><code>Combined length of user strings used by the program exceeds allowed limit. Try to decrease use of string literals.</code></p>
+<p>There are 2 ways to fix it</p>
+<h3 id="a-using-temporary-file">a. Using temporary file</h3>
+<p>The simplest way to fix is add TempFilePath, ensure that you have write permission for this path, this is what you got</p>
+<p></p>
+<p>Save the <strong>ODataClient.tt</strong> and there will be <strong>Test1.xml</strong> file created to store metadata, there should be a bug while generating the xml file, one more step you need to do is replace the double quote to single quote (a global replace of &quot;&quot; with &quot; ), and this is what you have</p>
+<p>
+You can build the project without problem.</p>
+<h3 id="b-remove-unused-entities">b. Remove unused entities</h3>
+<p>Another work-around that works too, edit the ODataClient.ttinclude so that it parses only some of the entities that you want to use, this reducing the error. For instance, change the following foreach statement</p>
+<ul>
+<li>Original code:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">foreach</span> <span class="p">(</span><span class="n">IEdmEntitySet</span> <span class="n">entitySet</span> <span class="k">in</span> <span class="n">container</span><span class="p">.</span><span class="n">EntitySets</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IEdmEntityType</span> <span class="n">entitySetElementType</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">EntityType</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">entitySetElementTypeName</span> <span class="p">=</span> <span class="n">GetElementTypeName</span><span class="p">(</span><span class="n">entitySetElementType</span><span class="p">,</span> <span class="n">container</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">EnableNamingAlias</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">Customization</span><span class="p">.</span><span class="n">CustomizeNaming</span><span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Modified code:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">foreach</span> <span class="p">(</span><span class="n">IEdmEntitySet</span> <span class="n">entitySet</span> <span class="k">in</span> <span class="n">container</span><span class="p">.</span><span class="n">EntitySets</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IEdmEntityType</span> <span class="n">entitySetElementType</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">EntityType</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">entitySetElementTypeName</span> <span class="p">=</span> <span class="n">GetElementTypeName</span><span class="p">(</span><span class="n">entitySetElementType</span><span class="p">,</span> <span class="n">container</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">entitySet</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//start of manual fix </span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//only process entity names that containin a specific string, to reduce the string size</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(((</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;CUST&#34;</span><span class="p">))</span> <span class="p">||</span> <span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;VEND&#34;</span><span class="p">)))</span> <span class="p">||</span> <span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;SALES&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// emd of manual fix</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">EnableNamingAlias</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">camelCaseEntitySetName</span> <span class="p">=</span> <span class="n">Customization</span><span class="p">.</span><span class="n">CustomizeNaming</span><span class="p">(</span><span class="n">camelCaseEntitySetName</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="4-authentication-configuration">4. Authentication configuration</h1>
+<p>Under AuthenticationUtility project, you need to modify ClientConfiguration.cs follow, you can get all related information for the first step.</p>
+<p></p>
+<p>From now, you can freely test the integrations under <strong>ODataConsoleApplication</strong> project.
+If you are testing with a custom data entity and you get this error</p>
+<p><code>System.ArgumentOutOfRangeException : Length cannot be less than zero.</code></p>
+<p>Please check this <a href="https://nuxulu.com/2019/12/17/Dynamics-365-finance-and-operations-ODATA-consuming-Length-cannot-be-less-than-zero.html" target="_blank" rel="noopener noreffer ">post</a>.</p>
+<p>Thank you for reading.</p>
+]]></description>
+</item>
+<item>
+    <title>Insert multiple records in single request using Odata from Postman</title>
+    <link>https://nuxulu.com/2019-10-15-insert-multiple-records-in-single-request-using-odata-from-postman/</link>
+    <pubDate>Tue, 15 Oct 2019 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2019-10-15-insert-multiple-records-in-single-request-using-odata-from-postman/</guid>
+    <description><![CDATA[<p>Got inspired by <a href="https://community.dynamics.com/365/financeandoperations/f/dynamics-365-for-finance-and-operations-forum/286810/inserting-multiple-records-via-odata-from-postman" target="_blank" rel="noopener noreffer ">this topic</a>, I&rsquo;d like to write this article to show you how to post multiple records in single request by using Postman.</p>
+<p>Generally, batch requests are supported in the <a href="https://docs.oasis-open.org/odata/odata/v4.0/errata02/os/complete/part1-protocol/odata-v4.0-errata02-os-part1-protocol-complete.html#_Toc406398359" target="_blank" rel="noopener noreffer ">OData service</a>, The easiest way is you can use the C# code approach from <a href="https://github.com/Microsoft/Dynamics-AX-Integration/tree/master/ServiceSamples/ODataConsoleApplication" target="_blank" rel="noopener noreffer ">github</a> and the excel add-ins in Dynamics 365 for finance and operations use Odata batch to communicate in a single request but how can we leverage it in Postman.</p>
+<p>Using Excel add-in then add 2 customer groups records and submit to Dynamics 365 for finance and operations, while you are doing that using <a href="https://www.telerik.com/fiddler" target="_blank" rel="noopener noreffer ">fiddler</a> on the same box to see how the odata batch framework works.
+This can be done from POSTMAN too and you need to use header and body as you see in Fiddler.</p>
+<p>For basic setting up Dynamics 365 for finance and operations and Postman please follow <a href="https://docs.microsoft.com/en-us/dynamics365/unified-operations/dev-itpro/data-entities/third-party-service-test" target="_blank" rel="noopener noreffer ">this offical document</a></p>
+<h3 id="1-get-dynamics-365-for-finance-and-operations-authorization">1. Get Dynamics 365 for finance and operations authorization</h3>
+<p>This is a result</p>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_1.png"></a>
+</figure>
+<h3 id="2-create-a-new-post-request-in-postman-with-header">2. Create a new POST request in Postman with header</h3>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_2.png"></a>
+</figure>
+<p><em><strong>URL: {{resource}}/data/$batch</strong></em>
+<em><strong>Content-Type: multipart/mixed;boundary=batch_d63a-e9be-2927</strong></em></p>
+<h3 id="3-modify-the-body-in-postman">3. Modify the Body in Postman</h3>
+<p>I will place 2 records for customer groups</p>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_3.png"></a>
+</figure>
+<p>Full text here</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">--batch_d63a-e9be-2927
+</span></span><span class="line"><span class="cl">Content-Type: multipart/mixed; boundary=changeset_2499-90ab-7b93
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">--changeset_2499-90ab-7b93
+</span></span><span class="line"><span class="cl">Content-Type: application/http
+</span></span><span class="line"><span class="cl">Content-Transfer-Encoding: binary
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">POST CustomerGroups?cross-company=true HTTP/1.1
+</span></span><span class="line"><span class="cl">Content-ID: 1
+</span></span><span class="line"><span class="cl">Accept: application/json;q=0.9, */*;q=0.1
+</span></span><span class="line"><span class="cl">OData-Version: 4.0
+</span></span><span class="line"><span class="cl">Content-Type: application/json
+</span></span><span class="line"><span class="cl">OData-MaxVersion: 4.0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">{<span class="s2">&#34;CustomerGroupId&#34;</span>:<span class="s2">&#34;1060&#34;</span>,<span class="s2">&#34;Description&#34;</span>:<span class="s2">&#34;Wholesales customers&#34;</span>,<span class="s2">&#34;PaymentTermId&#34;</span>:<span class="s2">&#34;Net30&#34;</span>,<span class="s2">&#34;IsSalesTaxIncludedInPrice&#34;</span>:<span class="s2">&#34;No&#34;</span>,<span class="s2">&#34;dataAreaId&#34;</span>:<span class="s2">&#34;usmf&#34;</span>}
+</span></span><span class="line"><span class="cl">--changeset_2499-90ab-7b93--
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">--batch_d63a-e9be-2927
+</span></span><span class="line"><span class="cl">Content-Type: multipart/mixed; boundary=changeset_b573-33b2-85ff
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">--changeset_b573-33b2-85ff
+</span></span><span class="line"><span class="cl">Content-Type: application/http
+</span></span><span class="line"><span class="cl">Content-Transfer-Encoding: binary
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">POST CustomerGroups?cross-company=true HTTP/1.1
+</span></span><span class="line"><span class="cl">Content-ID: 2
+</span></span><span class="line"><span class="cl">Accept: application/json;q=0.9, */*;q=0.1
+</span></span><span class="line"><span class="cl">OData-Version: 4.0
+</span></span><span class="line"><span class="cl">Content-Type: application/json
+</span></span><span class="line"><span class="cl">OData-MaxVersion: 4.0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">{<span class="s2">&#34;CustomerGroupId&#34;</span>:<span class="s2">&#34;1070&#34;</span>,<span class="s2">&#34;Description&#34;</span>:<span class="s2">&#34;Wholesales customers1&#34;</span>,<span class="s2">&#34;PaymentTermId&#34;</span>:<span class="s2">&#34;Net30&#34;</span>,<span class="s2">&#34;IsSalesTaxIncludedInPrice&#34;</span>:<span class="s2">&#34;No&#34;</span>,<span class="s2">&#34;dataAreaId&#34;</span>:<span class="s2">&#34;usmf&#34;</span>}
+</span></span><span class="line"><span class="cl">--changeset_b573-33b2-85ff--
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Click send and this is what you got from response</p>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_4.png"></a>
+</figure>
+<p>Full Response</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">--batchresponse_</span><span class="mf">45e87829</span><span class="mi">-5</span><span class="err">a</span><span class="mi">26</span><span class="mf">-480e-8</span><span class="err">aaa</span><span class="mi">-8</span><span class="err">a</span><span class="mi">08</span><span class="err">c</span><span class="mi">7</span><span class="err">a</span><span class="mi">82</span><span class="err">c</span><span class="mi">60</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-Type:</span> <span class="err">multipart/mixed;</span> <span class="err">boundary=changesetresponse_</span><span class="mi">27</span><span class="err">ed</span><span class="mi">7621</span><span class="err">-d</span><span class="mi">939-40</span><span class="err">b</span><span class="mi">7-9</span><span class="err">f</span><span class="mi">8</span><span class="err">b-be</span><span class="mi">0421</span><span class="err">ff</span><span class="mi">0</span><span class="err">cea</span>
+</span></span><span class="line"><span class="cl"><span class="err">--changesetresponse_</span><span class="mi">27</span><span class="err">ed</span><span class="mi">7621</span><span class="err">-d</span><span class="mi">939-40</span><span class="err">b</span><span class="mi">7-9</span><span class="err">f</span><span class="mi">8</span><span class="err">b-be</span><span class="mi">0421</span><span class="err">ff</span><span class="mi">0</span><span class="err">cea</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-Type:</span> <span class="err">application/http</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-Transfer-Encoding:</span> <span class="err">binary</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-ID:</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="err">HTTP/</span><span class="mf">1.1</span> <span class="mi">201</span> <span class="err">Created</span>
+</span></span><span class="line"><span class="cl"><span class="err">ETag:</span> <span class="err">W/</span><span class="s2">&#34;JzEsNjg3MTk0Nzk4MzUn&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="err">Location:</span> <span class="err">https:</span> <span class="c1">//fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/CustomerGroups(dataAreaId=&#39;usmf&#39;,CustomerGroupId=&#39;1060&#39;)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">Content-Type:</span> <span class="err">application/json;</span> <span class="err">odata.metadata=minimal</span>
+</span></span><span class="line"><span class="cl"><span class="err">OData-Version:</span> <span class="mf">4.0</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;@odata.context&#34;</span><span class="p">:</span> <span class="s2">&#34;https://fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/$metadata#CustomerGroups/$entity&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;@odata.etag&#34;</span><span class="p">:</span> <span class="s2">&#34;W/\&#34;JzEsNjg3MTk0Nzk4MzUn\&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;dataAreaId&#34;</span><span class="p">:</span> <span class="s2">&#34;usmf&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;CustomerGroupId&#34;</span><span class="p">:</span> <span class="s2">&#34;1060&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;ClearingPeriodPaymentTermName&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;DefaultDimensionDisplayValue&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;CustomerAccountNumberSequence&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;IsSalesTaxIncludedInPrice&#34;</span><span class="p">:</span> <span class="s2">&#34;No&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;Description&#34;</span><span class="p">:</span> <span class="s2">&#34;Wholesales customers&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;WriteOffReason&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;PaymentTermId&#34;</span><span class="p">:</span> <span class="s2">&#34;Net30&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;TaxGroupId&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="err">--changesetresponse_</span><span class="mi">27</span><span class="err">ed</span><span class="mi">7621</span><span class="err">-d</span><span class="mi">939-40</span><span class="err">b</span><span class="mi">7-9</span><span class="err">f</span><span class="mi">8</span><span class="err">b-be</span><span class="mi">0421</span><span class="err">ff</span><span class="mi">0</span><span class="err">cea--</span>
+</span></span><span class="line"><span class="cl"><span class="err">--batchresponse_</span><span class="mf">45e87829</span><span class="mi">-5</span><span class="err">a</span><span class="mi">26</span><span class="mf">-480e-8</span><span class="err">aaa</span><span class="mi">-8</span><span class="err">a</span><span class="mi">08</span><span class="err">c</span><span class="mi">7</span><span class="err">a</span><span class="mi">82</span><span class="err">c</span><span class="mi">60</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-Type:</span> <span class="err">multipart/mixed;</span> <span class="err">boundary=changesetresponse_</span><span class="mi">541</span><span class="err">a</span><span class="mi">7</span><span class="err">d</span><span class="mi">21</span><span class="err">-af</span><span class="mi">21-4</span><span class="err">d</span><span class="mi">66</span><span class="err">-b</span><span class="mi">410</span><span class="err">-fb</span><span class="mi">4165599</span><span class="err">b</span><span class="mi">54</span>
+</span></span><span class="line"><span class="cl"><span class="err">--changesetresponse_</span><span class="mi">541</span><span class="err">a</span><span class="mi">7</span><span class="err">d</span><span class="mi">21</span><span class="err">-af</span><span class="mi">21-4</span><span class="err">d</span><span class="mi">66</span><span class="err">-b</span><span class="mi">410</span><span class="err">-fb</span><span class="mi">4165599</span><span class="err">b</span><span class="mi">54</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-Type:</span> <span class="err">application/http</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-Transfer-Encoding:</span> <span class="err">binary</span>
+</span></span><span class="line"><span class="cl"><span class="err">Content-ID:</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="err">HTTP/</span><span class="mf">1.1</span> <span class="mi">201</span> <span class="err">Created</span>
+</span></span><span class="line"><span class="cl"><span class="err">ETag:</span> <span class="err">W/</span><span class="s2">&#34;JzEsNjg3MTk0Nzk4MzYn&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="err">Location:</span> <span class="err">https:</span> <span class="c1">//fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/CustomerGroups(dataAreaId=&#39;usmf&#39;,CustomerGroupId=&#39;1070&#39;)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">Content-Type:</span> <span class="err">application/json;</span> <span class="err">odata.metadata=minimal</span>
+</span></span><span class="line"><span class="cl"><span class="err">OData-Version:</span> <span class="mf">4.0</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;@odata.context&#34;</span><span class="p">:</span> <span class="s2">&#34;https://fodevb2819a3b6966913ddevaos.cloudax.dynamics.com/data/$metadata#CustomerGroups/$entity&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;@odata.etag&#34;</span><span class="p">:</span> <span class="s2">&#34;W/\&#34;JzEsNjg3MTk0Nzk4MzYn\&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;dataAreaId&#34;</span><span class="p">:</span> <span class="s2">&#34;usmf&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;CustomerGroupId&#34;</span><span class="p">:</span> <span class="s2">&#34;1070&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;ClearingPeriodPaymentTermName&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;DefaultDimensionDisplayValue&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;CustomerAccountNumberSequence&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;IsSalesTaxIncludedInPrice&#34;</span><span class="p">:</span> <span class="s2">&#34;No&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;Description&#34;</span><span class="p">:</span> <span class="s2">&#34;Wholesales customers1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;WriteOffReason&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;PaymentTermId&#34;</span><span class="p">:</span> <span class="s2">&#34;Net30&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&#34;TaxGroupId&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="err">--changesetresponse_</span><span class="mi">541</span><span class="err">a</span><span class="mi">7</span><span class="err">d</span><span class="mi">21</span><span class="err">-af</span><span class="mi">21-4</span><span class="err">d</span><span class="mi">66</span><span class="err">-b</span><span class="mi">410</span><span class="err">-fb</span><span class="mi">4165599</span><span class="err">b</span><span class="mi">54</span><span class="err">--</span>
+</span></span><span class="line"><span class="cl"><span class="err">--batchresponse_</span><span class="mf">45e87829</span><span class="mi">-5</span><span class="err">a</span><span class="mi">26</span><span class="mf">-480e-8</span><span class="err">aaa</span><span class="mi">-8</span><span class="err">a</span><span class="mi">08</span><span class="err">c</span><span class="mi">7</span><span class="err">a</span><span class="mi">82</span><span class="err">c</span><span class="mi">60</span><span class="err">--</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Check the data in Dynamics 365 for finance and operations</p>
+<figure class='center'>
+  <a href="/imagesposts/2019-10-15-Insert-multiple-records-in-single-request-using-Odata-from-Postman_5.png"></a>
+</figure>
+<p>Note: refer this article for an C# example:
+<a href="https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/odata#run-multiple-requests-in-a-single-transaction" target="_blank" rel="noopener noreffer ">https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/odata#run-multiple-requests-in-a-single-transaction</a></p>
+<p>Thank you for reading.</p>
+]]></description>
+</item>
+<item>
+    <title>Handle AIF error messages in dynamics AX 2012 R3</title>
+    <link>https://nuxulu.com/2017-01-12-handle-aif-error-messages-in-dynamics-ax-2012-r3/</link>
+    <pubDate>Thu, 12 Jan 2017 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2017-01-12-handle-aif-error-messages-in-dynamics-ax-2012-r3/</guid>
+    <description><![CDATA[<p>Normally, when we consume AIF Service, we use this code like below to handle Error messages</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">try</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">client</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">contract</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;items registed on Trans Id: &#34;</span> <span class="p">+</span> <span class="n">contract</span><span class="p">.</span><span class="n">InventTransId</span> <span class="p">+</span> <span class="s">&#34; with &#34;</span> <span class="p">+</span> <span class="n">contract</span><span class="p">.</span><span class="n">Qty</span> <span class="p">+</span> <span class="s">&#34; quantities.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&#34;Ex: {0}&#34;</span><span class="p">,</span> <span class="n">ex</span><span class="p">.</span><span class="n">Message</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>If it cause error, message would return like this</p>
+<p></p>
+<p>If you want to know more details, you have to go In Dynamics ax <strong>AIF Exceptions form</strong> then check</p>
+<p></p>
+<p>It&rsquo;s quite hard for 3rd party developer, especially they don&rsquo;t have right to access AX server.</p>
+<p>Anyway, we can get meaningful error message by doing below steps</p>
+<ul>
+<li>Check that box in AIF inbound ports</li>
+</ul>
+<p></p>
+<ul>
+<li>Use <code>FaultException</code> class to get message</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">try</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">client</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">contract</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;items registed on Trans Id: &#34;</span> <span class="p">+</span> <span class="n">contract</span><span class="p">.</span><span class="n">InventTransId</span> <span class="p">+</span> <span class="s">&#34; with &#34;</span> <span class="p">+</span> <span class="n">contract</span><span class="p">.</span><span class="n">Qty</span> <span class="p">+</span> <span class="s">&#34; quantities.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">catch</span> <span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">ServiceModel</span><span class="p">.</span><span class="n">FaultException</span><span class="p">&lt;</span><span class="n">ItemsRegistration</span><span class="p">.</span><span class="n">RegRef</span><span class="p">.</span><span class="n">AifFault</span><span class="p">&gt;</span> <span class="n">aifFault</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//FaultMessageList[] list = aifFault.Detail.FaultMessageListArray[0];</span>
+</span></span><span class="line"><span class="cl">	<span class="n">InfologMessage</span><span class="p">[]</span> <span class="n">list</span> <span class="p">=</span> <span class="n">aifFault</span><span class="p">.</span><span class="n">Detail</span><span class="p">.</span><span class="n">InfologMessageList</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">foreach</span> <span class="p">(</span><span class="n">InfologMessage</span> <span class="n">message</span> <span class="k">in</span> <span class="n">list</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="n">Message</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>what we got</p>
+<p></p>
+<p>Thank you for reading.</p>
+]]></description>
+</item>
+</channel>
+</rss>

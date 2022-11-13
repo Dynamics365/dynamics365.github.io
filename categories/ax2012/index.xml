@@ -1,0 +1,1867 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>AX2012 - Category - Dynamics 365 Finance &amp; Operations | nuxulu.com</title>
+        <link>https://nuxulu.com/categories/ax2012/</link>
+        <description>AX2012 - Category - Dynamics 365 Finance &amp; Operations | nuxulu.com</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Wed, 01 Jan 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/categories/ax2012/" rel="self" type="application/rss+xml" /><item>
+    <title>Microsoft Dynamics AX 2012 Update Process</title>
+    <link>https://nuxulu.com/2020-01-01-microsoft-dynamics-ax-2012-update-process/</link>
+    <pubDate>Wed, 01 Jan 2020 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2020-01-01-microsoft-dynamics-ax-2012-update-process/</guid>
+    <description><![CDATA[<h2 id="what-is-an-update">What is an Update?</h2>
+<p>Updates include hotfixes, cumulative updates, and feature packs.</p>
+<ul>
+<li><strong>Hotfix</strong>: A fix or set of fixes that address a specific issue, problem, or customer scenario.</li>
+<li><strong>Cumulative update</strong>: An update that contains all previous hotfixes to date.</li>
+<li><strong>Feature pack</strong>: A group of updates that relate to a feature area or group of functionality. Contains design changes.</li>
+</ul>
+<h3 id="1-types-of-hotfixes">1. Types of Hotfixes</h3>
+<p>To determine which type of update is in a package, download the package, and then extract contents and review
+them to determine which type of update it is.</p>
+<p><figure><a class="lightgallery" href="/2020-01-01-microsoft-dynamics-ax-2012-update-process/Types-of-Hotfixes.png" title="Image" data-thumbnail="/2020-01-01-microsoft-dynamics-ax-2012-update-process/Types-of-Hotfixes.png" data-sub-html="<h2>Types of Hotfixes</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Types of Hotfixes</figcaption>
+    </figure></p>
+<h3 id="2-how-can-i-tell-if-a-binary-update-requires-a-schema-update-and-model-store-reinitialization">2. How can I tell if a binary update requires a schema update, and model store reinitialization?</h3>
+<p>The KB article will indicate  that a hotfix requires a schema update, and that you should reinitialize the model store.
+You should assume that all cumulative updates require a schema update, and reinitialize the model store.</p>
+<h3 id="3-how-can-i-tell-if-an-application-update-contains-a-report-or-web-part">3. How can I tell if an application update contains a report or web part?</h3>
+<p>There is currently no simple way to tell if a hotfix contains a report or web part. We recommend that you assume that all cumulative updates, service packs, and feature packs contain reports and web parts, and re-deploy reports and Enterprise Portal.</p>
+<p>If you encounter an error after installing a hotfix, try deploying reports and web parts.</p>
+<h2 id="installation-order">Installation Order</h2>
+<p>This diagram describes the order in which updates are applied in a test environment, and then applied in a production environment.</p>
+<ol>
+<li>Apply updates to the database.</li>
+<li>Apply updates to a single local AOS instance.</li>
+<li>Apply updates to a single local client. (Compile, Synchronize, and get the environment running)</li>
+<li>Deploy reports to the report server.</li>
+<li>Deploy web parts to the Enterprise Portal server.</li>
+<li>Deploy updates to any retail components.</li>
+</ol>
+<p>The differences in a production environment are:</p>
+<ol>
+<li>Import the model store from the test environment to apply updates to the database.</li>
+<li>Mass deploy client updates (optional).</li>
+</ol>
+<p><figure><a class="lightgallery" href="/2020-01-01-microsoft-dynamics-ax-2012-update-process/Installation-Order.png" title="Image" data-thumbnail="/2020-01-01-microsoft-dynamics-ax-2012-update-process/Installation-Order.png" data-sub-html="<h2>Installation-Order</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Installation-Order</figcaption>
+    </figure></p>
+<h2 id="detailed-update-process">Detailed Update Process</h2>
+<p>This diagram describes the update process in detail, in both the test and production environments.</p>
+<p><figure><a class="lightgallery" href="/2020-01-01-microsoft-dynamics-ax-2012-update-process/Detailed-Update-Process.png" title="Image" data-thumbnail="/2020-01-01-microsoft-dynamics-ax-2012-update-process/Detailed-Update-Process.png" data-sub-html="<h2>Detailed Update Process</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Detailed Update Process</figcaption>
+    </figure></p>
+<h2 id="update-tips-and-tricks">Update Tips and Tricks</h2>
+<ul>
+<li>
+<p><strong>Always update in a test environment first and run the Impact Wizard for application updates</strong>
+You can reduce the downtime of your production environment by fixing all code conflicts in a test environment, and identifying them early.</p>
+</li>
+<li>
+<p><strong>Make sure that you have the correct product version</strong>
+Most updates apply only to released versions of a product.
+<em>Note: Many demonstration virtual machines run pre-release versions of Microsoft Dynamics AX, and cannot run updates.</em></p>
+</li>
+<li>
+<p><strong>Install binary updates first, and if needed, reinitialize the model store before installing application updates</strong>
+If you do not reinitialize the model store, you will encounter many more errors in the Data Upgrade Cockpit.</p>
+</li>
+<li>
+<p><strong>Do not skip the Software Update Checklist</strong>
+After you install an update, on the Model store has been modified form, select Start the software update checklist.</p>
+</li>
+<li>
+<p><strong>If you must generate CIL, restart all AOS instances</strong></p>
+</li>
+<li>
+<p><strong>Install updates on all appropriate components (reports andweb parts)</strong>
+It is difficult to tell whether an update contains modified or new reports, or web parts—we recommend that redeploy reports and web parts with all CUs.</p>
+</li>
+<li>
+<p><strong>Check to see whether all of your current hotfixes are contained in the most recent cumulative update or feature pack—if not, reinstall it</strong>
+If you have a recent hotfix that is not included in the cumulative update or feature pack that you are installing, it will be removed. Reinstall the hotfix after you have applied update.</p>
+</li>
+<li>
+<p><strong>Consider slipstreaming updates if you are doing a fresh install</strong></p>
+</li>
+<li>
+<p><strong>If you are installing industry solutions, install them before installing updates</strong></p>
+</li>
+<li>
+<p><strong>To minimize downtime, consider importing the model store into a non-default schema in the production environment, and then switching it to be the default schema</strong>
+For information about using non-default schemas, read How to: Create, Drop, or Reinitialize a Model Store.</p>
+</li>
+</ul>
+]]></description>
+</item>
+<item>
+    <title>How to create main menu in Dynamics AX 2012</title>
+    <link>https://nuxulu.com/2017-03-29-how-to-create-main-menu-in-dynamics-ax-2012/</link>
+    <pubDate>Wed, 29 Mar 2017 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2017-03-29-how-to-create-main-menu-in-dynamics-ax-2012/</guid>
+    <description><![CDATA[<ul>
+<li><a href="#1-create-menu-in-aot" rel="">1. Create Menu in AOT</a></li>
+<li><a href="#2-finally-we-need-to-add-our-menu-as-a-module-to-the-main-menu-which-is-done-as-follows" rel="">2. Finally, we need to add our menu as a module to the main menu, which is done as follows:</a></li>
+</ul>
+<p>All main entry points to the UI and reports are access though the menu structure. This is presented in three ways: the left-hand navigation pane, the content area, and the navigation bar (at the top of the client). The menu design is controlled from the Menus node in the AOT.</p>
+<p>Each module will have a menu, which is created by adding a menu reference (or shortcut) to the main menu:</p>
+<p><figure><a class="lightgallery" href="/2017-03-29-how-to-create-main-menu-in-dynamics-ax-2012/reference_menu.png" title="reference_menu" data-thumbnail="/2017-03-29-how-to-create-main-menu-in-dynamics-ax-2012/reference_menu.png" data-sub-html="<h2>reference_menu</h2><p>reference_menu</p>">
+        
+    </a><figcaption class="image-caption">reference_menu</figcaption>
+    </figure></p>
+<p>This matches the list of modules shown in the client&rsquo;s left-hand navigation pane.</p>
+<h3 id="1-create-menu-in-aot">1. Create Menu in AOT</h3>
+<ol>
+<li>
+<p>Open your project.</p>
+</li>
+<li>
+<p>Right-click on the <strong>Menus node</strong> and select <strong>New</strong> &gt; <strong>Menu</strong>.</p>
+</li>
+<li>
+<p>Rename the menu as <strong>YourMainMeunuName</strong> and open the property sheet.</p>
+</li>
+<li>
+<p>For Porperties of created Menu:</p>
+<ul>
+<li>Enter the <strong>label</strong> and create a label.</li>
+<li>As this menu will be a module with company-specifc information, set the <strong>SetCompany</strong> property to Yes.</li>
+<li>Choose the icons in the <strong>NormalImage</strong> property and set <strong>ImageLocation</strong> to EmbeddedResource.</li>
+</ul>
+</li>
+<li>
+<p>Create <strong>Submenu</strong>, by right-clicking on the menu and navigating to <strong>New | Submenu</strong>.</p>
+</li>
+</ol>
+<h3 id="2-finally-we-need-to-add-our-menu-as-a-module-to-the-main-menu-which-is-done-as-follows">2. Finally, we need to add our menu as a module to the main menu, which is done as follows:</h3>
+<ol>
+<li>
+<p>Place the AOT window next to our project window (if required, open the AOT window by pressing Ctrl + D).</p>
+</li>
+<li>
+<p>Scroll down to Menus and expand MainMenu.</p>
+</li>
+<li>
+<p>Right-click on <strong>MainMenu</strong> and navigate to <strong>New &gt; Menu reference</strong>.</p>
+</li>
+<li>
+<p>This opens a new window titled Select: Menus. Locate <strong>your menu</strong> and drag it to <strong>MainMenu</strong>, as shown in the following screenshot (the title changes from Select: Menus to the path of the select node when you click on it):</p>
+</li>
+</ol>
+<p><figure><a class="lightgallery" href="/2017-03-29-how-to-create-main-menu-in-dynamics-ax-2012/mainmenu2.png" title="mainmenu2" data-thumbnail="/2017-03-29-how-to-create-main-menu-in-dynamics-ax-2012/mainmenu2.png" data-sub-html="<h2>mainmenu2</h2><p>mainmenu2</p>">
+        
+    </a><figcaption class="image-caption">mainmenu2</figcaption>
+    </figure></p>
+<p><em>Note: Do not drag the menu from your project!</em></p>
+<p>Save AOT and you can check new menu on AX client.</p>
+<p>Thank you for reading!</p>
+]]></description>
+</item>
+<item>
+    <title>Number sequence farmework overview in Dynamics AX 2012</title>
+    <link>https://nuxulu.com/2017-01-19-number-sequence-farmework-in-dynamics-ax-2012/</link>
+    <pubDate>Thu, 19 Jan 2017 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2017-01-19-number-sequence-farmework-in-dynamics-ax-2012/</guid>
+    <description><![CDATA[<p><figure><a class="lightgallery" href="/2017-01-19-number-sequence-farmework-in-dynamics-ax-2012/number-sequence-overview.png" title="number-sequence-overview" data-thumbnail="/2017-01-19-number-sequence-farmework-in-dynamics-ax-2012/number-sequence-overview.png" data-sub-html="<h2>number-sequence-overview</h2><p>number-sequence-overview</p>">
+        
+    </a><figcaption class="image-caption">number-sequence-overview</figcaption>
+    </figure></p>
+<p>For this demo, I will create New module along with NumberSequence, about creating Number Sequence <em>without</em> module you also use same steps just leave some steps base on Design picture above.</p>
+<h2 id="1-etd">1. ETD</h2>
+<p>Create ETD <code>ContosoId</code> extends <code>num</code> datatype.</p>
+<h2 id="2-table">2. Table</h2>
+<p>Create <code>Contoso</code> Table with <code>ContosoId</code> field.</p>
+<h2 id="3-enum">3. Enum</h2>
+<p>Create a new enum value <code>Contoso</code> in BaseEnum <code>NumberSeqModule</code>.</p>
+<p>This value will be used to link number sequence to the module and to restrict displayed number sequence by module in Form.</p>
+<h2 id="4-numberseqmodule-class">4. NumberSeqModule Class</h2>
+<p>Create <code>NumberSeqModuleXXX</code> class</p>
+<p>Create a new <code>NumberSeqModuleXXX</code> class, such as <code>NumberSeqModuleContoso</code>, which extends the <code>NumberSeqApplicationModule</code> class. The sample code for creating this class is as follows:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">NumberSeqModuleContoso</span> <span class="n">extends</span> <span class="n">NumberSeqApplicationModule</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">protected</span> <span class="k">void</span> <span class="n">loadModule</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">NumberSeqDatatype</span> <span class="n">datatype</span> <span class="p">=</span> <span class="n">NumberSeqDatatype</span><span class="p">::</span><span class="n">construct</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="cm">/* Contoso Id */</span>
+</span></span><span class="line"><span class="cl">	<span class="n">datatype</span><span class="p">.</span><span class="n">parmDatatypeId</span><span class="p">(</span><span class="n">extendedtypenum</span><span class="p">(</span><span class="n">ContosoId</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">	<span class="n">datatype</span><span class="p">.</span><span class="n">parmReferenceHelp</span><span class="p">(</span><span class="s">&#34;ContosoId&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">datatype</span><span class="p">.</span><span class="n">parmWizardIsContinuous</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">datatype</span><span class="p">.</span><span class="n">parmWizardIsManual</span><span class="p">(</span><span class="n">NoYes</span><span class="p">::</span><span class="n">No</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">datatype</span><span class="p">.</span><span class="n">parmWizardIsChangeDownAllowed</span><span class="p">(</span><span class="n">NoYes</span><span class="p">::</span><span class="n">No</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">datatype</span><span class="p">.</span><span class="n">parmWizardIsChangeUpAllowed</span><span class="p">(</span><span class="n">NoYes</span><span class="p">::</span><span class="n">No</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">datatype</span><span class="p">.</span><span class="n">parmWizardHighest</span><span class="p">(</span><span class="m">999999</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">datatype</span><span class="p">.</span><span class="n">addParameterType</span><span class="p">(</span><span class="n">NumberSeqParameterType</span><span class="p">::</span><span class="n">DataArea</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">this</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">datatype</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="n">NumberSeqModule</span> <span class="n">numberSeqModule</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">NumberSeqModule</span><span class="p">::</span><span class="n">Contoso</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Use of the <code>DataArea</code> segment in <em>Step 4</em> to describe the default segment for the extended data types used for <code>ContosoId</code>.</p>
+<p>Note In <strong>Microsoft Dynamics AX 2009</strong>, number sequence references could be initialized by restarting the Application Object Server (AOS). In <strong>Microsoft Dynamics AX 2012</strong>, the initialization of references to populate the <code>NumberSequenceDatatype</code> and <code>NumberSequenceParameterType</code> tables has moved to the initialization checklist. To initialize the newly created references, run a job that executes the <code>LoadModule</code> method likes below.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">loadNumSeq</span> <span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//define the class variable</span>
+</span></span><span class="line"><span class="cl">	<span class="n">NumberSeqModuleContoso</span> <span class="n">seqMod</span> <span class="p">=</span> <span class="k">new</span> <span class="n">NumberSeqModuleContoso</span> <span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//load the number sequences that were not generated</span>
+</span></span><span class="line"><span class="cl">	<span class="n">seqMod</span><span class="p">.</span><span class="n">load</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>You can also reinitialize all references by running a job that executes the <code>LoadAll</code> method in the <code>NumberSequenceModuleSetup</code> class. However, for reinitializing all references, you must ensure that there are no existing number sequences already defined in the system.</p>
+<p>Then run the wizard in <em>Organization Administration &gt; CommonForms &gt; Numbersequences &gt; Numbersequences &gt; Generate &gt; run the wizard</em>.</p>
+<h2 id="5-parameters-table-and-form">5. Parameters Table and Form</h2>
+<p>Create a Number sequences page in the parameters form of the new module.</p>
+<p>You need to Create <code>ContosoParameters</code> Table along with form, See existing forms such as <code>CustParameters</code> or <code>LedgerParameters</code> for examples of the implementation.</p>
+<p><em>These forms are using <strong>DetailsFormMaster</strong> form parten as Best Practice for Setup form.</em></p>
+<h3 id="51-create-contosoparameters-table">5.1. Create <code>ContosoParameters</code> Table</h3>
+<ul>
+<li>
+<p>Add field key, Extends from <code>ParametersKey</code></p>
+</li>
+<li>
+<p>Properties on Field key Visible = false, AllowEdit = false, AllowEditOnCreate = false</p>
+</li>
+<li>
+<p>Create index name Key with AllowDuplicate = No.</p>
+</li>
+<li>
+<p>Set table properties.</p>
+</li>
+<li>
+<p>TableContent = Default data</p>
+</li>
+<li>
+<p>ConfigurationKey</p>
+</li>
+<li>
+<p>CacheLookup = Found</p>
+</li>
+<li>
+<p>TableGroup = Parameter</p>
+</li>
+<li>
+<p>PrimaryKey = Key</p>
+</li>
+<li>
+<p>ClusterKey = Key</p>
+</li>
+</ul>
+<p>The sample code for creating method this table as below:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">void</span> <span class="n">delete</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">throw</span> <span class="n">error</span><span class="p">(</span><span class="s">&#34;@SYS23721&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">initValue</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// Key is set to mandatory so set it to 1</span>
+</span></span><span class="line"><span class="cl">	<span class="k">this</span><span class="p">.</span><span class="n">Key</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="n">ContosoParameters</span> <span class="n">find</span><span class="p">(</span><span class="n">boolean</span> <span class="n">_forupdate</span> <span class="p">=</span> <span class="k">false</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ContosoParameters</span> <span class="n">parameter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">_forupdate</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">parameter</span><span class="p">.</span><span class="n">selectForUpdate</span><span class="p">(</span><span class="n">_forupdate</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">select</span> <span class="n">firstonly</span> <span class="n">RecId</span> <span class="k">from</span> <span class="n">parameter</span>
+</span></span><span class="line"><span class="cl">		<span class="k">where</span> <span class="n">parameter</span><span class="p">.</span><span class="n">Key</span> <span class="p">==</span> <span class="m">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(!</span><span class="n">parameter</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">parameter</span><span class="p">.</span><span class="n">isTmp</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Company</span><span class="p">::</span><span class="n">createParameter</span><span class="p">(</span><span class="n">parameter</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">parameter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">client</span> <span class="n">server</span> <span class="k">static</span> <span class="n">NumberSeqModule</span> <span class="n">numberSeqModule</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">NumberSeqModule</span><span class="p">::</span><span class="n">Contoso</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="n">server</span> <span class="k">static</span> <span class="n">NumberSequenceReference</span> <span class="n">numRefContosoId</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">NumberSeqScopeFactory</span><span class="p">::</span><span class="n">CreateDataAreaScope</span><span class="p">(</span><span class="n">curext</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">NumberSeqReference</span><span class="p">::</span><span class="n">findReference</span><span class="p">(</span><span class="n">extendedtypenum</span> <span class="p">(</span><span class="n">ContosoId</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="52-create-contosoparameters-form">5.2. Create <code>ContosoParameters</code> form</h3>
+<p>Note This form can only be used for references that have a scope of DataArea. The administration forms described in the Setup and Administration of number sequences section can be used for references that have any scope. These forms can be found in <em>Organization Administration &gt; Common &gt; Number Sequences</em></p>
+<p>The data source of Parameters form likes picture below, you can also refer to <code>CustParameters</code> form for design.</p>
+<p><figure><a class="lightgallery" href="/2017-01-19-number-sequence-farmework-in-dynamics-ax-2012/ContosoParameters.png" title="ContosoParameters" data-thumbnail="/2017-01-19-number-sequence-farmework-in-dynamics-ax-2012/ContosoParameters.png" data-sub-html="<h2>ContosoParameters</h2><p>ContosoParameters</p>">
+        
+    </a><figcaption class="image-caption">ContosoParameters</figcaption>
+    </figure></p>
+<p>Code example for form methods:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">FormRun</span> <span class="n">extends</span> <span class="n">ObjectRun</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">NumberSeqReference</span>          <span class="n">numberSeqReference</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">boolean</span>                     <span class="n">runExecuteDirect</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">TmpIdRef</span>                    <span class="n">tmpIdRef</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">NumberSeqScope</span>              <span class="n">scope</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">NumberSeqApplicationModule</span>  <span class="n">numberSeqApplicationModule</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">container</span>                   <span class="n">numberSequenceModules</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">void</span> <span class="k">init</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">this</span><span class="p">.</span><span class="n">numberSeqPreInit</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ContosoParameters</span><span class="p">::</span><span class="n">find</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="k">this</span><span class="p">.</span><span class="n">numberSeqPostInit</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">void</span> <span class="n">numberSeqPostInit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">numberSequenceReference_ds</span><span class="p">.</span><span class="kt">object</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">NumberSequenceReference</span><span class="p">,</span> <span class="n">AllowSameAs</span><span class="p">)).</span><span class="n">visible</span><span class="p">(</span><span class="n">numberSeqApplicationModule</span><span class="p">.</span><span class="n">sameAsActive</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">	<span class="n">referenceSameAsLabel</span><span class="p">.</span><span class="n">visible</span><span class="p">(</span><span class="n">numberSeqApplicationModule</span><span class="p">.</span><span class="n">sameAsActive</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">void</span> <span class="n">numberSeqPreInit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">runExecuteDirect</span>            <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">numberSequenceModules</span>       <span class="p">=</span> <span class="p">[</span><span class="n">NumberSeqModule</span><span class="p">::</span><span class="n">Contoso</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="n">numberSeqApplicationModule</span>  <span class="p">=</span> <span class="k">new</span> <span class="n">NumberSeqModuleContoso</span> <span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">scope</span>                       <span class="p">=</span> <span class="n">NumberSeqScopeFactory</span><span class="p">::</span><span class="n">createDataAreaScope</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">NumberSeqApplicationModule</span><span class="p">::</span><span class="n">createReferencesMulti</span><span class="p">(</span><span class="n">numberSequenceModules</span><span class="p">,</span> <span class="n">scope</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">tmpIdRef</span><span class="p">.</span><span class="n">setTmpData</span><span class="p">(</span><span class="n">NumberSequenceReference</span><span class="p">::</span><span class="n">configurationKeyTableMulti</span><span class="p">(</span><span class="n">numberSequenceModules</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Code example for <code>NumberSequenceReference</code> data source methods</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">void</span> <span class="n">removeFilter</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">runExecuteDirect</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">numbersequenceReference_ds</span><span class="p">.</span><span class="n">executeQuery</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">void</span> <span class="n">executeQuery</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">runExecuteDirect</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">runExecuteDirect</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">this</span><span class="p">.</span><span class="n">queryRun</span><span class="p">(</span><span class="n">NumberSeqReference</span><span class="p">::</span><span class="n">buildQueryRunMulti</span><span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">															 <span class="n">tmpIdRef</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">															 <span class="n">numberSequenceTable</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">															 <span class="n">numberSequenceModules</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">															 <span class="n">scope</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">		<span class="n">numbersequenceReference_ds</span><span class="p">.</span><span class="n">research</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="6-how-to-use-on-table">6. How to use on Table</h2>
+<p>Set number sequence in Contoso Table</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">private</span> <span class="k">void</span> <span class="n">setContosoId</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">NumberSeq</span> <span class="n">num</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">NumberSequenceReference</span> <span class="n">numberSequenceReference</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">numberSequenceReference</span> <span class="p">=</span> <span class="n">CVRParameters</span><span class="p">::</span><span class="n">numRefContosoId</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">num</span> <span class="p">=</span> <span class="n">NumberSeq</span><span class="p">::</span><span class="n">newGetNum</span><span class="p">(</span><span class="n">numberSequenceReference</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="k">this</span><span class="p">.</span><span class="n">Id</span> <span class="p">=</span> <span class="n">num</span><span class="p">.</span><span class="n">num</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Optional method – in case you don’t want to expose Number sequence on Form Level</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">initValue</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// Initialise the title id</span>
+</span></span><span class="line"><span class="cl">	<span class="k">this</span><span class="p">.</span> <span class="n">setContosoId</span> <span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">insert</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(!</span><span class="k">this</span><span class="p">.</span><span class="n">Id</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">this</span><span class="p">.</span> <span class="n">setContosoId</span> <span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>From now on you can create new record in Contoso Table with number sequence.</p>
+<h2 id="7-how-to-use-on-form">7. How to use on Form</h2>
+<p>How to use on form level (In case you don’t want to expose NS in Table Level)</p>
+<ul>
+<li>In the class declaration of the form that will be accessing data, add a variable declaration for the number sequence handler. The following example shows the variable definition for a number sequence handler.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">FormRun</span> <span class="n">extends</span> <span class="n">ObjectRun</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">NumberSeqFormHandler</span> <span class="n">numberSeqFormHandlerContosoId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Add the <code>NumberSeqFormHandler</code> method to the form. The code in this method will create an instance of the number sequence form handler and return it.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="n">NumberSeqFormHandler</span> <span class="n">numSeqFormHandlerContosoId</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(!</span><span class="n">numberSeqFormHandlerContosoId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">numberSeqFormHandlerContosoId</span> <span class="p">=</span> <span class="n">NumberSeqFormHandler</span><span class="p">::</span><span class="n">newForm</span><span class="p">(</span><span class="n">ContosoParameters</span><span class="p">::</span> <span class="n">numRefContosoId</span><span class="p">().</span><span class="n">NumberSequenceId</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">															 <span class="n">element</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">															 <span class="n">Contoso_ds</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">															 <span class="n">fieldNum</span><span class="p">(</span><span class="n">Contoso</span><span class="p">,</span> <span class="n">ContosoId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">															<span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">numberSeqFormHandlerContosoId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Add <strong>create, delete, and write</strong> methods to the data source of the table that contains the field for which the number sequence is being used. The following code examples show these methods that are added to the data source for the Contoso table to support the number sequence for the <code>ContosoId</code> field.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">create</span><span class="p">(</span><span class="n">boolean</span> <span class="n">_append</span> <span class="p">=</span> <span class="k">false</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//before create, (ensure the number seuence has not run out of numbers)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">element</span><span class="p">.</span><span class="n">numSeqFormHandlerContosoId</span><span class="p">().</span><span class="n">formMethodDataSourceCreatePre</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// start: inherited table code</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// we need to let the create happen so the user can</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// choose the type</span>
+</span></span><span class="line"><span class="cl">	<span class="n">super</span><span class="p">(</span><span class="n">_append</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">//number sequence, create action, (get next number)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">element</span><span class="p">.</span><span class="n">numSeqFormHandlerContosoId</span><span class="p">().</span><span class="n">formMethodDataSourceCreate</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">delete</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//release the number sequence value.</span>
+</span></span><span class="line"><span class="cl">	<span class="n">element</span><span class="p">.</span> <span class="n">numSeqFormHandlerContosoId</span><span class="p">().</span><span class="n">formMethodDataSourceDelete</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">//delete the record</span>
+</span></span><span class="line"><span class="cl">	<span class="n">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">write</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">element</span><span class="p">.</span> <span class="n">numSeqFormHandlerContosoId</span><span class="p">().</span><span class="n">formMethodDataSourceWrite</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="n">boolean</span> <span class="n">validateWrite</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">boolean</span>         <span class="n">ret</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ret</span> <span class="p">=</span> <span class="n">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ret</span> <span class="p">=</span> <span class="n">element</span><span class="p">.</span><span class="n">numberSeqFormHandler</span><span class="p">().</span><span class="n">formMethodDataSourceValidateWrite</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span> <span class="p">&amp;&amp;</span> <span class="n">ret</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Contoso</span><span class="p">.</span><span class="n">validateWrite</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">Link</span> <span class="n">Active</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">linkActive</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">element</span><span class="p">.</span><span class="n">numberSeqFormHandler</span><span class="p">().</span><span class="n">formMethodDataSourceLinkActive</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="8-optional-method">8. Optional method</h2>
+<p>Continuous sequence</p>
+<p>To avoid having gaps for continuous sequence you should add this code to the delete of the table.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">delete</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">NumberSeq</span><span class="p">::</span><span class="n">releaseNumber</span><span class="p">(</span><span class="n">ContosoParameters</span><span class="p">::</span><span class="n">numRefContosoId</span><span class="p">().</span><span class="n">NumberSequenceId</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">ContosoId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="9-testing">9. Testing</h2>
+<p>Testing Number sequence by Job</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">Max_numberSeqRefCustAccount</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">NumberSequenceReference</span> <span class="n">numberSeqRefCustAccount</span> <span class="p">=</span> <span class="n">CustParameters</span><span class="p">::</span><span class="n">numRefCustAccount</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">NumberSeq</span>               <span class="n">numSeqCustAccount</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">try</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//Use the TTS level to decide whether sequence is consumed or not.</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ttsBegin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="n">numberSeqRefCustAccount</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">numSeqCustAccount</span> <span class="p">=</span> <span class="n">NumberSeq</span><span class="p">::</span><span class="n">newGetNum</span><span class="p">(</span><span class="n">numberSeqRefCustAccount</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="p">(</span><span class="n">numSeqCustAccount</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="n">info</span><span class="p">(</span><span class="n">numSeqCustAccount</span><span class="p">.</span><span class="n">num</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ttsCommit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span><span class="p">::</span><span class="n">Error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">	   <span class="n">info</span><span class="p">(</span><span class="s">&#34;Caught &#39;Exception::Error&#39;.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Thank you for reading!</p>]]></description>
+</item>
+<item>
+    <title>Overview delete action in Dyanmics AX 2012</title>
+    <link>https://nuxulu.com/2017-01-19-overview-delete-action-in-dyanmics-ax-2012/</link>
+    <pubDate>Thu, 19 Jan 2017 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2017-01-19-overview-delete-action-in-dyanmics-ax-2012/</guid>
+    <description><![CDATA[<p>We normally create action delete in foreign table to make sure referential integrity in Logic and validation.</p>
+<p>The delete action has the following options: <strong>None, Restricted, Cascade, Cascade + Restricted</strong></p>
+<h4 id="1-none">1. None:</h4>
+<p>This has no effect, and effectively disables the delete action. This is useful if you want to specifically state <em>do nothing</em> so that someone else doesn&rsquo;t try to correct what seems to be an omission.</p>
+<h4 id="2-restricted">2. Restricted:</h4>
+<p>This will prevent the record from being deleted if there are records in the related table that match the selected relation. This occurs within the <code>validateDelete</code> table event, which is called by the delete table event.</p>
+<h4 id="3-cascade">3. Cascade:</h4>
+<p>This will delete the record in the related table, based on the relation. Ex: A sales order line is of no use without a sales order. This is an extension of the delete table event.</p>
+<h4 id="4-cascade--restricted">4. Cascade + Restricted</h4>
+<p>This is a little special. In a two-table scenario, it is the same as <em>Restricted</em>. It will stop the record from being deleted if a related record exists. But if the record is being deleted as part of a cascade from a table related to it, the records will be deleted.</p>
+<p>for more infomation about how to create <code>DeleteActions</code> at <a href="http://msdn.microsoft.com/enus/library/bb315018.aspx" target="_blank" rel="noopener noreffer ">MSDN</a>.</p>
+]]></description>
+</item>
+<item>
+    <title>Handle AIF error messages in dynamics AX 2012 R3</title>
+    <link>https://nuxulu.com/2017-01-12-handle-aif-error-messages-in-dynamics-ax-2012-r3/</link>
+    <pubDate>Thu, 12 Jan 2017 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2017-01-12-handle-aif-error-messages-in-dynamics-ax-2012-r3/</guid>
+    <description><![CDATA[<p>Normally, when we consume AIF Service, we use this code like below to handle Error messages</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">try</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">client</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">contract</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;items registed on Trans Id: &#34;</span> <span class="p">+</span> <span class="n">contract</span><span class="p">.</span><span class="n">InventTransId</span> <span class="p">+</span> <span class="s">&#34; with &#34;</span> <span class="p">+</span> <span class="n">contract</span><span class="p">.</span><span class="n">Qty</span> <span class="p">+</span> <span class="s">&#34; quantities.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&#34;Ex: {0}&#34;</span><span class="p">,</span> <span class="n">ex</span><span class="p">.</span><span class="n">Message</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>If it cause error, message would return like this</p>
+<p></p>
+<p>If you want to know more details, you have to go In Dynamics ax <strong>AIF Exceptions form</strong> then check</p>
+<p></p>
+<p>It&rsquo;s quite hard for 3rd party developer, especially they don&rsquo;t have right to access AX server.</p>
+<p>Anyway, we can get meaningful error message by doing below steps</p>
+<ul>
+<li>Check that box in AIF inbound ports</li>
+</ul>
+<p></p>
+<ul>
+<li>Use <code>FaultException</code> class to get message</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">try</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">client</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">contract</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;items registed on Trans Id: &#34;</span> <span class="p">+</span> <span class="n">contract</span><span class="p">.</span><span class="n">InventTransId</span> <span class="p">+</span> <span class="s">&#34; with &#34;</span> <span class="p">+</span> <span class="n">contract</span><span class="p">.</span><span class="n">Qty</span> <span class="p">+</span> <span class="s">&#34; quantities.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">catch</span> <span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">ServiceModel</span><span class="p">.</span><span class="n">FaultException</span><span class="p">&lt;</span><span class="n">ItemsRegistration</span><span class="p">.</span><span class="n">RegRef</span><span class="p">.</span><span class="n">AifFault</span><span class="p">&gt;</span> <span class="n">aifFault</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//FaultMessageList[] list = aifFault.Detail.FaultMessageListArray[0];</span>
+</span></span><span class="line"><span class="cl">	<span class="n">InfologMessage</span><span class="p">[]</span> <span class="n">list</span> <span class="p">=</span> <span class="n">aifFault</span><span class="p">.</span><span class="n">Detail</span><span class="p">.</span><span class="n">InfologMessageList</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">foreach</span> <span class="p">(</span><span class="n">InfologMessage</span> <span class="n">message</span> <span class="k">in</span> <span class="n">list</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="n">Message</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>what we got</p>
+<p></p>
+<p>Thank you for reading.</p>
+]]></description>
+</item>
+<item>
+    <title>How to create HTTP adapter port</title>
+    <link>https://nuxulu.com/2017-01-12-how-to-create-http-adapter-port/</link>
+    <pubDate>Thu, 12 Jan 2017 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2017-01-12-how-to-create-http-adapter-port/</guid>
+    <description><![CDATA[<p>We normally use <code>NETTCP</code> adapter for .NET system, It going to very easy to consume by.</p>
+<p>As my experience, if we use <code>NETTCP</code> adapter for consuming by Java system, we will need add some extension or 3rd party due to binding and mismatch schema and of course client doesn’t want to do that either me.</p>
+<p>So, my solution is creating HTTP adapter for Java, you can also use .NET system to consume HTTP adapter without any problems</p>
+<h3 id="how-to-do">How to do</h3>
+<ul>
+<li>You need to make sure install web services component on Internet Information Services (IIS) and verify that the default website is working.</li>
+</ul>
+<p></p>
+<ul>
+<li>In AX, under System administrator &gt; Services and AIF &gt; Web sites, open from a create new record follow information</li>
+</ul>
+<p>Name: <code>DynamicsAXAif60</code>
+Virtual directory share path: <code>\\YourServerName\MicrosoftDynamicsAXAif60</code>
+URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
+<ul>
+<li>From now on, you can create AIF inbound port with <strong>HTTP adapter</strong>.</li>
+</ul>
+<p></p>
+<p>After you&rsquo;ve actived the services, that Port will deployed under <code>DynamicsAXAif60</code> folder in IIS.</p>
+<p>Thank you for reading.</p>
+]]></description>
+</item>
+<item>
+    <title>Response in AIF custom service class</title>
+    <link>https://nuxulu.com/2017-01-12-respone-in-aif-custom-service-class/</link>
+    <pubDate>Thu, 12 Jan 2017 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2017-01-12-respone-in-aif-custom-service-class/</guid>
+    <description><![CDATA[<p>At the previous <a href="/2017-01-11-aif-custom-response-value-in-dynamics-ax-2012-r3/" rel="">post</a> I already show how to customize Response Value list in AIF Document standard service, today we will talk about response in Custom AIF service class.</p>
+<p>We already know for Custom AIF service we actually need 2 classes, one is <code>contract</code> for data input and one is <code>service</code> to process a logic. With <code>Response</code> class, it&rsquo;s literally same with <code>contract</code> class. They both hold parm value.</p>
+<ul>
+<li>
+<p><strong><code>contract</code> class</strong> gets parametters.</p>
+</li>
+<li>
+<p><strong><code>Response</code> class</strong> sets return values.</p>
+</li>
+</ul>
+<h3 id="1-scenario">1. Scenario</h3>
+<p>I want to get <code>HcmPersonnelNumberId</code> and <code>HcmWorkerName</code> of current userID on C#.NET application.</p>
+<h3 id="2-solution">2. Solution</h3>
+<ul>
+<li>
+<p>Write Custom AIF service to get Worker information, and then public this service.</p>
+</li>
+<li>
+<p>Write C#.NET console to consume that service.</p>
+</li>
+</ul>
+<h3 id="3-walkthrough">3. Walkthrough</h3>
+<h4 id="31-response-class">3.1. Response class</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="na">[DataContractAttribute]</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MaxWorkerResponse</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">str</span>     <span class="n">gId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">str</span>     <span class="n">gName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>two value that I want to return is <code>HcmPersonnelNumberId</code> and <code>HcmWorkerName</code>, I will store it in 2 parms method</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="na">[DataMemberAttribute(&#39;HcmWorkerName&#39;)]</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="n">HcmWorkerName</span> <span class="n">parmName</span><span class="p">(</span><span class="n">HcmWorkerName</span> <span class="n">_name</span> <span class="p">=</span> <span class="n">gName</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">gName</span> <span class="p">=</span> <span class="n">_name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">gName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="na">
+</span></span></span><span class="line"><span class="cl"><span class="na">[DataMemberAttribute(&#39;HcmPersonnelNumberId&#39;)]</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="n">HcmPersonnelNumberId</span> <span class="n">parmId</span><span class="p">(</span><span class="n">HcmPersonnelNumberId</span> <span class="n">_id</span> <span class="p">=</span> <span class="n">gId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">gId</span> <span class="p">=</span> <span class="n">_id</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">gId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="32-service-class">3.2. Service class</h4>
+<p>Create <code>MaxPRService</code> Class, This class consume through service that need to be extend <code>SysOperationServiceBase</code> class</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MaxPRService</span> <span class="n">extends</span> <span class="n">SysOperationServiceBase</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Main logic</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="na">[SysEntryPointAttribute(true),
+</span></span></span><span class="line"><span class="cl"><span class="na">AifCollectionTypeAttribute(&#39;return&#39;, Types::String)]</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="n">MaxWorkerResponse</span> <span class="n">getEmployee</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">HcmWorkerRecId</span>          <span class="n">workerRecId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">HcmPersonnelNumberId</span>    <span class="n">personnelNumber</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">HcmWorkerName</span>           <span class="n">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">MaxWorkerResponse</span>       <span class="n">response</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">workerRecId</span> <span class="p">=</span> <span class="n">DirPersonUser</span><span class="p">::</span><span class="n">currentWorker</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">personnelNumber</span> <span class="p">=</span> <span class="n">HcmWorker</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="n">workerRecId</span><span class="p">).</span><span class="n">PersonnelNumber</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">name</span> <span class="p">=</span> <span class="n">HcmWorker</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="n">workerRecId</span><span class="p">).</span><span class="n">name</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">response</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MaxWorkerResponse</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">response</span><span class="p">.</span><span class="n">parmId</span><span class="p">(</span><span class="n">personnelNumber</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">response</span><span class="p">.</span><span class="n">parmName</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">response</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="33-create-service">3.3. Create service</h4>
+<p>In AOT create new service and add recent created class to that Service, in operations node add <code>getEmployee</code> method, you will get something likes</p>
+<p></p>
+<p>Then right click service &gt; Add-ins &gt; Register Service.</p>
+<p>go to AIF inbound form to create new service and add <code>getEmployee</code> operation to that service then Active.</p>
+<h4 id="34-consume-service">3.4. Consume service</h4>
+<p>Add recent WSDL URI <code>http://WINSERVER:8104/DynamicsAx/Services/MaxPurchReqGeneral</code> into Service reference in C# Console project</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">CallContext</span> <span class="n">context</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;USMF&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Language</span> <span class="p">=</span> <span class="s">&#34;EN-US&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="n">MaxPRServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MaxPRServiceClient</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">MaxWorkerResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">getEmployee</span><span class="p">(</span><span class="n">context</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">HcmWorkerName</span> <span class="p">+</span> <span class="s">&#34;, &#34;</span> <span class="p">+</span> <span class="n">response</span><span class="p">.</span><span class="n">HcmPersonnelNumberId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Thank you for reading.</p>
+]]></description>
+</item>
+<item>
+    <title>AIF Custom response value in Dynamics AX 2012 R3</title>
+    <link>https://nuxulu.com/2017-01-11-aif-custom-response-value-in-dynamics-ax-2012-r3/</link>
+    <pubDate>Wed, 11 Jan 2017 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2017-01-11-aif-custom-response-value-in-dynamics-ax-2012-r3/</guid>
+    <description><![CDATA[<p>For this demonstration, I use AIF service to create Sales order with <code>SalesSalesOrderService</code> and I gonna consume AIF using C#.NET.</p>
+<p>Normally, in consume service application we handle return value by using <code>EntityKeyList</code>, <code>EntityKey</code>, <code>KeyData[0].Value</code>. And for Sales Order It will return Created SalesID.</p>
+<p>Let&rsquo;s take a look on <code>AxdSalesOrder</code> class. More about <code>Axd</code> class please prefer <a href="https://technet.microsoft.com/en-us/library/aa862063.aspx" target="_blank" rel="noopener noreffer ">this</a>.</p>
+<p>Then go to <code>createList</code> method, this method will handle response value</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="n">AifEntityKeyList</span> <span class="n">createList</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifDocumentXml</span>                  <span class="n">_xml</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifEndpointActionPolicyInfo</span>     <span class="n">_actionPolicyInfo</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifConstraintListCollection</span>     <span class="n">_constraintListCollection</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifEntityKeyList</span> <span class="n">aifEntityKeyList</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">aifEntityKeyList</span> <span class="p">=</span> <span class="n">super</span><span class="p">(</span><span class="n">_xml</span><span class="p">,</span> <span class="n">_actionPolicyInfo</span><span class="p">,</span> <span class="n">_constraintListCollection</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Sales orders are committed - master planning explosion can be executed and confirmed dates be set</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="n">postSalesOrderCreation</span><span class="p">(</span><span class="n">aifEntityKeyList</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">aifEntityKeyList</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>So, how about customer wants another meaning value beside <code>SalesID</code> likes <code>InventTransId</code> information in <code>SalesLine</code> table or another tables base on your requirement. To do that, we need to customize this method.</p>
+<h3 id="how-to-do">How to do</h3>
+<p>I will use <code>Map</code> and <code>MapEnumerator</code> classes (Please refer MSDN to understand these class), this is steps:</p>
+<ol>
+<li>We get the <code>SalesId</code> from the original <code>entityKeyList</code> and add into <code>Map</code>.</li>
+<li>add <code>Map</code> to <code>MapEnumerator</code>.</li>
+<li>Use <code>SalesId</code> to find the sales line. (<code>mapEnumerator.currentValue()</code> can get current <code>SalesID</code>).</li>
+<li>Create a new <code>entityKey</code> and insert the sales line information to this <code>entityKey</code>.</li>
+<li>add back <code>entityKey</code> to <code>entityKeyList</code></li>
+</ol>
+<p>From here in <code>entityKeyList</code> will store information of <code>SalesID</code> and List fields of <code>SalesLine</code> table.</p>
+<p>Here is the code for <code>createList</code> method, beside <code>SalesId</code> I will try to get <code>InventTransId</code> in <code>SalesLine</code> Table</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="n">AifEntityKeyList</span> <span class="n">createList</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifDocumentXml</span>                  <span class="n">_xml</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifEndpointActionPolicyInfo</span>     <span class="n">_actionPolicyInfo</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifConstraintListCollection</span>     <span class="n">_constraintListCollection</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifEntityKeyList</span> <span class="n">aifEntityKeyList</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">SalesId</span>                         <span class="n">salesId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SalesLine</span>                       <span class="n">salesLine</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifEntityKey</span>                    <span class="n">entityKey</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifEntityKey</span>                    <span class="n">salesEntityKey</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Map</span>                             <span class="n">keyDataMap</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Map</span>                             <span class="n">salesOrderMap</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">MapEnumerator</span>                   <span class="n">mapEnumerator</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">aifEntityKeyList</span> <span class="p">=</span> <span class="n">super</span><span class="p">(</span><span class="n">_xml</span><span class="p">,</span> <span class="n">_actionPolicyInfo</span><span class="p">,</span> <span class="n">_constraintListCollection</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Sales orders are committed - master planning explosion can be executed and confirmed dates be set</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="n">postSalesOrderCreation</span><span class="p">(</span><span class="n">aifEntityKeyList</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">entityKey</span>       <span class="p">=</span> <span class="n">aifEntityKeyList</span><span class="p">.</span><span class="n">getEntityKey</span><span class="p">(</span><span class="m">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">keyDataMap</span>      <span class="p">=</span> <span class="n">entityKey</span><span class="p">.</span><span class="n">parmKeyDataMap</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mapEnumerator</span>   <span class="p">=</span> <span class="n">keyDataMap</span><span class="p">.</span><span class="n">getEnumerator</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">mapEnumerator</span><span class="p">.</span><span class="n">moveNext</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">salesId</span> <span class="p">=</span> <span class="n">mapEnumerator</span><span class="p">.</span><span class="n">currentValue</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">salesId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">while</span> <span class="k">select</span> <span class="n">InventTransId</span><span class="p">,</span> <span class="n">RecId</span> <span class="k">from</span> <span class="n">salesLine</span>
+</span></span><span class="line"><span class="cl">                <span class="k">where</span> <span class="n">salesLine</span><span class="p">.</span><span class="n">SalesId</span> <span class="p">==</span> <span class="n">salesId</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">salesEntityKey</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AifEntityKey</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                <span class="n">salesOrderMap</span>  <span class="p">=</span> <span class="k">new</span> <span class="n">Map</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Types</span><span class="p">::</span><span class="n">Container</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">salesEntityKey</span><span class="p">.</span><span class="n">parmTableId</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">SalesLine</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">                <span class="n">salesEntityKey</span><span class="p">.</span><span class="n">parmRecId</span><span class="p">(</span><span class="n">salesLine</span><span class="p">.</span><span class="n">RecId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">salesOrderMap</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">SalesLine</span><span class="p">,</span> <span class="n">InventTransId</span><span class="p">),</span> <span class="p">[</span><span class="n">salesLine</span><span class="p">.</span><span class="n">InventTransId</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">salesEntityKey</span><span class="p">.</span><span class="n">parmKeyDataMap</span><span class="p">(</span><span class="n">salesOrderMap</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">aifEntityKeyList</span><span class="p">.</span><span class="n">addEntityKey</span><span class="p">(</span><span class="n">salesEntityKey</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">aifEntityKeyList</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Code in C#.NET to get list key</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">SalesOrderServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SalesOrderServiceClient</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="k">try</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">EntityKey</span><span class="p">[]</span> <span class="n">salesOrderCreatedEntity</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">salesOrder</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//EntityKey salesOrderCreated = (EntityKey)salesOrderCreatedEntity.GetValue(0);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">IEnumerator</span> <span class="n">enumerator</span> <span class="p">=</span> <span class="n">salesOrderCreatedEntity</span><span class="p">.</span><span class="n">GetEnumerator</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">while</span> <span class="p">(</span><span class="n">enumerator</span><span class="p">.</span><span class="n">MoveNext</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">EntityKey</span> <span class="n">salesOrderCreated</span> <span class="p">=</span> <span class="p">(</span><span class="n">EntityKey</span><span class="p">)</span><span class="n">enumerator</span><span class="p">.</span><span class="n">Current</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">salesOrderCreated</span><span class="p">.</span><span class="n">KeyData</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">Field</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">salesOrderCreated</span><span class="p">.</span><span class="n">KeyData</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">Value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//Console.WriteLine(&#34;The sales order created has a Sales ID of &#34; + salesOrderCreated.KeyData[0].Value);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>Output:</code></p>
+<p></p>
+<p>Thank you for reading.</p>
+]]></description>
+</item>
+<item>
+    <title>How to block vendor and send email for notification.</title>
+    <link>https://nuxulu.com/2017-01-10-block-vendor-and-send-email-for-notification-in-dynamics-ax/</link>
+    <pubDate>Tue, 10 Jan 2017 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2017-01-10-block-vendor-and-send-email-for-notification-in-dynamics-ax/</guid>
+    <description><![CDATA[<p>Main requirements is Using batch to find and block vendor base on last transaction condition and notify for them by emails.</p>
+<h3 id="1-set-up-e-mail-parameters">1. Set up E-mail parameters</h3>
+<p>For set up email, we need Go to AX <code>System administrator &gt; Setup &gt; E-mail parameters</code></p>
+<p></p>
+<h3 id="2-vendor-emails">2. Vendor emails</h3>
+<p>Vendor emails locate on <code>LogisticsElectronicAddress.Locator</code>, <code>partyTable.PrimaryContactEmail</code>, <code>partyLocation.Location</code>, please take a look on this job to find how to update Vendor emails and you also could see the relations more clearly.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">UpdateVendorEmail</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VendTable</span>                   <span class="n">vendTable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">LogisticsElectronicAddress</span>  <span class="n">electronicAddress</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">DirPartyTable</span>               <span class="n">partyTable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">DirPartyLocation</span>            <span class="n">partyLocation</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">electronicAddress</span><span class="p">.</span><span class="n">initValue</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">electronicAddress</span><span class="p">.</span><span class="n">Type</span> <span class="p">=</span> <span class="n">LogisticsElectronicAddressMethodType</span><span class="p">::</span><span class="n">Email</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">electronicAddress</span><span class="p">.</span><span class="n">Description</span> <span class="p">=</span> <span class="s">&#34;Max Nguyen&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">electronicAddress</span><span class="p">.</span><span class="n">Locator</span>     <span class="p">=</span> <span class="s">&#34;luan52@outlook.com&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">electronicAddress</span><span class="p">.</span><span class="n">IsPrimary</span>   <span class="p">=</span> <span class="n">NoYes</span><span class="p">::</span><span class="n">Yes</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">electronicAddress</span><span class="p">.</span><span class="n">insert</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="k">select</span> <span class="n">forUpdate</span> <span class="n">partyTable</span>
+</span></span><span class="line"><span class="cl">        <span class="n">exists</span> <span class="k">join</span> <span class="n">vendTable</span>
+</span></span><span class="line"><span class="cl">            <span class="k">where</span> <span class="n">vendTable</span><span class="p">.</span><span class="n">Party</span> <span class="p">==</span> <span class="n">partyTable</span><span class="p">.</span><span class="n">RecId</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ttsBegin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">partyTable</span><span class="p">.</span><span class="n">PrimaryContactEmail</span> <span class="p">=</span> <span class="n">electronicAddress</span><span class="p">.</span><span class="n">RecId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">partyTable</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ttsCommit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">select</span> <span class="n">firstOnly</span> <span class="n">forupdate</span> <span class="n">partyLocation</span>
+</span></span><span class="line"><span class="cl">            <span class="k">where</span> <span class="n">partyLocation</span><span class="p">.</span><span class="n">Party</span> <span class="p">==</span> <span class="n">partyTable</span><span class="p">.</span><span class="n">RecId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">partyLocation</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ttsBegin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">partyLocation</span><span class="p">.</span><span class="n">Location</span> <span class="p">=</span> <span class="n">electronicAddress</span><span class="p">.</span><span class="n">Location</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">partyLocation</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ttsCommit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">partyLocation</span><span class="p">.</span><span class="n">initValue</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">partyLocation</span><span class="p">.</span><span class="n">Location</span> <span class="p">=</span> <span class="n">electronicAddress</span><span class="p">.</span><span class="n">Location</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">partyLocation</span><span class="p">.</span><span class="n">Party</span>     <span class="p">=</span> <span class="n">partyTable</span><span class="p">.</span><span class="n">RecId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">partyLocation</span><span class="p">.</span><span class="n">insert</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3-batch-class">3. Batch class</h3>
+<p>Main logic here is find Vend accounts are not exist in <code>VendTrans</code> table with condition <code>endTrans.TransDate &gt;= beginDate</code>, and <code>beginDate</code> count from today <code>systemDateGet()</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">Max_VendorBlockedBatch</span> <span class="n">extends</span> <span class="n">RunBaseBatch</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Get the date before 6 months from today</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="n">TransDate</span> <span class="n">getBeginDate</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">TransDate</span>   <span class="n">beginDate</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">TransDate</span>   <span class="n">currentDate</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Months</span>      <span class="n">month</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">YearBase</span>    <span class="n">years</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Day</span>         <span class="n">day</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">currentDate</span> <span class="p">=</span> <span class="n">systemDateGet</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">day</span>         <span class="p">=</span> <span class="n">dayOfMth</span><span class="p">(</span><span class="n">currentDate</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">month</span>       <span class="p">=</span> <span class="n">mthOfYr</span><span class="p">(</span><span class="n">currentDate</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">years</span>       <span class="p">=</span> <span class="n">year</span><span class="p">(</span><span class="n">currentDate</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">month</span> <span class="p">&lt;</span> <span class="m">6</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">beginDate</span> <span class="p">=</span> <span class="n">mkDate</span><span class="p">(</span><span class="n">day</span><span class="p">,</span> <span class="m">12</span> <span class="p">-</span> <span class="p">(</span><span class="m">6</span> <span class="p">-</span> <span class="n">month</span><span class="p">)</span> <span class="p">+</span> <span class="m">1</span><span class="p">,</span> <span class="n">years</span> <span class="p">-</span> <span class="m">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">beginDate</span> <span class="p">=</span> <span class="n">mkDate</span><span class="p">(</span><span class="n">day</span><span class="p">,</span> <span class="n">month</span> <span class="p">-</span> <span class="m">6</span> <span class="p">+</span> <span class="m">1</span><span class="p">,</span> <span class="n">years</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">beginDate</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Send E-mail</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">sendEmail</span><span class="p">(</span><span class="n">AccountNum</span> <span class="n">_vendor</span><span class="p">,</span> <span class="n">str</span> <span class="n">_recipient</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">str</span>                                     <span class="n">sender</span>  <span class="p">=</span> <span class="err">&#39;</span><span class="n">sender@email</span><span class="p">.</span><span class="n">com</span><span class="err">&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">str</span>                                     <span class="n">subject</span> <span class="p">=</span> <span class="err">&#39;</span><span class="n">Account</span> <span class="n">blocked</span><span class="err">&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">str</span>                                     <span class="n">body</span>    <span class="p">=</span> <span class="err">&#39;</span><span class="n">Your</span> <span class="n">account</span> <span class="k">is</span> <span class="n">blocked</span> <span class="n">due</span> <span class="n">to</span> <span class="n">last</span> <span class="n">transaction</span><span class="err">&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span>                                    <span class="n">toList</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ListEnumerator</span>                          <span class="n">le</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Set</span>                                     <span class="n">permissionSet</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="p">.</span><span class="n">Exception</span>                        <span class="n">e</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">str</span>                                     <span class="n">mailServer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span>                                     <span class="n">mailServerPort</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">SmtpClient</span>              <span class="n">mailClient</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailMessage</span>             <span class="n">mailMessage</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailAddress</span>             <span class="n">mailFrom</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailAddress</span>             <span class="n">mailTo</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailAddressCollection</span>   <span class="n">mailToCollection</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="k">try</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">toList</span> <span class="p">=</span> <span class="n">strSplit</span><span class="p">(</span><span class="n">_recipient</span><span class="p">,</span> <span class="sc">&#39;;&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">         
+</span></span><span class="line"><span class="cl">        <span class="n">permissionSet</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Set</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Class</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">permissionSet</span><span class="p">.</span><span class="k">add</span><span class="p">(</span><span class="k">new</span> <span class="n">InteropPermission</span><span class="p">(</span><span class="n">InteropKind</span><span class="p">::</span><span class="n">ClrInterop</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">CodeAccessPermission</span><span class="p">::</span><span class="n">assertMultiple</span><span class="p">(</span><span class="n">permissionSet</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">        <span class="n">mailServer</span>      <span class="p">=</span> <span class="n">SysEmaiLParameters</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="k">false</span><span class="p">).</span><span class="n">SMTPRelayServerName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mailServerPort</span>  <span class="p">=</span> <span class="n">SysEmaiLParameters</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="k">false</span><span class="p">).</span><span class="n">SMTPPortNumber</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mailClient</span>      <span class="p">=</span> <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">SmtpClient</span><span class="p">(</span><span class="n">mailServer</span><span class="p">,</span> <span class="n">mailServerPort</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">        <span class="n">le</span> <span class="p">=</span> <span class="n">toList</span><span class="p">.</span><span class="n">getEnumerator</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">le</span><span class="p">.</span><span class="n">moveNext</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">         
+</span></span><span class="line"><span class="cl">        <span class="n">mailFrom</span>    <span class="p">=</span> <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailAddress</span><span class="p">(</span><span class="n">sender</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mailTo</span>      <span class="p">=</span> <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailAddress</span><span class="p">(</span><span class="n">strLTrim</span><span class="p">(</span><span class="n">strRTrim</span><span class="p">(</span><span class="n">le</span><span class="p">.</span><span class="n">current</span><span class="p">())));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mailMessage</span> <span class="p">=</span> <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailMessage</span><span class="p">(</span><span class="n">mailFrom</span><span class="p">,</span> <span class="n">mailTo</span><span class="p">);</span>     
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">mailToCollection</span> <span class="p">=</span> <span class="n">mailMessage</span><span class="p">.</span><span class="n">get_To</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">le</span><span class="p">.</span><span class="n">moveNext</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mailToCollection</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">strLTrim</span><span class="p">(</span><span class="n">strRTrim</span><span class="p">(</span><span class="n">le</span><span class="p">.</span><span class="n">current</span><span class="p">())));</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">         
+</span></span><span class="line"><span class="cl">        <span class="n">mailMessage</span><span class="p">.</span><span class="n">set_Priority</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">Mail</span><span class="p">.</span><span class="n">MailPriority</span><span class="p">::</span><span class="n">High</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mailMessage</span><span class="p">.</span><span class="n">set_Subject</span><span class="p">(</span><span class="n">subject</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mailMessage</span><span class="p">.</span><span class="n">set_Body</span><span class="p">(</span><span class="n">body</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">        <span class="n">mailClient</span><span class="p">.</span><span class="n">Send</span><span class="p">(</span><span class="n">mailMessage</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mailMessage</span><span class="p">.</span><span class="n">Dispose</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">        <span class="n">CodeAccessPermission</span><span class="p">::</span><span class="n">revertAssert</span><span class="p">();</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Email</span> <span class="n">was</span> <span class="n">sent</span> <span class="n">to</span> <span class="n">vendor</span> <span class="p">%</span><span class="m">1.</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">_vendor</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span><span class="p">::</span><span class="n">CLRError</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">e</span> <span class="p">=</span> <span class="n">ClrInterop</span><span class="p">::</span><span class="n">getLastException</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">info</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">get_Message</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">            <span class="n">e</span> <span class="p">=</span> <span class="n">e</span><span class="p">.</span><span class="n">get_InnerException</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">CodeAccessPermission</span><span class="p">::</span><span class="n">revertAssert</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Initializes a new instance of the <em><c>Batch</c></em> class.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">MAX_VendorBlockedBatch</span> <span class="n">construct</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="n">MAX_VendorBlockedBatch</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Gets description of the dialog.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">ClassDescription</span> <span class="n">description</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="err">&#39;</span><span class="n">Vendor</span> <span class="n">blocked</span> <span class="n">batch</span><span class="err">&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Find the vendor without transaction and disable, then send email to vendor</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">run</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VendTrans</span>   <span class="n">vendTrans</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VendTable</span>   <span class="n">vendTable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">TransDate</span>   <span class="n">beginDate</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Email</span>       <span class="n">email</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span>         <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">try</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">beginDate</span> <span class="p">=</span> <span class="k">this</span><span class="p">.</span><span class="n">getBeginDate</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="k">select</span> <span class="n">forUpdate</span> <span class="n">AccountNum</span><span class="p">,</span> <span class="n">Party</span> <span class="k">from</span> <span class="n">vendTable</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Notexists</span> <span class="k">join</span> <span class="n">vendTrans</span>
+</span></span><span class="line"><span class="cl">            <span class="k">where</span> <span class="n">vendTrans</span><span class="p">.</span><span class="n">AccountNum</span> <span class="p">==</span> <span class="n">vendTable</span><span class="p">.</span><span class="n">AccountNum</span>
+</span></span><span class="line"><span class="cl">                <span class="p">&amp;&amp;</span> <span class="n">vendTrans</span><span class="p">.</span><span class="n">TransDate</span> <span class="p">&gt;=</span> <span class="n">beginDate</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//Set the vendor blocked</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ttsBegin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vendTable</span><span class="p">.</span><span class="n">Blocked</span> <span class="p">=</span> <span class="n">CustVendorBlocked</span><span class="p">::</span><span class="n">All</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vendTable</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ttsCommit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">//Send E-mail to vendor</span>
+</span></span><span class="line"><span class="cl">            <span class="n">email</span> <span class="p">=</span> <span class="n">vendTable</span><span class="p">.</span><span class="n">email</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">email</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">this</span><span class="p">.</span><span class="n">sendEmail</span><span class="p">(</span><span class="n">vendTable</span><span class="p">.</span><span class="n">AccountNum</span><span class="p">,</span> <span class="n">email</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">warning</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="err">&#39;</span><span class="n">The</span> <span class="n">vendor</span> <span class="p">%</span><span class="m">1</span> <span class="n">did</span> <span class="n">not</span> <span class="n">have</span> <span class="n">E</span><span class="p">-</span><span class="n">mail</span> <span class="n">address</span><span class="p">.</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">vendTable</span><span class="p">.</span><span class="n">AccountNum</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span><span class="p">::</span><span class="n">Deadlock</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">retry</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Provides an enter point for the <c>Batch</c> class.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">MAX_VendorBlockedBatch</span> <span class="n">vendorBlockedBatch</span> <span class="p">=</span> <span class="n">MAX_VendorBlockedBatch</span><span class="p">::</span><span class="n">construct</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">vendorBlockedBatch</span><span class="p">.</span><span class="n">prompt</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">vendorBlockedBatch</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>From here you can run class and set up recurrence for batch job.</p>
+<p>Thank you for reading!</p>
+]]></description>
+</item>
+<item>
+    <title>Simple summary Keys are in Dynamics AX</title>
+    <link>https://nuxulu.com/2017-01-03-simple-custom-serivce-in-ax-r3/</link>
+    <pubDate>Tue, 03 Jan 2017 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2017-01-03-simple-custom-serivce-in-ax-r3/</guid>
+    <description><![CDATA[<ul>
+<li>
+<p>There is a maximum of one <code>Primary Key</code> per table, whereas a table can have several <code>alternate keys</code>. The <code>primary key</code> is usually the type of key that other tables, called child tables, refer to when a <code>foreign key</code> field in those other tables need a relational identifier.</p>
+</li>
+<li>
+<p>For new tables the default is a <code>primary key</code> based on the <code>RecId</code> field , incremented number or a completely meaningless number that is generated by the system <code>surrogate key</code>. <code>A surrogate key</code> is a system-generated value that acts as the primary key of a table. This value is typically used instead of a set of fields called the natural key which would typically act as the primary key of a table. Microsoft Dynamics AX 2012 uses Recld as the <code>surrogate key</code>.</p>
+</li>
+<li>
+<p><code>Alternate key</code> can be chosen as the <code>Replacement Key</code> of a table that can display on forms instead of a meaningless numeric <code>primary key</code> value. Each table can have a maximum of one <code>replacement key</code>.</p>
+</li>
+<li>
+<p><code>Natural key</code> has meaning to people. Most <code>replacement keys</code> are <code>natural keys</code>.</p>
+</li>
+<li>
+<p>Relations represents a <code>foreign key</code>.</p>
+</li>
+</ul>
+<p>Thank you for reading!</p>
+]]></description>
+</item>
+</channel>
+</rss>
