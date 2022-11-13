@@ -198,62 +198,20 @@
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/xpp/">xpp</a>,&nbsp;<a href="/tags/aif/">aif</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/2017-01-11-aif-custom-response-value-in-dynamics-ax-2012-r3/">AIF Custom response value in Dynamics AX 2012 R3</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="January 11, 2017">January 11, 2017</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax2012/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AX2012</a>&nbsp;<a href="/categories/integration/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Integration</a></span></div><div class="content"><p>For this demonstration, I use AIF service to create Sales order with <code>SalesSalesOrderService</code> and I gonna consume AIF using C#.NET.</p>
-<p>Normally, in consume service application we handle return value by using <code>EntityKeyList</code>, <code>EntityKey</code>, <code>KeyData[0].Value</code>. And for Sales Order It will return Created SalesID.</p>
-<p>Let&rsquo;s take a look on <code>AxdSalesOrder</code> class. More about <code>Axd</code> class please prefer <a href="https://technet.microsoft.com/en-us/library/aa862063.aspx" target="_blank" rel="noopener noreffer ">this</a>.</p>
-<p>Then go to <code>createList</code> method, this method will handle response value</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="n">AifEntityKeyList</span> <span class="n">createList</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="n">AifDocumentXml</span>                  <span class="n">_xml</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="n">AifEndpointActionPolicyInfo</span>     <span class="n">_actionPolicyInfo</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="n">AifConstraintListCollection</span>     <span class="n">_constraintListCollection</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">AifEntityKeyList</span> <span class="n">aifEntityKeyList</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">aifEntityKeyList</span> <span class="p">=</span> <span class="n">super</span><span class="p">(</span><span class="n">_xml</span><span class="p">,</span> <span class="n">_actionPolicyInfo</span><span class="p">,</span> <span class="n">_constraintListCollection</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// Sales orders are committed - master planning explosion can be executed and confirmed dates be set</span>
-</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="n">postSalesOrderCreation</span><span class="p">(</span><span class="n">aifEntityKeyList</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">aifEntityKeyList</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>So, how about customer wants another meaning value beside <code>SalesID</code> likes <code>InventTransId</code> information in <code>SalesLine</code> table or another tables base on your requirement. To do that, we need to customize this method.</p></div><div class="post-footer">
+    </h1><div class="post-meta"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="January 11, 2017">January 11, 2017</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax2012/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AX2012</a>&nbsp;<a href="/categories/integration/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Integration</a></span></div><div class="content">For this demonstration, I use AIF service to create Sales order with SalesSalesOrderService and I gonna consume AIF using C#.NET.
+Normally, in consume service application we handle return value by using EntityKeyList, EntityKey, KeyData[0].Value. And for Sales Order It will return Created SalesID.
+Let&rsquo;s take a look on AxdSalesOrder class. More about Axd class please prefer this.
+Then go to createList method, this method will handle response value
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 public AifEntityKeyList createList( AifDocumentXml _xml, AifEndpointActionPolicyInfo _actionPolicyInfo, AifConstraintListCollection _constraintListCollection) { AifEntityKeyList aifEntityKeyList; aifEntityKeyList = super(_xml, _actionPolicyInfo, _constraintListCollection); // Sales orders are committed - master planning explosion can be executed and confirmed dates be set this.</div><div class="post-footer">
         <a href="/2017-01-11-aif-custom-response-value-in-dynamics-ax-2012-r3/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/xpp/">xpp</a>,&nbsp;<a href="/tags/aif/">aif</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/2017-01-10-block-vendor-and-send-email-for-notification-in-dynamics-ax/">How to block vendor and send email for notification.</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="January 10, 2017">January 10, 2017</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax2012/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AX2012</a>&nbsp;<a href="/categories/integration/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Integration</a></span></div><div class="content"><p>Main requirements is Using batch to find and block vendor base on last transaction condition and notify for them by emails.</p>
-<h3 id="set-up-e-mail-parameters">Set up E-mail parameters</h3>
-<p>For set up email, we need Go to AX <code>System administrator &gt; Setup &gt; E-mail parameters</code></p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/imagesposts/Email-parameters.png"
-        data-srcset="/imagesposts/Email-parameters.png, /imagesposts/Email-parameters.png 1.5x, /imagesposts/Email-parameters.png 2x"
-        data-sizes="auto"
-        alt="/imagesposts/Email-parameters.png"
-        title="/imagesposts/Email-parameters.png" /></p></div><div class="post-footer">
+    </h1><div class="post-meta"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="January 10, 2017">January 10, 2017</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax2012/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AX2012</a></span></div><div class="content">Main requirements is Using batch to find and block vendor base on last transaction condition and notify for them by emails.
+Set up E-mail parameters For set up email, we need Go to AX System administrator &gt; Setup &gt; E-mail parameters
+Vendor emails Vendor emails locate on LogisticsElectronicAddress.Locator, partyTable.PrimaryContactEmail, partyLocation.Location, please take a look on this job to find how to update Vendor emails and you also could see the relations more clearly.</div><div class="post-footer">
         <a href="/2017-01-10-block-vendor-and-send-email-for-notification-in-dynamics-ax/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/xpp/">xpp</a>,&nbsp;<a href="/tags/batch/">batch</a></div></div>
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/xpp/">xpp</a>,&nbsp;<a href="/tags/send-email/">send email</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/2017-01-03-simple-custom-serivce-in-ax-r3/">Simple summary Keys are in Dynamics AX</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="January 3, 2017">January 3, 2017</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax2012/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AX2012</a></span></div><div class="content">There is a maximum of one Primary Key per table, whereas a table can have several alternate keys. The primary key is usually the type of key that other tables, called child tables, refer to when a foreign key field in those other tables need a relational identifier.

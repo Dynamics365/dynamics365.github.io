@@ -1,7 +1,7 @@
 # The Type system of Dynamics AX 2012
 
 
-The Microsoft Dynamics AX runtime manages the storage of *value type* data on the **call stack** and *reference type objects* on the **memory heap**. 
+The Microsoft Dynamics AX runtime manages the storage of `value type` data on the **call stack** and `reference type` objects on the **memory heap**.
 
 **The call stack** is the memory structure that holds data about the active methods called during program execution. **The memory heap** is the memory area that allocates storage for objects that are destroyed automatically by the Microsoft Dynamics AX run-time.
 
@@ -14,10 +14,9 @@ Value types include the built-in `primitive types, extended data types, enumerat
 * **The enumeration types** are base enumerations and extended data types. 
 * **The collection types** are the built-in array and container types. 
 
-<!--more-->
 >By default, variables declared as **value types** are assigned their zero value by the Microsoft Dynamics AX runtime. These variables can’t be set to null. Variable values are copied when variables are used to invoke methods and when they are used in assignment statements. Therefore, two value type variables can’t reference the same value.
 
-![2015-10-06-the-type-system-of-dynamics-ax-2012](/imagesposts/2015-10-06-the-type-system-of-dynamics-ax-2012.png)
+![2015-10-06-the-type-system-of-dynamics-ax-2012](2015-10-06-the-type-system-of-dynamics-ax-2012.png "the-type-system-of-dynamics-ax-2012")
 
 ## Reference types
 

@@ -1,6 +1,10 @@
 # X++ Performance tips
 
 
+{{< admonition type=warning title="Ref" open=true >}}
+Report from http://www.artofcreation.be/
+{{< /admonition >}}
+
 ### Tip 1: Measure execution time of your code
 
 Measuring is knowing. Before you start changing code, make sure you have a set of data you can keep reusing for your tests. Measure the performance of your code on that data after each change in code so you know the impact of your changes.
@@ -148,5 +152,3 @@ is faster than
 ### Tip 7: Every optimization counts
 
 Remember that every optimization you do to you code counts, even if it’s a little one. Small performance tweaks can have a huge effect once you process large quantities of data. So don’t be lazy, and optimize.
-
-Coppied from http://www.artofcreation.be/

@@ -10,10 +10,7 @@
     <pubDate>Tue, 08 Nov 2016 15:47:00 &#43;0900</pubDate>
     <author>Max Nguyen</author>
     <guid>https://nuxulu.com/2016-11-08-understanding_modifedfield_table_method_in_dax_2012/</guid>
-    <description><![CDATA[<p>Dear all,</p>
-<p>We use <code>modifiedField()</code> method to perform any actions  after the field is modifed</p>
-<p><em>Ex:</em></p>
-<p>Create new table with 2 fields <strong>ItemId</strong> and <strong>ItemNameDisplay</strong>  from Extended Data Types node in AOT then Override <code>modifiedField()</code> in Table&rsquo;s method node, something likes:</p>
+    <description><![CDATA[<p>We use <code>modifiedField()</code> method to perform any actions after the field is modifed for example creating new table with 2 fields <strong>ItemId</strong> and <strong>ItemNameDisplay</strong>  from Extended Data Types node in AOT then Override <code>modifiedField()</code> in Table&rsquo;s method node, something likes:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -29,20 +26,20 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">public</span> <span class="kt">void</span> <span class="nf">modifiedField</span><span class="p">(</span><span class="n">FieldId</span> <span class="n">_fieldId</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">modifiedField</span><span class="p">(</span><span class="n">FieldId</span> <span class="n">_fieldId</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">InventTable</span> <span class="n">inventTable</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">super</span><span class="p">(</span><span class="n">_fieldId</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">switch</span> <span class="p">(</span><span class="n">_fieldId</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="n">fieldNum</span><span class="p">(</span><span class="n">IBD_Invent</span><span class="p">,</span><span class="n">itemid</span><span class="p">)</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">            <span class="n">this</span><span class="p">.</span><span class="n">ItemNameDisplay</span> <span class="o">=</span> <span class="n">inventTable</span><span class="o">::</span><span class="n">find</span><span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="n">itemid</span><span class="p">).</span><span class="n">NameAlias</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="n">fieldNum</span><span class="p">(</span><span class="n">IBD_Invent</span><span class="p">,</span><span class="n">itemid</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">this</span><span class="p">.</span><span class="n">ItemNameDisplay</span> <span class="p">=</span> <span class="n">inventTable</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">itemid</span><span class="p">).</span><span class="n">NameAlias</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">            <span class="k">break</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>the <code>modifiedField()</code> method is located on tables and it is called by a form (or a dataset) when any field is changed. It has field ID as a parameter and therefore it is very easy to write code reacting to a change of a particular field. It is so easy that the <code>modifiedField()</code> method is often used even in such cases, when it really shouldn’t be used.</p>
+</div><p>The <code>modifiedField()</code> method is located on tables and it is called by a form (or a dataset) when any field is changed. It has field ID as a parameter and therefore it is very easy to write code reacting to a change of a particular field. It is so easy that the <code>modifiedField()</code> method is often used even in such cases, when it really shouldn’t be used.</p>
 <p>If you want to get previous field value in the <code>modifiedField()</code> for comparative purpose, you can use <code>this.orig()</code> method:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -53,10 +50,10 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">public</span> <span class="kt">void</span> <span class="nf">modifiedField</span><span class="p">(</span><span class="n">fieldId</span> <span class="n">_fieldId</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">modifiedField</span><span class="p">(</span><span class="n">fieldId</span> <span class="n">_fieldId</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">super</span><span class="p">(</span><span class="n">_fieldId</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">info</span><span class="p">(</span><span class="n">strfmt</span><span class="p">(</span><span class="s">&#34;Field number %1 changed from %2 to %3&#34;</span><span class="p">,</span><span class="n">_fieldId</span><span class="p">,</span><span class="n">this</span><span class="p">.</span><span class="n">orig</span><span class="p">().(</span><span class="n">_fieldId</span><span class="p">),</span><span class="n">this</span><span class="p">.(</span><span class="n">_fieldId</span><span class="p">)));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">info</span><span class="p">(</span><span class="n">strfmt</span><span class="p">(</span><span class="s">&#34;Field number %1 changed from %2 to %3&#34;</span><span class="p">,</span><span class="n">_fieldId</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="n">orig</span><span class="p">().(</span><span class="n">_fieldId</span><span class="p">),</span><span class="k">this</span><span class="p">.(</span><span class="n">_fieldId</span><span class="p">)));</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>

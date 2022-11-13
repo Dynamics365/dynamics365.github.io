@@ -145,7 +145,15 @@
     <pubDate>Tue, 12 May 2015 00:00:00 &#43;0000</pubDate>
     <author>Max Nguyen</author>
     <guid>https://nuxulu.com/2015-05-12-execute-stored-procedure-from-x-code/</guid>
-    <description><![CDATA[<p>To execute a stored procedure from X++ use the Server method, the Client method does not have permissions. you don’t require any special privileges or permissions to execute a stored procedure. if used other then Server method, a message should appear like this <code>Request for the permission of type SqlStatementExecutePermission failed.</code></p>
+    <description><![CDATA[<p>To execute a stored procedure from X++ use the Server method, the Client method does not have permissions; you don’t require any special privileges or permissions to execute a stored procedure. If we use other than <strong>Server</strong> method, a message should appear like this</p>
+<div class="details admonition warning open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-exclamation-triangle fa-fw" aria-hidden="true"></i>Warning<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Request for the permission of type <code>SqlStatementExecutePermission</code> failed.</div>
+        </div>
+    </div>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -173,7 +181,7 @@
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">AssemblyLoadEventArgs</span> <span class="n">_args</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">AssemblyLoadEventArgs</span> <span class="n">_args</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">Connection</span> <span class="n">con</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Connection</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="n">Statement</span> <span class="n">stmt</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Con</span><span class="p">.</span><span class="n">createStatement</span><span class="p">();</span>

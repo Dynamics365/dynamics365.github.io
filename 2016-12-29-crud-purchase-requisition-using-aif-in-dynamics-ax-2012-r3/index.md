@@ -60,16 +60,13 @@ protected void setPurchReqId()
 
 ```
 
-Base on this method, you could know how System get PurchReqId.
-
-<!--more-->
+Base on this method, you could know how System get `PurchReqId`.
 
 ### How to do
 
 Go to Inbound ports form to create new service with `NETTCP` adapter, choose service operations likes below:
 
-![](/imagesposts/CRUD-Purchase-Requisition-using-AIF-in-Dynamics-AX-2012-R3-1.png)
-
+![CRUD-Purchase-Requisition-using-AIF-in-Dynamics-AX-2012-R3](CRUD-Purchase-Requisition-using-AIF-in-Dynamics-AX-2012-R3-1.png)
 
 Then `active` AIF inbound service
 
@@ -77,24 +74,23 @@ Then `active` AIF inbound service
 
 Open visual studio and create new console project.
 
-![](/imagesposts/CRUD-Purchase-Requisition-using-AIF-in-Dynamics-AX-2012-R3-2.png)
+![CRUD-Purchase-Requisition-using-AIF-in-Dynamics-AX-2012-R3](CRUD-Purchase-Requisition-using-AIF-in-Dynamics-AX-2012-R3-2.png)
 
 Add service reference
 
 `http://DEV-ERP:8101/DynamicsAx/Services/MavPurchaseRequisition`
 
-![](/imagesposts/CRUD-Purchase-Requisition-using-AIF-in-Dynamics-AX-2012-R3-3.png)
+![CRUD-Purchase-Requisition-using-AIF-in-Dynamics-AX-2012-R3](CRUD-Purchase-Requisition-using-AIF-in-Dynamics-AX-2012-R3-3.png)
 
-![](/imagesposts/CRUD-Purchase-Requisition-using-AIF-in-Dynamics-AX-2012-R3-4.png)
+![CRUD-Purchase-Requisition-using-AIF-in-Dynamics-AX-2012-R3](CRUD-Purchase-Requisition-using-AIF-in-Dynamics-AX-2012-R3-4.png)
 
 This one just for demo, so I just create code base on required fields of AIF.
 
-![](/imagesposts/required_fields.png)
+![CRUD-Purchase-Requisition-using-AIF-in-Dynamics-AX-2012-R3](required_fields.png)
 
 Here is the code in `main` method
 
-```C#
-
+```cs
 PurchReqImportServiceClient client = new PurchReqImportServiceClient();
 CallContext context = new CallContext()
 {
@@ -155,9 +151,9 @@ catch (Exception e)
 
 Run it and check result in AX
 
-![](/imagesposts/CRUD-Purchase-Requisition-using-AIF-in-Dynamics-AX-2012-R3-5.png)
+![CRUD-Purchase-Requisition-using-AIF-in-Dynamics-AX-2012-R3](CRUD-Purchase-Requisition-using-AIF-in-Dynamics-AX-2012-R3-5.png)
 
-Please prefer previous [post](https://dynamics365.github.io/ax2012/integration/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3/) for another operations
+Please prefer previous [post](/2016-12-28-crud-purchase-order-using-aif-in-dynamics-ax-2012-r3/) for another operations.
 
 Thank you for reading!
 

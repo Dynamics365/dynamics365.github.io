@@ -1,9 +1,13 @@
 # Execute Stored Procedure from X++ code
 
 
-To execute a stored procedure from X++ use the Server method, the Client method does not have permissions. you don’t require any special privileges or permissions to execute a stored procedure. if used other then Server method, a message should appear like this `Request for the permission of type SqlStatementExecutePermission failed.`
+To execute a stored procedure from X++ use the Server method, the Client method does not have permissions; you don’t require any special privileges or permissions to execute a stored procedure. If we use other than **Server** method, a message should appear like this
 
-```C#
+{{< admonition type=warning title="Warning" open=true >}}
+Request for the permission of type `SqlStatementExecutePermission` failed.
+{{< /admonition >}}
+
+```cs
 public static void main(AssemblyLoadEventArgs _args)
 {
     Connection con = new Connection();
@@ -28,5 +32,3 @@ public static void main(AssemblyLoadEventArgs _args)
     CodeAccessPermission::revertAssert();
 }
 ```
-
-

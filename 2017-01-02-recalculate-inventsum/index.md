@@ -4,8 +4,7 @@
 
 `InventSum` is needed to recalculate sometimes. We should use `InventSumRecalcItem` class in Dynamics AX.
 
-```C#
-
+```cs
 InventSumRecalcItem InventSumRecalcItem;
 ;
 InventSumRecalcItem = new InventSumRecalcItem("ITEM001", true, checkfix::fix);
@@ -20,7 +19,7 @@ Third parameter : `Fix or only check`
 
 What if you want to calculate for all items:
 
-```C#
+```cs
 InventTable InventTable;
 InventSumRecalcItem InventSumRecalcItem;
 
@@ -31,6 +30,8 @@ WHILE SELECT InventTable
 		InventSumRecalcItem.updatenow();
 	}
 ```
+
+This is outdate, please refer this [post](/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/).
 
 Thank you for reading!
 

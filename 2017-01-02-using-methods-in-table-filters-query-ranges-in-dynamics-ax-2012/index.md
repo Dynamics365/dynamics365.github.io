@@ -7,7 +7,7 @@ Let’s say you have a report that you always want to run to see orders with shi
 
 > All methods & expressions must be surrounded by parentheses as shown below.
 
-![Figure 1 – Filtering the requested ship dates in an AX query for tomorrow](/imagesposts/Using-Methods-in-Table-Filters-Query-Ranges-in-Dynamics-AX-2012.jpg)
+![Figure 1 – Filtering the requested ship dates in an AX query for tomorrow](Using-Methods-in-Table-Filters-Query-Ranges-in-Dynamics-AX-2012.jpg)
 
 *Filtering the requested ship dates in an AX query for tomorrow `(current day() + 1)`*
 
@@ -15,13 +15,13 @@ On any form with a grid, you filter your data by pressing **_Ctrl+G_**.
 
 If I were to want to see open customer invoices from the last 90 days, I would filter my **open customer invoices form** and use the method `(dayRange(-90,0))`. The first number represents how many months backward from this month, and the second represents how many months forward. The same sorts of things can be done for the `monthRange()`, `yearRange()`, and `dateRange()` methods. The best part about this is that you can of course save these filters to create views that you might use on a daily basis.
 
-![Figure 2 – Searching the grid for the past 90 days](/imagesposts/Using-Methods-in-Table-Filters-Query-Ranges-in-Dynamics-AX-2012-2.jpg)
+![Figure 2 – Searching the grid for the past 90 days](Using-Methods-in-Table-Filters-Query-Ranges-in-Dynamics-AX-2012-2.jpg)
 
 If you are creating your query ranges in code, these methods can also be utilized whenever you are setting them. Definitely be sure to check out the `SysQueryRangeUtil` class as there are many more methods to use.
 
 Here is some methods you can use:
 
-```html
+```
 currentCustomerAccount()
 
 currentVendorAccount()

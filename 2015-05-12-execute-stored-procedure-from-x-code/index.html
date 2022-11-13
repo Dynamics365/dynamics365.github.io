@@ -17,7 +17,7 @@
 <meta name="twitter:title" content="Execute Stored Procedure from X&#43;&#43; code"/>
 <meta name="twitter:description" content="Execute Stored Procedure from X&#43;&#43; code"/>
 <meta name="application-name" content="Dynamics 365 Finance &amp; Operations">
-<meta name="apple-mobile-web-app-title" content="Dynamics 365 Finance &amp; Operations"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/Icon/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://nuxulu.com/2015-05-12-execute-stored-procedure-from-x-code/" /><link rel="prev" href="https://nuxulu.com/2015-02-12-x-performance-tips/" /><link rel="next" href="https://nuxulu.com/2015-05-13-how-to-deploy-all-the-reports-in-ax2012-by-using-management-shell/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<meta name="apple-mobile-web-app-title" content="Dynamics 365 Finance &amp; Operations"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/Icon/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://nuxulu.com/2015-05-12-execute-stored-procedure-from-x-code/" /><link rel="prev" href="https://nuxulu.com/2015-05-08-infographic-tieu-tien-khon-ngoan-theo-quy-tac-6-chiec-lo/" /><link rel="next" href="https://nuxulu.com/2015-05-13-how-to-deploy-all-the-reports-in-ax2012-by-using-management-shell/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><meta name="google-site-verification" content="f08c47fec0942fa0" /><script type="application/ld+json">
     {
@@ -33,7 +33,7 @@
                             "url": "https:\/\/nuxulu.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "xpp, stored procedure","wordcount":  123 ,
+                        }],"genre": "posts","keywords": "xpp, stored procedure","wordcount":  125 ,
         "url": "https:\/\/nuxulu.com\/2015-05-12-execute-stored-procedure-from-x-code\/","datePublished": "2015-05-12T00:00:00+00:00","dateModified": "2015-05-12T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -125,10 +125,10 @@
     </div><main class="main">
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
-            <div class="toc-content always-active" id="toc-content-auto"></div>
+            <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Execute Stored Procedure from X++ code</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-category">included in <a href="/categories/ax2012/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AX2012</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="May 12, 2015">May 12, 2015</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;123 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="May 12, 2015">May 12, 2015</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;125 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -136,7 +136,15 @@
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
-            </div><div class="content" id="content"><p>To execute a stored procedure from X++ use the Server method, the Client method does not have permissions. you don’t require any special privileges or permissions to execute a stored procedure. if used other then Server method, a message should appear like this <code>Request for the permission of type SqlStatementExecutePermission failed.</code></p>
+            </div><div class="content" id="content"><p>To execute a stored procedure from X++ use the Server method, the Client method does not have permissions; you don’t require any special privileges or permissions to execute a stored procedure. If we use other than <strong>Server</strong> method, a message should appear like this</p>
+<div class="details admonition warning open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-exclamation-triangle fa-fw" aria-hidden="true"></i>Warning<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Request for the permission of type <code>SqlStatementExecutePermission</code> failed.</div>
+        </div>
+    </div>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -164,7 +172,7 @@
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">AssemblyLoadEventArgs</span> <span class="n">_args</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">AssemblyLoadEventArgs</span> <span class="n">_args</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">Connection</span> <span class="n">con</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Connection</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="n">Statement</span> <span class="n">stmt</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Con</span><span class="p">.</span><span class="n">createStatement</span><span class="p">();</span>
@@ -212,7 +220,7 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/2015-02-12-x-performance-tips/" class="prev" rel="prev" title="X&#43;&#43; Performance tips"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>X++ Performance tips</a>
+    <div class="post-nav"><a href="/2015-05-08-infographic-tieu-tien-khon-ngoan-theo-quy-tac-6-chiec-lo/" class="prev" rel="prev" title="Infographic Tiêu tiền khôn ngoan theo quy tắc 6 chiếc lọ"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Infographic Tiêu tiền khôn ngoan theo quy tắc 6 chiếc lọ</a>
             <a href="/2015-05-13-how-to-deploy-all-the-reports-in-ax2012-by-using-management-shell/" class="next" rel="next" title="How to deploy all the reports in AX2012 by using Management Shell">How to deploy all the reports in AX2012 by using Management Shell<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="disqus_thread" class="comment"></div><noscript>

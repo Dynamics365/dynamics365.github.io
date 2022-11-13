@@ -1,7 +1,7 @@
-# Posting cust payment journal using X++
+# Posting cust payment journal using X++ Dynamics AX 2012
 
 
-Base on `JournalId` on `LedgerJournalTable` you can use code below to <span style="color: red">post the transactions</span>
+Base on `JournalId` on `LedgerJournalTable` you can use code below to post the transactions.
 
 ```c#
 //Contract class

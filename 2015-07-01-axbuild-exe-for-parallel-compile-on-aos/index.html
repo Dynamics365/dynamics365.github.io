@@ -33,7 +33,7 @@
                             "url": "https:\/\/nuxulu.com\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "axbuild, compile","wordcount":  81 ,
+                        }],"genre": "posts","keywords": "axbuild, compile","wordcount":  87 ,
         "url": "https:\/\/nuxulu.com\/2015-07-01-axbuild-exe-for-parallel-compile-on-aos\/","datePublished": "2015-07-01T00:00:00+00:00","dateModified": "2015-07-01T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -128,7 +128,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">AxBuild.exe for Parallel Compile on AOS</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-category">included in <a href="/categories/ax2012/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AX2012</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="July 1, 2015">July 1, 2015</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;81 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="July 1, 2015">July 1, 2015</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;87 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -136,45 +136,57 @@
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
-            </div><div class="content" id="content"><p>If you have only 10 mins to build ax, try this</p>
+            </div><div class="content" id="content"><p>If you have only 10 mins to build AX, try this</p>
 <p>In AOS server, go to <code>C:\Program Files\Microsoft Dynamics AX\60\Server\DAX\bin</code> and open <code>cmd</code> from here then run this command</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="n">axbuild</span><span class="p">.</span><span class="n">exe</span> <span class="n">xppcompileall</span> <span class="p">/</span><span class="n">s</span><span class="p">=</span><span class="m">01</span> <span class="p">/</span><span class="n">altbin</span><span class="p">=</span><span class="s">&#34;C:\Program Files (x86)\Microsoft Dynamics AX\60\Client\Bin&#34;</span>
+<pre tabindex="0" class="chroma"><code class="language-ps" data-lang="ps"><span class="line"><span class="cl"><span class="nf">axbuild.exe</span> <span class="nf">xppcompileall</span> <span class="nv">/s=01</span> <span class="nv">/altbin=&#34;C:\Program</span> <span class="nf">Files</span> <span class="s">(x86)</span><span class="nf">\Microsoft</span> <span class="nf">Dynamics</span> <span class="nf">AX\60\Client\Bin&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><code>/s</code> is your AOS number instance, you can check it in windows services
-<code>/altbin</code> the path to AX client</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/imagesposts/axbuild-exe-for-parallel-compile-on-aos_2.png"
-        data-srcset="/imagesposts/axbuild-exe-for-parallel-compile-on-aos_2.png, /imagesposts/axbuild-exe-for-parallel-compile-on-aos_2.png 1.5x, /imagesposts/axbuild-exe-for-parallel-compile-on-aos_2.png 2x"
-        data-sizes="auto"
-        alt="/imagesposts/axbuild-exe-for-parallel-compile-on-aos_2.png"
-        title="/imagesposts/axbuild-exe-for-parallel-compile-on-aos_2.png" /></p>
-<p>Result</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/imagesposts/axbuild-exe-for-parallel-compile-on-aos_3.png"
-        data-srcset="/imagesposts/axbuild-exe-for-parallel-compile-on-aos_3.png, /imagesposts/axbuild-exe-for-parallel-compile-on-aos_3.png 1.5x, /imagesposts/axbuild-exe-for-parallel-compile-on-aos_3.png 2x"
-        data-sizes="auto"
-        alt="/imagesposts/axbuild-exe-for-parallel-compile-on-aos_3.png"
-        title="/imagesposts/axbuild-exe-for-parallel-compile-on-aos_3.png" /></p>
-<p>Once compile complete, you can import compile log file at <code>C:\Program Files\Microsoft Dynamics AX\60\Server\DAX\log</code> into compiler output of AX client</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/imagesposts/axbuild-exe-for-parallel-compile-on-aos_4.png"
-        data-srcset="/imagesposts/axbuild-exe-for-parallel-compile-on-aos_4.png, /imagesposts/axbuild-exe-for-parallel-compile-on-aos_4.png 1.5x, /imagesposts/axbuild-exe-for-parallel-compile-on-aos_4.png 2x"
-        data-sizes="auto"
-        alt="/imagesposts/axbuild-exe-for-parallel-compile-on-aos_4.png"
-        title="/imagesposts/axbuild-exe-for-parallel-compile-on-aos_4.png" /></p>
-<p><em>More information</em> <a href="https://msdn.microsoft.com/en-us/library/dn528954.aspx" target="_blank" rel="noopener noreffer ">MSDN</a>.</p>
+</div><p><code>/s</code> is your AOS number instance, you can check it in windows services <code>/altbin</code> the path to AX client</p>
+<p><figure><a class="lightgallery" href="/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/axbuild-exe-for-parallel-compile-on-aos_2.png" title="axbuild-exe-for-parallel-compile-on-aos_2" data-thumbnail="/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/axbuild-exe-for-parallel-compile-on-aos_2.png" data-sub-html="<h2>axbuild</h2><p>axbuild-exe-for-parallel-compile-on-aos_2</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/axbuild-exe-for-parallel-compile-on-aos_2.png"
+            data-srcset="/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/axbuild-exe-for-parallel-compile-on-aos_2.png, /2015-07-01-axbuild-exe-for-parallel-compile-on-aos/axbuild-exe-for-parallel-compile-on-aos_2.png 1.5x, /2015-07-01-axbuild-exe-for-parallel-compile-on-aos/axbuild-exe-for-parallel-compile-on-aos_2.png 2x"
+            data-sizes="auto"
+            alt="/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/axbuild-exe-for-parallel-compile-on-aos_2.png" width="966" height="127" />
+    </a><figcaption class="image-caption">axbuild</figcaption>
+    </figure></p>
+<p><strong>Here is the result</strong>
+<figure><a class="lightgallery" href="/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/axbuild-exe-for-parallel-compile-on-aos_3.png" title="axbuild-exe-for-parallel-compile-on-aos_2" data-thumbnail="/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/axbuild-exe-for-parallel-compile-on-aos_3.png" data-sub-html="<h2>axbuild</h2><p>axbuild-exe-for-parallel-compile-on-aos_2</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/axbuild-exe-for-parallel-compile-on-aos_3.png"
+            data-srcset="/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/axbuild-exe-for-parallel-compile-on-aos_3.png, /2015-07-01-axbuild-exe-for-parallel-compile-on-aos/axbuild-exe-for-parallel-compile-on-aos_3.png 1.5x, /2015-07-01-axbuild-exe-for-parallel-compile-on-aos/axbuild-exe-for-parallel-compile-on-aos_3.png 2x"
+            data-sizes="auto"
+            alt="/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/axbuild-exe-for-parallel-compile-on-aos_3.png" width="1920" height="1080" />
+    </a><figcaption class="image-caption">axbuild</figcaption>
+    </figure>
+Once compile complete, you can import compile log file at <code>C:\Program Files\Microsoft Dynamics AX\60\Server\DAX\log</code> into compiler output of AX client
+<figure><a class="lightgallery" href="/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/axbuild-exe-for-parallel-compile-on-aos_4.png" title="axbuild-exe-for-parallel-compile-on-aos_2" data-thumbnail="/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/axbuild-exe-for-parallel-compile-on-aos_4.png" data-sub-html="<h2>axbuild</h2><p>axbuild-exe-for-parallel-compile-on-aos_2</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/axbuild-exe-for-parallel-compile-on-aos_4.png"
+            data-srcset="/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/axbuild-exe-for-parallel-compile-on-aos_4.png, /2015-07-01-axbuild-exe-for-parallel-compile-on-aos/axbuild-exe-for-parallel-compile-on-aos_4.png 1.5x, /2015-07-01-axbuild-exe-for-parallel-compile-on-aos/axbuild-exe-for-parallel-compile-on-aos_4.png 2x"
+            data-sizes="auto"
+            alt="/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/axbuild-exe-for-parallel-compile-on-aos_4.png" width="780" height="240" />
+    </a><figcaption class="image-caption">axbuild</figcaption>
+    </figure></p>
+<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw" aria-hidden="true"></i>Reference<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><strong>MSDN</strong>: <a href="https://msdn.microsoft.com/en-us/library/dn528954.aspx" target="_blank" rel="noopener noreffer ">https://msdn.microsoft.com/en-us/library/dn528954.aspx</a></div>
+        </div>
+    </div>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

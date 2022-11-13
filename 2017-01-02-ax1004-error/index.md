@@ -3,9 +3,9 @@
 
 I got this error at version Dynamics 2012 R3 CU9, SQL Server 2014, Windows Server 2012 R2.
 
-Those kind of errors will come when you move report from Dev Server to Live Server, even compilation in *DP Class, Query, Contract, table* … without any error
+Those kind of errors will come when you move report from **Dev Server** to **Live Server**, even compilation in *DP Class, Query, Contract, table* … without any error
 
-![Image](/imagesposts/AX1004-error.png "Image_rounded"){:.rounded}
+![Image](AX1004-error.png "Image_rounded")
 
 <span style="color: red">AX1004: Reference System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 was not a valid model assembly.</span>
 
@@ -17,9 +17,7 @@ There is no reference Assemblies Version 4.0  under `C:\Program Files (x86)\Refe
 
 ### Solution
 
-Copy those Assemblies from your any where (Windows 7,8,10) to Server
-
-Restore and compile again.
+Copy those Assemblies from your any where (Windows 7,8,10) to the server, restore and compile again.
 
 Thank you for reading!
 

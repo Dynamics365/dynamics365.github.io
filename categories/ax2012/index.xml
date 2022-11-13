@@ -616,10 +616,10 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>Here is what we got</p>
+</div><p><code>Output:</code></p>
 <p></p>
-<p>Just remember this one just for AIF Document Standard, for AIF custom service we do another way I will so in next post.</p>
-<p>Thank you for reading.</p>]]></description>
+<p>Thank you for reading.</p>
+]]></description>
 </item>
 <item>
     <title>How to block vendor and send email for notification.</title>
@@ -1068,7 +1068,8 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>From here you can run class and set up recurrence for batch job.</p>
-<p>Thank you for reading!</p>]]></description>
+<p>Thank you for reading!</p>
+]]></description>
 </item>
 <item>
     <title>Simple summary Keys are in Dynamics AX</title>
@@ -1103,18 +1104,17 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
     <author>Max Nguyen</author>
     <guid>https://nuxulu.com/2017-01-02-ax1004-error/</guid>
     <description><![CDATA[<p>I got this error at version Dynamics 2012 R3 CU9, SQL Server 2014, Windows Server 2012 R2.</p>
-<p>Those kind of errors will come when you move report from Dev Server to Live Server, even compilation in <em>DP Class, Query, Contract, table</em> … without any error</p>
-<p><figure><a class="lightgallery" href="/imagesposts/AX1004-error.png" title="Image" data-thumbnail="/imagesposts/AX1004-error.png" data-sub-html="<h2>Image_rounded</h2><p>Image</p>">
+<p>Those kind of errors will come when you move report from <strong>Dev Server</strong> to <strong>Live Server</strong>, even compilation in <em>DP Class, Query, Contract, table</em> … without any error</p>
+<p><figure><a class="lightgallery" href="/2017-01-02-ax1004-error/AX1004-error.png" title="Image" data-thumbnail="/2017-01-02-ax1004-error/AX1004-error.png" data-sub-html="<h2>Image_rounded</h2><p>Image</p>">
         
     </a><figcaption class="image-caption">Image_rounded</figcaption>
-    </figure>{:.rounded}</p>
+    </figure></p>
 <p><span style="color: red">AX1004: Reference System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 was not a valid model assembly.</span></p>
 <p><span style="color: red">MSB3644: The reference assemblies for framework “.NETFramework,Version=v4.0” were not found. To resolve this, install the SDK or Targeting Pack for this framework version or retarget your application to a version of the framework for which you have the SDK </span></p>
 <h3 id="cause">Cause</h3>
 <p>There is no reference Assemblies Version 4.0  under <code>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework</code> on Windows Server 2012 R2 (only Version 4.5 it have)</p>
 <h3 id="solution">Solution</h3>
-<p>Copy those Assemblies from your any where (Windows 7,8,10) to Server</p>
-<p>Restore and compile again.</p>
+<p>Copy those Assemblies from your any where (Windows 7,8,10) to the server, restore and compile again.</p>
 <p>Thank you for reading!</p>
 ]]></description>
 </item>
@@ -1131,11 +1131,9 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
-</span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">InventSumRecalcItem</span> <span class="n">InventSumRecalcItem</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="n">InventSumRecalcItem</span> <span class="n">InventSumRecalcItem</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="n">InventSumRecalcItem</span> <span class="p">=</span> <span class="k">new</span> <span class="n">InventSumRecalcItem</span><span class="p">(</span><span class="s">&#34;ITEM001&#34;</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="n">checkfix</span><span class="p">::</span><span class="n">fix</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="n">InventSumRecalcItem</span><span class="p">.</span><span class="n">updatenow</span><span class="p">();</span>
@@ -1158,7 +1156,7 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">InventTable</span> <span class="n">InventTable</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="n">InventTable</span> <span class="n">InventTable</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="n">InventSumRecalcItem</span> <span class="n">InventSumRecalcItem</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">WHILE</span> <span class="n">SELECT</span> <span class="n">InventTable</span>
@@ -1169,7 +1167,8 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 </span></span><span class="line"><span class="cl">	<span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>Thank you for reading!</p>
+</div><p>This is outdate, please refer this <a href="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/" rel="">post</a>.</p>
+<p>Thank you for reading!</p>
 ]]></description>
 </item>
 <item>

@@ -1,15 +1,9 @@
 # Understanding modifedField() Table method in DAX 2012
 
 
-Dear all,
+We use `modifiedField()` method to perform any actions after the field is modifed for example creating new table with 2 fields **ItemId** and **ItemNameDisplay**  from Extended Data Types node in AOT then Override `modifiedField()` in Table's method node, something likes:
 
-We use `modifiedField()` method to perform any actions  after the field is modifed  
-
-*Ex:*
-
-Create new table with 2 fields **ItemId** and **ItemNameDisplay**  from Extended Data Types node in AOT then Override `modifiedField()` in Table's method node, something likes:
-
-``` c
+```cs
 public void modifiedField(FieldId _fieldId)
 {
     InventTable inventTable;
@@ -22,12 +16,12 @@ public void modifiedField(FieldId _fieldId)
     }
 }
 ```
-<!--more-->
-the `modifiedField()` method is located on tables and it is called by a form (or a dataset) when any field is changed. It has field ID as a parameter and therefore it is very easy to write code reacting to a change of a particular field. It is so easy that the `modifiedField()` method is often used even in such cases, when it really shouldn’t be used.  
+
+The `modifiedField()` method is located on tables and it is called by a form (or a dataset) when any field is changed. It has field ID as a parameter and therefore it is very easy to write code reacting to a change of a particular field. It is so easy that the `modifiedField()` method is often used even in such cases, when it really shouldn’t be used.  
 
 If you want to get previous field value in the `modifiedField()` for comparative purpose, you can use `this.orig()` method:
 
-```c
+```cs
 public void modifiedField(fieldId _fieldId)
 {
     super(_fieldId);

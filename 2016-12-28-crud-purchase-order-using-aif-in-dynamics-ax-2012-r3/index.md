@@ -1,33 +1,43 @@
 # CRUD Purchase order using AIF in Dynamics AX 2012 R3
 
 
+- [1. Create Query](#1-create-query)
+- [2. Using AIF Wizards](#2-using-aif-wizards)
+- [3. Create Service operation and `AxBC class`](#3-create-service-operation-and-axbc-class)
+- [4. Deploy and create service](#4-deploy-and-create-service)
+- [5. Consume service using C#.NET](#5-consume-service-using-cnet)
+	- [`Code for read purchase order `](#code-for-read-purchase-order-)
+	- [`Code for update purchase order `](#code-for-update-purchase-order-)
+	- [`Code for delete purchase order `](#code-for-delete-purchase-order-)
+
 Due to Purchase order doesn’t have Standard document service so we have to create new Document service for that using AIF wizards.
 
-I’m using AIF document service with `NETTCP` or `HTTP` Adapter to Create Purchase order service, here is steps
+We can use the AIF document service with `NETTCP` or `HTTP` Adapter to Create Purchase order service, here is steps
 
-## Create Query 
+## 1. Create Query
+
 with three **datasouce** (`PurchTable, PurchLine, InventDim`) likes below
 
-![](/imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-01.png)
+![CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3](CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-01.png)
 
 > As best practice for Document service, name of query should be start with Axd* prefix.
 
-## Using AIF Wizards
-In AX development environment, go to *Tools > Wizards > AIF document service wizards*
+## 2. Using AIF Wizards
+In AX development environment, go to `Tools > Wizards > AIF document service wizards`
 
- ![](/imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-02.png)
+![CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3](CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-02.png)
 
 Choose recent created query and click **next**.
 
-## Create Service operation and `AxBC class`
+## 3. Create Service operation and `AxBC class`
 
- ![](/imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-03.png)
+![CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3](CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-03.png)
 
 Click `next` and then `Generate`.
 <!--more-->
 You will get service project in **Private** project
 
-## Deploy and create service
+## 4. Deploy and create service
 
  •	Right click on `PurchOrderService` > Add-Ins > Register service
 
@@ -39,19 +49,18 @@ You will get service project in **Private** project
 
  •	In *Service contract customizations* fast tab click `Service operations`
 
-![](/imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-4.png)
-
+![CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3](CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-4.png)
 
 `Active` recent created Service  
 
-## Consume service using C#.NET
+## 5. Consume service using C#.NET
 
 After service is activated, you can get **WSDL URI** likes 
 
 ` http://servername:port/DynamicsAx/Services/PurchaseOrder`
 
 Create console project and Add Service References, the code below
- ![](/imagesposts/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-05.png)
+![CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3](CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3-05.png)
 
 In Class, I will write method to return list of `EnityKey` PurchId
 
@@ -73,7 +82,7 @@ private static EntityKey[] EntityForPurchId(string purchId)
 }
 ```		
 		
-`Code for create purchase order `
+### `Code for create purchase order`
 
 ```C#
 var dim = new AxdEntity_InventDim()
@@ -130,7 +139,7 @@ catch (Exception e)
 }
 ```
 
-`Code for read purchase order `
+### `Code for read purchase order `
 
 ```C#
 EntityKey[] entityKeyList = EntityForPurchId("BGR-000054");
@@ -155,7 +164,7 @@ Console.ReadLine();
 			
 ```
 
-`Code for update purchase order `
+### `Code for update purchase order `
 
 ```C#
 Mav_PurchOrderServiceServiceClient client = new Mav_PurchOrderServiceServiceClient();
@@ -190,8 +199,7 @@ catch (Exception ex)
 	Console.ReadLine();
 }
 ```
-			
-`Code for delete purchase order `
+### `Code for delete purchase order `
 
 ```C#
 Mav_PurchOrderServiceServiceClient client = new Mav_PurchOrderServiceServiceClient();

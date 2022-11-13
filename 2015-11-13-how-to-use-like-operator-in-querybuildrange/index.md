@@ -1,7 +1,7 @@
-# HOW TO USE "LIKE" OPERATOR IN QueryBuildRange
+# How to use "LIKE" operator in QueryBuildRange
 
 
-To make something as the `LIKE` operator in a query, just assign a value to the QueryRange including a wildcard.
+To make something as the `LIKE` operator in a query, just assign a value to the QueryRange including a **wildcard**.
 
 ```cs
 static void QueryBuildRange_Sample(Args _args)

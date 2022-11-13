@@ -3,15 +3,15 @@
 
 Expressions are usually used for appearance of the data in a report, change properties of the fields, calculate some values and display them in a proper way, compares values between data of fields and then display them.
  
-# Types of Expressions  
+# Types of Expressions
 
-We have 3 types:  
-- Globals  
+We have 3 types:
+- Globals
 - Operators - Arithmetic, Comparison,Concatenation, Logical  
 - Common Functions - Text, Date &amp; Time, Math, Inspection, Program Flow, Aggregate, Financial, Conversion, Miscellaneous  
 
 We can see each and every one very deataily
-<!--more-->
+
 ## 1. Globals
 Global expressions executes/works in Page Header and Footer parts only.   
 
@@ -32,8 +32,6 @@ Global expressions executes/works in Page Header and Footer parts only.
 `Mod` divides two numbers and returns remainder only  
 `adds` two numbers and concatenation for two strings  
 `-` subtraction and indicates negative value for numeric values  
-
-<!--more-->
  
 ### Comparison
 
@@ -51,12 +49,12 @@ Known operators : `< <= > >= <>`
 ### Logical
 
 Known: `And, Not, Or, Xor`  
+
 ```sql
 SELECT * FROM users where firstname = 'Larry' XOR lastname = 'Smith'`
 ```
 `AndAlso` First condition will check first and if it is true only, goes to next or else it won't need to check. Because our execution time is saving in a logical operation in which more conditions is combined using `AndAlso` function.  
 `OrElse` same like above
-
 
 ## 3. Common Functions
 
@@ -67,7 +65,8 @@ SELECT * FROM users where firstname = 'Larry' XOR lastname = 'Smith'`
 `Filter` =Filter(Fields!Title.Value,"Pr",true,0)  
 `Format`=Format(Fields!Price.Value, "#,##0.00"), Format(Fields!Date.Value, "yyyy-MM-dd")  
 `FormatCurrency` =formatcurrency(Fields!SickLeaveHours.Value,3)  
-`FormatDateTime` =FormatDateTime(Fields!BirthDate.Value,Integer)  
+`FormatDateTime` =FormatDateTime(Fields!BirthDate.Value,Integer)
+
 **Ex**:  
 _0 returns 6/3/1977  
 1 returns Friday, June 03, 1977  

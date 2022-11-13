@@ -1,7 +1,7 @@
 # Insert, update, Delete order line through AIF In AX 2012 R3
 
 
-In previous [post](https://dynamics365.github.io/ax2012/integration/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3/), I already show how to create purchase order through AIF with `NETTCP` or `HTTP adapter`. In this post, we will get little deep more about action on line of order.
+In previous [post](/2016-12-28-crud-purchase-order-using-aif-in-dynamics-ax-2012-r3/), I already show how to create purchase order through AIF with `NETTCP` or `HTTP adapter`. In this post, we will get little deep more about action on line of order.
 
 The following code sample shows how to `insert`, `update`, `delete` a line of an existing purchase order through AIF, currently I’m using C#.NET console project for demo.
 
@@ -12,7 +12,6 @@ Also, notice how action properties are specified – no matter we do with the li
 I’m giving you an idea how it looks like, here is the code
 
 `The first method will handle the key of AIF Service`
-
 
 ```C#
 private static EntityKey[] EntityForPurchId(string purchId)

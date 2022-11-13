@@ -9,14 +9,13 @@ select * from CustTable where AccountNum == '2001' || AccountNum == '2002'
 
 We can find out solutions on [MSDN](https://msdn.microsoft.com/en-us/library/aa893981.aspx)  by using expression in query ranges, but as it has lot of specifications which needs to be followed. However there is a simple way to do it :
 
-```csharp
+```cs
 static void Job12(Args _args)
 {
     CustTable cust;
     Query query = new Query();
     QueryBuildDataSource qbds;
     QueryBuildRange queryRange1, queryRange2;
-    ;
 
     qbds = query.addDataSource(tableNum(CustTable));
 
@@ -34,13 +33,12 @@ static void Job12(Args _args)
     info(qbds.toString());
 }
 ```
-Result in string format as below image : 
+
+Result in string format as below image:
 
 ```sql
 SELECT * FROM CustTable(CustTable_1) WHERE ((AccountNum = N'1168201') OR (AccountNum = N'9034518'))
 ```
-
-Thanks for reading :). Happy New Year.
 
 Ref: https://learn.microsoft.com/en-us/dynamicsax-2012/developer/using-expressions-in-query-ranges?redirectedfrom=MSDN
 

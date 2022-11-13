@@ -8,7 +8,7 @@ you can custom base on your struture.
 
 This code is for creating a record into `DimansionAttributeValueCombination` in code and then get `RecID` of this. 
 
-```c#
+```cs
 static void createDimensionAttributeValueCombination(Args _args)
 {
     DimensionAttributeValueContract     ValueContract;

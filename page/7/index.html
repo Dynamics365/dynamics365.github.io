@@ -112,7 +112,7 @@
     </div><main class="main">
                 <div class="container"><div class="page home" data-home="posts"><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/2016-12-28-insert-update-delete-order-line-through-aif-in-ax-2012-r3/">Insert, update, Delete order line through AIF In AX 2012 R3</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="December 28, 2016">December 28, 2016</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax2012/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AX2012</a>&nbsp;<a href="/categories/integration/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Integration</a></span></div><div class="content"><p>In previous <a href="https://dynamics365.github.io/ax2012/integration/CRUD-Purchase-order-using-AIF-in-Dynamics-AX-2012-R3/" target="_blank" rel="noopener noreffer ">post</a>, I already show how to create purchase order through AIF with <code>NETTCP</code> or <code>HTTP adapter</code>. In this post, we will get little deep more about action on line of order.</p>
+    </h1><div class="post-meta"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="December 28, 2016">December 28, 2016</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax2012/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AX2012</a>&nbsp;<a href="/categories/integration/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Integration</a>&nbsp;<a href="/categories/aif/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AIF</a></span></div><div class="content"><p>In previous <a href="/2016-12-28-crud-purchase-order-using-aif-in-dynamics-ax-2012-r3/" rel="">post</a>, I already show how to create purchase order through AIF with <code>NETTCP</code> or <code>HTTP adapter</code>. In this post, we will get little deep more about action on line of order.</p>
 <p>The following code sample shows how to <code>insert</code>, <code>update</code>, <code>delete</code> a line of an existing purchase order through AIF, currently I’m using C#.NET console project for demo.</p>
 <p>As Partial update, we must include just the fields to change and any fields required by the document (you can check <code>Data policies</code> in AIF Service ports form for that).</p>
 <p>Also, notice how action properties are specified – no matter we do with the line, which means updating the order.</p>
@@ -156,93 +156,53 @@
 </div>
 </div></div><div class="post-footer">
         <a href="/2016-12-28-insert-update-delete-order-line-through-aif-in-ax-2012-r3/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aif/">aif</a>,&nbsp;<a href="/tags/programming/">Programming</a>,&nbsp;<a href="/tags/csharpdotnet/">csharpdotnet</a>,&nbsp;<a href="/tags/xpp/">xpp</a></div></div>
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ax2012/">AX2012</a>,&nbsp;<a href="/tags/integration/">Integration</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/2016-12-27-crud-items-products-products-master-dimension-variants-using-aif-in-dynamics-ax-2012-r3/">CRUD Items, products, products master dimension, variants using AIF in Dynamics AX 2012 R3</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="December 27, 2016">December 27, 2016</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax2012/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AX2012</a>&nbsp;<a href="/categories/integration/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Integration</a></span></div><div class="content"><h2 id="scenarios">Scenarios:</h2>
-<p>I’m trying to create <strong>product/master product</strong> in Dynamics AX using AIF inbound port, the AIF services consume by C#.NET.</p>
-<p>From AX 2012 R2, Item is replaced with Product. Item master was in Inventory Management Module, now there is a separate module for item/product creation <code>Product information Management</code>.</p>
-<p>Some definitions you should know
-There are two types of Products in 2012 they are:</p>
-<ol>
-<li>
-<p><strong>Product</strong></p>
-<p><em>Product information management/Common/Products/Products</em></p>
-</li>
-<li>
-<p><strong>Product Master</strong></p>
-<p><em>Product information management/Common/Products/Products master</em></p>
-<p>a. <strong>Variants:</strong></p>
-</li>
-</ol>
-<p>To create a product variant, you must define at least one product dimension for a product master. You can also rename dimensions.
-To create product variants, you must complete the following tasks:</p>
-<ul>
-<li>
-<p>Set up dimensions, such as size, color, and style.</p>
-</li>
-<li>
-<p>Set up variant groups.</p>
-</li>
-<li>
-<p>Assign variant groups to a retail hierarchy.</p>
-</li>
-<li>
-<p>Create a product master and variants.</p>
-</li>
-</ul></div><div class="post-footer">
+    </h1><div class="post-meta"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="December 27, 2016">December 27, 2016</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax2012/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AX2012</a>&nbsp;<a href="/categories/integration/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Integration</a>&nbsp;<a href="/categories/aif/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AIF</a></span></div><div class="content">Scenarios: I&rsquo;m trying to create product/master product in Dynamics AX using AIF inbound port, the AIF services consume by C#.NET.
+From AX 2012 R2, Item is replaced with Product. Item master was in Inventory Management Module, now there is a separate module for item/product creation Product information Management.
+Some definitions you should know There are two types of Products in 2012 they are:
+Product: Product information management/Common/Products/Products Product Master: Product information management/Common/Products/Products master Variants: To create a product variant, you must define at least one product dimension for a product master.</div><div class="post-footer">
         <a href="/2016-12-27-crud-items-products-products-master-dimension-variants-using-aif-in-dynamics-ax-2012-r3/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aif/">aif</a>,&nbsp;<a href="/tags/programming/">Programming</a>,&nbsp;<a href="/tags/csharpdotnet/">csharpdotnet</a>,&nbsp;<a href="/tags/xpp/">xpp</a></div></div>
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ax2012/">AX2012</a>,&nbsp;<a href="/tags/integration/">Integration</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/2016-12-26-posting-cust-payment-journal-using-x-/">Posting cust payment journal using X++</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="December 26, 2016">December 26, 2016</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax2012/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AX2012</a></span></div><div class="content">Base on JournalId on LedgerJournalTable you can use code below to post the transactions
+        <a href="/2016-12-26-posting-cust-payment-journal-using-x-/">Posting cust payment journal using X++ Dynamics AX 2012</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="December 26, 2016">December 26, 2016</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax2012/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AX2012</a></span></div><div class="content">Base on JournalId on LedgerJournalTable you can use code below to post the transactions.
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 //Contract class [ DataMemberAttribute(&#39;gJournalId&#39;), SysOperationDisplayOrderAttribute(&#39;1&#39;) ] public LedgerJournalId parmJournalNum(LedgerJournalId _journalId = gJournalId) { gJournalId = _journalId; return gJournalId; } //Processing class [SysEntryPointAttribute] public void process(MAV_PostCustPaymentJourContract _contract) { LedgerJournalTable ledgerJournalTable; LedgerJournalCheckPost postCustPaymentJournal; ledgerJournalTable = LedgerJournalTable::find(_contract.</div><div class="post-footer">
         <a href="/2016-12-26-posting-cust-payment-journal-using-x-/">Read More</a></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/2016-11-25-the-type-system-of-dynamics-ax-2012/">The Type system of Dynamics AX 2012</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="November 24, 2016">November 24, 2016</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax2012/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AX2012</a></span></div><div class="content"><p>The Microsoft Dynamics AX runtime manages the storage of <em>value type</em> data on the <strong>call stack</strong> and <em>reference type objects</em> on the <strong>memory heap</strong>.</p>
-<p><strong>The call stack</strong> is the memory structure that holds data about the active methods called during program execution. <strong>The memory heap</strong> is the memory area that allocates storage for objects that are destroyed automatically by the Microsoft Dynamics AX run-time.</p>
-<h2 id="value-types">Value types</h2>
-<p>Value types include the built-in <code>primitive types, extended data types, enumeration types, and built-in collection types</code>.</p>
-<ul>
-<li><strong>The primitive types</strong> are boolean, int, int64, real, date, utcDateTime, timeofday, str, and guid.</li>
-<li><strong>The extended data types</strong> are specialized primitive types and specialized base enumerations.</li>
-<li><strong>The enumeration types</strong> are base enumerations and extended data types.</li>
-<li><strong>The collection types</strong> are the built-in array and container types.</li>
-</ul></div><div class="post-footer">
+    </h1><div class="post-meta"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="November 24, 2016">November 24, 2016</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax2012/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AX2012</a></span></div><div class="content">The Microsoft Dynamics AX runtime manages the storage of value type data on the call stack and reference type objects on the memory heap.
+The call stack is the memory structure that holds data about the active methods called during program execution. The memory heap is the memory area that allocates storage for objects that are destroyed automatically by the Microsoft Dynamics AX run-time.
+Value types Value types include the built-in primitive types, extended data types, enumeration types, and built-in collection types.</div><div class="post-footer">
         <a href="/2016-11-25-the-type-system-of-dynamics-ax-2012/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/operator/">Operator</a>,&nbsp;<a href="/tags/programming/">Programming</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/2016-11-23-copy-data-between-microsoft-dynamics-ax-companies-using-dixf-in-ax-2012-r3/">Copy data between Microsoft Dynamics AX companies using DIXF In AX 2012 R3</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="November 17, 2016">November 17, 2016</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax-2012/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AX 2012</a>&nbsp;<a href="/categories/report/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Report</a></span></div><div class="content"></div><div class="post-footer">
-        <a href="/2016-11-23-copy-data-between-microsoft-dynamics-ax-companies-using-dixf-in-ax-2012-r3/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aos/">aos</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/2016-11-23-step-by-step-how-to-build-ssrs-report---advanced-rdp-class/">Step by Step to build SSRS Report - Advanced RDP Class</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="November 17, 2016">November 17, 2016</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax-2012/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AX 2012</a>&nbsp;<a href="/categories/ssrs/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>SSRS</a></span></div><div class="content">Choosing RDP for a report Data to be rendered cannot be constructed as a query. Business logic to be processed depends on the parameters. Data can be rendered using existing business logic. More filters are to be added at runtime RDP Comlex When a dataset does not provide the complexity needs of your report, you can use the default SrsReportRunController class. A controller class runs the report by creating the user interface (UI), calling SQL Server Reporting Services, and pre-processing the parameters for the report.</div><div class="post-footer">
-        <a href="/2016-11-23-step-by-step-how-to-build-ssrs-report---advanced-rdp-class/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ssrs/">ssrs</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/2016-11-10-types-services-microsoft-dynamics-ax-2012/">Types of services in Microsoft Dynamics AX 2012</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="November 10, 2016">November 10, 2016</time></span>&nbsp;<span class="post-category">included in <a href="/categories/services/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>services</a>&nbsp;<a href="/categories/ax2012/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AX2012</a></span></div><div class="content"><h1 id="document-services">Document services</h1>
-<p>Document services use documents to represent business objects such as purchase and sales orders, customers, vendors, and so on.</p>
-<p>A document service is composed of the following components:</p>
-<ul>
-<li><strong>Document query</strong> : This is a query that is created in the <strong>Application Object Tree (AOT)</strong> and contains all the tables that are related to the business object that you want to expose. Based on this query, the Document Service Generation Wizard can be used to generate the other artifacts that make up the document service.</li>
-<li><strong>Table AxBC classes</strong> : An <code>AxBC</code> class is a wrapper for a table and contains business logic that is needed for <strong>Create, Read, Update, Delete (CRUD)</strong> operations.</li>
-<li><strong>Document class</strong> : The purpose of the document class is to contain business logic that is associated with the creation and modification of the business entity itself. For example, the <code>AxdCustomer</code> class could contain logic to handle party information of a customer.</li>
-<li><strong>Document service class</strong> : This is the actual service implementation class and extends the <code>AifDocumentService</code> class. This class implements the service operations that are published through the service contract.</li>
-</ul>
-<p>When creating document services, developers need to make sure <strong>that the business object is mapped correctly to the document query</strong>. The document services framework will handle all other things such as the serialization and deserialization of XML, date effectiveness, and so on.</p>
-<p>Document services can be deployed using the integration ports and all available adapters can be used.</p></div><div class="post-footer">
+    </h1><div class="post-meta"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="November 10, 2016">November 10, 2016</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax2012/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AX2012</a></span></div><div class="content">1. Document services Document services use documents to represent business objects such as purchase and sales orders, customers, vendors, and so on.
+A document service is composed of the following components:
+Document query : This is a query that is created in the Application Object Tree (AOT) and contains all the tables that are related to the business object that you want to expose. Based on this query, the Document Service Generation Wizard can be used to generate the other artifacts that make up the document service.</div><div class="post-footer">
         <a href="/2016-11-10-types-services-microsoft-dynamics-ax-2012/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aif/">aif</a>,&nbsp;<a href="/tags/xpp/">xpp</a>,&nbsp;<a href="/tags/aos/">aos</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/2016-11-08-microsoft_dyanmics_ax_2012_test_data_transfer_tool/">Microsoft AX 2012 Test Data Transfer Tool</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="November 8, 2016">November 8, 2016</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax-2012/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AX 2012</a>&nbsp;<a href="/categories/data/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Data</a></span></div><div class="content">SUMMARY Tool can be used for two different purposes. One is to install demo data and other one is elaborated as below. Customers often need to have a production dataset to use when building and validating customizations in non-production environments.
+    </h1><div class="post-meta"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="November 8, 2016">November 8, 2016</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax2012/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AX2012</a></span></div><div class="content">SUMMARY Tool can be used for two different purposes. One is to install demo data and other one is elaborated as below. Customers often need to have a production dataset to use when building and validating customizations in non-production environments.
 The Microsoft Dynamics AX 2012 Test Data Transfer Tool (beta) is a tool that helps move data between from production to non-production environments or from non-production environments to production environments to make a new production environment.</div><div class="post-footer">
         <a href="/2016-11-08-microsoft_dyanmics_ax_2012_test_data_transfer_tool/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/data/">data</a></div></div>
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/test-data-transfer-tool/">Test Data Transfer Tool</a>,&nbsp;<a href="/tags/data-management/">data management</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/2016-11-08-understanding_modifedfield_table_method_in_dax_2012/">Understanding modifedField() Table method in DAX 2012</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="November 8, 2016">November 8, 2016</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ax2012/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AX2012</a></span></div><div class="content">We use modifiedField() method to perform any actions after the field is modifed for example creating new table with 2 fields ItemId and ItemNameDisplay from Extended Data Types node in AOT then Override modifiedField() in Table&rsquo;s method node, something likes:
+1 2 3 4 5 6 7 8 9 10 11 public void modifiedField(FieldId _fieldId) { InventTable inventTable; super(_fieldId); switch (_fieldId) { case fieldNum(IBD_Invent,itemid): this.ItemNameDisplay = inventTable::find(this.itemid).NameAlias; break; } } The modifiedField() method is located on tables and it is called by a form (or a dataset) when any field is changed.</div><div class="post-footer">
+        <a href="/2016-11-08-understanding_modifedfield_table_method_in_dax_2012/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/xpp/">xpp</a>,&nbsp;<a href="/tags/modifedfield/">modifedField</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs/">Expressions or Functions used in SSRS</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-publish">published on <time datetime="October 7, 2016">October 7, 2016</time></span>&nbsp;<span class="post-category">included in <a href="/categories/ssrs/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>SSRS</a></span></div><div class="content">Expressions are usually used for appearance of the data in a report, change properties of the fields, calculate some values and display them in a proper way, compares values between data of fields and then display them.
+Types of Expressions We have 3 types:
+Globals Operators - Arithmetic, Comparison,Concatenation, Logical Common Functions - Text, Date &amp; Time, Math, Inspection, Program Flow, Aggregate, Financial, Conversion, Miscellaneous We can see each and every one very deataily</div><div class="post-footer">
+        <a href="/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ssrs/">ssrs</a>,&nbsp;<a href="/tags/expressions/">Expressions</a>,&nbsp;<a href="/tags/functions/">Functions</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>

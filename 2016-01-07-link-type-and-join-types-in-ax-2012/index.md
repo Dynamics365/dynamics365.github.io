@@ -64,7 +64,7 @@ AND EXISTS (SELECT 'x'
               AND  (T1.CUSTACCOUNT=T2.ACCOUNTNUM)))
 ```
 
-*The differences between InnerJoin and ExistJoin are as follows:*
+The differences between `InnerJoin` and `ExistJoin` are as follows:
 
 + When the join type is **_ExistJoin_**, the search ends after the first match has been found.
 

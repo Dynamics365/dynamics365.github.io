@@ -1,7 +1,7 @@
 # Types of services in Microsoft Dynamics AX 2012
 
 
-# Document services
+## 1. Document services
 
 Document services use documents to represent business objects such as purchase and sales orders, customers, vendors, and so on.
 
@@ -16,15 +16,13 @@ When creating document services, developers need to make sure **that the busines
 
 Document services can be deployed using the integration ports and all available adapters can be used.
 
-<!--more-->
-
-# Custom services
+## 2. Custom services
 
 Custom services were already available in Microsoft Dynamics AX 2009, but support for **Extended Data Types(EDTs)** was limited, which resulted in developers having to provide custom serialization and deserialization logic.
 
 Microsoft Dynamics AX 2012 introduces the concept of attributes.  **Attributes**  provide a way to specify metadata about classes and methods. Two of these attributes are used when creating data contracts: the `DataContractAttribute` and `DataMemberAttribute` attributes.
 
-The 'DataContractAttribute' attribute is used to define that a class is a data contract. The'DataMemberAttribute' attribute is added to methods of data contracts that represent data members that have to be exposed. This way of defining data contracts is very similar to other programming languages such as C#.
+The 'DataContractAttribute' attribute is used to define that a class is a data contract. The'DataMemberAttribute' attribute is added to methods of data contracts that represent data members that have to be exposed. This way of defining data contracts is very similar to other programming languages such as C##.
 
 Support for more complex data types such as collections and tables has been added so that these types can be serialized and deserialized without developers having to provide the logic themselves.
 
@@ -35,14 +33,13 @@ In a typical custom service you will find the following components:
 
 Custom services can be deployed using the integration ports and any available adapter can be used.
 
-# System services
+## 3. System services
 
 These services are new since the release of Microsoft Dynamics AX 2012. The main difference between these services and the previous two types is that they are not customizable and are not mapped to a query or X++ code. They are not customizable because they are written by Microsoft in managed code. One exception is the user session service, which is written in X++ code but is generally considered as a system service.
 
 There are three system services available for use in Microsoft Dynamics AX 2012: the query service, the metadata service, and the user session service.
 
-
-# Query service
+## 4. Query service
 
 The query service provides the means to run queries of the following three types:
 
@@ -58,8 +55,7 @@ The query service can be found at the following address:
 
 `net.tcp://hostname:port/DynamicsAX/Services/QueryService`
 
-
-# Metadata service
+## 5. Metadata service
 
 This system service can be used to retrieve metadata information about the AOT. Consumers of this service can get information such as which tables, classes, forms, and menu items are available in the system. An example usage of this service could be retrieving information about the AOT and using it in a dashboard application running on the Microsoft .NET Framework.
 
@@ -67,8 +63,7 @@ The metadata service can be found at the following address:
 
 `net.tcp://hostname:port/DynamicsAX/Services/MetaDataService`
 
-
-# User session service
+## 6. User session service
 
 The third system service is the user session service. With this service you can retrieve information about the caller's user session. This information includes the user's default company, language, preferred calendar, time zone, and currency.
 
@@ -76,15 +71,15 @@ The user session service can be found at the following address:
 
 `net.tcp://hostname:port/DynamicsAX/Services/UserSessionService`
 
-# The right service for the right job
+## 7. The right service for the right job
 
 Now that it is clear what types of services Microsoft Dynamics AX 2012 has to offer, the question arises as to when each type of service should be used. There is no simple answer for this due to the fact that every type has its strengths and weaknesses. Let us take a look at two factors that may help you make the right decision.
 
-# Complexity
+## 8. Complexity
 
 Both document services and custom services can handle any business entity complexity. The document services framework parses the incoming XML and validates it against an **XML Schema Definition(XSD)** document. After validation, the framework calls the appropriate service action. Custom services on the other hand use the .NET XML Serializer and no validation of data is done. This means that any validations of the data in the data contract need to be written in code. Another advantage of document services over custom services is that the AxBC classes already contain a lot of the logic that is needed for CRUD operations.
 
-# Flexibility
+## 9. Flexibility
 
 Document services have service contracts that are tightly coupled with the AOT Query object. This means that when the query changes, the schema also changes. Data policies allow you to control which fields are exposed. When using custom services, this cannot be done by setup, but has to be done by attributing at design time.
 

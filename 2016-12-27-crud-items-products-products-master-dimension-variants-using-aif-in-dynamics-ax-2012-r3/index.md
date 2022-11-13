@@ -2,82 +2,60 @@
 
 
 ## Scenarios:
-I’m trying to create **product/master product** in Dynamics AX using AIF inbound port, the AIF services consume by C#.NET.
+
+I'm trying to create **product/master product** in Dynamics AX using AIF inbound port, the AIF services consume by C#.NET.
 
 From AX 2012 R2, Item is replaced with Product. Item master was in Inventory Management Module, now there is a separate module for item/product creation `Product information Management`.
 
 Some definitions you should know
 There are two types of Products in 2012 they are:
 
-1. **Product**
+* **Product**: `Product information management/Common/Products/Products`
+* **Product Master**: `Product information management/Common/Products/Products master`
+	* **Variants**: To create a product variant, you must define at least one product dimension for a product master. You can also rename dimensions.
+		To create product variants, you must complete the following tasks:
+      * Set up dimensions, such as size, color, and style.
+      * Set up variant groups.
+      * Assign variant groups to a retail hierarchy.
+      * Create a product master and variants.
 
-     _Product information management/Common/Products/Products_
-
-2. **Product Master**
-
-   _Product information management/Common/Products/Products master_
-
-   a. **Variants:**
-
-To create a product variant, you must define at least one product dimension for a product master. You can also rename dimensions.
-To create product variants, you must complete the following tasks:
-
-* Set up dimensions, such as size, color, and style.
-
-* Set up variant groups.
-
-* Assign variant groups to a retail hierarchy.
-
-* Create a product master and variants.
-<!--more-->
-   b. **Product dimensions**
-
-Product dimensions are characteristics that serve to identify a product variant. You can use combinations of product dimensions to define product variants. You must define at least one product dimension for a product master to create a product variant.
+    * **Product dimensions**
+	Product dimensions are characteristics that serve to identify a product variant. You can use combinations of product dimensions to define product variants. You must define at least one product dimension for a product master to create a product variant.
 
 ## Process:
 Normally in AX, we create items master follow process:
 
 *	Create product/product master. 
-
 *	Assigning Dimensions Groups to a Product Master.
-
 *	Create Product dimension combinations (Product Variants)
-
 *	Release product to legal entities
-
 *	Assigning Item Model Group & Item Groups to a Product Master 
 
 ## How to do:
 
 Ax provides us standard services for this purpose, so we don’t need to create any custom services for this. I will use 4 services for this purpose, descriptions below
 
-| Service | Purpose |
-|:--------|:-------:|
-| `EcoResProductService`   | Create products (all types). The service can also be used to                            retrieve data that has already been created (Create Product details in The EcoRes tables). |
-|----
-| `EcoResProductMasterDimValueService`   | Specify values of product dimensions for a product master. These values become available for the creation of product variants. The service can also be used to retrieve data that has already been created.| 
-|----
-| `ItemService`   | Release distinct products and product masters. The service can also be used to retrieve data that has already been created.|
-|----
-| `InventDimCombinationService`   | Release product variants. The service can also be used to retrieve data that has already been created.|
-{: rules="groups"}
+| Service                                      | Purpose |
+|:----------------------------------------------|:-------:|
+| `EcoResProductService`                    | Create products (all types). The service can also be used to                            retrieve data that has already been created (Create Product details in The EcoRes tables). |
+| `EcoResProductMasterDimValueService`            | Specify values of product dimensions for a product master. These values become available for the creation of product variants. The service can also be used to retrieve data that has already been created.| 
+| `ItemService`                               | Release distinct products and product masters. The service can also be used to retrieve data that has already been created.|
+| `InventDimCombinationService`               | Release product variants. The service can also be used to retrieve data that has already been created.|
 
-we have 4 steps
 
-1. Create 4 AIF inbound services against Services operation above and active it
+### 1. Create 4 AIF inbound services against Services operation above and active it
 `http://DEV-ERP:8103/DynamicsAx/Services/BCEcoResProduct`
 `http://DEV-ERP:8103/DynamicsAx/Services/BCEcoResProductMasterDimValue`
 `http://DEV-ERP:8103/DynamicsAx/Services/BCItemsMaster`
 `http://DEV-ERP:8103/DynamicsAx/Services/BCInventDimCombination`
 
-2. After services creation, open visual studio then creates new Console project and add service References for that, you will get somethings like pic below:
+### 2. After services creation, open visual studio then creates new Console project and add service References for that, you will get somethings like pic below:
 
    ![](/imagesposts/CRUD-Items,-products,-products-master-dimension,-variants-using-AIF-in-Dynamics-AX-2012-R3-01.png)
 
-3. Using C#.Net to consume service
+### 3. Using C#.Net to consume service
 
 ```C#
-
 using ItemsMaster.ItemsRef;
 using ItemsMaster.EcoResProductRef;
 using ItemsMaster.EcoResProductMasterRef;
@@ -88,13 +66,11 @@ static void Main(string[] args)
 	master.createDistinctProduct();
 	Program.releaseProduct();
 }
-
 ```
 
-`EcoResProductServiceClient`
+#### `EcoResDistinctProduct`
 
 ```C#
-
 public void createDistinctProduct()
 {
 	AxdEntity_Product_EcoResDistinctProduct distinctProduct = new AxdEntity_Product_EcoResDistinctProduct()
@@ -148,13 +124,11 @@ public void createDistinctProduct()
 	ecoResProductSClient.create(EcoResProductSctx, product);
 
 }
-
 ```
 
-`EcoResProductServiceClient`
+#### `EcoResProductMaster`
 
 ```C#
-
 public void createMaster()
 {
 	AxdEntity_Product_EcoResProductMaster productMaster = new AxdEntity_Product_EcoResProductMaster()
@@ -198,15 +172,12 @@ public void createMaster()
 	EcoResProductRef.EcoResProductServiceClient ecoResProductSClient = new EcoResProductRef.EcoResProductServiceClient();
 	
 	ecoResProductSClient.create(EcoResProductSctx, axdProduct);
-
 }
 
 ```
+####  `EcoResProductMasterDimValueServiceClient`
 
-`EcoResProductMasterDimValueServiceClient`
-
-```C#
-
+```Cs
 static void createMasterDimensions()
 {
 
@@ -251,14 +222,10 @@ static void createMasterDimensions()
 		System.Console.ReadKey();
 	}
 }
-
 ```
-
-
-`EcoResProductServiceClient`
+#### `EcoResDistinctProductVariant`
 
 ```C#
-
 static void createVariant()
 {
 	//product variant definition
@@ -303,13 +270,11 @@ static void createVariant()
 		System.Console.ReadKey();
 	}
 }
-
 ```
 
-`this method can use to release a distinct product or a product master`
+#### `Release a distinct product or a product master`
 
 ```C#
-
 public static void releaseProduct()
 {
 	var invent = new AxdEntity_Invent()
@@ -366,13 +331,11 @@ public static void releaseProduct()
 		Console.ReadLine();
 	}
 }
-
 ```
 
-`Release product Variants`
+#### `Release product Variants`
 
 ```C#
-
 static void releaseProductVariants()
 {
 	AxdEntity_InventDimCombination releasedVariant = new AxdEntity_InventDimCombination()
@@ -402,15 +365,8 @@ static void releaseProductVariants()
 		System.Console.ReadKey();
 	}
 }
-
 ```
 
-Just for example, in `main` I only create Distinct product and release it, but you can use another method to create master, variant, masterDim and so on.
-
-    4. Try to run it and here is a result
-
-![](/imagesposts/CRUD-Items,-products,-products-master-dimension,-variants-using-AIF-in-Dynamics-AX-2012-R3-02.png)
-
-Thank you for reading and feel free to give me a question.
+In `main` I only create Distinct product and release it, but you can use another method to create master, variant, masterDim and so on.
 
 

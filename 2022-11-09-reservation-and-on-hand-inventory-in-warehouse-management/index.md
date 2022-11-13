@@ -1,7 +1,7 @@
 # Reservation and on-hand inventory in warehouse management
 
 
-## 1. Inventory reservation hierarchy in Warehouse management
+## 1. **Inventory reservation hierarchy in Warehouse management**
 
 The reservation functionality can be used only for items that are enabled for warehouse management processes. However, if an item is itself enabled for [warehouse management processes](https://learn.microsoft.com/en-us/dynamics365/supply-chain/warehousing/flexible-warehouse-level-dimension-reservation), it can be used both in warehouses that are enabled for warehouse management processes and warehouses that are not. The behavior in reservation scenarios is different, depending on the warehouse setup.
 
@@ -11,7 +11,7 @@ The functionality is built on reservation hierarchies and is intended to support
 * Postponement of reservation details.
 * Clear separation of which inventory dimensions can be specified, and when they can be specified.
 
-### 1.1 Reservation hierarchies
+### 1.1 **Reservation hierarchies**
 
 A typical reservation hierarchy for an item that uses the `Site`, `Warehouse`, `Inventory status`, `Location`, and `License plate` dimensions as physical inventory dimensions.
 
@@ -20,7 +20,7 @@ A typical reservation hierarchy for an item that uses the `Site`, `Warehouse`, `
 The level with the lowest value in the Reservation hierarchy level column is the least-specific level, in the example above this is the site level.
 The higher the value, the more details are required to make a reservation on that level.
 
-### 1.2 Reservation hierarchies implementation
+### 1.2 **Reservation hierarchies implementation**
 
 ![Image](Reservation-hierarchies-implementation.png "Reservation-hierarchies-implementation")
 

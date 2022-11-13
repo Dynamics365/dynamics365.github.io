@@ -23,19 +23,19 @@ Tool can be used for two different purposes. One is to install **demo data** and
 
 1. Download **AX2012TestDataTransferTool.zip** file from [LCS](https://lcs.dynamics.com/)
 
-![Image of Microsoft AX 2012 Test Data Transfer Tool](/imagesposts/Microsoft_Dyanmics_AX_2012_Test_Data_Transfer_Tool.png "ahihi")
+![Image of Microsoft AX 2012 Test Data Transfer Tool](Microsoft_Dyanmics_AX_2012_Test_Data_Transfer_Tool.png "Microsoft AX 2012 Test Data Transfer Tool")
 
 **_PROD Environment_**
 
-2. Run the setup file in SQL SERVER environment and complete the installation.
+1. Run the setup file in SQL SERVER environment and complete the installation.
 
-3. *"C:\Program Files (x86)\Microsoft Dynamics AX 2012 Test Data Transfer Tool (Beta)"* file appears automatically. Find the `MetadataXMLGenerator.xpo` file and import it into AX.
+2. *"C:\Program Files (x86)\Microsoft Dynamics AX 2012 Test Data Transfer Tool (Beta)"* file appears automatically. Find the `MetadataXMLGenerator.xpo` file and import it into AX.
 
-4. A job named `MetadataXMLGenrator` appears among `AOT/jobs`. Find and run the job.
+3. A job named `MetadataXMLGenrator` appears among `AOT/jobs`. Find and run the job.
 
-5. Job generates a file named `MetaData.Xml` and gives you a file path via infolog.
+4. Job generates a file named `MetaData.Xml` and gives you a file path via infolog.
 
-6. Copy `MetaData.Xml` file and paste in *"C:\Program Files (x86)\Microsoft Dynamics AX 2012 Test Data Transfer Tool (Beta)\[Lists]"* file in Prod(Golden) SQL SERVER. Overwrite the existing `MetaData.Xml` file.
+5. Copy `MetaData.Xml` file and paste in *"C:\Program Files (x86)\Microsoft Dynamics AX 2012 Test Data Transfer Tool (Beta)\[Lists]"* file in Prod(Golden) SQL SERVER. Overwrite the existing `MetaData.Xml` file.
 
 **_DEV or TEST Environment_**
 
