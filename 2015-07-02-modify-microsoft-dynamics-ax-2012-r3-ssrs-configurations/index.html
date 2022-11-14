@@ -1,468 +1,655 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><title>Modify Microsoft Dynamics AX 2012 R3 SSRS configurations using PowerShell - Dynamics 365 Finance & Operations | nuxulu.com</title><meta name=Description content="Dynamics 365 Finance & Operations"><meta property="og:title" content="Modify Microsoft Dynamics AX 2012 R3 SSRS configurations using PowerShell"><meta property="og:description" content="reportManagerWebConfig.ps1
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 #Modify the Report Server Web.config file. ie replace MSRS11.VAS with your folder name Set-ExecutionPolicy Unrestricted $webConfig = &#34;C:Program FilesMicrosoft SQL ServerMSRS11.VASReporting ServicesReportManagerWeb.config&#34; $currentDate = (get-date).tostring(&#34;mm_dd_yyyy-hh_mm_s&#34;) # month_day_year - hours_mins_seconds $backup = $webConfig + &#34;_$currentDate&#34; $doc = new-object System.Xml.XmlDocument $doc.Load($webConfig) #save a backup copy $doc.Save($backup) Write-Host &#34;Backup saved as &#34; + $backup $node = $doc."><meta property="og:type" content="article"><meta property="og:url" content="https://nuxulu.com/2015-07-02-modify-microsoft-dynamics-ax-2012-r3-ssrs-configurations/"><meta property="og:image" content="https://nuxulu.com/Icon/mstile-150x150.png"><meta property="article:section" content="posts"><meta property="article:published_time" content="2015-07-02T00:00:00+00:00"><meta property="article:modified_time" content="2015-07-02T00:00:00+00:00"><meta property="og:site_name" content="Dynamics 365 Finance & Operations"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://nuxulu.com/Icon/mstile-150x150.png"><meta name=twitter:title content="Modify Microsoft Dynamics AX 2012 R3 SSRS configurations using PowerShell"><meta name=twitter:description content="reportManagerWebConfig.ps1
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 #Modify the Report Server Web.config file. ie replace MSRS11.VAS with your folder name Set-ExecutionPolicy Unrestricted $webConfig = &#34;C:Program FilesMicrosoft SQL ServerMSRS11.VASReporting ServicesReportManagerWeb.config&#34; $currentDate = (get-date).tostring(&#34;mm_dd_yyyy-hh_mm_s&#34;) # month_day_year - hours_mins_seconds $backup = $webConfig + &#34;_$currentDate&#34; $doc = new-object System.Xml.XmlDocument $doc.Load($webConfig) #save a backup copy $doc.Save($backup) Write-Host &#34;Backup saved as &#34; + $backup $node = $doc."><meta name=application-name content="Dynamics 365 Finance & Operations"><meta name=apple-mobile-web-app-title content="Dynamics 365 Finance & Operations"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel=icon href=/Icon/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://nuxulu.com/2015-07-02-modify-microsoft-dynamics-ax-2012-r3-ssrs-configurations/><link rel=prev href=https://nuxulu.com/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/><link rel=next href=https://nuxulu.com/2015-08-04-web-services-on-iis-exception-has-been-thrown-by-the-target-of-an-invocation-ax-installation/><link rel=stylesheet href=/css/style.min.css><link rel=preload href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css as=style onload='this.onload=null,this.rel="stylesheet"'><noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css></noscript><link rel=preload href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css as=style onload='this.onload=null,this.rel="stylesheet"'><noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><meta name=google-site-verification content="f08c47fec0942fa0"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Modify Microsoft Dynamics AX 2012 R3 SSRS configurations using PowerShell","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/nuxulu.com\/2015-07-02-modify-microsoft-dynamics-ax-2012-r3-ssrs-configurations\/"},"image":[{"@type":"ImageObject","url":"https:\/\/nuxulu.com\/images\/Apple-Devices-Preview.png","width":3200,"height":2048}],"genre":"posts","wordcount":826,"url":"https:\/\/nuxulu.com\/2015-07-02-modify-microsoft-dynamics-ax-2012-r3-ssrs-configurations\/","datePublished":"2015-07-02T00:00:00+00:00","dateModified":"2015-07-02T00:00:00+00:00","publisher":{"@type":"Organization","name":"xxxx","logo":{"@type":"ImageObject","url":"https:\/\/nuxulu.com\/images\/avatar.png","width":528,"height":560}},"author":{"@type":"Person","name":"Max Nguyen"},"description":""}</script></head><body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem("theme")?localStorage.getItem("theme")==="dark":"dark"==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:"dark"==="dark")&&document.body.setAttribute("theme","dark")</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3534873375492458" crossorigin=anonymous></script>
-<a href=/ title="Dynamics 365 Finance & Operations | nuxulu.com"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/Icon/favicon-32x32.png data-srcset="/Icon/favicon-32x32.png, /Icon/favicon-32x32.png 1.5x, /Icon/favicon-32x32.png 2x" data-sizes=auto alt=/Icon/favicon-32x32.png title=/Icon/favicon-32x32.png><span class=header-title-pre> </span>Dynamics 365 Finance & Operations</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>Posts </a><a class=menu-item href=/tags/>Tags </a><a class=menu-item href=/categories/>Categories </a><a class=menu-item href=/finopsnews/>X++ Feed </a><a class=menu-item href=/erd/default.htm>Entity Relationship </a><a class=menu-item href=/posts/index.xml>Rss Feed </a><a class=menu-item href=/lab/>Practice lab </a><a class=menu-item href=/about/>About me </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop>
-<input type=text placeholder="Search titles or contents..." id=search-input-desktop>
-<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=Search><i class="fas fa-search fa-fw" aria-hidden=true></i></a>
-<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=Clear><i class="fas fa-times-circle fa-fw" aria-hidden=true></i></a>
-<span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin" aria-hidden=true></i></span>
-</span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme"><i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3534873375492458" crossorigin=anonymous></script>
-<a href=/ title="Dynamics 365 Finance & Operations | nuxulu.com"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/Icon/favicon-32x32.png data-srcset="/Icon/favicon-32x32.png, /Icon/favicon-32x32.png 1.5x, /Icon/favicon-32x32.png 2x" data-sizes=auto alt=/Icon/favicon-32x32.png title=/Icon/favicon-32x32.png><span class=header-title-pre> </span>Dynamics 365 Finance & Operations</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder="Search titles or contents..." id=search-input-mobile>
-<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=Search><i class="fas fa-search fa-fw" aria-hidden=true></i></a>
-<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=Clear><i class="fas fa-times-circle fa-fw" aria-hidden=true></i></a>
-<span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>Cancel</a></div><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=/finopsnews/ title>X++ Feed</a><a class=menu-item href=/erd/default.htm title>Entity Relationship</a><a class=menu-item href=/posts/index.xml title>Rss Feed</a><a class=menu-item href=/lab/ title>Practice lab</a><a class=menu-item href=/about/ title>About me</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
-<i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>Contents</h2><div class="toc-content always-active" id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Modify Microsoft Dynamics AX 2012 R3 SSRS configurations using PowerShell</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/series/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>Max Nguyen</a></span>&nbsp;<span class=post-category>included in <a href=/categories/ax-2012/><i class="far fa-folder fa-fw" aria-hidden=true></i>AX 2012</a>&nbsp;<a href=/categories/report/><i class="far fa-folder fa-fw" aria-hidden=true></i>Report</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime="July 2, 2015">July 2, 2015</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;826 words&nbsp;
-<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;4 minutes&nbsp;</div></div><div class="details toc" id=toc-static data-kept><div class="details-summary toc-title"><span>Contents</span>
-<span><i class="details-icon fas fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents></nav></div></div><div class=content id=content><p><code>reportManagerWebConfig.ps1</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-powershell data-lang=powershell><span class=line><span class=cl><span class=c>#Modify the Report Server Web.config file. ie replace MSRS11.VAS with your folder name</span>
-</span></span><span class=line><span class=cl><span class=nb>Set-ExecutionPolicy</span> <span class=n>Unrestricted</span>
-</span></span><span class=line><span class=cl><span class=nv>$webConfig</span> <span class=p>=</span> <span class=s2>&#34;C:Program FilesMicrosoft SQL ServerMSRS11.VASReporting ServicesReportManagerWeb.config&#34;</span>
-</span></span><span class=line><span class=cl><span class=nv>$currentDate</span> <span class=p>=</span> <span class=p>(</span><span class=nb>get-date</span><span class=p>).</span><span class=n>tostring</span><span class=p>(</span><span class=s2>&#34;mm_dd_yyyy-hh_mm_s&#34;</span><span class=p>)</span> <span class=c># month_day_year - hours_mins_seconds</span>
-</span></span><span class=line><span class=cl><span class=nv>$backup</span> <span class=p>=</span> <span class=nv>$webConfig</span> <span class=p>+</span> <span class=s2>&#34;_$currentDate&#34;</span>
-</span></span><span class=line><span class=cl><span class=nv>$doc</span> <span class=p>=</span> <span class=nb>new-object</span> <span class=n>System</span><span class=p>.</span><span class=n>Xml</span><span class=p>.</span><span class=n>XmlDocument</span>
-</span></span><span class=line><span class=cl><span class=nv>$doc</span><span class=p>.</span><span class=n>Load</span><span class=p>(</span><span class=nv>$webConfig</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=c>#save a backup copy</span>
-</span></span><span class=line><span class=cl><span class=nv>$doc</span><span class=p>.</span><span class=n>Save</span><span class=p>(</span><span class=nv>$backup</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=nb>Write-Host</span> <span class=s2>&#34;Backup saved as &#34;</span> <span class=p>+</span> <span class=nv>$backup</span>
-</span></span><span class=line><span class=cl><span class=nv>$node</span> <span class=p>=</span> <span class=nv>$doc</span><span class=p>.</span><span class=n>get_DocumentElement</span><span class=p>().</span><span class=s2>&#34;system.web&#34;</span><span class=p>.</span><span class=n>httpRuntime</span>
-</span></span><span class=line><span class=cl><span class=nv>$attribute</span> <span class=p>=</span> <span class=nv>$doc</span><span class=p>.</span><span class=n>CreateAttribute</span><span class=p>(</span><span class=s2>&#34;maxRequestLength&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=nv>$attribute</span><span class=p>.</span><span class=n>set_Value</span><span class=p>(</span><span class=s2>&#34;100000&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=nv>$node</span><span class=p>.</span><span class=n>SetAttributeNode</span><span class=p>(</span><span class=nv>$attribute</span> <span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=nv>$doc</span><span class=p>.</span><span class=n>Save</span><span class=p>(</span><span class=nv>$webConfig</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=nb>Write-Host</span> <span class=s2>&#34;1) Modified the Report Manager Web.config file&#34;</span>
-</span></span></code></pre></td></tr></table></div></div><p><code>RsReportServer.ps1</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
-</span><span class=lnt>  2
-</span><span class=lnt>  3
-</span><span class=lnt>  4
-</span><span class=lnt>  5
-</span><span class=lnt>  6
-</span><span class=lnt>  7
-</span><span class=lnt>  8
-</span><span class=lnt>  9
-</span><span class=lnt> 10
-</span><span class=lnt> 11
-</span><span class=lnt> 12
-</span><span class=lnt> 13
-</span><span class=lnt> 14
-</span><span class=lnt> 15
-</span><span class=lnt> 16
-</span><span class=lnt> 17
-</span><span class=lnt> 18
-</span><span class=lnt> 19
-</span><span class=lnt> 20
-</span><span class=lnt> 21
-</span><span class=lnt> 22
-</span><span class=lnt> 23
-</span><span class=lnt> 24
-</span><span class=lnt> 25
-</span><span class=lnt> 26
-</span><span class=lnt> 27
-</span><span class=lnt> 28
-</span><span class=lnt> 29
-</span><span class=lnt> 30
-</span><span class=lnt> 31
-</span><span class=lnt> 32
-</span><span class=lnt> 33
-</span><span class=lnt> 34
-</span><span class=lnt> 35
-</span><span class=lnt> 36
-</span><span class=lnt> 37
-</span><span class=lnt> 38
-</span><span class=lnt> 39
-</span><span class=lnt> 40
-</span><span class=lnt> 41
-</span><span class=lnt> 42
-</span><span class=lnt> 43
-</span><span class=lnt> 44
-</span><span class=lnt> 45
-</span><span class=lnt> 46
-</span><span class=lnt> 47
-</span><span class=lnt> 48
-</span><span class=lnt> 49
-</span><span class=lnt> 50
-</span><span class=lnt> 51
-</span><span class=lnt> 52
-</span><span class=lnt> 53
-</span><span class=lnt> 54
-</span><span class=lnt> 55
-</span><span class=lnt> 56
-</span><span class=lnt> 57
-</span><span class=lnt> 58
-</span><span class=lnt> 59
-</span><span class=lnt> 60
-</span><span class=lnt> 61
-</span><span class=lnt> 62
-</span><span class=lnt> 63
-</span><span class=lnt> 64
-</span><span class=lnt> 65
-</span><span class=lnt> 66
-</span><span class=lnt> 67
-</span><span class=lnt> 68
-</span><span class=lnt> 69
-</span><span class=lnt> 70
-</span><span class=lnt> 71
-</span><span class=lnt> 72
-</span><span class=lnt> 73
-</span><span class=lnt> 74
-</span><span class=lnt> 75
-</span><span class=lnt> 76
-</span><span class=lnt> 77
-</span><span class=lnt> 78
-</span><span class=lnt> 79
-</span><span class=lnt> 80
-</span><span class=lnt> 81
-</span><span class=lnt> 82
-</span><span class=lnt> 83
-</span><span class=lnt> 84
-</span><span class=lnt> 85
-</span><span class=lnt> 86
-</span><span class=lnt> 87
-</span><span class=lnt> 88
-</span><span class=lnt> 89
-</span><span class=lnt> 90
-</span><span class=lnt> 91
-</span><span class=lnt> 92
-</span><span class=lnt> 93
-</span><span class=lnt> 94
-</span><span class=lnt> 95
-</span><span class=lnt> 96
-</span><span class=lnt> 97
-</span><span class=lnt> 98
-</span><span class=lnt> 99
-</span><span class=lnt>100
-</span><span class=lnt>101
-</span><span class=lnt>102
-</span><span class=lnt>103
-</span><span class=lnt>104
-</span><span class=lnt>105
-</span><span class=lnt>106
-</span><span class=lnt>107
-</span><span class=lnt>108
-</span><span class=lnt>109
-</span><span class=lnt>110
-</span><span class=lnt>111
-</span><span class=lnt>112
-</span><span class=lnt>113
-</span><span class=lnt>114
-</span><span class=lnt>115
-</span><span class=lnt>116
-</span><span class=lnt>117
-</span><span class=lnt>118
-</span><span class=lnt>119
-</span><span class=lnt>120
-</span><span class=lnt>121
-</span><span class=lnt>122
-</span><span class=lnt>123
-</span><span class=lnt>124
-</span><span class=lnt>125
-</span><span class=lnt>126
-</span><span class=lnt>127
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-powershell data-lang=powershell><span class=line><span class=cl><span class=c>#Modify the Report Server Web.config file. ie replace MSRS11.VAS with your folder name</span>
-</span></span><span class=line><span class=cl><span class=nb>Set-ExecutionPolicy</span> <span class=n>Unrestricted</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=nv>$version</span> <span class=p>=</span> <span class=s2>&#34;6.3.0.0&#34;</span>
-</span></span><span class=line><span class=cl><span class=nv>$webConfig</span> <span class=p>=</span> <span class=s2>&#34;C:Program FilesMicrosoft SQL ServerMSRS11.VASReporting ServicesReportServerRsReportServer.config&#34;</span>
-</span></span><span class=line><span class=cl><span class=nv>$currentDate</span> <span class=p>=</span> <span class=p>(</span><span class=nb>get-date</span><span class=p>).</span><span class=n>tostring</span><span class=p>(</span><span class=s2>&#34;mm_dd_yyyy-hh_mm_s&#34;</span><span class=p>)</span> <span class=c># month_day_year - hours_mins_seconds</span>
-</span></span><span class=line><span class=cl><span class=nv>$backup</span> <span class=p>=</span> <span class=nv>$webConfig</span> <span class=p>+</span>  <span class=s2>&#34;.xml&#34;</span> <span class=c>#&#34;_$currentDate&#34;</span>
-</span></span><span class=line><span class=cl><span class=nv>$doc</span> <span class=p>=</span> <span class=nb>new-object</span> <span class=n>System</span><span class=p>.</span><span class=n>Xml</span><span class=p>.</span><span class=n>XmlDocument</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=nv>$doc</span><span class=p>.</span><span class=n>Load</span><span class=p>(</span><span class=nv>$webConfig</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=c>#save a backup copy</span>
-</span></span><span class=line><span class=cl><span class=nv>$doc</span><span class=p>.</span><span class=n>Save</span><span class=p>(</span><span class=nv>$backup</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=nb>Write
-</span></span></span><span class=line><span class=cl><span class=nb>Write-Host</span>  <span class=s2>&#34;Backup saved as &#34;</span> <span class=p>+</span> <span class=nv>$backup</span>
-</span></span><span class=line><span class=cl><span class=c>#remove node &#34;RSWindowsNegotiate&#34; </span>
-</span></span><span class=line><span class=cl><span class=nv>$node</span> <span class=p>=</span> <span class=nv>$doc</span><span class=p>.</span><span class=n>documentElement</span><span class=p>.</span><span class=n>SelectSingleNode</span><span class=p>(</span><span class=s2>&#34;//Configuration/Authentication/AuthenticationTypes/RSWindowsNegotiate&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=k>if</span> <span class=p>(</span><span class=nv>$node</span><span class=p>)</span> 
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>    
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=nv>$node</span><span class=p>.</span><span class=n>ParentNode</span><span class=p>.</span><span class=n>RemoveChild</span><span class=p>(</span><span class=nv>$node</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>    <span class=nb>Write
-</span></span></span><span class=line><span class=cl><span class=nb></span>    <span class=nb>Write-Host</span>  <span class=s2>&#34;RSWindowsNegotiate Removed&#34;</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl><span class=c>#Add node &#34;IsRdceEnabled&#34; </span>
-</span></span><span class=line><span class=cl><span class=nv>$nodeService</span> <span class=p>=</span> <span class=nv>$doc</span><span class=p>.</span><span class=n>documentElement</span><span class=p>.</span><span class=n>SelectSingleNode</span><span class=p>(</span><span class=s2>&#34;//Configuration/Service&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=nv>$nodeIsRdceEnabled</span> <span class=p>=</span> <span class=nv>$doc</span><span class=p>.</span><span class=n>documentElement</span><span class=p>.</span><span class=n>SelectSingleNode</span><span class=p>(</span><span class=s2>&#34;//Configuration/Service/IsRdceEnabled&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=c>#Set to true if already exists, otherwise create the node</span>
-</span></span><span class=line><span class=cl><span class=k>if</span> <span class=p>(</span><span class=nv>$nodeIsRdceEnabled</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>    
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=nv>$nodeIsRdceEnabled</span><span class=p>.</span><span class=n>InnerXml</span> <span class=p>=</span> <span class=s2>&#34;True&#34;</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl><span class=k>else</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=nv>$nodeService</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>    <span class=p>{</span>
-</span></span><span class=line><span class=cl>        
-</span></span><span class=line><span class=cl>    <span class=p>{</span>
-</span></span><span class=line><span class=cl>        <span class=nv>$subnodeService</span> <span class=p>=</span> <span class=nv>$doc</span><span class=p>.</span><span class=n>createElement</span><span class=p>(</span><span class=s2>&#34;IsRdceEnabled&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>        
-</span></span><span class=line><span class=cl>        <span class=nv>$subnodeService</span><span class=p>.</span><span class=n>InnerXml</span> <span class=p>=</span> <span class=s2>&#34;True&#34;</span>
-</span></span><span class=line><span class=cl>        <span class=nv>$nodeService</span><span class=p>.</span><span class=n>appendChild</span><span class=p>(</span><span class=nv>$subnodeService</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>        <span class=nb>Write
-</span></span></span><span class=line><span class=cl><span class=nb></span>        <span class=nb>Write-Host</span>  <span class=s2>&#34;IsRdceEnabled added&#34;</span>
-</span></span><span class=line><span class=cl>    <span class=p>}</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl><span class=c>#Find Data</span>
-</span></span><span class=line><span class=cl><span class=nv>$nodeCodeAxQuery</span> <span class=p>=</span> <span class=nv>$doc</span><span class=p>.</span><span class=n>documentElement</span><span class=p>.</span><span class=n>SelectSingleNode</span><span class=p>(</span><span class=s2>&#34;//Configuration/Extensions/Data/Extension[@Name=&#39;AXQUERY&#39;]&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=c>#Add Data Extension</span>
-</span></span><span class=line><span class=cl><span class=k>if</span> <span class=p>(</span><span class=o>-not</span><span class=p>(</span><span class=nv>$nodeCodeAxQuery</span><span class=p>))</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>    
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=nv>$nodeData</span> <span class=p>=</span> <span class=nv>$doc</span><span class=p>.</span><span class=n>documentElement</span><span class=p>.</span><span class=n>SelectSingleNode</span><span class=p>(</span><span class=s2>&#34;//Configuration/Extensions/Data&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>    
-</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=nv>$nodeData</span><span class=p>)</span> 
-</span></span><span class=line><span class=cl>    <span class=p>{</span>
-</span></span><span class=line><span class=cl>        
-</span></span><span class=line><span class=cl>    <span class=p>{</span>
-</span></span><span class=line><span class=cl>        <span class=nv>$nodeData</span><span class=p>.</span><span class=n>InnerXml</span> <span class=p>=</span> <span class=nv>$nodeData</span><span class=p>.</span><span class=n>InnerXml</span> <span class=p>+</span> 
-</span></span><span class=line><span class=cl>        
-</span></span><span class=line><span class=cl>        <span class=s2>&#34;&lt;Extension Name=&#39;AXQUERY&#39; Type=&#39;Microsoft.Dynamics.Framework.Reports.AxQueryConnection,Microsoft.Dynamics.Framework.ReportsExtensions, Version=&#34;</span> <span class=p>+</span>
-</span></span><span class=line><span class=cl>		<span class=nv>$version</span> <span class=p>+</span>
-</span></span><span class=line><span class=cl>		<span class=s2>&#34;, Culture=neutral, PublicKeyToken=31bf3856ad364e35&#39;/&gt;
-</span></span></span><span class=line><span class=cl><span class=s2>      &lt;Extension Name=&#39;AXDATAMETHOD&#39; Type=&#39;Microsoft.Dynamics.Framework.Reports.AxDataMethodConnection,Microsoft.Dynamics.Framework.ReportsExtensions, Version=&#34;</span> <span class=p>+</span>
-</span></span><span class=line><span class=cl>		<span class=nv>$version</span> <span class=p>+</span>
-</span></span><span class=line><span class=cl>		<span class=s2>&#34;, Culture=neutral, PublicKeyToken=31bf3856ad364e35&#39;/&gt;
-</span></span></span><span class=line><span class=cl><span class=s2>      &lt;Extension Name=&#39;AXREPORTDATAPROVIDER&#39; Type=&#39;Microsoft.Dynamics.Framework.Reports.AxReportProviderConnection,Microsoft.Dynamics.Framework.ReportsExtensions, Version=&#34;</span> <span class=p>+</span>
-</span></span><span class=line><span class=cl>		<span class=nv>$version</span> <span class=p>+</span>
-</span></span><span class=line><span class=cl>		<span class=s2>&#34;, Culture=neutral, PublicKeyToken=31bf3856ad364e35&#39;/&gt;
-</span></span></span><span class=line><span class=cl><span class=s2>      &lt;Extension Name=&#39;AXADOMD&#39; Type=&#39;Microsoft.Dynamics.Framework.Reports.AxAdomdConnection,Microsoft.Dynamics.Framework.ReportsExtensions, Version=&#34;</span> <span class=p>+</span>
-</span></span><span class=line><span class=cl>		<span class=nv>$version</span> <span class=p>+</span>
-</span></span><span class=line><span class=cl>		<span class=s2>&#34;, Culture=neutral, PublicKeyToken=31bf3856ad364e35&#39;/&gt;
-</span></span></span><span class=line><span class=cl><span class=s2>      &lt;Extension Name=&#39;AXENUMDATAPROVIDER&#39; Type=&#39;Microsoft.Dynamics.Framework.Reports.EnumProviderConnection,Microsoft.Dynamics.Framework.ReportsExtensions, Version=&#34;</span> <span class=p>+</span>
-</span></span><span class=line><span class=cl>		<span class=nv>$version</span> <span class=p>+</span>
-</span></span><span class=line><span class=cl>		<span class=s2>&#34;, Culture=neutral, PublicKeyToken=31bf3856ad364e35&#39;/&gt;&#34;</span>
-</span></span><span class=line><span class=cl>        <span class=nb>Write-Host</span>  <span class=s2>&#34;Data Extension added&#34;</span>
-</span></span><span class=line><span class=cl>    <span class=p>}</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl><span class=c>#Find Extensions</span>
-</span></span><span class=line><span class=cl><span class=nv>$nodeExtensions</span> <span class=p>=</span> <span class=nv>$doc</span><span class=p>.</span><span class=n>documentElement</span><span class=p>.</span><span class=n>SelectSingleNode</span><span class=p>(</span><span class=s2>&#34;//Configuration/Extensions&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=nv>$nodeReportDefinitionCustomization</span> <span class=p>=</span> <span class=nv>$doc</span><span class=p>.</span><span class=n>documentElement</span><span class=p>.</span><span class=n>SelectSingleNode</span><span class=p>(</span><span class=s2>&#34;//Configuration/Extensions/ReportDefinitionCustomization&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=k>if</span> <span class=p>(</span><span class=o>-not</span><span class=p>(</span><span class=nv>$nodeReportDefinitionCustomization</span><span class=p>))</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>    
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=c>#Add ReportDefinitionCustomization</span>
-</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=nv>$nodeExtensions</span><span class=p>)</span> 
-</span></span><span class=line><span class=cl>    <span class=p>{</span>
-</span></span><span class=line><span class=cl>        
-</span></span><span class=line><span class=cl>    <span class=p>{</span>
-</span></span><span class=line><span class=cl>        <span class=nv>$subnodeExt</span> <span class=p>=</span> <span class=nv>$doc</span><span class=p>.</span><span class=n>createElement</span><span class=p>(</span><span class=s2>&#34;ReportDefinitionCustomization&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>        
-</span></span><span class=line><span class=cl>        <span class=nv>$subnodeExt</span><span class=p>.</span><span class=n>InnerXml</span> <span class=p>=</span> <span class=s2>&#34;&lt;Extension Name=&#39;AXRDCE&#39; Type=&#39;Microsoft.Dynamics.Framework.Reports.AxRdce.CustomizationExtension,Microsoft.Dynamics.Framework.ReportsExtensions, Version=&#34;</span> <span class=p>+</span>
-</span></span><span class=line><span class=cl>		<span class=nv>$version</span> <span class=p>+</span>
-</span></span><span class=line><span class=cl>		<span class=s2>&#34;, Culture=neutral, PublicKeyToken=31bf3856ad364e35&#39;/&gt;&#34;</span>
-</span></span><span class=line><span class=cl>        <span class=nv>$nodeExtensions</span><span class=p>.</span><span class=n>appendChild</span><span class=p>(</span><span class=nv>$subnodeExt</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>        <span class=nb>Write
-</span></span></span><span class=line><span class=cl><span class=nb></span>        <span class=nb>Write-Host</span>  <span class=s2>&#34;ReportDefinitionCustomization added&#34;</span>
-</span></span><span class=line><span class=cl>    <span class=p>}</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl><span class=k>else</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=nv>$nodeAXRDCE</span><span class=p>=</span> <span class=nv>$doc</span><span class=p>.</span><span class=n>documentElement</span><span class=p>.</span><span class=n>SelectSingleNode</span><span class=p>(</span><span class=s2>&#34;//Configuration/Extensions/ReportDefinitionCustomization/Extension [@Name=&#39;AXRDCE&#39;]&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>    
-</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=o>-not</span><span class=p>(</span><span class=nv>$nodeAXRDCE</span><span class=p>))</span>
-</span></span><span class=line><span class=cl>    <span class=p>{</span>
-</span></span><span class=line><span class=cl>        
-</span></span><span class=line><span class=cl>    <span class=p>{</span>
-</span></span><span class=line><span class=cl>        <span class=nv>$nodeReportDefinitionCustomization</span><span class=p>.</span><span class=n>InnerXml</span> <span class=p>=</span> <span class=nv>$nodeReportDefinitionCustomization</span><span class=p>.</span><span class=n>InnerXml</span> <span class=p>+</span>
-</span></span><span class=line><span class=cl>            <span class=s2>&#34;&lt;Extension Name=&#39;AXRDCE&#39; Type=&#39;Microsoft.Dynamics.Framework.Reports.AxRdce.CustomizationExtension,Microsoft.Dynamics.Framework.ReportsExtensions, Version=&#34;</span> <span class=p>+</span>
-</span></span><span class=line><span class=cl>		<span class=nv>$version</span> <span class=p>+</span>
-</span></span><span class=line><span class=cl>		<span class=s2>&#34;, Culture=neutral, PublicKeyToken=31bf3856ad364e35&#39;/&gt;&#34;</span>
-</span></span><span class=line><span class=cl>    <span class=p>}</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl><span class=nv>$doc</span><span class=p>.</span><span class=n>Save</span><span class=p>(</span><span class=nv>$webConfig</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=nb>Write
-</span></span></span><span class=line><span class=cl><span class=nb>Write-Host</span>  <span class=s2>&#34;2) Modified the Report Server Web.config file&#34;</span>
-</span></span><span class=line><span class=cl><span class=n>text</span> <span class=n>some</span> <span class=n>thing</span>
-</span></span></code></pre></td></tr></table></div></div><p><code>ReportServerRsSrvPolicyConfig.ps1</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span><span class=lnt>21
-</span><span class=lnt>22
-</span><span class=lnt>23
-</span><span class=lnt>24
-</span><span class=lnt>25
-</span><span class=lnt>26
-</span><span class=lnt>27
-</span><span class=lnt>28
-</span><span class=lnt>29
-</span><span class=lnt>30
-</span><span class=lnt>31
-</span><span class=lnt>32
-</span><span class=lnt>33
-</span><span class=lnt>34
-</span><span class=lnt>35
-</span><span class=lnt>36
-</span><span class=lnt>37
-</span><span class=lnt>38
-</span><span class=lnt>39
-</span><span class=lnt>40
-</span><span class=lnt>41
-</span><span class=lnt>42
-</span><span class=lnt>43
-</span><span class=lnt>44
-</span><span class=lnt>45
-</span><span class=lnt>46
-</span><span class=lnt>47
-</span><span class=lnt>48
-</span><span class=lnt>49
-</span><span class=lnt>50
-</span><span class=lnt>51
-</span><span class=lnt>52
-</span><span class=lnt>53
-</span><span class=lnt>54
-</span><span class=lnt>55
-</span><span class=lnt>56
-</span><span class=lnt>57
-</span><span class=lnt>58
-</span><span class=lnt>59
-</span><span class=lnt>60
-</span><span class=lnt>61
-</span><span class=lnt>62
-</span><span class=lnt>63
-</span><span class=lnt>64
-</span><span class=lnt>65
-</span><span class=lnt>66
-</span><span class=lnt>67
-</span><span class=lnt>68
-</span><span class=lnt>69
-</span><span class=lnt>70
-</span><span class=lnt>71
-</span><span class=lnt>72
-</span><span class=lnt>73
-</span><span class=lnt>74
-</span><span class=lnt>75
-</span><span class=lnt>76
-</span><span class=lnt>77
-</span><span class=lnt>78
-</span><span class=lnt>79
-</span><span class=lnt>80
-</span><span class=lnt>81
-</span><span class=lnt>82
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-powershell data-lang=powershell><span class=line><span class=cl><span class=c>#Instructions: Modify the Report Server Web.config file. ie replace MSRS11.VAS with your folder name</span>
-</span></span><span class=line><span class=cl><span class=c># Modify version 6.3.0.0 for Dynamics AX 2012</span>
-</span></span><span class=line><span class=cl><span class=nb>Set-ExecutionPolicy</span> <span class=n>Unrestricted</span>
-</span></span><span class=line><span class=cl><span class=nv>$version</span> <span class=p>=</span> <span class=s2>&#34;6.3.0.0&#34;</span>
-</span></span><span class=line><span class=cl><span class=nv>$webConfig</span> <span class=p>=</span> <span class=s2>&#34;C:Program FilesMicrosoft SQL ServerMSRS11.VASReporting ServicesReportServerrssrvpolicy.config&#34;</span>
-</span></span><span class=line><span class=cl><span class=nv>$currentDate</span> <span class=p>=</span> <span class=p>(</span><span class=nb>get-date</span><span class=p>).</span><span class=n>tostring</span><span class=p>(</span><span class=s2>&#34;mm_dd_yyyy-hh_mm_s&#34;</span><span class=p>)</span> <span class=c># month_day_year - hours_mins_seconds</span>
-</span></span><span class=line><span class=cl><span class=nv>$backup</span> <span class=p>=</span> <span class=nv>$webConfig</span> <span class=p>+</span> <span class=s2>&#34;.xml&#34;</span> <span class=c>#&#34;_$currentDate&#34;</span>
-</span></span><span class=line><span class=cl><span class=nv>$doc</span> <span class=p>=</span> <span class=nb>new-object</span> <span class=n>System</span><span class=p>.</span><span class=n>Xml</span><span class=p>.</span><span class=n>XmlDocument</span>
-</span></span><span class=line><span class=cl><span class=nv>$doc</span><span class=p>.</span><span class=n>Load</span><span class=p>(</span><span class=nv>$webConfig</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=c>#save a backup copy</span>
-</span></span><span class=line><span class=cl><span class=nv>$doc</span><span class=p>.</span><span class=n>Save</span><span class=p>(</span><span class=nv>$backup</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=nb>Write
-</span></span></span><span class=line><span class=cl><span class=nb>Write-Host</span> <span class=s2>&#34;Backup saved as &#34;</span> <span class=p>+</span> <span class=nv>$backup</span>
-</span></span><span class=line><span class=cl><span class=c>#Add SecurityClass</span>
-</span></span><span class=line><span class=cl><span class=nv>$nodeAxSessionPermission</span> <span class=p>=</span> <span class=nv>$doc</span><span class=p>.</span><span class=n>documentElement</span><span class=p>.</span><span class=n>SelectSingleNode</span><span class=p>(</span><span class=s2>&#34;//configuration/mscorlib/security/policy/PolicyLevel/SecurityClasses/SecurityClass[@Name=&#39;AxSessionPermission&#39;]&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=k>if</span> <span class=p>(</span><span class=o>-not</span><span class=p>(</span><span class=nv>$nodeAxSessionPermission</span><span class=p>))</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl> <span class=nv>$nodeSecurityClasses</span> <span class=p>=</span> <span class=nv>$doc</span><span class=p>.</span><span class=n>documentElement</span><span class=p>.</span><span class=n>SelectSingleNode</span><span class=p>(</span><span class=s2>&#34;//configuration/mscorlib/security/policy/PolicyLevel/SecurityClasses&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl> <span class=k>if</span> <span class=p>(</span><span class=nv>$nodeSecurityClasses</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl> <span class=p>{</span>
-</span></span><span class=line><span class=cl> <span class=nv>$nodeSecurityClass</span> <span class=p>=</span> <span class=nv>$doc</span><span class=p>.</span><span class=n>createElement</span><span class=p>(</span><span class=s2>&#34;SecurityClass&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl> <span class=nv>$nodeSecurityClass</span><span class=p>.</span><span class=n>InnerXml</span> <span class=p>=</span> <span class=s2>&#34;&lt;SecurityClass Name=&#39;AxSessionPermission&#39; Description=&#39;Microsoft.Dynamics.Framework.Reports.AxSessionPermission, Microsoft.Dynamics.Framework.Reports, Version=&#34;</span> <span class=p>+</span>
-</span></span><span class=line><span class=cl> <span class=nv>$version</span> <span class=p>+</span>
-</span></span><span class=line><span class=cl> <span class=s2>&#34;, Culture=neutral, PublicKeyToken=31bf3856ad364e35&#39; /&gt;&#34;</span>
-</span></span><span class=line><span class=cl> <span class=nv>$nodeSecurityClasses</span><span class=p>.</span><span class=n>appendChild</span><span class=p>(</span><span class=nv>$nodeSecurityClass</span><span class=p>.</span><span class=n>FirstChild</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=nb>Write
-</span></span></span><span class=line><span class=cl><span class=nb></span> <span class=nb>Write-Host</span> <span class=s2>&#34;SecurityClass added&#34;</span>
-</span></span><span class=line><span class=cl> <span class=p>}</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl><span class=c>#Add PermissionSet</span>
-</span></span><span class=line><span class=cl><span class=nv>$nodeAxSessionPermissionSet</span> <span class=p>=</span> <span class=nv>$doc</span><span class=p>.</span><span class=n>documentElement</span><span class=p>.</span><span class=n>SelectSingleNode</span><span class=p>(</span><span class=s2>&#34;//configuration/mscorlib/security/policy/PolicyLevel/NamedPermissionSets/PermissionSet[@class=&#39;NamedPermissionSet&#39; and @version=&#39;1&#39; and @Name=&#39;AxSessionPermissionSet&#39;]&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=k>if</span> <span class=p>(</span><span class=o>-not</span><span class=p>(</span><span class=nv>$nodeAxSessionPermissionSet</span><span class=p>))</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl> <span class=nv>$nodeNamedPermissionSets</span> <span class=p>=</span> <span class=nv>$doc</span><span class=p>.</span><span class=n>documentElement</span><span class=p>.</span><span class=n>SelectSingleNode</span><span class=p>(</span><span class=s2>&#34;//configuration/mscorlib/security/policy/PolicyLevel/NamedPermissionSets&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl> <span class=k>if</span> <span class=p>(</span><span class=nv>$nodeNamedPermissionSets</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl> <span class=p>{</span>
-</span></span><span class=line><span class=cl> <span class=nv>$nodePermissionSet</span> <span class=p>=</span> <span class=nv>$doc</span><span class=p>.</span><span class=n>createElement</span><span class=p>(</span><span class=s2>&#34;PermissionSet&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl> <span class=nv>$nodePermissionSet</span><span class=p>.</span><span class=n>InnerXml</span> <span class=p>=</span> <span class=s2>&#34;&lt;PermissionSet class=&#39;NamedPermissionSet&#39; version=&#39;1&#39; Name=&#39;AxSessionPermissionSet&#39;&gt;
-</span></span></span><span class=line><span class=cl><span class=s2> &lt;IPermission class=&#39;AxSessionPermission&#39; version=&#39;1&#39; Unrestricted=&#39;true&#39; /&gt;
-</span></span></span><span class=line><span class=cl><span class=s2> &lt;IPermission class=&#39;SecurityPermission&#39; version=&#39;1&#39; Flags=&#39;Assertion&#39; /&gt;
-</span></span></span><span class=line><span class=cl><span class=s2> &lt;/PermissionSet&gt;&#34;</span>
-</span></span><span class=line><span class=cl> <span class=nv>$nodeNamedPermissionSets</span><span class=p>.</span><span class=n>appendChild</span><span class=p>(</span><span class=nv>$nodePermissionSet</span><span class=p>.</span><span class=n>FirstChild</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=nb>Write
-</span></span></span><span class=line><span class=cl><span class=nb></span> <span class=nb>Write-Host</span> <span class=s2>&#34;PermissionSet added&#34;</span>
-</span></span><span class=line><span class=cl> <span class=p>}</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl><span class=c>#Add CodeGroup</span>
-</span></span><span class=line><span class=cl><span class=nv>$nodeAxStrongName</span> <span class=p>=</span> <span class=nv>$doc</span><span class=p>.</span><span class=n>documentElement</span><span class=p>.</span><span class=n>SelectSingleNode</span><span class=p>(</span><span class=s2>&#34;//configuration/mscorlib/security/policy/PolicyLevel/CodeGroup[@class=&#39;FirstMatchCodeGroup&#39; and @version=&#39;1&#39; and @PermissionSetName=&#39;Nothing&#39;]/CodeGroup[@class=&#39;UnionCodeGroup&#39; and @version=&#39;1&#39; and @PermissionSetName=&#39;FullTrust&#39; and @Name=&#39;AX_Reports_Strong_Name&#39;]&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=k>if</span> <span class=p>(</span><span class=o>-not</span><span class=p>(</span><span class=nv>$nodeAxStrongName</span><span class=p>))</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl> <span class=nv>$nodeCodeGroup</span> <span class=p>=</span> <span class=nv>$doc</span><span class=p>.</span><span class=n>documentElement</span><span class=p>.</span><span class=n>SelectSingleNode</span><span class=p>(</span><span class=s2>&#34;//configuration/mscorlib/security/policy/PolicyLevel/CodeGroup[@class=&#39;FirstMatchCodeGroup&#39; and @version=&#39;1&#39; and @PermissionSetName=&#39;Nothing&#39;]&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl> <span class=k>if</span> <span class=p>(</span><span class=nv>$nodeCodeGroup</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl> <span class=p>{</span>
-</span></span><span class=line><span class=cl> <span class=nv>$subnodeCodeGroup</span> <span class=p>=</span> <span class=nv>$doc</span><span class=p>.</span><span class=n>createElement</span><span class=p>(</span><span class=s2>&#34;CodeGroup&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl> <span class=nv>$subnodeCodeGroup</span><span class=p>.</span><span class=n>InnerXml</span> <span class=p>=</span> <span class=s2>&#34;&lt;CodeGroup class=&#39;UnionCodeGroup&#39; version=&#39;1&#39; PermissionSetName=&#39;FullTrust&#39; Name=&#39;AX_Reports_Strong_Name&#39; Description=&#39;This code group grants Dynamics AX Reports code full trust. &#39;&gt;
-</span></span></span><span class=line><span class=cl><span class=s2> &lt;IMembershipCondition class=&#39;StrongNameMembershipCondition&#39; version=&#39;1&#39; PublicKeyBlob=&#39;0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9&#39; /&gt;
-</span></span></span><span class=line><span class=cl><span class=s2> &lt;/CodeGroup&gt;&#34;</span>
-</span></span><span class=line><span class=cl> <span class=nv>$nodeCodeGroup</span><span class=p>.</span><span class=n>appendChild</span><span class=p>(</span><span class=nv>$subnodeCodeGroup</span><span class=p>.</span><span class=n>FirstChild</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=nb>Write
-</span></span></span><span class=line><span class=cl><span class=nb></span> <span class=nb>Write-Host</span> <span class=s2>&#34;CodeGroup added&#34;</span>
-</span></span><span class=line><span class=cl> <span class=p>}</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl><span class=c>#Add nodeReportExpressionPermission</span>
-</span></span><span class=line><span class=cl><span class=c>#http://blogs.msdn.com/b/axsupport/archive/2012/02/02/microsoft-dynamics-ax-2012-reporting-extensions-error-system-security-permissions-environmentpermission-while-running-report.aspx</span>
-</span></span><span class=line><span class=cl><span class=nv>$nodeReportExpressionPermission</span> <span class=p>=</span> <span class=nv>$doc</span><span class=p>.</span><span class=n>documentElement</span><span class=p>.</span><span class=n>SelectSingleNode</span><span class=p>(</span><span class=s2>&#34;//configuration/mscorlib/security/policy/PolicyLevel/CodeGroup[@class=&#39;FirstMatchCodeGroup&#39; and @version=&#39;1&#39; and @PermissionSetName=&#39;Nothing&#39;]/CodeGroup[@class=&#39;UnionCodeGroup&#39; and @version=&#39;1&#39; and @PermissionSetName=&#39;Execution&#39; and @Name=&#39;Report_Expressions_Default_Permissions&#39;]&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=k>if</span> <span class=p>(</span><span class=nv>$nodeReportExpressionPermission</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl> <span class=nv>$attribute</span> <span class=p>=</span> <span class=nv>$doc</span><span class=p>.</span><span class=n>CreateAttribute</span><span class=p>(</span><span class=s2>&#34;PermissionSetName&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl> <span class=nv>$attribute</span><span class=p>.</span><span class=n>set_Value</span><span class=p>(</span><span class=s2>&#34;FullTrust&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl> <span class=nv>$nodeReportExpressionPermission</span><span class=p>.</span><span class=n>SetAttributeNode</span><span class=p>(</span><span class=nv>$attribute</span> <span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl><span class=nv>$doc</span><span class=p>.</span><span class=n>Save</span><span class=p>(</span><span class=nv>$webConfig</span><span class=p>)</span>
-</span></span><span class=line><span class=cl><span class=nb>Write
-</span></span></span><span class=line><span class=cl><span class=nb>Write-Host</span> <span class=s2>&#34;3) Modified the Report Server rssrvpolicy.config file&#34;</span>
-</span></span></code></pre></td></tr></table></div></div></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>Updated on July 2, 2015</span></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/2015-07-02-modify-microsoft-dynamics-ax-2012-r3-ssrs-configurations/index.md target=_blank>Read Markdown</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://nuxulu.com/2015-07-02-modify-microsoft-dynamics-ax-2012-r3-ssrs-configurations/ data-title="Modify Microsoft Dynamics AX 2012 R3 SSRS configurations using PowerShell"><i class="fab fa-twitter fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://nuxulu.com/2015-07-02-modify-microsoft-dynamics-ax-2012-r3-ssrs-configurations/><i class="fab fa-facebook-square fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="Share on Linkedin" data-sharer=linkedin data-url=https://nuxulu.com/2015-07-02-modify-microsoft-dynamics-ax-2012-r3-ssrs-configurations/><i class="fab fa-linkedin fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="Share on WhatsApp" data-sharer=whatsapp data-url=https://nuxulu.com/2015-07-02-modify-microsoft-dynamics-ax-2012-r3-ssrs-configurations/ data-title="Modify Microsoft Dynamics AX 2012 R3 SSRS configurations using PowerShell" data-web><i class="fab fa-whatsapp fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://nuxulu.com/2015-07-02-modify-microsoft-dynamics-ax-2012-r3-ssrs-configurations/ data-title="Modify Microsoft Dynamics AX 2012 R3 SSRS configurations using PowerShell"><i class="fab fa-hacker-news fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://nuxulu.com/2015-07-02-modify-microsoft-dynamics-ax-2012-r3-ssrs-configurations/ data-title="Modify Microsoft Dynamics AX 2012 R3 SSRS configurations using PowerShell"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg aria-hidden=true></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://nuxulu.com/2015-07-02-modify-microsoft-dynamics-ax-2012-r3-ssrs-configurations/ data-title="Modify Microsoft Dynamics AX 2012 R3 SSRS configurations using PowerShell"><i class="fab fa-weibo fa-fw" aria-hidden=true></i></a></span></div></div></div><div class=post-info-more><section class=post-tags></section><section><span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/ class=prev rel=prev title="AxBuild.exe for Parallel Compile on AOS"><i class="fas fa-angle-left fa-fw" aria-hidden=true></i>AxBuild.exe for Parallel Compile on AOS</a>
-<a href=/2015-08-04-web-services-on-iis-exception-has-been-thrown-by-the-target-of-an-invocation-ax-installation/ class=next rel=next title="Web Services on IIS - Exception has been thrown by the target of an invocation">Web Services on IIS - Exception has been thrown by the target of an invocation<i class="fas fa-angle-right fa-fw" aria-hidden=true></i></a></div></div><div id=comments><div id=disqus_thread class=comment></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://disqus.com/?ref_noscript>Disqus</a>.</noscript></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>Have a nice day!</div><div class=footer-line itemscope itemtype=http://schema.org/CreativeWork><i class="far fa-copyright fa-fw" aria-hidden=true></i><span itemprop=copyrightYear>2013 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/series/ target=_blank>Max Nguyen</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top"><i class="fas fa-arrow-up fa-fw" aria-hidden=true></i>
-</a><a href=# id=view-comments class=fixed-button title="View Comments"><i class="fas fa-comment fa-fw" aria-hidden=true></i></a></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css><script type=text/javascript src=https://https-dynamics365-github-io.disqus.com/embed.js defer></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:300},comment:{},lightgallery:!0,math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!0,left:"\\begin{equation}",right:"\\end{equation}"},{display:!0,left:"\\begin{equation*}",right:"\\end{equation*}"},{display:!0,left:"\\begin{align}",right:"\\end{align}"},{display:!0,left:"\\begin{align*}",right:"\\end{align*}"},{display:!0,left:"\\begin{alignat}",right:"\\end{alignat}"},{display:!0,left:"\\begin{alignat*}",right:"\\end{alignat*}"},{display:!0,left:"\\begin{gather}",right:"\\end{gather}"},{display:!0,left:"\\begin{CD}",right:"\\end{CD}"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},search:{highlightTag:"em",lunrIndexURL:"/index.json",maxResultLength:10,noResultsFound:"No results found",snippetLength:30,type:"lunr"},twemoji:!0}</script><script type=text/javascript src=/js/theme.min.js></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-57379422-3",{anonymize_ip:!0})</script><script type=text/javascript src="https://www.googletagmanager.com/gtag/js?id=UA-57379422-3" async></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Modify Microsoft Dynamics AX 2012 R3 SSRS configurations using PowerShell - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><meta name="Description" content="Dynamics 365 Finance &amp; Operations"><meta property="og:title" content="Modify Microsoft Dynamics AX 2012 R3 SSRS configurations using PowerShell" />
+<meta property="og:description" content="reportManagerWebConfig.ps1
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 #Modify the Report Server Web.config file. ie replace MSRS11.VAS with your folder name Set-ExecutionPolicy Unrestricted $webConfig = &#34;C:Program FilesMicrosoft SQL ServerMSRS11.VASReporting ServicesReportManagerWeb.config&#34; $currentDate = (get-date).tostring(&#34;mm_dd_yyyy-hh_mm_s&#34;) # month_day_year - hours_mins_seconds $backup = $webConfig &#43; &#34;_$currentDate&#34; $doc = new-object System.Xml.XmlDocument $doc.Load($webConfig) #save a backup copy $doc.Save($backup) Write-Host &#34;Backup saved as &#34; &#43; $backup $node = $doc." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nuxulu.com/2015-07-02-modify-microsoft-dynamics-ax-2012-r3-ssrs-configurations/" /><meta property="og:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2015-07-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2015-07-02T00:00:00+00:00" /><meta property="og:site_name" content="Dynamics 365 Finance &amp; Operations" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/>
+
+<meta name="twitter:title" content="Modify Microsoft Dynamics AX 2012 R3 SSRS configurations using PowerShell"/>
+<meta name="twitter:description" content="reportManagerWebConfig.ps1
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 #Modify the Report Server Web.config file. ie replace MSRS11.VAS with your folder name Set-ExecutionPolicy Unrestricted $webConfig = &#34;C:Program FilesMicrosoft SQL ServerMSRS11.VASReporting ServicesReportManagerWeb.config&#34; $currentDate = (get-date).tostring(&#34;mm_dd_yyyy-hh_mm_s&#34;) # month_day_year - hours_mins_seconds $backup = $webConfig &#43; &#34;_$currentDate&#34; $doc = new-object System.Xml.XmlDocument $doc.Load($webConfig) #save a backup copy $doc.Save($backup) Write-Host &#34;Backup saved as &#34; &#43; $backup $node = $doc."/>
+<meta name="application-name" content="Dynamics 365 Finance &amp; Operations">
+<meta name="apple-mobile-web-app-title" content="Dynamics 365 Finance &amp; Operations"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/Icon/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://nuxulu.com/2015-07-02-modify-microsoft-dynamics-ax-2012-r3-ssrs-configurations/" /><link rel="prev" href="https://nuxulu.com/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/" /><link rel="next" href="https://nuxulu.com/2015-08-04-web-services-on-iis-exception-has-been-thrown-by-the-target-of-an-invocation-ax-installation/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><meta name="google-site-verification" content="f08c47fec0942fa0" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Modify Microsoft Dynamics AX 2012 R3 SSRS configurations using PowerShell",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/nuxulu.com\/2015-07-02-modify-microsoft-dynamics-ax-2012-r3-ssrs-configurations\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/nuxulu.com\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","wordcount":  826 ,
+        "url": "https:\/\/nuxulu.com\/2015-07-02-modify-microsoft-dynamics-ax-2012-r3-ssrs-configurations\/","datePublished": "2015-07-02T00:00:00+00:00","dateModified": "2015-07-02T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/nuxulu.com\/images\/avatar.png",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Max Nguyen"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3534873375492458" crossorigin="anonymous"></script>
+            <a href="/" title="Dynamics 365 Finance &amp; Operations | nuxulu.com"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/Icon/favicon-32x32.png"
+        data-srcset="/Icon/favicon-32x32.png, /Icon/favicon-32x32.png 1.5x, /Icon/favicon-32x32.png 2x"
+        data-sizes="auto"
+        alt="/Icon/favicon-32x32.png"
+        title="/Icon/favicon-32x32.png" /><span class="header-title-pre">  </span>Dynamics 365 Finance &amp; Operations</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/finopsnews/"> X&#43;&#43; Feed </a><a class="menu-item" href="/erd/default.htm"> Entity Relationship </a><a class="menu-item" href="/posts/index.xml"> Rss Feed </a><a class="menu-item" href="/lab/"> Practice lab </a><a class="menu-item" href="/about/"> About me </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3534873375492458" crossorigin="anonymous"></script>
+                <a href="/" title="Dynamics 365 Finance &amp; Operations | nuxulu.com"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/Icon/favicon-32x32.png"
+        data-srcset="/Icon/favicon-32x32.png, /Icon/favicon-32x32.png 1.5x, /Icon/favicon-32x32.png 2x"
+        data-sizes="auto"
+        alt="/Icon/favicon-32x32.png"
+        title="/Icon/favicon-32x32.png" /><span class="header-title-pre">  </span>Dynamics 365 Finance &amp; Operations</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/finopsnews/" title="">X&#43;&#43; Feed</a><a class="menu-item" href="/erd/default.htm" title="">Entity Relationship</a><a class="menu-item" href="/posts/index.xml" title="">Rss Feed</a><a class="menu-item" href="/lab/" title="">Practice lab</a><a class="menu-item" href="/about/" title="">About me</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Modify Microsoft Dynamics AX 2012 R3 SSRS configurations using PowerShell</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-category">included in <a href="/categories/ax-2012/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AX 2012</a>&nbsp;<a href="/categories/report/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Report</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="July 2, 2015">July 2, 2015</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;826 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><p><code>reportManagerWebConfig.ps1</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="c">#Modify the Report Server Web.config file. ie replace MSRS11.VAS with your folder name</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Set-ExecutionPolicy</span> <span class="n">Unrestricted</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$webConfig</span> <span class="p">=</span> <span class="s2">&#34;C:Program FilesMicrosoft SQL ServerMSRS11.VASReporting ServicesReportManagerWeb.config&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$currentDate</span> <span class="p">=</span> <span class="p">(</span><span class="nb">get-date</span><span class="p">).</span><span class="n">tostring</span><span class="p">(</span><span class="s2">&#34;mm_dd_yyyy-hh_mm_s&#34;</span><span class="p">)</span> <span class="c"># month_day_year - hours_mins_seconds</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$backup</span> <span class="p">=</span> <span class="nv">$webConfig</span> <span class="p">+</span> <span class="s2">&#34;_$currentDate&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$doc</span> <span class="p">=</span> <span class="nb">new-object</span> <span class="n">System</span><span class="p">.</span><span class="n">Xml</span><span class="p">.</span><span class="n">XmlDocument</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$doc</span><span class="p">.</span><span class="n">Load</span><span class="p">(</span><span class="nv">$webConfig</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c">#save a backup copy</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$doc</span><span class="p">.</span><span class="n">Save</span><span class="p">(</span><span class="nv">$backup</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Write-Host</span> <span class="s2">&#34;Backup saved as &#34;</span> <span class="p">+</span> <span class="nv">$backup</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$node</span> <span class="p">=</span> <span class="nv">$doc</span><span class="p">.</span><span class="n">get_DocumentElement</span><span class="p">().</span><span class="s2">&#34;system.web&#34;</span><span class="p">.</span><span class="n">httpRuntime</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$attribute</span> <span class="p">=</span> <span class="nv">$doc</span><span class="p">.</span><span class="n">CreateAttribute</span><span class="p">(</span><span class="s2">&#34;maxRequestLength&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$attribute</span><span class="p">.</span><span class="n">set_Value</span><span class="p">(</span><span class="s2">&#34;100000&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$node</span><span class="p">.</span><span class="n">SetAttributeNode</span><span class="p">(</span><span class="nv">$attribute</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$doc</span><span class="p">.</span><span class="n">Save</span><span class="p">(</span><span class="nv">$webConfig</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Write-Host</span> <span class="s2">&#34;1) Modified the Report Manager Web.config file&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code> RsReportServer.ps1</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="c">#Modify the Report Server Web.config file. ie replace MSRS11.VAS with your folder name</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Set-ExecutionPolicy</span> <span class="n">Unrestricted</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$version</span> <span class="p">=</span> <span class="s2">&#34;6.3.0.0&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$webConfig</span> <span class="p">=</span> <span class="s2">&#34;C:Program FilesMicrosoft SQL ServerMSRS11.VASReporting ServicesReportServerRsReportServer.config&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$currentDate</span> <span class="p">=</span> <span class="p">(</span><span class="nb">get-date</span><span class="p">).</span><span class="n">tostring</span><span class="p">(</span><span class="s2">&#34;mm_dd_yyyy-hh_mm_s&#34;</span><span class="p">)</span> <span class="c"># month_day_year - hours_mins_seconds</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$backup</span> <span class="p">=</span> <span class="nv">$webConfig</span> <span class="p">+</span>  <span class="s2">&#34;.xml&#34;</span> <span class="c">#&#34;_$currentDate&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$doc</span> <span class="p">=</span> <span class="nb">new-object</span> <span class="n">System</span><span class="p">.</span><span class="n">Xml</span><span class="p">.</span><span class="n">XmlDocument</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$doc</span><span class="p">.</span><span class="n">Load</span><span class="p">(</span><span class="nv">$webConfig</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">#save a backup copy</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$doc</span><span class="p">.</span><span class="n">Save</span><span class="p">(</span><span class="nv">$backup</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Write
+</span></span></span><span class="line"><span class="cl"><span class="nb">Write-Host</span>  <span class="s2">&#34;Backup saved as &#34;</span> <span class="p">+</span> <span class="nv">$backup</span>
+</span></span><span class="line"><span class="cl"><span class="c">#remove node &#34;RSWindowsNegotiate&#34; </span>
+</span></span><span class="line"><span class="cl"><span class="nv">$node</span> <span class="p">=</span> <span class="nv">$doc</span><span class="p">.</span><span class="n">documentElement</span><span class="p">.</span><span class="n">SelectSingleNode</span><span class="p">(</span><span class="s2">&#34;//Configuration/Authentication/AuthenticationTypes/RSWindowsNegotiate&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nv">$node</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$node</span><span class="p">.</span><span class="n">ParentNode</span><span class="p">.</span><span class="n">RemoveChild</span><span class="p">(</span><span class="nv">$node</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">Write
+</span></span></span><span class="line"><span class="cl"><span class="nb"></span>    <span class="nb">Write-Host</span>  <span class="s2">&#34;RSWindowsNegotiate Removed&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c">#Add node &#34;IsRdceEnabled&#34; </span>
+</span></span><span class="line"><span class="cl"><span class="nv">$nodeService</span> <span class="p">=</span> <span class="nv">$doc</span><span class="p">.</span><span class="n">documentElement</span><span class="p">.</span><span class="n">SelectSingleNode</span><span class="p">(</span><span class="s2">&#34;//Configuration/Service&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$nodeIsRdceEnabled</span> <span class="p">=</span> <span class="nv">$doc</span><span class="p">.</span><span class="n">documentElement</span><span class="p">.</span><span class="n">SelectSingleNode</span><span class="p">(</span><span class="s2">&#34;//Configuration/Service/IsRdceEnabled&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">#Set to true if already exists, otherwise create the node</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nv">$nodeIsRdceEnabled</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$nodeIsRdceEnabled</span><span class="p">.</span><span class="n">InnerXml</span> <span class="p">=</span> <span class="s2">&#34;True&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nv">$nodeService</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$subnodeService</span> <span class="p">=</span> <span class="nv">$doc</span><span class="p">.</span><span class="n">createElement</span><span class="p">(</span><span class="s2">&#34;IsRdceEnabled&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="nv">$subnodeService</span><span class="p">.</span><span class="n">InnerXml</span> <span class="p">=</span> <span class="s2">&#34;True&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$nodeService</span><span class="p">.</span><span class="n">appendChild</span><span class="p">(</span><span class="nv">$subnodeService</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">Write
+</span></span></span><span class="line"><span class="cl"><span class="nb"></span>        <span class="nb">Write-Host</span>  <span class="s2">&#34;IsRdceEnabled added&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c">#Find Data</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$nodeCodeAxQuery</span> <span class="p">=</span> <span class="nv">$doc</span><span class="p">.</span><span class="n">documentElement</span><span class="p">.</span><span class="n">SelectSingleNode</span><span class="p">(</span><span class="s2">&#34;//Configuration/Extensions/Data/Extension[@Name=&#39;AXQUERY&#39;]&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">#Add Data Extension</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="o">-not</span><span class="p">(</span><span class="nv">$nodeCodeAxQuery</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$nodeData</span> <span class="p">=</span> <span class="nv">$doc</span><span class="p">.</span><span class="n">documentElement</span><span class="p">.</span><span class="n">SelectSingleNode</span><span class="p">(</span><span class="s2">&#34;//Configuration/Extensions/Data&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nv">$nodeData</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$nodeData</span><span class="p">.</span><span class="n">InnerXml</span> <span class="p">=</span> <span class="nv">$nodeData</span><span class="p">.</span><span class="n">InnerXml</span> <span class="p">+</span> 
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&lt;Extension Name=&#39;AXQUERY&#39; Type=&#39;Microsoft.Dynamics.Framework.Reports.AxQueryConnection,Microsoft.Dynamics.Framework.ReportsExtensions, Version=&#34;</span> <span class="p">+</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">$version</span> <span class="p">+</span>
+</span></span><span class="line"><span class="cl">		<span class="s2">&#34;, Culture=neutral, PublicKeyToken=31bf3856ad364e35&#39;/&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">      &lt;Extension Name=&#39;AXDATAMETHOD&#39; Type=&#39;Microsoft.Dynamics.Framework.Reports.AxDataMethodConnection,Microsoft.Dynamics.Framework.ReportsExtensions, Version=&#34;</span> <span class="p">+</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">$version</span> <span class="p">+</span>
+</span></span><span class="line"><span class="cl">		<span class="s2">&#34;, Culture=neutral, PublicKeyToken=31bf3856ad364e35&#39;/&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">      &lt;Extension Name=&#39;AXREPORTDATAPROVIDER&#39; Type=&#39;Microsoft.Dynamics.Framework.Reports.AxReportProviderConnection,Microsoft.Dynamics.Framework.ReportsExtensions, Version=&#34;</span> <span class="p">+</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">$version</span> <span class="p">+</span>
+</span></span><span class="line"><span class="cl">		<span class="s2">&#34;, Culture=neutral, PublicKeyToken=31bf3856ad364e35&#39;/&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">      &lt;Extension Name=&#39;AXADOMD&#39; Type=&#39;Microsoft.Dynamics.Framework.Reports.AxAdomdConnection,Microsoft.Dynamics.Framework.ReportsExtensions, Version=&#34;</span> <span class="p">+</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">$version</span> <span class="p">+</span>
+</span></span><span class="line"><span class="cl">		<span class="s2">&#34;, Culture=neutral, PublicKeyToken=31bf3856ad364e35&#39;/&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">      &lt;Extension Name=&#39;AXENUMDATAPROVIDER&#39; Type=&#39;Microsoft.Dynamics.Framework.Reports.EnumProviderConnection,Microsoft.Dynamics.Framework.ReportsExtensions, Version=&#34;</span> <span class="p">+</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">$version</span> <span class="p">+</span>
+</span></span><span class="line"><span class="cl">		<span class="s2">&#34;, Culture=neutral, PublicKeyToken=31bf3856ad364e35&#39;/&gt;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">Write-Host</span>  <span class="s2">&#34;Data Extension added&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c">#Find Extensions</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$nodeExtensions</span> <span class="p">=</span> <span class="nv">$doc</span><span class="p">.</span><span class="n">documentElement</span><span class="p">.</span><span class="n">SelectSingleNode</span><span class="p">(</span><span class="s2">&#34;//Configuration/Extensions&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$nodeReportDefinitionCustomization</span> <span class="p">=</span> <span class="nv">$doc</span><span class="p">.</span><span class="n">documentElement</span><span class="p">.</span><span class="n">SelectSingleNode</span><span class="p">(</span><span class="s2">&#34;//Configuration/Extensions/ReportDefinitionCustomization&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="o">-not</span><span class="p">(</span><span class="nv">$nodeReportDefinitionCustomization</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c">#Add ReportDefinitionCustomization</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nv">$nodeExtensions</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$subnodeExt</span> <span class="p">=</span> <span class="nv">$doc</span><span class="p">.</span><span class="n">createElement</span><span class="p">(</span><span class="s2">&#34;ReportDefinitionCustomization&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="nv">$subnodeExt</span><span class="p">.</span><span class="n">InnerXml</span> <span class="p">=</span> <span class="s2">&#34;&lt;Extension Name=&#39;AXRDCE&#39; Type=&#39;Microsoft.Dynamics.Framework.Reports.AxRdce.CustomizationExtension,Microsoft.Dynamics.Framework.ReportsExtensions, Version=&#34;</span> <span class="p">+</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">$version</span> <span class="p">+</span>
+</span></span><span class="line"><span class="cl">		<span class="s2">&#34;, Culture=neutral, PublicKeyToken=31bf3856ad364e35&#39;/&gt;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$nodeExtensions</span><span class="p">.</span><span class="n">appendChild</span><span class="p">(</span><span class="nv">$subnodeExt</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">Write
+</span></span></span><span class="line"><span class="cl"><span class="nb"></span>        <span class="nb">Write-Host</span>  <span class="s2">&#34;ReportDefinitionCustomization added&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$nodeAXRDCE</span><span class="p">=</span> <span class="nv">$doc</span><span class="p">.</span><span class="n">documentElement</span><span class="p">.</span><span class="n">SelectSingleNode</span><span class="p">(</span><span class="s2">&#34;//Configuration/Extensions/ReportDefinitionCustomization/Extension [@Name=&#39;AXRDCE&#39;]&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">-not</span><span class="p">(</span><span class="nv">$nodeAXRDCE</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$nodeReportDefinitionCustomization</span><span class="p">.</span><span class="n">InnerXml</span> <span class="p">=</span> <span class="nv">$nodeReportDefinitionCustomization</span><span class="p">.</span><span class="n">InnerXml</span> <span class="p">+</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;&lt;Extension Name=&#39;AXRDCE&#39; Type=&#39;Microsoft.Dynamics.Framework.Reports.AxRdce.CustomizationExtension,Microsoft.Dynamics.Framework.ReportsExtensions, Version=&#34;</span> <span class="p">+</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">$version</span> <span class="p">+</span>
+</span></span><span class="line"><span class="cl">		<span class="s2">&#34;, Culture=neutral, PublicKeyToken=31bf3856ad364e35&#39;/&gt;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$doc</span><span class="p">.</span><span class="n">Save</span><span class="p">(</span><span class="nv">$webConfig</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">Write
+</span></span></span><span class="line"><span class="cl"><span class="nb">Write-Host</span>  <span class="s2">&#34;2) Modified the Report Server Web.config file&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">text</span> <span class="n">some</span> <span class="n">thing</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>ReportServerRsSrvPolicyConfig.ps1</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="c">#Instructions: Modify the Report Server Web.config file. ie replace MSRS11.VAS with your folder name</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Modify version 6.3.0.0 for Dynamics AX 2012</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Set-ExecutionPolicy</span> <span class="n">Unrestricted</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$version</span> <span class="p">=</span> <span class="s2">&#34;6.3.0.0&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$webConfig</span> <span class="p">=</span> <span class="s2">&#34;C:Program FilesMicrosoft SQL ServerMSRS11.VASReporting ServicesReportServerrssrvpolicy.config&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$currentDate</span> <span class="p">=</span> <span class="p">(</span><span class="nb">get-date</span><span class="p">).</span><span class="n">tostring</span><span class="p">(</span><span class="s2">&#34;mm_dd_yyyy-hh_mm_s&#34;</span><span class="p">)</span> <span class="c"># month_day_year - hours_mins_seconds</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$backup</span> <span class="p">=</span> <span class="nv">$webConfig</span> <span class="p">+</span> <span class="s2">&#34;.xml&#34;</span> <span class="c">#&#34;_$currentDate&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$doc</span> <span class="p">=</span> <span class="nb">new-object</span> <span class="n">System</span><span class="p">.</span><span class="n">Xml</span><span class="p">.</span><span class="n">XmlDocument</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$doc</span><span class="p">.</span><span class="n">Load</span><span class="p">(</span><span class="nv">$webConfig</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c">#save a backup copy</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$doc</span><span class="p">.</span><span class="n">Save</span><span class="p">(</span><span class="nv">$backup</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Write
+</span></span></span><span class="line"><span class="cl"><span class="nb">Write-Host</span> <span class="s2">&#34;Backup saved as &#34;</span> <span class="p">+</span> <span class="nv">$backup</span>
+</span></span><span class="line"><span class="cl"><span class="c">#Add SecurityClass</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$nodeAxSessionPermission</span> <span class="p">=</span> <span class="nv">$doc</span><span class="p">.</span><span class="n">documentElement</span><span class="p">.</span><span class="n">SelectSingleNode</span><span class="p">(</span><span class="s2">&#34;//configuration/mscorlib/security/policy/PolicyLevel/SecurityClasses/SecurityClass[@Name=&#39;AxSessionPermission&#39;]&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="o">-not</span><span class="p">(</span><span class="nv">$nodeAxSessionPermission</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">$nodeSecurityClasses</span> <span class="p">=</span> <span class="nv">$doc</span><span class="p">.</span><span class="n">documentElement</span><span class="p">.</span><span class="n">SelectSingleNode</span><span class="p">(</span><span class="s2">&#34;//configuration/mscorlib/security/policy/PolicyLevel/SecurityClasses&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="k">if</span> <span class="p">(</span><span class="nv">$nodeSecurityClasses</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">$nodeSecurityClass</span> <span class="p">=</span> <span class="nv">$doc</span><span class="p">.</span><span class="n">createElement</span><span class="p">(</span><span class="s2">&#34;SecurityClass&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">$nodeSecurityClass</span><span class="p">.</span><span class="n">InnerXml</span> <span class="p">=</span> <span class="s2">&#34;&lt;SecurityClass Name=&#39;AxSessionPermission&#39; Description=&#39;Microsoft.Dynamics.Framework.Reports.AxSessionPermission, Microsoft.Dynamics.Framework.Reports, Version=&#34;</span> <span class="p">+</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">$version</span> <span class="p">+</span>
+</span></span><span class="line"><span class="cl"> <span class="s2">&#34;, Culture=neutral, PublicKeyToken=31bf3856ad364e35&#39; /&gt;&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">$nodeSecurityClasses</span><span class="p">.</span><span class="n">appendChild</span><span class="p">(</span><span class="nv">$nodeSecurityClass</span><span class="p">.</span><span class="n">FirstChild</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Write
+</span></span></span><span class="line"><span class="cl"><span class="nb"></span> <span class="nb">Write-Host</span> <span class="s2">&#34;SecurityClass added&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c">#Add PermissionSet</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$nodeAxSessionPermissionSet</span> <span class="p">=</span> <span class="nv">$doc</span><span class="p">.</span><span class="n">documentElement</span><span class="p">.</span><span class="n">SelectSingleNode</span><span class="p">(</span><span class="s2">&#34;//configuration/mscorlib/security/policy/PolicyLevel/NamedPermissionSets/PermissionSet[@class=&#39;NamedPermissionSet&#39; and @version=&#39;1&#39; and @Name=&#39;AxSessionPermissionSet&#39;]&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="o">-not</span><span class="p">(</span><span class="nv">$nodeAxSessionPermissionSet</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">$nodeNamedPermissionSets</span> <span class="p">=</span> <span class="nv">$doc</span><span class="p">.</span><span class="n">documentElement</span><span class="p">.</span><span class="n">SelectSingleNode</span><span class="p">(</span><span class="s2">&#34;//configuration/mscorlib/security/policy/PolicyLevel/NamedPermissionSets&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="k">if</span> <span class="p">(</span><span class="nv">$nodeNamedPermissionSets</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">$nodePermissionSet</span> <span class="p">=</span> <span class="nv">$doc</span><span class="p">.</span><span class="n">createElement</span><span class="p">(</span><span class="s2">&#34;PermissionSet&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">$nodePermissionSet</span><span class="p">.</span><span class="n">InnerXml</span> <span class="p">=</span> <span class="s2">&#34;&lt;PermissionSet class=&#39;NamedPermissionSet&#39; version=&#39;1&#39; Name=&#39;AxSessionPermissionSet&#39;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2"> &lt;IPermission class=&#39;AxSessionPermission&#39; version=&#39;1&#39; Unrestricted=&#39;true&#39; /&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2"> &lt;IPermission class=&#39;SecurityPermission&#39; version=&#39;1&#39; Flags=&#39;Assertion&#39; /&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2"> &lt;/PermissionSet&gt;&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">$nodeNamedPermissionSets</span><span class="p">.</span><span class="n">appendChild</span><span class="p">(</span><span class="nv">$nodePermissionSet</span><span class="p">.</span><span class="n">FirstChild</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Write
+</span></span></span><span class="line"><span class="cl"><span class="nb"></span> <span class="nb">Write-Host</span> <span class="s2">&#34;PermissionSet added&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c">#Add CodeGroup</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$nodeAxStrongName</span> <span class="p">=</span> <span class="nv">$doc</span><span class="p">.</span><span class="n">documentElement</span><span class="p">.</span><span class="n">SelectSingleNode</span><span class="p">(</span><span class="s2">&#34;//configuration/mscorlib/security/policy/PolicyLevel/CodeGroup[@class=&#39;FirstMatchCodeGroup&#39; and @version=&#39;1&#39; and @PermissionSetName=&#39;Nothing&#39;]/CodeGroup[@class=&#39;UnionCodeGroup&#39; and @version=&#39;1&#39; and @PermissionSetName=&#39;FullTrust&#39; and @Name=&#39;AX_Reports_Strong_Name&#39;]&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="o">-not</span><span class="p">(</span><span class="nv">$nodeAxStrongName</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">$nodeCodeGroup</span> <span class="p">=</span> <span class="nv">$doc</span><span class="p">.</span><span class="n">documentElement</span><span class="p">.</span><span class="n">SelectSingleNode</span><span class="p">(</span><span class="s2">&#34;//configuration/mscorlib/security/policy/PolicyLevel/CodeGroup[@class=&#39;FirstMatchCodeGroup&#39; and @version=&#39;1&#39; and @PermissionSetName=&#39;Nothing&#39;]&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="k">if</span> <span class="p">(</span><span class="nv">$nodeCodeGroup</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">$subnodeCodeGroup</span> <span class="p">=</span> <span class="nv">$doc</span><span class="p">.</span><span class="n">createElement</span><span class="p">(</span><span class="s2">&#34;CodeGroup&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">$subnodeCodeGroup</span><span class="p">.</span><span class="n">InnerXml</span> <span class="p">=</span> <span class="s2">&#34;&lt;CodeGroup class=&#39;UnionCodeGroup&#39; version=&#39;1&#39; PermissionSetName=&#39;FullTrust&#39; Name=&#39;AX_Reports_Strong_Name&#39; Description=&#39;This code group grants Dynamics AX Reports code full trust. &#39;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2"> &lt;IMembershipCondition class=&#39;StrongNameMembershipCondition&#39; version=&#39;1&#39; PublicKeyBlob=&#39;0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9&#39; /&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2"> &lt;/CodeGroup&gt;&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">$nodeCodeGroup</span><span class="p">.</span><span class="n">appendChild</span><span class="p">(</span><span class="nv">$subnodeCodeGroup</span><span class="p">.</span><span class="n">FirstChild</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Write
+</span></span></span><span class="line"><span class="cl"><span class="nb"></span> <span class="nb">Write-Host</span> <span class="s2">&#34;CodeGroup added&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c">#Add nodeReportExpressionPermission</span>
+</span></span><span class="line"><span class="cl"><span class="c">#http://blogs.msdn.com/b/axsupport/archive/2012/02/02/microsoft-dynamics-ax-2012-reporting-extensions-error-system-security-permissions-environmentpermission-while-running-report.aspx</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$nodeReportExpressionPermission</span> <span class="p">=</span> <span class="nv">$doc</span><span class="p">.</span><span class="n">documentElement</span><span class="p">.</span><span class="n">SelectSingleNode</span><span class="p">(</span><span class="s2">&#34;//configuration/mscorlib/security/policy/PolicyLevel/CodeGroup[@class=&#39;FirstMatchCodeGroup&#39; and @version=&#39;1&#39; and @PermissionSetName=&#39;Nothing&#39;]/CodeGroup[@class=&#39;UnionCodeGroup&#39; and @version=&#39;1&#39; and @PermissionSetName=&#39;Execution&#39; and @Name=&#39;Report_Expressions_Default_Permissions&#39;]&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nv">$nodeReportExpressionPermission</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">$attribute</span> <span class="p">=</span> <span class="nv">$doc</span><span class="p">.</span><span class="n">CreateAttribute</span><span class="p">(</span><span class="s2">&#34;PermissionSetName&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">$attribute</span><span class="p">.</span><span class="n">set_Value</span><span class="p">(</span><span class="s2">&#34;FullTrust&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">$nodeReportExpressionPermission</span><span class="p">.</span><span class="n">SetAttributeNode</span><span class="p">(</span><span class="nv">$attribute</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$doc</span><span class="p">.</span><span class="n">Save</span><span class="p">(</span><span class="nv">$webConfig</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Write
+</span></span></span><span class="line"><span class="cl"><span class="nb">Write-Host</span> <span class="s2">&#34;3) Modified the Report Server rssrvpolicy.config file&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on July 2, 2015</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/2015-07-02-modify-microsoft-dynamics-ax-2012-r3-ssrs-configurations/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://nuxulu.com/2015-07-02-modify-microsoft-dynamics-ax-2012-r3-ssrs-configurations/" data-title="Modify Microsoft Dynamics AX 2012 R3 SSRS configurations using PowerShell"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://nuxulu.com/2015-07-02-modify-microsoft-dynamics-ax-2012-r3-ssrs-configurations/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Linkedin" data-sharer="linkedin" data-url="https://nuxulu.com/2015-07-02-modify-microsoft-dynamics-ax-2012-r3-ssrs-configurations/"><i class="fab fa-linkedin fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://nuxulu.com/2015-07-02-modify-microsoft-dynamics-ax-2012-r3-ssrs-configurations/" data-title="Modify Microsoft Dynamics AX 2012 R3 SSRS configurations using PowerShell" data-web><i class="fab fa-whatsapp fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://nuxulu.com/2015-07-02-modify-microsoft-dynamics-ax-2012-r3-ssrs-configurations/" data-title="Modify Microsoft Dynamics AX 2012 R3 SSRS configurations using PowerShell"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://nuxulu.com/2015-07-02-modify-microsoft-dynamics-ax-2012-r3-ssrs-configurations/" data-title="Modify Microsoft Dynamics AX 2012 R3 SSRS configurations using PowerShell"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://nuxulu.com/2015-07-02-modify-microsoft-dynamics-ax-2012-r3-ssrs-configurations/" data-title="Modify Microsoft Dynamics AX 2012 R3 SSRS configurations using PowerShell"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2015-07-01-axbuild-exe-for-parallel-compile-on-aos/" class="prev" rel="prev" title="AxBuild.exe for Parallel Compile on AOS"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>AxBuild.exe for Parallel Compile on AOS</a>
+            <a href="/2015-08-04-web-services-on-iis-exception-has-been-thrown-by-the-target-of-an-invocation-ax-installation/" class="next" rel="next" title="Web Services on IIS - Exception has been thrown by the target of an invocation">Web Services on IIS - Exception has been thrown by the target of an invocation<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Have a nice day!</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2013 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/series/" target="_blank">Max Nguyen</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://https-dynamics365-github-io.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":300},"comment":{},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'UA-57379422-3', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-57379422-3" async></script></body>
+</html>
