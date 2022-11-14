@@ -1,0 +1,474 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Dynamics 365 finance and operations - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</title>
+        <link>https://nuxulu.com/tags/dynamics-365-finance-and-operations/</link>
+        <description>Dynamics 365 finance and operations - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Sun, 10 May 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/dynamics-365-finance-and-operations/" rel="self" type="application/rss+xml" /><item>
+    <title>Database Sync after data type on field has been changed</title>
+    <link>https://nuxulu.com/2020-05-10-database-sync-after-data-type-on-field-has-been-changed/</link>
+    <pubDate>Sun, 10 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2020-05-10-database-sync-after-data-type-on-field-has-been-changed/</guid>
+    <description><![CDATA[<p>You will got an error like this when doing Database Synchronization after changing the data type of the field on the table:</p>
+<div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">InvalidOperationException: Table &hellip; : Converting Field &lsquo;..&rsquo; of Type &lsquo;..&rsquo; to &lsquo;..&rsquo; is not support. Please drop the original field, sync the table and add new field with same name if needed.</div>
+        </div>
+    </div>
+<p>Solution:</p>
+<ul>
+<li>Drop the table and delete references from SQLDictionary</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">AXDB</span><span class="p">.</span><span class="n">dbo</span><span class="p">.</span><span class="n">NAMEOFTABLE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DELETE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">AXDB</span><span class="p">.</span><span class="n">dbo</span><span class="p">.</span><span class="n">SQLDICTIONARY</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">TABLEID</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">TABLEID</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SQLDICTIONARY</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;NAMEOFTABLE&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">FIELDID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Restart IIS</li>
+<li>In VS 2015, run DB sync again.</li>
+</ul>
+<p>Thank you for reading.</p>
+]]></description>
+</item>
+<item>
+    <title>How to skip standard code in Dynamics 365 finance and operations</title>
+    <link>https://nuxulu.com/2020-04-09-how-to-ignore-standard-code-in-dynamics-365-finance-and-operations/</link>
+    <pubDate>Thu, 09 Apr 2020 00:00:00 &#43;0000</pubDate>
+    <author>Alex Ong</author>
+    <guid>https://nuxulu.com/2020-04-09-how-to-ignore-standard-code-in-dynamics-365-finance-and-operations/</guid>
+    <description><![CDATA[<div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Disclaimers: Try at your own risk, this is consider as a bug and it will be fixed soon.</div>
+        </div>
+    </div>
+<p>According to this MS article about Chain Of Command <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/extensibility/method-wrapping-coc#wrapper-methods-must-always-call-next" target="_blank" rel="noopener noreffer ">https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/extensibility/method-wrapping-coc#wrapper-methods-must-always-call-next</a></p>
+<blockquote>
+<p>&ldquo;Wrapper methods must always call next Wrapper methods in an extension class must always call next, so that the next method in the chain and, finally, the original implementation are always called. This restriction helps guarantee that every method in the chain contributes to the result. In the current implementation of this restriction, the call to next must be in the first-level statements in the method body.&rdquo;</p>
+</blockquote>
+<p>So as described in the article, the Chain Of Command in Dynamics 365 finance and operations is used to add the logic before or after a method of a class is invoked and the original method will always be executed due to the compulsory of the next statement.
+When doing some implementations, we found out that there is a tricky way to completely <strong>ignore</strong> the execution of the original method of the class that is extended.</p>
+<p>Please see below for more details:
+For example, I created a project and add a new runnable class named Alex:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Alex</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="n">error</span> <span class="p">(</span><span class="s">&#34;Hello World&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>When this class runs, a <em>Hello World</em> info message will be displayed in the FinOps UI. Then I used chain of command to create Alex_Extension class that extends this class and &ldquo;override&rdquo; the main method of the Alex&rsquo;s class by putting the next call into another method and never call it like this:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="na">[ExtensionOf(classStr(Alex))]</span>
+</span></span><span class="line"><span class="cl"><span class="n">final</span> <span class="k">class</span> <span class="nc">Alex_Extension</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//Implement something here</span>
+</span></span><span class="line"><span class="cl">        <span class="n">info</span> <span class="p">(</span><span class="s">&#34;Ok&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">void</span> <span class="n">ignore</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">next</span> <span class="n">main</span><span class="p">(</span><span class="n">_args</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>When I run the <em>AlexExtension</em>, the original main method of the Alex class will be ignored and only the additional block of code that I wrote in the <em>AlexExtension</em> class will be executed, so only the <strong>OK</strong> info will appear.</p>
+<p>Now we will try with a sample scenario from D365 Finance and Operation. In <strong>General Ledger</strong> Module, we have <strong>General journals</strong> form</p>
+<p></p>
+<p>When you click the button for <strong>Journal Print</strong>, the menu item will be triggered and point to the controller name: <em>LedgerJournalController</em> with <em>LedgerJournalController</em> class and the report will be generated.</p>
+<p>I will use COC to “override” the main method of <em>LedgerJournalController</em> class by applying the method above:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="na">[ExtensionOf(classStr(LedgerJournalController))]</span>
+</span></span><span class="line"><span class="cl"><span class="n">final</span> <span class="k">class</span> <span class="nc">Alex_LedgerJournalController_Extension</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">(</span><span class="s">&#34;ok&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">void</span> <span class="n">ignore_first</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">next</span> <span class="n">main</span><span class="p">(</span><span class="n">_args</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Using this I will ignore the the main method of <em>LedgerJournalController</em> class and instead of generate the report, the result will be only the <strong>OK</strong> info line in the extension class:</p>
+<p></p>
+<p>This is a little bit tricky because we still call next in our extension class as per the requirement of COC, but as we never call the method that &ldquo;wrap&rdquo; the next call so it will not be executed. You can try this to simply ignore or rewrite a method of a class in FinOps.</p>
+<p>Thank you for reading.</p>
+]]></description>
+</item>
+<item>
+    <title>Getting onebox VHD Dynamics 365 finance and operations virtual machine</title>
+    <link>https://nuxulu.com/2020-04-06-getting-onebox-vhd-dynamics-365-finance-and-operations-virtual-machine/</link>
+    <pubDate>Mon, 06 Apr 2020 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2020-04-06-getting-onebox-vhd-dynamics-365-finance-and-operations-virtual-machine/</guid>
+    <description><![CDATA[<ul>
+<li><a href="#1-download-dynamics-365-finance-and-operations-vhd-files" rel="">1. Download Dynamics 365 finance and operations VHD files</a></li>
+<li><a href="#2-extend-the-evaluattion-license" rel="">2. Extend the Evaluattion license</a></li>
+<li><a href="#3-rename-vm" rel="">3. Rename VM</a>
+<ul>
+<li><a href="#update-financial-reporting" rel="">Update financial reporting</a></li>
+<li><a href="#update-the-azure-storage-emulator" rel="">Update the Azure Storage Emulator</a></li>
+</ul>
+</li>
+<li><a href="#4-location-of-packages-source-code-and-other-aos-configurations" rel="">4. Location of packages, source code, and other AOS configurations</a></li>
+<li><a href="#5-redeploying-or-restarting-the-runtime-on-the-vm" rel="">5. Redeploying or restarting the runtime on the VM</a></li>
+<li><a href="#6-update-to-the-latest-version" rel="">6. Update to the latest version</a></li>
+<li><a href="#7-for-vhd-that-was-released-for-versions-10024-and-later" rel="">7. For (VHD) that was released for versions 10.0.24 and later</a>
+<ul>
+<li><a href="#71-register-a-new-application-in-azure-active-directory" rel="">7.1 Register a new application in Azure Active Directory</a></li>
+<li><a href="#72-run-the-setup-script" rel="">7.2 Run the setup script</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="1-download-dynamics-365-finance-and-operations-vhd-files">1. Download Dynamics 365 finance and operations VHD files</h2>
+<ul>
+<li>
+<p>Go to the LCS main page and select <strong>Shared asset library</strong> or go to Shared Asset Library.</p>
+</li>
+<li>
+<p>Select the asset type <strong>Downloadable VHD</strong>.</p>
+</li>
+<li>
+<p>Find the VHD you are looking for based on the desired Finance and Operation version. The VHD is divided into multiple file parts that you need to download. For example, the asset files that start with &ldquo;VHD - 10.0.5&rdquo; are the different files you need in order to install version 10.0.5.</p>
+</li>
+<li>
+<p>Download all files (parts) associated with the desired VHD to a local folder.</p>
+</li>
+<li>
+<p>After the download is complete, run the executable file that you downloaded, accept the software license agreement, and choose a file path to extract the VHD to.</p>
+</li>
+<li>
+<p>This creates a local VHD file that you can use to run a local virtual machine.</p>
+</li>
+<li>
+<p>Sign in to the VM by using the following credentials:</p>
+<ul>
+<li>User name: <strong>Administrator</strong></li>
+<li>Password: <strong>pass@word1</strong></li>
+</ul>
+</li>
+<li>
+<p>Provision the administrator user.</p>
+</li>
+</ul>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>Note<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>For security reasons the reply URL setup for AAD was changed, The &ldquo;Admin user provisioning&rdquo; tool is deleted from 10.0.24 <strong>cloud hosted</strong> VM. More info here <a href="https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/dev-tools/access-instances#frequently-asked-questions" target="_blank" rel="noopener noreffer ">https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/dev-tools/access-instances#frequently-asked-questions</a>.</p>
+<p>You still have it in the VHD machine.</p>
+</div>
+        </div>
+    </div>
+<h2 id="2-extend-the-evaluattion-license">2. Extend the Evaluattion license</h2>
+<ul>
+<li>Run cmd with Admin right.</li>
+<li>Run <code>slmgr -dli</code> to check the current period status.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">Name: Windows(R), ServerDatacenterEval edition
+</span></span><span class="line"><span class="cl">Description: Windows(R) Operating System, TIMEBASED_EVAL channel
+</span></span><span class="line"><span class="cl">Partial Product Key: H6F8M
+</span></span><span class="line"><span class="cl">License Status: Licensed
+</span></span><span class="line"><span class="cl">Timebased activation expiration: 259199 minute(s) (180 day(s))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Run <code>slmgr –rearm</code> to extend the evaluation period.</li>
+<li>Run <code>slmgr –dlv</code> to see how many extensions do you have left. You can only extend the license a limited number of times.</li>
+</ul>
+<h2 id="3-rename-vm">3. Rename VM</h2>
+<ul>
+<li>
+<p>Rename and restart the machine before you start development or connect to Azure DevOps.</p>
+</li>
+<li>
+<p>Update the server name in SQL Server</p>
+<ul>
+<li>The default credential for SQL server is <strong>axdbadmin</strong> and password <strong>AOSWebSite@12</strong></li>
+</ul>
+</li>
+</ul>
+<p>You can also see the password (<code>DataAccess.AxAdminSqlPwd</code>) in the <code>C:\AOSService\webroot\web.config</code></p>
+<p>To decrypt run this command:
+<code>C:\AOSService\webroot\bin\Microsoft.Dynamics.AX.Framework.ConfigEncryptor.exe -decrypt C:\AOSService\webroot\web.config</code></p>
+<p>To encrypt run this command:
+<code>C:\AOSService\webroot\bin\Microsoft.Dynamics.AX.Framework.ConfigEncryptor.exe -encrypt C:\AOSService\webroot\web.config</code></p>
+<p>If you see the error</p>
+<p><div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">No certificate found for id &lsquo;7366E25DC94FA8A400FA0037FFF3BB300D9482D4&rsquo;</div>
+        </div>
+    </div>
+Please follow <a href="#7-for-vhd-that-was-released-for-versions-10024-and-later" rel="">this step</a> first.</p>
+<ul>
+<li>
+<p>Run following query</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">--MININT-57EHFHJ
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">sp_dropserver</span><span class="w"> </span><span class="p">[</span><span class="n">old_name</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">sp_addserver</span><span class="w"> </span><span class="p">[</span><span class="n">new_name</span><span class="p">],</span><span class="w"> </span><span class="k">local</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Tip<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">In these commands, be sure to replace old_name with the old name of the server and new_name with the new name. By default, the old name is <code>MININT-F36S5EH</code>, but you can run select @@servername to get the old name. Additionally, be sure to restart the SQL Server service after the commands have finished running.</div>
+        </div>
+    </div>
+<ul>
+<li>
+<p>Restart SQL service</p>
+</li>
+<li>
+<p>Open Reporting Services Configuration Manager for SQL Server 2016, then <strong>Select Database</strong>, select <strong>Change Database</strong>, and use the new server name.</p>
+</li>
+</ul>
+<h3 id="update-financial-reporting">Update financial reporting</h3>
+<p>Go to LCS portal and download a one version package, we will need the scripts from it. Open a Microsoft Windows PowerShell command window as an admin, and run the following command. This command contains the default passwords that might have to be updated. Be sure to replace <strong>new_name</strong> with the new name.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">cd </span><span class="p">&lt;</span><span class="n">update</span> <span class="n">folder</span><span class="p">&gt;\</span><span class="n">MROneBox</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">Update</span>
+</span></span><span class="line"><span class="cl"><span class="p">.\</span><span class="n">ConfigureMRDatabase</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-NewAosDatabaseName</span> <span class="n">AxDB</span> <span class="n">-NewAosDatabaseServerName</span> <span class="n">new_name</span> <span class="n">-NewMRDatabaseName</span> <span class="n">ManagementReporter</span> <span class="n">-NewAxAdminUserPassword</span> <span class="n">AOSWebSite</span><span class="nv">@123</span> <span class="n">-NewMRAdminUserName</span> <span class="n">MRUser</span> <span class="n">-NewMRAdminUserPassword</span> <span class="n">MRWebSite</span><span class="nv">@123</span> <span class="n">-NewMRRuntimeUserName</span> <span class="n">MRUSer</span> <span class="n">-NewMRRuntimeUserPassword</span> <span class="n">MRWebSite</span><span class="nv">@123</span> <span class="n">-NewAxMRRuntimeUserName</span> <span class="n">MRUser</span> <span class="n">-NewAxMRRuntimeUserPassword</span> <span class="n">MRWebSite</span><span class="nv">@123</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="update-the-azure-storage-emulator">Update the Azure Storage Emulator</h3>
+<ul>
+<li>
+<p>From the Start menu, open Microsoft Azure Storage Emulator - v4.0, and run the following commands.</p>
+<p><code>AzureStorageEmulator.exe start</code></p>
+<blockquote>
+<p>If you got an error <strong><em>Port conflict with existing application</em></strong>, please check this <a href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/" rel="">post</a>.</p>
+</blockquote>
+</li>
+<li>
+<p>This command verifies that the emulator is running.</p>
+<p><code>AzureStorageEmulator.exe status</code></p>
+</li>
+<li>
+<p>Update the server name</p>
+<p><code>AzureStorageEmulator.exe init -server new_name</code></p>
+<p>For more information about Azure storage emulator please follow <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator" target="_blank" rel="noopener noreffer ">https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator</a></p>
+</li>
+</ul>
+<h2 id="4-location-of-packages-source-code-and-other-aos-configurations">4. Location of packages, source code, and other AOS configurations</h2>
+<p>On a VM, you can find most of the application configuration by opening the web.config file of AOSWebApplication.</p>
+<ol>
+<li>
+<p>Start IIS.</p>
+</li>
+<li>
+<p>Go to <em>Sites &gt; AOSWebApplication</em>.</p>
+</li>
+<li>
+<p>Right-click, and then click <strong>Explore</strong> to open File Explorer.</p>
+</li>
+<li>
+<p>Open the <strong>web.config</strong> file in Notepad or another text editor. The following keys are of interest to many developers and administrators:</p>
+<ul>
+<li>
+<p><strong>Aos.MetadataDirectory</strong> – This key points to the location of the packages folder that contains platform and application binaries, and also source code. (Source code is available only in development environments.) Typical values are: <code>c:\packages</code>, <code>c:\AosServicePackagesLocalDirectory</code>, and <code>J:AosServicePackagesLocalDirectory</code>.</p>
+</li>
+<li>
+<p><strong>DataAccess.Database</strong> – This key holds the name of the database.</p>
+</li>
+<li>
+<p><strong>Aos.AppRoot</strong> – This key points to the root folder of the Application Object Server (AOS) web application.</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="5-redeploying-or-restarting-the-runtime-on-the-vm">5. Redeploying or restarting the runtime on the VM</h2>
+<p>To restart the local runtime and redeploy all the packages, follow these steps.</p>
+<ol>
+<li>
+<p>Open File Explorer, and go to <code>C:\CustomerServiceUnit</code>.</p>
+</li>
+<li>
+<p>Right-click <strong>AOSDeploy.cmd</strong>, and then click <strong>Run as administrator</strong>.</p>
+</li>
+</ol>
+<p>This process might take a while. The process is completed when the cmd.exe window closes. If you just want to restart AOS (without redeploying the runtime), run iisreset from an administrator Command Prompt window, or restart AOSWebApplication from IIS.</p>
+<h2 id="6-update-to-the-latest-version">6. Update to the latest version</h2>
+<p>Please check this <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/deployment/install-deployable-package" target="_blank" rel="noopener noreffer ">document</a> for versions 10.0.24</p>
+<h2 id="7-for-vhd-that-was-released-for-versions-10024-and-later">7. For (VHD) that was released for versions 10.0.24 and later</h2>
+<h3 id="71-register-a-new-application-in-azure-active-directory">7.1 Register a new application in Azure Active Directory</h3>
+<p>To register a new application in Microsoft Azure Active Directory (Azure AD), follow the steps outlined in <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app" target="_blank" rel="noopener noreffer ">Register app or web API</a>. The new app registration should be for a web application, and the following redirect URIs should be added:</p>
+<ul>
+<li><code>https://usnconeboxax1aos.cloud.onebox.dynamics.com/</code></li>
+<li><code>https://usnconeboxax1aos.cloud.onebox.dynamics.com/oauth/</code></li>
+</ul>
+<p>Once created, make note of the <strong>Application (client) ID</strong>.</p>
+<h3 id="72-run-the-setup-script">7.2 Run the setup script</h3>
+<p>After you sign in with the <strong>Administrator</strong> account, right-click the desktop shortcut <strong>Generate Self-Signed Certificates</strong>, and select <strong>Run as administrator</strong>. When the script prompts for the application ID, provide the <strong>Application (client) ID</strong> created in Azure Active Directory.</p>
+<p>When the script finishes, the environment is ready for use. At this time, you can run the Admin Provisioning tool to set the administrator account, permissions, and tenant. Make sure that the email provided is for the Azure Active Directory tenant in which the application registration was created.</p>
+<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw" aria-hidden="true"></i>Reference<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><a href="https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/migration-upgrade/vso-machine-renaming" target="_blank" rel="noopener noreffer ">https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/migration-upgrade/vso-machine-renaming</a></div>
+        </div>
+    </div>
+]]></description>
+</item>
+<item>
+    <title>Azure Storage Emulator &#39;Port conflict with existing application&#39;, Dynamics 365 finance and operations</title>
+    <link>https://nuxulu.com/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/</link>
+    <pubDate>Sun, 05 Apr 2020 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/</guid>
+    <description><![CDATA[<ul>
+<li><a href="#1-reason" rel="">1. Reason</a></li>
+<li><a href="#2-resolution" rel="">2. Resolution</a>
+<ul>
+<li><a href="#21-to-determine-the-conflict-program-we-can-use-this-command-in-cmd" rel="">2.1. To determine the conflict program we can use this command in CMD</a></li>
+<li><a href="#22-to-change-the-default-port-for-azure-storage-emulator" rel="">2.2. To change the default port for Azure storage Emulator</a></li>
+</ul>
+</li>
+</ul>
+<p>The Microsoft Azure storage emulator is a tool that emulates the Azure Blob, Queue, and Table services for local development purposes. You can test your application against the storage services locally without creating an Azure subscription or incurring any costs. When you&rsquo;re satisfied with how your application is working in the emulator, switch to using an Azure storage account in the cloud.</p>
+<p>In Dynamics 365 finance and operations onebox environment, we also use Microsoft Azure Storage Emulator for same purposes. There is a common problem when you try to start its service or using Data entity Import/Export</p>
+<p><figure><a class="lightgallery" href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-1.png" title="Image" data-thumbnail="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-1.png" data-sub-html="<h2>Azure-Storage-Emulator-Port-conflict-with-existing-application</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Azure-Storage-Emulator-Port-conflict-with-existing-application</figcaption>
+    </figure></p>
+<p><code>Port conflict with existing application</code></p>
+<h2 id="1-reason">1. Reason</h2>
+<p>By default, Azure storage emulator is using port number 10000, 10001, 10002 for Blob, Queue and Table services respectively. And there is a progress/system takes those ports already, so you are not able to start its service.
+We can simply use this command in CMD to see which one has conflict</p>
+<p><code>netstat -p tcp -ano | findstr :10001</code></p>
+<p><figure><a class="lightgallery" href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-2.png" title="Image" data-thumbnail="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-2.png" data-sub-html="<h2>Azure-Storage-Emulator-Port-conflict-with-existing-application</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Azure-Storage-Emulator-Port-conflict-with-existing-application</figcaption>
+    </figure></p>
+<p>The process ID 4 is currently taking port 10001.</p>
+<h2 id="2-resolution">2. Resolution</h2>
+<p>You can either terminate the conflict program or change the default port for Azure Storage Emulator.</p>
+<h3 id="21-to-determine-the-conflict-program-we-can-use-this-command-in-cmd">2.1. To determine the conflict program we can use this command in CMD</h3>
+<p>Run following command to check which application/process has the same port, then simply go to task manager and terminate it.</p>
+<p><code>tasklist /fi &quot;pid eq 4&quot;</code></p>
+<p><figure><a class="lightgallery" href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-5.png" title="Image" data-thumbnail="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-5.png" data-sub-html="<h2>Azure-Storage-Emulator-Port-conflict-with-existing-application</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Azure-Storage-Emulator-Port-conflict-with-existing-application</figcaption>
+    </figure></p>
+<h3 id="22-to-change-the-default-port-for-azure-storage-emulator">2.2. To change the default port for Azure storage Emulator</h3>
+<p>Go to your storage emulator default installation folder, which is located at <em><strong>C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator</strong></em>, open the <strong>AzureStorageEmulator.exe.config</strong> by notepad and edit the port number to different number</p>
+<p><figure><a class="lightgallery" href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-4.png" title="Image" data-thumbnail="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-4.png" data-sub-html="<h2>Azure-Storage-Emulator-Port-conflict-with-existing-application</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Azure-Storage-Emulator-Port-conflict-with-existing-application</figcaption>
+    </figure></p>
+<p>When done, try to start its service again using</p>
+<p><code>AzureStorageEmulator.exe start</code></p>
+<p><figure><a class="lightgallery" href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-3.png" title="Image" data-thumbnail="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-3.png" data-sub-html="<h2>Azure-Storage-Emulator-Port-conflict-with-existing-application</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Azure-Storage-Emulator-Port-conflict-with-existing-application</figcaption>
+    </figure></p>
+<p>Thank you for reading.</p>
+]]></description>
+</item>
+</channel>
+</rss>
