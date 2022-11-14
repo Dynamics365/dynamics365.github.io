@@ -1,0 +1,2247 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Dynamics 365 Finance &amp; Operations | nuxulu.com</title>
+        <link>https://nuxulu.com/</link>
+        <description>Dynamics 365 Finance &amp; Operations</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Sun, 13 Nov 2022 00:00:00 &#43;0000</lastBuildDate>
+            <atom:link href="https://nuxulu.com/index.xml" rel="self" type="application/rss+xml" />
+        <item>
+    <title>Extend on-hand inventory entities FinOps</title>
+    <link>https://nuxulu.com/2022-11-13-extend-on-hand-entities-fin-ops/</link>
+    <pubDate>Sun, 13 Nov 2022 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2022-11-13-extend-on-hand-entities-fin-ops/</guid>
+    <description><![CDATA[<p>There are some entities that you can use to get the on-hand inventory from Dynamics 365 Finance Operations:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="n">InventorySiteOnHandEntity</span>
+</span></span><span class="line"><span class="cl"><span class="n">InventorySiteOnHandV2Entity</span>
+</span></span><span class="line"><span class="cl"><span class="n">InventWarehouseInventoryStatusOnHandEntity</span>
+</span></span><span class="line"><span class="cl"><span class="n">InventWarehouseInventoryStatusOnHandV2Entity</span>
+</span></span><span class="line"><span class="cl"><span class="n">InventWarehouseOnHandEntity</span>
+</span></span><span class="line"><span class="cl"><span class="n">InventWarehouseOnHandV2Entity</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>You can extend the ententies by <a href="/2022-09-23-add-custom-fields-to-composite-entity/" rel="">adding new fields to tables and entities</a>.</p>
+<p>After you add fields to tables that are used by the <code>inventSiteOnHandView</code> view, you must sync the engine so that the extensions are correctly recognized.</p>
+<ol>
+<li>Extend the <code>InventSiteOnHandView</code> view by adding the extension field.</li>
+<li>Extend the <code>InventSiteOnHandAggregatedView</code> view with the extension fields.</li>
+<li>Extend the <code>InventSiteOnHandAggregatedViewBuilder</code> viewBuilder class by modifying the <code>getExtensionFields()</code> method. In this way, you map old view fields to new view fields when viewBuilder synchronization is run.</li>
+</ol>
+<p>For example, you&rsquo;ve added the following four fields to the InventTable table through extension:
+• Custom field 1
+• Custom field 2
+• Custom field 3
+• Custom field 4</p>
+<p>In the case, you must modify the <code>getExtensionFields()</code> method in the following way.</p>
+]]></description>
+</item>
+<item>
+    <title>Reservation and on-hand inventory in warehouse management</title>
+    <link>https://nuxulu.com/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/</link>
+    <pubDate>Wed, 09 Nov 2022 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/</guid>
+    <description><![CDATA[<h2 id="1-inventory-reservation-hierarchy-in-warehouse-management">1. <strong>Inventory reservation hierarchy in Warehouse management</strong></h2>
+<p>The reservation functionality can be used only for items that are enabled for warehouse management processes. However, if an item is itself enabled for <a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/warehousing/flexible-warehouse-level-dimension-reservation" target="_blank" rel="noopener noreffer ">warehouse management processes</a>, it can be used both in warehouses that are enabled for warehouse management processes and warehouses that are not. The behavior in reservation scenarios is different, depending on the warehouse setup.</p>
+<p>The functionality is built on reservation hierarchies and is intended to support the following:</p>
+<ul>
+<li>Flexible warehouse operations.</li>
+<li>Postponement of reservation details.</li>
+<li>Clear separation of which inventory dimensions can be specified, and when they can be specified.</li>
+</ul>
+<h3 id="11-reservation-hierarchies">1.1 <strong>Reservation hierarchies</strong></h3>
+<p>A typical reservation hierarchy for an item that uses the <code>Site</code>, <code>Warehouse</code>, <code>Inventory status</code>, <code>Location</code>, and <code>License plate</code> dimensions as physical inventory dimensions.</p>
+<p><figure><a class="lightgallery" href="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/Reservation-hierarchies.png" title="Image" data-thumbnail="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/Reservation-hierarchies.png" data-sub-html="<h2>Reservation-hierarchies</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Reservation-hierarchies</figcaption>
+    </figure></p>
+<p>The level with the lowest value in the Reservation hierarchy level column is the least-specific level, in the example above this is the site level.
+The higher the value, the more details are required to make a reservation on that level.</p>
+<h3 id="12-reservation-hierarchies-implementation">1.2 <strong>Reservation hierarchies implementation</strong></h3>
+<p><figure><a class="lightgallery" href="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/Reservation-hierarchies-implementation.png" title="Image" data-thumbnail="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/Reservation-hierarchies-implementation.png" data-sub-html="<h2>Reservation-hierarchies-implementation</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Reservation-hierarchies-implementation</figcaption>
+    </figure></p>
+<p>The definitions of reservation hierarchies are stored in the <strong>WHSReservationHierarchy</strong> and <strong>WHSReservationHierarchyElement</strong> tables. These are shared tables. A reservation hierarchy can be associated with one item within a company which presents by <strong>WHSReservationHierarchyItem</strong>.
+The <strong>WHSReservationHierarchyProvider</strong> class provides a large number of APIs that are useful when you work with and query the reservation hierarchy for an item.</p>
+<h3 id="13-making-reservations-on-different-levels">1.3 Making reservations on different levels</h3>
+<p>Based on the reservation hierarchy, you can make reservations on different levels without providing details about where to reserve and what dimensions to reserve on. This lets you postpone specific details, such as the location or license plate to make the reservation. The location to reserve items on can be determined later by the <a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/warehousing/warehouse-configuration" target="_blank" rel="noopener noreffer "><strong>location directive</strong></a>.</p>
+<p>As another example, you make reservations for a sales order created on <strong>site</strong> <code>Site1</code> and <strong>warehouse</strong> <code>WHS42</code>, which is a warehouse that is enabled for WHS processes, and for the Available inventory status. For this example, the reservation is made only
+on the inventory status level.</p>
+<p><figure><a class="lightgallery" href="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/reservations-on-different-levels.png" title="Image" data-thumbnail="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/reservations-on-different-levels.png" data-sub-html="<h2>reservations-on-different-levels</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">reservations-on-different-levels</figcaption>
+    </figure></p>
+<p>Location <code>Main006</code> will be specified when processing the work</p>
+<p><figure><a class="lightgallery" href="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/location.png" title="Image" data-thumbnail="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/location.png" data-sub-html="<h2>location</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">location</figcaption>
+    </figure></p>
+<h2 id="2-impact-of-the-reservation-hierarchy-setup">2. Impact of the reservation hierarchy setup</h2>
+<p>For warehouses that are enabled for warehouse management processes, the setup of reservation hierarchies greatly affects the processes for <a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/warehousing/release-to-warehouse-process" target="_blank" rel="noopener noreffer ">outbound orders</a>, such as sales orders and transfer orders.</p>
+<p>When you set up a reservation hierarchy, the key is to determine which dimensions should be positioned above the location level in the hierarchy, and which should be below. The following table describes the effects of arranging dimensions either above or below the location level.</p>
+<table>
+<thead>
+<tr>
+<th>Dimension placement</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dimension above location</td>
+<td>The inventory dimension above the location level must be determined before the</td>
+</tr>
+<tr>
+<td></td>
+<td>Warehouse management functionality can be used. Therefore, this typically happens</td>
+</tr>
+<tr>
+<td></td>
+<td>during order processing or by letting the reservation system determine the dimensions.</td>
+</tr>
+<tr>
+<td>Batch above location</td>
+<td>Process industry functionality for batches requires that the Batch number dimension be</td>
+</tr>
+<tr>
+<td></td>
+<td>above the Location dimension in the reservation hierarchy. When this is the case, all</td>
+</tr>
+<tr>
+<td></td>
+<td>functionality for First Expiry First Out (FEFO), same batch, batch disposition codes, and</td>
+</tr>
+<tr>
+<td></td>
+<td>batch attributes is supported.</td>
+</tr>
+<tr>
+<td>Dimensions below location</td>
+<td>WHS and warehouse workers can determine the Location dimension and the</td>
+</tr>
+<tr>
+<td></td>
+<td>dimensions below it.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>The Location dimension and any dimensions below it should not be entered into the sales</td>
+</tr>
+<tr>
+<td></td>
+<td>and transfer lines if you expect work to be created. For example, if the Batch number</td>
+</tr>
+<tr>
+<td></td>
+<td>dimension is below the Location dimension, it should not be specified on the sales line.</td>
+</tr>
+<tr>
+<td></td>
+<td>Otherwise, WHS cannot create work to carry out the pick and pack operations.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-on-hand-representation-and-calculations">3. On-hand representation and calculations</h2>
+<h3 id="31-on-hand-for-items-that-are-using-warehouse-management-processes">3.1 On-hand for items that are using warehouse management processes</h3>
+<p>The following table shows how the data might look for an item with 10 pieces available physical and 2 pieces reserved physical on the status level.</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Site</th>
+<th>Warehouse</th>
+<th>Inventory status</th>
+<th>Location</th>
+<th>License plate</th>
+<th>Available physical</th>
+<th>Available ordered</th>
+<th>Reserved physical</th>
+<th>Reserved ordered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Item</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>10</td>
+<td>10</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Site</td>
+<td>S1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>10</td>
+<td>10</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Warehouse</td>
+<td>S1</td>
+<td>WH1</td>
+<td></td>
+<td></td>
+<td></td>
+<td>10</td>
+<td>10</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>S1</td>
+<td>WH1</td>
+<td>Available</td>
+<td></td>
+<td></td>
+<td>10</td>
+<td>10</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Location</td>
+<td>S1</td>
+<td>WH1</td>
+<td>Available</td>
+<td>L001</td>
+<td></td>
+<td>12</td>
+<td>12</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>License plate</td>
+<td>S1</td>
+<td>WH1</td>
+<td>Available</td>
+<td>L001</td>
+<td>LP1</td>
+<td>12</td>
+<td>12</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>The reservations are tracked only on the levels that are affected by the reservation. Because of the way that information about availability and reservations is stored, the corresponding values from the <strong>InventSum</strong> table cannot be used directly for items that are using warehouse management processes.</p>
+<p>The following steps provide a high-level overview of the algorithm that determines the available on-hand quantity for
+an item and a set of inventory dimensions:</p>
+<ul>
+<li>Determine the available on-hand quantity, based on the exact dimensions. This is the lowest level in the hierarchy.</li>
+<li>Determine the smallest available quantity from all levels above the level found in step 1.</li>
+<li>Return the smaller of the quantities found in step 1 and step 2. This is the available quantity.</li>
+</ul>
+<h4 id="example-a">Example A</h4>
+<p>The following physical inventory exists for the item (some dimensions like site, inventory status, license plate are irrelevant and are omitted throughout the scenario):</p>
+<ul>
+<li><em>Warehouse: W1, Location: L1, Physical inventory: 6</em></li>
+</ul>
+<p>A sales order with one line is created and reserved:</p>
+<ul>
+<li><em>Warehouse: W1, Quantity: 5</em></li>
+</ul>
+<p>The sales order is released to warehouse. As a result warehouse work is created:</p>
+<ul>
+<li><em>Work type: Pick, Warehouse: W1, Location: L1, Quantity: 5</em></li>
+<li><em>Work type: Put, Warehouse: W1, Location: Baydoor, Quantity: 5</em></li>
+</ul>
+<p>Now we have the following inventory transactions:</p>
+<table>
+<thead>
+<tr>
+<th>Reference</th>
+<th>Warehouse</th>
+<th>Location</th>
+<th>Status issue</th>
+<th>Quantity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sales line</td>
+<td>W1</td>
+<td></td>
+<td>Reserved physical</td>
+<td>-5</td>
+</tr>
+<tr>
+<td>Pick work</td>
+<td>W1</td>
+<td>L1</td>
+<td>Reserved physical</td>
+<td>-5</td>
+</tr>
+<tr>
+<td>Put work</td>
+<td>W1</td>
+<td>Baydoor</td>
+<td>Ordered</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<p>So once we roll up the transactions into the <strong>InventSum</strong> table the contents of the table will look like this</p>
+<table>
+<thead>
+<tr>
+<th>Warehouse</th>
+<th>Location</th>
+<th>Physical inventory</th>
+<th>Reserved physical</th>
+<th>Available physical</th>
+<th>Ordered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W1</td>
+<td></td>
+<td>0</td>
+<td>5</td>
+<td>-5</td>
+<td>0</td>
+</tr>
+<tr>
+<td>W1</td>
+<td>L1</td>
+<td>6</td>
+<td>5</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>W1</td>
+<td>Baydoor</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<p>On hand quantities for warehouse W1 like we used to do it in versions prior to AX 2012 R3 (sum up InventSum quantities for warehouse W1)</p>
+<table>
+<thead>
+<tr>
+<th>Warehouse</th>
+<th>Physical inventory</th>
+<th>Reserved physical</th>
+<th>Available physical</th>
+<th>Ordered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W1</td>
+<td>6</td>
+<td>10</td>
+<td>-4</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<p>We should have shipped 5 items and we have 6 items on stock, 1 item is available. This is exactly the reason why summing up available and reserved quantities from the <strong>InventSum</strong> table may produce incorrect results for items that use warehouse management processes.</p>
+<p>The sales reservation was taken on the warehouse level of the reservation hierarchy to ensure that we keep enough on hand in the warehouse to ship the reserved quantity. The pick work reservation was taken on the location level and it ensures that the reserved quantity will still be physically available when the warehouse worker comes to the warehouse location to pick it. Work reservation does not affect physical availability on the warehouse level. This means that the new reservation engine will be able to figure out that we still have one item available on the warehouse level.</p>
+<table>
+<thead>
+<tr>
+<th>Warehouse</th>
+<th>Physical inventory</th>
+<th>Reserved physical</th>
+<th>Available physical</th>
+<th>Ordered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W1</td>
+<td>6</td>
+<td>5</td>
+<td>1</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example-b">Example B</h4>
+<table>
+<thead>
+<tr>
+<th>Reference</th>
+<th>Warehouse</th>
+<th>Location</th>
+<th>Status issue</th>
+<th>Status receipt</th>
+<th>Quantity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Purchase line</td>
+<td>W1</td>
+<td>L1</td>
+<td></td>
+<td>Purchased</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Purchase line</td>
+<td>W1</td>
+<td>L2</td>
+<td></td>
+<td>Purchased</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Sales line</td>
+<td>W1</td>
+<td></td>
+<td>Reserved physical</td>
+<td></td>
+<td>-25</td>
+</tr>
+<tr>
+<td>Pick work</td>
+<td>W1</td>
+<td>L1</td>
+<td>Reserved physical</td>
+<td></td>
+<td>-10</td>
+</tr>
+<tr>
+<td>Put work</td>
+<td>W1</td>
+<td>Baydoor</td>
+<td>Ordered</td>
+<td></td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<p>After the transactions are aggregated the <strong>InventSum</strong> table contains the following information</p>
+<table>
+<thead>
+<tr>
+<th>Warehouse</th>
+<th>Location</th>
+<th>Physical inventory</th>
+<th>Reserved physical</th>
+<th>Available physical</th>
+<th>Ordered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W1</td>
+<td></td>
+<td>0</td>
+<td>25</td>
+<td>-25</td>
+<td>0</td>
+</tr>
+<tr>
+<td>W1</td>
+<td>L1</td>
+<td>10</td>
+<td>10</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>W1</td>
+<td>L2</td>
+<td>20</td>
+<td>0</td>
+<td>20</td>
+<td>0</td>
+</tr>
+<tr>
+<td>W1</td>
+<td>Baydoor</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<p>For each of the levels of the reservation hierarchy it stores available and reserved quantities in the <code>WHSInventReserve</code> table which allows the engine to calculate availability correctly.</p>
+<p>To work with available quantities regardless of whether the item is using warehouse management processes or not the <code>InventIAvailability</code> interface was introduced. The following list contains the InventSum fields and methods that should not be used directly and the corresponding InventIAvailability methods that should be used instead:</p>
+<table>
+<thead>
+<tr>
+<th>Obsolete field/method</th>
+<th>Corresponding InventIAvailability method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>InventSum.AvailOrdered</td>
+<td>InventIAvailability.availTotal()</td>
+</tr>
+<tr>
+<td>InventSum.availOrderedCalculated()</td>
+<td>InventIAvailability.availTotal()</td>
+</tr>
+<tr>
+<td>InventSum.AvailPhysical</td>
+<td>InventIAvailability.availPhysical()</td>
+</tr>
+<tr>
+<td>InventSum.availPhysicalCalculated()</td>
+<td>InventIAvailability.availPhysical()</td>
+</tr>
+<tr>
+<td>InventSum.availReservation()</td>
+<td>InventIAvailability.availReservation()</td>
+</tr>
+<tr>
+<td>InventSum.Ordered</td>
+<td>InventIAvailability.ordered()</td>
+</tr>
+<tr>
+<td>InventSum.orderedSum()</td>
+<td>InventIAvailability.orderedSum()</td>
+</tr>
+<tr>
+<td>InventSum.ReservOrdered</td>
+<td>InventIAvailability.reservOrdered()</td>
+</tr>
+<tr>
+<td>InventSum.ReservPhysical</td>
+<td>InventIAvailability.reservPhysical()</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-implementation-of-on-hand-calculations">3.2 Implementation of on-hand calculations</h3>
+<p>Three major APIs were introduced for retrieving item availability:</p>
+<p>– <code>InventAvailabilityProvider</code>
+– <code>InventAvailabilityFormCache</code>
+– <code>InventOnhand</code></p>
+<ul>
+<li><strong>InventAvailabilityProvider</strong></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">InventIAvailability</span>  <span class="n">inventIAvailability</span> <span class="p">=</span> <span class="n">InventAvailabilityProvider</span><span class="p">::</span><span class="n">findByItemDim</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                                            <span class="n">InventTable</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="n">itemdId</span><span class="p">),</span> <span class="n">dim</span><span class="p">).</span><span class="n">parmInventAvailability</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Info</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;inventIAvailability, availPhysical %1, ordered %2, reservPhysical %3, reservOrdered %4&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">inventIAvailability</span><span class="p">.</span><span class="n">availPhysical</span><span class="p">(),</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">inventIAvailability</span><span class="p">.</span><span class="n">ordered</span><span class="p">(),</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">inventIAvailability</span><span class="p">.</span><span class="n">reservPhysical</span><span class="p">(),</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">inventIAvailability</span><span class="p">.</span><span class="n">reservOrdered</span><span class="p">()));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">InventAvailabilityByUnit</span> <span class="n">inventAvailabilityByUnitSum</span> <span class="p">=</span> <span class="n">InventAvailabilityProvider</span><span class="p">::</span><span class="n">findByItemSumDim</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                                                        <span class="n">InventTable</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="n">itemdId</span><span class="p">),</span> <span class="n">inventSum</span><span class="p">,</span> <span class="n">dim</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Info</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;inventAvailabilityByUnitSum, availPhysical %1, ordered %2, reservPhysical %3, reservOrdered %4&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">inventAvailabilityByUnitSum</span><span class="p">.</span><span class="n">availPhysical</span><span class="p">().</span><span class="n">qty</span><span class="p">(</span><span class="k">false</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">inventAvailabilityByUnitSum</span><span class="p">.</span><span class="n">ordered</span><span class="p">().</span><span class="n">qty</span><span class="p">(</span><span class="k">false</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">inventAvailabilityByUnitSum</span><span class="p">.</span><span class="n">reservPhysical</span><span class="p">().</span><span class="n">qty</span><span class="p">(</span><span class="k">false</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">inventAvailabilityByUnitSum</span><span class="p">.</span><span class="n">reservOrdered</span><span class="p">().</span><span class="n">qty</span><span class="p">(</span><span class="k">false</span><span class="p">)));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><strong>InventAvailabilityFormCache</strong></li>
+</ul>
+<p>In scenarios where you want to display available quantities on a form you can use the InventAvailabilityFormCache class.
+It is responsible for retrieving and caching available on hand quantities per item per inventory dimension combination. To use it on a form you need to:</p>
+<p>– Declare an <code>InventAvailabilityFormCache</code> field in <code>classDeclaration</code> of the form.
+– Initialize the cache field in the <code>init</code> method of the form:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="k">init</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">inventAvailabilityFormCache</span> <span class="p">=</span> <span class="n">InventAvailabilityFormCache</span><span class="p">::</span><span class="n">construct</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>– Flush the cache in the <code>executeQuery</code> method of the primary data source that the <code>InventSum</code> data source is joined to:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">executeQuery</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">inventAvailabilityFormCache</span><span class="p">.</span><span class="n">refreshCache</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>– Create display methods for available on hand fields that need to be displayed on the form. If <code>InventDim</code> is joined to <code>InventSum</code> then the display methods should be declared on the <code>InventSum</code> data source:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="n">display</span> <span class="n">InventQtyReservPhysical</span> <span class="n">reservPhysical</span><span class="p">(</span><span class="n">InventSum</span> <span class="n">_inventSum</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">inventAvailabilityFormCache</span><span class="p">.</span><span class="n">availabilityFromSumJoinedWithDim</span><span class="p">(</span><span class="n">_inventSum</span><span class="p">,</span> <span class="n">inventDim_ds</span><span class="p">).</span><span class="n">reservPhysical</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Note that the <code>availabilityFromSumJoinedWithDim</code> method should be used. Otherwise, if <code>InventSum</code> is joined to InventDim then the display method should be declared on the <code>InventDim</code> data source:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="n">display</span> <span class="n">InventQtyReservPhysical</span> <span class="n">reservPhysical</span><span class="p">(</span><span class="n">InventDim</span> <span class="n">_inventDim</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">inventAvailabilityFormCache</span><span class="p">.</span><span class="n">availabilityFromDimJoinedWithSum</span><span class="p">(</span><span class="n">_inventDim</span><span class="p">,</span> <span class="n">inventSum_ds</span><span class="p">).</span><span class="n">reservPhysical</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Note that the <code>availabilityFromDimJoinedWithSum</code> method should be used.</p>
+<ul>
+<li><strong>InventOnhand</strong></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">InventOnhand</span> <span class="n">inventOnHand</span> <span class="p">=</span> <span class="n">InventOnhand</span><span class="p">::</span><span class="n">newParameters</span><span class="p">(</span><span class="n">itemdId</span><span class="p">,</span> <span class="n">dim</span> <span class="p">,</span> <span class="n">dimParm</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Info</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;inventOnHand, availPhysical %1, ordered %2, reservPhysical %3, reservOrdered %4&#34;</span><span class="p">,</span> <span class="n">inventOnHand</span><span class="p">.</span><span class="n">availPhysical</span><span class="p">(),</span> <span class="n">inventOnHand</span><span class="p">.</span><span class="n">ordered</span><span class="p">(),</span> <span class="n">inventOnHand</span><span class="p">.</span><span class="n">reservPhysical</span><span class="p">(),</span> <span class="n">inventOnHand</span><span class="p">.</span><span class="n">reservOrdered</span><span class="p">()));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The on-hand information is stored in a table called <code>WHSInventReserve</code>. The <code>WHSInventReserveDelta</code> table is used to track changes that the current transaction causes in the on-hand quantity. On the final commit, the <code>WHSInventReserve</code> table is updated based on the changes in the <code>WHSInventReserveDelta</code> table.</p>
+<p>Because many scenarios involve calculating on-hand quantities based on <code>itemId</code>, <code>InventDim</code>, or <code>InventSum</code> records for
+both WHS-enabled and non-WHS-enabled items, APIs are provided to support the calculations in a seamless way.</p>
+<p>The following example shows how to instantiate the class that can be used to calculate availability for both WHSenabled and non-WHS-enabled items.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">InventAvailabilitySearch</span> <span class="n">availabilitySearch</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">InventIAvailability</span> <span class="n">availability</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">availabilitySearch</span> <span class="p">=</span> <span class="n">InventAvailabilitySearch</span><span class="p">::</span><span class="n">construct</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">availabilitySearch</span><span class="p">.</span><span class="n">setItemId</span><span class="p">(</span><span class="n">_itemId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">availabilitySearch</span><span class="p">.</span><span class="n">setInventDimCriteria</span><span class="p">(</span><span class="n">_inventDimCriteria</span><span class="p">,</span> <span class="n">_inventDimCriteriaParm</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">availabilitySearch</span><span class="p">.</span><span class="n">setInventSum</span><span class="p">(</span><span class="n">_inventSum</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">availability</span> <span class="p">=</span> <span class="n">InventAvailabilityProvider</span><span class="p">::</span><span class="n">construct</span><span class="p">().</span><span class="n">find</span><span class="p">(</span><span class="n">availabilitySearch</span><span class="p">).</span><span class="n">parmInventAvailability</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">this</span><span class="p">.</span><span class="n">AvailOrderedCalculated</span>         <span class="p">=</span> <span class="n">availability</span><span class="p">.</span><span class="n">availTotal</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="k">this</span><span class="p">.</span><span class="n">AvailPhysicalCalculated</span>        <span class="p">=</span> <span class="n">availability</span><span class="p">.</span><span class="n">availPhysical</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="k">this</span><span class="p">.</span><span class="n">ReservPhysical</span>                 <span class="p">=</span> <span class="n">availability</span><span class="p">.</span><span class="n">reservPhysical</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="k">this</span><span class="p">.</span><span class="n">OrderedSum</span>                     <span class="p">=</span> <span class="n">availability</span><span class="p">.</span><span class="n">orderedSum</span><span class="p">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The <code>InventAvailabilityProvider</code> class provides numerous other APIs that are used to determine the availability based on various types of input. The existing <code>InventOnHandQty</code> class has been updated so that it also provides correct results for items that are enabled for warehouse management processes.</p>
+<p>The following illustration shows the various classes and interfaces that are used to provide and encapsulate the calculations. Note that, for the sake of simplicity, some details have been omitted.</p>
+<p><figure><a class="lightgallery" href="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/InventAvailabilityProvider.png" title="Image" data-thumbnail="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/InventAvailabilityProvider.png" data-sub-html="<h2>InventAvailabilityProvider</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">InventAvailabilityProvider</figcaption>
+    </figure></p>
+<h2 id="4-reservation-strategies">4. Reservation strategies</h2>
+<p>To control the levels of the reservation hierarchy at which reservations are made, the system uses the concept of a reservation strategy. A reservation strategy determines the outcome of a reservation, and the dimensions that are used to make the reservation. Reservation strategies are implemented in the code and are not currently user-configurable.</p>
+<p>Each reservation strategy determines the level that the reservation should be made on. If the dimensions that are passed to the reservation system do not cover all the dimensions to the level defined by the strategy, the reservation system queries the on-hand availability until the required level; then, based on the results of this query, it does the reservation so that it covers all the required dimensions.</p>
+<p>The reservation strategies that are chosen for a reservation depend on multiple factors, such as the following:
+• Warehouse setup
+• Order type</p>
+<p>The following table describes the reservation strategies that the reservation system uses.</p>
+<table>
+<thead>
+<tr>
+<th>Reservation strategy</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>None</td>
+<td>The reservation is made on the dimensions that are passed, if possible. This strategy is</td>
+</tr>
+<tr>
+<td></td>
+<td>used by inventory blocking, and lets you make reservations on, for example, the site</td>
+</tr>
+<tr>
+<td></td>
+<td>level or the warehouse level.</td>
+</tr>
+<tr>
+<td>All</td>
+<td>The reservation is made on all of the dimensions in the reservation hierarchy. This</td>
+</tr>
+<tr>
+<td></td>
+<td>strategy is used, for example, for transfer journals, or for warehouses that have not</td>
+</tr>
+<tr>
+<td></td>
+<td>been enabled for warehouse management processes.</td>
+</tr>
+<tr>
+<td>Above location</td>
+<td>The reservation is made only on the locations above the location level. This strategy is</td>
+</tr>
+<tr>
+<td></td>
+<td>used, for example, for sales and transfer orders when reservations are made in a</td>
+</tr>
+<tr>
+<td></td>
+<td>warehouse that is enabled for warehouse management processes.</td>
+</tr>
+<tr>
+<td>All not allowed blank</td>
+<td>The reservation is made on the first lowest level that does not allow for blank issue for</td>
+</tr>
+<tr>
+<td></td>
+<td>the inventory dimensions. This strategy enables automatic reservations on non-licenseplate-controlled locations.</td>
+</tr>
+<tr>
+<td>Batch level</td>
+<td>This strategy is applied for items for which the Batch number dimension is selected and</td>
+</tr>
+<tr>
+<td></td>
+<td>positioned above the Location dimension in the reservation hierarchy. This strategy is</td>
+</tr>
+<tr>
+<td></td>
+<td>used when only reservations that are reserved ordered can be made. In that case, a</td>
+</tr>
+<tr>
+<td></td>
+<td>reservation until the batch level is attempted.</td>
+</tr>
+</tbody>
+</table>
+<p>The reservation system supports multiple reservation strategies in sequential order when reservations are made. For example, the system uses the All and All not allowed blank strategies to make reservations for transfer journals.</p>
+<h2 id="5-details-about-the-implementation-of-reservation-strategies">5. Details about the implementation of reservation strategies</h2>
+<p>The following illustration shows the classes that are used to implement the reservation strategies, and the main consumers of the classes. Note that, for the sake of simplicity, some details have been omitted.</p>
+<p><figure><a class="lightgallery" href="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/reservation-strategies.png" title="Image" data-thumbnail="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/reservation-strategies.png" data-sub-html="<h2>reservation-strategies</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">reservation-strategies</figcaption>
+    </figure></p>
+<p>The implementation is easy to extend, because the instantiation uses the <code>SysExtension</code> framework.</p>
+<h2 id="6-synchronization-of-dimensions-between-receipts-and-issues">6. Synchronization of dimensions between receipts and issues</h2>
+<p>When an inventory transaction is marked or reserved ordered, the inventory dimensions are typically synchronized between <em>receipts</em> and <em>issues</em>. For example, when a purchase order that was created based on a sales order is modified or received, the dimensions are transferred to the inventory transactions for the sales line.</p>
+<p>For items that are enabled for warehouse management processes, the synchronization differs from the standard behavior. When work must be created, the source line transactions can be reserved only until the level above the location level. If all dimensions are synchronized, work cannot be created. Therefore, dimensions above the location level are not synchronized for all scenarios.</p>
+<p>If the item and warehouse are enabled for warehouse management processes, and if the issue type is a type that can generate work, such as a sales line, only dimensions above the location level are synchronized. This means that if an item uses batch numbers, and the batch number is placed below the location in the reservation hierarchy, the batch number is not synchronized from receipt to issue transactions.</p>
+<h2 id="7-details-about-the-implementation-of-synchronization-between-receipts-and-issues">7. Details about the implementation of synchronization between receipts and issues</h2>
+<p>The logic that determines how the dimensions are synchronized is implemented in the following methods on the <strong>inventMovement</strong> class:</p>
+<ul>
+<li><code>getInventDimForReservedTransPhysChange</code></li>
+<li><code>getInventDimForIssueTransFromReceipt</code></li>
+</ul>
+]]></description>
+</item>
+<item>
+    <title>How to get FinOps Azure storage blob connection string</title>
+    <link>https://nuxulu.com/2022-10-27-how-to-get-d365-azure-blob-storage-str/</link>
+    <pubDate>Thu, 27 Oct 2022 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2022-10-27-how-to-get-d365-azure-blob-storage-str/</guid>
+    <description><![CDATA[<p>In Dynamics 365 for Finance and Operations Azure storage is used to</p>
+<ul>
+<li>Store files for <a href="https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/fin-ops/organization-administration/configure-document-management" target="_blank" rel="noopener noreffer ">Attachments</a></li>
+<li><a href="https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/data-import-export-job" target="_blank" rel="noopener noreffer ">Data import and export jobs</a></li>
+<li>When FinOps prints a report via <a href="https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/analytics/document-reporting-services?context=%2Fdynamics365%2Fcontext%2Fcommerce" target="_blank" rel="noopener noreffer ">Document Reporting Services</a>, SSRS Reporting Services generates an <a href="https://ax.docentric.com/printing-reports-with-custom-fonts-in-dynamics-365-for-finance-and-operations/" target="_blank" rel="noopener noreffer ">EMF image</a> for each page of the generated document. FinOps then temporarily saves the generated EMF files to Azure Blob storage.</li>
+<li><a href="https://learn.microsoft.com/en-us/dynamicsax-2012/appuser-itpro/print-a-report-from-the-archive" target="_blank" rel="noopener noreffer ">Printing archive</a></li>
+</ul>
+<p>And more!</p>
+<p>If you are using tier 1 Cloud-Hosted environment, you can find the azure storage from the Azure resource group in Azure portal.</p>
+<p>For tier 1, UAT tier 2, and PROD Tier 3, you can create a runnable class and execute to get the Azure storage connection string.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">Microsoft.Dynamics.Clx.ServicesWrapper</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">GetAzureBlob</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">(</span><span class="err">&#39;</span><span class="n">AzureStorageConnectionString</span> <span class="p">=</span> <span class="err">&#39;</span> <span class="p">+</span> <span class="n">CloudInfrastructure</span><span class="p">::</span><span class="n">GetCsuStorageConnectionString</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">(</span><span class="err">&#39;</span><span class="n">ClientCertificateThumbprint</span> <span class="p">=</span> <span class="err">&#39;</span> <span class="p">+</span> <span class="n">CloudInfrastructure</span><span class="p">::</span><span class="n">GetCsuClientCertificateThumbprint</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Once you have the connection string, you can connect it to <a href="https://docs.microsoft.com/en-us/azure/vs-azure-tools-storage-manage-with-storage-explorer?tabs=windows" target="_blank" rel="noopener noreffer ">MS Azure Storage Explorer</a>, Power Automate, or consuming in any framwork/language for integration/backup purposes.</p>
+]]></description>
+</item>
+<item>
+    <title>How to remove SSRS reports in FinOps Cloud-Hosted</title>
+    <link>https://nuxulu.com/2022-10-20-how-to-remove-ssrs-reports-in-d365/</link>
+    <pubDate>Thu, 20 Oct 2022 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2022-10-20-how-to-remove-ssrs-reports-in-d365/</guid>
+    <description><![CDATA[<p>There are 2 ways that you can delete SSRS reports in FinOps cloud-Hosted</p>
+<h2 id="1-using-report-server-configuiration-manager-web-portal">1. Using Report server configuiration manager web portal</h2>
+<p>Open Report server configuiration manager from your VM FinOps Cloud-Hosted and active the <strong>Web Portal</strong></p>
+<p><figure><a class="lightgallery" href="/2022-10-20-how-to-remove-ssrs-reports-in-d365/2022-10-20-how-to-remove-ssrs-reports-in-d365-1.png" title="Image" data-thumbnail="/2022-10-20-how-to-remove-ssrs-reports-in-d365/2022-10-20-how-to-remove-ssrs-reports-in-d365-1.png" data-sub-html="<h2>2022-10-20-how-to-remove-ssrs-reports-in-d365-1</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">2022-10-20-how-to-remove-ssrs-reports-in-d365-1</figcaption>
+    </figure></p>
+<p>You can delete any report from <code>[Servername]/Reports/browse/Dynamics</code></p>
+<p><figure><a class="lightgallery" href="/2022-10-20-how-to-remove-ssrs-reports-in-d365/2022-10-20-how-to-remove-ssrs-reports-in-d365-3.png" title="Image" data-thumbnail="/2022-10-20-how-to-remove-ssrs-reports-in-d365/2022-10-20-how-to-remove-ssrs-reports-in-d365-3.png" data-sub-html="<h2>2022-10-20-how-to-remove-ssrs-reports-in-d365-3</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">2022-10-20-how-to-remove-ssrs-reports-in-d365-3</figcaption>
+    </figure></p>
+<h2 id="2-using-powershell-script">2. Using Powershell script</h2>
+<p>Go to <code>RemoveAllReportsFromSsrs.ps1</code> under <code>K:\AosService\PackagesLocalDirectory\Plugins\AxReportVmRoleStartupTask</code></p>
+<p>Run the script to remove all SSRS report.</p>
+<p>If you want to remove a specific report, you can manipulate the $ReportName</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="c">################################################################################</span>
+</span></span><span class="line"><span class="cl"><span class="c"># This script is used to manually remove reports to SSRS server</span>
+</span></span><span class="line"><span class="cl"><span class="c">################################################################################</span>
+</span></span><span class="line"><span class="cl"><span class="k">param</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">=</span><span class="nv">$false</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    <span class="no">[string]</span><span class="nv">$LogFilePath</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="k">Alias</span><span class="p">(</span><span class="s2">&#34;ReportServerFqdn&#34;</span><span class="p">,</span> <span class="s2">&#34;ReportServerName&#34;</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">=</span><span class="nv">$false</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    <span class="no">[string[]]</span><span class="nv">$ReportServerIp</span> <span class="p">=</span> <span class="s2">&#34;127.0.0.1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">=</span><span class="nv">$false</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">	<span class="no">[string[]]</span><span class="nv">$ReportName</span> <span class="p">=</span> <span class="s2">&#34;[report-name].[design-name]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">=</span><span class="nv">$false</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">	<span class="no">[switch]</span><span class="nv">$UseHttps</span> <span class="p">=</span> <span class="nv">$false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">=</span><span class="nv">$false</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">	<span class="no">[int]</span><span class="nv">$HttpsPort</span> <span class="p">=</span> <span class="n">443</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">=</span><span class="nv">$false</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    <span class="no">[switch]</span><span class="nv">$Help</span> <span class="p">=</span> <span class="nv">$false</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Check <a href="/2021-01-27-deploy-ssrs-reports-in-dynamics-365-finance-scm-using-powershell/" rel="">this article</a> for deploy report using PS script.</p>
+]]></description>
+</item>
+<item>
+    <title>Remove a person from an user Dynamics 365 Finance Operations</title>
+    <link>https://nuxulu.com/2022-09-28-remove-person-from-users/</link>
+    <pubDate>Wed, 28 Sep 2022 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2022-09-28-remove-person-from-users/</guid>
+    <description><![CDATA[<p>Whenever you add a new person to an user in the user <strong>SysUserInfoPage</strong> form, the person field grays out.</p>
+<p><figure><a class="lightgallery" href="/2022-09-28-remove-person-from-users/2022-09-28-remove-person-from-users.png" title="Image" data-thumbnail="/2022-09-28-remove-person-from-users/2022-09-28-remove-person-from-users.png" data-sub-html="<h2>userinfo</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">userinfo</figcaption>
+    </figure></p>
+<p>To remove the person from that user:</p>
+<ul>
+<li>In the user form <code>System administration &gt; Users &gt; Users</code>, go to <code>Maintain versions</code>.</li>
+<li>Delete the person.</li>
+</ul>
+]]></description>
+</item>
+<item>
+    <title>Add new fields to data entity or composite entity Dynamics 365</title>
+    <link>https://nuxulu.com/2022-09-23-add-custom-fields-to-composite-entity/</link>
+    <pubDate>Fri, 23 Sep 2022 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2022-09-23-add-custom-fields-to-composite-entity/</guid>
+    <description><![CDATA[<p>Let&rsquo;s take a composite entity <code>SalesOrderV3Entity</code> as an example.</p>
+<h3 id="scenario">Scenario</h3>
+<p>I will need to add new fields to Sales order header that can be used in the composite entity <code>SalesOrderV3Entity</code>.
+the composite entity <code>SalesOrderV3Entity</code> uses a standard data entity <code>SalesOrderHeaderV2Entity</code> for sales order header; so, we need to extend <code>SalesOrderHeaderV2Entity</code>.</p>
+<h3 id="the-steps">The Steps</h3>
+<ol>
+<li>
+<p>Add new fields to Main table <code>SalesTable</code></p>
+</li>
+<li>
+<p>Add new fields to the entity <code>SalesOrderHeaderV2Entity</code></p>
+</li>
+<li>
+<p>Add new fields to the staging table <code>SalesOrderHeaderV2Staging</code></p>
+</li>
+<li>
+<p>Build and sync.</p>
+</li>
+<li>
+<p>Go to Workspaces -&gt; Data Management -&gt; Framework parameters -&gt; Advanced entity configuration settings -&gt; Refresh entity list.</p>
+<p>You can automate the <code>Refresh entity list</code> task <a href="https://d365fostuff.wordpress.com/2021/03/31/d365fo-integrations-auto-refresh-your-data-entity-list/" target="_blank" rel="noopener noreffer ">here</a></p>
+</li>
+<li>
+<p>Go to Workspaces -&gt; Data Management -&gt; Data Entities, find <strong>SALES ORDER HEADERS V2</strong> and <em>Generate mapping</em> for it.
+The new custom fields will be generated for the entity mapping.</p>
+</li>
+</ol>
+]]></description>
+</item>
+<item>
+    <title>Admin provisioning tools in Dynamics 365 Finance Operations</title>
+    <link>https://nuxulu.com/2022-09-18-admin-provisioning-tools/</link>
+    <pubDate>Sun, 18 Sep 2022 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2022-09-18-admin-provisioning-tools/</guid>
+    <description><![CDATA[<p>After restoring database backup, you want to be able to login to Dynamics 365 Finance Operations with different ternant, you need to use the admin provisioning tool to assign a new tenant.</p>
+<!--adsense-->
+<h3 id="before-10023-verison">Before 10.0.23 verison</h3>
+<p>The admin provisioning tool can be found at</p>
+<p>VHD: <code>C:\AOSService\PackagesLocalDirectory\bin\AdminUserProvisioning.exe</code></p>
+<p>Cloud- hosted: <code>K:\AOSService\PackagesLocalDirectory\bin\AdminUserProvisioning.exe</code></p>
+<p>After running <code>Provisioning.exe</code> wtih admin right, you will see the update for the admin user in SQL.</p>
+<p><figure><a class="lightgallery" href="/2022-09-18-admin-provisioning-tools/userinfo.png" title="Image" data-thumbnail="/2022-09-18-admin-provisioning-tools/userinfo.png" data-sub-html="<h2>userinfo</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">userinfo</figcaption>
+    </figure></p>
+<p>Some errors you might face:</p>
+<div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Can not stop the DynamicsAXBatch service on computer</div>
+        </div>
+    </div>
+<div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Execution Timeout Expired. The timeout period elapsed prior to completion of the operation or the server is not responding.</div>
+        </div>
+    </div>
+<div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">The remote server returned an error: (500) Internal Server Error.</div>
+        </div>
+    </div>
+<p>Resolution, you can simply stop and start the services manually:</p>
+<ul>
+<li>World Wide Web Publishing Service</li>
+<li>Microsoft Dynamics 365 Unified Operations: Batch Management Service</li>
+</ul>
+<p>Or you can restart VM using LCS or Azure portal.</p>
+<p>If the issue <strong>Can not stop the DynamicsAXBatch service on computer</strong> still persist</p>
+<p>You can kill the batch service using cmd:</p>
+<ol>
+<li>Open CMD</li>
+<li><code>sc queryex DynamicsAxBatch</code></li>
+<li><code>taskkill /f /pid 8064</code></li>
+</ol>
+<p><figure><a class="lightgallery" href="/2022-09-18-admin-provisioning-tools/queryex.png" title="Image" data-thumbnail="/2022-09-18-admin-provisioning-tools/queryex.png" data-sub-html="<h2>queryex</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">queryex</figcaption>
+    </figure></p>
+<p>There is another error about Database</p>
+<div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Cannot open database &ldquo;AxDB&rdquo; requested by the login. The login failed.
+Login failed for user &lsquo;axdbadmin&rsquo;.</div>
+        </div>
+    </div>
+<p>Please this post for getting <a href="/2020-04-06-getting-onebox-vhd-dynamics-365-finance-and-operations-virtual-machine/#2-rename-vm" rel="">VHD Database password</a>.</p>
+<h3 id="from-10023">From 10.0.23</h3>
+<p>From 10.0.23, the Admin user provisioning tool is removed due to security reasons, the reply URL setup for AAD was changed.
+It is typically used to change the tenant of the environment. You can update the sign in information in the database for the Admin user or any other user. You only need the <code>SID</code> and <code>network alias</code> (email address) from a user that can access the environment or another environment on the same tenant.</p>
+<p>To get the SID:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ps" data-lang="ps"><span class="line"><span class="cl"><span class="nf">wmic</span> <span class="nf">useraccount</span> <span class="nf">get</span> <span class="nf">name,sid</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/2022-09-18-admin-provisioning-tools/get-sid-cmd.png" title="Image" data-thumbnail="/2022-09-18-admin-provisioning-tools/get-sid-cmd.png" data-sub-html="<h2>get-sid-cmd</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">get-sid-cmd</figcaption>
+    </figure></p>
+<p>Once you have admin SID, you can update the tenant in SQL by using.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">SID</span><span class="p">,</span><span class="w"> </span><span class="n">NETWORKALIAS</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">USERINFO</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Admin&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">update</span><span class="w"> </span><span class="n">USERINFO</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">SID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;new_SID&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">NETWORKALIAS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;new_NetworkAlias&#39;</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Admin&#39;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>You might also got error</p>
+<div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">AADSTS50011: The reply URL specified in the request does not match the reply URLs configured for the application: &lsquo;00000015-0000-0000-c000-000000000000&rsquo;</div>
+        </div>
+    </div>
+<p>Go to <code>C:\AOSService\webroot\web.config</code>, get <code>Aad.Realm</code>, <code>Aad.TenantDomainGUID</code>, <code>Infrastructure.HostUrl</code></p>
+<p>Run below script to add Dynamics 365  URL to ERP service principle application</p>
+<p><figure><a class="lightgallery" href="/2022-09-18-admin-provisioning-tools/00000015-0000-0000-c000-000000000000.png" title="Image" data-thumbnail="/2022-09-18-admin-provisioning-tools/00000015-0000-0000-c000-000000000000.png" data-sub-html="<h2>00000015-0000-0000-c000-000000000000</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">00000015-0000-0000-c000-000000000000</figcaption>
+    </figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ps" data-lang="ps"><span class="line"><span class="cl"><span class="nf">$AADTenant</span> <span class="nf">=</span> <span class="nf">&#34;xxxxxx-843a-434c-ae23-f8614106ac37&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$EnvironmentUrl</span> <span class="nf">=</span> <span class="nf">&#34;https:</span><span class="err">/</span><span class="nv">/xxxxxxxx.axcloud.dynamics.com&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$AADRealm</span> <span class="nf">=</span> <span class="nf">&#34;00000015-0000-0000-c000-000000000000&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">Connect-AzureAD</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">#</span> <span class="nf">Get</span> <span class="nf">Service</span> <span class="nf">Principal</span> <span class="nf">details</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$SP</span> <span class="nf">=</span> <span class="nf">Get-AzureADServicePrincipal</span> <span class="nf">-Filter</span> <span class="nf">&#34;AppId</span> <span class="nf">eq</span> <span class="nf">&#39;$AADRealm&#39;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">#Add</span> <span class="nf">Reply</span> <span class="nf">URLs</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$SP.ReplyUrls.Add</span><span class="s">(&#34;$EnvironmentUrl&#34;)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$SP.ReplyUrls.Add</span><span class="s">(&#34;$EnvironmentUrl/oauth&#34;)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">#Set</span><span class="nv">/Update</span> <span class="nf">Reply</span> <span class="nf">URL</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Set-AzureADServicePrincipal</span> <span class="nf">-ObjectId</span> <span class="nf">$SP.ObjectId</span> <span class="nf">-ReplyUrls</span> <span class="nf">$SP.ReplyUrls</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>If you are running VHD for the first time, please do this <a href="/2020-04-06-getting-onebox-vhd-dynamics-365-finance-and-operations-virtual-machine/#61-register-a-new-application-in-azure-active-directory" rel="">task</a></p>
+<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw" aria-hidden="true"></i>Reference<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ol>
+<li>
+<p><a href="https://learn.microsoft.com/en-us/troubleshoot/azure/active-directory/error-code-aadsts50011-reply-url-mismatch" target="_blank" rel="noopener noreffer ">https://learn.microsoft.com/en-us/troubleshoot/azure/active-directory/error-code-aadsts50011-reply-url-mismatch</a></p>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/dev-tools/access-instances#i-have-run-the-admin-user-provisioning-tool-on-my-development-environment-and-now-i-receive-the-following-sign-in-error-error-aadsts50011-the-reply-url-specified-in-the-request-does-not-match-the-reply-urls-configured-for-the-application" target="_blank" rel="noopener noreffer ">https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/dev-tools/access-instances#i-have-run-the-admin-user-provisioning-tool-on-my-development-environment-and-now-i-receive-the-following-sign-in-error-error-aadsts50011-the-reply-url-specified-in-the-request-does-not-match-the-reply-urls-configured-for-the-application</a></p>
+</li>
+</ol>
+</div>
+        </div>
+    </div>
+]]></description>
+</item>
+<item>
+    <title>Unable to start trace, the required event providers were not found. Contact your system administrator</title>
+    <link>https://nuxulu.com/2022-06-20-unable-to-trace-error/</link>
+    <pubDate>Mon, 20 Jun 2022 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2022-06-20-unable-to-trace-error/</guid>
+    <description><![CDATA[<p>The error pops when you start the trace: <em>Unable to start trace, the required event providers were not found. Contact your system administrator.</em></p>
+<p><figure><a class="lightgallery" href="/2022-06-20-unable-to-trace-error/trace-error.png" title="Image" data-thumbnail="/2022-06-20-unable-to-trace-error/trace-error.png" data-sub-html="<h2>trace-error</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">trace-error</figcaption>
+    </figure></p>
+<p>Cause: Some how you dont have Dynamics in event viewer</p>
+<p><figure><a class="lightgallery" href="/2022-06-20-unable-to-trace-error/no-dynamics.png" title="Image" data-thumbnail="/2022-06-20-unable-to-trace-error/no-dynamics.png" data-sub-html="<h2>no-dynamics</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">no-dynamics</figcaption>
+    </figure></p>
+<p>Resolution: execute the script below under <code>C:\Temp</code> in powershell</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ps" data-lang="ps"><span class="line"><span class="cl"><span class="nf">$AOSSetupETWManifestDir</span> <span class="nf">=</span> <span class="nf">&#34;K:\AosService\WebRoot\Monitoring&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">foreach</span> <span class="s">($manifestFile in Get-ChildItem -Path $AOSSetupETWManifestDir</span><span class="se">\</span><span class="s">*.man | select-object -Property BaseName,Name)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">$dllFile=&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">if</span> <span class="s">((Test-Path &#34;$AOSSetupETWManifestDir</span><span class="se">\</span><span class="s">$($manifestFile.BaseName).Instrumentation.dll&#34;))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">$dllFile</span> <span class="nf">=</span> <span class="nf">&#34;$AOSSetupETWManifestDir\$</span><span class="s">($manifestFile.BaseName)</span><span class="nf">.Instrumentation.dll&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">elseif</span> <span class="s">((Test-Path &#34;$AOSSetupETWManifestDir</span><span class="se">\</span><span class="s">$($manifestFile.BaseName)Resource.dll&#34;))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">$dllFile</span> <span class="nf">=</span> <span class="nf">&#34;$AOSSetupETWManifestDir\$</span><span class="s">($manifestFile.BaseName)</span><span class="nf">Resource.dll&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">elseif</span> <span class="s">((Test-Path &#34;$AOSSetupETWManifestDir</span><span class="se">\</span><span class="s">$($manifestFile.BaseName).dll&#34;))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">$dllFile</span> <span class="nf">=</span> <span class="nf">&#34;$AOSSetupETWManifestDir\$</span><span class="s">($manifestFile.BaseName)</span><span class="nf">.dll&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">else</span> 
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">Write-Host</span> <span class="nf">&#34;Warn</span> <span class="nf">:</span> <span class="nf">Skipping</span> <span class="nf">$AOSSetupETWManifestDir\$</span><span class="s">($manifestFile.Name)</span> <span class="nf">as</span> <span class="nf">DLL</span> <span class="nf">not</span> <span class="nf">found&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">Continue</span>    
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="nf">Write-Host</span> <span class="nf">&#34;Installing</span> <span class="nf">$AOSSetupETWManifestDir\$</span><span class="s">($manifestFile.Name)</span> <span class="nf">using</span> <span class="nf">$dllFile&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">wevtutil.exe</span> <span class="nf">im</span> <span class="nf">&#34;$AOSSetupETWManifestDir\$</span><span class="s">($manifestFile.Name)</span><span class="nf">&#34;</span> <span class="nv">/rf:&#34;$dllFile&#34;</span> <span class="nv">/mf:&#34;$dllFile&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">Write-Host</span> <span class="nf">&#34;Finished</span> <span class="nf">installing</span> <span class="nf">$AOSSetupETWManifestDir\$</span><span class="s">($manifestFile.Name)</span> <span class="nf">`n`n&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Then restart the VM by LCS or Azure portal, you will get the Dynamics back in the event viewer and able to start the trace normally.</p>
+<p><figure><a class="lightgallery" href="/2022-06-20-unable-to-trace-error/dynamics-event.png" title="Image" data-thumbnail="/2022-06-20-unable-to-trace-error/dynamics-event.png" data-sub-html="<h2>dynamics-event</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">dynamics-event</figcaption>
+    </figure></p>
+]]></description>
+</item>
+<item>
+    <title>Troubleshooting DVT script for service model - Dynamics 365 Finance &amp; Operations Tier 1 Upgrade</title>
+    <link>https://nuxulu.com/2021-12-21-troubleshooting-dvt-script-for-service-model/</link>
+    <pubDate>Tue, 21 Dec 2021 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2021-12-21-troubleshooting-dvt-script-for-service-model/</guid>
+    <description><![CDATA[<p>While doing upgrade to the latest version Dynamics 365 Finance &amp; Operations on tier 1 environment, you might got some errors related to DVT auto scripts.</p>
+<h2 id="1-dvt-script-for-service-model-aosservice-on-machine">1. DVT script for service model: AOSService on machine</h2>
+<p>An error at step 72</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;Step&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;ID&gt;</span>72<span class="nt">&lt;/ID&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;RunbookID&gt;</span>498de9aee46e403e9dcd97b40166775e<span class="nt">&lt;/RunbookID&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;PackageId&gt;</span>dd4119e4331248d5a6ba9b987eef440d<span class="nt">&lt;/PackageId&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;PackageType&gt;</span>PlatAppBinaryHotfixPackage<span class="nt">&lt;/PackageType&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;CompletedManually&gt;</span>false<span class="nt">&lt;/CompletedManually&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;Description&gt;</span>DVT script for service model: AOSService on machine: <span class="nt">&lt;/Description&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;MachineName&gt;&lt;/MachineName&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;ServiceModelName&gt;</span>AOSService<span class="nt">&lt;/ServiceModelName&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;ScriptToExecute&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;FileName&gt;</span>AutoRunDVT.ps1<span class="nt">&lt;/FileName&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;Automated&gt;</span>true<span class="nt">&lt;/Automated&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;Description&gt;</span>Run the AOS DVTs<span class="nt">&lt;/Description&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;RetryCount&gt;</span>1<span class="nt">&lt;/RetryCount&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;TimeoutValue&gt;</span>1<span class="nt">&lt;/TimeoutValue&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;InvokeWithPowershellProcess&gt;</span>false<span class="nt">&lt;/InvokeWithPowershellProcess&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;DoNotAutoResume&gt;</span>false<span class="nt">&lt;/DoNotAutoResume&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;DynamicStepDefinition</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;/ScriptToExecute&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;StepType&gt;</span>DVT<span class="nt">&lt;/StepType&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;StepConcurrency&gt;</span>Multiple<span class="nt">&lt;/StepConcurrency&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;ScriptExecutionOutput</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/Step&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Event log error details</p>
+<div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">System.Net.WebException: The underlying connection was closed: Could not establish trust relationship for the SSL/TLS secure channel. &mdash;&gt; System.Security.Authentication.AuthenticationException: The remote certificate is invalid according to the validation procedure.</div>
+        </div>
+    </div>
+<h3 id="solution">Solution</h3>
+<p>You need to abort the current process in LCS because this option will only show for environments in the <strong>Deployed</strong> state, then do &ldquo;Rotate the SSL certificates&rdquo;</p>
+<ul>
+<li>On the Environment details page, click <code>Maintain &gt; Rotate secrets</code>.</li>
+<li>Select Rotate the SSL certificates and confirm that you want to perform this action.</li>
+</ul>
+<p><figure><a class="lightgallery" href="/2021-12-21-troubleshooting-dvt-script-for-service-model/rorate-ssl.png" title="rorate-ssl" data-thumbnail="/2021-12-21-troubleshooting-dvt-script-for-service-model/rorate-ssl.png" data-sub-html="<h2>rorate-ssl</h2><p>rorate-ssl</p>">
+        
+    </a><figcaption class="image-caption">rorate-ssl</figcaption>
+    </figure></p>
+<h2 id="2-step-73---dvt-script-for-service-model-mronebox-on-machine">2. Step 73 - DVT script for service model: MROneBox on machine</h2>
+<h3 id="21-the-error-from-runbook">2.1 The error from <code>runbook</code></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;Step&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;ID&gt;</span>73<span class="nt">&lt;/ID&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;RunbookID&gt;</span>498de9aee46e403e9dcd97b40166775e<span class="nt">&lt;/RunbookID&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;PackageId&gt;</span>dd4119e4331248d5a6ba9b987eef440d<span class="nt">&lt;/PackageId&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;PackageType&gt;</span>PlatAppBinaryHotfixPackage<span class="nt">&lt;/PackageType&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;CompletedManually&gt;</span>false<span class="nt">&lt;/CompletedManually&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;Description&gt;</span>DVT script for service model: MROneBox on machine: <span class="nt">&lt;/Description&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;MachineName&gt;&lt;/MachineName&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;ServiceModelName&gt;</span>MROneBox<span class="nt">&lt;/ServiceModelName&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;ScriptToExecute&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;FileName&gt;</span>AutoRunDVT.ps1<span class="nt">&lt;/FileName&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;Automated&gt;</span>true<span class="nt">&lt;/Automated&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;Description&gt;</span>Run the AOS DVTs<span class="nt">&lt;/Description&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;RetryCount&gt;</span>1<span class="nt">&lt;/RetryCount&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;TimeoutValue&gt;</span>1<span class="nt">&lt;/TimeoutValue&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;InvokeWithPowershellProcess&gt;</span>false<span class="nt">&lt;/InvokeWithPowershellProcess&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;DoNotAutoResume&gt;</span>false<span class="nt">&lt;/DoNotAutoResume&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;DynamicStepDefinition</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;/ScriptToExecute&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;StepType&gt;</span>DVT<span class="nt">&lt;/StepType&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;StepConcurrency&gt;</span>Multiple<span class="nt">&lt;/StepConcurrency&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;ScriptExecutionOutput</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/Step&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="22-event-log-error-details">2.2 Event log error details</h3>
+<div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Exception : System.Management.Automation.RemoteException: An error was encountered while updating the Financial Reporting components.
+TargetObject : An error was encountered while updating the Financial Reporting components.</div>
+        </div>
+    </div>
+<h3 id="23-solution">2.3 Solution</h3>
+<p>To resolve this, we will need to reset <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/analytics/reset-financial-reporting-datamart-after-restore#reset-the-financial-reporting-data-mart-through-windows-powershell" target="_blank" rel="noopener noreffer ">financial reporting data mart</a>, following the steps</p>
+<ul>
+<li>
+<p>Stops AX services</p>
+<ul>
+<li>World wide web publishing service (on all Application Object Servers [AOS] computers)</li>
+<li>Batch Management Service (on non-private AOS computers only)</li>
+<li>Management Reporter 2012 Process Service (on Business intelligence [BI] computers only)</li>
+</ul>
+</li>
+</ul>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>Note<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">We can use command line too
+<code>NET STOP &quot;MR2012ProcessService&quot;</code></div>
+        </div>
+    </div>
+<ul>
+<li>Open PowerShell and execute the following script, this will execute reset datamart</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ps" data-lang="ps"><span class="line"><span class="cl"><span class="nf">cd</span> <span class="nf">K:\MROneBox\MRInstallDirectory\Server\MRDeploy\</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Import-Module</span> <span class="nf">.\MRDeploy.psd1</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Reset-DatamartIntegration</span> <span class="nf">-Reason</span> <span class="nf">OTHER</span> <span class="nf">-ReasonDetail</span> <span class="nf">&#34;</span><span class="p">&lt;</span><span class="nf">reason</span> <span class="nf">for</span> <span class="nf">resetting</span><span class="p">&gt;</span><span class="nf">&#34;</span> <span class="nf">-SkipMRTableReset</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>Note<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">To ensure that old data isn&rsquo;t inserted, a data mart reset can be started only after existing tasks are completed. If you try to reset the data mart before all tasks are completed, you might receive a message such as, &ldquo;The data mart reset was unable to be processed because of an active task. Please try again later.&rdquo;</div>
+        </div>
+    </div>
+<ul>
+<li>After reset datamart, we need to execute the step 73 again, find the latest deployable package applied to the environment. It will be under folder <code>&lt;ServiceVolue&gt;:\DeployablePackages\&lt;PackageGUID&gt;\MROneBox\Scripts\Update</code></li>
+</ul>
+<p>Execute <code>AutoRunDVT.ps1</code> in Powershell</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ps" data-lang="ps"><span class="line"><span class="cl"><span class="nf">.\AutoRunDVT.ps1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>If it can be executed without error, you can go ahead and resume the deployment in LCS.</p>
+<h3 id="if-there-are-still-errors-we-need-an-extra-step">If there are still errors, we need an extra step</h3>
+<ul>
+<li>Find the DVT execution script: <code>&lt;ServiceVolue&gt;:\DeployablePackages\&lt;PackageGUID&gt;\MROneBox\scripts\Update\AutoRunDVT.ps1</code></li>
+<li>Make a copy of the file</li>
+<li>Clear all contents <code>AutoRunDVT.ps1</code> and save</li>
+<li>Resume the deployment from LCS.</li>
+</ul>]]></description>
+</item>
+<item>
+    <title>Windows keyboard shortcuts</title>
+    <link>https://nuxulu.com/2021-11-05-windows-key-shortcuts/</link>
+    <pubDate>Fri, 05 Nov 2021 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2021-11-05-windows-key-shortcuts/</guid>
+    <description><![CDATA[<h2 id="1-new-keyboard-shortcuts-in-windows-11">1. New Keyboard Shortcuts in Windows 11</h2>
+<p>Windows 11 brings a few Keyboard Shortcuts for accessing its cool new features such as widgets, snap layouts, action center, and quick settings.</p>
+<p>FYI, <code>Win</code> key is the <strong>Windows Logo key</strong> on your keyboard.</p>
+<table>
+<thead>
+<tr>
+<th>ACTION</th>
+<th>SHORTCUTS KEYS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Open up the Widgets pane. It supplies you with the weather forecast, local traffic, news, and even your calendar.</td>
+<td>Win + W</td>
+</tr>
+<tr>
+<td>Toggle up the Quick Settings. It controls the Volume, Wi-Fi, Bluetooth, Brightness sliders, Focus Assist, and other settings.</td>
+<td>Win + A</td>
+</tr>
+<tr>
+<td>Bring up the Notification Center. It shows all your notifications in the OS.</td>
+<td>Win + N</td>
+</tr>
+<tr>
+<td>Open the Snap Layouts flyout. It helps you organize apps and windows for multitasking.</td>
+<td>Win + Z</td>
+</tr>
+<tr>
+<td>Open Teams Chat app from Taskbar. It helps you quickly select a chat thread directly from the Taskbar.</td>
+<td>Win + C</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-general-and-popular-shortcuts-for-windows-11">2. General and Popular Shortcuts for Windows 11</h2>
+<p>Here are the most frequently used and essential keyboard shortcuts for Windows 11.</p>
+<table>
+<thead>
+<tr>
+<th>ACTION</th>
+<th>SHORTCUTS KEYS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Select all contents</td>
+<td>Ctrl + A</td>
+</tr>
+<tr>
+<td>Copy the selected items</td>
+<td>Ctrl + C</td>
+</tr>
+<tr>
+<td>Cut the selected items</td>
+<td>Ctrl + X</td>
+</tr>
+<tr>
+<td>Paste the copied or cut items</td>
+<td>Ctrl + V</td>
+</tr>
+<tr>
+<td>Undo an action</td>
+<td>Ctrl + Z</td>
+</tr>
+<tr>
+<td>Redo an action</td>
+<td>Ctrl + Y</td>
+</tr>
+<tr>
+<td>Switch between the running applications</td>
+<td>Alt + Tab</td>
+</tr>
+<tr>
+<td>Open Task View</td>
+<td>Win + Tab</td>
+</tr>
+<tr>
+<td>Close the active app or If you are on Desktop, open the Shutdown box to shut down, restart, log out or put your PC to sleep.</td>
+<td>Alt + F4</td>
+</tr>
+<tr>
+<td>Lock your computer.</td>
+<td>Win + L</td>
+</tr>
+<tr>
+<td>Display and hide the desktop.</td>
+<td>Win + D</td>
+</tr>
+<tr>
+<td>Delete the selected item and move it to the Recycle Bin.</td>
+<td>Ctrl + Delete</td>
+</tr>
+<tr>
+<td>Delete the selected item permanently.</td>
+<td>Shift + Delete</td>
+</tr>
+<tr>
+<td>Capture a full screenshot and saves it in the clipboard.</td>
+<td>PrtScn or Print</td>
+</tr>
+<tr>
+<td>Capture part of the screen with Snip &amp; Sketch.</td>
+<td>Win + Shift + S</td>
+</tr>
+<tr>
+<td>Open Start button context menu.</td>
+<td>Windows + X</td>
+</tr>
+<tr>
+<td>Rename selected item.</td>
+<td>F2</td>
+</tr>
+<tr>
+<td>Refresh the active window.</td>
+<td>F5</td>
+</tr>
+<tr>
+<td>Open Menu bar in the current app.</td>
+<td>F10</td>
+</tr>
+<tr>
+<td>Go back.</td>
+<td>Alt + Left arrow</td>
+</tr>
+<tr>
+<td>Go forward.</td>
+<td>Alt + Left arrow</td>
+</tr>
+<tr>
+<td>Move up one screen</td>
+<td>Alt + Page Up</td>
+</tr>
+<tr>
+<td>Move down one screen</td>
+<td>Alt + Page Down</td>
+</tr>
+<tr>
+<td>Open Task Manager.</td>
+<td>Ctrl + Shift + Esc</td>
+</tr>
+<tr>
+<td>Project a screen.</td>
+<td>Win + P</td>
+</tr>
+<tr>
+<td>Print the current page.</td>
+<td>Ctrl + P</td>
+</tr>
+<tr>
+<td>Select more than one item.</td>
+<td>Shift + Arrow keys</td>
+</tr>
+<tr>
+<td>Save the current file.</td>
+<td>Ctrl + S</td>
+</tr>
+<tr>
+<td>Save As</td>
+<td>Ctrl + Shift + S</td>
+</tr>
+<tr>
+<td>Open a file in the current app.</td>
+<td>Ctrl + O</td>
+</tr>
+<tr>
+<td>Cycle through the apps on the taskbar.</td>
+<td>Alt + Esc</td>
+</tr>
+<tr>
+<td>Display your password on the login screen</td>
+<td>Alt + F8</td>
+</tr>
+<tr>
+<td>Open the shortcut menu for the current window</td>
+<td>Alt + Spacebar</td>
+</tr>
+<tr>
+<td>Open properties for the selected item.</td>
+<td>Alt + Enter</td>
+</tr>
+<tr>
+<td>Open the context menu (right-click menu) for the selected item.</td>
+<td>Alt + F10</td>
+</tr>
+<tr>
+<td>Open Run command.</td>
+<td>Win + R</td>
+</tr>
+<tr>
+<td>Open a new program window of the current app</td>
+<td>Ctrl + N</td>
+</tr>
+<tr>
+<td>Take a screen clipping</td>
+<td>Win + Shift + S</td>
+</tr>
+<tr>
+<td>Open Windows 11 settings</td>
+<td>Win + I</td>
+</tr>
+<tr>
+<td>Go back to Settings home page</td>
+<td>Backspace</td>
+</tr>
+<tr>
+<td>Stop or close the current task</td>
+<td>Esc</td>
+</tr>
+<tr>
+<td>Enter/Exit the full-screen mode</td>
+<td>F11</td>
+</tr>
+<tr>
+<td>Launch Emoji keyboard</td>
+<td>Win + period (.) or Win + semicolon (;)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-desktop-and-virtual-desktops-shortcuts-for-windows-11">3. Desktop and Virtual Desktops Shortcuts for Windows 11</h2>
+<p>These simple shortcuts will help you navigate your desktop and virtual desktops more smoothly.</p>
+<table>
+<thead>
+<tr>
+<th>ACTION</th>
+<th>SHORTCUTS KEYS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Open Start menu</td>
+<td>Window logo key (Win)</td>
+</tr>
+<tr>
+<td>Switch keyboard layout</td>
+<td>Ctrl + Shift</td>
+</tr>
+<tr>
+<td>View all open apps</td>
+<td>Alt + Tab</td>
+</tr>
+<tr>
+<td>Select more than one item on the desktop</td>
+<td>Ctrl + Arrow keys + Spacebar</td>
+</tr>
+<tr>
+<td>Minimize all open windows</td>
+<td>Win + M</td>
+</tr>
+<tr>
+<td>Maximize all minimized windows on the desktop.</td>
+<td>Win + Shift + M</td>
+</tr>
+<tr>
+<td>Minimize or maximize all but the active window</td>
+<td>Win + Home</td>
+</tr>
+<tr>
+<td>Snap the current app or window to the Left</td>
+<td>Win + Left Arrow Key</td>
+</tr>
+<tr>
+<td>Snap the current app or window to the RIght.</td>
+<td>Win + Right Arrow Key</td>
+</tr>
+<tr>
+<td>Stretch the active window to the top and bottom of the screen.</td>
+<td>Win + Shift + Up arrow key</td>
+</tr>
+<tr>
+<td>Restore or minimize active desktop windows vertically, maintaining width.</td>
+<td>Win + Shift + Down arrow key</td>
+</tr>
+<tr>
+<td>Open Desktop view</td>
+<td>Win + Tab</td>
+</tr>
+<tr>
+<td>Add a new virtual desktop</td>
+<td>Win + Ctrl + D</td>
+</tr>
+<tr>
+<td>Close the active virtual desktop.</td>
+<td>Win + Ctrl + F4</td>
+</tr>
+<tr>
+<td>Toggle or switch to the virtual desktops you’ve created on the Right</td>
+<td>Win key + Ctrl + Right arrow</td>
+</tr>
+<tr>
+<td>Toggle or switch to the virtual desktops you’ve created on the Left</td>
+<td>Win key + Ctrl + Left arrow</td>
+</tr>
+<tr>
+<td>Create a shortcut</td>
+<td>CTRL + SHIFT while dragging icon or file</td>
+</tr>
+<tr>
+<td>Open WIndows Search</td>
+<td>Win + S or Win + Q</td>
+</tr>
+<tr>
+<td>Take a peek look at the desktop until you release the WINDOWS key.</td>
+<td>Win + Comma (,)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-taskbar-keyboard-shortcuts-for-windows-11">4. Taskbar Keyboard Shortcuts for Windows 11</h2>
+<p>You can use below keyboard shortcuts to take control of your taskbar:</p>
+<table>
+<thead>
+<tr>
+<th>ACTION</th>
+<th>SHORTCUTS KEYS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Run an app as administrator from the taskbar</td>
+<td>Ctrl + Shift + Left Click app button or icon</td>
+</tr>
+<tr>
+<td>Open the app in the first position on your taskbar.</td>
+<td>Win + 1</td>
+</tr>
+<tr>
+<td>Open the app in the number position from the taskbar.</td>
+<td>Win + Number (0 - 9)</td>
+</tr>
+<tr>
+<td>Cycle through apps in the taskbar.</td>
+<td>Win + T</td>
+</tr>
+<tr>
+<td>View Date and Time from the taskbar</td>
+<td>Win + Alt + D</td>
+</tr>
+<tr>
+<td>Open another instance of an app from the taskbar.</td>
+<td>Shift + Left Click app button</td>
+</tr>
+<tr>
+<td>Show the window menu for the group apps from the taskbar.</td>
+<td>Shift + Right-click grouped app icon</td>
+</tr>
+<tr>
+<td>Highlight the first item in the Notification Area and use the Arrow key switch between the item</td>
+<td>Win + B</td>
+</tr>
+<tr>
+<td>Open the application’s menu on the task bar</td>
+<td>Alt + Windows key + number keys</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-file-explorer-shortcuts-for-windows-11">5. File Explorer Shortcuts for Windows 11</h2>
+<p>These keyboard shortcuts can help you navigate your Windows filesystem quickly than ever:</p>
+<table>
+<thead>
+<tr>
+<th>ACTION</th>
+<th>SHORTCUTS KEYS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Open the File Explorer.</td>
+<td>Win + E</td>
+</tr>
+<tr>
+<td>Open the search box in the file explorer.</td>
+<td>Ctrl + E</td>
+</tr>
+<tr>
+<td>Open the current window in a new window.</td>
+<td>Ctrl + N</td>
+</tr>
+<tr>
+<td>Close active window.</td>
+<td>Ctrl + W</td>
+</tr>
+<tr>
+<td>Start the mark mode</td>
+<td>Ctrl + M</td>
+</tr>
+<tr>
+<td>Change the file and folder view.</td>
+<td>Ctrl + Mouse Scroll</td>
+</tr>
+<tr>
+<td>Switch between left and right panes</td>
+<td>F6</td>
+</tr>
+<tr>
+<td>Create a new folder.</td>
+<td>Ctrl + Shift + N</td>
+</tr>
+<tr>
+<td>Expand all subfolders in the navigation pane on the left.</td>
+<td>Ctrl + Shift + E</td>
+</tr>
+<tr>
+<td>Select address bar of the File Explorer.</td>
+<td>Alt + D</td>
+</tr>
+<tr>
+<td>Changes folder view.</td>
+<td>Ctrl + Shift + Number (1-8)</td>
+</tr>
+<tr>
+<td>Display the preview panel.</td>
+<td>Alt + P</td>
+</tr>
+<tr>
+<td>Open the Properties settings for the selected item.</td>
+<td>Alt + Enter</td>
+</tr>
+<tr>
+<td>Expand the selected drive or folder</td>
+<td>Num Lock + plus (+)</td>
+</tr>
+<tr>
+<td>Collapse the selected drive or folder.</td>
+<td>Num Lock + minus (-)</td>
+</tr>
+<tr>
+<td>Expand all the subfolders under the selected drive or folder.</td>
+<td>Num Lock + asterisk (*)</td>
+</tr>
+<tr>
+<td>Go the next folder.</td>
+<td>Alt + Right arrow</td>
+</tr>
+<tr>
+<td>Go the previous folder</td>
+<td>Alt + Left arrow (or Backspace)</td>
+</tr>
+<tr>
+<td>Go to the parent folder the folder was in.</td>
+<td>Alt + Up arrow</td>
+</tr>
+<tr>
+<td>Switch focus to address bar.</td>
+<td>F4</td>
+</tr>
+<tr>
+<td>Refresh the File Explorer</td>
+<td>F5</td>
+</tr>
+<tr>
+<td>Expand the current folder tree or select the first subfolder (if it’s expanded) in the left pane.</td>
+<td>Right Arrow key</td>
+</tr>
+<tr>
+<td>Collapse the current folder tree or select the parent folder (if it’s collapsed) in the left pane.</td>
+<td>Left Arrow Key</td>
+</tr>
+<tr>
+<td>Move to the top of the active window.</td>
+<td>Home</td>
+</tr>
+<tr>
+<td>Move to the bottom of the active window.</td>
+<td>End</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-command-prompt-shortcuts-for-windows-11">6. Command Prompt Shortcuts for Windows 11</h2>
+<p>If you are a Command Prompt user, then these shortcuts will come handy:</p>
+<table>
+<thead>
+<tr>
+<th>ACTION</th>
+<th>SHORTCUTS KEYS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Scroll to the top of the Command Prompt (cmd).</td>
+<td>Ctrl + Home</td>
+</tr>
+<tr>
+<td>Scroll to the bottom of the cmd.</td>
+<td>Ctrl + End</td>
+</tr>
+<tr>
+<td>Select everything on the current line</td>
+<td>Ctrl + A</td>
+</tr>
+<tr>
+<td>Move the cursor up a page</td>
+<td>Page Up</td>
+</tr>
+<tr>
+<td>Move the cursor down a page</td>
+<td>Page Down</td>
+</tr>
+<tr>
+<td>Enter Mark mode.</td>
+<td>Ctrl + M</td>
+</tr>
+<tr>
+<td>Move the cursor to the beginning of the buffer.</td>
+<td>Ctrl + Home (in Mark mode)</td>
+</tr>
+<tr>
+<td>Move the cursor to the end of the buffer.</td>
+<td>Ctrl + End (in Mark mode)</td>
+</tr>
+<tr>
+<td>Cycle through command history of active session</td>
+<td>Up or Down arrow keys</td>
+</tr>
+<tr>
+<td>Move cursor left or right in the current command line.</td>
+<td>Left or Right arrow keys</td>
+</tr>
+<tr>
+<td>Move your cursor to the start of the current line</td>
+<td>Shift + Home</td>
+</tr>
+<tr>
+<td>Move your cursor to the end of the current line</td>
+<td>Shift + End</td>
+</tr>
+<tr>
+<td>Move cursor up one screen and select text.</td>
+<td>Shift + Page Up</td>
+</tr>
+<tr>
+<td>Move cursor down one screen and select text.</td>
+<td>Shift + Page Down</td>
+</tr>
+<tr>
+<td>Move the screen up one line in the output history.</td>
+<td>Ctrl + Up arrow</td>
+</tr>
+<tr>
+<td>Move the screen down one line in the output history.</td>
+<td>Ctrl + Down arrow</td>
+</tr>
+<tr>
+<td>Move cursor up one line and select the text.</td>
+<td>Shift + Up</td>
+</tr>
+<tr>
+<td>Move cursor down one line and select the text.</td>
+<td>Shift + Down</td>
+</tr>
+<tr>
+<td>Move the cursor one word at a time.</td>
+<td>Ctrl + Shift + Arrow Keys</td>
+</tr>
+<tr>
+<td>Open search for Command Prompt.</td>
+<td>Ctrl + F</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-dialog-box-shortcuts-for-windows-11">7. Dialog box Shortcuts for Windows 11</h2>
+<p>Use the following Windows hotkeys to navigate the Dialog box of any application easily:</p>
+<table>
+<thead>
+<tr>
+<th>ACTION</th>
+<th>SHORTCUTS KEYS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Move forward through tabs.</td>
+<td>Ctrl + Tab</td>
+</tr>
+<tr>
+<td>Move back through tabs.</td>
+<td>Ctrl + Shift + Tab</td>
+</tr>
+<tr>
+<td>Switch to nth tab.</td>
+<td>Ctrl + N (number 1–9)</td>
+</tr>
+<tr>
+<td>Show the items in the active list.</td>
+<td>F4</td>
+</tr>
+<tr>
+<td>Move forward through options of the dialog box</td>
+<td>Tab</td>
+</tr>
+<tr>
+<td>Move back through options of the dialog box</td>
+<td>Shift + Tab</td>
+</tr>
+<tr>
+<td>Execute the command (or select the option) that is used with the underlined letter.</td>
+<td>Alt + underlined letter</td>
+</tr>
+<tr>
+<td>Check or Uncheck the check box if the active option is a check box.</td>
+<td>Spacebar</td>
+</tr>
+<tr>
+<td>Select or move to a button in a group of active buttons.</td>
+<td>Arrow keys</td>
+</tr>
+<tr>
+<td>Open the parent folder if a folder is selected in the Open or Save As dialog box.</td>
+<td>Backspace</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-accessibility-keyboard-shortcuts-for-windows-11">8. Accessibility Keyboard Shortcuts for Windows 11</h2>
+<p>Windows 11 provides these keyboard shortcuts to make your computer more accessible and easier to use for everyone:</p>
+<table>
+<thead>
+<tr>
+<th>ACTION</th>
+<th>SHORTCUTS KEYS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Open Ease of Access Centre</td>
+<td>Win + U</td>
+</tr>
+<tr>
+<td>Turn on Magnifier and Zoom in</td>
+<td>Win + plus (+)</td>
+</tr>
+<tr>
+<td>Zoom out using Magnifier</td>
+<td>Win + minus (-)</td>
+</tr>
+<tr>
+<td>Exit Magnifier</td>
+<td>Win + Esc</td>
+</tr>
+<tr>
+<td>Switch to docked mode in Magnifier</td>
+<td>Ctrl + Alt + D</td>
+</tr>
+<tr>
+<td>Switch to full-screen mode in Magnifier</td>
+<td>Ctrl + Alt + F</td>
+</tr>
+<tr>
+<td>Switch to lens mode in Magnifier</td>
+<td>Ctrl + Alt + L</td>
+</tr>
+<tr>
+<td>Invert colors in Magnifier</td>
+<td>Ctrl + Alt + I</td>
+</tr>
+<tr>
+<td>Cycle through views in Magnifier</td>
+<td>Ctrl + Alt + M</td>
+</tr>
+<tr>
+<td>Resize the lens with the mouse in Magnifier.</td>
+<td>Ctrl + Alt + R</td>
+</tr>
+<tr>
+<td>Pan in the direction of the arrow keys in Magnifier.</td>
+<td>Ctrl + Alt + arrow keys</td>
+</tr>
+<tr>
+<td>Zoom in or out using mouse</td>
+<td>Ctrl + Alt + mouse scroll</td>
+</tr>
+<tr>
+<td>Open Narrator</td>
+<td>Win + Enter</td>
+</tr>
+<tr>
+<td>Open on-screen keyboard</td>
+<td>Win + Ctrl + O</td>
+</tr>
+<tr>
+<td>Turn Filter Keys on and off</td>
+<td>Press Right Shift for eight seconds</td>
+</tr>
+<tr>
+<td>Turn High Contrast on or off</td>
+<td>Left Alt + left Shift + PrtSc</td>
+</tr>
+<tr>
+<td>Turn Mouse Keys on or off</td>
+<td>Left Alt + left Shift + Num Lock</td>
+</tr>
+<tr>
+<td>Turn Sticky Keys on or off</td>
+<td>Press Shift five times</td>
+</tr>
+<tr>
+<td>Turn Toggle Keys on or off</td>
+<td>Press Num Lock for five seconds</td>
+</tr>
+<tr>
+<td>Open Action Center</td>
+<td>Win + A</td>
+</tr>
+</tbody>
+</table>
+<h2 id="9-other-keyboard-shortcuts-for-windows-11">9. Other Keyboard Shortcuts for Windows 11</h2>
+<table>
+<thead>
+<tr>
+<th>ACTION</th>
+<th>SHORTCUTS KEYS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Open Game bar</td>
+<td>Win + G</td>
+</tr>
+<tr>
+<td>Record the last 30 seconds of the active game</td>
+<td>Win + Alt + G</td>
+</tr>
+<tr>
+<td>Start or stop recording the active game</td>
+<td>Win + Alt + R</td>
+</tr>
+<tr>
+<td>Take a screenshot of the active game</td>
+<td>Win + Alt + PrtSc</td>
+</tr>
+<tr>
+<td>Show/hide recording timer of the game</td>
+<td>Win + Alt + T</td>
+</tr>
+<tr>
+<td>Start IME reconversion</td>
+<td>Win + forward slash (/)</td>
+</tr>
+<tr>
+<td>Open Feedback Hub</td>
+<td>Win + F</td>
+</tr>
+<tr>
+<td>Launch Voice Typing</td>
+<td>Win + H</td>
+</tr>
+<tr>
+<td>Open the Connect quick setting</td>
+<td>Win + K</td>
+</tr>
+<tr>
+<td>Lock your device orientation</td>
+<td>Win + O</td>
+</tr>
+<tr>
+<td>Display the System Properties Page</td>
+<td>Win + Pause</td>
+</tr>
+<tr>
+<td>Search for PCs (if you’re on a network)</td>
+<td>Win + Ctrl + F</td>
+</tr>
+<tr>
+<td>Move an app or window from one monitor to another</td>
+<td>Win + Shift + Left or Right arrow key</td>
+</tr>
+<tr>
+<td>Switch input language and keyboard layout</td>
+<td>Win + Spacebar</td>
+</tr>
+<tr>
+<td>Open Clipboard History</td>
+<td>Win + V</td>
+</tr>
+<tr>
+<td>Switch input between Windows Mixed Reality and your desktop.</td>
+<td>Win + Y</td>
+</tr>
+<tr>
+<td>Launch Cortana app</td>
+<td>Win + C</td>
+</tr>
+<tr>
+<td>Open another instance of the app pinned to the taskbar in the number position.</td>
+<td>Win + Shift + Number key (0-9)</td>
+</tr>
+<tr>
+<td>Switch to the last active window of the app pinned to the taskbar in the number position.</td>
+<td>Win + Ctrl + Number key (0-9)</td>
+</tr>
+<tr>
+<td>Open Jump List of the app pinned to the taskbar in the number position.</td>
+<td>Win + Alt + Number key (0-9)</td>
+</tr>
+<tr>
+<td>Open another instance as an administrator of the app pinned to the taskbar in the number position.</td>
+<td>Win + Ctrl + Shift + Number key (0-9)</td>
+</tr>
+</tbody>
+</table>
+]]></description>
+</item>
+</channel>
+</rss>

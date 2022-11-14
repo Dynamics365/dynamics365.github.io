@@ -1,0 +1,772 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>warehouse management - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</title>
+        <link>https://nuxulu.com/tags/warehouse-management/</link>
+        <description>warehouse management - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Wed, 09 Nov 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/warehouse-management/" rel="self" type="application/rss+xml" /><item>
+    <title>Reservation and on-hand inventory in warehouse management</title>
+    <link>https://nuxulu.com/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/</link>
+    <pubDate>Wed, 09 Nov 2022 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/</guid>
+    <description><![CDATA[<h2 id="1-inventory-reservation-hierarchy-in-warehouse-management">1. <strong>Inventory reservation hierarchy in Warehouse management</strong></h2>
+<p>The reservation functionality can be used only for items that are enabled for warehouse management processes. However, if an item is itself enabled for <a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/warehousing/flexible-warehouse-level-dimension-reservation" target="_blank" rel="noopener noreffer ">warehouse management processes</a>, it can be used both in warehouses that are enabled for warehouse management processes and warehouses that are not. The behavior in reservation scenarios is different, depending on the warehouse setup.</p>
+<p>The functionality is built on reservation hierarchies and is intended to support the following:</p>
+<ul>
+<li>Flexible warehouse operations.</li>
+<li>Postponement of reservation details.</li>
+<li>Clear separation of which inventory dimensions can be specified, and when they can be specified.</li>
+</ul>
+<h3 id="11-reservation-hierarchies">1.1 <strong>Reservation hierarchies</strong></h3>
+<p>A typical reservation hierarchy for an item that uses the <code>Site</code>, <code>Warehouse</code>, <code>Inventory status</code>, <code>Location</code>, and <code>License plate</code> dimensions as physical inventory dimensions.</p>
+<p><figure><a class="lightgallery" href="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/Reservation-hierarchies.png" title="Image" data-thumbnail="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/Reservation-hierarchies.png" data-sub-html="<h2>Reservation-hierarchies</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Reservation-hierarchies</figcaption>
+    </figure></p>
+<p>The level with the lowest value in the Reservation hierarchy level column is the least-specific level, in the example above this is the site level.
+The higher the value, the more details are required to make a reservation on that level.</p>
+<h3 id="12-reservation-hierarchies-implementation">1.2 <strong>Reservation hierarchies implementation</strong></h3>
+<p><figure><a class="lightgallery" href="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/Reservation-hierarchies-implementation.png" title="Image" data-thumbnail="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/Reservation-hierarchies-implementation.png" data-sub-html="<h2>Reservation-hierarchies-implementation</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Reservation-hierarchies-implementation</figcaption>
+    </figure></p>
+<p>The definitions of reservation hierarchies are stored in the <strong>WHSReservationHierarchy</strong> and <strong>WHSReservationHierarchyElement</strong> tables. These are shared tables. A reservation hierarchy can be associated with one item within a company which presents by <strong>WHSReservationHierarchyItem</strong>.
+The <strong>WHSReservationHierarchyProvider</strong> class provides a large number of APIs that are useful when you work with and query the reservation hierarchy for an item.</p>
+<h3 id="13-making-reservations-on-different-levels">1.3 Making reservations on different levels</h3>
+<p>Based on the reservation hierarchy, you can make reservations on different levels without providing details about where to reserve and what dimensions to reserve on. This lets you postpone specific details, such as the location or license plate to make the reservation. The location to reserve items on can be determined later by the <a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/warehousing/warehouse-configuration" target="_blank" rel="noopener noreffer "><strong>location directive</strong></a>.</p>
+<p>As another example, you make reservations for a sales order created on <strong>site</strong> <code>Site1</code> and <strong>warehouse</strong> <code>WHS42</code>, which is a warehouse that is enabled for WHS processes, and for the Available inventory status. For this example, the reservation is made only
+on the inventory status level.</p>
+<p><figure><a class="lightgallery" href="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/reservations-on-different-levels.png" title="Image" data-thumbnail="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/reservations-on-different-levels.png" data-sub-html="<h2>reservations-on-different-levels</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">reservations-on-different-levels</figcaption>
+    </figure></p>
+<p>Location <code>Main006</code> will be specified when processing the work</p>
+<p><figure><a class="lightgallery" href="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/location.png" title="Image" data-thumbnail="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/location.png" data-sub-html="<h2>location</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">location</figcaption>
+    </figure></p>
+<h2 id="2-impact-of-the-reservation-hierarchy-setup">2. Impact of the reservation hierarchy setup</h2>
+<p>For warehouses that are enabled for warehouse management processes, the setup of reservation hierarchies greatly affects the processes for <a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/warehousing/release-to-warehouse-process" target="_blank" rel="noopener noreffer ">outbound orders</a>, such as sales orders and transfer orders.</p>
+<p>When you set up a reservation hierarchy, the key is to determine which dimensions should be positioned above the location level in the hierarchy, and which should be below. The following table describes the effects of arranging dimensions either above or below the location level.</p>
+<table>
+<thead>
+<tr>
+<th>Dimension placement</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dimension above location</td>
+<td>The inventory dimension above the location level must be determined before the</td>
+</tr>
+<tr>
+<td></td>
+<td>Warehouse management functionality can be used. Therefore, this typically happens</td>
+</tr>
+<tr>
+<td></td>
+<td>during order processing or by letting the reservation system determine the dimensions.</td>
+</tr>
+<tr>
+<td>Batch above location</td>
+<td>Process industry functionality for batches requires that the Batch number dimension be</td>
+</tr>
+<tr>
+<td></td>
+<td>above the Location dimension in the reservation hierarchy. When this is the case, all</td>
+</tr>
+<tr>
+<td></td>
+<td>functionality for First Expiry First Out (FEFO), same batch, batch disposition codes, and</td>
+</tr>
+<tr>
+<td></td>
+<td>batch attributes is supported.</td>
+</tr>
+<tr>
+<td>Dimensions below location</td>
+<td>WHS and warehouse workers can determine the Location dimension and the</td>
+</tr>
+<tr>
+<td></td>
+<td>dimensions below it.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>The Location dimension and any dimensions below it should not be entered into the sales</td>
+</tr>
+<tr>
+<td></td>
+<td>and transfer lines if you expect work to be created. For example, if the Batch number</td>
+</tr>
+<tr>
+<td></td>
+<td>dimension is below the Location dimension, it should not be specified on the sales line.</td>
+</tr>
+<tr>
+<td></td>
+<td>Otherwise, WHS cannot create work to carry out the pick and pack operations.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-on-hand-representation-and-calculations">3. On-hand representation and calculations</h2>
+<h3 id="31-on-hand-for-items-that-are-using-warehouse-management-processes">3.1 On-hand for items that are using warehouse management processes</h3>
+<p>The following table shows how the data might look for an item with 10 pieces available physical and 2 pieces reserved physical on the status level.</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Site</th>
+<th>Warehouse</th>
+<th>Inventory status</th>
+<th>Location</th>
+<th>License plate</th>
+<th>Available physical</th>
+<th>Available ordered</th>
+<th>Reserved physical</th>
+<th>Reserved ordered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Item</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>10</td>
+<td>10</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Site</td>
+<td>S1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>10</td>
+<td>10</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Warehouse</td>
+<td>S1</td>
+<td>WH1</td>
+<td></td>
+<td></td>
+<td></td>
+<td>10</td>
+<td>10</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>S1</td>
+<td>WH1</td>
+<td>Available</td>
+<td></td>
+<td></td>
+<td>10</td>
+<td>10</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Location</td>
+<td>S1</td>
+<td>WH1</td>
+<td>Available</td>
+<td>L001</td>
+<td></td>
+<td>12</td>
+<td>12</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>License plate</td>
+<td>S1</td>
+<td>WH1</td>
+<td>Available</td>
+<td>L001</td>
+<td>LP1</td>
+<td>12</td>
+<td>12</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>The reservations are tracked only on the levels that are affected by the reservation. Because of the way that information about availability and reservations is stored, the corresponding values from the <strong>InventSum</strong> table cannot be used directly for items that are using warehouse management processes.</p>
+<p>The following steps provide a high-level overview of the algorithm that determines the available on-hand quantity for
+an item and a set of inventory dimensions:</p>
+<ul>
+<li>Determine the available on-hand quantity, based on the exact dimensions. This is the lowest level in the hierarchy.</li>
+<li>Determine the smallest available quantity from all levels above the level found in step 1.</li>
+<li>Return the smaller of the quantities found in step 1 and step 2. This is the available quantity.</li>
+</ul>
+<h4 id="example-a">Example A</h4>
+<p>The following physical inventory exists for the item (some dimensions like site, inventory status, license plate are irrelevant and are omitted throughout the scenario):</p>
+<ul>
+<li><em>Warehouse: W1, Location: L1, Physical inventory: 6</em></li>
+</ul>
+<p>A sales order with one line is created and reserved:</p>
+<ul>
+<li><em>Warehouse: W1, Quantity: 5</em></li>
+</ul>
+<p>The sales order is released to warehouse. As a result warehouse work is created:</p>
+<ul>
+<li><em>Work type: Pick, Warehouse: W1, Location: L1, Quantity: 5</em></li>
+<li><em>Work type: Put, Warehouse: W1, Location: Baydoor, Quantity: 5</em></li>
+</ul>
+<p>Now we have the following inventory transactions:</p>
+<table>
+<thead>
+<tr>
+<th>Reference</th>
+<th>Warehouse</th>
+<th>Location</th>
+<th>Status issue</th>
+<th>Quantity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sales line</td>
+<td>W1</td>
+<td></td>
+<td>Reserved physical</td>
+<td>-5</td>
+</tr>
+<tr>
+<td>Pick work</td>
+<td>W1</td>
+<td>L1</td>
+<td>Reserved physical</td>
+<td>-5</td>
+</tr>
+<tr>
+<td>Put work</td>
+<td>W1</td>
+<td>Baydoor</td>
+<td>Ordered</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<p>So once we roll up the transactions into the <strong>InventSum</strong> table the contents of the table will look like this</p>
+<table>
+<thead>
+<tr>
+<th>Warehouse</th>
+<th>Location</th>
+<th>Physical inventory</th>
+<th>Reserved physical</th>
+<th>Available physical</th>
+<th>Ordered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W1</td>
+<td></td>
+<td>0</td>
+<td>5</td>
+<td>-5</td>
+<td>0</td>
+</tr>
+<tr>
+<td>W1</td>
+<td>L1</td>
+<td>6</td>
+<td>5</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>W1</td>
+<td>Baydoor</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<p>On hand quantities for warehouse W1 like we used to do it in versions prior to AX 2012 R3 (sum up InventSum quantities for warehouse W1)</p>
+<table>
+<thead>
+<tr>
+<th>Warehouse</th>
+<th>Physical inventory</th>
+<th>Reserved physical</th>
+<th>Available physical</th>
+<th>Ordered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W1</td>
+<td>6</td>
+<td>10</td>
+<td>-4</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<p>We should have shipped 5 items and we have 6 items on stock, 1 item is available. This is exactly the reason why summing up available and reserved quantities from the <strong>InventSum</strong> table may produce incorrect results for items that use warehouse management processes.</p>
+<p>The sales reservation was taken on the warehouse level of the reservation hierarchy to ensure that we keep enough on hand in the warehouse to ship the reserved quantity. The pick work reservation was taken on the location level and it ensures that the reserved quantity will still be physically available when the warehouse worker comes to the warehouse location to pick it. Work reservation does not affect physical availability on the warehouse level. This means that the new reservation engine will be able to figure out that we still have one item available on the warehouse level.</p>
+<table>
+<thead>
+<tr>
+<th>Warehouse</th>
+<th>Physical inventory</th>
+<th>Reserved physical</th>
+<th>Available physical</th>
+<th>Ordered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W1</td>
+<td>6</td>
+<td>5</td>
+<td>1</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example-b">Example B</h4>
+<table>
+<thead>
+<tr>
+<th>Reference</th>
+<th>Warehouse</th>
+<th>Location</th>
+<th>Status issue</th>
+<th>Status receipt</th>
+<th>Quantity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Purchase line</td>
+<td>W1</td>
+<td>L1</td>
+<td></td>
+<td>Purchased</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Purchase line</td>
+<td>W1</td>
+<td>L2</td>
+<td></td>
+<td>Purchased</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Sales line</td>
+<td>W1</td>
+<td></td>
+<td>Reserved physical</td>
+<td></td>
+<td>-25</td>
+</tr>
+<tr>
+<td>Pick work</td>
+<td>W1</td>
+<td>L1</td>
+<td>Reserved physical</td>
+<td></td>
+<td>-10</td>
+</tr>
+<tr>
+<td>Put work</td>
+<td>W1</td>
+<td>Baydoor</td>
+<td>Ordered</td>
+<td></td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<p>After the transactions are aggregated the <strong>InventSum</strong> table contains the following information</p>
+<table>
+<thead>
+<tr>
+<th>Warehouse</th>
+<th>Location</th>
+<th>Physical inventory</th>
+<th>Reserved physical</th>
+<th>Available physical</th>
+<th>Ordered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W1</td>
+<td></td>
+<td>0</td>
+<td>25</td>
+<td>-25</td>
+<td>0</td>
+</tr>
+<tr>
+<td>W1</td>
+<td>L1</td>
+<td>10</td>
+<td>10</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>W1</td>
+<td>L2</td>
+<td>20</td>
+<td>0</td>
+<td>20</td>
+<td>0</td>
+</tr>
+<tr>
+<td>W1</td>
+<td>Baydoor</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<p>For each of the levels of the reservation hierarchy it stores available and reserved quantities in the <code>WHSInventReserve</code> table which allows the engine to calculate availability correctly.</p>
+<p>To work with available quantities regardless of whether the item is using warehouse management processes or not the <code>InventIAvailability</code> interface was introduced. The following list contains the InventSum fields and methods that should not be used directly and the corresponding InventIAvailability methods that should be used instead:</p>
+<table>
+<thead>
+<tr>
+<th>Obsolete field/method</th>
+<th>Corresponding InventIAvailability method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>InventSum.AvailOrdered</td>
+<td>InventIAvailability.availTotal()</td>
+</tr>
+<tr>
+<td>InventSum.availOrderedCalculated()</td>
+<td>InventIAvailability.availTotal()</td>
+</tr>
+<tr>
+<td>InventSum.AvailPhysical</td>
+<td>InventIAvailability.availPhysical()</td>
+</tr>
+<tr>
+<td>InventSum.availPhysicalCalculated()</td>
+<td>InventIAvailability.availPhysical()</td>
+</tr>
+<tr>
+<td>InventSum.availReservation()</td>
+<td>InventIAvailability.availReservation()</td>
+</tr>
+<tr>
+<td>InventSum.Ordered</td>
+<td>InventIAvailability.ordered()</td>
+</tr>
+<tr>
+<td>InventSum.orderedSum()</td>
+<td>InventIAvailability.orderedSum()</td>
+</tr>
+<tr>
+<td>InventSum.ReservOrdered</td>
+<td>InventIAvailability.reservOrdered()</td>
+</tr>
+<tr>
+<td>InventSum.ReservPhysical</td>
+<td>InventIAvailability.reservPhysical()</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-implementation-of-on-hand-calculations">3.2 Implementation of on-hand calculations</h3>
+<p>Three major APIs were introduced for retrieving item availability:</p>
+<p>– <code>InventAvailabilityProvider</code>
+– <code>InventAvailabilityFormCache</code>
+– <code>InventOnhand</code></p>
+<ul>
+<li><strong>InventAvailabilityProvider</strong></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">InventIAvailability</span>  <span class="n">inventIAvailability</span> <span class="p">=</span> <span class="n">InventAvailabilityProvider</span><span class="p">::</span><span class="n">findByItemDim</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                                            <span class="n">InventTable</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="n">itemdId</span><span class="p">),</span> <span class="n">dim</span><span class="p">).</span><span class="n">parmInventAvailability</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Info</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;inventIAvailability, availPhysical %1, ordered %2, reservPhysical %3, reservOrdered %4&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">inventIAvailability</span><span class="p">.</span><span class="n">availPhysical</span><span class="p">(),</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">inventIAvailability</span><span class="p">.</span><span class="n">ordered</span><span class="p">(),</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">inventIAvailability</span><span class="p">.</span><span class="n">reservPhysical</span><span class="p">(),</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">inventIAvailability</span><span class="p">.</span><span class="n">reservOrdered</span><span class="p">()));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">InventAvailabilityByUnit</span> <span class="n">inventAvailabilityByUnitSum</span> <span class="p">=</span> <span class="n">InventAvailabilityProvider</span><span class="p">::</span><span class="n">findByItemSumDim</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                                                        <span class="n">InventTable</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="n">itemdId</span><span class="p">),</span> <span class="n">inventSum</span><span class="p">,</span> <span class="n">dim</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Info</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;inventAvailabilityByUnitSum, availPhysical %1, ordered %2, reservPhysical %3, reservOrdered %4&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">inventAvailabilityByUnitSum</span><span class="p">.</span><span class="n">availPhysical</span><span class="p">().</span><span class="n">qty</span><span class="p">(</span><span class="k">false</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">inventAvailabilityByUnitSum</span><span class="p">.</span><span class="n">ordered</span><span class="p">().</span><span class="n">qty</span><span class="p">(</span><span class="k">false</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">inventAvailabilityByUnitSum</span><span class="p">.</span><span class="n">reservPhysical</span><span class="p">().</span><span class="n">qty</span><span class="p">(</span><span class="k">false</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">inventAvailabilityByUnitSum</span><span class="p">.</span><span class="n">reservOrdered</span><span class="p">().</span><span class="n">qty</span><span class="p">(</span><span class="k">false</span><span class="p">)));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><strong>InventAvailabilityFormCache</strong></li>
+</ul>
+<p>In scenarios where you want to display available quantities on a form you can use the InventAvailabilityFormCache class.
+It is responsible for retrieving and caching available on hand quantities per item per inventory dimension combination. To use it on a form you need to:</p>
+<p>– Declare an <code>InventAvailabilityFormCache</code> field in <code>classDeclaration</code> of the form.
+– Initialize the cache field in the <code>init</code> method of the form:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="k">init</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">inventAvailabilityFormCache</span> <span class="p">=</span> <span class="n">InventAvailabilityFormCache</span><span class="p">::</span><span class="n">construct</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>– Flush the cache in the <code>executeQuery</code> method of the primary data source that the <code>InventSum</code> data source is joined to:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">executeQuery</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">inventAvailabilityFormCache</span><span class="p">.</span><span class="n">refreshCache</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>– Create display methods for available on hand fields that need to be displayed on the form. If <code>InventDim</code> is joined to <code>InventSum</code> then the display methods should be declared on the <code>InventSum</code> data source:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="n">display</span> <span class="n">InventQtyReservPhysical</span> <span class="n">reservPhysical</span><span class="p">(</span><span class="n">InventSum</span> <span class="n">_inventSum</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">inventAvailabilityFormCache</span><span class="p">.</span><span class="n">availabilityFromSumJoinedWithDim</span><span class="p">(</span><span class="n">_inventSum</span><span class="p">,</span> <span class="n">inventDim_ds</span><span class="p">).</span><span class="n">reservPhysical</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Note that the <code>availabilityFromSumJoinedWithDim</code> method should be used. Otherwise, if <code>InventSum</code> is joined to InventDim then the display method should be declared on the <code>InventDim</code> data source:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="n">display</span> <span class="n">InventQtyReservPhysical</span> <span class="n">reservPhysical</span><span class="p">(</span><span class="n">InventDim</span> <span class="n">_inventDim</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">inventAvailabilityFormCache</span><span class="p">.</span><span class="n">availabilityFromDimJoinedWithSum</span><span class="p">(</span><span class="n">_inventDim</span><span class="p">,</span> <span class="n">inventSum_ds</span><span class="p">).</span><span class="n">reservPhysical</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Note that the <code>availabilityFromDimJoinedWithSum</code> method should be used.</p>
+<ul>
+<li><strong>InventOnhand</strong></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">InventOnhand</span> <span class="n">inventOnHand</span> <span class="p">=</span> <span class="n">InventOnhand</span><span class="p">::</span><span class="n">newParameters</span><span class="p">(</span><span class="n">itemdId</span><span class="p">,</span> <span class="n">dim</span> <span class="p">,</span> <span class="n">dimParm</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Info</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;inventOnHand, availPhysical %1, ordered %2, reservPhysical %3, reservOrdered %4&#34;</span><span class="p">,</span> <span class="n">inventOnHand</span><span class="p">.</span><span class="n">availPhysical</span><span class="p">(),</span> <span class="n">inventOnHand</span><span class="p">.</span><span class="n">ordered</span><span class="p">(),</span> <span class="n">inventOnHand</span><span class="p">.</span><span class="n">reservPhysical</span><span class="p">(),</span> <span class="n">inventOnHand</span><span class="p">.</span><span class="n">reservOrdered</span><span class="p">()));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The on-hand information is stored in a table called <code>WHSInventReserve</code>. The <code>WHSInventReserveDelta</code> table is used to track changes that the current transaction causes in the on-hand quantity. On the final commit, the <code>WHSInventReserve</code> table is updated based on the changes in the <code>WHSInventReserveDelta</code> table.</p>
+<p>Because many scenarios involve calculating on-hand quantities based on <code>itemId</code>, <code>InventDim</code>, or <code>InventSum</code> records for
+both WHS-enabled and non-WHS-enabled items, APIs are provided to support the calculations in a seamless way.</p>
+<p>The following example shows how to instantiate the class that can be used to calculate availability for both WHSenabled and non-WHS-enabled items.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">InventAvailabilitySearch</span> <span class="n">availabilitySearch</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">InventIAvailability</span> <span class="n">availability</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">availabilitySearch</span> <span class="p">=</span> <span class="n">InventAvailabilitySearch</span><span class="p">::</span><span class="n">construct</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">availabilitySearch</span><span class="p">.</span><span class="n">setItemId</span><span class="p">(</span><span class="n">_itemId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">availabilitySearch</span><span class="p">.</span><span class="n">setInventDimCriteria</span><span class="p">(</span><span class="n">_inventDimCriteria</span><span class="p">,</span> <span class="n">_inventDimCriteriaParm</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">availabilitySearch</span><span class="p">.</span><span class="n">setInventSum</span><span class="p">(</span><span class="n">_inventSum</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">availability</span> <span class="p">=</span> <span class="n">InventAvailabilityProvider</span><span class="p">::</span><span class="n">construct</span><span class="p">().</span><span class="n">find</span><span class="p">(</span><span class="n">availabilitySearch</span><span class="p">).</span><span class="n">parmInventAvailability</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">this</span><span class="p">.</span><span class="n">AvailOrderedCalculated</span>         <span class="p">=</span> <span class="n">availability</span><span class="p">.</span><span class="n">availTotal</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="k">this</span><span class="p">.</span><span class="n">AvailPhysicalCalculated</span>        <span class="p">=</span> <span class="n">availability</span><span class="p">.</span><span class="n">availPhysical</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="k">this</span><span class="p">.</span><span class="n">ReservPhysical</span>                 <span class="p">=</span> <span class="n">availability</span><span class="p">.</span><span class="n">reservPhysical</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="k">this</span><span class="p">.</span><span class="n">OrderedSum</span>                     <span class="p">=</span> <span class="n">availability</span><span class="p">.</span><span class="n">orderedSum</span><span class="p">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The <code>InventAvailabilityProvider</code> class provides numerous other APIs that are used to determine the availability based on various types of input. The existing <code>InventOnHandQty</code> class has been updated so that it also provides correct results for items that are enabled for warehouse management processes.</p>
+<p>The following illustration shows the various classes and interfaces that are used to provide and encapsulate the calculations. Note that, for the sake of simplicity, some details have been omitted.</p>
+<p><figure><a class="lightgallery" href="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/InventAvailabilityProvider.png" title="Image" data-thumbnail="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/InventAvailabilityProvider.png" data-sub-html="<h2>InventAvailabilityProvider</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">InventAvailabilityProvider</figcaption>
+    </figure></p>
+<h2 id="4-reservation-strategies">4. Reservation strategies</h2>
+<p>To control the levels of the reservation hierarchy at which reservations are made, the system uses the concept of a reservation strategy. A reservation strategy determines the outcome of a reservation, and the dimensions that are used to make the reservation. Reservation strategies are implemented in the code and are not currently user-configurable.</p>
+<p>Each reservation strategy determines the level that the reservation should be made on. If the dimensions that are passed to the reservation system do not cover all the dimensions to the level defined by the strategy, the reservation system queries the on-hand availability until the required level; then, based on the results of this query, it does the reservation so that it covers all the required dimensions.</p>
+<p>The reservation strategies that are chosen for a reservation depend on multiple factors, such as the following:
+• Warehouse setup
+• Order type</p>
+<p>The following table describes the reservation strategies that the reservation system uses.</p>
+<table>
+<thead>
+<tr>
+<th>Reservation strategy</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>None</td>
+<td>The reservation is made on the dimensions that are passed, if possible. This strategy is</td>
+</tr>
+<tr>
+<td></td>
+<td>used by inventory blocking, and lets you make reservations on, for example, the site</td>
+</tr>
+<tr>
+<td></td>
+<td>level or the warehouse level.</td>
+</tr>
+<tr>
+<td>All</td>
+<td>The reservation is made on all of the dimensions in the reservation hierarchy. This</td>
+</tr>
+<tr>
+<td></td>
+<td>strategy is used, for example, for transfer journals, or for warehouses that have not</td>
+</tr>
+<tr>
+<td></td>
+<td>been enabled for warehouse management processes.</td>
+</tr>
+<tr>
+<td>Above location</td>
+<td>The reservation is made only on the locations above the location level. This strategy is</td>
+</tr>
+<tr>
+<td></td>
+<td>used, for example, for sales and transfer orders when reservations are made in a</td>
+</tr>
+<tr>
+<td></td>
+<td>warehouse that is enabled for warehouse management processes.</td>
+</tr>
+<tr>
+<td>All not allowed blank</td>
+<td>The reservation is made on the first lowest level that does not allow for blank issue for</td>
+</tr>
+<tr>
+<td></td>
+<td>the inventory dimensions. This strategy enables automatic reservations on non-licenseplate-controlled locations.</td>
+</tr>
+<tr>
+<td>Batch level</td>
+<td>This strategy is applied for items for which the Batch number dimension is selected and</td>
+</tr>
+<tr>
+<td></td>
+<td>positioned above the Location dimension in the reservation hierarchy. This strategy is</td>
+</tr>
+<tr>
+<td></td>
+<td>used when only reservations that are reserved ordered can be made. In that case, a</td>
+</tr>
+<tr>
+<td></td>
+<td>reservation until the batch level is attempted.</td>
+</tr>
+</tbody>
+</table>
+<p>The reservation system supports multiple reservation strategies in sequential order when reservations are made. For example, the system uses the All and All not allowed blank strategies to make reservations for transfer journals.</p>
+<h2 id="5-details-about-the-implementation-of-reservation-strategies">5. Details about the implementation of reservation strategies</h2>
+<p>The following illustration shows the classes that are used to implement the reservation strategies, and the main consumers of the classes. Note that, for the sake of simplicity, some details have been omitted.</p>
+<p><figure><a class="lightgallery" href="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/reservation-strategies.png" title="Image" data-thumbnail="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/reservation-strategies.png" data-sub-html="<h2>reservation-strategies</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">reservation-strategies</figcaption>
+    </figure></p>
+<p>The implementation is easy to extend, because the instantiation uses the <code>SysExtension</code> framework.</p>
+<h2 id="6-synchronization-of-dimensions-between-receipts-and-issues">6. Synchronization of dimensions between receipts and issues</h2>
+<p>When an inventory transaction is marked or reserved ordered, the inventory dimensions are typically synchronized between <em>receipts</em> and <em>issues</em>. For example, when a purchase order that was created based on a sales order is modified or received, the dimensions are transferred to the inventory transactions for the sales line.</p>
+<p>For items that are enabled for warehouse management processes, the synchronization differs from the standard behavior. When work must be created, the source line transactions can be reserved only until the level above the location level. If all dimensions are synchronized, work cannot be created. Therefore, dimensions above the location level are not synchronized for all scenarios.</p>
+<p>If the item and warehouse are enabled for warehouse management processes, and if the issue type is a type that can generate work, such as a sales line, only dimensions above the location level are synchronized. This means that if an item uses batch numbers, and the batch number is placed below the location in the reservation hierarchy, the batch number is not synchronized from receipt to issue transactions.</p>
+<h2 id="7-details-about-the-implementation-of-synchronization-between-receipts-and-issues">7. Details about the implementation of synchronization between receipts and issues</h2>
+<p>The logic that determines how the dimensions are synchronized is implemented in the following methods on the <strong>inventMovement</strong> class:</p>
+<ul>
+<li><code>getInventDimForReservedTransPhysChange</code></li>
+<li><code>getInventDimForIssueTransFromReceipt</code></li>
+</ul>
+]]></description>
+</item>
+</channel>
+</rss>

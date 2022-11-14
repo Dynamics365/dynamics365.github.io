@@ -1,0 +1,1955 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>FinOps - Category - Dynamics 365 Finance &amp; Operations | nuxulu.com</title>
+        <link>https://nuxulu.com/categories/finops/</link>
+        <description>FinOps - Category - Dynamics 365 Finance &amp; Operations | nuxulu.com</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Sun, 13 Nov 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/categories/finops/" rel="self" type="application/rss+xml" /><item>
+    <title>Extend on-hand inventory entities FinOps</title>
+    <link>https://nuxulu.com/2022-11-13-extend-on-hand-entities-fin-ops/</link>
+    <pubDate>Sun, 13 Nov 2022 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2022-11-13-extend-on-hand-entities-fin-ops/</guid>
+    <description><![CDATA[<p>There are some entities that you can use to get the on-hand inventory from Dynamics 365 Finance Operations:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="n">InventorySiteOnHandEntity</span>
+</span></span><span class="line"><span class="cl"><span class="n">InventorySiteOnHandV2Entity</span>
+</span></span><span class="line"><span class="cl"><span class="n">InventWarehouseInventoryStatusOnHandEntity</span>
+</span></span><span class="line"><span class="cl"><span class="n">InventWarehouseInventoryStatusOnHandV2Entity</span>
+</span></span><span class="line"><span class="cl"><span class="n">InventWarehouseOnHandEntity</span>
+</span></span><span class="line"><span class="cl"><span class="n">InventWarehouseOnHandV2Entity</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>You can extend the ententies by <a href="/2022-09-23-add-custom-fields-to-composite-entity/" rel="">adding new fields to tables and entities</a>.</p>
+<p>After you add fields to tables that are used by the <code>inventSiteOnHandView</code> view, you must sync the engine so that the extensions are correctly recognized.</p>
+<ol>
+<li>Extend the <code>InventSiteOnHandView</code> view by adding the extension field.</li>
+<li>Extend the <code>InventSiteOnHandAggregatedView</code> view with the extension fields.</li>
+<li>Extend the <code>InventSiteOnHandAggregatedViewBuilder</code> viewBuilder class by modifying the <code>getExtensionFields()</code> method. In this way, you map old view fields to new view fields when viewBuilder synchronization is run.</li>
+</ol>
+<p>For example, you&rsquo;ve added the following four fields to the InventTable table through extension:
+• Custom field 1
+• Custom field 2
+• Custom field 3
+• Custom field 4</p>
+<p>In the case, you must modify the <code>getExtensionFields()</code> method in the following way.</p>
+]]></description>
+</item>
+<item>
+    <title>Reservation and on-hand inventory in warehouse management</title>
+    <link>https://nuxulu.com/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/</link>
+    <pubDate>Wed, 09 Nov 2022 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/</guid>
+    <description><![CDATA[<h2 id="1-inventory-reservation-hierarchy-in-warehouse-management">1. <strong>Inventory reservation hierarchy in Warehouse management</strong></h2>
+<p>The reservation functionality can be used only for items that are enabled for warehouse management processes. However, if an item is itself enabled for <a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/warehousing/flexible-warehouse-level-dimension-reservation" target="_blank" rel="noopener noreffer ">warehouse management processes</a>, it can be used both in warehouses that are enabled for warehouse management processes and warehouses that are not. The behavior in reservation scenarios is different, depending on the warehouse setup.</p>
+<p>The functionality is built on reservation hierarchies and is intended to support the following:</p>
+<ul>
+<li>Flexible warehouse operations.</li>
+<li>Postponement of reservation details.</li>
+<li>Clear separation of which inventory dimensions can be specified, and when they can be specified.</li>
+</ul>
+<h3 id="11-reservation-hierarchies">1.1 <strong>Reservation hierarchies</strong></h3>
+<p>A typical reservation hierarchy for an item that uses the <code>Site</code>, <code>Warehouse</code>, <code>Inventory status</code>, <code>Location</code>, and <code>License plate</code> dimensions as physical inventory dimensions.</p>
+<p><figure><a class="lightgallery" href="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/Reservation-hierarchies.png" title="Image" data-thumbnail="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/Reservation-hierarchies.png" data-sub-html="<h2>Reservation-hierarchies</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Reservation-hierarchies</figcaption>
+    </figure></p>
+<p>The level with the lowest value in the Reservation hierarchy level column is the least-specific level, in the example above this is the site level.
+The higher the value, the more details are required to make a reservation on that level.</p>
+<h3 id="12-reservation-hierarchies-implementation">1.2 <strong>Reservation hierarchies implementation</strong></h3>
+<p><figure><a class="lightgallery" href="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/Reservation-hierarchies-implementation.png" title="Image" data-thumbnail="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/Reservation-hierarchies-implementation.png" data-sub-html="<h2>Reservation-hierarchies-implementation</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Reservation-hierarchies-implementation</figcaption>
+    </figure></p>
+<p>The definitions of reservation hierarchies are stored in the <strong>WHSReservationHierarchy</strong> and <strong>WHSReservationHierarchyElement</strong> tables. These are shared tables. A reservation hierarchy can be associated with one item within a company which presents by <strong>WHSReservationHierarchyItem</strong>.
+The <strong>WHSReservationHierarchyProvider</strong> class provides a large number of APIs that are useful when you work with and query the reservation hierarchy for an item.</p>
+<h3 id="13-making-reservations-on-different-levels">1.3 Making reservations on different levels</h3>
+<p>Based on the reservation hierarchy, you can make reservations on different levels without providing details about where to reserve and what dimensions to reserve on. This lets you postpone specific details, such as the location or license plate to make the reservation. The location to reserve items on can be determined later by the <a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/warehousing/warehouse-configuration" target="_blank" rel="noopener noreffer "><strong>location directive</strong></a>.</p>
+<p>As another example, you make reservations for a sales order created on <strong>site</strong> <code>Site1</code> and <strong>warehouse</strong> <code>WHS42</code>, which is a warehouse that is enabled for WHS processes, and for the Available inventory status. For this example, the reservation is made only
+on the inventory status level.</p>
+<p><figure><a class="lightgallery" href="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/reservations-on-different-levels.png" title="Image" data-thumbnail="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/reservations-on-different-levels.png" data-sub-html="<h2>reservations-on-different-levels</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">reservations-on-different-levels</figcaption>
+    </figure></p>
+<p>Location <code>Main006</code> will be specified when processing the work</p>
+<p><figure><a class="lightgallery" href="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/location.png" title="Image" data-thumbnail="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/location.png" data-sub-html="<h2>location</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">location</figcaption>
+    </figure></p>
+<h2 id="2-impact-of-the-reservation-hierarchy-setup">2. Impact of the reservation hierarchy setup</h2>
+<p>For warehouses that are enabled for warehouse management processes, the setup of reservation hierarchies greatly affects the processes for <a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/warehousing/release-to-warehouse-process" target="_blank" rel="noopener noreffer ">outbound orders</a>, such as sales orders and transfer orders.</p>
+<p>When you set up a reservation hierarchy, the key is to determine which dimensions should be positioned above the location level in the hierarchy, and which should be below. The following table describes the effects of arranging dimensions either above or below the location level.</p>
+<table>
+<thead>
+<tr>
+<th>Dimension placement</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dimension above location</td>
+<td>The inventory dimension above the location level must be determined before the</td>
+</tr>
+<tr>
+<td></td>
+<td>Warehouse management functionality can be used. Therefore, this typically happens</td>
+</tr>
+<tr>
+<td></td>
+<td>during order processing or by letting the reservation system determine the dimensions.</td>
+</tr>
+<tr>
+<td>Batch above location</td>
+<td>Process industry functionality for batches requires that the Batch number dimension be</td>
+</tr>
+<tr>
+<td></td>
+<td>above the Location dimension in the reservation hierarchy. When this is the case, all</td>
+</tr>
+<tr>
+<td></td>
+<td>functionality for First Expiry First Out (FEFO), same batch, batch disposition codes, and</td>
+</tr>
+<tr>
+<td></td>
+<td>batch attributes is supported.</td>
+</tr>
+<tr>
+<td>Dimensions below location</td>
+<td>WHS and warehouse workers can determine the Location dimension and the</td>
+</tr>
+<tr>
+<td></td>
+<td>dimensions below it.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>The Location dimension and any dimensions below it should not be entered into the sales</td>
+</tr>
+<tr>
+<td></td>
+<td>and transfer lines if you expect work to be created. For example, if the Batch number</td>
+</tr>
+<tr>
+<td></td>
+<td>dimension is below the Location dimension, it should not be specified on the sales line.</td>
+</tr>
+<tr>
+<td></td>
+<td>Otherwise, WHS cannot create work to carry out the pick and pack operations.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-on-hand-representation-and-calculations">3. On-hand representation and calculations</h2>
+<h3 id="31-on-hand-for-items-that-are-using-warehouse-management-processes">3.1 On-hand for items that are using warehouse management processes</h3>
+<p>The following table shows how the data might look for an item with 10 pieces available physical and 2 pieces reserved physical on the status level.</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Site</th>
+<th>Warehouse</th>
+<th>Inventory status</th>
+<th>Location</th>
+<th>License plate</th>
+<th>Available physical</th>
+<th>Available ordered</th>
+<th>Reserved physical</th>
+<th>Reserved ordered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Item</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>10</td>
+<td>10</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Site</td>
+<td>S1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>10</td>
+<td>10</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Warehouse</td>
+<td>S1</td>
+<td>WH1</td>
+<td></td>
+<td></td>
+<td></td>
+<td>10</td>
+<td>10</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>S1</td>
+<td>WH1</td>
+<td>Available</td>
+<td></td>
+<td></td>
+<td>10</td>
+<td>10</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Location</td>
+<td>S1</td>
+<td>WH1</td>
+<td>Available</td>
+<td>L001</td>
+<td></td>
+<td>12</td>
+<td>12</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>License plate</td>
+<td>S1</td>
+<td>WH1</td>
+<td>Available</td>
+<td>L001</td>
+<td>LP1</td>
+<td>12</td>
+<td>12</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>The reservations are tracked only on the levels that are affected by the reservation. Because of the way that information about availability and reservations is stored, the corresponding values from the <strong>InventSum</strong> table cannot be used directly for items that are using warehouse management processes.</p>
+<p>The following steps provide a high-level overview of the algorithm that determines the available on-hand quantity for
+an item and a set of inventory dimensions:</p>
+<ul>
+<li>Determine the available on-hand quantity, based on the exact dimensions. This is the lowest level in the hierarchy.</li>
+<li>Determine the smallest available quantity from all levels above the level found in step 1.</li>
+<li>Return the smaller of the quantities found in step 1 and step 2. This is the available quantity.</li>
+</ul>
+<h4 id="example-a">Example A</h4>
+<p>The following physical inventory exists for the item (some dimensions like site, inventory status, license plate are irrelevant and are omitted throughout the scenario):</p>
+<ul>
+<li><em>Warehouse: W1, Location: L1, Physical inventory: 6</em></li>
+</ul>
+<p>A sales order with one line is created and reserved:</p>
+<ul>
+<li><em>Warehouse: W1, Quantity: 5</em></li>
+</ul>
+<p>The sales order is released to warehouse. As a result warehouse work is created:</p>
+<ul>
+<li><em>Work type: Pick, Warehouse: W1, Location: L1, Quantity: 5</em></li>
+<li><em>Work type: Put, Warehouse: W1, Location: Baydoor, Quantity: 5</em></li>
+</ul>
+<p>Now we have the following inventory transactions:</p>
+<table>
+<thead>
+<tr>
+<th>Reference</th>
+<th>Warehouse</th>
+<th>Location</th>
+<th>Status issue</th>
+<th>Quantity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sales line</td>
+<td>W1</td>
+<td></td>
+<td>Reserved physical</td>
+<td>-5</td>
+</tr>
+<tr>
+<td>Pick work</td>
+<td>W1</td>
+<td>L1</td>
+<td>Reserved physical</td>
+<td>-5</td>
+</tr>
+<tr>
+<td>Put work</td>
+<td>W1</td>
+<td>Baydoor</td>
+<td>Ordered</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<p>So once we roll up the transactions into the <strong>InventSum</strong> table the contents of the table will look like this</p>
+<table>
+<thead>
+<tr>
+<th>Warehouse</th>
+<th>Location</th>
+<th>Physical inventory</th>
+<th>Reserved physical</th>
+<th>Available physical</th>
+<th>Ordered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W1</td>
+<td></td>
+<td>0</td>
+<td>5</td>
+<td>-5</td>
+<td>0</td>
+</tr>
+<tr>
+<td>W1</td>
+<td>L1</td>
+<td>6</td>
+<td>5</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>W1</td>
+<td>Baydoor</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<p>On hand quantities for warehouse W1 like we used to do it in versions prior to AX 2012 R3 (sum up InventSum quantities for warehouse W1)</p>
+<table>
+<thead>
+<tr>
+<th>Warehouse</th>
+<th>Physical inventory</th>
+<th>Reserved physical</th>
+<th>Available physical</th>
+<th>Ordered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W1</td>
+<td>6</td>
+<td>10</td>
+<td>-4</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<p>We should have shipped 5 items and we have 6 items on stock, 1 item is available. This is exactly the reason why summing up available and reserved quantities from the <strong>InventSum</strong> table may produce incorrect results for items that use warehouse management processes.</p>
+<p>The sales reservation was taken on the warehouse level of the reservation hierarchy to ensure that we keep enough on hand in the warehouse to ship the reserved quantity. The pick work reservation was taken on the location level and it ensures that the reserved quantity will still be physically available when the warehouse worker comes to the warehouse location to pick it. Work reservation does not affect physical availability on the warehouse level. This means that the new reservation engine will be able to figure out that we still have one item available on the warehouse level.</p>
+<table>
+<thead>
+<tr>
+<th>Warehouse</th>
+<th>Physical inventory</th>
+<th>Reserved physical</th>
+<th>Available physical</th>
+<th>Ordered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W1</td>
+<td>6</td>
+<td>5</td>
+<td>1</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example-b">Example B</h4>
+<table>
+<thead>
+<tr>
+<th>Reference</th>
+<th>Warehouse</th>
+<th>Location</th>
+<th>Status issue</th>
+<th>Status receipt</th>
+<th>Quantity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Purchase line</td>
+<td>W1</td>
+<td>L1</td>
+<td></td>
+<td>Purchased</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Purchase line</td>
+<td>W1</td>
+<td>L2</td>
+<td></td>
+<td>Purchased</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Sales line</td>
+<td>W1</td>
+<td></td>
+<td>Reserved physical</td>
+<td></td>
+<td>-25</td>
+</tr>
+<tr>
+<td>Pick work</td>
+<td>W1</td>
+<td>L1</td>
+<td>Reserved physical</td>
+<td></td>
+<td>-10</td>
+</tr>
+<tr>
+<td>Put work</td>
+<td>W1</td>
+<td>Baydoor</td>
+<td>Ordered</td>
+<td></td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<p>After the transactions are aggregated the <strong>InventSum</strong> table contains the following information</p>
+<table>
+<thead>
+<tr>
+<th>Warehouse</th>
+<th>Location</th>
+<th>Physical inventory</th>
+<th>Reserved physical</th>
+<th>Available physical</th>
+<th>Ordered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W1</td>
+<td></td>
+<td>0</td>
+<td>25</td>
+<td>-25</td>
+<td>0</td>
+</tr>
+<tr>
+<td>W1</td>
+<td>L1</td>
+<td>10</td>
+<td>10</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>W1</td>
+<td>L2</td>
+<td>20</td>
+<td>0</td>
+<td>20</td>
+<td>0</td>
+</tr>
+<tr>
+<td>W1</td>
+<td>Baydoor</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<p>For each of the levels of the reservation hierarchy it stores available and reserved quantities in the <code>WHSInventReserve</code> table which allows the engine to calculate availability correctly.</p>
+<p>To work with available quantities regardless of whether the item is using warehouse management processes or not the <code>InventIAvailability</code> interface was introduced. The following list contains the InventSum fields and methods that should not be used directly and the corresponding InventIAvailability methods that should be used instead:</p>
+<table>
+<thead>
+<tr>
+<th>Obsolete field/method</th>
+<th>Corresponding InventIAvailability method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>InventSum.AvailOrdered</td>
+<td>InventIAvailability.availTotal()</td>
+</tr>
+<tr>
+<td>InventSum.availOrderedCalculated()</td>
+<td>InventIAvailability.availTotal()</td>
+</tr>
+<tr>
+<td>InventSum.AvailPhysical</td>
+<td>InventIAvailability.availPhysical()</td>
+</tr>
+<tr>
+<td>InventSum.availPhysicalCalculated()</td>
+<td>InventIAvailability.availPhysical()</td>
+</tr>
+<tr>
+<td>InventSum.availReservation()</td>
+<td>InventIAvailability.availReservation()</td>
+</tr>
+<tr>
+<td>InventSum.Ordered</td>
+<td>InventIAvailability.ordered()</td>
+</tr>
+<tr>
+<td>InventSum.orderedSum()</td>
+<td>InventIAvailability.orderedSum()</td>
+</tr>
+<tr>
+<td>InventSum.ReservOrdered</td>
+<td>InventIAvailability.reservOrdered()</td>
+</tr>
+<tr>
+<td>InventSum.ReservPhysical</td>
+<td>InventIAvailability.reservPhysical()</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-implementation-of-on-hand-calculations">3.2 Implementation of on-hand calculations</h3>
+<p>Three major APIs were introduced for retrieving item availability:</p>
+<p>– <code>InventAvailabilityProvider</code>
+– <code>InventAvailabilityFormCache</code>
+– <code>InventOnhand</code></p>
+<ul>
+<li><strong>InventAvailabilityProvider</strong></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">InventIAvailability</span>  <span class="n">inventIAvailability</span> <span class="p">=</span> <span class="n">InventAvailabilityProvider</span><span class="p">::</span><span class="n">findByItemDim</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                                            <span class="n">InventTable</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="n">itemdId</span><span class="p">),</span> <span class="n">dim</span><span class="p">).</span><span class="n">parmInventAvailability</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Info</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;inventIAvailability, availPhysical %1, ordered %2, reservPhysical %3, reservOrdered %4&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">inventIAvailability</span><span class="p">.</span><span class="n">availPhysical</span><span class="p">(),</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">inventIAvailability</span><span class="p">.</span><span class="n">ordered</span><span class="p">(),</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">inventIAvailability</span><span class="p">.</span><span class="n">reservPhysical</span><span class="p">(),</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">inventIAvailability</span><span class="p">.</span><span class="n">reservOrdered</span><span class="p">()));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">InventAvailabilityByUnit</span> <span class="n">inventAvailabilityByUnitSum</span> <span class="p">=</span> <span class="n">InventAvailabilityProvider</span><span class="p">::</span><span class="n">findByItemSumDim</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                                                        <span class="n">InventTable</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="n">itemdId</span><span class="p">),</span> <span class="n">inventSum</span><span class="p">,</span> <span class="n">dim</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Info</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;inventAvailabilityByUnitSum, availPhysical %1, ordered %2, reservPhysical %3, reservOrdered %4&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">inventAvailabilityByUnitSum</span><span class="p">.</span><span class="n">availPhysical</span><span class="p">().</span><span class="n">qty</span><span class="p">(</span><span class="k">false</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">inventAvailabilityByUnitSum</span><span class="p">.</span><span class="n">ordered</span><span class="p">().</span><span class="n">qty</span><span class="p">(</span><span class="k">false</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">inventAvailabilityByUnitSum</span><span class="p">.</span><span class="n">reservPhysical</span><span class="p">().</span><span class="n">qty</span><span class="p">(</span><span class="k">false</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">inventAvailabilityByUnitSum</span><span class="p">.</span><span class="n">reservOrdered</span><span class="p">().</span><span class="n">qty</span><span class="p">(</span><span class="k">false</span><span class="p">)));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><strong>InventAvailabilityFormCache</strong></li>
+</ul>
+<p>In scenarios where you want to display available quantities on a form you can use the InventAvailabilityFormCache class.
+It is responsible for retrieving and caching available on hand quantities per item per inventory dimension combination. To use it on a form you need to:</p>
+<p>– Declare an <code>InventAvailabilityFormCache</code> field in <code>classDeclaration</code> of the form.
+– Initialize the cache field in the <code>init</code> method of the form:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="k">init</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">inventAvailabilityFormCache</span> <span class="p">=</span> <span class="n">InventAvailabilityFormCache</span><span class="p">::</span><span class="n">construct</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>– Flush the cache in the <code>executeQuery</code> method of the primary data source that the <code>InventSum</code> data source is joined to:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">executeQuery</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">inventAvailabilityFormCache</span><span class="p">.</span><span class="n">refreshCache</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>– Create display methods for available on hand fields that need to be displayed on the form. If <code>InventDim</code> is joined to <code>InventSum</code> then the display methods should be declared on the <code>InventSum</code> data source:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="n">display</span> <span class="n">InventQtyReservPhysical</span> <span class="n">reservPhysical</span><span class="p">(</span><span class="n">InventSum</span> <span class="n">_inventSum</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">inventAvailabilityFormCache</span><span class="p">.</span><span class="n">availabilityFromSumJoinedWithDim</span><span class="p">(</span><span class="n">_inventSum</span><span class="p">,</span> <span class="n">inventDim_ds</span><span class="p">).</span><span class="n">reservPhysical</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Note that the <code>availabilityFromSumJoinedWithDim</code> method should be used. Otherwise, if <code>InventSum</code> is joined to InventDim then the display method should be declared on the <code>InventDim</code> data source:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="n">display</span> <span class="n">InventQtyReservPhysical</span> <span class="n">reservPhysical</span><span class="p">(</span><span class="n">InventDim</span> <span class="n">_inventDim</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">inventAvailabilityFormCache</span><span class="p">.</span><span class="n">availabilityFromDimJoinedWithSum</span><span class="p">(</span><span class="n">_inventDim</span><span class="p">,</span> <span class="n">inventSum_ds</span><span class="p">).</span><span class="n">reservPhysical</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Note that the <code>availabilityFromDimJoinedWithSum</code> method should be used.</p>
+<ul>
+<li><strong>InventOnhand</strong></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">InventOnhand</span> <span class="n">inventOnHand</span> <span class="p">=</span> <span class="n">InventOnhand</span><span class="p">::</span><span class="n">newParameters</span><span class="p">(</span><span class="n">itemdId</span><span class="p">,</span> <span class="n">dim</span> <span class="p">,</span> <span class="n">dimParm</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Info</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;inventOnHand, availPhysical %1, ordered %2, reservPhysical %3, reservOrdered %4&#34;</span><span class="p">,</span> <span class="n">inventOnHand</span><span class="p">.</span><span class="n">availPhysical</span><span class="p">(),</span> <span class="n">inventOnHand</span><span class="p">.</span><span class="n">ordered</span><span class="p">(),</span> <span class="n">inventOnHand</span><span class="p">.</span><span class="n">reservPhysical</span><span class="p">(),</span> <span class="n">inventOnHand</span><span class="p">.</span><span class="n">reservOrdered</span><span class="p">()));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The on-hand information is stored in a table called <code>WHSInventReserve</code>. The <code>WHSInventReserveDelta</code> table is used to track changes that the current transaction causes in the on-hand quantity. On the final commit, the <code>WHSInventReserve</code> table is updated based on the changes in the <code>WHSInventReserveDelta</code> table.</p>
+<p>Because many scenarios involve calculating on-hand quantities based on <code>itemId</code>, <code>InventDim</code>, or <code>InventSum</code> records for
+both WHS-enabled and non-WHS-enabled items, APIs are provided to support the calculations in a seamless way.</p>
+<p>The following example shows how to instantiate the class that can be used to calculate availability for both WHSenabled and non-WHS-enabled items.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">InventAvailabilitySearch</span> <span class="n">availabilitySearch</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">InventIAvailability</span> <span class="n">availability</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">availabilitySearch</span> <span class="p">=</span> <span class="n">InventAvailabilitySearch</span><span class="p">::</span><span class="n">construct</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">availabilitySearch</span><span class="p">.</span><span class="n">setItemId</span><span class="p">(</span><span class="n">_itemId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">availabilitySearch</span><span class="p">.</span><span class="n">setInventDimCriteria</span><span class="p">(</span><span class="n">_inventDimCriteria</span><span class="p">,</span> <span class="n">_inventDimCriteriaParm</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">availabilitySearch</span><span class="p">.</span><span class="n">setInventSum</span><span class="p">(</span><span class="n">_inventSum</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">availability</span> <span class="p">=</span> <span class="n">InventAvailabilityProvider</span><span class="p">::</span><span class="n">construct</span><span class="p">().</span><span class="n">find</span><span class="p">(</span><span class="n">availabilitySearch</span><span class="p">).</span><span class="n">parmInventAvailability</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">this</span><span class="p">.</span><span class="n">AvailOrderedCalculated</span>         <span class="p">=</span> <span class="n">availability</span><span class="p">.</span><span class="n">availTotal</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="k">this</span><span class="p">.</span><span class="n">AvailPhysicalCalculated</span>        <span class="p">=</span> <span class="n">availability</span><span class="p">.</span><span class="n">availPhysical</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="k">this</span><span class="p">.</span><span class="n">ReservPhysical</span>                 <span class="p">=</span> <span class="n">availability</span><span class="p">.</span><span class="n">reservPhysical</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="k">this</span><span class="p">.</span><span class="n">OrderedSum</span>                     <span class="p">=</span> <span class="n">availability</span><span class="p">.</span><span class="n">orderedSum</span><span class="p">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The <code>InventAvailabilityProvider</code> class provides numerous other APIs that are used to determine the availability based on various types of input. The existing <code>InventOnHandQty</code> class has been updated so that it also provides correct results for items that are enabled for warehouse management processes.</p>
+<p>The following illustration shows the various classes and interfaces that are used to provide and encapsulate the calculations. Note that, for the sake of simplicity, some details have been omitted.</p>
+<p><figure><a class="lightgallery" href="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/InventAvailabilityProvider.png" title="Image" data-thumbnail="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/InventAvailabilityProvider.png" data-sub-html="<h2>InventAvailabilityProvider</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">InventAvailabilityProvider</figcaption>
+    </figure></p>
+<h2 id="4-reservation-strategies">4. Reservation strategies</h2>
+<p>To control the levels of the reservation hierarchy at which reservations are made, the system uses the concept of a reservation strategy. A reservation strategy determines the outcome of a reservation, and the dimensions that are used to make the reservation. Reservation strategies are implemented in the code and are not currently user-configurable.</p>
+<p>Each reservation strategy determines the level that the reservation should be made on. If the dimensions that are passed to the reservation system do not cover all the dimensions to the level defined by the strategy, the reservation system queries the on-hand availability until the required level; then, based on the results of this query, it does the reservation so that it covers all the required dimensions.</p>
+<p>The reservation strategies that are chosen for a reservation depend on multiple factors, such as the following:
+• Warehouse setup
+• Order type</p>
+<p>The following table describes the reservation strategies that the reservation system uses.</p>
+<table>
+<thead>
+<tr>
+<th>Reservation strategy</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>None</td>
+<td>The reservation is made on the dimensions that are passed, if possible. This strategy is</td>
+</tr>
+<tr>
+<td></td>
+<td>used by inventory blocking, and lets you make reservations on, for example, the site</td>
+</tr>
+<tr>
+<td></td>
+<td>level or the warehouse level.</td>
+</tr>
+<tr>
+<td>All</td>
+<td>The reservation is made on all of the dimensions in the reservation hierarchy. This</td>
+</tr>
+<tr>
+<td></td>
+<td>strategy is used, for example, for transfer journals, or for warehouses that have not</td>
+</tr>
+<tr>
+<td></td>
+<td>been enabled for warehouse management processes.</td>
+</tr>
+<tr>
+<td>Above location</td>
+<td>The reservation is made only on the locations above the location level. This strategy is</td>
+</tr>
+<tr>
+<td></td>
+<td>used, for example, for sales and transfer orders when reservations are made in a</td>
+</tr>
+<tr>
+<td></td>
+<td>warehouse that is enabled for warehouse management processes.</td>
+</tr>
+<tr>
+<td>All not allowed blank</td>
+<td>The reservation is made on the first lowest level that does not allow for blank issue for</td>
+</tr>
+<tr>
+<td></td>
+<td>the inventory dimensions. This strategy enables automatic reservations on non-licenseplate-controlled locations.</td>
+</tr>
+<tr>
+<td>Batch level</td>
+<td>This strategy is applied for items for which the Batch number dimension is selected and</td>
+</tr>
+<tr>
+<td></td>
+<td>positioned above the Location dimension in the reservation hierarchy. This strategy is</td>
+</tr>
+<tr>
+<td></td>
+<td>used when only reservations that are reserved ordered can be made. In that case, a</td>
+</tr>
+<tr>
+<td></td>
+<td>reservation until the batch level is attempted.</td>
+</tr>
+</tbody>
+</table>
+<p>The reservation system supports multiple reservation strategies in sequential order when reservations are made. For example, the system uses the All and All not allowed blank strategies to make reservations for transfer journals.</p>
+<h2 id="5-details-about-the-implementation-of-reservation-strategies">5. Details about the implementation of reservation strategies</h2>
+<p>The following illustration shows the classes that are used to implement the reservation strategies, and the main consumers of the classes. Note that, for the sake of simplicity, some details have been omitted.</p>
+<p><figure><a class="lightgallery" href="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/reservation-strategies.png" title="Image" data-thumbnail="/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/reservation-strategies.png" data-sub-html="<h2>reservation-strategies</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">reservation-strategies</figcaption>
+    </figure></p>
+<p>The implementation is easy to extend, because the instantiation uses the <code>SysExtension</code> framework.</p>
+<h2 id="6-synchronization-of-dimensions-between-receipts-and-issues">6. Synchronization of dimensions between receipts and issues</h2>
+<p>When an inventory transaction is marked or reserved ordered, the inventory dimensions are typically synchronized between <em>receipts</em> and <em>issues</em>. For example, when a purchase order that was created based on a sales order is modified or received, the dimensions are transferred to the inventory transactions for the sales line.</p>
+<p>For items that are enabled for warehouse management processes, the synchronization differs from the standard behavior. When work must be created, the source line transactions can be reserved only until the level above the location level. If all dimensions are synchronized, work cannot be created. Therefore, dimensions above the location level are not synchronized for all scenarios.</p>
+<p>If the item and warehouse are enabled for warehouse management processes, and if the issue type is a type that can generate work, such as a sales line, only dimensions above the location level are synchronized. This means that if an item uses batch numbers, and the batch number is placed below the location in the reservation hierarchy, the batch number is not synchronized from receipt to issue transactions.</p>
+<h2 id="7-details-about-the-implementation-of-synchronization-between-receipts-and-issues">7. Details about the implementation of synchronization between receipts and issues</h2>
+<p>The logic that determines how the dimensions are synchronized is implemented in the following methods on the <strong>inventMovement</strong> class:</p>
+<ul>
+<li><code>getInventDimForReservedTransPhysChange</code></li>
+<li><code>getInventDimForIssueTransFromReceipt</code></li>
+</ul>
+]]></description>
+</item>
+<item>
+    <title>Deploy SSRS reports in Dynamics 365 Finance, SCM using Powershell</title>
+    <link>https://nuxulu.com/2021-01-27-deploy-ssrs-reports-in-dynamics-365-finance-scm-using-powershell/</link>
+    <pubDate>Sun, 17 Jan 2021 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2021-01-27-deploy-ssrs-reports-in-dynamics-365-finance-scm-using-powershell/</guid>
+    <description><![CDATA[<p>Open Windows PowerShell in Admin mode</p>
+<p>Navigate to the PowerShell scripts</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ps" data-lang="ps"><span class="line"><span class="cl"><span class="nf">cd</span> <span class="nf">K:\AosService\PackagesLocalDirectory\Plugins\AxReportVmRoleStartupTask\</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Execute the below commands:</p>
+<ul>
+<li>For deploying all SSRS reports</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ps" data-lang="ps"><span class="line"><span class="cl"><span class="nf">.</span><span class="nv">/DeployAllReportsToSSRS.ps1</span> <span class="nf">-PackageInstallLocation</span> <span class="nf">“K:\AosService\PackagesLocalDirectory”</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>For deploying the specific reports</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">./</span><span class="n">DeployAllReportsToSSRS</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-Module</span> <span class="n">ApplicationSuite</span> <span class="n">-ReportName</span> <span class="p">&lt;</span><span class="n">ReportName</span><span class="p">&gt;</span> <span class="n">-PackageInstallLocation</span> <span class="err">“</span><span class="n">K:</span><span class="p">\</span><span class="n">AosService</span><span class="p">\</span><span class="n">PackagesLocalDirectory</span><span class="err">”</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Example:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">./</span><span class="n">DeployAllReportsToSsrs</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-Module</span> <span class="n">MaxCustomization</span> <span class="n">-ReportName</span> <span class="n">MaxCheque_US</span><span class="p">.</span><span class="n">Report</span> <span class="n">-PackageInstallLocation</span> <span class="s2">&#34;K:\AosService\PackagesLocalDirectory&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">./</span><span class="n">DeployAllReportsToSsrs</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-Module</span> <span class="n">ApplicatoinSuite</span> <span class="n">-ReportName</span> <span class="n">Cust</span><span class="p">*</span> <span class="n">-PackageInstallLocation</span> <span class="s2">&#34;C:\AosService\PackagesLocalDirectory&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>]]></description>
+</item>
+<item>
+    <title>Testing Dynamics 365 Finance Database Movement API with Postman</title>
+    <link>https://nuxulu.com/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/</link>
+    <pubDate>Mon, 17 Aug 2020 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/</guid>
+    <description><![CDATA[<p>Microsoft provides a versioned set of capabilities that you can currently use to copy databases between environments, and to list and download database backups.</p>
+<p>what you can do with Database movement API so far:</p>
+<ul>
+<li>List database backups</li>
+<li>Create database refresh</li>
+<li>Create a database export</li>
+<li>Get operation activity status</li>
+</ul>
+<p>More supported actions will be added in later releases.</p>
+<p>The endpoint uses <strong>impersonation authentication</strong> base, please follow to <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/database/api/dbmovement-api-authentication##register-a-new-application-by-using-the-azure-portal" target="_blank" rel="noopener noreffer ">register a new application by using the Azure portal</a></p>
+<h2 id="1-postman-environment-setup">1. Postman environment setup</h2>
+<p><code>Open Postman -&gt; manage environments -&gt; Add</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">tenant_id: {tenant_id get from AAD}
+</span></span><span class="line"><span class="cl">client_id: {get from the application that you have created before}
+</span></span><span class="line"><span class="cl">client_secret: {get from the application that you have created before}
+</span></span><span class="line"><span class="cl">username: {LCS user name with owner permission}
+</span></span><span class="line"><span class="cl">password: {LCS user password}
+</span></span><span class="line"><span class="cl">grant_type: password
+</span></span><span class="line"><span class="cl">resource: https://lcsapi.lcs.dynamics.com
+</span></span><span class="line"><span class="cl">projectId: {Your LCS Project ID}
+</span></span><span class="line"><span class="cl">bearerToken: {this will be populated when authentication}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_1.png" title="Postman environment setup" data-thumbnail="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_1.png" data-sub-html="<h2>Postman environment setup</h2><p>Postman environment setup</p>">
+        
+    </a><figcaption class="image-caption">Postman environment setup</figcaption>
+    </figure></p>
+<h2 id="2-authentication-with-postman">2. Authentication with Postman</h2>
+<p>You get the authentication bearer with <strong>POST</strong> method and <a href="https://login.microsoftonline.com/%7b%7btenant_id%7d%7d/oauth2/token" target="_blank" rel="noopener noreffer ">https://login.microsoftonline.com/{{tenant_id}}/oauth2/token</a> endpoint.</p>
+<p>In the request Body, please do following:</p>
+<p><figure><a class="lightgallery" href="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_2.png" title="Authentication with Postman" data-thumbnail="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_2.png" data-sub-html="<h2>Authentication with Postman</h2><p>Authentication with Postman</p>">
+        
+    </a><figcaption class="image-caption">Authentication with Postman</figcaption>
+    </figure></p>
+<p>Click <strong>Send</strong>, and you will have access token to start using the API.</p>
+<p><figure><a class="lightgallery" href="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_3.png" title="token" data-thumbnail="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_3.png" data-sub-html="<h2>token</h2><p>token</p>">
+        
+    </a><figcaption class="image-caption">token</figcaption>
+    </figure></p>
+<h2 id="3-cosnume-the-apis-with-postman">3. Cosnume the APIs with Postman</h2>
+<p>To call the Database Movement API, you attach the access token as a bearer token to the authorization header in your HTTP request. So in Postman, modify the headers tab like bellow</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Authorization:Bearer {{bearerToken}}
+</span></span><span class="line"><span class="cl">x-ms-version:&#39;2017-09-15&#39;
+</span></span><span class="line"><span class="cl">Content-Type:application/json
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_4.png" title="Cosnume" data-thumbnail="/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/testing-dynamics-365-finance-database-movement-api-with-postman_4.png" data-sub-html="<h2>Cosnume</h2><p>Cosnume</p>">
+        
+    </a><figcaption class="image-caption">Cosnume</figcaption>
+    </figure></p>
+<h3 id="31-list-database-backups">3.1. List database backups</h3>
+<p><code> GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/databases/project/{{projectId}} </code></p>
+<p>And we’ll get a JSON with a list of the DB backups on our LCS Asset Library:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;DatabaseAssets&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;Id&#34;</span><span class="p">:</span> <span class="s2">&#34;12314234-862e-4a6a-800d-0c64e982284a&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;ProjectId&#34;</span><span class="p">:</span> <span class="mi">123123</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;OrganizationId&#34;</span><span class="p">:</span> <span class="mi">123124</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;Name&#34;</span><span class="p">:</span> <span class="s2">&#34;backup&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;FileName&#34;</span><span class="p">:</span> <span class="s2">&#34;ATbackup.bacpac&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;FileDescription&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;FileLocation&#34;</span><span class="p">:</span> <span class="s2">&#34;https://uswedpl1catalog.blob.core.windows.net/product-ax7productname/******&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;ModifiedDateTime&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-08-17T09:52:50.077&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;CreatedDateTime&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-08-17T09:52:45.297&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;CreatedByName&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;ModifiedByName&#34;</span><span class="p">:</span> <span class="kc">null</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;IsSuccess&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;OperationActivityId&#34;</span><span class="p">:</span> <span class="s2">&#34;5053e0dd-66e3-4832-a9f8-1e2d621562e1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ErrorMessage&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;VersionEOL&#34;</span><span class="p">:</span> <span class="s2">&#34;9999-12-31T23:59:59.9999999&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="32-create-database-refresh">3.2. Create database refresh</h3>
+<p><code> POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/refresh/project/{projectId}/source/{sourceEnvironmentId}/target/{targetEnvironmentId} </code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;IsSuccess&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;OperationActivityId&#34;</span><span class="p">:</span> <span class="s2">&#34;55eb4327-9346-4c7b-82bd-fe8ef15112c6&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ErrorMessage&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;VersionEOL&#34;</span><span class="p">:</span> <span class="s2">&#34;9999-12-31T23:59:59.9999999&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="33-create-a-database-export">3.3. Create a database export</h3>
+<p><code> POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/export/project/{projectId}/environment/{environmentId}/backupName/{backupName} </code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;IsSuccess&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;OperationActivityId&#34;</span><span class="p">:</span> <span class="s2">&#34;55eb4327-9346-4c7b-82bd-fe8ef15112c6&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ErrorMessage&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;VersionEOL&#34;</span><span class="p">:</span> <span class="s2">&#34;9999-12-31T23:59:59.9999999&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="34-get-operation-activity-status">3.4. Get operation activity status</h3>
+<p><code> GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/fetchstatus/project/{projectId}/environment/{environmentId}/operationactivity/{operationactivityId} </code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;IsSuccess&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;OperationActivityId&#34;</span><span class="p">:</span> <span class="s2">&#34;6a90b45f-1764-4077-b924-3f4671540237&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ErrorMessage&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;VersionEOL&#34;</span><span class="p">:</span> <span class="s2">&#34;9999-12-31T23:59:59.9999999&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ProjectId&#34;</span><span class="p">:</span> <span class="s2">&#34;12345&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;EnvironmentId&#34;</span><span class="p">:</span> <span class="s2">&#34;5362377c-bc37-4f92-b30e-fe0c1e664cc0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ActivityId&#34;</span><span class="p">:</span> <span class="s2">&#34;55eb4327-9346-4c7b-82bd-fe8ef15112c6&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;CompletionDate&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;OperationStatus&#34;</span><span class="p">:</span> <span class="s2">&#34;InProgress&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>]]></description>
+</item>
+<item>
+    <title>How to upgrade to Visual Studio 2017, .NET 4.7.2 for PU36/10.0.12 and higher</title>
+    <link>https://nuxulu.com/2020-06-30-how-to-upgrade-to-visual-studio-2017-.net-4.7.2/</link>
+    <pubDate>Tue, 30 Jun 2020 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2020-06-30-how-to-upgrade-to-visual-studio-2017-.net-4.7.2/</guid>
+    <description><![CDATA[<p>For the upcoming Dynamics 365 Finance Updates, Visual Studio 2017 and .NET runtime 4.7.2 required for PU36/10.0.12 or higher; New VMs deployed with PU36/10.0.12 or higher will have Visual Studio 2017 as well as .NET runtime 4.7.2 already installed.</p>
+<p>For your dev/test/build Tier1 VMs, Microsoft recommends just redeploying a new VM, and you will be all set!</p>
+<p>If you cannot deploy new VMs, please follow below steps to update .NET runtime, VS 2017 before installing PU36/10.0.12 or higher, this will be applied for <strong>cloud-hosted environment</strong></p>
+<h3 id="1-download-vs-professional-2017-159-herehttpsdownloadvisualstudiomicrosoftcomdownloadprac05c4f5-0da1-429f-8701-ce509ac699267b51a7b8db36f977745cf3e19ef1e9c62ebf29f704aebafce443626b779cb4f8vs_professionalexe-and-install-it">1. Download VS Professional 2017 15.9 <a href="https://download.visualstudio.microsoft.com/download/pr/ac05c4f5-0da1-429f-8701-ce509ac69926/7b51a7b8db36f977745cf3e19ef1e9c62ebf29f704aebafce443626b779cb4f8/vs_Professional.exe" target="_blank" rel="noopener noreffer ">here</a> and install it</h3>
+<h3 id="2-the-net-runtime-download-is-available-herehttpsdotnetmicrosoftcomdownloaddotnet-frameworknet472-by-clicking-on-the-_download-net-framework-472-runtime_-and-running-the-installation-restart-required">2. The .NET runtime download is available <a href="https://dotnet.microsoft.com/download/dotnet-framework/net472" target="_blank" rel="noopener noreffer ">here</a> by clicking on the <em>Download .NET Framework 4.7.2 Runtime</em> and running the installation, restart required.</h3>
+<h3 id="3-go-to-dynamics-lifecycle-services-and-download-pu3610012-or-any-higher-package-which-is-a-part-of-the-platform-and-application-binary-the-vsix-file-is-located-in-the-_devtoolsservicescripts_-folder">3. Go to Dynamics Lifecycle Services and download PU36/10.0.12 or any higher package which is a part of the Platform and application binary, the VSIX file is located in the <em>DevToolsService\Scripts</em> folder.</h3>
+<p></p>
+<p>You need to <code>install Microsoft.Dynamics.Framework.Tools.Installer</code> and then <code>Microsoft.Dynamics.Framework.Tools.InternalDevTools</code>.
+After the installation, open the VS2017 if you should see <strong>Dynamics 365</strong> menu extension like below</p>
+<p></p>
+<h3 id="4-if-you-try-to-access-the-client-before-applying-the-package-you-will-get-the-error-like-below-in-event-viewer-and-unable-to-access-the-environment-so-you-need-to-apply-an-update-first">4. If you try to access the client before applying the package you will get the error like below in event viewer and unable to access the environment, so you need to apply an update first.</h3>
+<div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">AX is shutting down due to an error. Serialization version mismatch detect, make sure the runtime dlls are in sync with the deployed metadata. Version of file &lsquo;194&rsquo;. Version of dll &lsquo;193&rsquo;.</div>
+        </div>
+    </div>
+<h3 id="5-in-lcs-navigate-to-your-cloud-hosted-environment-and-apply-platform-and-application-binary-package-pu3610012-or-higher-after-completed-upgrading-you-will-be-able-to-access-the-environment-client">5. In LCS, navigate to your cloud-hosted environment, and apply Platform and application binary package PU36/10.0.12 or higher. After completed upgrading, you will be able to access the environment client.</h3>
+<p>Overall, there is no change in the compiler, metadata; this is only an update to the Visual Studio extensions and NET runtime for the tier1 VMs.</p>
+]]></description>
+</item>
+<item>
+    <title>Dynamics 365 FinOps Data Integration using Microsoft Forms (Part 1)</title>
+    <link>https://nuxulu.com/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/</link>
+    <pubDate>Sun, 24 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>Kome Hoang</author>
+    <guid>https://nuxulu.com/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/</guid>
+    <description><![CDATA[<p>With any D365FO users, Data Management workspace and Data Entities should have become one of the most used and well-known tools in the system. We all agree how powerful such integration framework is, especially when it comes to a large number of records that we would need to import into different tables.</p>
+<p>The classic method that we have been utilizing is to include all source data in a single (or multiple, much depending on the purpose and order of data integration) Excel sheet, trigger an import execution, pass any validation layers that present and ultimately have the data available on D365FO. Now, I would like to propose another method that might come useful in some circumstances: Using Microsoft Forms.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/Introduction.png" title="Introduction" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/Introduction.png" data-sub-html="<h2>The trio</h2><p>Introduction</p>">
+        
+    </a><figcaption class="image-caption">The trio</figcaption>
+    </figure></p>
+<h2 id="when">When</h2>
+<p>This method should be at its finest when you are planning to outsource the input to any external users.</p>
+<p>Imagine you are a company who is using D365FO to leverage your daily work. You now want to add many local vendors to your system in form of new Vendor Accounts. It is fine to collect all information from them (i.e. Vendor Company’s name, their address, their contact details and so on), put everything in an Excel sheet and import it. Yet, chance is that it would take (a lot of) time for you to finish this task. You would then be very likely to try coming up with some methods to cut down time for it.</p>
+<p>That demand should raise two questions:</p>
+<ul>
+<li>How can we let the vendors enter their information by themselves?</li>
+<li>And, how can we then have all such information in our system?</li>
+</ul>
+<h2 id="what">What</h2>
+<p>What should be needed?</p>
+<ul>
+<li><a href="https://forms.office.com/" target="_blank" rel="noopener noreffer ">Microsoft Forms</a>: To establish a process in which you will publish a prepared form. Any vendors out there will have the access to it and they can fill any fields on in.</li>
+<li><a href="https://flow.microsoft.com/" target="_blank" rel="noopener noreffer ">Microsoft Power Automate aka. Microsoft Flow</a>: To set up a protocol to push the input information (form responses) to the target (D365FO Data Entities).</li>
+<li><em>(Optional)</em> Access to Visual Studio on your virtual machine: To help you determine the target Data Entities more easily and efficiently.</li>
+</ul>
+<h2 id="how">How</h2>
+<p>The flow should go like this.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/Biggest-Flow.png" title="Biggest FLow" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/Biggest-Flow.png" data-sub-html="<h2>The Biggest FLow</h2><p>Biggest FLow</p>">
+        
+    </a><figcaption class="image-caption">The Biggest FLow</figcaption>
+    </figure></p>
+<p>To make it short, when a response is submitted in Microsoft Form, the Flow in MS Power Automate is triggered automatically. An approval request will be sent to your Outlook mailbox and if it is approved, a new record will be created in the target data entity.</p>
+<p>Let go through three examples in the next articles in the series (from the simplest to a more complicated) so we will see the logic behind this process.</p>
+<p>As easy as it sounds, in this example, we will create a new Vendor Account from Microsoft Forms with only a small number of fields being populate.
+<strong>Note</strong></p>
+<blockquote>
+<p><em>To help simplify the example, the number of fields is minimised. In other words, we will import just enough fields so the new Vendor Account is valid.</em>
+<em>Given that, only <code>Vendor Account</code> and <code>Vendor Group</code> are chosen to be imported.</em></p>
+</blockquote>
+<h3 id="step-1-create-a-ms-form">Step 1: Create a MS Form</h3>
+<p>To do so, we will access <a href="https://forms.office.com/" target="_blank" rel="noopener noreffer ">Microsoft Forms</a> and create a new form. To make the new form usable, we will create two questions asking for inputs of Vendor Account and Vendor Group.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-1-NewForm.png" title="Example 1 Form" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-1-NewForm.png" data-sub-html="<h2>Example 1 Form</h2><p>Example 1 Form</p>">
+        
+    </a><figcaption class="image-caption">Example 1 Form</figcaption>
+    </figure></p>
+<p>Note all information on the form is customisable.
+<strong>Note 1-1</strong></p>
+<blockquote>
+<p>We can make the questions&hellip;any questions that suit the purpose of the form. Say, in reality, the question can be <code>&quot;What is your company's name?&quot;</code> if you want to send this form to any external vendor users. The question does not change the usability of the returned response&rsquo;s value. It can still be mapped to VendAccount not matter what the question is.
+<strong>Note 1-2</strong>
+The second question is being set in form of a Choice question. The given choices should match with available Vendor Group values found on your D365FO client. If this question is a Text one, chance is that its response might not match with any available Vendor Group values, thus, will return an error during Flow runtime.
+Vendor Groups can be found under <code>Account Payable &gt; Vendors &gt; Vendor Groups</code>. In this example, <code>TopVendor</code> and <code>Others</code> are two available Vendor Groups in my D365FO client.</p>
+</blockquote>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-2-VendorGroups.png" title="Vendor Groups" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-2-VendorGroups.png" data-sub-html="<h2>Vendor Groups</h2><p>Vendor Groups</p>">
+        
+    </a><figcaption class="image-caption">Vendor Groups</figcaption>
+    </figure></p>
+<h3 id="step-2-create-a-ms-flow">Step 2: Create a MS Flow</h3>
+<p>To do so, we will access <a href="https://flow.microsoft.com/" target="_blank" rel="noopener noreffer ">Microsoft Power Automate</a> and create a new flow. We will go with an <code>Automated</code> one in this case.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-3-Flow-1.png" title="Flow step 1" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-3-Flow-1.png" data-sub-html="<h2>Automated flow</h2><p>Flow step 1</p>">
+        
+    </a><figcaption class="image-caption">Automated flow</figcaption>
+    </figure></p>
+<p>Search for <code>form</code> and choose the trigger <code>When a new response is submitted</code>. Hit <code>Create</code> to create a new flow.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-4-Flow-2.png" title="Flow step 2" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-4-Flow-2.png" data-sub-html="<h2>Form trigger</h2><p>Flow step 2</p>">
+        
+    </a><figcaption class="image-caption">Form trigger</figcaption>
+    </figure></p>
+<p>Choose the <code>form</code> that we just created using the dropdown list.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-5-Flow-3.png" title="Flow step 3" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-5-Flow-3.png" data-sub-html="<h2>Choose form</h2><p>Flow step 3</p>">
+        
+    </a><figcaption class="image-caption">Choose form</figcaption>
+    </figure></p>
+<p>Press <code>New step</code>, search for <code>form</code> and go with <code>Get response details</code>.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-6-Flow-4.png" title="FLow step 4" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-6-Flow-4.png" data-sub-html="<h2>New step: Get response details</h2><p>FLow step 4</p>">
+        
+    </a><figcaption class="image-caption">New step: Get response details</figcaption>
+    </figure></p>
+<p>In the new step, choose the <code>Form ID</code>. As soon as we move the cursor to the <code>Response ID</code> field, the <code>FLow</code> will suggest the <code>Dynamics content</code> that we can use. In this case, there should be only one dynamic content, which is <code>List of response notifications Response ID</code>. We will go with it by choosing it.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-7-Flow-5.png" title="FLow step 5" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-7-Flow-5.png" data-sub-html="<h2>Get response details</h2><p>FLow step 5</p>">
+        
+    </a><figcaption class="image-caption">Get response details</figcaption>
+    </figure></p>
+<p>After doing so, the flow should look like this.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-8-Flow-6.png" title="FLow step 6" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-8-Flow-6.png" data-sub-html="<h2>Form done</h2><p>FLow step 6</p>">
+        
+    </a><figcaption class="image-caption">Form done</figcaption>
+    </figure></p>
+<p>Now, the reponse details will be sent from the <code>Form</code> to the <code>Flow</code> when a new response is submitted. Next, we will set up the step to create a new Vendor Account.</p>
+<p>Create a new step, search for <code>dynamics</code> and go with <code>Dynamics 365 for Finance and Operations</code>.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-9-Flow-7.png" title="FLow step 7" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-9-Flow-7.png" data-sub-html="<h2>Dynamics 365 FinOps</h2><p>FLow step 7</p>">
+        
+    </a><figcaption class="image-caption">Dynamics 365 FinOps</figcaption>
+    </figure></p>
+<p>Choose <code>Create record</code> action.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-10-Flow-8.png" title="FLow step 8" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-10-Flow-8.png" data-sub-html="<h2>Create record action</h2><p>FLow step 8</p>">
+        
+    </a><figcaption class="image-caption">Create record action</figcaption>
+    </figure></p>
+<p>Choose the Dynamics 365 FinOps <code>Instance</code> from the dropdown list. If your client does not appear here, choose <code>Enter custom value</code>. For privacy, environments&rsquo; name will be censored in our example.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-11-Flow-9.png" title="FLow step 9" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-11-Flow-9.png" data-sub-html="<h2>Set D365FO instance</h2><p>FLow step 9</p>">
+        
+    </a><figcaption class="image-caption">Set D365FO instance</figcaption>
+    </figure></p>
+<p>The <code>Instance</code> should be the <code>link</code> to your D365FO client. Set <code>Entity name</code> VendorsV2.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-12-Flow-10.png" title="FLow step 10" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-12-Flow-10.png" data-sub-html="<h2>Set Instance and Entity</h2><p>FLow step 10</p>">
+        
+    </a><figcaption class="image-caption">Set Instance and Entity</figcaption>
+    </figure></p>
+<p><code>Note 1-3</code></p>
+<blockquote>
+<p><em>Later in this series, we will see how to find the exact <code>Entity name</code> using <code>Visual Studio</code>. Also, we will see in which condition, the Entity can be used in <code>Power Automate</code>.</em></p>
+</blockquote>
+<p>Populate the fields that we want to import. In this example, we will populate only 3 fields: <code>Group (VendorGroupID)</code>, <code>Company (DataAreaId)</code> and <code>Supplier Account (VendorAccountNumber)</code>.</p>
+<p><code>Dynamic content</code> will be suggested automatically when the cursor is placed in each field.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-13-Flow-11.png" title="FLow step 11" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-13-Flow-11.png" data-sub-html="<h2>Map Form fields with Automate fields</h2><p>FLow step 11</p>">
+        
+    </a><figcaption class="image-caption">Map Form fields with Automate fields</figcaption>
+    </figure></p>
+<p>We can map <code>Form fields</code> with <code>Automate fields</code> or <code>hardcode</code> in these fields:</p>
+<ul>
+<li><code>Group</code> = Response of <code>What is the Vendor Group?</code> question.</li>
+<li><code>Company</code> = <em>(hardcode)</em> <code>usmf</code>.</li>
+<li><code>Supplier Account</code> = Response of <code>What is the Vendor Account?</code> question.</li>
+<li><code>Name</code> = <code>Supplier Account</code> =  Response of <code>What is the Vendor Account?</code> question (<code>Show advanced option</code> on the Flow to find the field <code>Name (VendorOrganisationName)</code>).
+These fields should be required when creating a new Vendor Account on D365FO client.</li>
+</ul>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-14-Flow-12.png" title="FLow step 12" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-14-Flow-12.png" data-sub-html="<h2>Map Form fields with Automate fields</h2><p>FLow step 12</p>">
+        
+    </a><figcaption class="image-caption">Map Form fields with Automate fields</figcaption>
+    </figure></p>
+<p>We are done here with the set up.</p>
+<h3 id="step-3-testing-out">Step 3: Testing out</h3>
+<p>On <code>Forms</code>, choose the form that we just created, click on <code>Preview</code> so we can submit a form response.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-15-Flow-13.png" title="FLow step 13" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-15-Flow-13.png" data-sub-html="<h2>Map Form fields with Automate fields</h2><p>FLow step 13</p>">
+        
+    </a><figcaption class="image-caption">Map Form fields with Automate fields</figcaption>
+    </figure></p>
+<p>Check out <code>All Vendors (VendTableListPage)</code> on the client to find a new Vendor Account is created.</p>
+<p><figure><a class="lightgallery" href="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-16-Flow-14.png" title="FLow step 14" data-thumbnail="/2020-05-24-dynamics-365-finops-data-integration-using-microsoft-forms-part-1/E1-16-Flow-14.png" data-sub-html="<h2>Map Form fields with Automate fields</h2><p>FLow step 14</p>">
+        
+    </a><figcaption class="image-caption">Map Form fields with Automate fields</figcaption>
+    </figure></p>
+<p><code>Note 1-4</code></p>
+<blockquote>
+<p><em>Use <code>Test</code> option in Power Automate to follow the process of the Flow. This, in other words, is so-called <code>&quot;Run Flow with Debug&quot;</code> option.</em></p>
+</blockquote>
+]]></description>
+</item>
+<item>
+    <title>Database Sync after data type on field has been changed</title>
+    <link>https://nuxulu.com/2020-05-10-database-sync-after-data-type-on-field-has-been-changed/</link>
+    <pubDate>Sun, 10 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2020-05-10-database-sync-after-data-type-on-field-has-been-changed/</guid>
+    <description><![CDATA[<p>You will got an error like this when doing Database Synchronization after changing the data type of the field on the table:</p>
+<div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">InvalidOperationException: Table &hellip; : Converting Field &lsquo;..&rsquo; of Type &lsquo;..&rsquo; to &lsquo;..&rsquo; is not support. Please drop the original field, sync the table and add new field with same name if needed.</div>
+        </div>
+    </div>
+<p>Solution:</p>
+<ul>
+<li>Drop the table and delete references from SQLDictionary</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">AXDB</span><span class="p">.</span><span class="n">dbo</span><span class="p">.</span><span class="n">NAMEOFTABLE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DELETE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">AXDB</span><span class="p">.</span><span class="n">dbo</span><span class="p">.</span><span class="n">SQLDICTIONARY</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">TABLEID</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">TABLEID</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SQLDICTIONARY</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;NAMEOFTABLE&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">FIELDID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Restart IIS</li>
+<li>In VS 2015, run DB sync again.</li>
+</ul>
+<p>Thank you for reading.</p>
+]]></description>
+</item>
+<item>
+    <title>Getting onebox VHD Dynamics 365 finance and operations virtual machine</title>
+    <link>https://nuxulu.com/2020-04-06-getting-onebox-vhd-dynamics-365-finance-and-operations-virtual-machine/</link>
+    <pubDate>Mon, 06 Apr 2020 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2020-04-06-getting-onebox-vhd-dynamics-365-finance-and-operations-virtual-machine/</guid>
+    <description><![CDATA[<ul>
+<li><a href="#1-download-dynamics-365-finance-and-operations-vhd-files" rel="">1. Download Dynamics 365 finance and operations VHD files</a></li>
+<li><a href="#2-extend-the-evaluattion-license" rel="">2. Extend the Evaluattion license</a></li>
+<li><a href="#3-rename-vm" rel="">3. Rename VM</a>
+<ul>
+<li><a href="#update-financial-reporting" rel="">Update financial reporting</a></li>
+<li><a href="#update-the-azure-storage-emulator" rel="">Update the Azure Storage Emulator</a></li>
+</ul>
+</li>
+<li><a href="#4-location-of-packages-source-code-and-other-aos-configurations" rel="">4. Location of packages, source code, and other AOS configurations</a></li>
+<li><a href="#5-redeploying-or-restarting-the-runtime-on-the-vm" rel="">5. Redeploying or restarting the runtime on the VM</a></li>
+<li><a href="#6-update-to-the-latest-version" rel="">6. Update to the latest version</a></li>
+<li><a href="#7-for-vhd-that-was-released-for-versions-10024-and-later" rel="">7. For (VHD) that was released for versions 10.0.24 and later</a>
+<ul>
+<li><a href="#71-register-a-new-application-in-azure-active-directory" rel="">7.1 Register a new application in Azure Active Directory</a></li>
+<li><a href="#72-run-the-setup-script" rel="">7.2 Run the setup script</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="1-download-dynamics-365-finance-and-operations-vhd-files">1. Download Dynamics 365 finance and operations VHD files</h2>
+<ul>
+<li>
+<p>Go to the LCS main page and select <strong>Shared asset library</strong> or go to Shared Asset Library.</p>
+</li>
+<li>
+<p>Select the asset type <strong>Downloadable VHD</strong>.</p>
+</li>
+<li>
+<p>Find the VHD you are looking for based on the desired Finance and Operation version. The VHD is divided into multiple file parts that you need to download. For example, the asset files that start with &ldquo;VHD - 10.0.5&rdquo; are the different files you need in order to install version 10.0.5.</p>
+</li>
+<li>
+<p>Download all files (parts) associated with the desired VHD to a local folder.</p>
+</li>
+<li>
+<p>After the download is complete, run the executable file that you downloaded, accept the software license agreement, and choose a file path to extract the VHD to.</p>
+</li>
+<li>
+<p>This creates a local VHD file that you can use to run a local virtual machine.</p>
+</li>
+<li>
+<p>Sign in to the VM by using the following credentials:</p>
+<ul>
+<li>User name: <strong>Administrator</strong></li>
+<li>Password: <strong>pass@word1</strong></li>
+</ul>
+</li>
+<li>
+<p>Provision the administrator user.</p>
+</li>
+</ul>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>Note<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>For security reasons the reply URL setup for AAD was changed, The &ldquo;Admin user provisioning&rdquo; tool is deleted from 10.0.24 <strong>cloud hosted</strong> VM. More info here <a href="https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/dev-tools/access-instances#frequently-asked-questions" target="_blank" rel="noopener noreffer ">https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/dev-tools/access-instances#frequently-asked-questions</a>.</p>
+<p>You still have it in the VHD machine.</p>
+</div>
+        </div>
+    </div>
+<h2 id="2-extend-the-evaluattion-license">2. Extend the Evaluattion license</h2>
+<ul>
+<li>Run cmd with Admin right.</li>
+<li>Run <code>slmgr -dli</code> to check the current period status.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl">Name: Windows(R), ServerDatacenterEval edition
+</span></span><span class="line"><span class="cl">Description: Windows(R) Operating System, TIMEBASED_EVAL channel
+</span></span><span class="line"><span class="cl">Partial Product Key: H6F8M
+</span></span><span class="line"><span class="cl">License Status: Licensed
+</span></span><span class="line"><span class="cl">Timebased activation expiration: 259199 minute(s) (180 day(s))
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Run <code>slmgr –rearm</code> to extend the evaluation period.</li>
+<li>Run <code>slmgr –dlv</code> to see how many extensions do you have left. You can only extend the license a limited number of times.</li>
+</ul>
+<h2 id="3-rename-vm">3. Rename VM</h2>
+<ul>
+<li>
+<p>Rename and restart the machine before you start development or connect to Azure DevOps.</p>
+</li>
+<li>
+<p>Update the server name in SQL Server</p>
+<ul>
+<li>The default credential for SQL server is <strong>axdbadmin</strong> and password <strong>AOSWebSite@12</strong></li>
+</ul>
+</li>
+</ul>
+<p>You can also see the password (<code>DataAccess.AxAdminSqlPwd</code>) in the <code>C:\AOSService\webroot\web.config</code></p>
+<p>To decrypt run this command:
+<code>C:\AOSService\webroot\bin\Microsoft.Dynamics.AX.Framework.ConfigEncryptor.exe -decrypt C:\AOSService\webroot\web.config</code></p>
+<p>To encrypt run this command:
+<code>C:\AOSService\webroot\bin\Microsoft.Dynamics.AX.Framework.ConfigEncryptor.exe -encrypt C:\AOSService\webroot\web.config</code></p>
+<p>If you see the error</p>
+<p><div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">No certificate found for id &lsquo;7366E25DC94FA8A400FA0037FFF3BB300D9482D4&rsquo;</div>
+        </div>
+    </div>
+Please follow <a href="#7-for-vhd-that-was-released-for-versions-10024-and-later" rel="">this step</a> first.</p>
+<ul>
+<li>
+<p>Run following query</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">--MININT-57EHFHJ
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">sp_dropserver</span><span class="w"> </span><span class="p">[</span><span class="n">old_name</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">sp_addserver</span><span class="w"> </span><span class="p">[</span><span class="n">new_name</span><span class="p">],</span><span class="w"> </span><span class="k">local</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Tip<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">In these commands, be sure to replace old_name with the old name of the server and new_name with the new name. By default, the old name is <code>MININT-F36S5EH</code>, but you can run select @@servername to get the old name. Additionally, be sure to restart the SQL Server service after the commands have finished running.</div>
+        </div>
+    </div>
+<ul>
+<li>
+<p>Restart SQL service</p>
+</li>
+<li>
+<p>Open Reporting Services Configuration Manager for SQL Server 2016, then <strong>Select Database</strong>, select <strong>Change Database</strong>, and use the new server name.</p>
+</li>
+</ul>
+<h3 id="update-financial-reporting">Update financial reporting</h3>
+<p>Go to LCS portal and download a one version package, we will need the scripts from it. Open a Microsoft Windows PowerShell command window as an admin, and run the following command. This command contains the default passwords that might have to be updated. Be sure to replace <strong>new_name</strong> with the new name.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">cd </span><span class="p">&lt;</span><span class="n">update</span> <span class="n">folder</span><span class="p">&gt;\</span><span class="n">MROneBox</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">Update</span>
+</span></span><span class="line"><span class="cl"><span class="p">.\</span><span class="n">ConfigureMRDatabase</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-NewAosDatabaseName</span> <span class="n">AxDB</span> <span class="n">-NewAosDatabaseServerName</span> <span class="n">new_name</span> <span class="n">-NewMRDatabaseName</span> <span class="n">ManagementReporter</span> <span class="n">-NewAxAdminUserPassword</span> <span class="n">AOSWebSite</span><span class="nv">@123</span> <span class="n">-NewMRAdminUserName</span> <span class="n">MRUser</span> <span class="n">-NewMRAdminUserPassword</span> <span class="n">MRWebSite</span><span class="nv">@123</span> <span class="n">-NewMRRuntimeUserName</span> <span class="n">MRUSer</span> <span class="n">-NewMRRuntimeUserPassword</span> <span class="n">MRWebSite</span><span class="nv">@123</span> <span class="n">-NewAxMRRuntimeUserName</span> <span class="n">MRUser</span> <span class="n">-NewAxMRRuntimeUserPassword</span> <span class="n">MRWebSite</span><span class="nv">@123</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="update-the-azure-storage-emulator">Update the Azure Storage Emulator</h3>
+<ul>
+<li>
+<p>From the Start menu, open Microsoft Azure Storage Emulator - v4.0, and run the following commands.</p>
+<p><code>AzureStorageEmulator.exe start</code></p>
+<blockquote>
+<p>If you got an error <strong><em>Port conflict with existing application</em></strong>, please check this <a href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/" rel="">post</a>.</p>
+</blockquote>
+</li>
+<li>
+<p>This command verifies that the emulator is running.</p>
+<p><code>AzureStorageEmulator.exe status</code></p>
+</li>
+<li>
+<p>Update the server name</p>
+<p><code>AzureStorageEmulator.exe init -server new_name</code></p>
+<p>For more information about Azure storage emulator please follow <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator" target="_blank" rel="noopener noreffer ">https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator</a></p>
+</li>
+</ul>
+<h2 id="4-location-of-packages-source-code-and-other-aos-configurations">4. Location of packages, source code, and other AOS configurations</h2>
+<p>On a VM, you can find most of the application configuration by opening the web.config file of AOSWebApplication.</p>
+<ol>
+<li>
+<p>Start IIS.</p>
+</li>
+<li>
+<p>Go to <em>Sites &gt; AOSWebApplication</em>.</p>
+</li>
+<li>
+<p>Right-click, and then click <strong>Explore</strong> to open File Explorer.</p>
+</li>
+<li>
+<p>Open the <strong>web.config</strong> file in Notepad or another text editor. The following keys are of interest to many developers and administrators:</p>
+<ul>
+<li>
+<p><strong>Aos.MetadataDirectory</strong> – This key points to the location of the packages folder that contains platform and application binaries, and also source code. (Source code is available only in development environments.) Typical values are: <code>c:\packages</code>, <code>c:\AosServicePackagesLocalDirectory</code>, and <code>J:AosServicePackagesLocalDirectory</code>.</p>
+</li>
+<li>
+<p><strong>DataAccess.Database</strong> – This key holds the name of the database.</p>
+</li>
+<li>
+<p><strong>Aos.AppRoot</strong> – This key points to the root folder of the Application Object Server (AOS) web application.</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="5-redeploying-or-restarting-the-runtime-on-the-vm">5. Redeploying or restarting the runtime on the VM</h2>
+<p>To restart the local runtime and redeploy all the packages, follow these steps.</p>
+<ol>
+<li>
+<p>Open File Explorer, and go to <code>C:\CustomerServiceUnit</code>.</p>
+</li>
+<li>
+<p>Right-click <strong>AOSDeploy.cmd</strong>, and then click <strong>Run as administrator</strong>.</p>
+</li>
+</ol>
+<p>This process might take a while. The process is completed when the cmd.exe window closes. If you just want to restart AOS (without redeploying the runtime), run iisreset from an administrator Command Prompt window, or restart AOSWebApplication from IIS.</p>
+<h2 id="6-update-to-the-latest-version">6. Update to the latest version</h2>
+<p>Please check this <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/deployment/install-deployable-package" target="_blank" rel="noopener noreffer ">document</a> for versions 10.0.24</p>
+<h2 id="7-for-vhd-that-was-released-for-versions-10024-and-later">7. For (VHD) that was released for versions 10.0.24 and later</h2>
+<h3 id="71-register-a-new-application-in-azure-active-directory">7.1 Register a new application in Azure Active Directory</h3>
+<p>To register a new application in Microsoft Azure Active Directory (Azure AD), follow the steps outlined in <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app" target="_blank" rel="noopener noreffer ">Register app or web API</a>. The new app registration should be for a web application, and the following redirect URIs should be added:</p>
+<ul>
+<li><code>https://usnconeboxax1aos.cloud.onebox.dynamics.com/</code></li>
+<li><code>https://usnconeboxax1aos.cloud.onebox.dynamics.com/oauth/</code></li>
+</ul>
+<p>Once created, make note of the <strong>Application (client) ID</strong>.</p>
+<h3 id="72-run-the-setup-script">7.2 Run the setup script</h3>
+<p>After you sign in with the <strong>Administrator</strong> account, right-click the desktop shortcut <strong>Generate Self-Signed Certificates</strong>, and select <strong>Run as administrator</strong>. When the script prompts for the application ID, provide the <strong>Application (client) ID</strong> created in Azure Active Directory.</p>
+<p>When the script finishes, the environment is ready for use. At this time, you can run the Admin Provisioning tool to set the administrator account, permissions, and tenant. Make sure that the email provided is for the Azure Active Directory tenant in which the application registration was created.</p>
+<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw" aria-hidden="true"></i>Reference<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><a href="https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/migration-upgrade/vso-machine-renaming" target="_blank" rel="noopener noreffer ">https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/migration-upgrade/vso-machine-renaming</a></div>
+        </div>
+    </div>
+]]></description>
+</item>
+<item>
+    <title>Azure Storage Emulator &#39;Port conflict with existing application&#39;, Dynamics 365 finance and operations</title>
+    <link>https://nuxulu.com/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/</link>
+    <pubDate>Sun, 05 Apr 2020 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/</guid>
+    <description><![CDATA[<ul>
+<li><a href="#1-reason" rel="">1. Reason</a></li>
+<li><a href="#2-resolution" rel="">2. Resolution</a>
+<ul>
+<li><a href="#21-to-determine-the-conflict-program-we-can-use-this-command-in-cmd" rel="">2.1. To determine the conflict program we can use this command in CMD</a></li>
+<li><a href="#22-to-change-the-default-port-for-azure-storage-emulator" rel="">2.2. To change the default port for Azure storage Emulator</a></li>
+</ul>
+</li>
+</ul>
+<p>The Microsoft Azure storage emulator is a tool that emulates the Azure Blob, Queue, and Table services for local development purposes. You can test your application against the storage services locally without creating an Azure subscription or incurring any costs. When you&rsquo;re satisfied with how your application is working in the emulator, switch to using an Azure storage account in the cloud.</p>
+<p>In Dynamics 365 finance and operations onebox environment, we also use Microsoft Azure Storage Emulator for same purposes. There is a common problem when you try to start its service or using Data entity Import/Export</p>
+<p><figure><a class="lightgallery" href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-1.png" title="Image" data-thumbnail="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-1.png" data-sub-html="<h2>Azure-Storage-Emulator-Port-conflict-with-existing-application</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Azure-Storage-Emulator-Port-conflict-with-existing-application</figcaption>
+    </figure></p>
+<p><code>Port conflict with existing application</code></p>
+<h2 id="1-reason">1. Reason</h2>
+<p>By default, Azure storage emulator is using port number 10000, 10001, 10002 for Blob, Queue and Table services respectively. And there is a progress/system takes those ports already, so you are not able to start its service.
+We can simply use this command in CMD to see which one has conflict</p>
+<p><code>netstat -p tcp -ano | findstr :10001</code></p>
+<p><figure><a class="lightgallery" href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-2.png" title="Image" data-thumbnail="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-2.png" data-sub-html="<h2>Azure-Storage-Emulator-Port-conflict-with-existing-application</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Azure-Storage-Emulator-Port-conflict-with-existing-application</figcaption>
+    </figure></p>
+<p>The process ID 4 is currently taking port 10001.</p>
+<h2 id="2-resolution">2. Resolution</h2>
+<p>You can either terminate the conflict program or change the default port for Azure Storage Emulator.</p>
+<h3 id="21-to-determine-the-conflict-program-we-can-use-this-command-in-cmd">2.1. To determine the conflict program we can use this command in CMD</h3>
+<p>Run following command to check which application/process has the same port, then simply go to task manager and terminate it.</p>
+<p><code>tasklist /fi &quot;pid eq 4&quot;</code></p>
+<p><figure><a class="lightgallery" href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-5.png" title="Image" data-thumbnail="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-5.png" data-sub-html="<h2>Azure-Storage-Emulator-Port-conflict-with-existing-application</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Azure-Storage-Emulator-Port-conflict-with-existing-application</figcaption>
+    </figure></p>
+<h3 id="22-to-change-the-default-port-for-azure-storage-emulator">2.2. To change the default port for Azure storage Emulator</h3>
+<p>Go to your storage emulator default installation folder, which is located at <em><strong>C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator</strong></em>, open the <strong>AzureStorageEmulator.exe.config</strong> by notepad and edit the port number to different number</p>
+<p><figure><a class="lightgallery" href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-4.png" title="Image" data-thumbnail="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-4.png" data-sub-html="<h2>Azure-Storage-Emulator-Port-conflict-with-existing-application</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Azure-Storage-Emulator-Port-conflict-with-existing-application</figcaption>
+    </figure></p>
+<p>When done, try to start its service again using</p>
+<p><code>AzureStorageEmulator.exe start</code></p>
+<p><figure><a class="lightgallery" href="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-3.png" title="Image" data-thumbnail="/2020-04-05-azure-storage-emulator-port-conflict-with-existing-application/Azure-Storage-Emulator-Port-conflict-with-existing-application-3.png" data-sub-html="<h2>Azure-Storage-Emulator-Port-conflict-with-existing-application</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Azure-Storage-Emulator-Port-conflict-with-existing-application</figcaption>
+    </figure></p>
+<p>Thank you for reading.</p>
+]]></description>
+</item>
+<item>
+    <title>Create Purchase Orders - Confirm - Product receipt - Post using X&#43;&#43; in Dynamics 365 Finance &amp; Operations</title>
+    <link>https://nuxulu.com/2020-01-25-create-po-confirm-receipt-post/</link>
+    <pubDate>Sat, 25 Jan 2020 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2020-01-25-create-po-confirm-receipt-post/</guid>
+    <description><![CDATA[<blockquote>
+<p>The script will work for Dynamics 365 Finance &amp; Operations version</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MaxGeneratePO</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="c1">// number of purchase orders</span>
+</span></span><span class="line"><span class="cl">        <span class="n">NumberSeq</span> <span class="n">numberSeq</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">PurchTable</span> <span class="n">purchTable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">PurchLine</span> <span class="n">purchLine</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">InventDim</span> <span class="n">inventDim</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="p">&lt;=</span> <span class="m">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ttsBegin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">MaxGeneratePO</span> <span class="n">createPO</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MaxGeneratePO</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">numberSeq</span> <span class="p">=</span> <span class="n">NumberSeq</span><span class="p">::</span><span class="n">newGetNum</span><span class="p">(</span><span class="n">PurchParameters</span><span class="p">::</span><span class="n">numRefPurchId</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">            <span class="n">numberSeq</span><span class="p">.</span><span class="n">used</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span> <span class="p">=</span> <span class="n">numberSeq</span><span class="p">.</span><span class="n">num</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchTable</span><span class="p">.</span><span class="n">initValue</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchTable</span><span class="p">.</span><span class="n">initFromVendTable</span><span class="p">(</span><span class="n">VendTable</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="err">&#39;</span><span class="n">US</span><span class="p">-</span><span class="m">101</span><span class="err">&#39;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(!</span><span class="n">purchTable</span><span class="p">.</span><span class="n">validateWrite</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">throw</span> <span class="n">Exception</span><span class="p">::</span><span class="n">Error</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">purchTable</span><span class="p">.</span><span class="n">insert</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">inventDim</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">initValue</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchId</span> <span class="p">=</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">ItemId</span> <span class="p">=</span> <span class="err">&#39;</span><span class="n">D0002</span><span class="err">&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">inventDim</span><span class="p">.</span><span class="n">InventSiteId</span> <span class="p">=</span> <span class="s">&#34;1&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">inventDim</span><span class="p">.</span><span class="n">InventLocationId</span> <span class="p">=</span> <span class="s">&#34;11&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">InventDimId</span><span class="p">=</span><span class="n">InventDim</span><span class="p">::</span><span class="n">findOrCreate</span><span class="p">(</span><span class="n">inventDim</span><span class="p">).</span><span class="n">inventDimId</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">createLine</span><span class="p">(</span><span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchQty</span> <span class="p">=</span> <span class="m">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchUnit</span> <span class="p">=</span> <span class="s">&#34;ea&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchPrice</span> <span class="p">=</span> <span class="n">createPO</span><span class="p">.</span><span class="n">randomAmount</span><span class="p">();</span> <span class="c1">// get random amount nubmer</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">LineAmount</span> <span class="p">=</span> <span class="n">purchLine</span><span class="p">.</span><span class="n">calcLineAmount</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="c1">//PO confirm</span>
+</span></span><span class="line"><span class="cl">            <span class="n">PurchFormLetter</span> <span class="n">purchFormLetter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">PurchFormLetter</span> <span class="n">purchFormLetterPack</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchFormLetter</span> <span class="p">=</span> <span class="n">PurchFormLetter</span><span class="p">::</span><span class="n">construct</span><span class="p">(</span><span class="n">DocumentStatus</span><span class="p">::</span><span class="n">PurchaseOrder</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">purchTable</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;ConNum_%1&#34;</span><span class="p">,</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">systemDateGet</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">PurchUpdate</span><span class="p">::</span><span class="n">All</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">AccountOrder</span><span class="p">::</span><span class="n">None</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">NoYes</span><span class="p">::</span><span class="n">No</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">NoYes</span><span class="p">::</span><span class="n">no</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//Product receipt</span>
+</span></span><span class="line"><span class="cl">            <span class="n">createPO</span><span class="p">.</span><span class="n">proceed</span><span class="p">(</span><span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">,</span> <span class="n">purchLine</span><span class="p">.</span><span class="n">ItemId</span><span class="p">,</span><span class="n">purchLine</span><span class="p">.</span><span class="n">InventDimId</span><span class="p">,</span><span class="n">purchLine</span><span class="p">.</span><span class="n">PurchQty</span><span class="p">,</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;RptNum_%1&#34;</span><span class="p">,</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//Post PO</span>
+</span></span><span class="line"><span class="cl">            <span class="n">createPO</span><span class="p">.</span><span class="n">postPOInvoice</span><span class="p">(</span><span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">,</span> <span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;RptNum_%1&#34;</span><span class="p">,</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">info</span><span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;Purchase order &#39;%1&#39; has been created&#34;</span><span class="p">,</span> <span class="n">purchTable</span><span class="p">.</span><span class="n">PurchId</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ttsCommit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">i</span><span class="p">++;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">boolean</span> <span class="n">proceed</span><span class="p">(</span><span class="n">PurchId</span> <span class="n">_purchId</span><span class="p">,</span> <span class="n">ItemId</span> <span class="n">_itemId</span><span class="p">,</span><span class="n">inventDimId</span> <span class="n">_inventDimId</span><span class="p">,</span> <span class="n">PurchQty</span> <span class="n">_qty</span><span class="p">,</span> <span class="n">PackingSlipId</span> <span class="n">_productReceiptNumber</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span>
+</span></span><span class="line"><span class="cl">            <span class="k">this</span><span class="p">.</span><span class="n">generateProductReceipt</span><span class="p">(</span><span class="n">_purchId</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">addToPurchLineList</span><span class="p">(</span><span class="n">_purchId</span><span class="p">,</span> <span class="n">_itemId</span><span class="p">,</span> <span class="n">_inventDimId</span><span class="p">,</span> <span class="n">_qty</span><span class="p">),</span> <span class="n">_productReceiptNumber</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">boolean</span> <span class="n">generateProductReceipt</span><span class="p">(</span><span class="n">PurchId</span> <span class="n">_purchId</span><span class="p">,</span> <span class="n">List</span> <span class="n">_purchLineList</span><span class="p">,</span> <span class="n">PackingSlipId</span> <span class="n">_productReceiptNumber</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">boolean</span> <span class="n">ret</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">PurchFormLetter</span> <span class="n">purchFromLetter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">PurchTable</span> <span class="n">purchTable</span> <span class="p">=</span> <span class="n">PurchTable</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="n">_purchId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">try</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ttsbegin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchFromLetter</span> <span class="p">=</span> <span class="n">PurchFormLetter</span><span class="p">::</span><span class="n">construct</span><span class="p">(</span><span class="n">DocumentStatus</span><span class="p">::</span><span class="n">PackingSlip</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchFromLetter</span><span class="p">.</span><span class="n">createFromLines</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchFromLetter</span><span class="p">.</span><span class="n">parmLineList</span><span class="p">(</span><span class="n">_purchLineList</span><span class="p">.</span><span class="n">pack</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchFromLetter</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">purchTable</span><span class="p">,</span> <span class="n">_productReceiptNumber</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">DateTimeUtil</span><span class="p">::</span><span class="n">getToday</span><span class="p">(</span><span class="n">DateTimeUtil</span><span class="p">::</span><span class="n">getUserPreferredTimeZone</span><span class="p">()),</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">PurchUpdate</span><span class="p">::</span><span class="n">All</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ttscommit</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">catch</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ret</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">List</span> <span class="n">addToPurchLineList</span><span class="p">(</span><span class="n">PurchId</span> <span class="n">_purchId</span><span class="p">,</span> <span class="n">ItemId</span> <span class="n">_itemId</span><span class="p">,</span><span class="n">inventDimId</span> <span class="n">_inventDimId</span><span class="p">,</span> <span class="n">PurchQty</span> <span class="n">_qty</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">List</span> <span class="n">purchLineList</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Record</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">PurchLine</span> <span class="n">purchLine</span> <span class="p">=</span> <span class="n">PurchLine</span><span class="p">::</span><span class="n">findItemIdInventDimId</span><span class="p">(</span><span class="n">_purchId</span><span class="p">,</span> <span class="n">_itemId</span><span class="p">,</span> <span class="n">_inventDimId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">purchLine</span> <span class="p">&amp;&amp;</span> <span class="n">_qty</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchReceivedNow</span> <span class="p">=</span> <span class="n">_qty</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchline</span><span class="p">.</span><span class="n">modifiedField</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchLine</span><span class="p">,</span> <span class="n">PurchReceivedNow</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLineList</span><span class="p">.</span><span class="n">addEnd</span><span class="p">(</span><span class="n">purchLine</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">purchLineList</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">void</span> <span class="n">postPOInvoice</span><span class="p">(</span><span class="n">PurchId</span> <span class="n">purchId</span><span class="p">,</span> <span class="n">PackingSlipId</span> <span class="n">packingSlipId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">TmpFrmVirtual</span>               <span class="n">tmpFrmVirtualVend</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">PurchFormLetter_Invoice</span>     <span class="n">purchFormLetter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">VendPackingSlipJour</span>         <span class="n">vendPackingSlipJour</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SysQueryRun</span>                 <span class="n">chooseLinesQuery</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SysQueryRun</span>                 <span class="n">chooseLinesPendingInvoiceQuery</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">container</span>                   <span class="n">conTmpFrmVirtual</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">List</span>                        <span class="n">selectedList</span>    <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Record</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">select</span> <span class="n">firstonly</span> <span class="n">vendPackingSlipJour</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">where</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">PurchId</span> <span class="p">==</span> <span class="n">purchId</span>
+</span></span><span class="line"><span class="cl">            <span class="p">&amp;&amp;</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">PackingSlipId</span> <span class="p">==</span> <span class="n">packingSlipId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">vendPackingSlipJour</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">TableNum</span>  <span class="p">=</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">TableId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">RecordNo</span>  <span class="p">=</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">RecId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">NoYes</span>     <span class="p">=</span> <span class="n">NoYes</span><span class="p">::</span><span class="n">Yes</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">Id</span>        <span class="p">=</span> <span class="n">vendPackingSlipJour</span><span class="p">.</span><span class="n">PurchId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tmpFrmVirtualVend</span><span class="p">.</span><span class="n">insert</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">chooseLinesQuery</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SysQueryRun</span><span class="p">(</span><span class="n">queryStr</span><span class="p">(</span><span class="n">PurchUpdate</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chooseLinesQuery</span><span class="p">.</span><span class="n">query</span><span class="p">().</span><span class="n">addDataSource</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">VendInvoiceInfoTable</span><span class="p">)).</span><span class="n">enabled</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// chooseLinesPendingInvoiceQuery needs to be initialized, although it will not be used</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chooseLinesPendingInvoiceQuery</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SysQueryRun</span><span class="p">(</span><span class="n">queryStr</span><span class="p">(</span><span class="n">PurchUpdatePendingInvoice</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chooseLinesPendingInvoiceQuery</span><span class="p">.</span><span class="n">query</span><span class="p">().</span><span class="n">dataSourceTable</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">PurchTable</span><span class="p">)).</span><span class="n">addRange</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">PurchTable</span><span class="p">,</span><span class="n">PurchId</span><span class="p">)).</span><span class="k">value</span><span class="p">(</span><span class="n">queryValue</span><span class="p">(</span><span class="err">&#39;&#39;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">           
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span> <span class="p">=</span> <span class="n">PurchFormLetter</span><span class="p">::</span><span class="n">construct</span><span class="p">(</span><span class="n">DocumentStatus</span><span class="p">::</span><span class="n">Invoice</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">chooseLinesQuery</span> <span class="p">(</span><span class="n">chooseLinesQuery</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">parmQueryChooseLinesPendingInvoice</span><span class="p">(</span><span class="n">chooseLinesPendingInvoiceQuery</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">purchTable</span> <span class="p">(</span><span class="n">PurchTable</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="n">PurchId</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">transDate</span> <span class="p">(</span><span class="n">systemDateGet</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">parmParmTableNum</span> <span class="p">(</span><span class="n">strFmt</span><span class="p">(</span><span class="s">&#34;%1&#34;</span><span class="p">,</span><span class="n">packingSlipId</span><span class="p">));</span> <span class="c1">//This is invoice number</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">printFormLetter</span> <span class="p">(</span><span class="n">NoYes</span><span class="p">::</span><span class="n">No</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">sumBy</span> <span class="p">(</span><span class="n">AccountOrder</span><span class="p">::</span><span class="n">Auto</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">specQty</span> <span class="p">(</span><span class="n">PurchUpdate</span><span class="p">::</span><span class="n">PackingSlip</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="k">select</span> <span class="n">tmpFrmVirtualVend</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">selectedList</span><span class="p">.</span><span class="n">addEnd</span><span class="p">(</span><span class="n">tmpFrmVirtualVend</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">conTmpFrmVirtual</span> <span class="p">=</span> <span class="n">selectedList</span><span class="p">.</span><span class="n">pack</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">selectFromJournal</span><span class="p">(</span><span class="n">conTmpFrmVirtual</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">reArrangeNow</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="kt">int</span> <span class="n">randomAmount</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">RandomGenerate</span> <span class="n">randomGenerate</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">randomGenerate</span> <span class="p">=</span> <span class="n">RandomGenerate</span><span class="p">::</span><span class="n">construct</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">randomGenerate</span><span class="p">.</span><span class="n">parmSeed</span><span class="p">(</span><span class="k">new</span> <span class="n">Random</span><span class="p">().</span><span class="n">nextInt</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">RandomGenerate</span><span class="p">.</span><span class="n">randomInt</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="m">800</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Thank you for reading.</p>
+]]></description>
+</item>
+</channel>
+</rss>
