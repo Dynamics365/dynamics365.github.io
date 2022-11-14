@@ -1,0 +1,220 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Configuration - Category - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://nuxulu.com/categories/configuration/</link><description>Configuration - Category - Dynamics 365 Finance &amp; Operations | nuxulu.com</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Wed, 28 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://nuxulu.com/categories/configuration/" rel="self" type="application/rss+xml"/><item><title>Remove a person from an user Dynamics 365 Finance Operations</title><link>https://nuxulu.com/2022-09-28-remove-person-from-users/</link><pubDate>Wed, 28 Sep 2022 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2022-09-28-remove-person-from-users/</guid><description><![CDATA[<p>Whenever you add a new person to an user in the user <strong>SysUserInfoPage</strong> form, the person field grays out.</p>
+<p><figure><a class="lightgallery" href="/2022-09-28-remove-person-from-users/2022-09-28-remove-person-from-users.png" title="Image" data-thumbnail="/2022-09-28-remove-person-from-users/2022-09-28-remove-person-from-users.png" data-sub-html="<h2>userinfo</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">userinfo</figcaption>
+    </figure></p>
+<p>To remove the person from that user:</p>
+<ul>
+<li>In the user form <code>System administration &gt; Users &gt; Users</code>, go to <code>Maintain versions</code>.</li>
+<li>Delete the person.</li>
+</ul>
+]]></description></item><item><title>Dynamics 365 FinOps Data Integration using Microsoft Forms (Part 2)</title><link>https://nuxulu.com/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/</link><pubDate>Sun, 28 Jun 2020 00:00:00 +0000</pubDate><author>Kome Hoang</author><guid>https://nuxulu.com/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/</guid><description><![CDATA[<h3 id="1-example-two-a-new-forms-response-is-submitted-then-flow-promts-for-an-approval-request-before-a-new-record-is-created-in-vendors-table">1. Example two: A new Forms response is submitted then Flow promts for an approval request before a new record is created in Vendors table</h3>
+<p>In the last example, we created a simple Flow to create a new Vendor Account from submitted Forms responses. The process was made as simple as it could be: When a new Forms response if submitted, a new Vendor Account will be created on D365FO client.</p>
+<p>To make the process more reliable, we will now add an approval step to the Flow. It means before a new Vendor Account is created, the user will have the right to <code>Approve</code> or <code>Reject</code> the request.</p>
+<h4 id="11-step-1-add-a-new-step-to-the-flow">1.1. <strong>Step 1: Add a new step to the Flow</strong></h4>
+<p>The flow that we have is like this.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-1-Flow-1.png" title="Flow step 1" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-1-Flow-1.png" data-sub-html="<h2>The old flow</h2><p>Flow step 1</p>">
+        
+    </a><figcaption class="image-caption">The old flow</figcaption>
+    </figure></p>
+<p>We will add a step right before the new record is created.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-2-Flow-2.png" title="Flow step 2" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-2-Flow-2.png" data-sub-html="<h2>Add a new step</h2><p>Flow step 2</p>">
+        
+    </a><figcaption class="image-caption">Add a new step</figcaption>
+    </figure></p>
+<p>We will go with <code>Approval &gt; Start and wait for an approval</code>.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-3-Flow-3.png" title="Flow step 3" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-3-Flow-3.png" data-sub-html="<h2>Add approval request</h2><p>Flow step 3</p>">
+        
+    </a><figcaption class="image-caption">Add approval request</figcaption>
+    </figure></p>
+<p>This step will offer several types of approval in which the most common ones are <code>All users must approve</code> or <code>First approve/reject from any user</code>. To make it simple, we will go with <code>First approval</code> because in this example, we will have only one user.</p>
+<p>As straightforward as they seem, the fields explain themselves. We will start an approval request, set a title for it and assign it to a user (only users in the same organisation as you).</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-4-Flow-4.png" title="Flow step 4" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-4-Flow-4.png" data-sub-html="<h2>Single approval</h2><p>Flow step 4</p>">
+        
+    </a><figcaption class="image-caption">Single approval</figcaption>
+    </figure></p>
+<p><em><strong>Note 2-1</strong></em></p>
+<blockquote>
+<p><em>Almost all fields including <code>Title</code>, <code>Details</code>, etc. are fully customisable by using <code>Dynamic content</code>.</em></p>
+</blockquote>
+<p>The flow now will look like this.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-5-Flow-5.png" title="Flow step 5" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-5-Flow-5.png" data-sub-html="<h2>Revised flow</h2><p>Flow step 5</p>">
+        
+    </a><figcaption class="image-caption">Revised flow</figcaption>
+    </figure></p>
+<h4 id="12-step-2-testing-out">1.2. <strong>Step 2: Testing out</strong></h4>
+<p>Trigger a <code>test</code> run of the flow.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-6-Flow-6.png" title="Flow step 6" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-6-Flow-6.png" data-sub-html="<h2>Test run</h2><p>Flow step 6</p>">
+        
+    </a><figcaption class="image-caption">Test run</figcaption>
+    </figure></p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-7-Flow-7.png" title="Flow step 7" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-7-Flow-7.png" data-sub-html="<h2>Test run triggered</h2><p>Flow step 7</p>">
+        
+    </a><figcaption class="image-caption">Test run triggered</figcaption>
+    </figure></p>
+<p>The <code>test</code> run is ready, waiting for the input from <code>MS Forms</code>.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-8-Flow-8.png" title="Flow step 8" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-8-Flow-8.png" data-sub-html="<h2>Test run ready</h2><p>Flow step 8</p>">
+        
+    </a><figcaption class="image-caption">Test run ready</figcaption>
+    </figure></p>
+<p>Submit a new response.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-9-Flow-9.png" title="Flow step 9" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-9-Flow-9.png" data-sub-html="<h2>Form new response</h2><p>Flow step 9</p>">
+        
+    </a><figcaption class="image-caption">Form new response</figcaption>
+    </figure></p>
+<p>The flow will run. The process will show that an approval is being waited from the assigned user.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-10-Flow-10.png" title="Flow step 10" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-10-Flow-10.png" data-sub-html="<h2>Waiting for an approval</h2><p>Flow step 10</p>">
+        
+    </a><figcaption class="image-caption">Waiting for an approval</figcaption>
+    </figure></p>
+<p>An approval request will be sent to the mailbox of the assigned user. That user can check the request in <code>Office.com &gt; Outlook</code>.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-11-Flow-11.png" title="Flow step 11" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-11-Flow-11.png" data-sub-html="<h2>Approval request</h2><p>Flow step 11</p>">
+        
+    </a><figcaption class="image-caption">Approval request</figcaption>
+    </figure></p>
+<p>Upon approval, the flow will finish its pending step and a new record will be created.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-12-Flow-12.png" title="Flow step 12" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E2-12-Flow-12.png" data-sub-html="<h2>Flow finishes</h2><p>Flow step 12</p>">
+        
+    </a><figcaption class="image-caption">Flow finishes</figcaption>
+    </figure></p>
+<h3 id="2-example-three-from-the-created-record-in-vendors-table-add-related-records-in-other-tables">2. Example three: From the created record in Vendors table, add related records in other tables</h3>
+<p>In the last example, we added an Approval step to the Flow which will allow users to give <code>Approve</code> or <code>Reject</code> action toward the request coming from the Form.</p>
+<p>We can actually utilise the Flow one step further: To create additional records on different tables that might depend on the created record in VendTable.</p>
+<p>To make it easier to understand, the process is like this:</p>
+<ul>
+<li>Create a new <code>Vendor Account</code> by using input from the Form.</li>
+<li>Create a new <code>Bank Account</code> with the <code>Bank Account ID</code> exactly similar to the <code>Vendor Account</code>.</li>
+<li>Add some contact details to the <code>Vendor Account</code>.</li>
+</ul>
+<p>Which entities should we target to? They are:</p>
+<ul>
+<li>For <code>Vendor Bank Account</code>: VendorBankAccounts</li>
+<li>For <code>Vendor Contact Details</code>: PartyContacts</li>
+</ul>
+<p>You can play around in Visual Studio to get used to looking for an Entity that might fulfil the requirements of your intergration. Check out the next part of this article to get some quick tips into that.</p>
+<p>Assuming that we now have a Flow as we configured in the last two examples, we can add some more steps like these underneath.</p>
+<h4 id="21-step-1-add-a-new-step-to-add-a-new-record-to-vendorbankaccounts-and-partycontacts">2.1. <strong>Step 1: Add a new step to add a new record to VendorBankAccounts and PartyContacts</strong></h4>
+<p>Given the case that we had a Vendor Account and Bank Account for that Vendor Account, the records would be like this.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-1-SSMSBank.png" title="SSMSBank" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-1-SSMSBank.png" data-sub-html="<h2>Relation in SSMS</h2><p>SSMSBank</p>">
+        
+    </a><figcaption class="image-caption">Relation in SSMS</figcaption>
+    </figure></p>
+<p>The relation should be: <code>VendTable.AccountNum</code> = <code>VendBankAccount.VendAccount</code></p>
+<p>On the client, the information should be illustrated like this.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-2-VendBank1.png" title="VendBank1" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-2-VendBank1.png" data-sub-html="<h2>Vendor Bank Account</h2><p>VendBank1</p>">
+        
+    </a><figcaption class="image-caption">Vendor Bank Account</figcaption>
+    </figure></p>
+<p>And, when checking the Bank Account details, we would find.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-3-VenkBank2.png" title="VendBank2" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-3-VenkBank2.png" data-sub-html="<h2>Vendor Bank Details</h2><p>VendBank2</p>">
+        
+    </a><figcaption class="image-caption">Vendor Bank Details</figcaption>
+    </figure></p>
+<p>Now, to do so, we will add a new step right after the creation of VendTable record.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-4-Flow-1.png" title="VendBank3" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-4-Flow-1.png" data-sub-html="<h2>A new step</h2><p>VendBank3</p>">
+        
+    </a><figcaption class="image-caption">A new step</figcaption>
+    </figure></p>
+<ul>
+<li><code>Instance</code> = <code>Environment URL</code> (same as any other steps)</li>
+<li><code>Entity name</code> = <code>VendorBankAccounts</code> (check my post about good tips with Visual Studio to know how to find the Data Entity)</li>
+<li><code>Supplier account</code> = <code>Supplier account</code> from last step</li>
+<li><code>Bank account</code>= <code>Supplier account</code> from last step (Because I would like to have same Vendor Account and Bank Account)</li>
+</ul>
+<p>When saying &ldquo;from the last step&rdquo;, I meant this.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-5-Flow-2.png" title="DynamicsContent" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-5-Flow-2.png" data-sub-html="<h2>Selecting Dynamic Content from former steps</h2><p>DynamicsContent</p>">
+        
+    </a><figcaption class="image-caption">Selecting Dynamic Content from former steps</figcaption>
+    </figure></p>
+<p>In MS FLow, any steps that are already executed will have outputs. We, in this step, are taking the <code>Supplier Account</code> from the last step of creating a new record in VendTable . This dynamic content was generated when the new record is created.</p>
+<p><em><strong>Note 3-1</strong></em></p>
+<blockquote>
+<p><em>Keep in mind that if the last step is not &ldquo;Creating a new record&rdquo;, chance is that you cannot take the output from it because there&rsquo;s simply none.</em></p>
+</blockquote>
+<p>Click on <code>Show advanced options</code> so we can add more information to the Vendor Bank Account.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-6-Flow-3.png" title="AdvancedOptions" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-6-Flow-3.png" data-sub-html="<h2>Select Show advanced options</h2><p>AdvancedOptions</p>">
+        
+    </a><figcaption class="image-caption">Select Show advanced options</figcaption>
+    </figure></p>
+<p>Add more details to the bank account:</p>
+<ul>
+<li><code>Name</code> = <code>Bank account name</code> chosen from the Form using Dynamic Content (we don&rsquo;t want to copy any more values from the VendTable record - we actually will specify a bank account name when composing a response on the Form)</li>
+<li><code>Bank account number</code> = <code>Bank account number</code> chosen from the Form using Dynamic Content</li>
+</ul>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-7-Flow-4.png" title="BankDetails" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-7-Flow-4.png" data-sub-html="<h2>Add more details to bank account</h2><p>BankDetails</p>">
+        
+    </a><figcaption class="image-caption">Add more details to bank account</figcaption>
+    </figure></p>
+<p>We finished with Vendor Bank Account.</p>
+<p>We will do just the same with the record in PartyContacts.</p>
+<ul>
+<li><code>Party ID</code> = <code>Party ID</code> from VendTable record</li>
+<li><code>Contact number/address</code> = <code>Email</code> from the Form (in this case, I would like to add an email address - it is totally up to you to opt to add phone number, Skype, Twitter and some other contact detail that D365FO is supporting)</li>
+<li><code>Purpose</code> = I am &ldquo;hard-coding&rdquo; this <code>&quot;Business&quot;</code> (the supported purpose of Contact can be found on Vendor Card on D356FO client - this purpose should mainly be used when sending emails, i.e. D365FO want to send Purchase Order Confirmation to any email addresses with purpose <code>&quot;Invoice&quot;</code>)</li>
+</ul>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-8-Flow-5.png" title="VendorContact" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-8-Flow-5.png" data-sub-html="<h2>Vendor Contact Details</h2><p>VendorContact</p>">
+        
+    </a><figcaption class="image-caption">Vendor Contact Details</figcaption>
+    </figure></p>
+<h4 id="22-step-2-testing-out">2.2. <strong>Step 2: Testing out</strong></h4>
+<p>Form input.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-9-Flow-6.png" title="FormInput1" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-9-Flow-6.png" data-sub-html="<h2>Company details</h2><p>FormInput1</p>">
+        
+    </a><figcaption class="image-caption">Company details</figcaption>
+    </figure></p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-10-Flow-7.png" title="FormInput2" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-10-Flow-7.png" data-sub-html="<h2>Bank details</h2><p>FormInput2</p>">
+        
+    </a><figcaption class="image-caption">Bank details</figcaption>
+    </figure></p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-11-Flow-8.png" title="FormInput3" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-11-Flow-8.png" data-sub-html="<h2>Contact details</h2><p>FormInput3</p>">
+        
+    </a><figcaption class="image-caption">Contact details</figcaption>
+    </figure></p>
+<p>Results on D365FO client.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-12-Flow-9.png" title="Result1" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-12-Flow-9.png" data-sub-html="<h2>Contact details</h2><p>Result1</p>">
+        
+    </a><figcaption class="image-caption">Contact details</figcaption>
+    </figure></p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-13-Flow-10.png" title="Result2" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-13-Flow-10.png" data-sub-html="<h2>Bank account</h2><p>Result2</p>">
+        
+    </a><figcaption class="image-caption">Bank account</figcaption>
+    </figure></p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-14-Flow-11.png" title="Result3" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/E3-14-Flow-11.png" data-sub-html="<h2>Bank account details</h2><p>Result3</p>">
+        
+    </a><figcaption class="image-caption">Bank account details</figcaption>
+    </figure></p>
+<p>There you go, simple integration between MS Forms, MS Automate and D365FO client. I am seeing that Microsoft is improving such by adding more actions on MS Automate. I believe we will be able to do many more jobs with the built-in utilities of MS Automate.</p>
+<h3 id="3-how-to-determine-the-data-entity-that-should-be-used-in-the-power-automate">3. How to determine the Data Entity that should be used in the Power Automate</h3>
+<p>The names of the target entity on <code>D365FO client</code> and being found in <code>Power Automate</code> should be different. You can always find them out by testing several import/export but, with the help of <code>Visual Studio</code>, you will be able to save a lot of time. This, however, requires a certain extent of experience working with data integration on D365FO.</p>
+<p>Given the case that we would like to import data to All Vendors, we will start our search in <code>Workspaces &gt; Data Management &gt; Data Entities</code>. Apply several filters here and there, and looking for potential ones that we usually do, we will finally end our search at the VendVendorV2Entity</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/VS-1-Entity-1.png" title="Data Entities" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/VS-1-Entity-1.png" data-sub-html="<h2>Data Entities</h2><p>Data Entities</p>">
+        
+    </a><figcaption class="image-caption">Data Entities</figcaption>
+    </figure></p>
+<p>Making our way to <code>Visual Studio</code>, it is not a difficult task for us to find out the Entity.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/VS-2-Entity-2.png" title="VendVendorV2Entity" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/VS-2-Entity-2.png" data-sub-html="<h2>VendVendorV2Entity</h2><p>VendVendorV2Entity</p>">
+        
+    </a><figcaption class="image-caption">VendVendorV2Entity</figcaption>
+    </figure></p>
+<p>Check out the <code>Properties</code>, we will need to get details in the <code>Public</code> group.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/VS-3-Properties.png" title="Properties" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/VS-3-Properties.png" data-sub-html="<h2>Properties</h2><p>Properties</p>">
+        
+    </a><figcaption class="image-caption">Properties</figcaption>
+    </figure></p>
+<p>In <code>Public</code>:</p>
+<ul>
+<li>Is Public: If it is <code>Yes</code>, the entity can be found in Power Automate; otherwise, <code>No</code>.</li>
+<li>Public Collection Name: <code>Entity name</code> on Power Automate.</li>
+</ul>
+<p>The information should be displayed here:</p>
+<p><figure><a class="lightgallery" href="E1-12-Flow-10.png" title="Info on Automate" data-thumbnail="E1-12-Flow-10.png" data-sub-html="<h2>Info on Automate</h2><p>Info on Automate</p>">
+        
+    </a><figcaption class="image-caption">Info on Automate</figcaption>
+    </figure></p>
+<p>Furthermore, by checking the <code>Entity</code>&rsquo;s fields, we can get the information of mapping between the <code>Entity</code> and the physical table <code>VendTable</code>.</p>
+<p><figure><a class="lightgallery" href="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/VS-4-EntityFields.png" title="Entity fields" data-thumbnail="/2020-06-28-dynamics-365-finops-data-integration-using-microsoft-forms-part-2/VS-4-EntityFields.png" data-sub-html="<h2>Entity fields</h2><p>Entity fields</p>">
+        
+    </a><figcaption class="image-caption">Entity fields</figcaption>
+    </figure></p>
+<p>Give yourself some time to play around between <code>MS Forms</code>, <code>MS Automate</code> and <code>Visual Studio</code>. You will finally see the relations between them.</p>
+]]></description></item></channel></rss>

@@ -1,0 +1,40 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>error - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://nuxulu.com/tags/error/</link><description>error - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Mon, 02 Jan 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/error/" rel="self" type="application/rss+xml"/><item><title>AX1004 error in Dynamics AX</title><link>https://nuxulu.com/2017-01-02-ax1004-error/</link><pubDate>Mon, 02 Jan 2017 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2017-01-02-ax1004-error/</guid><description><![CDATA[<p>I got this error at version Dynamics 2012 R3 CU9, SQL Server 2014, Windows Server 2012 R2.</p>
+<p>Those kind of errors will come when you move report from <strong>Dev Server</strong> to <strong>Live Server</strong>, even compilation in <em>DP Class, Query, Contract, table</em> … without any error</p>
+<p><figure><a class="lightgallery" href="/2017-01-02-ax1004-error/AX1004-error.png" title="Image" data-thumbnail="/2017-01-02-ax1004-error/AX1004-error.png" data-sub-html="<h2>Image_rounded</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">Image_rounded</figcaption>
+    </figure></p>
+<p><span style="color: red">AX1004: Reference System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 was not a valid model assembly.</span></p>
+<p><span style="color: red">MSB3644: The reference assemblies for framework “.NETFramework,Version=v4.0” were not found. To resolve this, install the SDK or Targeting Pack for this framework version or retarget your application to a version of the framework for which you have the SDK </span></p>
+<h3 id="cause">Cause</h3>
+<p>There is no reference Assemblies Version 4.0  under <code>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework</code> on Windows Server 2012 R2 (only Version 4.5 it have)</p>
+<h3 id="solution">Solution</h3>
+<p>Copy those Assemblies from your any where (Windows 7,8,10) to the server, restore and compile again.</p>
+<p>Thank you for reading!</p>
+]]></description></item><item><title>Only integrated security is supported for AX queries</title><link>https://nuxulu.com/2016-01-15-only-integrated-security-is-supported-for-ax-queries/</link><pubDate>Sun, 17 Jan 2016 16:22:50 +0700</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2016-01-15-only-integrated-security-is-supported-for-ax-queries/</guid><description><![CDATA[<p>I updated my dynamics Ax development Environment by restoring Database from <strong>Production Database</strong>.</p>
+<p>After the restoring the database, when I run any report form Dynamics Ax, there is an error <code>Only integrated security is supported for AX queries.</code>
+Checking the SSRS is working fine.</p>
+<p>The solution is to redeploy the reports, create a new report folder, open Microsoft Dynamics Ax 2012 Management Shell (make sure you run Powershell as Administrator).
+<code>Publish-AXReport -ReportName *</code></p>
+]]></description></item><item><title>SSRS Report Server Settings Validation Error- AX 2012 R3 CU9</title><link>https://nuxulu.com/2016-01-15-ssrs-report-server-settings-validation-error-ax-2012-r3-cu9/</link><pubDate>Fri, 15 Jan 2016 16:22:50 +0700</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2016-01-15-ssrs-report-server-settings-validation-error-ax-2012-r3-cu9/</guid><description><![CDATA[<p>Recently I updated my dynamics Ax development Environment by restoring Database from Production Dynamics AX DB and I got this problem</p>
+<p><code>Make sure that SQL Server Reporting Services is configured correctly. Verify the Web Service URL and Report Manager URL configuration in the SQL Reporting Services Configuration Manager.</code></p>
+<p>The reporting Services are still working fine and I have already granted the AX Admin as System Administrator under site settings, Home folder settings and DynamicsAX folder with <code>Browser, Content Manager, DynamicsAXBrowser, My Reports, Publisher, Report Builder</code> roles.</p>
+<p>Solution is we need disable UAC (I&rsquo;m using Windows Server 2012 R2) by <code>Regedit</code></p>
+<p>Go to Regedit: <code>HKEY_LOCAL_MACHINESOFTWAREMicrosoftWindowsCurrentVersionpoliciessystem</code> and changing the DWORD <code>EnableLUA</code> from 1 to 0.</p>
+<p>After the reboot, UAC is disabled.</p>
+]]></description></item><item><title>AX 2012 R3 CU8 CU9 and TFS Online 2013 Error</title><link>https://nuxulu.com/2015-11-20-ax-2012-r3-cu8-cu9-and-tfs-online-2013-error/</link><pubDate>Fri, 20 Nov 2015 13:52:40 +0700</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2015-11-20-ax-2012-r3-cu8-cu9-and-tfs-online-2013-error/</guid><description><![CDATA[<p>When you try connecting between TFS and Dynamics AX CU8, CU9 and you got error like this:</p>
+<ul>
+<li>Error:</li>
+</ul>
+<p><code>Team Foundation services are not available from server ****.visualstudio.com/defaultcollection.</code></p>
+<p>Technical information (for administrator):</p>
+<p><code>TF400813: Resource not available for anonymous access. Client authentication required.</code></p>
+<ul>
+<li>Error:</li>
+</ul>
+<p><code>Could not load file or assembly 'Microsoft.TeamFoundation.Client, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' or one of its dependencies. The system cannot find the file specified.</code></p>
+<p>Client computers that are not running Visual Studio 2010 must have the <a href="https://visualstudiogallery.msdn.microsoft.com/a37e19fb-3052-4fc9-bef7-4a4682069a75" target="_blank" rel="noopener noreffer ">Team Foundation Server 2010 SP1 Object Model</a> installed to use TFS source control with Microsoft Dynamics AX.</p>
+<p>TFS support TFS 2010, TFS 2012, TFS 2013 and TFS online, but to connect to these from AX you will need <strong>TFS 2010 object model Sp1</strong> which is client to connect to server.</p>
+<p>After install <strong>Team Foundation Server 2010 SP1 Object Model</strong> above. Client computers that are not running Visual Studio 2010 must have hotfix KB <a href="http://support.microsoft.com/kb/2662296" target="_blank" rel="noopener noreffer ">2662296</a> installed to use TFS source control with Microsoft Dynamics AX.</p>
+<p>Once you have installed the above ,restart your AOS and open AX client again, then try to check-in some Jobs.</p>
+]]></description></item></channel></rss>
