@@ -3523,7 +3523,7 @@ Depending on your development choices, you can use one of the following librarie
 <p>Clone with authentication.</p>
 <h2 id="4-the-gitignore-file">4. The .gitignore file</h2>
 <p>Sometimes it may be a good idea to exclude files from being tracked with Git. This is typically done in a special file named <code>.gitignore</code>. You can find helpful templates for <code>.gitignore</code> files at <a href="https://github.com/github/gitignore" target="_blank" rel="noopener noreffer ">github.com/github/gitignore</a>.</p>
-<p><code>logs/ *.notes pattern*/</code></p>
+<p><code>logs/ *.notes pattern*/</code></p>
 <p>Save a file with desired patterns as .gitignore with either direct string
 matches or wildcard globs.</p>
 <p><code>git config --global core.excludesfile [file]</code></p>
@@ -4120,7 +4120,7 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
     </a><figcaption class="image-caption">Cosnume</figcaption>
     </figure></p>
 <h3 id="31-list-database-backups">3.1. List database backups</h3>
-<p><code>GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/databases/project/{{projectId}}</code></p>
+<p><code> GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/databases/project/{{projectId}} </code></p>
 <p>And we’ll get a JSON with a list of the DB backups on our LCS Asset Library:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -4171,7 +4171,7 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="32-create-database-refresh">3.2. Create database refresh</h3>
-<p><code>POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/refresh/project/{projectId}/source/{sourceEnvironmentId}/target/{targetEnvironmentId}</code></p>
+<p><code> POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/refresh/project/{projectId}/source/{sourceEnvironmentId}/target/{targetEnvironmentId} </code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -4191,7 +4191,7 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="33-create-a-database-export">3.3. Create a database export</h3>
-<p><code>POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/export/project/{projectId}/environment/{environmentId}/backupName/{backupName}</code></p>
+<p><code> POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/export/project/{projectId}/environment/{environmentId}/backupName/{backupName} </code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -4211,7 +4211,7 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="34-get-operation-activity-status">3.4. Get operation activity status</h3>
-<p><code>GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/fetchstatus/project/{projectId}/environment/{environmentId}/operationactivity/{operationactivityId}</code></p>
+<p><code> GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/fetchstatus/project/{projectId}/environment/{environmentId}/operationactivity/{operationactivityId} </code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -15066,49 +15066,49 @@ Returns the sin value</p>
 <p><code>Sinh=Sinh(Fields!EmployeeID.Value)</code>
 Returns the hyperbolic sin value</p>
 <h3 id="inspection">Inspection</h3>
-<p><code>IsArray =IsArray(Fields!EmployeeID.Value)</code></p>
+<p><code>IsArray =IsArray(Fields!EmployeeID.Value)</code></p>
 <p>Returns a boolean value indicating whether the specified object is array or not</p>
-<p><code>IsDate =IsDate(Fields!BirthDate.Value)</code></p>
+<p><code>IsDate =IsDate(Fields!BirthDate.Value)</code></p>
 <p>Returns a boolean value indicating whether the specified object is Date or not</p>
-<p><code>IsNothing =IsNothing(Fields!EmployeeID.Value)</code></p>
+<p><code>IsNothing =IsNothing(Fields!EmployeeID.Value)</code></p>
 <p>Returns a boolean value depends on specified object is Nothing or not</p>
-<p><code>IsNumeric =IsNumeric(Fields!EmployeeID.Value)</code></p>
+<p><code>IsNumeric =IsNumeric(Fields!EmployeeID.Value)</code></p>
 <p>Returns a boolean value depends on specified object is Numeric value or not</p>
 <h3 id="program-flow">Program Flow</h3>
-<p><code>Choose =CHOOSE(3, &quot;Red&quot;, &quot;Yellow&quot;, &quot;Green&quot;, &quot;White&quot;)</code></p>
+<p><code>Choose =CHOOSE(3, &quot;Red&quot;, &quot;Yellow&quot;, &quot;Green&quot;, &quot;White&quot;)</code></p>
 <p>Returns a specific value using index in a list of arguments</p>
-<p><code>IIf =IIF(Fields!EmployeeID.Value&gt;10,&quot;Yes&quot;,&quot;No&quot;)</code></p>
+<p><code>IIf =IIF(Fields!EmployeeID.Value&gt;10,&quot;Yes&quot;,&quot;No&quot;)</code></p>
 <p>Returns any one value depends on condition</p>
-<p><code>Switch =Switch(Fields!EmployeeID.Value&lt;10,&quot;Red&quot;,Fields!EmployeeID.Value&gt;10,&quot;Green&quot;)</code></p>
+<p><code>Switch =Switch(Fields!EmployeeID.Value&lt;10,&quot;Red&quot;,Fields!EmployeeID.Value&gt;10,&quot;Green&quot;)</code></p>
 <p>Evaluates list of expressions</p>
 <h3 id="aggregate">Aggregate</h3>
-<p><code>Avg =Avg(Fields!EmployeeID.Value)</code></p>
+<p><code>Avg =Avg(Fields!EmployeeID.Value)</code></p>
 <p>Returns average value for all specified values</p>
-<p><code>Count =Count(Fields!EmployeeID.Value)</code></p>
+<p><code>Count =Count(Fields!EmployeeID.Value)</code></p>
 <p>Returns count of all specified values</p>
-<p><code>CountDistinct =CountDistinct(Fields!EmployeeID.Value)</code></p>
+<p><code>CountDistinct =CountDistinct(Fields!EmployeeID.Value)</code></p>
 <p>Returns count of all distinct values</p>
-<p><code>CountRows =CountRows()</code></p>
+<p><code>CountRows =CountRows()</code></p>
 <p>Returns count of rows</p>
-<p><code>First =First(Fields!EmployeeID.Value)</code></p>
+<p><code>First =First(Fields!EmployeeID.Value)</code></p>
 <p>Returns first for all specified values</p>
-<p><code>Last =Last(Fields!EmployeeID.Value)</code></p>
+<p><code>Last =Last(Fields!EmployeeID.Value)</code></p>
 <p>Returns last for all specified values</p>
-<p><code>Max =Max(Fields!EmployeeID.Value)</code></p>
+<p><code>Max =Max(Fields!EmployeeID.Value)</code></p>
 <p>Returns max for all specified values</p>
-<p><code>Min =Min(Fields!EmployeeID.Value)</code></p>
+<p><code>Min =Min(Fields!EmployeeID.Value)</code></p>
 <p>Returns min for all specified values</p>
-<p><code>StDev =StDev(Fields!EmployeeID.Value)</code></p>
+<p><code>StDev =StDev(Fields!EmployeeID.Value)</code></p>
 <p>Returns standard deviation value</p>
-<p><code>StDevP =StDevP(Fields!EmployeeID.Value)</code></p>
+<p><code>StDevP =StDevP(Fields!EmployeeID.Value)</code></p>
 <p>Returns Population standard deviation value</p>
-<p><code>Sum =Sum(Fields!EmployeeID.Value)</code></p>
+<p><code>Sum =Sum(Fields!EmployeeID.Value)</code></p>
 <p>Returns sum of all values</p>
-<p><code>Var =Var(Fields!EmployeeID.Value)</code></p>
+<p><code>Var =Var(Fields!EmployeeID.Value)</code></p>
 <p>Returns variance of all values</p>
-<p><code>VarP =Var(Fields!EmployeeID.Value)</code></p>
+<p><code>VarP =Var(Fields!EmployeeID.Value)</code></p>
 <p>Returns population variance of all values</p>
-<p><code>RunningValue =RunningValue(Fields!EmployeeID.Value,sum,nothing)</code></p>
+<p><code>RunningValue =RunningValue(Fields!EmployeeID.Value,sum,nothing)</code></p>
 <p>Returns running aggregate of the specified
 expression</p>
 <h3 id="financial">Financial</h3>
