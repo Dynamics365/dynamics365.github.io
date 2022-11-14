@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Integration - Category - Dynamics 365 Finance &amp; Operations | nuxulu.com</title>
@@ -10,6 +11,20 @@
     <pubDate>Sun, 13 Nov 2022 00:00:00 &#43;0000</pubDate>
     <author>Max Nguyen</author>
     <guid>https://nuxulu.com/2022-11-13-extend-on-hand-entities-fin-ops/</guid>
+=======
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Integration - Category - Dynamics 365 Finance &amp; Operations | nuxulu.com</title>
+        <link>https://nuxulu.com/categories/integration/</link>
+        <description>Integration - Category - Dynamics 365 Finance &amp; Operations | nuxulu.com</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Sun, 13 Nov 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/categories/integration/" rel="self" type="application/rss+xml" /><item>
+    <title>Extend on-hand inventory entities FinOps</title>
+    <link>https://nuxulu.com/2022-11-13-extend-on-hand-entities-fin-ops/</link>
+    <pubDate>Sun, 13 Nov 2022 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2022-11-13-extend-on-hand-entities-fin-ops/</guid>
+>>>>>>> fead12252f6db5851c4fe7874004865fb726a343
     <description><![CDATA[<p>There are some entities that you can use to get the on-hand inventory from Dynamics 365 Finance Operations:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -42,6 +57,7 @@
 • Custom field 3
 • Custom field 4</p>
 <p>In the case, you must modify the <code>getExtensionFields()</code> method in the following way.</p>
+<<<<<<< HEAD
 ]]></description>
 </item>
 <item>
@@ -50,6 +66,16 @@
     <pubDate>Thu, 27 Oct 2022 00:00:00 &#43;0000</pubDate>
     <author>Max Nguyen</author>
     <guid>https://nuxulu.com/2022-10-27-how-to-get-d365-azure-blob-storage-str/</guid>
+=======
+]]></description>
+</item>
+<item>
+    <title>How to get FinOps Azure storage blob connection string</title>
+    <link>https://nuxulu.com/2022-10-27-how-to-get-d365-azure-blob-storage-str/</link>
+    <pubDate>Thu, 27 Oct 2022 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2022-10-27-how-to-get-d365-azure-blob-storage-str/</guid>
+>>>>>>> fead12252f6db5851c4fe7874004865fb726a343
     <description><![CDATA[<p>In Dynamics 365 for Finance and Operations Azure storage is used to</p>
 <ul>
 <li>Store files for <a href="https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/fin-ops/organization-administration/configure-document-management" target="_blank" rel="noopener noreffer ">Attachments</a></li>
@@ -530,7 +556,7 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
     </a><figcaption class="image-caption">Cosnume</figcaption>
     </figure></p>
 <h3 id="31-list-database-backups">3.1. List database backups</h3>
-<p><code> GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/databases/project/{{projectId}} </code></p>
+<p><code>GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/databases/project/{{projectId}}</code></p>
 <p>And we’ll get a JSON with a list of the DB backups on our LCS Asset Library:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -581,7 +607,7 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="32-create-database-refresh">3.2. Create database refresh</h3>
-<p><code> POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/refresh/project/{projectId}/source/{sourceEnvironmentId}/target/{targetEnvironmentId} </code></p>
+<p><code>POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/refresh/project/{projectId}/source/{sourceEnvironmentId}/target/{targetEnvironmentId}</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -601,7 +627,7 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="33-create-a-database-export">3.3. Create a database export</h3>
-<p><code> POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/export/project/{projectId}/environment/{environmentId}/backupName/{backupName} </code></p>
+<p><code>POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/export/project/{projectId}/environment/{environmentId}/backupName/{backupName}</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -621,7 +647,7 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="34-get-operation-activity-status">3.4. Get operation activity status</h3>
-<p><code> GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/fetchstatus/project/{projectId}/environment/{environmentId}/operationactivity/{operationactivityId} </code></p>
+<p><code>GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/fetchstatus/project/{projectId}/environment/{environmentId}/operationactivity/{operationactivityId}</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1540,7 +1566,14 @@ If you are testing with a custom data entity and you get this error</p>
 <p><code>System.ArgumentOutOfRangeException : Length cannot be less than zero.</code></p>
 <p>Please check this <a href="/2019-12-17-dynamics-365-finance-and-operations-odata-consuming-length-cannot-be-less-than-zero/" rel="">post</a>.</p>
 <p>Thank you for reading.</p>
+<<<<<<< HEAD
 ]]></description>
 </item>
 </channel>
 </rss>
+=======
+]]></description>
+</item>
+</channel>
+</rss>
+>>>>>>> fead12252f6db5851c4fe7874004865fb726a343
