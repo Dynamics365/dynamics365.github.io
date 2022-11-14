@@ -4,7 +4,47 @@
         <link>https://nuxulu.com/tags/odata/</link>
         <description>ODATA - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
-            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Tue, 17 Dec 2019 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/odata/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Sun, 13 Nov 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/odata/" rel="self" type="application/rss+xml" /><item>
+    <title>Extend on-hand inventory entities FinOps</title>
+    <link>https://nuxulu.com/2022-11-13-extend-on-hand-entities-fin-ops/</link>
+    <pubDate>Sun, 13 Nov 2022 00:00:00 &#43;0000</pubDate>
+    <author>Max Nguyen</author>
+    <guid>https://nuxulu.com/2022-11-13-extend-on-hand-entities-fin-ops/</guid>
+    <description><![CDATA[<p>There are some entities that you can use to get the on-hand inventory from Dynamics 365 Finance Operations:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="n">InventorySiteOnHandEntity</span>
+</span></span><span class="line"><span class="cl"><span class="n">InventorySiteOnHandV2Entity</span>
+</span></span><span class="line"><span class="cl"><span class="n">InventWarehouseInventoryStatusOnHandEntity</span>
+</span></span><span class="line"><span class="cl"><span class="n">InventWarehouseInventoryStatusOnHandV2Entity</span>
+</span></span><span class="line"><span class="cl"><span class="n">InventWarehouseOnHandEntity</span>
+</span></span><span class="line"><span class="cl"><span class="n">InventWarehouseOnHandV2Entity</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>You can extend the ententies by <a href="/2022-09-23-add-custom-fields-to-composite-entity/" rel="">adding new fields to tables and entities</a>.</p>
+<p>After you add fields to tables that are used by the <code>inventSiteOnHandView</code> view, you must sync the engine so that the extensions are correctly recognized.</p>
+<ol>
+<li>Extend the <code>InventSiteOnHandView</code> view by adding the extension field.</li>
+<li>Extend the <code>InventSiteOnHandAggregatedView</code> view with the extension fields.</li>
+<li>Extend the <code>InventSiteOnHandAggregatedViewBuilder</code> viewBuilder class by modifying the <code>getExtensionFields()</code> method. In this way, you map old view fields to new view fields when viewBuilder synchronization is run.</li>
+</ol>
+<p>For example, you&rsquo;ve added the following four fields to the InventTable table through extension:
+• Custom field 1
+• Custom field 2
+• Custom field 3
+• Custom field 4</p>
+<p>In the case, you must modify the <code>getExtensionFields()</code> method in the following way.</p>
+]]></description>
+</item>
+<item>
     <title>Dynamics 365 finance and operations ODATA consuming - Length cannot be less than zero</title>
     <link>https://nuxulu.com/2019-12-17-dynamics-365-finance-and-operations-odata-consuming-length-cannot-be-less-than-zero/</link>
     <pubDate>Tue, 17 Dec 2019 00:00:00 &#43;0000</pubDate>
