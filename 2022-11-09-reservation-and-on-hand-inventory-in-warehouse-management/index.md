@@ -178,11 +178,23 @@ Three major APIs were introduced for retrieving item availability:
 * **InventAvailabilityProvider**
 
 ```C#
-InventIAvailability  inventIAvailability = InventAvailabilityProvider::findByItemDim(InventTable::find(itemdId), dim).parmInventAvailability();
-Info(strFmt("inventIAvailability, availPhysical %1, ordered %2, reservPhysical %3, reservOrdered %4", inventIAvailability.availPhysical(), inventIAvailability.ordered(), inventIAvailability.reservPhysical(), inventIAvailability.reservOrdered()));
+InventIAvailability  inventIAvailability = InventAvailabilityProvider::findByItemDim(
+                                            InventTable::find(itemdId), dim).parmInventAvailability();
 
-InventAvailabilityByUnit inventAvailabilityByUnitSum = InventAvailabilityProvider::findByItemSumDim(InventTable::find(itemdId), inventSum, dim);
-Info(strFmt("inventAvailabilityByUnitSum, availPhysical %1, ordered %2, reservPhysical %3, reservOrdered %4", inventAvailabilityByUnitSum.availPhysical().qty(false), inventAvailabilityByUnitSum.ordered().qty(false), inventAvailabilityByUnitSum.reservPhysical().qty(false), inventAvailabilityByUnitSum.reservOrdered().qty(false)));
+Info(strFmt("inventIAvailability, availPhysical %1, ordered %2, reservPhysical %3, reservOrdered %4", 
+                inventIAvailability.availPhysical(), 
+                inventIAvailability.ordered(), 
+                inventIAvailability.reservPhysical(), 
+                inventIAvailability.reservOrdered()));
+
+InventAvailabilityByUnit inventAvailabilityByUnitSum = InventAvailabilityProvider::findByItemSumDim(
+                                                        InventTable::find(itemdId), inventSum, dim);
+
+Info(strFmt("inventAvailabilityByUnitSum, availPhysical %1, ordered %2, reservPhysical %3, reservOrdered %4", 
+                inventAvailabilityByUnitSum.availPhysical().qty(false), 
+                inventAvailabilityByUnitSum.ordered().qty(false), 
+                inventAvailabilityByUnitSum.reservPhysical().qty(false), 
+                inventAvailabilityByUnitSum.reservOrdered().qty(false)));
 ```
 
 * **InventAvailabilityFormCache**
