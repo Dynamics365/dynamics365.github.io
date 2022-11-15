@@ -1,0 +1,36 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Azure - Category - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://nuxulu.com/categories/azure/</link><description>Azure - Category - Dynamics 365 Finance &amp; Operations | nuxulu.com</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Thu, 27 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://nuxulu.com/categories/azure/" rel="self" type="application/rss+xml"/><item><title>How to get FinOps Azure storage blob connection string</title><link>https://nuxulu.com/2022-10-27-how-to-get-d365-azure-blob-storage-str/</link><pubDate>Thu, 27 Oct 2022 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2022-10-27-how-to-get-d365-azure-blob-storage-str/</guid><description><![CDATA[<p>In Dynamics 365 for Finance and Operations Azure storage is used to</p>
+<ul>
+<li>Store files for <a href="https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/fin-ops/organization-administration/configure-document-management" target="_blank" rel="noopener noreffer ">Attachments</a></li>
+<li><a href="https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/data-import-export-job" target="_blank" rel="noopener noreffer ">Data import and export jobs</a></li>
+<li>When FinOps prints a report via <a href="https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/analytics/document-reporting-services?context=%2Fdynamics365%2Fcontext%2Fcommerce" target="_blank" rel="noopener noreffer ">Document Reporting Services</a>, SSRS Reporting Services generates an <a href="https://ax.docentric.com/printing-reports-with-custom-fonts-in-dynamics-365-for-finance-and-operations/" target="_blank" rel="noopener noreffer ">EMF image</a> for each page of the generated document. FinOps then temporarily saves the generated EMF files to Azure Blob storage.</li>
+<li><a href="https://learn.microsoft.com/en-us/dynamicsax-2012/appuser-itpro/print-a-report-from-the-archive" target="_blank" rel="noopener noreffer ">Printing archive</a></li>
+</ul>
+<p>And more!</p>
+<p>If you are using tier 1 Cloud-Hosted environment, you can find the azure storage from the Azure resource group in Azure portal.</p>
+<p>For tier 1, UAT tier 2, and PROD Tier 3, you can create a runnable class and execute to get the Azure storage connection string.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">Microsoft.Dynamics.Clx.ServicesWrapper</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">GetAzureBlob</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">(</span><span class="err">&#39;</span><span class="n">AzureStorageConnectionString</span> <span class="p">=</span> <span class="err">&#39;</span> <span class="p">+</span> <span class="n">CloudInfrastructure</span><span class="p">::</span><span class="n">GetCsuStorageConnectionString</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">(</span><span class="err">&#39;</span><span class="n">ClientCertificateThumbprint</span> <span class="p">=</span> <span class="err">&#39;</span> <span class="p">+</span> <span class="n">CloudInfrastructure</span><span class="p">::</span><span class="n">GetCsuClientCertificateThumbprint</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Once you have the connection string, you can connect it to <a href="https://docs.microsoft.com/en-us/azure/vs-azure-tools-storage-manage-with-storage-explorer?tabs=windows" target="_blank" rel="noopener noreffer ">MS Azure Storage Explorer</a>, Power Automate, or consuming in any framwork/language for integration/backup purposes.</p>
+]]></description></item></channel></rss>

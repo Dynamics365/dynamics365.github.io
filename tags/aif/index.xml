@@ -1,0 +1,562 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>aif - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://nuxulu.com/tags/aif/</link><description>aif - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Thu, 12 Jan 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/aif/" rel="self" type="application/rss+xml"/><item><title>Handle AIF error messages in dynamics AX 2012 R3</title><link>https://nuxulu.com/2017-01-12-handle-aif-error-messages-in-dynamics-ax-2012-r3/</link><pubDate>Thu, 12 Jan 2017 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2017-01-12-handle-aif-error-messages-in-dynamics-ax-2012-r3/</guid><description><![CDATA[<p>Normally, when we consume AIF Service, we use this code like below to handle Error messages</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">try</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">client</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">contract</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;items registed on Trans Id: &#34;</span> <span class="p">+</span> <span class="n">contract</span><span class="p">.</span><span class="n">InventTransId</span> <span class="p">+</span> <span class="s">&#34; with &#34;</span> <span class="p">+</span> <span class="n">contract</span><span class="p">.</span><span class="n">Qty</span> <span class="p">+</span> <span class="s">&#34; quantities.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&#34;Ex: {0}&#34;</span><span class="p">,</span> <span class="n">ex</span><span class="p">.</span><span class="n">Message</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>If it cause error, message would return like this</p>
+<p></p>
+<p>If you want to know more details, you have to go In Dynamics ax <strong>AIF Exceptions form</strong> then check</p>
+<p></p>
+<p>It&rsquo;s quite hard for 3rd party developer, especially they don&rsquo;t have right to access AX server.</p>
+<p>Anyway, we can get meaningful error message by doing below steps</p>
+<ul>
+<li>Check that box in AIF inbound ports</li>
+</ul>
+<p></p>
+<ul>
+<li>Use <code>FaultException</code> class to get message</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">try</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">client</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">contract</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;items registed on Trans Id: &#34;</span> <span class="p">+</span> <span class="n">contract</span><span class="p">.</span><span class="n">InventTransId</span> <span class="p">+</span> <span class="s">&#34; with &#34;</span> <span class="p">+</span> <span class="n">contract</span><span class="p">.</span><span class="n">Qty</span> <span class="p">+</span> <span class="s">&#34; quantities.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">catch</span> <span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">ServiceModel</span><span class="p">.</span><span class="n">FaultException</span><span class="p">&lt;</span><span class="n">ItemsRegistration</span><span class="p">.</span><span class="n">RegRef</span><span class="p">.</span><span class="n">AifFault</span><span class="p">&gt;</span> <span class="n">aifFault</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//FaultMessageList[] list = aifFault.Detail.FaultMessageListArray[0];</span>
+</span></span><span class="line"><span class="cl">	<span class="n">InfologMessage</span><span class="p">[]</span> <span class="n">list</span> <span class="p">=</span> <span class="n">aifFault</span><span class="p">.</span><span class="n">Detail</span><span class="p">.</span><span class="n">InfologMessageList</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">foreach</span> <span class="p">(</span><span class="n">InfologMessage</span> <span class="n">message</span> <span class="k">in</span> <span class="n">list</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="n">Message</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>what we got</p>
+<p></p>
+<p>Thank you for reading.</p>
+]]></description></item><item><title>How to create HTTP adapter port</title><link>https://nuxulu.com/2017-01-12-how-to-create-http-adapter-port/</link><pubDate>Thu, 12 Jan 2017 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2017-01-12-how-to-create-http-adapter-port/</guid><description><![CDATA[<p>We normally use <code>NETTCP</code> adapter for .NET system, It going to very easy to consume by.</p>
+<p>As my experience, if we use <code>NETTCP</code> adapter for consuming by Java system, we will need add some extension or 3rd party due to binding and mismatch schema and of course client doesn’t want to do that either me.</p>
+<p>So, my solution is creating HTTP adapter for Java, you can also use .NET system to consume HTTP adapter without any problems</p>
+<h3 id="how-to-do">How to do</h3>
+<ul>
+<li>You need to make sure install web services component on Internet Information Services (IIS) and verify that the default website is working.</li>
+</ul>
+<p></p>
+<ul>
+<li>In AX, under System administrator &gt; Services and AIF &gt; Web sites, open from a create new record follow information</li>
+</ul>
+<p>Name: <code>DynamicsAXAif60</code>
+Virtual directory share path: <code>\\YourServerName\MicrosoftDynamicsAXAif60</code>
+URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
+<ul>
+<li>From now on, you can create AIF inbound port with <strong>HTTP adapter</strong>.</li>
+</ul>
+<p></p>
+<p>After you&rsquo;ve actived the services, that Port will deployed under <code>DynamicsAXAif60</code> folder in IIS.</p>
+<p>Thank you for reading.</p>
+]]></description></item><item><title>Response in AIF custom service class</title><link>https://nuxulu.com/2017-01-12-respone-in-aif-custom-service-class/</link><pubDate>Thu, 12 Jan 2017 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2017-01-12-respone-in-aif-custom-service-class/</guid><description><![CDATA[<p>At the previous <a href="/2017-01-11-aif-custom-response-value-in-dynamics-ax-2012-r3/" rel="">post</a> I already show how to customize Response Value list in AIF Document standard service, today we will talk about response in Custom AIF service class.</p>
+<p>We already know for Custom AIF service we actually need 2 classes, one is <code>contract</code> for data input and one is <code>service</code> to process a logic. With <code>Response</code> class, it&rsquo;s literally same with <code>contract</code> class. They both hold parm value.</p>
+<ul>
+<li>
+<p><strong><code>contract</code> class</strong> gets parametters.</p>
+</li>
+<li>
+<p><strong><code>Response</code> class</strong> sets return values.</p>
+</li>
+</ul>
+<h3 id="1-scenario">1. Scenario</h3>
+<p>I want to get <code>HcmPersonnelNumberId</code> and <code>HcmWorkerName</code> of current userID on C#.NET application.</p>
+<h3 id="2-solution">2. Solution</h3>
+<ul>
+<li>
+<p>Write Custom AIF service to get Worker information, and then public this service.</p>
+</li>
+<li>
+<p>Write C#.NET console to consume that service.</p>
+</li>
+</ul>
+<h3 id="3-walkthrough">3. Walkthrough</h3>
+<h4 id="31-response-class">3.1. Response class</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="na">[DataContractAttribute]</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MaxWorkerResponse</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">str</span>     <span class="n">gId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">str</span>     <span class="n">gName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>two value that I want to return is <code>HcmPersonnelNumberId</code> and <code>HcmWorkerName</code>, I will store it in 2 parms method</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="na">[DataMemberAttribute(&#39;HcmWorkerName&#39;)]</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="n">HcmWorkerName</span> <span class="n">parmName</span><span class="p">(</span><span class="n">HcmWorkerName</span> <span class="n">_name</span> <span class="p">=</span> <span class="n">gName</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">gName</span> <span class="p">=</span> <span class="n">_name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">gName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="na">
+</span></span></span><span class="line"><span class="cl"><span class="na">[DataMemberAttribute(&#39;HcmPersonnelNumberId&#39;)]</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="n">HcmPersonnelNumberId</span> <span class="n">parmId</span><span class="p">(</span><span class="n">HcmPersonnelNumberId</span> <span class="n">_id</span> <span class="p">=</span> <span class="n">gId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">gId</span> <span class="p">=</span> <span class="n">_id</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">gId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="32-service-class">3.2. Service class</h4>
+<p>Create <code>MaxPRService</code> Class, This class consume through service that need to be extend <code>SysOperationServiceBase</code> class</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MaxPRService</span> <span class="n">extends</span> <span class="n">SysOperationServiceBase</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Main logic</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="na">[SysEntryPointAttribute(true),
+</span></span></span><span class="line"><span class="cl"><span class="na">AifCollectionTypeAttribute(&#39;return&#39;, Types::String)]</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="n">MaxWorkerResponse</span> <span class="n">getEmployee</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">HcmWorkerRecId</span>          <span class="n">workerRecId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">HcmPersonnelNumberId</span>    <span class="n">personnelNumber</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">HcmWorkerName</span>           <span class="n">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">MaxWorkerResponse</span>       <span class="n">response</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">workerRecId</span> <span class="p">=</span> <span class="n">DirPersonUser</span><span class="p">::</span><span class="n">currentWorker</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">personnelNumber</span> <span class="p">=</span> <span class="n">HcmWorker</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="n">workerRecId</span><span class="p">).</span><span class="n">PersonnelNumber</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">name</span> <span class="p">=</span> <span class="n">HcmWorker</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="n">workerRecId</span><span class="p">).</span><span class="n">name</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">response</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MaxWorkerResponse</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">response</span><span class="p">.</span><span class="n">parmId</span><span class="p">(</span><span class="n">personnelNumber</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">response</span><span class="p">.</span><span class="n">parmName</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">response</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="33-create-service">3.3. Create service</h4>
+<p>In AOT create new service and add recent created class to that Service, in operations node add <code>getEmployee</code> method, you will get something likes</p>
+<p></p>
+<p>Then right click service &gt; Add-ins &gt; Register Service.</p>
+<p>go to AIF inbound form to create new service and add <code>getEmployee</code> operation to that service then Active.</p>
+<h4 id="34-consume-service">3.4. Consume service</h4>
+<p>Add recent WSDL URI <code>http://WINSERVER:8104/DynamicsAx/Services/MaxPurchReqGeneral</code> into Service reference in C# Console project</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">CallContext</span> <span class="n">context</span> <span class="p">=</span> <span class="k">new</span> <span class="n">CallContext</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Company</span> <span class="p">=</span> <span class="s">&#34;USMF&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Language</span> <span class="p">=</span> <span class="s">&#34;EN-US&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="p">};</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="n">MaxPRServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MaxPRServiceClient</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">MaxWorkerResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">getEmployee</span><span class="p">(</span><span class="n">context</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">HcmWorkerName</span> <span class="p">+</span> <span class="s">&#34;, &#34;</span> <span class="p">+</span> <span class="n">response</span><span class="p">.</span><span class="n">HcmPersonnelNumberId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Thank you for reading.</p>
+]]></description></item><item><title>AIF Custom response value in Dynamics AX 2012 R3</title><link>https://nuxulu.com/2017-01-11-aif-custom-response-value-in-dynamics-ax-2012-r3/</link><pubDate>Wed, 11 Jan 2017 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2017-01-11-aif-custom-response-value-in-dynamics-ax-2012-r3/</guid><description><![CDATA[<p>For this demonstration, I use AIF service to create Sales order with <code>SalesSalesOrderService</code> and I gonna consume AIF using C#.NET.</p>
+<p>Normally, in consume service application we handle return value by using <code>EntityKeyList</code>, <code>EntityKey</code>, <code>KeyData[0].Value</code>. And for Sales Order It will return Created SalesID.</p>
+<p>Let&rsquo;s take a look on <code>AxdSalesOrder</code> class. More about <code>Axd</code> class please prefer <a href="https://technet.microsoft.com/en-us/library/aa862063.aspx" target="_blank" rel="noopener noreffer ">this</a>.</p>
+<p>Then go to <code>createList</code> method, this method will handle response value</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="n">AifEntityKeyList</span> <span class="n">createList</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifDocumentXml</span>                  <span class="n">_xml</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifEndpointActionPolicyInfo</span>     <span class="n">_actionPolicyInfo</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifConstraintListCollection</span>     <span class="n">_constraintListCollection</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifEntityKeyList</span> <span class="n">aifEntityKeyList</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">aifEntityKeyList</span> <span class="p">=</span> <span class="n">super</span><span class="p">(</span><span class="n">_xml</span><span class="p">,</span> <span class="n">_actionPolicyInfo</span><span class="p">,</span> <span class="n">_constraintListCollection</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Sales orders are committed - master planning explosion can be executed and confirmed dates be set</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="n">postSalesOrderCreation</span><span class="p">(</span><span class="n">aifEntityKeyList</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">aifEntityKeyList</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>So, how about customer wants another meaning value beside <code>SalesID</code> likes <code>InventTransId</code> information in <code>SalesLine</code> table or another tables base on your requirement. To do that, we need to customize this method.</p>
+<h3 id="how-to-do">How to do</h3>
+<p>I will use <code>Map</code> and <code>MapEnumerator</code> classes (Please refer MSDN to understand these class), this is steps:</p>
+<ol>
+<li>We get the <code>SalesId</code> from the original <code>entityKeyList</code> and add into <code>Map</code>.</li>
+<li>add <code>Map</code> to <code>MapEnumerator</code>.</li>
+<li>Use <code>SalesId</code> to find the sales line. (<code>mapEnumerator.currentValue()</code> can get current <code>SalesID</code>).</li>
+<li>Create a new <code>entityKey</code> and insert the sales line information to this <code>entityKey</code>.</li>
+<li>add back <code>entityKey</code> to <code>entityKeyList</code></li>
+</ol>
+<p>From here in <code>entityKeyList</code> will store information of <code>SalesID</code> and List fields of <code>SalesLine</code> table.</p>
+<p>Here is the code for <code>createList</code> method, beside <code>SalesId</code> I will try to get <code>InventTransId</code> in <code>SalesLine</code> Table</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="n">AifEntityKeyList</span> <span class="n">createList</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifDocumentXml</span>                  <span class="n">_xml</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifEndpointActionPolicyInfo</span>     <span class="n">_actionPolicyInfo</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifConstraintListCollection</span>     <span class="n">_constraintListCollection</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifEntityKeyList</span> <span class="n">aifEntityKeyList</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">SalesId</span>                         <span class="n">salesId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SalesLine</span>                       <span class="n">salesLine</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifEntityKey</span>                    <span class="n">entityKey</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AifEntityKey</span>                    <span class="n">salesEntityKey</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Map</span>                             <span class="n">keyDataMap</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Map</span>                             <span class="n">salesOrderMap</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">MapEnumerator</span>                   <span class="n">mapEnumerator</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">aifEntityKeyList</span> <span class="p">=</span> <span class="n">super</span><span class="p">(</span><span class="n">_xml</span><span class="p">,</span> <span class="n">_actionPolicyInfo</span><span class="p">,</span> <span class="n">_constraintListCollection</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Sales orders are committed - master planning explosion can be executed and confirmed dates be set</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="n">postSalesOrderCreation</span><span class="p">(</span><span class="n">aifEntityKeyList</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">entityKey</span>       <span class="p">=</span> <span class="n">aifEntityKeyList</span><span class="p">.</span><span class="n">getEntityKey</span><span class="p">(</span><span class="m">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">keyDataMap</span>      <span class="p">=</span> <span class="n">entityKey</span><span class="p">.</span><span class="n">parmKeyDataMap</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mapEnumerator</span>   <span class="p">=</span> <span class="n">keyDataMap</span><span class="p">.</span><span class="n">getEnumerator</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">mapEnumerator</span><span class="p">.</span><span class="n">moveNext</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">salesId</span> <span class="p">=</span> <span class="n">mapEnumerator</span><span class="p">.</span><span class="n">currentValue</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">salesId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">while</span> <span class="k">select</span> <span class="n">InventTransId</span><span class="p">,</span> <span class="n">RecId</span> <span class="k">from</span> <span class="n">salesLine</span>
+</span></span><span class="line"><span class="cl">                <span class="k">where</span> <span class="n">salesLine</span><span class="p">.</span><span class="n">SalesId</span> <span class="p">==</span> <span class="n">salesId</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">salesEntityKey</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AifEntityKey</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                <span class="n">salesOrderMap</span>  <span class="p">=</span> <span class="k">new</span> <span class="n">Map</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Types</span><span class="p">::</span><span class="n">Container</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">salesEntityKey</span><span class="p">.</span><span class="n">parmTableId</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">SalesLine</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">                <span class="n">salesEntityKey</span><span class="p">.</span><span class="n">parmRecId</span><span class="p">(</span><span class="n">salesLine</span><span class="p">.</span><span class="n">RecId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">salesOrderMap</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">fieldNum</span><span class="p">(</span><span class="n">SalesLine</span><span class="p">,</span> <span class="n">InventTransId</span><span class="p">),</span> <span class="p">[</span><span class="n">salesLine</span><span class="p">.</span><span class="n">InventTransId</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">salesEntityKey</span><span class="p">.</span><span class="n">parmKeyDataMap</span><span class="p">(</span><span class="n">salesOrderMap</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">aifEntityKeyList</span><span class="p">.</span><span class="n">addEntityKey</span><span class="p">(</span><span class="n">salesEntityKey</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">aifEntityKeyList</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Code in C#.NET to get list key</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">SalesOrderServiceClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SalesOrderServiceClient</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="k">try</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">EntityKey</span><span class="p">[]</span> <span class="n">salesOrderCreatedEntity</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">salesOrder</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//EntityKey salesOrderCreated = (EntityKey)salesOrderCreatedEntity.GetValue(0);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">IEnumerator</span> <span class="n">enumerator</span> <span class="p">=</span> <span class="n">salesOrderCreatedEntity</span><span class="p">.</span><span class="n">GetEnumerator</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">while</span> <span class="p">(</span><span class="n">enumerator</span><span class="p">.</span><span class="n">MoveNext</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">EntityKey</span> <span class="n">salesOrderCreated</span> <span class="p">=</span> <span class="p">(</span><span class="n">EntityKey</span><span class="p">)</span><span class="n">enumerator</span><span class="p">.</span><span class="n">Current</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">salesOrderCreated</span><span class="p">.</span><span class="n">KeyData</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">Field</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">salesOrderCreated</span><span class="p">.</span><span class="n">KeyData</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">Value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//Console.WriteLine(&#34;The sales order created has a Sales ID of &#34; + salesOrderCreated.KeyData[0].Value);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>Output:</code></p>
+<p></p>
+<p>Thank you for reading.</p>
+]]></description></item><item><title>Types of services in Microsoft Dynamics AX 2012</title><link>https://nuxulu.com/2016-11-10-types-services-microsoft-dynamics-ax-2012/</link><pubDate>Thu, 10 Nov 2016 18:47:00 +0900</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2016-11-10-types-services-microsoft-dynamics-ax-2012/</guid><description><![CDATA[<h2 id="1-document-services">1. Document services</h2>
+<p>Document services use documents to represent business objects such as purchase and sales orders, customers, vendors, and so on.</p>
+<p>A document service is composed of the following components:</p>
+<ul>
+<li><strong>Document query</strong> : This is a query that is created in the <strong>Application Object Tree (AOT)</strong> and contains all the tables that are related to the business object that you want to expose. Based on this query, the Document Service Generation Wizard can be used to generate the other artifacts that make up the document service.</li>
+<li><strong>Table AxBC classes</strong> : An <code>AxBC</code> class is a wrapper for a table and contains business logic that is needed for <strong>Create, Read, Update, Delete (CRUD)</strong> operations.</li>
+<li><strong>Document class</strong> : The purpose of the document class is to contain business logic that is associated with the creation and modification of the business entity itself. For example, the <code>AxdCustomer</code> class could contain logic to handle party information of a customer.</li>
+<li><strong>Document service class</strong> : This is the actual service implementation class and extends the <code>AifDocumentService</code> class. This class implements the service operations that are published through the service contract.</li>
+</ul>
+<p>When creating document services, developers need to make sure <strong>that the business object is mapped correctly to the document query</strong>. The document services framework will handle all other things such as the serialization and deserialization of XML, date effectiveness, and so on.</p>
+<p>Document services can be deployed using the integration ports and all available adapters can be used.</p>
+<h2 id="2-custom-services">2. Custom services</h2>
+<p>Custom services were already available in Microsoft Dynamics AX 2009, but support for <strong>Extended Data Types(EDTs)</strong> was limited, which resulted in developers having to provide custom serialization and deserialization logic.</p>
+<p>Microsoft Dynamics AX 2012 introduces the concept of attributes.  <strong>Attributes</strong>  provide a way to specify metadata about classes and methods. Two of these attributes are used when creating data contracts: the <code>DataContractAttribute</code> and <code>DataMemberAttribute</code> attributes.</p>
+<p>The &lsquo;DataContractAttribute&rsquo; attribute is used to define that a class is a data contract. The&rsquo;DataMemberAttribute&rsquo; attribute is added to methods of data contracts that represent data members that have to be exposed. This way of defining data contracts is very similar to other programming languages such as C##.</p>
+<p>Support for more complex data types such as collections and tables has been added so that these types can be serialized and deserialized without developers having to provide the logic themselves.</p>
+<p>In a typical custom service you will find the following components:</p>
+<ul>
+<li><strong>Service contract</strong> : A service contract is an X++ class that contains methods with the <em>SysEntryPointAttribute</em> attribute. This identifies methods that will result in a service operation contract when the service is exposed.</li>
+<li><strong>Data contracts</strong> : A data contract is an X++ class that is attributed with the  <strong>DataContractAttribute</strong>  attribute. It contains parameter methods that will be attributed as data members for each member variable that needs to be part of the data contract.</li>
+</ul>
+<p>Custom services can be deployed using the integration ports and any available adapter can be used.</p>
+<h2 id="3-system-services">3. System services</h2>
+<p>These services are new since the release of Microsoft Dynamics AX 2012. The main difference between these services and the previous two types is that they are not customizable and are not mapped to a query or X++ code. They are not customizable because they are written by Microsoft in managed code. One exception is the user session service, which is written in X++ code but is generally considered as a system service.</p>
+<p>There are three system services available for use in Microsoft Dynamics AX 2012: the query service, the metadata service, and the user session service.</p>
+<h2 id="4-query-service">4. Query service</h2>
+<p>The query service provides the means to run queries of the following three types:</p>
+<ul>
+<li>Static queries defined in the AOT.</li>
+<li>User-defined queries by using the <em>QueryMetaData</em> class in the service.</li>
+<li>Dynamic queries that are written in X++ classes. These classes need to extend the &lsquo;AIFQueryBuilder&rsquo; class.</li>
+</ul>
+<p>When queries are called by a service, the AOS authorization ensures that the caller has the correct permissions to retrieve the information. This means that unpermitted fields will be omitted from the query result. Furthermore, when joined data sources are not allowed to be used, the query call will result in an error that can be caught by the calling application.</p>
+<p>The resulting rows will be returned as an ADO.NET DataSet object. This can be very useful when you make use of controls in your application that can be bound to a DataSet object.</p>
+<p>The query service can be found at the following address:</p>
+<p><code>net.tcp://hostname:port/DynamicsAX/Services/QueryService</code></p>
+<h2 id="5-metadata-service">5. Metadata service</h2>
+<p>This system service can be used to retrieve metadata information about the AOT. Consumers of this service can get information such as which tables, classes, forms, and menu items are available in the system. An example usage of this service could be retrieving information about the AOT and using it in a dashboard application running on the Microsoft .NET Framework.</p>
+<p>The metadata service can be found at the following address:</p>
+<p><code>net.tcp://hostname:port/DynamicsAX/Services/MetaDataService</code></p>
+<h2 id="6-user-session-service">6. User session service</h2>
+<p>The third system service is the user session service. With this service you can retrieve information about the caller&rsquo;s user session. This information includes the user&rsquo;s default company, language, preferred calendar, time zone, and currency.</p>
+<p>The user session service can be found at the following address:</p>
+<p><code>net.tcp://hostname:port/DynamicsAX/Services/UserSessionService</code></p>
+<h2 id="7-the-right-service-for-the-right-job">7. The right service for the right job</h2>
+<p>Now that it is clear what types of services Microsoft Dynamics AX 2012 has to offer, the question arises as to when each type of service should be used. There is no simple answer for this due to the fact that every type has its strengths and weaknesses. Let us take a look at two factors that may help you make the right decision.</p>
+<h2 id="8-complexity">8. Complexity</h2>
+<p>Both document services and custom services can handle any business entity complexity. The document services framework parses the incoming XML and validates it against an <strong>XML Schema Definition(XSD)</strong> document. After validation, the framework calls the appropriate service action. Custom services on the other hand use the .NET XML Serializer and no validation of data is done. This means that any validations of the data in the data contract need to be written in code. Another advantage of document services over custom services is that the AxBC classes already contain a lot of the logic that is needed for CRUD operations.</p>
+<h2 id="9-flexibility">9. Flexibility</h2>
+<p>Document services have service contracts that are tightly coupled with the AOT Query object. This means that when the query changes, the schema also changes. Data policies allow you to control which fields are exposed. When using custom services, this cannot be done by setup, but has to be done by attributing at design time.</p>
+<p>Custom services have the flexibility towards the service contract that the document services are lacking. Here the developer is in full control about what is in the contract and what is not. The operations, input parameters, and return types are all the responsibility of the developer.</p>
+<p>Another benefit in using custom services is the ability to use shared data contracts as parameters for your operations. Think of a company-wide software solution that involves the use of Microsoft Dynamics AX 2012 together with SharePoint and .NET applications that are all linked through BizTalk. You could opt to share data contracts to make sure that entities are the same for all of the components in the architecture.</p>
+<p>In that scenario, you&rsquo;re able to create a data contract in managed code and reference it in Microsoft Dynamics AX 2012. Then you can use that .NET data contract in your service operations as a parameter.</p>
+<p>There will probably be more factors that you will take into consideration to choose between the service types. But we can come to the following conclusion about when to use what type of service:</p>
+<ul>
+<li><strong>Custom services</strong> : Custom services should be used when exposing entities that have a low complexity or data contracts that need to be shared between other applications.</li>
+</ul>
+<p>They are also ideal when custom logic needs to be exposed that may have nothing to do with data structures within Microsoft Dynamics AX.</p>
+<ul>
+<li><strong>Document services</strong> : Document services should be used when exposing entities that have a high complexity and when validation of the data and structure would require a lot of work for developers to implement on their own.</li>
+<li><strong>Query service</strong> : The query service should be used when only read operations are needed and there is no need for updates, inserts, or delete actions.</li>
+</ul>
+<p>It can be used when writing .NET Framework applications that leverage the data from Microsoft Dynamics AX returned as an ADO.NET DataSet.</p>
+<ul>
+<li><strong>Metadata service</strong> : Use the metadata service when metadata information about objects in the AOT is required.</li>
+<li><strong>User session service</strong> : The user session service should be used when user session-related information is required.</li>
+</ul>
+]]></description></item></channel></rss>
