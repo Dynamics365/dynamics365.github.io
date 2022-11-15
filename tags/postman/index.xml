@@ -1,16 +1,4 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>Postman - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</title>
-        <link>https://nuxulu.com/tags/postman/</link>
-        <description>Postman - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor>
-            <webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Tue, 25 May 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/postman/" rel="self" type="application/rss+xml" /><item>
-    <title>All about Odata actions in Dynamics 365 Finance And Operations</title>
-    <link>https://nuxulu.com/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/</link>
-    <pubDate>Tue, 25 May 2021 00:00:00 &#43;0000</pubDate>
-    <author>Max Nguyen</author>
-    <guid>https://nuxulu.com/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/</guid>
-    <description><![CDATA[<p>ODATA actions in Data Entities provide a way to inject behaviors into the data model, or expose custom business logic from Dynamics 365 Finance &amp; Operations.
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Postman - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://nuxulu.com/tags/postman/</link><description>Postman - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Tue, 25 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/postman/" rel="self" type="application/rss+xml"/><item><title>All about Odata actions in Dynamics 365 Finance And Operations</title><link>https://nuxulu.com/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/</link><pubDate>Tue, 25 May 2021 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/</guid><description><![CDATA[<p>ODATA actions in Data Entities provide a way to inject behaviors into the data model, or expose custom business logic from Dynamics 365 Finance &amp; Operations.
 You can add actions by adding a method to the data entity and then decorating the method with specific attributes <em>[SysODataActionAttribute]</em></p>
 <p>I use this Odata actions mostly in automation job like after refreshing data from PROD to UAT, we need to enable users, assign company to users, enable batches &hellip;
 Or simply consume it in Power Automate.</p>
@@ -333,15 +321,7 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Thank you for reading.</p>
-]]></description>
-</item>
-<item>
-    <title>Testing Dynamics 365 Finance Database Movement API with Postman</title>
-    <link>https://nuxulu.com/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/</link>
-    <pubDate>Mon, 17 Aug 2020 00:00:00 &#43;0000</pubDate>
-    <author>Max Nguyen</author>
-    <guid>https://nuxulu.com/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/</guid>
-    <description><![CDATA[<p>Microsoft provides a versioned set of capabilities that you can currently use to copy databases between environments, and to list and download database backups.</p>
+]]></description></item><item><title>Testing Dynamics 365 Finance Database Movement API with Postman</title><link>https://nuxulu.com/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/</link><pubDate>Mon, 17 Aug 2020 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2020-08-17-testing-dynamics-365-finance-database-movement-api-with-postman/</guid><description><![CDATA[<p>Microsoft provides a versioned set of capabilities that you can currently use to copy databases between environments, and to list and download database backups.</p>
 <p>what you can do with Database movement API so far:</p>
 <ul>
 <li>List database backups</li>
@@ -412,7 +392,7 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
     </a><figcaption class="image-caption">Cosnume</figcaption>
     </figure></p>
 <h3 id="31-list-database-backups">3.1. List database backups</h3>
-<p><code> GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/databases/project/{{projectId}} </code></p>
+<p><code>GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/databases/project/{{projectId}}</code></p>
 <p>And we’ll get a JSON with a list of the DB backups on our LCS Asset Library:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -463,7 +443,7 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="32-create-database-refresh">3.2. Create database refresh</h3>
-<p><code> POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/refresh/project/{projectId}/source/{sourceEnvironmentId}/target/{targetEnvironmentId} </code></p>
+<p><code>POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/refresh/project/{projectId}/source/{sourceEnvironmentId}/target/{targetEnvironmentId}</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -483,7 +463,7 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="33-create-a-database-export">3.3. Create a database export</h3>
-<p><code> POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/export/project/{projectId}/environment/{environmentId}/backupName/{backupName} </code></p>
+<p><code>POST https://lcsapi.lcs.dynamics.com/databasemovement/v1/export/project/{projectId}/environment/{environmentId}/backupName/{backupName}</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -503,7 +483,7 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="34-get-operation-activity-status">3.4. Get operation activity status</h3>
-<p><code> GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/fetchstatus/project/{projectId}/environment/{environmentId}/operationactivity/{operationactivityId} </code></p>
+<p><code>GET https://lcsapi.lcs.dynamics.com/databasemovement/v1/fetchstatus/project/{projectId}/environment/{environmentId}/operationactivity/{operationactivityId}</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -532,15 +512,7 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div>]]></description>
-</item>
-<item>
-    <title>Consuming Dynamics 365 Finance and Operations OData services from .NET</title>
-    <link>https://nuxulu.com/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/</link>
-    <pubDate>Mon, 16 Dec 2019 00:00:00 &#43;0000</pubDate>
-    <author>Max Nguyen</author>
-    <guid>https://nuxulu.com/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/</guid>
-    <description><![CDATA[<h2 id="1-authentication">1. Authentication</h2>
+</div>]]></description></item><item><title>Consuming Dynamics 365 Finance and Operations OData services from .NET</title><link>https://nuxulu.com/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/</link><pubDate>Mon, 16 Dec 2019 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/</guid><description><![CDATA[<h2 id="1-authentication">1. Authentication</h2>
 <hr>
 <p>We need an authentication to connect Dynamics 365 finance and operations from .Net application by using service principal.</p>
 <p>How to create an app registration in Azure <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/app-registrations-training-guide-for-app-registrations-legacy-users" target="_blank" rel="noopener noreffer ">https://docs.microsoft.com/en-us/azure/active-directory/develop/app-registrations-training-guide-for-app-registrations-legacy-users</a></p>
@@ -674,15 +646,7 @@ If you are testing with a custom data entity and you get this error</p>
 <p><code>System.ArgumentOutOfRangeException : Length cannot be less than zero.</code></p>
 <p>Please check this <a href="/2019-12-17-dynamics-365-finance-and-operations-odata-consuming-length-cannot-be-less-than-zero/" rel="">post</a>.</p>
 <p>Thank you for reading.</p>
-]]></description>
-</item>
-<item>
-    <title>Business events and HTTPs endpoint</title>
-    <link>https://nuxulu.com/2019-11-05-business-events-and-https-endpoint/</link>
-    <pubDate>Tue, 05 Nov 2019 00:00:00 &#43;0000</pubDate>
-    <author>Max Nguyen</author>
-    <guid>https://nuxulu.com/2019-11-05-business-events-and-https-endpoint/</guid>
-    <description><![CDATA[<p>In Dynamics 365 finance and operations, Business events provide a mechanism that lets external systems receive notifications from FinOps applications. In this way, the systems can perform business actions in response to business events.</p>
+]]></description></item><item><title>Business events and HTTPs endpoint</title><link>https://nuxulu.com/2019-11-05-business-events-and-https-endpoint/</link><pubDate>Tue, 05 Nov 2019 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2019-11-05-business-events-and-https-endpoint/</guid><description><![CDATA[<p>In Dynamics 365 finance and operations, Business events provide a mechanism that lets external systems receive notifications from FinOps applications. In this way, the systems can perform business actions in response to business events.</p>
 <p>There are 3 types of business events: <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/business-events/app-business-events" target="_blank" rel="noopener noreffer ">Application business events</a>, <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/business-events/business-events-workflow" target="_blank" rel="noopener noreffer ">Workflow business events</a>, and <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/business-events/alerts-business-events" target="_blank" rel="noopener noreffer ">Alerts as business events</a>. You can also implement <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/business-events/business-events-dev-doc" target="_blank" rel="noopener noreffer ">a new business event</a>.</p>
 <p>Business events can be consumed using Microsoft Flow and Azure messaging services, and we use endpoint to manage the destinations for sending business events to, Microsoft supports many endpoints: Azure Service Bus Queue, Azure Service Bus Topic, Azure Event Grid, Azure Event Hub, HTTPS, Microsoft Flow.
 In this article I will show how to send business event to HTTPs endpoint that leveraging on Azure functions.</p>
@@ -809,15 +773,7 @@ That&rsquo;s it, now I will create a free text invoice and post it, this is what
 <p>In <strong>BusinessEventsParameters</strong>, the value will be <code>Enabled = 1 , BatchEnabled = 0</code>.
 If you have just upgraded from PU26 to higher version, the Business events are not getting triggered because the value might not be changed in <strong>BusinessEventsParameters</strong> and there is no batch. You should check this table according to the situation.</p>
 <p>Thank you for reading.</p>
-]]></description>
-</item>
-<item>
-    <title>Insert multiple records in single request using Odata from Postman</title>
-    <link>https://nuxulu.com/2019-10-15-insert-multiple-records-in-single-request-using-odata-from-postman/</link>
-    <pubDate>Tue, 15 Oct 2019 00:00:00 &#43;0000</pubDate>
-    <author>Max Nguyen</author>
-    <guid>https://nuxulu.com/2019-10-15-insert-multiple-records-in-single-request-using-odata-from-postman/</guid>
-    <description><![CDATA[<p>Got inspired by <a href="https://community.dynamics.com/365/financeandoperations/f/dynamics-365-for-finance-and-operations-forum/286810/inserting-multiple-records-via-odata-from-postman" target="_blank" rel="noopener noreffer ">this topic</a>, I&rsquo;d like to write this article to show you how to post multiple records in single request by using Postman.</p>
+]]></description></item><item><title>Insert multiple records in single request using Odata from Postman</title><link>https://nuxulu.com/2019-10-15-insert-multiple-records-in-single-request-using-odata-from-postman/</link><pubDate>Tue, 15 Oct 2019 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2019-10-15-insert-multiple-records-in-single-request-using-odata-from-postman/</guid><description><![CDATA[<p>Got inspired by <a href="https://community.dynamics.com/365/financeandoperations/f/dynamics-365-for-finance-and-operations-forum/286810/inserting-multiple-records-via-odata-from-postman" target="_blank" rel="noopener noreffer ">this topic</a>, I&rsquo;d like to write this article to show you how to post multiple records in single request by using Postman.</p>
 <p>Generally, batch requests are supported in the <a href="https://docs.oasis-open.org/odata/odata/v4.0/errata02/os/complete/part1-protocol/odata-v4.0-errata02-os-part1-protocol-complete.html#_Toc406398359" target="_blank" rel="noopener noreffer ">OData service</a>, The easiest way is you can use the C# code approach from <a href="https://github.com/Microsoft/Dynamics-AX-Integration/tree/master/ServiceSamples/ODataConsoleApplication" target="_blank" rel="noopener noreffer ">github</a> and the excel add-ins in Dynamics 365 for finance and operations use Odata batch to communicate in a single request but how can we leverage it in Postman.</p>
 <p>Using Excel add-in then add 2 customer groups records and submit to Dynamics 365 for finance and operations, while you are doing that using <a href="https://www.telerik.com/fiddler" target="_blank" rel="noopener noreffer ">fiddler</a> on the same box to see how the odata batch framework works.
 This can be done from POSTMAN too and you need to use header and body as you see in Fiddler.</p>
@@ -1040,7 +996,4 @@ This can be done from POSTMAN too and you need to use header and body as you see
 <p>Note: refer this article for an C# example:
 <a href="https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/odata#run-multiple-requests-in-a-single-transaction" target="_blank" rel="noopener noreffer ">https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/odata#run-multiple-requests-in-a-single-transaction</a></p>
 <p>Thank you for reading.</p>
-]]></description>
-</item>
-</channel>
-</rss>
+]]></description></item></channel></rss>

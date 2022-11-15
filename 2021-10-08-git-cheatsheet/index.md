@@ -204,6 +204,7 @@ git submodule add <remote_url> <destination_folder>
 
 # Pull a Git Submodule
 git submodule update --init --recursive
+git submodule update --remote
 
 # Remove the submodule entry from .git/config
 git submodule deinit -f path/to/submodule
