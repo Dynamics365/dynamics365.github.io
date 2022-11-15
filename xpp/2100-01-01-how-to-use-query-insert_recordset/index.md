@@ -1,9 +1,9 @@
 # How to use query::insert_recordset?
 
 
-How we can use the Insert_RecordSet function with Query, which is one of the batch SQL operations we frequently use in X++.
+How we can use the `Insert_RecordSet` function with Query, which is one of the batch SQL operations we frequently use in X++.
 
-I want to insert two fields of all records in DmrBillsIncomingHeader table into DmrBillsIncominTest table. I have to create a Query and query the DmrBillsIncomingHeader table.
+I want to insert two fields of all records in `DmrBillsIncomingHeader` table into `DmrBillsIncominTest` table. I have to create a Query and query the `DmrBillsIncomingHeader` table.
 
 Also, which fields I want to insert, I have to mark them using Map. I should have written it with the classical method as follows.
 

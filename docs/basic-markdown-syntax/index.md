@@ -1,6 +1,35 @@
 # Basic Markdown Syntax
 
 
+- [1 Headings](#1-headings)
+- [2 Comments](#2-comments)
+- [3 Horizontal Rules](#3-horizontal-rules)
+- [___](#___)
+- [4 Body Copy](#4-body-copy)
+- [5 Inline HTML](#5-inline-html)
+- [6 Emphasis](#6-emphasis)
+  - [Bold](#bold)
+  - [Italics](#italics)
+  - [Strikethrough](#strikethrough)
+  - [Combination](#combination)
+- [7 Blockquotes](#7-blockquotes)
+- [8 Lists](#8-lists)
+  - [Unordered](#unordered)
+  - [Ordered](#ordered)
+  - [Task Lists](#task-lists)
+- [9 Code](#9-code)
+  - [Inline Code](#inline-code)
+  - [Indented Code](#indented-code)
+  - [Block Fenced Code](#block-fenced-code)
+  - [Syntax Highlighting](#syntax-highlighting)
+- [10 Tables](#10-tables)
+- [11 Links {#links}](#11-links-links)
+  - [Basic Link](#basic-link)
+  - [Add a Title](#add-a-title)
+  - [Named Anchors](#named-anchors)
+- [12 Footnotes](#12-footnotes)
+- [13 Images](#13-images)
+
 This article offers a sample of basic Markdown syntax that can be used in Hugo content files.
 
 <!--more-->

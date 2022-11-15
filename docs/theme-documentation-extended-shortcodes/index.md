@@ -3,8 +3,6 @@
 
 **LoveIt** theme provides multiple shortcodes on top of built-in ones in Hugo.
 
-<!--more-->
-
 ## 1 style
 
 {{< version 0.2.0 changed >}}
