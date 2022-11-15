@@ -1,29 +1,485 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><title>Expressions or Functions used in SSRS - Dynamics 365 Finance & Operations | nuxulu.com</title><meta name=Description content="Dynamics 365 Finance & Operations"><meta property="og:title" content="Expressions or Functions used in SSRS"><meta property="og:description" content="Expressions are usually used for appearance of the data in a report, change properties of the fields, calculate some values and display them in a proper way, compares values between data of fields and then display them.
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Expressions or Functions used in SSRS - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><meta name="Description" content="Dynamics 365 Finance &amp; Operations"><meta property="og:title" content="Expressions or Functions used in SSRS" />
+<meta property="og:description" content="Expressions are usually used for appearance of the data in a report, change properties of the fields, calculate some values and display them in a proper way, compares values between data of fields and then display them.
 Types of Expressions We have 3 types:
-Globals Operators - Arithmetic, Comparison,Concatenation, Logical Common Functions - Text, Date & Time, Math, Inspection, Program Flow, Aggregate, Financial, Conversion, Miscellaneous We can see each and every one very deataily"><meta property="og:type" content="article"><meta property="og:url" content="https://nuxulu.com/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs/"><meta property="og:image" content="https://nuxulu.com/Icon/mstile-150x150.png"><meta property="article:section" content="posts"><meta property="article:published_time" content="2016-10-07T00:00:00+00:00"><meta property="article:modified_time" content="2016-10-07T00:00:00+00:00"><meta property="og:site_name" content="Dynamics 365 Finance & Operations"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://nuxulu.com/Icon/mstile-150x150.png"><meta name=twitter:title content="Expressions or Functions used in SSRS"><meta name=twitter:description content="Expressions are usually used for appearance of the data in a report, change properties of the fields, calculate some values and display them in a proper way, compares values between data of fields and then display them.
+Globals Operators - Arithmetic, Comparison,Concatenation, Logical Common Functions - Text, Date &amp; Time, Math, Inspection, Program Flow, Aggregate, Financial, Conversion, Miscellaneous We can see each and every one very deataily" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nuxulu.com/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs/" /><meta property="og:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2016-10-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2016-10-07T00:00:00+00:00" /><meta property="og:site_name" content="Dynamics 365 Finance &amp; Operations" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://nuxulu.com/Icon/mstile-150x150.png"/>
+
+<meta name="twitter:title" content="Expressions or Functions used in SSRS"/>
+<meta name="twitter:description" content="Expressions are usually used for appearance of the data in a report, change properties of the fields, calculate some values and display them in a proper way, compares values between data of fields and then display them.
 Types of Expressions We have 3 types:
-Globals Operators - Arithmetic, Comparison,Concatenation, Logical Common Functions - Text, Date & Time, Math, Inspection, Program Flow, Aggregate, Financial, Conversion, Miscellaneous We can see each and every one very deataily"><meta name=application-name content="Dynamics 365 Finance & Operations"><meta name=apple-mobile-web-app-title content="Dynamics 365 Finance & Operations"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel=icon href=/Icon/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://nuxulu.com/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs/><link rel=prev href=https://nuxulu.com/2016-07-05-create-record-in-dimensionattributevaluecombination-manually/><link rel=next href=https://nuxulu.com/2016-11-08-understanding_modifedfield_table_method_in_dax_2012/><link rel=stylesheet href=/css/style.min.css><link rel=preload href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css as=style onload='this.onload=null,this.rel="stylesheet"'><noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css></noscript><link rel=preload href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css as=style onload='this.onload=null,this.rel="stylesheet"'><noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><meta name=google-site-verification content="f08c47fec0942fa0"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Expressions or Functions used in SSRS","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/nuxulu.com\/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs\/"},"image":[{"@type":"ImageObject","url":"https:\/\/nuxulu.com\/images\/Apple-Devices-Preview.png","width":3200,"height":2048}],"genre":"posts","keywords":"ssrs, Expressions, Functions","wordcount":1484,"url":"https:\/\/nuxulu.com\/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs\/","datePublished":"2016-10-07T00:00:00+00:00","dateModified":"2016-10-07T00:00:00+00:00","publisher":{"@type":"Organization","name":"xxxx","logo":{"@type":"ImageObject","url":"https:\/\/nuxulu.com\/images\/avatar.png","width":528,"height":560}},"author":{"@type":"Person","name":"Max Nguyen"},"description":""}</script></head><body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem("theme")?localStorage.getItem("theme")==="dark":"dark"==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:"dark"==="dark")&&document.body.setAttribute("theme","dark")</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3534873375492458" crossorigin=anonymous></script>
-<a href=/ title="Dynamics 365 Finance & Operations | nuxulu.com"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/Icon/favicon-32x32.png data-srcset="/Icon/favicon-32x32.png, /Icon/favicon-32x32.png 1.5x, /Icon/favicon-32x32.png 2x" data-sizes=auto alt=/Icon/favicon-32x32.png title=/Icon/favicon-32x32.png><span class=header-title-pre> </span>Dynamics 365 Finance & Operations</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>Posts </a><a class=menu-item href=/tags/>Tags </a><a class=menu-item href=/categories/>Categories </a><a class=menu-item href=/finopsnews/>X++ Feed </a><a class=menu-item href=/erd/default.htm>Entity Relationship </a><a class=menu-item href=/posts/index.xml>Rss Feed </a><a class=menu-item href=/lab/>Practice lab </a><a class=menu-item href=/about/>About me </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop>
-<input type=text placeholder="Search titles or contents..." id=search-input-desktop>
-<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=Search><i class="fas fa-search fa-fw" aria-hidden=true></i></a>
-<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=Clear><i class="fas fa-times-circle fa-fw" aria-hidden=true></i></a>
-<span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin" aria-hidden=true></i></span>
-</span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme"><i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3534873375492458" crossorigin=anonymous></script>
-<a href=/ title="Dynamics 365 Finance & Operations | nuxulu.com"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/Icon/favicon-32x32.png data-srcset="/Icon/favicon-32x32.png, /Icon/favicon-32x32.png 1.5x, /Icon/favicon-32x32.png 2x" data-sizes=auto alt=/Icon/favicon-32x32.png title=/Icon/favicon-32x32.png><span class=header-title-pre> </span>Dynamics 365 Finance & Operations</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder="Search titles or contents..." id=search-input-mobile>
-<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=Search><i class="fas fa-search fa-fw" aria-hidden=true></i></a>
-<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=Clear><i class="fas fa-times-circle fa-fw" aria-hidden=true></i></a>
-<span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>Cancel</a></div><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=/finopsnews/ title>X++ Feed</a><a class=menu-item href=/erd/default.htm title>Entity Relationship</a><a class=menu-item href=/posts/index.xml title>Rss Feed</a><a class=menu-item href=/lab/ title>Practice lab</a><a class=menu-item href=/about/ title>About me</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
-<i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>Contents</h2><div class="toc-content always-active" id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Expressions or Functions used in SSRS</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/series/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>Max Nguyen</a></span>&nbsp;<span class=post-category>included in <a href=/categories/ssrs/><i class="far fa-folder fa-fw" aria-hidden=true></i>SSRS</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime="October 7, 2016">October 7, 2016</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;1484 words&nbsp;
-<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;7 minutes&nbsp;</div></div><div class="details toc" id=toc-static data-kept><div class="details-summary toc-title"><span>Contents</span>
-<span><i class="details-icon fas fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#1-globals>1. Globals</a></li><li><a href=#2-operators>2. Operators</a><ul><li><a href=#arithmetic>Arithmetic</a></li><li><a href=#comparison>Comparison</a></li><li><a href=#concatenation>Concatenation</a></li><li><a href=#logical>Logical</a></li></ul></li><li><a href=#3-common-functions>3. Common Functions</a><ul><li><a href=#text><strong>Text</strong></a></li><li><a href=#date--time><strong>Date & Time</strong></a></li><li><a href=#math>Math</a></li><li><a href=#inspection>Inspection</a></li><li><a href=#program-flow>Program Flow</a></li><li><a href=#aggregate>Aggregate</a></li><li><a href=#financial>Financial</a></li><li><a href=#conversion>Conversion</a></li><li><a href=#miscellaneous>Miscellaneous</a></li></ul></li></ul></nav></div></div><div class=content id=content><p>Expressions are usually used for appearance of the data in a report, change properties of the fields, calculate some values and display them in a proper way, compares values between data of fields and then display them.</p><h1 id=types-of-expressions>Types of Expressions</h1><p>We have 3 types:</p><ul><li>Globals</li><li>Operators - Arithmetic, Comparison,Concatenation, Logical</li><li>Common Functions - Text, Date & Time, Math, Inspection, Program Flow, Aggregate, Financial, Conversion, Miscellaneous</li></ul><p>We can see each and every one very deataily</p><h2 id=1-globals>1. Globals</h2><p>Global expressions executes/works in Page Header and Footer parts only.</p><p><strong>ExecutionTime</strong> Shows date and time at when report executes<br><strong>PageNumber</strong> shows page number of each and every page but allowed only in page header and footer<br><strong>ReportName</strong> displays name of the active report what name we have assigned to the active report<br><strong>UserId</strong> shows current user name like <strong><em>company/userID</em></strong><br><strong>Language</strong> displays language like US-English…</p><h2 id=2-operators>2. Operators</h2><h3 id=arithmetic>Arithmetic</h3><p><code>^</code> power of<br><code>*</code>multiplication<br><code>/</code> divides two numbers and returns a floating point result<br><code>:</code> divides two numbers and returns a integer result<br><code>Mod</code> divides two numbers and returns remainder only<br><code>adds</code> two numbers and concatenation for two strings<br><code>-</code> subtraction and indicates negative value for numeric values</p><h3 id=comparison>Comparison</h3><p>Known operators : <code>&lt; &lt;= > >= &lt;></code><br><code>Like</code> compares two strings and return true if matched or else returns False.<br><em>Ex:</em> <code>=Fields!Title.Value Like Fields!LoginID.Value</code></p><p><code>Is</code> compare two object reference variables<br><em>Ex:</em> <code>=Fields!Title.Value Is Null</code></p><h3 id=concatenation>Concatenation</h3><p><code>+</code> and <code>&</code> symbols uses for concatenation</p><h3 id=logical>Logical</h3><p>Known: <code>And, Not, Or, Xor</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=line><span class=cl><span class=k>SELECT</span><span class=w> </span><span class=o>*</span><span class=w> </span><span class=k>FROM</span><span class=w> </span><span class=n>users</span><span class=w> </span><span class=k>where</span><span class=w> </span><span class=n>firstname</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s1>&#39;Larry&#39;</span><span class=w> </span><span class=n>XOR</span><span class=w> </span><span class=n>lastname</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s1>&#39;Smith&#39;</span><span class=o>`</span><span class=w>
-</span></span></span></code></pre></td></tr></table></div></div><p><code>AndAlso</code> First condition will check first and if it is true only, goes to next or else it won&rsquo;t need to check. Because our execution time is saving in a logical operation in which more conditions is combined using <code>AndAlso</code> function.<br><code>OrElse</code> same like above</p><h2 id=3-common-functions>3. Common Functions</h2><h3 id=text><strong>Text</strong></h3><p><code>Asc, AscW</code> returns an integer value represents character code corresponding to a character.<br><code>Chr, chrw</code> returns the character associated with the specified character code<br><code>Filter</code> =Filter(Fields!Title.Value,&ldquo;Pr&rdquo;,true,0)<br><code>Format</code>=Format(Fields!Price.Value, &ldquo;#,##0.00&rdquo;), Format(Fields!Date.Value, &ldquo;yyyy-MM-dd&rdquo;)<br><code>FormatCurrency</code> =formatcurrency(Fields!SickLeaveHours.Value,3)<br><code>FormatDateTime</code> =FormatDateTime(Fields!BirthDate.Value,Integer)</p><p><strong>Ex</strong>:<br><em>0 returns 6/3/1977<br>1 returns Friday, June 03, 1977<br>2 returns 6/3/1977<br>3 returns 12:00:00AM<br>4 returns 00:00</em></p><p><code>FormatNumber</code> =FormatNumber(Fields!EmployeeID.Value,2), then result is 2.00<br><code>FormatPercent</code> =&ldquo;Percentage : " & formatpercent(Fields!SickLeaveHours.Value)<br><code>GetChar</code> =GetChar(Fields!Title.Value,5)<br><code>InStr</code> =InStr(Fields!Title.Value,&ldquo;a&rdquo;)<br><code>InStrRev</code> =Instrrev(Fields!Title.Value,&ldquo;a&rdquo;)<br><code>LCase</code> =Lcase(Fields!Title.Value), Change strings into lower case<br><code>Left</code> =Left(Fields!Title.Value,4), Returns left side characters from a string<br><code>Len</code> =Len(Fields!Title.Value), Finds length of a string<br><code>LSet</code> =Lset(Fields!Title.Value,5), Returns some length of a string from left<br><code>LTrim</code> =Ltrim(&rdquo; &ldquo;&Fields!Title.Value), Trim left side of a string<br><code>Mid</code> =Mid(Fields!Title.Value,InSTrRev(Fields!Title.Value,&ldquo;T&rdquo;)), Returns characters from the mentioned starting position<br><code>Replace</code> =Replace(Fields!Title.Value,&ldquo;a&rdquo;,&ldquo;A&rdquo;), Replaces one string with another<br><code>Right</code> =Right(Fields!Title.Value,10), Returns right side characters from a string<br><code>RSet</code> =Rset(Fields!Title.Value,5),Returns some length of a string from left<br><code>RTrim</code> =Rtrim(Fields!Title.Value & " &ldquo;), Trim left side of a string<br><code>Space</code> =Fields!Title.Value & Space(5) & Fields!Title.Value, Specifies some spaces within strings<br><code>StrComp</code> Returns a value indicating the result of a string comparison<br><code>vbBinaryCompare 0</code> Perform a binary comparison.<br><code>vbTextCompare 1</code> Perform a textual comparison.<br><code>string1</code> is less than <code>string2</code> -1<br><code>string1</code> is equal to <code>string2</code> 0<br><code>string1</code> is greater than <code>string2</code> 1<br><code>string1</code> or <code>string2</code> is Null Null<br><code>StrConv</code><br>=Strconv(Fields!Title.Value,vbProperCase)<br>=Strconv(Fields!Title.Value,vbLowerCase)<br>=Strconv(Fields!Title.Value,vbUpperCase)<br><code>StrDup</code> =StrDup(3,&ldquo;M&rdquo;), Returns a string or object consisting of the specified character repeated the specified number of times.<br><code>StrReverse</code> =StrReverse(Fields!Title.Value)<br><code>Trim</code> =Trim(&rdquo; &ldquo;& Fields!Title.Value & " &ldquo;)<br><code>UCase</code> =Ucase(Fields!Title.Value)</p><h3 id=date--time><strong>Date & Time</strong></h3><p><code>CDate</code> Converts a object into date format<br>=Format(CDate(Fields!BirthDate.Value),&ldquo;MMMM yyyy&rdquo;)<br><code>DateAdd</code> Returns a datetime that is the result of adding the specified number of time interval units to the original datetime.<br>=dateadd(&ldquo;m&rdquo;,12,Fields!BirthDate.Value)<br><code>DateDiff</code> Find number of days, months and years between two dates<br>=datediff(&ldquo;d&rdquo;,Fields!BirthDate.Value,Now)<br><code>DatePart</code> DatePart(DateInterval.Weekday, CDate(&ldquo;2009/11/13&rdquo;), FirstDayOfWeek.Monday) returns 5 (Friday)<br><code>DateSerial</code> for first day of the month<br>=DateSerial(Year(Now), Month(Now), 1)<br>for the last day of the month<br>=DateSerial(Year(Now), Month(Now)+1, 0)<br><code>DateString</code> Returns string value of system date<br>=datestring()<br><code>DateValue</code> Returns current date<br><code>Day</code> Returns day value from date<br>=day(Fields!BirthDate.Value)<br><code>FormatDateTime</code> =FormatDateTime(Fields!BirthDate.Value,Integer)
+Globals Operators - Arithmetic, Comparison,Concatenation, Logical Common Functions - Text, Date &amp; Time, Math, Inspection, Program Flow, Aggregate, Financial, Conversion, Miscellaneous We can see each and every one very deataily"/>
+<meta name="application-name" content="Dynamics 365 Finance &amp; Operations">
+<meta name="apple-mobile-web-app-title" content="Dynamics 365 Finance &amp; Operations"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/Icon/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://nuxulu.com/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs/" /><link rel="prev" href="https://nuxulu.com/2016-07-05-create-record-in-dimensionattributevaluecombination-manually/" /><link rel="next" href="https://nuxulu.com/2016-11-08-understanding_modifedfield_table_method_in_dax_2012/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><meta name="google-site-verification" content="f08c47fec0942fa0" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Expressions or Functions used in SSRS",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/nuxulu.com\/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/nuxulu.com\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "ssrs, Expressions, Functions","wordcount":  1484 ,
+        "url": "https:\/\/nuxulu.com\/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs\/","datePublished": "2016-10-07T00:00:00+00:00","dateModified": "2016-10-07T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/nuxulu.com\/images\/avatar.png",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "Max Nguyen"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3534873375492458" crossorigin="anonymous"></script>
+            <a href="/" title="Dynamics 365 Finance &amp; Operations | nuxulu.com"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/Icon/favicon-32x32.png"
+        data-srcset="/Icon/favicon-32x32.png, /Icon/favicon-32x32.png 1.5x, /Icon/favicon-32x32.png 2x"
+        data-sizes="auto"
+        alt="/Icon/favicon-32x32.png"
+        title="/Icon/favicon-32x32.png" /><span class="header-title-pre">  </span>Dynamics 365 Finance &amp; Operations</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/finopsnews/"> X&#43;&#43; Feed </a><a class="menu-item" href="/erd/default.htm"> Entity Relationship </a><a class="menu-item" href="/posts/index.xml"> Rss Feed </a><a class="menu-item" href="/lab/"> Practice lab </a><a class="menu-item" href="/about/"> About me </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3534873375492458" crossorigin="anonymous"></script>
+                <a href="/" title="Dynamics 365 Finance &amp; Operations | nuxulu.com"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/Icon/favicon-32x32.png"
+        data-srcset="/Icon/favicon-32x32.png, /Icon/favicon-32x32.png 1.5x, /Icon/favicon-32x32.png 2x"
+        data-sizes="auto"
+        alt="/Icon/favicon-32x32.png"
+        title="/Icon/favicon-32x32.png" /><span class="header-title-pre">  </span>Dynamics 365 Finance &amp; Operations</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/finopsnews/" title="">X&#43;&#43; Feed</a><a class="menu-item" href="/erd/default.htm" title="">Entity Relationship</a><a class="menu-item" href="/posts/index.xml" title="">Rss Feed</a><a class="menu-item" href="/lab/" title="">Practice lab</a><a class="menu-item" href="/about/" title="">About me</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Expressions or Functions used in SSRS</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/series/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Max Nguyen</a></span>&nbsp;<span class="post-category">included in <a href="/categories/ssrs/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>SSRS</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="October 7, 2016">October 7, 2016</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1484 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-globals">1. Globals</a></li>
+    <li><a href="#2-operators">2. Operators</a>
+      <ul>
+        <li><a href="#arithmetic">Arithmetic</a></li>
+        <li><a href="#comparison">Comparison</a></li>
+        <li><a href="#concatenation">Concatenation</a></li>
+        <li><a href="#logical">Logical</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-common-functions">3. Common Functions</a>
+      <ul>
+        <li><a href="#text"><strong>Text</strong></a></li>
+        <li><a href="#date--time"><strong>Date &amp; Time</strong></a></li>
+        <li><a href="#math">Math</a></li>
+        <li><a href="#inspection">Inspection</a></li>
+        <li><a href="#program-flow">Program Flow</a></li>
+        <li><a href="#aggregate">Aggregate</a></li>
+        <li><a href="#financial">Financial</a></li>
+        <li><a href="#conversion">Conversion</a></li>
+        <li><a href="#miscellaneous">Miscellaneous</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Expressions are usually used for appearance of the data in a report, change properties of the fields, calculate some values and display them in a proper way, compares values between data of fields and then display them.</p>
+<h1 id="types-of-expressions">Types of Expressions</h1>
+<p>We have 3 types:</p>
+<ul>
+<li>Globals</li>
+<li>Operators - Arithmetic, Comparison,Concatenation, Logical</li>
+<li>Common Functions - Text, Date &amp; Time, Math, Inspection, Program Flow, Aggregate, Financial, Conversion, Miscellaneous</li>
+</ul>
+<p>We can see each and every one very deataily</p>
+<h2 id="1-globals">1. Globals</h2>
+<p>Global expressions executes/works in Page Header and Footer parts only.</p>
+<p><strong>ExecutionTime</strong>  Shows date and time at when report executes<br>
+<strong>PageNumber</strong> shows page number of each and every page but allowed only in page header and footer<br>
+<strong>ReportName</strong>  displays name of the active report what name we have assigned to the active report<br>
+<strong>UserId</strong> shows current user name like <strong><em>company/userID</em></strong><br>
+<strong>Language</strong> displays language like US-English…</p>
+<h2 id="2-operators">2. Operators</h2>
+<h3 id="arithmetic">Arithmetic</h3>
+<p><code>^</code> power of<br>
+<code>*</code>multiplication<br>
+<code>/</code> divides two numbers and returns a floating point result<br>
+<code>:</code> divides two numbers and returns a integer result<br>
+<code>Mod</code> divides two numbers and returns remainder only<br>
+<code>adds</code> two numbers and concatenation for two strings<br>
+<code>-</code> subtraction and indicates negative value for numeric values</p>
+<h3 id="comparison">Comparison</h3>
+<p>Known operators : <code>&lt; &lt;= &gt; &gt;= &lt;&gt;</code><br>
+<code>Like</code> compares two strings and return true if matched or else returns False.<br>
+<em>Ex:</em> <code>=Fields!Title.Value Like Fields!LoginID.Value</code></p>
+<p><code>Is</code> compare two object reference variables<br>
+<em>Ex:</em> <code>=Fields!Title.Value Is Null</code></p>
+<h3 id="concatenation">Concatenation</h3>
+<p><code>+</code> and <code>&amp;</code> symbols uses for concatenation</p>
+<h3 id="logical">Logical</h3>
+<p>Known: <code>And, Not, Or, Xor</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">firstname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Larry&#39;</span><span class="w"> </span><span class="n">XOR</span><span class="w"> </span><span class="n">lastname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Smith&#39;</span><span class="o">`</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>AndAlso</code> First condition will check first and if it is true only, goes to next or else it won&rsquo;t need to check. Because our execution time is saving in a logical operation in which more conditions is combined using <code>AndAlso</code> function.<br>
+<code>OrElse</code> same like above</p>
+<h2 id="3-common-functions">3. Common Functions</h2>
+<h3 id="text"><strong>Text</strong></h3>
+<p><code>Asc, AscW</code> returns an integer value represents character code corresponding to a character.<br>
+<code>Chr, chrw</code> returns the character associated with the specified character code<br>
+<code>Filter</code> =Filter(Fields!Title.Value,&ldquo;Pr&rdquo;,true,0)<br>
+<code>Format</code>=Format(Fields!Price.Value, &ldquo;#,##0.00&rdquo;), Format(Fields!Date.Value, &ldquo;yyyy-MM-dd&rdquo;)<br>
+<code>FormatCurrency</code> =formatcurrency(Fields!SickLeaveHours.Value,3)<br>
+<code>FormatDateTime</code> =FormatDateTime(Fields!BirthDate.Value,Integer)</p>
+<p><strong>Ex</strong>:<br>
+<em>0 returns 6/3/1977<br>
+1 returns Friday, June 03, 1977<br>
+2 returns 6/3/1977<br>
+3 returns 12:00:00AM<br>
+4 returns 00:00</em></p>
+<p><code>FormatNumber</code> =FormatNumber(Fields!EmployeeID.Value,2), then result is 2.00<br>
+<code>FormatPercent</code> =&ldquo;Percentage : &quot; &amp; formatpercent(Fields!SickLeaveHours.Value)<br>
+<code>GetChar</code> =GetChar(Fields!Title.Value,5)<br>
+<code>InStr</code> =InStr(Fields!Title.Value,&ldquo;a&rdquo;)<br>
+<code>InStrRev</code> =Instrrev(Fields!Title.Value,&ldquo;a&rdquo;)<br>
+<code>LCase</code> =Lcase(Fields!Title.Value), Change strings into lower case<br>
+<code>Left</code> =Left(Fields!Title.Value,4), Returns left side characters from a string<br>
+<code>Len</code> =Len(Fields!Title.Value), Finds length of a string<br>
+<code>LSet</code> =Lset(Fields!Title.Value,5), Returns some length of a string from left<br>
+<code>LTrim</code> =Ltrim(&rdquo; &ldquo;&amp;Fields!Title.Value), Trim left side of a string<br>
+<code>Mid</code> =Mid(Fields!Title.Value,InSTrRev(Fields!Title.Value,&ldquo;T&rdquo;)), Returns characters from the   mentioned starting position<br>
+<code>Replace</code> =Replace(Fields!Title.Value,&ldquo;a&rdquo;,&ldquo;A&rdquo;), Replaces one string with another<br>
+<code>Right</code> =Right(Fields!Title.Value,10), Returns right side characters from a string<br>
+<code>RSet</code> =Rset(Fields!Title.Value,5),Returns some length of a string from left<br>
+<code>RTrim</code> =Rtrim(Fields!Title.Value &amp; &quot; &ldquo;), Trim left side of a string<br>
+<code>Space</code> =Fields!Title.Value &amp; Space(5) &amp; Fields!Title.Value, Specifies some spaces within strings<br>
+<code>StrComp</code> Returns a value indicating the result of a string comparison<br>
+<code>vbBinaryCompare 0</code> Perform a binary comparison.<br>
+<code>vbTextCompare 1</code> Perform a textual comparison.<br>
+<code>string1</code> is less than <code>string2</code> -1<br>
+<code>string1</code> is equal to <code>string2</code> 0<br>
+<code>string1</code> is greater than <code>string2</code> 1<br>
+<code>string1</code> or <code>string2</code> is Null Null<br>
+<code>StrConv</code><br>
+=Strconv(Fields!Title.Value,vbProperCase)<br>
+=Strconv(Fields!Title.Value,vbLowerCase)<br>
+=Strconv(Fields!Title.Value,vbUpperCase)<br>
+<code>StrDup</code> =StrDup(3,&ldquo;M&rdquo;), Returns a string or object consisting of the specified character repeated the specified number of times.<br>
+<code>StrReverse</code> =StrReverse(Fields!Title.Value)<br>
+<code>Trim</code> =Trim(&rdquo; &ldquo;&amp; Fields!Title.Value &amp; &quot; &ldquo;)<br>
+<code>UCase</code> =Ucase(Fields!Title.Value)</p>
+<h3 id="date--time"><strong>Date &amp; Time</strong></h3>
+<p><code>CDate</code> Converts a object into date format<br>
+=Format(CDate(Fields!BirthDate.Value),&ldquo;MMMM yyyy&rdquo;)<br>
+<code>DateAdd</code> Returns a datetime that is the result of adding the specified number of time interval units to the original datetime.<br>
+=dateadd(&ldquo;m&rdquo;,12,Fields!BirthDate.Value)<br>
+<code>DateDiff</code> Find number of days, months and years between two dates<br>
+=datediff(&ldquo;d&rdquo;,Fields!BirthDate.Value,Now)<br>
+<code>DatePart</code> DatePart(DateInterval.Weekday, CDate(&ldquo;2009/11/13&rdquo;), FirstDayOfWeek.Monday) returns 5 (Friday)<br>
+<code>DateSerial</code> for first day of the month<br>
+=DateSerial(Year(Now), Month(Now), 1)<br>
+for the last day of the month<br>
+=DateSerial(Year(Now), Month(Now)+1, 0) <br>
+<code>DateString</code> Returns string value of system date<br>
+=datestring()<br>
+<code>DateValue</code> Returns current date<br>
+<code>Day</code> Returns day value from date<br>
+=day(Fields!BirthDate.Value)<br>
+<code>FormatDateTime</code> =FormatDateTime(Fields!BirthDate.Value,Integer)
 <em>Examples:</em>
-0 returns 6/3/1977<br>1 returns Friday, June 03, 1977<br>2 returns 6/3/1977<br>3 returns 12:00:00AM<br>4 returns 00:00<br><code>Hour</code> =Hour(Fields!BirthDate.Value)<br><code>Minute</code> =Minute(Fields!BirthDate.Value)<br><code>Month</code> =Month(Fields!BirthDate.Value)<br><code>MonthName</code> =MonthName(Month(Fields!BirthDate.Value))<br><code>Now</code> Indicates current month<br>=Now() or =Now<br><code>Second</code> =Second(Fields!BirthDate.Value)<br><code>TimeOfDay</code> =TimeOfDay()<br>Returns a date value containing the current time of day according to your system<br><code>Timer</code> =Timer()<br>Returns number of seconds elapsed since midnight<br><code>TimeSerial</code> =TimeSerial(24,60,60)<br>Returns a date value representing a specified hour, minute and second<br><code>TimeString</code> =TimeString()<br>Returns string value representing the current time of day according to your system<br><code>TimeValue</code> Returns a date value set to jan 1 of year 1<br>=TimeValue(Fields!BirthDate.Value)<br><code>Today</code> Returns Current date<br><code>Weekday</code> Returns an integer value representing day of week<br>=WeekDay(Fields!BirthDate.Value)<br><code>WeekdayName</code> =WeekdayName(Weekday(Fields!BirthDate.Value))<br>Returns name of the day of week<br><code>Year</code> =year(Fields!BirthDate.Value)<br>Returns year of specified date</p><h3 id=math>Math</h3><p><code>Abs=Abs(-2.36)</code></p><p>Returns the absolute value</p><p><code>BigMul =BigMul(2,3)</code></p><p>Returns multiplication value of two specified numbers</p><p><code>Ceiling =Ceiling(2.67)</code></p><p>Returns next highest value</p><p><code>Cos=Cos(2.33)</code></p><p>Returns cos value for specified number</p><p><code>Cosh=Cosh(2.33)</code>
-Returns hyperbolic cos value</p><p><code>DivRem=DivRem(23,2,5)</code></p><p><code>Fix=Fix(23.89)</code></p><p>Returns integer portion</p><p><code>Floor=Floor(24.54)</code></p><p>Returns largest integer</p><p><code>Int=Int(24.78)</code></p><p>Returns integer portion of a number</p><p><code>Log=Log(24.78)</code></p><p>Returns logarithm value</p><p><code>Log10=Log10(24.78)</code></p><p>Returns the base 10 logaritm value</p><p><code>Max=Max(Fields!EmployeeID.Value)</code></p><p>Returns larger value in the specified values</p><p><code>Min=Min(Fields!EmployeeID.Value)</code></p><p>Returns smaller value in the specified values</p><p><code>Pow=Pow(Fields!EmployeeID.Value,2)</code></p><p>Returns power of value for specified number</p><p><code>Rnd=Rnd()</code></p><p>Returns a random number</p><p><code>Round=Round(43.16)</code></p><p>Returns rounded value to the nearest integer</p><p><code>Sign=Sign(-34534543)</code></p><p><code>Sin=Sin(Fields!EmployeeID.Value)</code>
-Returns the sin value</p><p><code>Sinh=Sinh(Fields!EmployeeID.Value)</code>
-Returns the hyperbolic sin value</p><h3 id=inspection>Inspection</h3><p><code>IsArray =IsArray(Fields!EmployeeID.Value)</code></p><p>Returns a boolean value indicating whether the specified object is array or not</p><p><code>IsDate =IsDate(Fields!BirthDate.Value)</code></p><p>Returns a boolean value indicating whether the specified object is Date or not</p><p><code>IsNothing =IsNothing(Fields!EmployeeID.Value)</code></p><p>Returns a boolean value depends on specified object is Nothing or not</p><p><code>IsNumeric =IsNumeric(Fields!EmployeeID.Value)</code></p><p>Returns a boolean value depends on specified object is Numeric value or not</p><h3 id=program-flow>Program Flow</h3><p><code>Choose =CHOOSE(3, "Red", "Yellow", "Green", "White")</code></p><p>Returns a specific value using index in a list of arguments</p><p><code>IIf =IIF(Fields!EmployeeID.Value>10,"Yes","No")</code></p><p>Returns any one value depends on condition</p><p><code>Switch =Switch(Fields!EmployeeID.Value&lt;10,"Red",Fields!EmployeeID.Value>10,"Green")</code></p><p>Evaluates list of expressions</p><h3 id=aggregate>Aggregate</h3><p><code>Avg =Avg(Fields!EmployeeID.Value)</code></p><p>Returns average value for all specified values</p><p><code>Count =Count(Fields!EmployeeID.Value)</code></p><p>Returns count of all specified values</p><p><code>CountDistinct =CountDistinct(Fields!EmployeeID.Value)</code></p><p>Returns count of all distinct values</p><p><code>CountRows =CountRows()</code></p><p>Returns count of rows</p><p><code>First =First(Fields!EmployeeID.Value)</code></p><p>Returns first for all specified values</p><p><code>Last =Last(Fields!EmployeeID.Value)</code></p><p>Returns last for all specified values</p><p><code>Max =Max(Fields!EmployeeID.Value)</code></p><p>Returns max for all specified values</p><p><code>Min =Min(Fields!EmployeeID.Value)</code></p><p>Returns min for all specified values</p><p><code>StDev =StDev(Fields!EmployeeID.Value)</code></p><p>Returns standard deviation value</p><p><code>StDevP =StDevP(Fields!EmployeeID.Value)</code></p><p>Returns Population standard deviation value</p><p><code>Sum =Sum(Fields!EmployeeID.Value)</code></p><p>Returns sum of all values</p><p><code>Var =Var(Fields!EmployeeID.Value)</code></p><p>Returns variance of all values</p><p><code>VarP =Var(Fields!EmployeeID.Value)</code></p><p>Returns population variance of all values</p><p><code>RunningValue =RunningValue(Fields!EmployeeID.Value,sum,nothing)</code></p><p>Returns running aggregate of the specified
-expression</p><h3 id=financial>Financial</h3><p><code>DDB DDB</code> (Double Declining Balance) method computes depreciation of an asset for a specified period.</p><p>Syntax: <code>DDB (Cost, Salvage, life, period, factor)</code></p><p><code>FV FV</code> (Future Value) of an investment based on periodic, constant payments and a constant interest rate.</p><p>Syntax: <code>FV (rate, nper, pmt, pv, type)</code></p><p><code>IPmt IPmt</code> (Interest Payment) for a given period for an investment based on periodic, constant payment and a constant interest rate</p><p><code>IPMT (rate, per, nper, pv, fv, type)</code></p><p><code>IRR IRR</code> (Interest Rate of Return) for a series of cash flows represented by the numbers in values.</p><p><code>IRR(values,guess)</code></p><p><code>MIRR MIRR</code> ( Modified internal rate of return ) for a series of periodic cash flows</p><p><code>MIRR(values,finance_rate,reinvest_rate)</code></p><p><code>NPer</code> Returns the number of periods for an investment based on periodic, constant payments and a constant interest rate.</p><p><code>NPER (rate, pmt, pv, fv, type)</code></p><p><code>NPV</code> Calculates the net present value of an investment by using a discount rate and a series of future payments (negative values) and income (positive values).</p><p>Syntax: <code>NPV(rate,value1,value2, ...)</code></p><p><code>Pmt</code> Calculates the payment for a loan based on constant payments and a constant interest rate.</p><p><code>PMT(rate,nper,pv,fv,type)</code></p><p>PPmt Returns the payment on the principal for a given period for an investment based on periodic, constant payments and a constant interest rate.</p><p><code>PPMT(rate,per,nper,pv,fv,type)</code></p><p>PV Returns the present value of an investment. The present value is the total amount that a series of future payments is worth now. For example, when you borrow money, the loan amount is the present value to the lender.</p><p><code>PV(rate,nper,pmt,fv,type)</code></p><p>Rate Returns the interest rate per period of an annuity. RATE is calculated by iteration and can have zero or more solutions.</p><p><code>RATE(nper,pmt,pv,fv,type,guess)</code></p><p>SLN Returns the straight-line depreciation of an asset for one period.</p><p><code>SLN(cost,salvage,life)</code></p><p>SYD Returns the sum-of-years&rsquo; digits depreciation of an asset for a specified period.
-<code>SYD(cost,salvage,life,per)</code></p><h3 id=conversion>Conversion</h3><p><code>CBool</code> Convert to boolean</p><p><code>CByte</code> Convert to byte</p><p><code>CChar</code> Convert to char</p><p><code>CDate</code> Convert to date</p><p><code>CDbl</code> Convert to double</p><p><code>CDec</code> Convert to decimal</p><p><code>CInt</code> Convert to integer</p><p><code>CLng</code> Convert to long</p><p><code>CObj</code> Convert to object</p><p><code>CShort</code> Convert to short</p><p><code>CSng</code> Convert to single</p><p><code>CStr</code> Convert to string</p><p><code>Hex =Hex(Fields!EmployeeID.Value)</code></p><p>Returns a hexadecimal value of a number</p><p><code>Int =Int(43.44)</code></p><p>Returns integer portion of a number</p><p><code>Oct =Oct(Fields!EmployeeID.Value)</code></p><p>Returns a octal value of a number</p><p><code>Str =Str(Fields!EmployeeID.Value)</code></p><p>Returns string value of a number</p><p><code>Val =Val("32.43")</code></p><p>Returns numeric value in string format</p><h3 id=miscellaneous>Miscellaneous</h3><p><code>Previous =Previous(Fields!EmployeeID.Value)</code></p><p>Returns the previous value</p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>Updated on October 7, 2016</span></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs/index.md target=_blank>Read Markdown</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://nuxulu.com/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs/ data-title="Expressions or Functions used in SSRS" data-hashtags=ssrs,Expressions,Functions><i class="fab fa-twitter fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://nuxulu.com/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs/ data-hashtag=ssrs><i class="fab fa-facebook-square fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="Share on Linkedin" data-sharer=linkedin data-url=https://nuxulu.com/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs/><i class="fab fa-linkedin fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="Share on WhatsApp" data-sharer=whatsapp data-url=https://nuxulu.com/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs/ data-title="Expressions or Functions used in SSRS" data-web><i class="fab fa-whatsapp fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://nuxulu.com/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs/ data-title="Expressions or Functions used in SSRS"><i class="fab fa-hacker-news fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://nuxulu.com/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs/ data-title="Expressions or Functions used in SSRS"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg aria-hidden=true></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://nuxulu.com/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs/ data-title="Expressions or Functions used in SSRS"><i class="fab fa-weibo fa-fw" aria-hidden=true></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw" aria-hidden=true></i>&nbsp;<a href=/tags/ssrs/>ssrs</a>,&nbsp;<a href=/tags/expressions/>Expressions</a>,&nbsp;<a href=/tags/functions/>Functions</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=/2016-07-05-create-record-in-dimensionattributevaluecombination-manually/ class=prev rel=prev title="Create record in DimensionAttributeValueCombination table manually."><i class="fas fa-angle-left fa-fw" aria-hidden=true></i>Create record in DimensionAttributeValueCombination table manually.</a>
-<a href=/2016-11-08-understanding_modifedfield_table_method_in_dax_2012/ class=next rel=next title="Understanding modifedField() Table method in DAX 2012">Understanding modifedField() Table method in DAX 2012<i class="fas fa-angle-right fa-fw" aria-hidden=true></i></a></div></div><div id=comments><div id=disqus_thread class=comment></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://disqus.com/?ref_noscript>Disqus</a>.</noscript></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>Have a nice day!</div><div class=footer-line itemscope itemtype=http://schema.org/CreativeWork><i class="far fa-copyright fa-fw" aria-hidden=true></i><span itemprop=copyrightYear>2013 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/series/ target=_blank>Max Nguyen</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top"><i class="fas fa-arrow-up fa-fw" aria-hidden=true></i>
-</a><a href=# id=view-comments class=fixed-button title="View Comments"><i class="fas fa-comment fa-fw" aria-hidden=true></i></a></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css><script type=text/javascript src=https://https-dynamics365-github-io.disqus.com/embed.js defer></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:300},comment:{},lightgallery:!0,math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!0,left:"\\begin{equation}",right:"\\end{equation}"},{display:!0,left:"\\begin{equation*}",right:"\\end{equation*}"},{display:!0,left:"\\begin{align}",right:"\\end{align}"},{display:!0,left:"\\begin{align*}",right:"\\end{align*}"},{display:!0,left:"\\begin{alignat}",right:"\\end{alignat}"},{display:!0,left:"\\begin{alignat*}",right:"\\end{alignat*}"},{display:!0,left:"\\begin{gather}",right:"\\end{gather}"},{display:!0,left:"\\begin{CD}",right:"\\end{CD}"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},search:{highlightTag:"em",lunrIndexURL:"/index.json",maxResultLength:10,noResultsFound:"No results found",snippetLength:30,type:"lunr"},twemoji:!0}</script><script type=text/javascript src=/js/theme.min.js></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-57379422-3",{anonymize_ip:!0})</script><script type=text/javascript src="https://www.googletagmanager.com/gtag/js?id=UA-57379422-3" async></script></body></html>
+0 returns 6/3/1977<br>
+1 returns Friday, June 03, 1977<br>
+2 returns 6/3/1977<br>
+3 returns 12:00:00AM<br>
+4 returns 00:00<br>
+<code>Hour</code> =Hour(Fields!BirthDate.Value)<br>
+<code>Minute</code> =Minute(Fields!BirthDate.Value)<br>
+<code>Month</code> =Month(Fields!BirthDate.Value)<br>
+<code>MonthName</code> =MonthName(Month(Fields!BirthDate.Value))<br>
+<code>Now</code> Indicates current month<br>
+=Now() or =Now<br>
+<code>Second</code> =Second(Fields!BirthDate.Value)<br>
+<code>TimeOfDay</code> =TimeOfDay()<br>
+Returns a date value containing the current time of day according to your system<br>
+<code>Timer</code> =Timer() <br>
+Returns number of seconds elapsed since midnight<br>
+<code>TimeSerial</code> =TimeSerial(24,60,60)<br>
+Returns a date value representing a specified hour, minute and second<br>
+<code>TimeString</code> =TimeString()<br>
+Returns string value representing the current time of day according to your system<br>
+<code>TimeValue</code> Returns a date value set to jan 1 of year 1<br>
+=TimeValue(Fields!BirthDate.Value)<br>
+<code>Today</code> Returns Current date<br>
+<code>Weekday</code> Returns an integer value representing day of week<br>
+=WeekDay(Fields!BirthDate.Value)<br>
+<code>WeekdayName</code> =WeekdayName(Weekday(Fields!BirthDate.Value))<br>
+Returns name of the day of week<br>
+<code>Year</code> =year(Fields!BirthDate.Value)<br>
+Returns year of specified date</p>
+<h3 id="math">Math</h3>
+<p><code>Abs=Abs(-2.36)</code></p>
+<p>Returns the absolute value</p>
+<p><code>BigMul =BigMul(2,3)</code></p>
+<p>Returns multiplication value of two specified numbers</p>
+<p><code>Ceiling =Ceiling(2.67)</code></p>
+<p>Returns next highest value</p>
+<p><code>Cos=Cos(2.33)</code></p>
+<p>Returns cos value for specified number</p>
+<p><code>Cosh=Cosh(2.33)</code>
+Returns hyperbolic cos value</p>
+<p><code>DivRem=DivRem(23,2,5)</code></p>
+<p><code>Fix=Fix(23.89)</code></p>
+<p>Returns integer portion</p>
+<p><code>Floor=Floor(24.54)</code></p>
+<p>Returns largest integer</p>
+<p><code>Int=Int(24.78)</code></p>
+<p>Returns integer portion of a number</p>
+<p><code>Log=Log(24.78)</code></p>
+<p>Returns logarithm value</p>
+<p><code>Log10=Log10(24.78)</code></p>
+<p>Returns the base 10 logaritm value</p>
+<p><code>Max=Max(Fields!EmployeeID.Value)</code></p>
+<p>Returns larger value in the specified values</p>
+<p><code>Min=Min(Fields!EmployeeID.Value)</code></p>
+<p>Returns smaller value in the specified values</p>
+<p><code>Pow=Pow(Fields!EmployeeID.Value,2)</code></p>
+<p>Returns power of value for specified number</p>
+<p><code>Rnd=Rnd()</code></p>
+<p>Returns a random number</p>
+<p><code>Round=Round(43.16)</code></p>
+<p>Returns rounded value to the nearest integer</p>
+<p><code>Sign=Sign(-34534543)</code></p>
+<p><code>Sin=Sin(Fields!EmployeeID.Value)</code>
+Returns the sin value</p>
+<p><code>Sinh=Sinh(Fields!EmployeeID.Value)</code>
+Returns the hyperbolic sin value</p>
+<h3 id="inspection">Inspection</h3>
+<p><code>IsArray =IsArray(Fields!EmployeeID.Value)</code></p>
+<p>Returns a boolean value indicating whether the specified object is array or not</p>
+<p><code>IsDate =IsDate(Fields!BirthDate.Value)</code></p>
+<p>Returns a boolean value indicating whether the specified object is Date or not</p>
+<p><code>IsNothing =IsNothing(Fields!EmployeeID.Value)</code></p>
+<p>Returns a boolean value depends on specified object is Nothing or not</p>
+<p><code>IsNumeric =IsNumeric(Fields!EmployeeID.Value)</code></p>
+<p>Returns a boolean value depends on specified object is Numeric value or not</p>
+<h3 id="program-flow">Program Flow</h3>
+<p><code>Choose =CHOOSE(3, &quot;Red&quot;, &quot;Yellow&quot;, &quot;Green&quot;, &quot;White&quot;)</code></p>
+<p>Returns a specific value using index in a list of arguments</p>
+<p><code>IIf =IIF(Fields!EmployeeID.Value&gt;10,&quot;Yes&quot;,&quot;No&quot;)</code></p>
+<p>Returns any one value depends on condition</p>
+<p><code>Switch =Switch(Fields!EmployeeID.Value&lt;10,&quot;Red&quot;,Fields!EmployeeID.Value&gt;10,&quot;Green&quot;)</code></p>
+<p>Evaluates list of expressions</p>
+<h3 id="aggregate">Aggregate</h3>
+<p><code>Avg =Avg(Fields!EmployeeID.Value)</code></p>
+<p>Returns average value for all specified values</p>
+<p><code>Count =Count(Fields!EmployeeID.Value)</code></p>
+<p>Returns count of all specified values</p>
+<p><code>CountDistinct =CountDistinct(Fields!EmployeeID.Value)</code></p>
+<p>Returns count of all distinct values</p>
+<p><code>CountRows =CountRows()</code></p>
+<p>Returns count of rows</p>
+<p><code>First =First(Fields!EmployeeID.Value)</code></p>
+<p>Returns first for all specified values</p>
+<p><code>Last =Last(Fields!EmployeeID.Value)</code></p>
+<p>Returns last for all specified values</p>
+<p><code>Max =Max(Fields!EmployeeID.Value)</code></p>
+<p>Returns max for all specified values</p>
+<p><code>Min =Min(Fields!EmployeeID.Value)</code></p>
+<p>Returns min for all specified values</p>
+<p><code>StDev =StDev(Fields!EmployeeID.Value)</code></p>
+<p>Returns standard deviation value</p>
+<p><code>StDevP =StDevP(Fields!EmployeeID.Value)</code></p>
+<p>Returns Population standard deviation value</p>
+<p><code>Sum =Sum(Fields!EmployeeID.Value)</code></p>
+<p>Returns sum of all values</p>
+<p><code>Var =Var(Fields!EmployeeID.Value)</code></p>
+<p>Returns variance of all values</p>
+<p><code>VarP =Var(Fields!EmployeeID.Value)</code></p>
+<p>Returns population variance of all values</p>
+<p><code>RunningValue =RunningValue(Fields!EmployeeID.Value,sum,nothing)</code></p>
+<p>Returns running aggregate of the specified
+expression</p>
+<h3 id="financial">Financial</h3>
+<p><code>DDB DDB</code> (Double Declining Balance) method computes depreciation of an asset for a specified period.</p>
+<p>Syntax: <code>DDB (Cost, Salvage, life, period, factor)</code></p>
+<p><code>FV FV</code> (Future Value) of an investment based on periodic, constant payments and a constant interest rate.</p>
+<p>Syntax: <code>FV (rate, nper, pmt, pv, type)</code></p>
+<p><code>IPmt IPmt</code> (Interest Payment) for a given period for an investment based on periodic, constant payment and a constant interest rate</p>
+<p><code>IPMT (rate, per, nper, pv, fv, type)</code></p>
+<p><code>IRR IRR</code> (Interest Rate of Return) for a series of cash flows represented by the numbers in values.</p>
+<p><code>IRR(values,guess)</code></p>
+<p><code>MIRR MIRR</code> ( Modified internal rate of return ) for a series of periodic cash flows</p>
+<p><code>MIRR(values,finance_rate,reinvest_rate)</code></p>
+<p><code>NPer</code> Returns the number of periods for an investment based on periodic, constant payments and a constant interest rate.</p>
+<p><code>NPER (rate, pmt, pv, fv, type)</code></p>
+<p><code>NPV</code> Calculates the net present value of an investment by using a discount rate and a series of future payments (negative values) and income (positive values).</p>
+<p>Syntax: <code>NPV(rate,value1,value2, ...)</code></p>
+<p><code>Pmt</code> Calculates the payment for a loan based on constant payments and a constant interest rate.</p>
+<p><code>PMT(rate,nper,pv,fv,type)</code></p>
+<p>PPmt Returns the payment on the principal for a given period for an investment based on periodic, constant payments and a constant interest rate.</p>
+<p><code>PPMT(rate,per,nper,pv,fv,type)</code></p>
+<p>PV Returns the present value of an investment. The present value is the total amount that a series of future payments is worth now. For example, when you borrow money, the loan amount is the present value to the lender.</p>
+<p><code>PV(rate,nper,pmt,fv,type)</code></p>
+<p>Rate Returns the interest rate per period of an annuity. RATE is calculated by iteration and can have zero or more solutions.</p>
+<p><code>RATE(nper,pmt,pv,fv,type,guess)</code></p>
+<p>SLN Returns the straight-line depreciation of an asset for one period.</p>
+<p><code>SLN(cost,salvage,life)</code></p>
+<p>SYD Returns the sum-of-years&rsquo; digits depreciation of an asset for a specified period.
+<code>SYD(cost,salvage,life,per)</code></p>
+<h3 id="conversion">Conversion</h3>
+<p><code>CBool</code> Convert to boolean</p>
+<p><code>CByte</code> Convert to byte</p>
+<p><code>CChar</code> Convert to char</p>
+<p><code>CDate</code> Convert to date</p>
+<p><code>CDbl</code> Convert to double</p>
+<p><code>CDec</code> Convert to decimal</p>
+<p><code>CInt</code> Convert to integer</p>
+<p><code>CLng</code> Convert to long</p>
+<p><code>CObj</code> Convert to object</p>
+<p><code>CShort</code> Convert to short</p>
+<p><code>CSng</code> Convert to single</p>
+<p><code>CStr</code> Convert to string</p>
+<p><code>Hex =Hex(Fields!EmployeeID.Value)</code></p>
+<p>Returns a hexadecimal value of a number</p>
+<p><code>Int =Int(43.44)</code></p>
+<p>Returns integer portion of a number</p>
+<p><code>Oct =Oct(Fields!EmployeeID.Value)</code></p>
+<p>Returns a octal value of a number</p>
+<p><code>Str =Str(Fields!EmployeeID.Value)</code></p>
+<p>Returns string value of a number</p>
+<p><code>Val =Val(&quot;32.43&quot;)</code></p>
+<p>Returns numeric value in string format</p>
+<h3 id="miscellaneous">Miscellaneous</h3>
+<p><code>Previous =Previous(Fields!EmployeeID.Value)</code></p>
+<p>Returns the previous value</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on October 7, 2016</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://nuxulu.com/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs/" data-title="Expressions or Functions used in SSRS" data-hashtags="ssrs,Expressions,Functions"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://nuxulu.com/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs/" data-hashtag="ssrs"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Linkedin" data-sharer="linkedin" data-url="https://nuxulu.com/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs/"><i class="fab fa-linkedin fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://nuxulu.com/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs/" data-title="Expressions or Functions used in SSRS" data-web><i class="fab fa-whatsapp fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://nuxulu.com/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs/" data-title="Expressions or Functions used in SSRS"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://nuxulu.com/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs/" data-title="Expressions or Functions used in SSRS"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://nuxulu.com/2016-10-07-ssrs-sql-server-reporting-services-expressions-or-functions-used-in-ssrs/" data-title="Expressions or Functions used in SSRS"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ssrs/">ssrs</a>,&nbsp;<a href="/tags/expressions/">Expressions</a>,&nbsp;<a href="/tags/functions/">Functions</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2016-07-05-create-record-in-dimensionattributevaluecombination-manually/" class="prev" rel="prev" title="Create record in DimensionAttributeValueCombination table manually."><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Create record in DimensionAttributeValueCombination table manually.</a>
+            <a href="/2016-11-08-understanding_modifedfield_table_method_in_dax_2012/" class="next" rel="next" title="Understanding modifedField() Table method in DAX 2012">Understanding modifedField() Table method in DAX 2012<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Have a nice day!</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2013 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/series/" target="_blank">Max Nguyen</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://https-dynamics365-github-io.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":300},"comment":{},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'UA-57379422-3', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-57379422-3" async></script></body>
+</html>
