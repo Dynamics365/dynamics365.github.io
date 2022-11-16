@@ -1,4 +1,1306 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://nuxulu.com/</link><description>Dynamics 365 Finance &amp; Operations</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Wed, 16 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://nuxulu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Extend on-hand inventory entities FinOps :triumph:</title><link>https://nuxulu.com/2022-11-13-extend-on-hand-entities-fin-ops/</link><pubDate>Sun, 13 Nov 2022 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2022-11-13-extend-on-hand-entities-fin-ops/</guid><description><![CDATA[<p>There are some entities that you can use to get the on-hand inventory from Dynamics 365 Finance Operations:</p>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://nuxulu.com/</link><description>Dynamics 365 Finance &amp; Operations</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Wed, 16 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://nuxulu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Theme Documentation - mermaid Shortcode</title><link>https://nuxulu.com/theme-documentation-mermaid-shortcode/</link><pubDate>Tue, 03 Mar 2020 15:29:41 +0800</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/theme-documentation-mermaid-shortcode/</guid><description><![CDATA[<a href="https://github.com/dillonzq/LoveIt/releases/tag/v0.2.11" rel="noopener noreffer" target="_blank"></a>
+<p>The <code>mermaid</code> shortcode supports diagrams in Hugo with <a href="https://mermaidjs.github.io/" target="_blank" rel="noopener noreffer ">Mermaid</a> library.</p>
+<p><strong>Mermaid</strong> is a library helping you to generate diagram and flowcharts from text, in a similar manner as Markdown.</p>
+<p>Just insert your mermaid code in the <code>mermaid</code> shortcode and that’s it.</p>
+<h2 id="flowchart">Flowchart</h2>
+<p>Example <strong>flowchart</strong> <code>mermaid</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">graph LR;
+</span></span><span class="line"><span class="cl">    A[Hard edge] --&gt;|Link text| B(Round edge)
+</span></span><span class="line"><span class="cl">    B --&gt; C{Decision}
+</span></span><span class="line"><span class="cl">    C --&gt;|One| D[Result one]
+</span></span><span class="line"><span class="cl">    C --&gt;|Two| E[Result two]
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<div class="mermaid" id="id-1"></div>
+<h2 id="sequence-diagram">Sequence Diagram</h2>
+<p>Example <strong>sequence diagram</strong> <code>mermaid</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">sequenceDiagram
+</span></span><span class="line"><span class="cl">    participant Alice
+</span></span><span class="line"><span class="cl">    participant Bob
+</span></span><span class="line"><span class="cl">    Alice-&gt;&gt;John: Hello John, how are you?
+</span></span><span class="line"><span class="cl">    loop Healthcheck
+</span></span><span class="line"><span class="cl">        John-&gt;John: Fight against hypochondria
+</span></span><span class="line"><span class="cl">    end
+</span></span><span class="line"><span class="cl">    Note right of John: Rational thoughts <span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>prevail...
+</span></span><span class="line"><span class="cl">    John--&gt;Alice: Great!
+</span></span><span class="line"><span class="cl">    John-&gt;Bob: How about you?
+</span></span><span class="line"><span class="cl">    Bob--&gt;John: Jolly good!
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<div class="mermaid" id="id-2"></div>
+<h2 id="gantt">Gantt</h2>
+<p>Example <strong>Gantt</strong> <code>mermaid</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">gantt
+</span></span><span class="line"><span class="cl">dateFormat  YYYY-MM-DD
+</span></span><span class="line"><span class="cl">title Adding GANTT diagram to mermaid
+</span></span><span class="line"><span class="cl">excludes weekdays 2014-01-10
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">section A section
+</span></span><span class="line"><span class="cl">Completed task            :done,    des1, 2014-01-06,2014-01-08
+</span></span><span class="line"><span class="cl">Active task               :active,  des2, 2014-01-09, 3d
+</span></span><span class="line"><span class="cl">Future task               :         des3, after des2, 5d
+</span></span><span class="line"><span class="cl">Future task2              :         des4, after des3, 5d
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<div class="mermaid" id="id-3"></div>
+<h2 id="class-diagram">Class Diagram</h2>
+<p>Example <strong>class diagram</strong> <code>mermaid</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">classDiagram
+</span></span><span class="line"><span class="cl">    Animal <span class="err">&lt;</span>|-- Duck
+</span></span><span class="line"><span class="cl">    Animal <span class="err">&lt;</span>|-- Fish
+</span></span><span class="line"><span class="cl">    Animal <span class="err">&lt;</span>|-- Zebra
+</span></span><span class="line"><span class="cl">    Animal : +int age
+</span></span><span class="line"><span class="cl">    Animal : +String gender
+</span></span><span class="line"><span class="cl">    Animal: +isMammal()
+</span></span><span class="line"><span class="cl">    Animal: +mate()
+</span></span><span class="line"><span class="cl">    class Duck{
+</span></span><span class="line"><span class="cl">        +String beakColor
+</span></span><span class="line"><span class="cl">        +swim()
+</span></span><span class="line"><span class="cl">        +quack()
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    class Fish{
+</span></span><span class="line"><span class="cl">        -int sizeInFeet
+</span></span><span class="line"><span class="cl">        -canEat()
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    class Zebra{
+</span></span><span class="line"><span class="cl">        +bool is_wild
+</span></span><span class="line"><span class="cl">        +run()
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<div class="mermaid" id="id-4"></div>
+<h2 id="state-diagram">State Diagram</h2>
+<p>Example <strong>state diagram</strong> <code>mermaid</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">stateDiagram-v2
+</span></span><span class="line"><span class="cl">    [*] --&gt; Still
+</span></span><span class="line"><span class="cl">    Still --&gt; [*]
+</span></span><span class="line"><span class="cl">    Still --&gt; Moving
+</span></span><span class="line"><span class="cl">    Moving --&gt; Still
+</span></span><span class="line"><span class="cl">    Moving --&gt; Crash
+</span></span><span class="line"><span class="cl">    Crash --&gt; [*]
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<div class="mermaid" id="id-5"></div>
+<h2 id="git-graph">Git Graph</h2>
+<p>Example <strong>git graph</strong> <code>mermaid</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">gitGraph
+</span></span><span class="line"><span class="cl">    commit
+</span></span><span class="line"><span class="cl">    commit
+</span></span><span class="line"><span class="cl">    branch develop
+</span></span><span class="line"><span class="cl">    checkout develop
+</span></span><span class="line"><span class="cl">    commit
+</span></span><span class="line"><span class="cl">    commit
+</span></span><span class="line"><span class="cl">    checkout main
+</span></span><span class="line"><span class="cl">    merge develop
+</span></span><span class="line"><span class="cl">    commit
+</span></span><span class="line"><span class="cl">    commit
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<div class="mermaid" id="id-6"></div>
+<h2 id="entity-relationship-diagram">Entity Relationship Diagram</h2>
+<p>Example <strong>entity-relationship diagram</strong> <code>mermaid</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">erDiagram
+</span></span><span class="line"><span class="cl">    CUSTOMER ||--o{ ORDER : places
+</span></span><span class="line"><span class="cl">    ORDER ||--|{ LINE-ITEM : contains
+</span></span><span class="line"><span class="cl">    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<div class="mermaid" id="id-7"></div>
+<h2 id="user-journey">User Journey</h2>
+<p>Example <strong>user journey</strong> <code>mermaid</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">journey
+</span></span><span class="line"><span class="cl">    title My working day
+</span></span><span class="line"><span class="cl">    section Go to work
+</span></span><span class="line"><span class="cl">      Make tea: 5: Me
+</span></span><span class="line"><span class="cl">      Go upstairs: 3: Me
+</span></span><span class="line"><span class="cl">      Do work: 1: Me, Cat
+</span></span><span class="line"><span class="cl">    section Go home
+</span></span><span class="line"><span class="cl">      Go downstairs: 5: Me
+</span></span><span class="line"><span class="cl">      Sit down: 5: Me
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<div class="mermaid" id="id-8"></div>
+<h2 id="pie-chart">Pie Chart</h2>
+<p>Example <strong>pie chart</strong> <code>mermaid</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">pie
+</span></span><span class="line"><span class="cl">    &#34;Dogs&#34; : 386
+</span></span><span class="line"><span class="cl">    &#34;Cats&#34; : 85
+</span></span><span class="line"><span class="cl">    &#34;Rats&#34; : 15
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<div class="mermaid" id="id-9"></div>
+<h2 id="requirement-diagram">Requirement Diagram</h2>
+<p>Example <strong>requirement diagram</strong> <code>mermaid</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">requirementDiagram
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">requirement test_req {
+</span></span><span class="line"><span class="cl">id: 1
+</span></span><span class="line"><span class="cl">text: the test text.
+</span></span><span class="line"><span class="cl">risk: high
+</span></span><span class="line"><span class="cl">verifymethod: test
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">element test_entity {
+</span></span><span class="line"><span class="cl">type: simulation
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">test_entity - satisfies -&gt; test_req
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<div class="mermaid" id="id-10"></div>]]></description></item><item><title>Theme Documentation - echarts Shortcode</title><link>https://nuxulu.com/theme-documentation-echarts-shortcode/</link><pubDate>Tue, 03 Mar 2020 14:29:41 +0800</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/theme-documentation-echarts-shortcode/</guid><description><![CDATA[<p>The <code>echarts</code> shortcode supports data visualization in Hugo with <a href="https://echarts.apache.org/" target="_blank" rel="noopener noreffer ">ECharts</a> library.</p>
+<p><strong>ECharts</strong> is a library helping you to generate interactive data visualization.</p>
+<p>The basic chart types ECharts supports include <a href="https://echarts.apache.org/en/option.html#series-line" target="_blank" rel="noopener noreffer ">line series</a>, <a href="https://echarts.apache.org/en/option.html#series-line" target="_blank" rel="noopener noreffer ">bar series</a>, <a href="https://echarts.apache.org/en/option.html#series-scatter" target="_blank" rel="noopener noreffer ">scatter series</a>, <a href="https://echarts.apache.org/en/option.html#series-pie" target="_blank" rel="noopener noreffer ">pie charts</a>, <a href="https://echarts.apache.org/en/option.html#series-candlestick" target="_blank" rel="noopener noreffer ">candle-stick series</a>, <a href="https://echarts.apache.org/en/option.html#series-boxplot" target="_blank" rel="noopener noreffer ">boxplot series</a> for statistics, <a href="https://echarts.apache.org/en/option.html#series-map" target="_blank" rel="noopener noreffer ">map series</a>, <a href="https://echarts.apache.org/en/option.html#series-heatmap" target="_blank" rel="noopener noreffer ">heatmap series</a>, <a href="https://echarts.apache.org/en/option.html#series-lines" target="_blank" rel="noopener noreffer ">lines series</a> for directional information, <a href="https://echarts.apache.org/en/option.html#series-graph" target="_blank" rel="noopener noreffer ">graph series</a> for relationships, <a href="https://echarts.apache.org/en/option.html#series-treemap" target="_blank" rel="noopener noreffer ">treemap series</a>, <a href="https://echarts.apache.org/en/option.html#series-sunburst" target="_blank" rel="noopener noreffer ">sunburst series</a>, <a href="https://echarts.apache.org/en/option.html#series-parallel" target="_blank" rel="noopener noreffer ">parallel series</a> for multi-dimensional data, <a href="https://echarts.apache.org/en/option.html#series-funnel" target="_blank" rel="noopener noreffer ">funnel series</a>, <a href="https://echarts.apache.org/en/option.html#series-gauge" target="_blank" rel="noopener noreffer ">gauge series</a>. And it&rsquo;s extremely easy to create a combinition of them with ECharts.</p>
+<p>Just insert your ECharts option in <code>JSON</code>/<code>YAML</code>/<code>TOML</code> format in the <code>echarts</code> shortcode and that’s it.</p>
+<p>Example <code>echarts</code> input in <code>JSON</code> format:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span><span class="err">{&lt;</span> <span class="err">echarts</span> <span class="err">&gt;</span><span class="p">}</span><span class="err">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;text&#34;</span><span class="p">:</span> <span class="s2">&#34;Summary Line Chart&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;top&#34;</span><span class="p">:</span> <span class="s2">&#34;2%&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;left&#34;</span><span class="p">:</span> <span class="s2">&#34;center&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;tooltip&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;trigger&#34;</span><span class="p">:</span> <span class="s2">&#34;axis&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;legend&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;Email Marketing&#34;</span><span class="p">,</span> <span class="s2">&#34;Affiliate Advertising&#34;</span><span class="p">,</span> <span class="s2">&#34;Video Advertising&#34;</span><span class="p">,</span> <span class="s2">&#34;Direct View&#34;</span><span class="p">,</span> <span class="s2">&#34;Search Engine&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;top&#34;</span><span class="p">:</span> <span class="s2">&#34;10%&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;grid&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;left&#34;</span><span class="p">:</span> <span class="s2">&#34;5%&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;right&#34;</span><span class="p">:</span> <span class="s2">&#34;5%&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;bottom&#34;</span><span class="p">:</span> <span class="s2">&#34;5%&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;top&#34;</span><span class="p">:</span> <span class="s2">&#34;20%&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;containLabel&#34;</span><span class="p">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;toolbox&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;feature&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;saveAsImage&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Save as Image&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;xAxis&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;category&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;boundaryGap&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;Monday&#34;</span><span class="p">,</span> <span class="s2">&#34;Tuesday&#34;</span><span class="p">,</span> <span class="s2">&#34;Wednesday&#34;</span><span class="p">,</span> <span class="s2">&#34;Thursday&#34;</span><span class="p">,</span> <span class="s2">&#34;Friday&#34;</span><span class="p">,</span> <span class="s2">&#34;Saturday&#34;</span><span class="p">,</span> <span class="s2">&#34;Sunday&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;yAxis&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;value&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;series&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Email Marketing&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;line&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;stack&#34;</span><span class="p">:</span> <span class="s2">&#34;Total&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">120</span><span class="p">,</span> <span class="mi">132</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">134</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">230</span><span class="p">,</span> <span class="mi">210</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Affiliate Advertising&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;line&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;stack&#34;</span><span class="p">:</span> <span class="s2">&#34;Total&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">220</span><span class="p">,</span> <span class="mi">182</span><span class="p">,</span> <span class="mi">191</span><span class="p">,</span> <span class="mi">234</span><span class="p">,</span> <span class="mi">290</span><span class="p">,</span> <span class="mi">330</span><span class="p">,</span> <span class="mi">310</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Video Advertising&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;line&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;stack&#34;</span><span class="p">:</span> <span class="s2">&#34;Total&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">150</span><span class="p">,</span> <span class="mi">232</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">154</span><span class="p">,</span> <span class="mi">190</span><span class="p">,</span> <span class="mi">330</span><span class="p">,</span> <span class="mi">410</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Direct View&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;line&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;stack&#34;</span><span class="p">:</span> <span class="s2">&#34;Total&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">320</span><span class="p">,</span> <span class="mi">332</span><span class="p">,</span> <span class="mi">301</span><span class="p">,</span> <span class="mi">334</span><span class="p">,</span> <span class="mi">390</span><span class="p">,</span> <span class="mi">330</span><span class="p">,</span> <span class="mi">320</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Search Engine&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;line&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;stack&#34;</span><span class="p">:</span> <span class="s2">&#34;Total&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">820</span><span class="p">,</span> <span class="mi">932</span><span class="p">,</span> <span class="mi">901</span><span class="p">,</span> <span class="mi">934</span><span class="p">,</span> <span class="mi">1290</span><span class="p">,</span> <span class="mi">1330</span><span class="p">,</span> <span class="mi">1320</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="err">{&lt;</span> <span class="err">/echarts</span> <span class="err">&gt;</span><span class="p">}</span><span class="err">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The same in <code>YAML</code> format:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span><span class="lnt">95
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl">{{<span class="l">&lt; echarts &gt;}}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">title</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l">Summary Line Chart</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">top</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="l">%</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">left</span><span class="p">:</span><span class="w"> </span><span class="l">center</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">tooltip</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">trigger</span><span class="p">:</span><span class="w"> </span><span class="l">axis</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">legend</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Email Marketing</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Affiliate Advertising</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Video Advertising</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Direct View</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Search Engine</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">top</span><span class="p">:</span><span class="w"> </span><span class="m">10</span><span class="l">%</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">grid</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">left</span><span class="p">:</span><span class="w"> </span><span class="m">5</span><span class="l">%</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">right</span><span class="p">:</span><span class="w"> </span><span class="m">5</span><span class="l">%</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">bottom</span><span class="p">:</span><span class="w"> </span><span class="m">5</span><span class="l">%</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">top</span><span class="p">:</span><span class="w"> </span><span class="m">20</span><span class="l">%</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">containLabel</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">toolbox</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">feature</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">saveAsImage</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l">Save as Image</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">xAxis</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">category</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">boundaryGap</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Monday</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Tuesday</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Wednesday</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Thursday</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Friday</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Saturday</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Sunday</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">yAxis</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">value</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">series</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Email Marketing</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">line</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">stack</span><span class="p">:</span><span class="w"> </span><span class="l">Total</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">120</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">132</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">101</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">134</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">90</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">230</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">210</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Affiliate Advertising</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">line</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">stack</span><span class="p">:</span><span class="w"> </span><span class="l">Total</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">220</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">182</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">191</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">234</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">290</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">330</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">310</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Video Advertising</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">line</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">stack</span><span class="p">:</span><span class="w"> </span><span class="l">Total</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">150</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">232</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">201</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">154</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">190</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">330</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">410</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Direct View</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">line</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">stack</span><span class="p">:</span><span class="w"> </span><span class="l">Total</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">320</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">332</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">301</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">334</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">390</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">330</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">320</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Search Engine</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">line</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">stack</span><span class="p">:</span><span class="w"> </span><span class="l">Total</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">820</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">932</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">901</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">934</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">1290</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">1330</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">1320</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>{{<span class="l">&lt; /echarts &gt;}}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>The same in <code>TOML</code> format:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">{{</span><span class="err">&lt;</span> <span class="nx">echarts</span> <span class="err">&gt;</span><span class="p">}}</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">title</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">text</span> <span class="p">=</span> <span class="s2">&#34;Summary Line Chart&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">top</span> <span class="p">=</span> <span class="s2">&#34;2%&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">left</span> <span class="p">=</span> <span class="s2">&#34;center&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">tooltip</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">trigger</span> <span class="p">=</span> <span class="s2">&#34;axis&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">legend</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">data</span> <span class="p">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Email Marketing&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Affiliate Advertising&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Video Advertising&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Direct View&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Search Engine&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">top</span> <span class="p">=</span> <span class="s2">&#34;10%&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">grid</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">left</span> <span class="p">=</span> <span class="s2">&#34;5%&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">right</span> <span class="p">=</span> <span class="s2">&#34;5%&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">bottom</span> <span class="p">=</span> <span class="s2">&#34;5%&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">top</span> <span class="p">=</span> <span class="s2">&#34;20%&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">containLabel</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">toolbox</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">toolbox</span><span class="p">.</span><span class="nx">feature</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">toolbox</span><span class="p">.</span><span class="nx">feature</span><span class="p">.</span><span class="nx">saveAsImage</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;Save as Image&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">xAxis</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;category&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">boundaryGap</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="nx">data</span> <span class="p">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Monday&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Tuesday&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Wednesday&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Thursday&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Friday&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Saturday&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Sunday&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">yAxis</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;value&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">series</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Email Marketing&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;line&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">stack</span> <span class="p">=</span> <span class="s2">&#34;Total&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">data</span> <span class="p">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">120.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">132.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">101.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">134.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">90.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">230.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">210.0</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">series</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Affiliate Advertising&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;line&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">stack</span> <span class="p">=</span> <span class="s2">&#34;Total&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">data</span> <span class="p">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">220.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">182.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">191.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">234.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">290.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">330.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">310.0</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">series</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Video Advertising&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;line&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">stack</span> <span class="p">=</span> <span class="s2">&#34;Total&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">data</span> <span class="p">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">150.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">232.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">201.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">154.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">190.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">330.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">410.0</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">series</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Direct View&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;line&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">stack</span> <span class="p">=</span> <span class="s2">&#34;Total&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">data</span> <span class="p">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">320.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">332.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">301.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">334.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">390.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">330.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">320.0</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">series</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Search Engine&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;line&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">stack</span> <span class="p">=</span> <span class="s2">&#34;Total&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">data</span> <span class="p">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">820.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">932.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">901.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">934.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">1290.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">1330.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="mf">1320.0</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">{{</span><span class="err">&lt;</span> <span class="err">/</span><span class="nx">echarts</span> <span class="err">&gt;</span><span class="p">}}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<div class="echarts" id="id-1" style="width: 100%; height: 30rem;"></div>
+<p>The <code>echarts</code> shortcode has also the following named parameters:</p>
+<ul>
+<li>
+<p><strong>width</strong> <em>[optional]</em> (<strong>first</strong> positional parameter)</p>
+<p><a href="https://github.com/dillonzq/LoveIt/releases/tag/v0.2.0" rel="noopener noreffer" target="_blank"></a> Width of the data visualization, default value is <code>100%</code>.</p>
+</li>
+<li>
+<p><strong>height</strong> <em>[optional]</em> (<strong>second</strong> positional parameter)</p>
+<p><a href="https://github.com/dillonzq/LoveIt/releases/tag/v0.2.0" rel="noopener noreffer" target="_blank"></a> Height of the data visualization, default value is <code>30rem</code>.</p>
+</li>
+</ul>
+]]></description></item><item><title>Theme Documentation - mapbox Shortcode</title><link>https://nuxulu.com/theme-documentation-mapbox-shortcode/</link><pubDate>Tue, 03 Mar 2020 13:29:41 +0800</pubDate><author>false</author><guid>https://nuxulu.com/theme-documentation-mapbox-shortcode/</guid><description><![CDATA[<a href="https://github.com/dillonzq/LoveIt/releases/tag/v0.2.0" rel="noopener noreffer" target="_blank"></a>
+<p>The <code>mapbox</code> shortcode supports interactive maps in Hugo with <a href="https://docs.mapbox.com/mapbox-gl-js" target="_blank" rel="noopener noreffer ">Mapbox GL JS</a> library.</p>
+<p><strong>Mapbox GL JS</strong> is a JavaScript library that uses WebGL to render interactive maps from <a href="https://docs.mapbox.com/help/glossary/vector-tiles/" target="_blank" rel="noopener noreffer ">vector tiles</a> and <a href="https://docs.mapbox.com/mapbox-gl-js/style-spec/" target="_blank" rel="noopener noreffer ">Mapbox styles</a>.</p>
+<p>The <code>mapbox</code> shortcode has the following named parameters to use Mapbox GL JS:</p>
+<ul>
+<li>
+<p><strong>lng</strong> <em>[required]</em> (<strong>first</strong> positional parameter)</p>
+<p>Longitude of the inital centerpoint of the map, measured in degrees.</p>
+</li>
+<li>
+<p><strong>lat</strong> <em>[required]</em> (<strong>second</strong> positional parameter)</p>
+<p>Latitude of the inital centerpoint of the map, measured in degrees.</p>
+</li>
+<li>
+<p><strong>zoom</strong> <em>[optional]</em> (<strong>third</strong> positional parameter)</p>
+<p>The initial zoom level of the map, default value is <code>10</code>.</p>
+</li>
+<li>
+<p><strong>marked</strong> <em>[optional]</em> (<strong>fourth</strong> positional parameter)</p>
+<p>Whether to add a marker at the inital centerpoint of the map, default value is <code>true</code>.</p>
+</li>
+<li>
+<p><strong>light-style</strong> <em>[optional]</em> (<strong>fifth</strong> positional parameter)</p>
+<p>Style for the light theme, default value is the value set in the <a href="../theme-documentation-content#front-matter" rel="">front matter</a> or the <a href="../theme-documentation-basics#site-configuration" rel="">site configuration</a>.</p>
+</li>
+<li>
+<p><strong>dark-style</strong> <em>[optional]</em> (<strong>sixth</strong> positional parameter)</p>
+<p>Style for the dark theme, default value is the value set in the <a href="../theme-documentation-content#front-matter" rel="">front matter</a> or the <a href="../theme-documentation-basics#site-configuration" rel="">site configuration</a>.</p>
+</li>
+<li>
+<p><strong>navigation</strong> <em>[optional]</em></p>
+<p>Whether to add <a href="https://docs.mapbox.com/mapbox-gl-js/api#navigationcontrol" target="_blank" rel="noopener noreffer ">NavigationControl</a>, default value is the value set in the <a href="../theme-documentation-content#front-matter" rel="">front matter</a> or the <a href="../theme-documentation-basics#site-configuration" rel="">site configuration</a>.</p>
+</li>
+<li>
+<p><strong>geolocate</strong> <em>[optional]</em></p>
+<p>Whether to add <a href="https://docs.mapbox.com/mapbox-gl-js/api#geolocatecontrol" target="_blank" rel="noopener noreffer ">GeolocateControl</a>, default value is the value set in the <a href="../theme-documentation-content#front-matter" rel="">front matter</a> or the <a href="../theme-documentation-basics#site-configuration" rel="">site configuration</a>.</p>
+</li>
+<li>
+<p><strong>scale</strong> <em>[optional]</em></p>
+<p>Whether to add <a href="https://docs.mapbox.com/mapbox-gl-js/api#scalecontrol" target="_blank" rel="noopener noreffer ">ScaleControl</a>, default value is the value set in the <a href="../theme-documentation-content#front-matter" rel="">front matter</a> or the <a href="../theme-documentation-basics#site-configuration" rel="">site configuration</a>.</p>
+</li>
+<li>
+<p><strong>fullscreen</strong> <em>[optional]</em></p>
+<p>Whether to add <a href="https://docs.mapbox.com/mapbox-gl-js/api#fullscreencontrol" target="_blank" rel="noopener noreffer ">FullscreenControl</a>, default value is the value set in the <a href="../theme-documentation-content#front-matter" rel="">front matter</a> or the <a href="../theme-documentation-basics#site-configuration" rel="">site configuration</a>.</p>
+</li>
+<li>
+<p><strong>width</strong> <em>[optional]</em></p>
+<p>Width of the map, default value is <code>100%</code>.</p>
+</li>
+<li>
+<p><strong>height</strong> <em>[optional]</em></p>
+<p>Height of the map, default value is <code>20rem</code>.</p>
+</li>
+</ul>
+<p>Example simple <code>mapbox</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mapbox</span> <span class="na">121</span><span class="err">.</span><span class="na">485</span> <span class="na">31</span><span class="err">.</span><span class="na">233</span> <span class="na">12</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">Or
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mapbox</span> <span class="na">lng</span><span class="o">=</span><span class="s">121.485</span> <span class="na">lat</span><span class="o">=</span><span class="s">31.233</span> <span class="na">zoom</span><span class="o">=</span><span class="s">12</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<div class="mapbox" id="id-1" style="width: 100%; height: 20rem;"></div>
+<p>Example <code>mapbox</code> input with the custom style:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mapbox</span> <span class="na">-122</span><span class="err">.</span><span class="na">252</span> <span class="na">37</span><span class="err">.</span><span class="na">453</span> <span class="na">10</span> <span class="na">false</span> <span class="err">&#34;</span><span class="na">mapbox:</span><span class="err">//</span><span class="na">styles</span><span class="err">/</span><span class="na">mapbox</span><span class="err">/</span><span class="na">navigation-preview-day-v4</span><span class="err">&#34;</span> <span class="err">&#34;</span><span class="na">mapbox:</span><span class="err">//</span><span class="na">styles</span><span class="err">/</span><span class="na">mapbox</span><span class="err">/</span><span class="na">navigation-preview-night-v4</span><span class="err">&#34;</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">Or
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mapbox</span> <span class="na">lng</span><span class="o">=</span><span class="s">-122.252</span> <span class="na">lat</span><span class="o">=</span><span class="s">37.453</span> <span class="na">zoom</span><span class="o">=</span><span class="s">10</span> <span class="na">marked</span><span class="o">=</span><span class="s">false</span> <span class="na">light-style</span><span class="o">=</span><span class="s">&#34;mapbox://styles/mapbox/navigation-preview-day-v4&#34;</span> <span class="na">dark-style</span><span class="o">=</span><span class="s">&#34;mapbox://styles/mapbox/navigation-preview-night-v4&#34;</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<div class="mapbox" id="id-2" style="width: 100%; height: 20rem;"></div>]]></description></item><item><title>Theme Documentation - music Shortcode</title><link>https://nuxulu.com/theme-documentation-music-shortcode/</link><pubDate>Tue, 03 Mar 2020 12:29:41 +0800</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/theme-documentation-music-shortcode/</guid><description><![CDATA[<p>The <code>music</code> shortcode embeds a responsive music player based on <a href="https://github.com/MoePlayer/APlayer" target="_blank" rel="noopener noreffer ">APlayer</a> and <a href="https://github.com/metowolf/MetingJS" target="_blank" rel="noopener noreffer ">MetingJS</a>.</p>
+<p>There are three ways to use it the <code>music</code> shortcode.</p>
+<h2 id="custom-music-url">1 Custom Music URL</h2>
+<p><a href="https://github.com/dillonzq/LoveIt/releases/tag/v0.2.10" rel="noopener noreffer" target="_blank"></a> The complete usage of <a href="../theme-documentation-content#contents-organization" rel="">local resource references</a> is supported.</p>
+<p>The <code>music</code> shortcode has the following named parameters by custom music URL:</p>
+<ul>
+<li>
+<p><strong>server</strong> <em>[required]</em></p>
+<p>URL of the custom music.</p>
+</li>
+<li>
+<p><strong>name</strong> <em>[optional]</em></p>
+<p>Name of the custom music.</p>
+</li>
+<li>
+<p><strong>artist</strong> <em>[optional]</em></p>
+<p>Artist of the custom music.</p>
+</li>
+<li>
+<p><strong>cover</strong> <em>[required]</em></p>
+<p>URL of the custom music cover.</p>
+</li>
+</ul>
+<p>Example <code>music</code> input by custom music URL:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">music</span> <span class="na">url</span><span class="o">=</span><span class="s">&#34;/music/Wavelength.mp3&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">Wavelength</span> <span class="na">artist</span><span class="o">=</span><span class="s">oldmanyoung</span> <span class="na">cover</span><span class="o">=</span><span class="s">&#34;/images/Wavelength.jpg&#34;</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<meting-js url="/music/Wavelength.mp3" name="Wavelength" artist="oldmanyoung" cover="/images/Wavelength.jpg" theme="#448aff"></meting-js>
+<h2 id="automatic-identification">2 Music Platform URL Automatic Identification</h2>
+<p>The <code>music</code> shortcode has one named parameter by music platform URL automatic identification:</p>
+<ul>
+<li>
+<p><strong>auto</strong> <em>[required]</em> (<strong>first</strong> positional parameter)</p>
+<p>URL of the music platform URL for automatic identification,
+which supports <code>netease</code>, <code>tencent</code> and <code>xiami</code> music platform.</p>
+</li>
+</ul>
+<p>Example <code>music</code> input by music platform URL automatic identification:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">music</span> <span class="na">auto</span><span class="o">=</span><span class="s">&#34;https://music.163.com/#/playlist?id=60198&#34;</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">Or
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">music</span> <span class="err">&#34;</span><span class="na">https:</span><span class="err">//</span><span class="na">music</span><span class="err">.</span><span class="na">163</span><span class="err">.</span><span class="na">com</span><span class="err">/#/</span><span class="na">playlist</span><span class="err">?</span><span class="na">id</span><span class="o">=</span><span class="s">60198&#34;</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<meting-js auto="https://music.163.com/#/playlist?id=60198" theme="#448aff"></meting-js>
+<h2 id="custom-server">3 Custom Server, Type and ID</h2>
+<p>The <code>music</code> shortcode has the following named parameters by custom music platform:</p>
+<ul>
+<li>
+<p><strong>server</strong> <em>[required]</em> (<strong>first</strong> positional parameter)</p>
+<p>[<code>netease</code>, <code>tencent</code>, <code>kugou</code>, <code>xiami</code>, <code>baidu</code>]</p>
+<p>Music platform.</p>
+</li>
+<li>
+<p><strong>type</strong> <em>[required]</em> (<strong>second</strong> positional parameter)</p>
+<p>[<code>song</code>, <code>playlist</code>, <code>album</code>, <code>search</code>, <code>artist</code>]</p>
+<p>Type of the music.</p>
+</li>
+<li>
+<p><strong>id</strong> <em>[required]</em> (<strong>third</strong> positional parameter)</p>
+<p>Song ID, or playlist ID, or album ID, or search keyword, or artist ID.</p>
+</li>
+</ul>
+<p>Example <code>music</code> input by custom music platform:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">music</span> <span class="na">server</span><span class="o">=</span><span class="s">&#34;netease&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;song&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;1868553&#34;</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">Or
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">music</span> <span class="na">netease</span> <span class="na">song</span> <span class="na">1868553</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<meting-js server="netease" type="song" id="1868553" theme="#448aff"></meting-js>
+<h2 id="other-parameters">4 Other Parameters</h2>
+<p>The <code>music</code> shortcode has other named parameters applying to the above three ways:</p>
+<ul>
+<li>
+<p><strong>theme</strong> <em>[optional]</em></p>
+<p><a href="https://github.com/dillonzq/LoveIt/releases/tag/v0.2.0" rel="noopener noreffer" target="_blank"></a> Main color of the music player, default value is <code>#448aff</code>.</p>
+</li>
+<li>
+<p><strong>fixed</strong> <em>[optional]</em></p>
+<p>Whether to enable fixed mode, default value is <code>false</code>.</p>
+</li>
+<li>
+<p><strong>mini</strong> <em>[optional]</em></p>
+<p>Whether to enable mini mode, default value is <code>false</code>.</p>
+</li>
+<li>
+<p><strong>autoplay</strong> <em>[optional]</em></p>
+<p>Whether to autoplay music, default value is <code>false</code>.</p>
+</li>
+<li>
+<p><strong>volume</strong> <em>[optional]</em></p>
+<p>Default volume when the player is first opened, which will be remembered in the browser, default value is <code>0.7</code>.</p>
+</li>
+<li>
+<p><strong>mutex</strong> <em>[optional]</em></p>
+<p>Whether to pause other players when this player starts playing, default value is <code>true</code>.</p>
+</li>
+</ul>
+<p>The <code>music</code> shortcode has the following named parameters only applying to the type of music list:</p>
+<ul>
+<li>
+<p><strong>loop</strong> <em>[optional]</em></p>
+<p>[<code>all</code>, <code>one</code>, <code>none</code>]</p>
+<p>Loop mode of the music list, default value is <code>none</code>.</p>
+</li>
+<li>
+<p><strong>order</strong> <em>[optional]</em></p>
+<p>[<code>list</code>, <code>random</code>]</p>
+<p>Play order of the music list, default value is <code>list</code>.</p>
+</li>
+<li>
+<p><strong>list-folded</strong> <em>[optional]</em></p>
+<p>Whether the music list should be folded at first, default value is <code>false</code>.</p>
+</li>
+<li>
+<p><strong>list-max-height</strong> <em>[optional]</em></p>
+<p>Max height of the music list, default value is <code>340px</code>.</p>
+</li>
+</ul>]]></description></item><item><title>Theme Documentation - bilibili Shortcode</title><link>https://nuxulu.com/theme-documentation-bilibili-shortcode/</link><pubDate>Tue, 03 Mar 2020 11:29:41 +0800</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/theme-documentation-bilibili-shortcode/</guid><description><![CDATA[<a href="https://github.com/dillonzq/LoveIt/releases/tag/v0.2.0" rel="noopener noreffer" target="_blank"></a>
+<p>The <code>bilibili</code> shortcode embeds a responsive video player for bilibili videos.</p>
+<p>When the video only has one part, only the BV <code>id</code> of the video is required, e.g.:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">https://www.bilibili.com/video/BV1Sx411T7QQ
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Example <code>bilibili</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">bilibili</span> <span class="na">BV1Sx411T7QQ</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">Or
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">bilibili</span> <span class="na">id</span><span class="o">=</span><span class="s">BV1Sx411T7QQ</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<div class="bilibili"><iframe src="//player.bilibili.com/player.html?bvid=BV1Sx411T7QQ&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
+
+<p>When the video has multiple parts, in addition to the BV <code>id</code> of the video,
+<code>p</code> is also required, whose default value is <code>1</code>, e.g.:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">https://www.bilibili.com/video/BV1TJ411C7An?p=3
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Example <code>bilibili</code> input with <code>p</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">bilibili</span> <span class="na">BV1TJ411C7An</span> <span class="na">3</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">Or
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">bilibili</span> <span class="na">id</span><span class="o">=</span><span class="s">BV1TJ411C7An</span> <span class="na">p</span><span class="o">=</span><span class="s">3</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<div class="bilibili"><iframe src="//player.bilibili.com/player.html?bvid=BV1TJ411C7An&page=3" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>]]></description></item><item><title>Theme Documentation - typeit Shortcode</title><link>https://nuxulu.com/theme-documentation-typeit-shortcode/</link><pubDate>Tue, 03 Mar 2020 10:29:41 +0800</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/theme-documentation-typeit-shortcode/</guid><description><![CDATA[<p>The <code>typeit</code> shortcode provides typing animation based on <a href="https://typeitjs.com/" target="_blank" rel="noopener noreffer ">TypeIt</a> library.</p>
+<p>Just insert your content in the <code>typeit</code> shortcode and that’s it.</p>
+<h2 id="simple-content">1 Simple Content</h2>
+<p>Simple content is allowed in <code>Markdown</code> format and <strong>without</strong> rich block content such as images and more&hellip;</p>
+<p>Example <code>typeit</code> input:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">typeit</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">This is a <span class="ge">*paragraph*</span> with <span class="gs">**typing animation**</span> based on [<span class="nt">TypeIt</span>](<span class="na">https://typeitjs.com/</span>)...
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">typeit</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<div class="typeit"><div id="id-1"></div></div>
+
+<p>Alternatively, you can use custom <strong>HTML tags</strong>.</p>
+<p>Example <code>typeit</code> input with <code>h4</code> tag:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">typeit</span> <span class="na">tag</span><span class="o">=</span><span class="s">h4</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">This is a <span class="ge">*paragraph*</span> with <span class="gs">**typing animation**</span> based on [<span class="nt">TypeIt</span>](<span class="na">https://typeitjs.com/</span>)...
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">typeit</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<div class="typeit"><h4 id="id-2"></h4></div>
+
+<h2 id="code-content">2 Code Content</h2>
+<p>Code content is allowed and will be highlighted by named parameter <code>code</code> for the type of code language.</p>
+<p>Example <code>typeit</code> input with <code>code</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">typeit</span> <span class="na">code</span><span class="o">=</span><span class="s">java</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">public class HelloWorld {
+</span></span><span class="line"><span class="cl">    public static void main(String []args) {
+</span></span><span class="line"><span class="cl">        System.out.println(&#34;Hello World&#34;);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">typeit</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<div class="typeit"><div id="id-3" class="highlight"></div></div>
+
+<h2 id="group-content">3 Group Content</h2>
+<p>All typing animations start at the same time by default.
+But sometimes you may want to start a set of <code>typeit</code> contents in order.</p>
+<p>A set of <code>typeit</code> contents with the same value of named parameter <code>group</code> will start typing animation in sequence.</p>
+<p>Example <code>typeit</code> input with <code>group</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">typeit</span> <span class="na">group</span><span class="o">=</span><span class="s">paragraph</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl"><span class="gs">**First**</span> this paragraph begins
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">typeit</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">typeit</span> <span class="na">group</span><span class="o">=</span><span class="s">paragraph</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl"><span class="gs">**Then**</span> this paragraph begins
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">typeit</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rendered output looks like this:</p>
+<div class="typeit"><div id="id-4"></div></div>
+
+<div class="typeit"><div id="id-5"></div></div>]]></description></item><item><title>Extend on-hand inventory entities FinOps</title><link>https://nuxulu.com/2022-11-13-extend-on-hand-entities-fin-ops/</link><pubDate>Sun, 13 Nov 2022 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2022-11-13-extend-on-hand-entities-fin-ops/</guid><description><![CDATA[<p>There are some entities that you can use to get the on-hand inventory from Dynamics 365 Finance Operations:</p>
+<p><i class="fa-solid fa-shield-check" aria-hidden="true"></i></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -24,11 +1326,13 @@
 <li>Extend the <code>InventSiteOnHandAggregatedView</code> view with the extension fields.</li>
 <li>Extend the <code>InventSiteOnHandAggregatedViewBuilder</code> viewBuilder class by modifying the <code>getExtensionFields()</code> method. In this way, you map old view fields to new view fields when viewBuilder synchronization is run.</li>
 </ol>
-<p>For example, you&rsquo;ve added the following four fields to the InventTable table through extension:
-• Custom field 1
-• Custom field 2
-• Custom field 3
-• Custom field 4</p>
+<p>For example, you&rsquo;ve added the following four fields to the InventTable table through extension:</p>
+<ul>
+<li>Custom field 1</li>
+<li>Custom field 2</li>
+<li>Custom field 3</li>
+<li>Custom field 4</li>
+</ul>
 <p>In the case, you must modify the <code>getExtensionFields()</code> method in the following way.</p>
 ]]></description></item><item><title>Reservation and on-hand inventory in warehouse management</title><link>https://nuxulu.com/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/</link><pubDate>Wed, 09 Nov 2022 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/</guid><description><![CDATA[<h2 id="1-inventory-reservation-hierarchy-in-warehouse-management">1. <strong>Inventory reservation hierarchy in Warehouse management</strong></h2>
 <p>The reservation functionality can be used only for items that are enabled for warehouse management processes. However, if an item is itself enabled for <a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/warehousing/flexible-warehouse-level-dimension-reservation" target="_blank" rel="noopener noreffer ">warehouse management processes</a>, it can be used both in warehouses that are enabled for warehouse management processes and warehouses that are not. The behavior in reservation scenarios is different, depending on the warehouse setup.</p>
@@ -882,1277 +2186,4 @@ both WHS-enabled and non-WHS-enabled items, APIs are provided to support the cal
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Check <a href="/2021-01-27-deploy-ssrs-reports-in-dynamics-365-finance-scm-using-powershell/" rel="">this article</a> for deploy report using PS script.</p>
-]]></description></item><item><title>Remove a person from an user Dynamics 365 Finance Operations</title><link>https://nuxulu.com/2022-09-28-remove-person-from-users/</link><pubDate>Wed, 28 Sep 2022 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2022-09-28-remove-person-from-users/</guid><description><![CDATA[<p>Whenever you add a new person to an user in the user <strong>SysUserInfoPage</strong> form, the person field grays out.</p>
-<p><figure><a class="lightgallery" href="/2022-09-28-remove-person-from-users/2022-09-28-remove-person-from-users.png" title="Image" data-thumbnail="/2022-09-28-remove-person-from-users/2022-09-28-remove-person-from-users.png" data-sub-html="<h2>userinfo</h2><p>Image</p>">
-        
-    </a><figcaption class="image-caption">userinfo</figcaption>
-    </figure></p>
-<p>To remove the person from that user:</p>
-<ul>
-<li>In the user form <code>System administration &gt; Users &gt; Users</code>, go to <code>Maintain versions</code>.</li>
-<li>Delete the person.</li>
-</ul>
-]]></description></item><item><title>Add new fields to data entity or composite entity Dynamics 365</title><link>https://nuxulu.com/2022-09-23-add-custom-fields-to-composite-entity/</link><pubDate>Fri, 23 Sep 2022 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2022-09-23-add-custom-fields-to-composite-entity/</guid><description><![CDATA[<p>Let&rsquo;s take a composite entity <code>SalesOrderV3Entity</code> as an example.</p>
-<h3 id="scenario">Scenario</h3>
-<p>I will need to add new fields to Sales order header that can be used in the composite entity <code>SalesOrderV3Entity</code>.
-the composite entity <code>SalesOrderV3Entity</code> uses a standard data entity <code>SalesOrderHeaderV2Entity</code> for sales order header; so, we need to extend <code>SalesOrderHeaderV2Entity</code>.</p>
-<h3 id="the-steps">The Steps</h3>
-<ol>
-<li>
-<p>Add new fields to Main table <code>SalesTable</code></p>
-</li>
-<li>
-<p>Add new fields to the entity <code>SalesOrderHeaderV2Entity</code></p>
-</li>
-<li>
-<p>Add new fields to the staging table <code>SalesOrderHeaderV2Staging</code></p>
-</li>
-<li>
-<p>Build and sync.</p>
-</li>
-<li>
-<p>Go to Workspaces -&gt; Data Management -&gt; Framework parameters -&gt; Advanced entity configuration settings -&gt; Refresh entity list.</p>
-<p>You can automate the <code>Refresh entity list</code> task <a href="https://d365fostuff.wordpress.com/2021/03/31/d365fo-integrations-auto-refresh-your-data-entity-list/" target="_blank" rel="noopener noreffer ">here</a></p>
-</li>
-<li>
-<p>Go to Workspaces -&gt; Data Management -&gt; Data Entities, find <strong>SALES ORDER HEADERS V2</strong> and <em>Generate mapping</em> for it.
-The new custom fields will be generated for the entity mapping.</p>
-</li>
-</ol>
-]]></description></item><item><title>Admin provisioning tools in Dynamics 365 Finance Operations</title><link>https://nuxulu.com/2022-09-18-admin-provisioning-tools/</link><pubDate>Sun, 18 Sep 2022 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2022-09-18-admin-provisioning-tools/</guid><description><![CDATA[<p>After restoring database backup, you want to be able to login to Dynamics 365 Finance Operations with different ternant, you need to use the admin provisioning tool to assign a new tenant.</p>
-<!--adsense-->
-<h3 id="before-10023-verison">Before 10.0.23 verison</h3>
-<p>The admin provisioning tool can be found at</p>
-<p>VHD: <code>C:\AOSService\PackagesLocalDirectory\bin\AdminUserProvisioning.exe</code></p>
-<p>Cloud- hosted: <code>K:\AOSService\PackagesLocalDirectory\bin\AdminUserProvisioning.exe</code></p>
-<p>After running <code>Provisioning.exe</code> wtih admin right, you will see the update for the admin user in SQL.</p>
-<p><figure><a class="lightgallery" href="/2022-09-18-admin-provisioning-tools/userinfo.png" title="Image" data-thumbnail="/2022-09-18-admin-provisioning-tools/userinfo.png" data-sub-html="<h2>userinfo</h2><p>Image</p>">
-        
-    </a><figcaption class="image-caption">userinfo</figcaption>
-    </figure></p>
-<p>Some errors you might face:</p>
-<div class="details admonition failure open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">Can not stop the DynamicsAXBatch service on computer</div>
-        </div>
-    </div>
-<div class="details admonition failure open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">Execution Timeout Expired. The timeout period elapsed prior to completion of the operation or the server is not responding.</div>
-        </div>
-    </div>
-<div class="details admonition failure open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">The remote server returned an error: (500) Internal Server Error.</div>
-        </div>
-    </div>
-<p>Resolution, you can simply stop and start the services manually:</p>
-<ul>
-<li>World Wide Web Publishing Service</li>
-<li>Microsoft Dynamics 365 Unified Operations: Batch Management Service</li>
-</ul>
-<p>Or you can restart VM using LCS or Azure portal.</p>
-<p>If the issue <strong>Can not stop the DynamicsAXBatch service on computer</strong> still persist</p>
-<p>You can kill the batch service using cmd:</p>
-<ol>
-<li>Open CMD</li>
-<li><code>sc queryex DynamicsAxBatch</code></li>
-<li><code>taskkill /f /pid 8064</code></li>
-</ol>
-<p><figure><a class="lightgallery" href="/2022-09-18-admin-provisioning-tools/queryex.png" title="Image" data-thumbnail="/2022-09-18-admin-provisioning-tools/queryex.png" data-sub-html="<h2>queryex</h2><p>Image</p>">
-        
-    </a><figcaption class="image-caption">queryex</figcaption>
-    </figure></p>
-<p>There is another error about Database</p>
-<div class="details admonition failure open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">Cannot open database &ldquo;AxDB&rdquo; requested by the login. The login failed.
-Login failed for user &lsquo;axdbadmin&rsquo;.</div>
-        </div>
-    </div>
-<p>Please this post for getting <a href="/2020-04-06-getting-onebox-vhd-dynamics-365-finance-and-operations-virtual-machine/#2-rename-vm" rel="">VHD Database password</a>.</p>
-<h3 id="from-10023">From 10.0.23</h3>
-<p>From 10.0.23, the Admin user provisioning tool is removed due to security reasons, the reply URL setup for AAD was changed.
-It is typically used to change the tenant of the environment. You can update the sign in information in the database for the Admin user or any other user. You only need the <code>SID</code> and <code>network alias</code> (email address) from a user that can access the environment or another environment on the same tenant.</p>
-<p>To get the SID:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-ps" data-lang="ps"><span class="line"><span class="cl"><span class="nf">wmic</span> <span class="nf">useraccount</span> <span class="nf">get</span> <span class="nf">name,sid</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p><figure><a class="lightgallery" href="/2022-09-18-admin-provisioning-tools/get-sid-cmd.png" title="Image" data-thumbnail="/2022-09-18-admin-provisioning-tools/get-sid-cmd.png" data-sub-html="<h2>get-sid-cmd</h2><p>Image</p>">
-        
-    </a><figcaption class="image-caption">get-sid-cmd</figcaption>
-    </figure></p>
-<p>Once you have admin SID, you can update the tenant in SQL by using.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">SID</span><span class="p">,</span><span class="w"> </span><span class="n">NETWORKALIAS</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">USERINFO</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Admin&#39;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">update</span><span class="w"> </span><span class="n">USERINFO</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">SID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;new_SID&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">NETWORKALIAS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;new_NetworkAlias&#39;</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Admin&#39;</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p>You might also got error</p>
-<div class="details admonition failure open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">AADSTS50011: The reply URL specified in the request does not match the reply URLs configured for the application: &lsquo;00000015-0000-0000-c000-000000000000&rsquo;</div>
-        </div>
-    </div>
-<p>Go to <code>C:\AOSService\webroot\web.config</code>, get <code>Aad.Realm</code>, <code>Aad.TenantDomainGUID</code>, <code>Infrastructure.HostUrl</code></p>
-<p>Run below script to add Dynamics 365  URL to ERP service principle application</p>
-<p><figure><a class="lightgallery" href="/2022-09-18-admin-provisioning-tools/00000015-0000-0000-c000-000000000000.png" title="Image" data-thumbnail="/2022-09-18-admin-provisioning-tools/00000015-0000-0000-c000-000000000000.png" data-sub-html="<h2>00000015-0000-0000-c000-000000000000</h2><p>Image</p>">
-        
-    </a><figcaption class="image-caption">00000015-0000-0000-c000-000000000000</figcaption>
-    </figure></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-ps" data-lang="ps"><span class="line"><span class="cl"><span class="nf">$AADTenant</span> <span class="nf">=</span> <span class="nf">&#34;xxxxxx-843a-434c-ae23-f8614106ac37&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nf">$EnvironmentUrl</span> <span class="nf">=</span> <span class="nf">&#34;https:</span><span class="err">/</span><span class="nv">/xxxxxxxx.axcloud.dynamics.com&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nf">$AADRealm</span> <span class="nf">=</span> <span class="nf">&#34;00000015-0000-0000-c000-000000000000&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nf">Connect-AzureAD</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nf">#</span> <span class="nf">Get</span> <span class="nf">Service</span> <span class="nf">Principal</span> <span class="nf">details</span>
-</span></span><span class="line"><span class="cl"><span class="nf">$SP</span> <span class="nf">=</span> <span class="nf">Get-AzureADServicePrincipal</span> <span class="nf">-Filter</span> <span class="nf">&#34;AppId</span> <span class="nf">eq</span> <span class="nf">&#39;$AADRealm&#39;&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nf">#Add</span> <span class="nf">Reply</span> <span class="nf">URLs</span>
-</span></span><span class="line"><span class="cl"><span class="nf">$SP.ReplyUrls.Add</span><span class="s">(&#34;$EnvironmentUrl&#34;)</span>
-</span></span><span class="line"><span class="cl"><span class="nf">$SP.ReplyUrls.Add</span><span class="s">(&#34;$EnvironmentUrl/oauth&#34;)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nf">#Set</span><span class="nv">/Update</span> <span class="nf">Reply</span> <span class="nf">URL</span>
-</span></span><span class="line"><span class="cl"><span class="nf">Set-AzureADServicePrincipal</span> <span class="nf">-ObjectId</span> <span class="nf">$SP.ObjectId</span> <span class="nf">-ReplyUrls</span> <span class="nf">$SP.ReplyUrls</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>If you are running VHD for the first time, please do this <a href="/2020-04-06-getting-onebox-vhd-dynamics-365-finance-and-operations-virtual-machine/#61-register-a-new-application-in-azure-active-directory" rel="">task</a></p>
-<div class="details admonition info open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-info-circle fa-fw" aria-hidden="true"></i>Reference<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><ol>
-<li>
-<p><a href="https://learn.microsoft.com/en-us/troubleshoot/azure/active-directory/error-code-aadsts50011-reply-url-mismatch" target="_blank" rel="noopener noreffer ">https://learn.microsoft.com/en-us/troubleshoot/azure/active-directory/error-code-aadsts50011-reply-url-mismatch</a></p>
-</li>
-<li>
-<p><a href="https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/dev-tools/access-instances#i-have-run-the-admin-user-provisioning-tool-on-my-development-environment-and-now-i-receive-the-following-sign-in-error-error-aadsts50011-the-reply-url-specified-in-the-request-does-not-match-the-reply-urls-configured-for-the-application" target="_blank" rel="noopener noreffer ">https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/dev-tools/access-instances#i-have-run-the-admin-user-provisioning-tool-on-my-development-environment-and-now-i-receive-the-following-sign-in-error-error-aadsts50011-the-reply-url-specified-in-the-request-does-not-match-the-reply-urls-configured-for-the-application</a></p>
-</li>
-</ol>
-</div>
-        </div>
-    </div>
-]]></description></item><item><title>Unable to start trace, the required event providers were not found. Contact your system administrator</title><link>https://nuxulu.com/2022-06-20-unable-to-trace-error/</link><pubDate>Mon, 20 Jun 2022 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2022-06-20-unable-to-trace-error/</guid><description><![CDATA[<p>The error pops when you start the trace: <em>Unable to start trace, the required event providers were not found. Contact your system administrator.</em></p>
-<p><figure><a class="lightgallery" href="/2022-06-20-unable-to-trace-error/trace-error.png" title="Image" data-thumbnail="/2022-06-20-unable-to-trace-error/trace-error.png" data-sub-html="<h2>trace-error</h2><p>Image</p>">
-        
-    </a><figcaption class="image-caption">trace-error</figcaption>
-    </figure></p>
-<p>Cause: Some how you dont have Dynamics in event viewer</p>
-<p><figure><a class="lightgallery" href="/2022-06-20-unable-to-trace-error/no-dynamics.png" title="Image" data-thumbnail="/2022-06-20-unable-to-trace-error/no-dynamics.png" data-sub-html="<h2>no-dynamics</h2><p>Image</p>">
-        
-    </a><figcaption class="image-caption">no-dynamics</figcaption>
-    </figure></p>
-<p>Resolution: execute the script below under <code>C:\Temp</code> in powershell</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-ps" data-lang="ps"><span class="line"><span class="cl"><span class="nf">$AOSSetupETWManifestDir</span> <span class="nf">=</span> <span class="nf">&#34;K:\AosService\WebRoot\Monitoring&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nf">foreach</span> <span class="s">($manifestFile in Get-ChildItem -Path $AOSSetupETWManifestDir</span><span class="se">\</span><span class="s">*.man | select-object -Property BaseName,Name)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">$dllFile=&#34;&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">if</span> <span class="s">((Test-Path &#34;$AOSSetupETWManifestDir</span><span class="se">\</span><span class="s">$($manifestFile.BaseName).Instrumentation.dll&#34;))</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">$dllFile</span> <span class="nf">=</span> <span class="nf">&#34;$AOSSetupETWManifestDir\$</span><span class="s">($manifestFile.BaseName)</span><span class="nf">.Instrumentation.dll&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">elseif</span> <span class="s">((Test-Path &#34;$AOSSetupETWManifestDir</span><span class="se">\</span><span class="s">$($manifestFile.BaseName)Resource.dll&#34;))</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">$dllFile</span> <span class="nf">=</span> <span class="nf">&#34;$AOSSetupETWManifestDir\$</span><span class="s">($manifestFile.BaseName)</span><span class="nf">Resource.dll&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">elseif</span> <span class="s">((Test-Path &#34;$AOSSetupETWManifestDir</span><span class="se">\</span><span class="s">$($manifestFile.BaseName).dll&#34;))</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">$dllFile</span> <span class="nf">=</span> <span class="nf">&#34;$AOSSetupETWManifestDir\$</span><span class="s">($manifestFile.BaseName)</span><span class="nf">.dll&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">else</span> 
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">Write-Host</span> <span class="nf">&#34;Warn</span> <span class="nf">:</span> <span class="nf">Skipping</span> <span class="nf">$AOSSetupETWManifestDir\$</span><span class="s">($manifestFile.Name)</span> <span class="nf">as</span> <span class="nf">DLL</span> <span class="nf">not</span> <span class="nf">found&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">Continue</span>    
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"> 
-</span></span><span class="line"><span class="cl">    <span class="nf">Write-Host</span> <span class="nf">&#34;Installing</span> <span class="nf">$AOSSetupETWManifestDir\$</span><span class="s">($manifestFile.Name)</span> <span class="nf">using</span> <span class="nf">$dllFile&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">wevtutil.exe</span> <span class="nf">im</span> <span class="nf">&#34;$AOSSetupETWManifestDir\$</span><span class="s">($manifestFile.Name)</span><span class="nf">&#34;</span> <span class="nv">/rf:&#34;$dllFile&#34;</span> <span class="nv">/mf:&#34;$dllFile&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">Write-Host</span> <span class="nf">&#34;Finished</span> <span class="nf">installing</span> <span class="nf">$AOSSetupETWManifestDir\$</span><span class="s">($manifestFile.Name)</span> <span class="nf">`n`n&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>Then restart the VM by LCS or Azure portal, you will get the Dynamics back in the event viewer and able to start the trace normally.</p>
-<p><figure><a class="lightgallery" href="/2022-06-20-unable-to-trace-error/dynamics-event.png" title="Image" data-thumbnail="/2022-06-20-unable-to-trace-error/dynamics-event.png" data-sub-html="<h2>dynamics-event</h2><p>Image</p>">
-        
-    </a><figcaption class="image-caption">dynamics-event</figcaption>
-    </figure></p>
-]]></description></item><item><title>Troubleshooting DVT script for service model - Dynamics 365 Finance &amp; Operations Tier 1 Upgrade</title><link>https://nuxulu.com/2021-12-21-troubleshooting-dvt-script-for-service-model/</link><pubDate>Tue, 21 Dec 2021 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2021-12-21-troubleshooting-dvt-script-for-service-model/</guid><description><![CDATA[<p>While doing upgrade to the latest version Dynamics 365 Finance &amp; Operations on tier 1 environment, you might got some errors related to DVT auto scripts.</p>
-<h2 id="1-dvt-script-for-service-model-aosservice-on-machine">1. DVT script for service model: AOSService on machine</h2>
-<p>An error at step 72</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="nt">&lt;Step&gt;</span>
-</span></span><span class="line"><span class="cl">   <span class="nt">&lt;ID&gt;</span>72<span class="nt">&lt;/ID&gt;</span>
-</span></span><span class="line"><span class="cl">   <span class="nt">&lt;RunbookID&gt;</span>498de9aee46e403e9dcd97b40166775e<span class="nt">&lt;/RunbookID&gt;</span>
-</span></span><span class="line"><span class="cl">   <span class="nt">&lt;PackageId&gt;</span>dd4119e4331248d5a6ba9b987eef440d<span class="nt">&lt;/PackageId&gt;</span>
-</span></span><span class="line"><span class="cl">   <span class="nt">&lt;PackageType&gt;</span>PlatAppBinaryHotfixPackage<span class="nt">&lt;/PackageType&gt;</span>
-</span></span><span class="line"><span class="cl">   <span class="nt">&lt;CompletedManually&gt;</span>false<span class="nt">&lt;/CompletedManually&gt;</span>
-</span></span><span class="line"><span class="cl">   <span class="nt">&lt;Description&gt;</span>DVT script for service model: AOSService on machine: <span class="nt">&lt;/Description&gt;</span>
-</span></span><span class="line"><span class="cl">   <span class="nt">&lt;MachineName&gt;&lt;/MachineName&gt;</span>
-</span></span><span class="line"><span class="cl">   <span class="nt">&lt;ServiceModelName&gt;</span>AOSService<span class="nt">&lt;/ServiceModelName&gt;</span>
-</span></span><span class="line"><span class="cl">   <span class="nt">&lt;ScriptToExecute&gt;</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&lt;FileName&gt;</span>AutoRunDVT.ps1<span class="nt">&lt;/FileName&gt;</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&lt;Automated&gt;</span>true<span class="nt">&lt;/Automated&gt;</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&lt;Description&gt;</span>Run the AOS DVTs<span class="nt">&lt;/Description&gt;</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&lt;RetryCount&gt;</span>1<span class="nt">&lt;/RetryCount&gt;</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&lt;TimeoutValue&gt;</span>1<span class="nt">&lt;/TimeoutValue&gt;</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&lt;InvokeWithPowershellProcess&gt;</span>false<span class="nt">&lt;/InvokeWithPowershellProcess&gt;</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&lt;DoNotAutoResume&gt;</span>false<span class="nt">&lt;/DoNotAutoResume&gt;</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&lt;DynamicStepDefinition</span> <span class="nt">/&gt;</span>
-</span></span><span class="line"><span class="cl">   <span class="nt">&lt;/ScriptToExecute&gt;</span>
-</span></span><span class="line"><span class="cl">   <span class="nt">&lt;StepType&gt;</span>DVT<span class="nt">&lt;/StepType&gt;</span>
-</span></span><span class="line"><span class="cl">   <span class="nt">&lt;StepConcurrency&gt;</span>Multiple<span class="nt">&lt;/StepConcurrency&gt;</span>
-</span></span><span class="line"><span class="cl">   <span class="nt">&lt;ScriptExecutionOutput</span> <span class="nt">/&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="nt">&lt;/Step&gt;</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>Event log error details</p>
-<div class="details admonition failure open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">System.Net.WebException: The underlying connection was closed: Could not establish trust relationship for the SSL/TLS secure channel. &mdash;&gt; System.Security.Authentication.AuthenticationException: The remote certificate is invalid according to the validation procedure.</div>
-        </div>
-    </div>
-<h3 id="solution">Solution</h3>
-<p>You need to abort the current process in LCS because this option will only show for environments in the <strong>Deployed</strong> state, then do &ldquo;Rotate the SSL certificates&rdquo;</p>
-<ul>
-<li>On the Environment details page, click <code>Maintain &gt; Rotate secrets</code>.</li>
-<li>Select Rotate the SSL certificates and confirm that you want to perform this action.</li>
-</ul>
-<p><figure><a class="lightgallery" href="/2021-12-21-troubleshooting-dvt-script-for-service-model/rorate-ssl.png" title="rorate-ssl" data-thumbnail="/2021-12-21-troubleshooting-dvt-script-for-service-model/rorate-ssl.png" data-sub-html="<h2>rorate-ssl</h2><p>rorate-ssl</p>">
-        
-    </a><figcaption class="image-caption">rorate-ssl</figcaption>
-    </figure></p>
-<h2 id="2-step-73---dvt-script-for-service-model-mronebox-on-machine">2. Step 73 - DVT script for service model: MROneBox on machine</h2>
-<h3 id="21-the-error-from-runbook">2.1 The error from <code>runbook</code></h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="nt">&lt;Step&gt;</span>
-</span></span><span class="line"><span class="cl">   <span class="nt">&lt;ID&gt;</span>73<span class="nt">&lt;/ID&gt;</span>
-</span></span><span class="line"><span class="cl">   <span class="nt">&lt;RunbookID&gt;</span>498de9aee46e403e9dcd97b40166775e<span class="nt">&lt;/RunbookID&gt;</span>
-</span></span><span class="line"><span class="cl">   <span class="nt">&lt;PackageId&gt;</span>dd4119e4331248d5a6ba9b987eef440d<span class="nt">&lt;/PackageId&gt;</span>
-</span></span><span class="line"><span class="cl">   <span class="nt">&lt;PackageType&gt;</span>PlatAppBinaryHotfixPackage<span class="nt">&lt;/PackageType&gt;</span>
-</span></span><span class="line"><span class="cl">   <span class="nt">&lt;CompletedManually&gt;</span>false<span class="nt">&lt;/CompletedManually&gt;</span>
-</span></span><span class="line"><span class="cl">   <span class="nt">&lt;Description&gt;</span>DVT script for service model: MROneBox on machine: <span class="nt">&lt;/Description&gt;</span>
-</span></span><span class="line"><span class="cl">   <span class="nt">&lt;MachineName&gt;&lt;/MachineName&gt;</span>
-</span></span><span class="line"><span class="cl">   <span class="nt">&lt;ServiceModelName&gt;</span>MROneBox<span class="nt">&lt;/ServiceModelName&gt;</span>
-</span></span><span class="line"><span class="cl">   <span class="nt">&lt;ScriptToExecute&gt;</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&lt;FileName&gt;</span>AutoRunDVT.ps1<span class="nt">&lt;/FileName&gt;</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&lt;Automated&gt;</span>true<span class="nt">&lt;/Automated&gt;</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&lt;Description&gt;</span>Run the AOS DVTs<span class="nt">&lt;/Description&gt;</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&lt;RetryCount&gt;</span>1<span class="nt">&lt;/RetryCount&gt;</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&lt;TimeoutValue&gt;</span>1<span class="nt">&lt;/TimeoutValue&gt;</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&lt;InvokeWithPowershellProcess&gt;</span>false<span class="nt">&lt;/InvokeWithPowershellProcess&gt;</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&lt;DoNotAutoResume&gt;</span>false<span class="nt">&lt;/DoNotAutoResume&gt;</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&lt;DynamicStepDefinition</span> <span class="nt">/&gt;</span>
-</span></span><span class="line"><span class="cl">   <span class="nt">&lt;/ScriptToExecute&gt;</span>
-</span></span><span class="line"><span class="cl">   <span class="nt">&lt;StepType&gt;</span>DVT<span class="nt">&lt;/StepType&gt;</span>
-</span></span><span class="line"><span class="cl">   <span class="nt">&lt;StepConcurrency&gt;</span>Multiple<span class="nt">&lt;/StepConcurrency&gt;</span>
-</span></span><span class="line"><span class="cl">   <span class="nt">&lt;ScriptExecutionOutput</span> <span class="nt">/&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="nt">&lt;/Step&gt;</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="22-event-log-error-details">2.2 Event log error details</h3>
-<div class="details admonition failure open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">Exception : System.Management.Automation.RemoteException: An error was encountered while updating the Financial Reporting components.
-TargetObject : An error was encountered while updating the Financial Reporting components.</div>
-        </div>
-    </div>
-<h3 id="23-solution">2.3 Solution</h3>
-<p>To resolve this, we will need to reset <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/analytics/reset-financial-reporting-datamart-after-restore#reset-the-financial-reporting-data-mart-through-windows-powershell" target="_blank" rel="noopener noreffer ">financial reporting data mart</a>, following the steps</p>
-<ul>
-<li>
-<p>Stops AX services</p>
-<ul>
-<li>World wide web publishing service (on all Application Object Servers [AOS] computers)</li>
-<li>Batch Management Service (on non-private AOS computers only)</li>
-<li>Management Reporter 2012 Process Service (on Business intelligence [BI] computers only)</li>
-</ul>
-</li>
-</ul>
-<div class="details admonition note open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>Note<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">We can use command line too
-<code>NET STOP &quot;MR2012ProcessService&quot;</code></div>
-        </div>
-    </div>
-<ul>
-<li>Open PowerShell and execute the following script, this will execute reset datamart</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-ps" data-lang="ps"><span class="line"><span class="cl"><span class="nf">cd</span> <span class="nf">K:\MROneBox\MRInstallDirectory\Server\MRDeploy\</span>
-</span></span><span class="line"><span class="cl"><span class="nf">Import-Module</span> <span class="nf">.\MRDeploy.psd1</span>
-</span></span><span class="line"><span class="cl"><span class="nf">Reset-DatamartIntegration</span> <span class="nf">-Reason</span> <span class="nf">OTHER</span> <span class="nf">-ReasonDetail</span> <span class="nf">&#34;</span><span class="p">&lt;</span><span class="nf">reason</span> <span class="nf">for</span> <span class="nf">resetting</span><span class="p">&gt;</span><span class="nf">&#34;</span> <span class="nf">-SkipMRTableReset</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="details admonition note open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>Note<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">To ensure that old data isn&rsquo;t inserted, a data mart reset can be started only after existing tasks are completed. If you try to reset the data mart before all tasks are completed, you might receive a message such as, &ldquo;The data mart reset was unable to be processed because of an active task. Please try again later.&rdquo;</div>
-        </div>
-    </div>
-<ul>
-<li>After reset datamart, we need to execute the step 73 again, find the latest deployable package applied to the environment. It will be under folder <code>&lt;ServiceVolue&gt;:\DeployablePackages\&lt;PackageGUID&gt;\MROneBox\Scripts\Update</code></li>
-</ul>
-<p>Execute <code>AutoRunDVT.ps1</code> in Powershell</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-ps" data-lang="ps"><span class="line"><span class="cl"><span class="nf">.\AutoRunDVT.ps1</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>If it can be executed without error, you can go ahead and resume the deployment in LCS.</p>
-<h3 id="if-there-are-still-errors-we-need-an-extra-step">If there are still errors, we need an extra step</h3>
-<ul>
-<li>Find the DVT execution script: <code>&lt;ServiceVolue&gt;:\DeployablePackages\&lt;PackageGUID&gt;\MROneBox\scripts\Update\AutoRunDVT.ps1</code></li>
-<li>Make a copy of the file</li>
-<li>Clear all contents <code>AutoRunDVT.ps1</code> and save</li>
-<li>Resume the deployment from LCS.</li>
-</ul>]]></description></item><item><title>Windows keyboard shortcuts</title><link>https://nuxulu.com/2021-11-05-windows-key-shortcuts/</link><pubDate>Fri, 05 Nov 2021 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2021-11-05-windows-key-shortcuts/</guid><description><![CDATA[<h2 id="1-new-keyboard-shortcuts-in-windows-11">1. New Keyboard Shortcuts in Windows 11</h2>
-<p>Windows 11 brings a few Keyboard Shortcuts for accessing its cool new features such as widgets, snap layouts, action center, and quick settings.</p>
-<p>FYI, <code>Win</code> key is the <strong>Windows Logo key</strong> on your keyboard.</p>
-<table>
-<thead>
-<tr>
-<th>ACTION</th>
-<th>SHORTCUTS KEYS</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Open up the Widgets pane. It supplies you with the weather forecast, local traffic, news, and even your calendar.</td>
-<td>Win + W</td>
-</tr>
-<tr>
-<td>Toggle up the Quick Settings. It controls the Volume, Wi-Fi, Bluetooth, Brightness sliders, Focus Assist, and other settings.</td>
-<td>Win + A</td>
-</tr>
-<tr>
-<td>Bring up the Notification Center. It shows all your notifications in the OS.</td>
-<td>Win + N</td>
-</tr>
-<tr>
-<td>Open the Snap Layouts flyout. It helps you organize apps and windows for multitasking.</td>
-<td>Win + Z</td>
-</tr>
-<tr>
-<td>Open Teams Chat app from Taskbar. It helps you quickly select a chat thread directly from the Taskbar.</td>
-<td>Win + C</td>
-</tr>
-</tbody>
-</table>
-<h2 id="2-general-and-popular-shortcuts-for-windows-11">2. General and Popular Shortcuts for Windows 11</h2>
-<p>Here are the most frequently used and essential keyboard shortcuts for Windows 11.</p>
-<table>
-<thead>
-<tr>
-<th>ACTION</th>
-<th>SHORTCUTS KEYS</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Select all contents</td>
-<td>Ctrl + A</td>
-</tr>
-<tr>
-<td>Copy the selected items</td>
-<td>Ctrl + C</td>
-</tr>
-<tr>
-<td>Cut the selected items</td>
-<td>Ctrl + X</td>
-</tr>
-<tr>
-<td>Paste the copied or cut items</td>
-<td>Ctrl + V</td>
-</tr>
-<tr>
-<td>Undo an action</td>
-<td>Ctrl + Z</td>
-</tr>
-<tr>
-<td>Redo an action</td>
-<td>Ctrl + Y</td>
-</tr>
-<tr>
-<td>Switch between the running applications</td>
-<td>Alt + Tab</td>
-</tr>
-<tr>
-<td>Open Task View</td>
-<td>Win + Tab</td>
-</tr>
-<tr>
-<td>Close the active app or If you are on Desktop, open the Shutdown box to shut down, restart, log out or put your PC to sleep.</td>
-<td>Alt + F4</td>
-</tr>
-<tr>
-<td>Lock your computer.</td>
-<td>Win + L</td>
-</tr>
-<tr>
-<td>Display and hide the desktop.</td>
-<td>Win + D</td>
-</tr>
-<tr>
-<td>Delete the selected item and move it to the Recycle Bin.</td>
-<td>Ctrl + Delete</td>
-</tr>
-<tr>
-<td>Delete the selected item permanently.</td>
-<td>Shift + Delete</td>
-</tr>
-<tr>
-<td>Capture a full screenshot and saves it in the clipboard.</td>
-<td>PrtScn or Print</td>
-</tr>
-<tr>
-<td>Capture part of the screen with Snip &amp; Sketch.</td>
-<td>Win + Shift + S</td>
-</tr>
-<tr>
-<td>Open Start button context menu.</td>
-<td>Windows + X</td>
-</tr>
-<tr>
-<td>Rename selected item.</td>
-<td>F2</td>
-</tr>
-<tr>
-<td>Refresh the active window.</td>
-<td>F5</td>
-</tr>
-<tr>
-<td>Open Menu bar in the current app.</td>
-<td>F10</td>
-</tr>
-<tr>
-<td>Go back.</td>
-<td>Alt + Left arrow</td>
-</tr>
-<tr>
-<td>Go forward.</td>
-<td>Alt + Left arrow</td>
-</tr>
-<tr>
-<td>Move up one screen</td>
-<td>Alt + Page Up</td>
-</tr>
-<tr>
-<td>Move down one screen</td>
-<td>Alt + Page Down</td>
-</tr>
-<tr>
-<td>Open Task Manager.</td>
-<td>Ctrl + Shift + Esc</td>
-</tr>
-<tr>
-<td>Project a screen.</td>
-<td>Win + P</td>
-</tr>
-<tr>
-<td>Print the current page.</td>
-<td>Ctrl + P</td>
-</tr>
-<tr>
-<td>Select more than one item.</td>
-<td>Shift + Arrow keys</td>
-</tr>
-<tr>
-<td>Save the current file.</td>
-<td>Ctrl + S</td>
-</tr>
-<tr>
-<td>Save As</td>
-<td>Ctrl + Shift + S</td>
-</tr>
-<tr>
-<td>Open a file in the current app.</td>
-<td>Ctrl + O</td>
-</tr>
-<tr>
-<td>Cycle through the apps on the taskbar.</td>
-<td>Alt + Esc</td>
-</tr>
-<tr>
-<td>Display your password on the login screen</td>
-<td>Alt + F8</td>
-</tr>
-<tr>
-<td>Open the shortcut menu for the current window</td>
-<td>Alt + Spacebar</td>
-</tr>
-<tr>
-<td>Open properties for the selected item.</td>
-<td>Alt + Enter</td>
-</tr>
-<tr>
-<td>Open the context menu (right-click menu) for the selected item.</td>
-<td>Alt + F10</td>
-</tr>
-<tr>
-<td>Open Run command.</td>
-<td>Win + R</td>
-</tr>
-<tr>
-<td>Open a new program window of the current app</td>
-<td>Ctrl + N</td>
-</tr>
-<tr>
-<td>Take a screen clipping</td>
-<td>Win + Shift + S</td>
-</tr>
-<tr>
-<td>Open Windows 11 settings</td>
-<td>Win + I</td>
-</tr>
-<tr>
-<td>Go back to Settings home page</td>
-<td>Backspace</td>
-</tr>
-<tr>
-<td>Stop or close the current task</td>
-<td>Esc</td>
-</tr>
-<tr>
-<td>Enter/Exit the full-screen mode</td>
-<td>F11</td>
-</tr>
-<tr>
-<td>Launch Emoji keyboard</td>
-<td>Win + period (.) or Win + semicolon (;)</td>
-</tr>
-</tbody>
-</table>
-<h2 id="3-desktop-and-virtual-desktops-shortcuts-for-windows-11">3. Desktop and Virtual Desktops Shortcuts for Windows 11</h2>
-<p>These simple shortcuts will help you navigate your desktop and virtual desktops more smoothly.</p>
-<table>
-<thead>
-<tr>
-<th>ACTION</th>
-<th>SHORTCUTS KEYS</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Open Start menu</td>
-<td>Window logo key (Win)</td>
-</tr>
-<tr>
-<td>Switch keyboard layout</td>
-<td>Ctrl + Shift</td>
-</tr>
-<tr>
-<td>View all open apps</td>
-<td>Alt + Tab</td>
-</tr>
-<tr>
-<td>Select more than one item on the desktop</td>
-<td>Ctrl + Arrow keys + Spacebar</td>
-</tr>
-<tr>
-<td>Minimize all open windows</td>
-<td>Win + M</td>
-</tr>
-<tr>
-<td>Maximize all minimized windows on the desktop.</td>
-<td>Win + Shift + M</td>
-</tr>
-<tr>
-<td>Minimize or maximize all but the active window</td>
-<td>Win + Home</td>
-</tr>
-<tr>
-<td>Snap the current app or window to the Left</td>
-<td>Win + Left Arrow Key</td>
-</tr>
-<tr>
-<td>Snap the current app or window to the RIght.</td>
-<td>Win + Right Arrow Key</td>
-</tr>
-<tr>
-<td>Stretch the active window to the top and bottom of the screen.</td>
-<td>Win + Shift + Up arrow key</td>
-</tr>
-<tr>
-<td>Restore or minimize active desktop windows vertically, maintaining width.</td>
-<td>Win + Shift + Down arrow key</td>
-</tr>
-<tr>
-<td>Open Desktop view</td>
-<td>Win + Tab</td>
-</tr>
-<tr>
-<td>Add a new virtual desktop</td>
-<td>Win + Ctrl + D</td>
-</tr>
-<tr>
-<td>Close the active virtual desktop.</td>
-<td>Win + Ctrl + F4</td>
-</tr>
-<tr>
-<td>Toggle or switch to the virtual desktops you’ve created on the Right</td>
-<td>Win key + Ctrl + Right arrow</td>
-</tr>
-<tr>
-<td>Toggle or switch to the virtual desktops you’ve created on the Left</td>
-<td>Win key + Ctrl + Left arrow</td>
-</tr>
-<tr>
-<td>Create a shortcut</td>
-<td>CTRL + SHIFT while dragging icon or file</td>
-</tr>
-<tr>
-<td>Open WIndows Search</td>
-<td>Win + S or Win + Q</td>
-</tr>
-<tr>
-<td>Take a peek look at the desktop until you release the WINDOWS key.</td>
-<td>Win + Comma (,)</td>
-</tr>
-</tbody>
-</table>
-<h2 id="4-taskbar-keyboard-shortcuts-for-windows-11">4. Taskbar Keyboard Shortcuts for Windows 11</h2>
-<p>You can use below keyboard shortcuts to take control of your taskbar:</p>
-<table>
-<thead>
-<tr>
-<th>ACTION</th>
-<th>SHORTCUTS KEYS</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Run an app as administrator from the taskbar</td>
-<td>Ctrl + Shift + Left Click app button or icon</td>
-</tr>
-<tr>
-<td>Open the app in the first position on your taskbar.</td>
-<td>Win + 1</td>
-</tr>
-<tr>
-<td>Open the app in the number position from the taskbar.</td>
-<td>Win + Number (0 - 9)</td>
-</tr>
-<tr>
-<td>Cycle through apps in the taskbar.</td>
-<td>Win + T</td>
-</tr>
-<tr>
-<td>View Date and Time from the taskbar</td>
-<td>Win + Alt + D</td>
-</tr>
-<tr>
-<td>Open another instance of an app from the taskbar.</td>
-<td>Shift + Left Click app button</td>
-</tr>
-<tr>
-<td>Show the window menu for the group apps from the taskbar.</td>
-<td>Shift + Right-click grouped app icon</td>
-</tr>
-<tr>
-<td>Highlight the first item in the Notification Area and use the Arrow key switch between the item</td>
-<td>Win + B</td>
-</tr>
-<tr>
-<td>Open the application’s menu on the task bar</td>
-<td>Alt + Windows key + number keys</td>
-</tr>
-</tbody>
-</table>
-<h2 id="5-file-explorer-shortcuts-for-windows-11">5. File Explorer Shortcuts for Windows 11</h2>
-<p>These keyboard shortcuts can help you navigate your Windows filesystem quickly than ever:</p>
-<table>
-<thead>
-<tr>
-<th>ACTION</th>
-<th>SHORTCUTS KEYS</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Open the File Explorer.</td>
-<td>Win + E</td>
-</tr>
-<tr>
-<td>Open the search box in the file explorer.</td>
-<td>Ctrl + E</td>
-</tr>
-<tr>
-<td>Open the current window in a new window.</td>
-<td>Ctrl + N</td>
-</tr>
-<tr>
-<td>Close active window.</td>
-<td>Ctrl + W</td>
-</tr>
-<tr>
-<td>Start the mark mode</td>
-<td>Ctrl + M</td>
-</tr>
-<tr>
-<td>Change the file and folder view.</td>
-<td>Ctrl + Mouse Scroll</td>
-</tr>
-<tr>
-<td>Switch between left and right panes</td>
-<td>F6</td>
-</tr>
-<tr>
-<td>Create a new folder.</td>
-<td>Ctrl + Shift + N</td>
-</tr>
-<tr>
-<td>Expand all subfolders in the navigation pane on the left.</td>
-<td>Ctrl + Shift + E</td>
-</tr>
-<tr>
-<td>Select address bar of the File Explorer.</td>
-<td>Alt + D</td>
-</tr>
-<tr>
-<td>Changes folder view.</td>
-<td>Ctrl + Shift + Number (1-8)</td>
-</tr>
-<tr>
-<td>Display the preview panel.</td>
-<td>Alt + P</td>
-</tr>
-<tr>
-<td>Open the Properties settings for the selected item.</td>
-<td>Alt + Enter</td>
-</tr>
-<tr>
-<td>Expand the selected drive or folder</td>
-<td>Num Lock + plus (+)</td>
-</tr>
-<tr>
-<td>Collapse the selected drive or folder.</td>
-<td>Num Lock + minus (-)</td>
-</tr>
-<tr>
-<td>Expand all the subfolders under the selected drive or folder.</td>
-<td>Num Lock + asterisk (*)</td>
-</tr>
-<tr>
-<td>Go the next folder.</td>
-<td>Alt + Right arrow</td>
-</tr>
-<tr>
-<td>Go the previous folder</td>
-<td>Alt + Left arrow (or Backspace)</td>
-</tr>
-<tr>
-<td>Go to the parent folder the folder was in.</td>
-<td>Alt + Up arrow</td>
-</tr>
-<tr>
-<td>Switch focus to address bar.</td>
-<td>F4</td>
-</tr>
-<tr>
-<td>Refresh the File Explorer</td>
-<td>F5</td>
-</tr>
-<tr>
-<td>Expand the current folder tree or select the first subfolder (if it’s expanded) in the left pane.</td>
-<td>Right Arrow key</td>
-</tr>
-<tr>
-<td>Collapse the current folder tree or select the parent folder (if it’s collapsed) in the left pane.</td>
-<td>Left Arrow Key</td>
-</tr>
-<tr>
-<td>Move to the top of the active window.</td>
-<td>Home</td>
-</tr>
-<tr>
-<td>Move to the bottom of the active window.</td>
-<td>End</td>
-</tr>
-</tbody>
-</table>
-<h2 id="6-command-prompt-shortcuts-for-windows-11">6. Command Prompt Shortcuts for Windows 11</h2>
-<p>If you are a Command Prompt user, then these shortcuts will come handy:</p>
-<table>
-<thead>
-<tr>
-<th>ACTION</th>
-<th>SHORTCUTS KEYS</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Scroll to the top of the Command Prompt (cmd).</td>
-<td>Ctrl + Home</td>
-</tr>
-<tr>
-<td>Scroll to the bottom of the cmd.</td>
-<td>Ctrl + End</td>
-</tr>
-<tr>
-<td>Select everything on the current line</td>
-<td>Ctrl + A</td>
-</tr>
-<tr>
-<td>Move the cursor up a page</td>
-<td>Page Up</td>
-</tr>
-<tr>
-<td>Move the cursor down a page</td>
-<td>Page Down</td>
-</tr>
-<tr>
-<td>Enter Mark mode.</td>
-<td>Ctrl + M</td>
-</tr>
-<tr>
-<td>Move the cursor to the beginning of the buffer.</td>
-<td>Ctrl + Home (in Mark mode)</td>
-</tr>
-<tr>
-<td>Move the cursor to the end of the buffer.</td>
-<td>Ctrl + End (in Mark mode)</td>
-</tr>
-<tr>
-<td>Cycle through command history of active session</td>
-<td>Up or Down arrow keys</td>
-</tr>
-<tr>
-<td>Move cursor left or right in the current command line.</td>
-<td>Left or Right arrow keys</td>
-</tr>
-<tr>
-<td>Move your cursor to the start of the current line</td>
-<td>Shift + Home</td>
-</tr>
-<tr>
-<td>Move your cursor to the end of the current line</td>
-<td>Shift + End</td>
-</tr>
-<tr>
-<td>Move cursor up one screen and select text.</td>
-<td>Shift + Page Up</td>
-</tr>
-<tr>
-<td>Move cursor down one screen and select text.</td>
-<td>Shift + Page Down</td>
-</tr>
-<tr>
-<td>Move the screen up one line in the output history.</td>
-<td>Ctrl + Up arrow</td>
-</tr>
-<tr>
-<td>Move the screen down one line in the output history.</td>
-<td>Ctrl + Down arrow</td>
-</tr>
-<tr>
-<td>Move cursor up one line and select the text.</td>
-<td>Shift + Up</td>
-</tr>
-<tr>
-<td>Move cursor down one line and select the text.</td>
-<td>Shift + Down</td>
-</tr>
-<tr>
-<td>Move the cursor one word at a time.</td>
-<td>Ctrl + Shift + Arrow Keys</td>
-</tr>
-<tr>
-<td>Open search for Command Prompt.</td>
-<td>Ctrl + F</td>
-</tr>
-</tbody>
-</table>
-<h2 id="7-dialog-box-shortcuts-for-windows-11">7. Dialog box Shortcuts for Windows 11</h2>
-<p>Use the following Windows hotkeys to navigate the Dialog box of any application easily:</p>
-<table>
-<thead>
-<tr>
-<th>ACTION</th>
-<th>SHORTCUTS KEYS</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Move forward through tabs.</td>
-<td>Ctrl + Tab</td>
-</tr>
-<tr>
-<td>Move back through tabs.</td>
-<td>Ctrl + Shift + Tab</td>
-</tr>
-<tr>
-<td>Switch to nth tab.</td>
-<td>Ctrl + N (number 1–9)</td>
-</tr>
-<tr>
-<td>Show the items in the active list.</td>
-<td>F4</td>
-</tr>
-<tr>
-<td>Move forward through options of the dialog box</td>
-<td>Tab</td>
-</tr>
-<tr>
-<td>Move back through options of the dialog box</td>
-<td>Shift + Tab</td>
-</tr>
-<tr>
-<td>Execute the command (or select the option) that is used with the underlined letter.</td>
-<td>Alt + underlined letter</td>
-</tr>
-<tr>
-<td>Check or Uncheck the check box if the active option is a check box.</td>
-<td>Spacebar</td>
-</tr>
-<tr>
-<td>Select or move to a button in a group of active buttons.</td>
-<td>Arrow keys</td>
-</tr>
-<tr>
-<td>Open the parent folder if a folder is selected in the Open or Save As dialog box.</td>
-<td>Backspace</td>
-</tr>
-</tbody>
-</table>
-<h2 id="8-accessibility-keyboard-shortcuts-for-windows-11">8. Accessibility Keyboard Shortcuts for Windows 11</h2>
-<p>Windows 11 provides these keyboard shortcuts to make your computer more accessible and easier to use for everyone:</p>
-<table>
-<thead>
-<tr>
-<th>ACTION</th>
-<th>SHORTCUTS KEYS</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Open Ease of Access Centre</td>
-<td>Win + U</td>
-</tr>
-<tr>
-<td>Turn on Magnifier and Zoom in</td>
-<td>Win + plus (+)</td>
-</tr>
-<tr>
-<td>Zoom out using Magnifier</td>
-<td>Win + minus (-)</td>
-</tr>
-<tr>
-<td>Exit Magnifier</td>
-<td>Win + Esc</td>
-</tr>
-<tr>
-<td>Switch to docked mode in Magnifier</td>
-<td>Ctrl + Alt + D</td>
-</tr>
-<tr>
-<td>Switch to full-screen mode in Magnifier</td>
-<td>Ctrl + Alt + F</td>
-</tr>
-<tr>
-<td>Switch to lens mode in Magnifier</td>
-<td>Ctrl + Alt + L</td>
-</tr>
-<tr>
-<td>Invert colors in Magnifier</td>
-<td>Ctrl + Alt + I</td>
-</tr>
-<tr>
-<td>Cycle through views in Magnifier</td>
-<td>Ctrl + Alt + M</td>
-</tr>
-<tr>
-<td>Resize the lens with the mouse in Magnifier.</td>
-<td>Ctrl + Alt + R</td>
-</tr>
-<tr>
-<td>Pan in the direction of the arrow keys in Magnifier.</td>
-<td>Ctrl + Alt + arrow keys</td>
-</tr>
-<tr>
-<td>Zoom in or out using mouse</td>
-<td>Ctrl + Alt + mouse scroll</td>
-</tr>
-<tr>
-<td>Open Narrator</td>
-<td>Win + Enter</td>
-</tr>
-<tr>
-<td>Open on-screen keyboard</td>
-<td>Win + Ctrl + O</td>
-</tr>
-<tr>
-<td>Turn Filter Keys on and off</td>
-<td>Press Right Shift for eight seconds</td>
-</tr>
-<tr>
-<td>Turn High Contrast on or off</td>
-<td>Left Alt + left Shift + PrtSc</td>
-</tr>
-<tr>
-<td>Turn Mouse Keys on or off</td>
-<td>Left Alt + left Shift + Num Lock</td>
-</tr>
-<tr>
-<td>Turn Sticky Keys on or off</td>
-<td>Press Shift five times</td>
-</tr>
-<tr>
-<td>Turn Toggle Keys on or off</td>
-<td>Press Num Lock for five seconds</td>
-</tr>
-<tr>
-<td>Open Action Center</td>
-<td>Win + A</td>
-</tr>
-</tbody>
-</table>
-<h2 id="9-other-keyboard-shortcuts-for-windows-11">9. Other Keyboard Shortcuts for Windows 11</h2>
-<table>
-<thead>
-<tr>
-<th>ACTION</th>
-<th>SHORTCUTS KEYS</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Open Game bar</td>
-<td>Win + G</td>
-</tr>
-<tr>
-<td>Record the last 30 seconds of the active game</td>
-<td>Win + Alt + G</td>
-</tr>
-<tr>
-<td>Start or stop recording the active game</td>
-<td>Win + Alt + R</td>
-</tr>
-<tr>
-<td>Take a screenshot of the active game</td>
-<td>Win + Alt + PrtSc</td>
-</tr>
-<tr>
-<td>Show/hide recording timer of the game</td>
-<td>Win + Alt + T</td>
-</tr>
-<tr>
-<td>Start IME reconversion</td>
-<td>Win + forward slash (/)</td>
-</tr>
-<tr>
-<td>Open Feedback Hub</td>
-<td>Win + F</td>
-</tr>
-<tr>
-<td>Launch Voice Typing</td>
-<td>Win + H</td>
-</tr>
-<tr>
-<td>Open the Connect quick setting</td>
-<td>Win + K</td>
-</tr>
-<tr>
-<td>Lock your device orientation</td>
-<td>Win + O</td>
-</tr>
-<tr>
-<td>Display the System Properties Page</td>
-<td>Win + Pause</td>
-</tr>
-<tr>
-<td>Search for PCs (if you’re on a network)</td>
-<td>Win + Ctrl + F</td>
-</tr>
-<tr>
-<td>Move an app or window from one monitor to another</td>
-<td>Win + Shift + Left or Right arrow key</td>
-</tr>
-<tr>
-<td>Switch input language and keyboard layout</td>
-<td>Win + Spacebar</td>
-</tr>
-<tr>
-<td>Open Clipboard History</td>
-<td>Win + V</td>
-</tr>
-<tr>
-<td>Switch input between Windows Mixed Reality and your desktop.</td>
-<td>Win + Y</td>
-</tr>
-<tr>
-<td>Launch Cortana app</td>
-<td>Win + C</td>
-</tr>
-<tr>
-<td>Open another instance of the app pinned to the taskbar in the number position.</td>
-<td>Win + Shift + Number key (0-9)</td>
-</tr>
-<tr>
-<td>Switch to the last active window of the app pinned to the taskbar in the number position.</td>
-<td>Win + Ctrl + Number key (0-9)</td>
-</tr>
-<tr>
-<td>Open Jump List of the app pinned to the taskbar in the number position.</td>
-<td>Win + Alt + Number key (0-9)</td>
-</tr>
-<tr>
-<td>Open another instance as an administrator of the app pinned to the taskbar in the number position.</td>
-<td>Win + Ctrl + Shift + Number key (0-9)</td>
-</tr>
-</tbody>
-</table>
 ]]></description></item></channel></rss>

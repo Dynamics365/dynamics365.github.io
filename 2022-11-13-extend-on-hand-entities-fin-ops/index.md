@@ -1,7 +1,9 @@
-# Extend on-hand inventory entities FinOps :triumph:
+# Extend on-hand inventory entities FinOps 
 
 
 There are some entities that you can use to get the on-hand inventory from Dynamics 365 Finance Operations:
+
+:(fa-solid fa-shield-check):
 
 ```cs
 InventorySiteOnHandEntity
@@ -21,9 +23,10 @@ After you add fields to tables that are used by the `inventSiteOnHandView` view,
 3. Extend the `InventSiteOnHandAggregatedViewBuilder` viewBuilder class by modifying the `getExtensionFields()` method. In this way, you map old view fields to new view fields when viewBuilder synchronization is run.
 
 For example, you've added the following four fields to the InventTable table through extension:
-• Custom field 1
-• Custom field 2
-• Custom field 3
-• Custom field 4
+
+- Custom field 1
+- Custom field 2
+- Custom field 3
+- Custom field 4
 
 In the case, you must modify the `getExtensionFields()` method in the following way.
