@@ -1,4 +1,4 @@
-# Extend on-hand inventory entities FinOps
+# Extend on-hand inventory entities FinOps :triumph:
 
 
 There are some entities that you can use to get the on-hand inventory from Dynamics 365 Finance Operations:
