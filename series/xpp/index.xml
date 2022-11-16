@@ -1,4 +1,138 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>xpp - series - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://nuxulu.com/series/xpp/</link><description>xpp - series - Dynamics 365 Finance &amp; Operations | nuxulu.com</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Mon, 10 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://nuxulu.com/series/xpp/" rel="self" type="application/rss+xml"/><item><title>How to use query::insert_recordset?</title><link>https://nuxulu.com/xpp/2100-01-01-using-query-insert_recordset/</link><pubDate>Mon, 10 Oct 2022 00:00:00 +0000</pubDate><author>false</author><guid>https://nuxulu.com/xpp/2100-01-01-using-query-insert_recordset/</guid><description><![CDATA[<p>How we can use the <code>Insert_RecordSet</code> function with Query, which is one of the batch SQL operations we frequently use in X++.</p>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>xpp - series - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://nuxulu.com/series/xpp/</link><description>xpp - series - Dynamics 365 Finance &amp; Operations | nuxulu.com</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Wed, 16 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://nuxulu.com/series/xpp/" rel="self" type="application/rss+xml"/><item><title>Override Form Control Lookup</title><link>https://nuxulu.com/xpp/2100-01-01-override-form-control-lookup/</link><pubDate>Wed, 16 Nov 2022 00:00:00 +0000</pubDate><author>false</author><guid>https://nuxulu.com/xpp/2100-01-01-override-form-control-lookup/</guid><description><![CDATA[<h2 id="scenario">Scenario</h2>
+<p>In FreeText invoice form, create a lookup invoice list of current customer in the freeText invoice line.</p>
+<h3 id="copy-event-handler-method"><strong>Copy Event Handler method:</strong></h3>
+<p>I created a string control for the new field and want to override <code>OnLookup</code> event.  Under the form control, go to <code>Events &gt; OnLookup &gt; right click &gt; Copy event handler method</code>.</p>
+<p></p>
+<h2 id="event-handler-class">Event Handler Class</h2>
+<p>Create a class to project and paste code.  It will create a method with <code>FormControlEventType::Loopup</code>. This lookup will be used in another form.  So, I create another extension class sending the <code>FormControl</code>, its <code>EventAgrs</code> and <code>InvoiceAccount</code> as parameters.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// Handles events raised by &lt;c&gt;CustFreeInvoice&lt;/c&gt; form.</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="na">[ExtensionOf(FormStr(CustFreeInvoice))]</span>
+</span></span><span class="line"><span class="cl"><span class="n">final</span> <span class="k">public</span> <span class="k">class</span> <span class="nc">MAX_CustFreeInvoiceEventHandler_Extension</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// Adds a lookup to the &lt;c&gt;RefInvId&lt;/c&gt; control on &lt;c&gt;CustInvoiceLine&lt;/c&gt; form.</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;param name=&#34;_sender&#34;&gt;The source of the event.&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;param name=&#34;_e&#34;&gt;Arguments of the OnLookup event.&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="na">    [FormControlEventHandler(formControlStr(CustFreeInvoice, CustInvoiceLine_RefInvId), FormControlEventType::Lookup)]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">CustInvoiceLine_MAX_RefInvId_OnLookup</span><span class="p">(</span><span class="n">FormControl</span> <span class="n">_sender</span><span class="p">,</span> <span class="n">FormControlEventArgs</span> <span class="n">_e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">FormRun</span>                 <span class="n">form</span> <span class="p">=</span> <span class="n">_sender</span><span class="p">.</span><span class="n">formRun</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">FormDataSource</span>          <span class="n">custInvoiceTable_ds</span> <span class="p">=</span> <span class="n">form</span><span class="p">.</span><span class="n">dataSource</span><span class="p">(</span><span class="n">formDataSourceStr</span><span class="p">(</span><span class="n">CustFreeInvoice</span><span class="p">,</span> <span class="n">CustInvoiceTable</span><span class="p">))</span> <span class="k">as</span> <span class="n">FormDataSource</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">CustInvoiceTable</span>        <span class="n">custInvoiceTable</span> <span class="p">=</span> <span class="n">custInvoiceTable_ds</span><span class="p">.</span><span class="n">cursor</span><span class="p">();</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">MAX_CustInvoiceTable_Extension</span><span class="p">::</span><span class="n">lookup_RefInvId</span><span class="p">(</span><span class="n">_sender</span><span class="p">,</span> <span class="n">_e</span><span class="p">,</span> <span class="n">custInvoiceTable</span><span class="p">.</span><span class="n">InvoiceAccount</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Extend <strong>CustInvoiceTable_Extension</strong> class</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// Method extension for &lt;c&gt;CustInvoiceTable&lt;/c&gt; table.</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">MAX_CustInvoiceTable_Extension</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// Adds an InvoiceId lookup from CustInvoiceJour.</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;param name=&#34;_sender&#34;&gt;The source of the event.&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;param name=&#34;_e&#34;&gt;Arguments of the OnLookup event.&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="na">    [SysClientCacheDataMethodAttribute(true)]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">lookup_RefInvId</span><span class="p">(</span><span class="n">FormControl</span> <span class="n">_sender</span><span class="p">,</span> <span class="n">FormControlEventArgs</span> <span class="n">_e</span><span class="p">,</span> <span class="n">CustInvoiceAccount</span> <span class="n">_invoiceAccount</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SysTableLookup</span> <span class="n">sysTableLookup</span> <span class="p">=</span> <span class="n">SysTableLookup</span><span class="p">::</span><span class="n">newParameters</span><span class="p">(</span><span class="n">tablenum</span><span class="p">(</span><span class="n">CustInvoiceJour</span><span class="p">),</span> <span class="n">_sender</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Query</span> <span class="n">query</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Query</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">sysTableLookup</span><span class="p">.</span><span class="n">addLookupfield</span><span class="p">(</span><span class="n">fieldnum</span><span class="p">(</span><span class="n">CustInvoiceJour</span><span class="p">,</span> <span class="n">InvoiceId</span><span class="p">),</span> <span class="k">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sysTableLookup</span><span class="p">.</span><span class="n">addLookupfield</span><span class="p">(</span><span class="n">fieldnum</span><span class="p">(</span><span class="n">CustInvoiceJour</span><span class="p">,</span> <span class="n">InvoiceAccount</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sysTableLookup</span><span class="p">.</span><span class="n">addLookupfield</span><span class="p">(</span><span class="n">fieldnum</span><span class="p">(</span><span class="n">CustInvoiceJour</span><span class="p">,</span> <span class="n">InvoiceDate</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">QueryBuildDataSource</span> <span class="n">qbds</span> <span class="p">=</span> <span class="n">query</span><span class="p">.</span><span class="n">addDataSource</span><span class="p">(</span><span class="n">tablenum</span><span class="p">(</span><span class="n">CustInvoiceJour</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">QueryBuildRange</span> <span class="n">qdr</span> <span class="p">=</span> <span class="n">qbds</span><span class="p">.</span><span class="n">addRange</span><span class="p">(</span><span class="n">fieldnum</span><span class="p">(</span><span class="n">CustInvoiceJour</span><span class="p">,</span> <span class="n">InvoiceAccount</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">qdr</span><span class="p">.</span><span class="k">value</span><span class="p">(</span><span class="n">queryValue</span><span class="p">(</span><span class="n">_invoiceAccount</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">qdr</span> <span class="p">=</span> <span class="n">qbds</span><span class="p">.</span><span class="n">addRange</span><span class="p">(</span><span class="n">fieldnum</span><span class="p">(</span><span class="n">CustInvoiceJour</span><span class="p">,</span> <span class="n">InvoiceId</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">qdr</span><span class="p">.</span><span class="k">value</span><span class="p">(</span><span class="n">sysQuery</span><span class="p">::</span><span class="n">valueNotEmptyString</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="n">sysTableLookup</span><span class="p">.</span><span class="n">parmQuery</span><span class="p">(</span><span class="n">query</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">sysTableLookup</span><span class="p">.</span><span class="n">performFormLookup</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">FormControlCancelableSuperEventArgs</span> <span class="n">ce</span> <span class="p">=</span> <span class="n">_e</span> <span class="k">as</span> <span class="n">FormControlCancelableSuperEventArgs</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">//cancel super() to prevent error.</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ce</span><span class="p">.</span><span class="n">CancelSuperCall</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>]]></description></item><item><title>How to use query::insert_recordset?</title><link>https://nuxulu.com/xpp/2100-01-01-using-query-insert_recordset/</link><pubDate>Mon, 10 Oct 2022 00:00:00 +0000</pubDate><author>false</author><guid>https://nuxulu.com/xpp/2100-01-01-using-query-insert_recordset/</guid><description><![CDATA[<p>How we can use the <code>Insert_RecordSet</code> function with Query, which is one of the batch SQL operations we frequently use in X++.</p>
 <p>I want to insert two fields of all records in <code>DmrBillsIncomingHeader</code> table into <code>DmrBillsIncominTest</code> table. I have to create a Query and query the <code>DmrBillsIncomingHeader</code> table.</p>
 <p>Also, which fields I want to insert, I have to mark them using Map. I should have written it with the classical method as follows.</p>
 <div class="highlight"><div class="chroma">
