@@ -1,6 +1,13 @@
 # Develop custom Data Entities for Dual-write
 
 
+- [Dual-write](#dual-write)
+- [Create the Data-entity](#create-the-data-entity)
+- [Create a table in Dataverse](#create-a-table-in-dataverse)
+- [Create table map](#create-table-map)
+- [Integration key](#integration-key)
+- [Action!](#action)
+
 [Dual-write](https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/dual-write/dual-write-home-page?WT.mc_id=BA-MVP-5003976) has been around for almost two years now. It’s one of the ways of **integrating Dynamics 365 Finance and Operations and [Dataverse](https://docs.microsoft.com/en-us/powerapps/maker/data-platform?WT.mc_id=BA-MVP-5003976)** along with [Virtual Entities](https://ariste.info/en/2020/09/dynamics-365-odata-cds-virtual-entities/).
 
 The standard solution comes with many **out-of-the-box entities** available to synchronize. This has been one of the great improvements since Dual-write was made available in preview, when [Juanan](https://jatomas.com/) and I [demoed it in the 2019 Dynamics Saturday in Madrid](https://www.youtube.com/watch?v=z_dLGDF7Ci0).

@@ -1,6 +1,39 @@
 # Dynamics 365 for Finance Operations and Azure DevOps
 
 
+- [More automation!](#more-automation)
+  - [Builds](#builds)
+  - [Releases](#releases)
+  - [But I like to add some human touch to it](#but-i-like-to-add-some-human-touch-to-it)
+  - [Extra bonus!](#extra-bonus)
+  - [Update a variable in a release](#update-a-variable-in-a-release)
+- [LCS DB API](#lcs-db-api)
+  - [Call the LCS Database Movement API from your Azure DevOps Pipelines](#call-the-lcs-database-movement-api-from-your-azure-devops-pipelines)
+    - [2.1.1. What for?](#211-what-for)
+    - [2.1.2. Calling the API](#212-calling-the-api)
+      - [2.1.2.1. Getting the token](#2121-getting-the-token)
+      - [2.1.2.2. Requesting the DB refresh](#2122-requesting-the-db-refresh)
+    - [2.1.3. Add it to your pipeline](#213-add-it-to-your-pipeline)
+    - [2.1.4. Use d365fo.tools in your Azure Pipeline](#214-use-d365fotools-in-your-azure-pipeline)
+      - [2.1.4.1. But first…](#2141-but-first)
+      - [2.1.4.2. The task](#2142-the-task)
+  - [Automating Prod to Dev DB copies](#automating-prod-to-dev-db-copies)
+    - [2.2.1. The bacpac issue](#221-the-bacpac-issue)
+    - [2.2.2. Save us LCS DB API!](#222-save-us-lcs-db-api)
+    - [2.2.3. My proposal](#223-my-proposal)
+      - [2.2.3.1. Refresh database](#2231-refresh-database)
+      - [2.2.3.2. Export database](#2232-export-database)
+      - [2.2.3.3. Restore bacpac](#2233-restore-bacpac)
+      - [2.2.3.4. Using it in an Azure DevOps pipeline](#2234-using-it-in-an-azure-devops-pipeline)
+    - [2.2.4. Timing](#224-timing)
+- [Secure your Azure Pipelines with Azure Key Vault](#secure-your-azure-pipelines-with-azure-key-vault)
+- [Azure Key Vault](#azure-key-vault)
+  - [Securing your Azure DevOps Pipelines](#securing-your-azure-devops-pipelines)
+    - [4.1.1. Create a Key Vault](#411-create-a-key-vault)
+    - [4.1.2. Add the task to DevOps](#412-add-the-task-to-devops)
+    - [4.1.3. Setup and secret creation](#413-setup-and-secret-creation)
+    - [4.1.4. Using the secrets in your pipelines](#414-using-the-secrets-in-your-pipelines)
+
 [](https://ariste.info/en/msdyn365-azure-devops-alm/#dynamics-365-for-finance-operations-and-azure-devops)**Dynamics 365 for Finance & Operations and Azure DevOps**
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

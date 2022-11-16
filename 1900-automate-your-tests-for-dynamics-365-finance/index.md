@@ -1,6 +1,13 @@
 # Automate testing Dynamics 365 Finance & Operations
 
 
+- [1. **Overview**](#1-overview)
+- [2. **1/ LCS <=> BPM <=> AzureDevOps (via Task Recorder)**](#2-1-lcs--bpm--azuredevops-via-task-recorder)
+- [3. **2/ RSAT - Regression Suite Automation Tool**](#3-2-rsat---regression-suite-automation-tool)
+- [4. **3/ SysTestFramework and ATL : Acceptance test library**](#4-3-systestframework-and-atl--acceptance-test-library)
+- [5. **Key concepts**](#5-key-concepts)
+- [6. **4/ Change your BUILD & Release pipeline in AzureDevOps**](#6-4-change-your-build--release-pipeline-in-azuredevops)
+
 A new article for you the community. More specifically, all project managers, functional and technical consultants, as well as customer-side decision-makers on the deployment of Dynamics 365 Finance and Operations.
 
 I told myself that it would be important to offer you a global article on all the testing capabilities (manual or automatic) for Dynamics 365 Finance and Operations. It is the result of quite a long work but which I hope will help you to improve your code delivery and upgrade processes.

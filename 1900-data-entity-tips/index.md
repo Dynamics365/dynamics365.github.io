@@ -1,6 +1,14 @@
 # Data Entity Tips
 
 
+- [Custom from staging to target](#custom-from-staging-to-target)
+- [Exporting large amounts of data](#exporting-large-amounts-of-data)
+- [Handling errors messages](#handling-errors-messages)
+  - [Creating logs in *View excecution log*](#creating-logs-in-view-excecution-log)
+  - [Creating logs in *View staging data*](#creating-logs-in-view-staging-data)
+- [Entity methods](#entity-methods)
+  - [mapEntityToDataSource](#mapentitytodatasource)
+
 #### Custom from staging to target
 
 When importing data into AX using data entities, sometimes there is no way to match data structure between data source (xml file, excel spredsheet, etc) and AX table. For instance:

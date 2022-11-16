@@ -5,6 +5,10 @@
 - [2. LCS API - Export database](#2-lcs-api---export-database)
 - [## 3. Retrieve list of database backup](#-3-retrieve-list-of-database-backup)
 
+- [1. PowerAutomate Sample - LCS API - Automatic refresh database](#1-powerautomate-sample---lcs-api---automatic-refresh-database)
+- [2. LCS API - Export database](#2-lcs-api---export-database)
+- [## 3. Retrieve list of database backup](#-3-retrieve-list-of-database-backup)
+
 Hello Dynamics & Power Community,
 
 I’m very happy to announce a good news for you the Dynamics365 F&O Community. I’ve got a little gift for you, as part of the new LCS API.

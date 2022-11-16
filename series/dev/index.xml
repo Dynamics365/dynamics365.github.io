@@ -1,4 +1,117 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>dev - series - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://nuxulu.com/series/dev/</link><description>dev - series - Dynamics 365 Finance &amp; Operations | nuxulu.com</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Wed, 05 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://nuxulu.com/series/dev/" rel="self" type="application/rss+xml"/><item><title>Data Entity Tips</title><link>https://nuxulu.com/notes/2100-01-01-data-entity-tips/</link><pubDate>Wed, 05 May 2021 00:00:00 +0000</pubDate><author>false</author><guid>https://nuxulu.com/notes/2100-01-01-data-entity-tips/</guid><description><![CDATA[<h4 id="custom-from-staging-to-target">Custom from staging to target</h4>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>dev - series - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://nuxulu.com/series/dev/</link><description>dev - series - Dynamics 365 Finance &amp; Operations | nuxulu.com</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Sat, 06 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://nuxulu.com/series/dev/" rel="self" type="application/rss+xml"/><item><title>Auto posting journals Dynamics AX 2012</title><link>https://nuxulu.com/1900-auto-posting-journals/</link><pubDate>Sat, 06 Nov 2021 00:00:00 +0000</pubDate><author>false</author><guid>https://nuxulu.com/1900-auto-posting-journals/</guid><description><![CDATA[<p>The previous post dealt primarily with the question how the selection and posting of journals can be restricted. Within this post I would like to change the perspective and take a look at a function that allows a periodic posting of a number of journals that have been created.</p>
+<p>The “post journals” functionality I refer to here can be found in the General Ledger module in the journal entries section. (In prior Dynamics AX versions it can be found in the periodic General Ledger module section).</p>
+<p>As the information that has been provided e.g. on <a href="https://technet.microsoft.com/en-us/library/aa583389.aspx" target="_blank" rel="noopener noreffer ">TechNet</a> for the “post journals” functionality is a bit sparse and as several questions in regards to this function have been brought forward recently, I decided summarizing the different setup and processing options in this post.</p>
+<p><em>Note: Please note that the following illustrations and explanations will only refer to posting General Ledger journals. The post journals function is, however, not limited to those kind of journals but can be applied to other journals as well. Please see the following <a href="https://technet.microsoft.com/en-us/library/aa570269.aspx" target="_blank" rel="noopener noreffer ">summary</a>.</em></p>
+<p>In order to explain the different setup options of the post journals feature, I started setting up some daily General Ledger journals that included either no error (“OK”), some journal lines with errors (“Partly ok”) or only erroneous lines (“Error”). The next screenshot exemplifies the setup of some of those journals used.</p>
+<p><figure><a class="lightgallery" href="/1900-auto-posting-journals/automatic-posting-of-journals_127_0005.png" title="EN_127_0005" data-thumbnail="/1900-auto-posting-journals/automatic-posting-of-journals_127_0005.png" data-sub-html="<h2>EN_127_0005</h2><p>EN_127_0005</p>">
+        
+    </a><figcaption class="image-caption">EN_127_0005</figcaption>
+    </figure></p>
+<h2 id="option-1-select-the-journals-and-post-them">Option 1: Select the journals, and post them</h2>
+<p>Once all demo journals have been prepared, I opened the post journals window and selected them through the identic button.</p>
+<p><figure><a class="lightgallery" href="/1900-auto-posting-journals/automatic-posting-of-journals_127_0010.png" title="EN_127_0010" data-thumbnail="/1900-auto-posting-journals/automatic-posting-of-journals_127_0010.png" data-sub-html="<h2>EN_127_0010</h2><p>EN_127_0010</p>">
+        
+    </a><figcaption class="image-caption">EN_127_0010</figcaption>
+    </figure></p>
+<p><figure><a class="lightgallery" href="/1900-auto-posting-journals/automatic-posting-of-journals_127_0015.png" title="EN_127_0015" data-thumbnail="/1900-auto-posting-journals/automatic-posting-of-journals_127_0015.png" data-sub-html="<h2>EN_127_0015</h2><p>EN_127_0015</p>">
+        
+    </a><figcaption class="image-caption">EN_127_0015</figcaption>
+    </figure></p>
+<p>After all journals have been selected, the posting process was initiated by hitting OK button in the post journal form.</p>
+<p><figure><a class="lightgallery" href="/1900-auto-posting-journals/automatic-posting-of-journals_127_0020.png" title="EN_127_0020" data-thumbnail="/1900-auto-posting-journals/automatic-posting-of-journals_127_0020.png" data-sub-html="<h2>EN_127_0020</h2><p>EN_127_0020</p>">
+        
+    </a><figcaption class="image-caption">EN_127_0020</figcaption>
+    </figure></p>
+<p>Result:<br>
+The result of this first posting test was that all journals except the ones that contained errors were posted.<br>
+<figure><a class="lightgallery" href="/1900-auto-posting-journals/automatic-posting-of-journals_127_0025.png" title="EN_127_0025" data-thumbnail="/1900-auto-posting-journals/automatic-posting-of-journals_127_0025.png" data-sub-html="<h2>EN_127_0025</h2><p>EN_127_0025</p>">
+        
+    </a><figcaption class="image-caption">EN_127_0025</figcaption>
+    </figure></p>
+<p>Newly created journals that did not contain any error remained, however, unposted.</p>
+<h2 id="option-2-select-the-journals-and-post-them-by-using-a-batch-job">Option 2: Select the journals and post them by using a batch job</h2>
+<p>To get also those journals automatically posted that have been created later on, I deleted all unposted previously generated journals, setup some new ones and selected them as before in the post journals form.<br>
+<figure><a class="lightgallery" href="/1900-auto-posting-journals/automatic-posting-of-journals_127_0030.png" title="EN_127_0030" data-thumbnail="/1900-auto-posting-journals/automatic-posting-of-journals_127_0030.png" data-sub-html="<h2>EN_127_0030</h2><p>EN_127_0030</p>">
+        
+    </a><figcaption class="image-caption">EN_127_0030</figcaption>
+    </figure></p>
+<p>This time I changed the posting process by making use of a batch process that runs every some minutes and that does the posting for me.<br>
+<figure><a class="lightgallery" href="/1900-auto-posting-journals/automatic-posting-of-journals_127_0035.png" title="EN_127_0035" data-thumbnail="/1900-auto-posting-journals/automatic-posting-of-journals_127_0035.png" data-sub-html="<h2>EN_127_0035</h2><p>EN_127_0035</p>">
+        
+    </a><figcaption class="image-caption">EN_127_0035</figcaption>
+    </figure></p>
+<p>Result:</p>
+<p>As before, all journals have been posted except the ones that contained errors.<br>
+<figure><a class="lightgallery" href="/1900-auto-posting-journals/automatic-posting-of-journals_127_0040.png" title="EN_127_0040" data-thumbnail="/1900-auto-posting-journals/automatic-posting-of-journals_127_0040.png" data-sub-html="<h2>EN_127_0040</h2><p>EN_127_0040</p>">
+        
+    </a><figcaption class="image-caption">EN_127_0040</figcaption>
+    </figure></p>
+<p>My next step was setting up a new journal (No. 188) that did not contain any error.</p>
+<p><figure><a class="lightgallery" href="/1900-auto-posting-journals/automatic-posting-of-journals_127_0045.png" title="EN_127_0045" data-thumbnail="/1900-auto-posting-journals/automatic-posting-of-journals_127_0045.png" data-sub-html="<h2>EN_127_0045</h2><p>EN_127_0045</p>">
+        
+    </a><figcaption class="image-caption">EN_127_0045</figcaption>
+    </figure></p>
+<p>Because of my posting setup I expected that the batch process will pick up the newly generated journal and post it. Yet, as nothing happened, I finally checked the batch job history window and noticed that the batch job stopped because it could not process the first two journals that contained erroneous lines. Please see the next screen-print.</p>
+<p><figure><a class="lightgallery" href="/1900-auto-posting-journals/automatic-posting-of-journals_127_0050.png" title="EN_127_0050" data-thumbnail="/1900-auto-posting-journals/automatic-posting-of-journals_127_0050.png" data-sub-html="<h2>EN_127_0050</h2><p>EN_127_0050</p>">
+        
+    </a><figcaption class="image-caption">EN_127_0050</figcaption>
+    </figure></p>
+<h2 id="option-3-as-option-2--select-the-transfer-errors-checkbox">Option 3: As option 2 &amp; select the transfer errors checkbox</h2>
+<p>As processing newly created journals did not work with the previous approach, I repeated the earlier setup steps and created a number of new journals. This time I tried processing them by selecting the ‘transfer errors’ checkboxes (please see below).</p>
+<p><figure><a class="lightgallery" href="/1900-auto-posting-journals/automatic-posting-of-journals_127_0055.png" title="EN_127_0055" data-thumbnail="/1900-auto-posting-journals/automatic-posting-of-journals_127_0055.png" data-sub-html="<h2>EN_127_0055</h2><p>EN_127_0055</p>">
+        
+    </a><figcaption class="image-caption">EN_127_0055</figcaption>
+    </figure></p>
+<p><strong>Result</strong>:<br>
+As expected, all journals except the ones that contained errors were posted. After setting up a new journal that contained no error I expected that this time the newly created journal will be posted.</p>
+<p><figure><a class="lightgallery" href="/1900-auto-posting-journals/automatic-posting-of-journals_127_0060.png" title="EN_127_0060" data-thumbnail="/1900-auto-posting-journals/automatic-posting-of-journals_127_0060.png" data-sub-html="<h2>EN_127_0060</h2><p>EN_127_0060</p>">
+        
+    </a><figcaption class="image-caption">EN_127_0060</figcaption>
+    </figure></p>
+<p>Yet, unfortunately nothing happened to the newly created journal as the batch job stopped as before after detecting errors.</p>
+<p><figure><a class="lightgallery" href="/1900-auto-posting-journals/automatic-posting-of-journals_127_0065.png" title="EN_127_0065" data-thumbnail="/1900-auto-posting-journals/automatic-posting-of-journals_127_0065.png" data-sub-html="<h2>EN_127_0065</h2><p>EN_127_0065</p>">
+        
+    </a><figcaption class="image-caption">EN_127_0065</figcaption>
+    </figure></p>
+<p><strong>Note</strong>: The difference between the 2nd and 3rd setup option is related to the journal that was partly ok. That is, this time all journal lines that did not include an error in the original (partly correct) journal No. 189 were posted and the journal lines that contained errors were transferred to a new journal No. 191 that contains only the erroneous lines.</p>
+<h2 id="option-4-as-option-3-but-with-the-late-selection-and-transfer-errors-checkbox-activated">Option 4: As option 3 but with the late selection and transfer errors checkbox activated</h2>
+<p>Since none of the prior setup options successfully posted the journals that I created subsequently, I changed the setup in the post journals form once again. This time – after selecting the journals that I want to post – the “late selection” and “transfer error” parameters were activated as shown in the next screen-print.</p>
+<p><figure><a class="lightgallery" href="/1900-auto-posting-journals/automatic-posting-of-journals_127_0075.png" title="EN_127_0075" data-thumbnail="/1900-auto-posting-journals/automatic-posting-of-journals_127_0075.png" data-sub-html="<h2>EN_127_0075</h2><p>EN_127_0075</p>">
+        
+    </a><figcaption class="image-caption">EN_127_0075</figcaption>
+    </figure></p>
+<p><strong>Result</strong>:</p>
+<p>This time all erroneous journals/journal lines remained unposted as before but the journal that I created later on – in my case journal No. 196 – was finally picked up by the batch process and posted automatically as the following screen-prints prove.</p>
+<p><figure><a class="lightgallery" href="/1900-auto-posting-journals/automatic-posting-of-journals_127_0080.png" title="EN_127_0080" data-thumbnail="/1900-auto-posting-journals/automatic-posting-of-journals_127_0080.png" data-sub-html="<h2>EN_127_0080</h2><p>EN_127_0080</p>">
+        
+    </a><figcaption class="image-caption">EN_127_0080</figcaption>
+    </figure></p>
+<p><figure><a class="lightgallery" href="/1900-auto-posting-journals/automatic-posting-of-journals_127_0085.png" title="EN_127_0085" data-thumbnail="/1900-auto-posting-journals/automatic-posting-of-journals_127_0085.png" data-sub-html="<h2>EN_127_0085</h2><p>EN_127_0085</p>">
+        
+    </a><figcaption class="image-caption">EN_127_0085</figcaption>
+    </figure></p>
+<p>Note: Despite the fact that the newly generated journal was successfully posted, the batch job still continued running (and ending) with errors because of the two journals that contained lines with errors.</p>
+<p><figure><a class="lightgallery" href="/1900-auto-posting-journals/automatic-posting-of-journals_127_0090.png" title="EN_127_0090" data-thumbnail="/1900-auto-posting-journals/automatic-posting-of-journals_127_0090.png" data-sub-html="<h2>EN_127_0090</h2><p>EN_127_0090</p>">
+        
+    </a><figcaption class="image-caption">EN_127_0090</figcaption>
+    </figure>
+Even though this issue in not directly related to the journal posting process itself, it can become quite cumbersome, as it might flood your mailbox with error messages / Emails if alerts and/or Email notifications have been setup that control the processing of batch jobs.</p>
+]]></description></item><item><title>Data Entity Tips</title><link>https://nuxulu.com/1900-data-entity-tips/</link><pubDate>Wed, 05 May 2021 00:00:00 +0000</pubDate><author>false</author><guid>https://nuxulu.com/1900-data-entity-tips/</guid><description><![CDATA[<ul>
+<li><a href="#custom-from-staging-to-target" rel="">Custom from staging to target</a></li>
+<li><a href="#exporting-large-amounts-of-data" rel="">Exporting large amounts of data</a></li>
+<li><a href="#handling-errors-messages" rel="">Handling errors messages</a>
+<ul>
+<li><a href="#creating-logs-in-view-excecution-log" rel="">Creating logs in <em>View excecution log</em></a></li>
+<li><a href="#creating-logs-in-view-staging-data" rel="">Creating logs in <em>View staging data</em></a></li>
+</ul>
+</li>
+<li><a href="#entity-methods" rel="">Entity methods</a>
+<ul>
+<li><a href="#mapentitytodatasource" rel="">mapEntityToDataSource</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="custom-from-staging-to-target">Custom from staging to target</h4>
 <p>When importing data into AX using data entities, sometimes there is no way to match data structure between data source (xml file, excel spredsheet, etc) and AX table. For instance:</p>
 <ul>
 <li>Single line from a spredsheel source needs to be split amoung table header and table line in D365.</li>
@@ -138,10 +251,25 @@
 <li><strong>Purpose</strong>: When importing, use it to fill either datasource or entity fields based on entity fields.</li>
 <li><strong>Example</strong>: In <em>CustCustomerEntity.mapEntityToDataSource()</em>, <em>EmployeeResponsibleNumber</em> field value is used to retrive worker record id and set it into <em>MainContactWorker</em> field from entity itself.</li>
 </ul>
-]]></description></item><item><title>LCS API Database Movement with PowerAutomate</title><link>https://nuxulu.com/notes/2100-01-01-lcs-api-database-movement-with-powerautomate/</link><pubDate>Wed, 05 May 2021 00:00:00 +0000</pubDate><author>false</author><guid>https://nuxulu.com/notes/2100-01-01-lcs-api-database-movement-with-powerautomate/</guid><description><![CDATA[<ul>
-<li><a href="#1-powerautomate-sample---lcs-api---automatic-refresh-database" rel="">1. PowerAutomate Sample - LCS API - Automatic refresh database</a></li>
-<li><a href="#2-lcs-api---export-database" rel="">2. LCS API - Export database</a></li>
-<li><a href="#-3-retrieve-list-of-database-backup" rel="">## 3. Retrieve list of database backup</a></li>
+]]></description></item><item><title>LCS API Database Movement with PowerAutomate</title><link>https://nuxulu.com/1900-lcs-api-database-movement-with-powerautomate/</link><pubDate>Wed, 05 May 2021 00:00:00 +0000</pubDate><author>false</author><guid>https://nuxulu.com/1900-lcs-api-database-movement-with-powerautomate/</guid><description><![CDATA[<ul>
+<li>
+<p><a href="#1-powerautomate-sample---lcs-api---automatic-refresh-database" rel="">1. PowerAutomate Sample - LCS API - Automatic refresh database</a></p>
+</li>
+<li>
+<p><a href="#2-lcs-api---export-database" rel="">2. LCS API - Export database</a></p>
+</li>
+<li>
+<p><a href="#-3-retrieve-list-of-database-backup" rel="">## 3. Retrieve list of database backup</a></p>
+</li>
+<li>
+<p><a href="#1-powerautomate-sample---lcs-api---automatic-refresh-database" rel="">1. PowerAutomate Sample - LCS API - Automatic refresh database</a></p>
+</li>
+<li>
+<p><a href="#2-lcs-api---export-database" rel="">2. LCS API - Export database</a></p>
+</li>
+<li>
+<p><a href="#-3-retrieve-list-of-database-backup" rel="">## 3. Retrieve list of database backup</a></p>
+</li>
 </ul>
 <p>Hello Dynamics &amp; Power Community,</p>
 <p>I’m very happy to announce a good news for you the Dynamics365 F&amp;O Community. I’ve got a little gift for you, as part of the new LCS API.</p>
@@ -290,7 +418,64 @@
 <p>You can see easily that PowerAutomate in part of the PowerPlatform is really a huge feature that will help us in a lot of flows for F&amp;O project.</p>
 <p>Because despite this technical part of DataALM, like I’ve done for other articles in this blog, we can achieve a lot more of use cases now ! Business cases , Business Events etc…</p>
 <p>See you ! Stay tuned. Add me on social networks :)</p>
-]]></description></item><item><title>Azure DevTest Labs powered builds for Dynamics 365 FinOps</title><link>https://nuxulu.com/notes/2100-01-01-azure-devtest-labs-powered-builds-for-dynamics-365-finops/</link><pubDate>Mon, 03 May 2021 00:00:00 +0000</pubDate><author>false</author><guid>https://nuxulu.com/notes/2100-01-01-azure-devtest-labs-powered-builds-for-dynamics-365-finops/</guid><description><![CDATA[<p><strong>This post has been written thanks to <a href="https://twitter.com/jorisdg" target="_blank" rel="noopener noreffer ">Joris de Gruyter</a>‘s session in the past <a href="https://dynamicscon.com/" target="_blank" rel="noopener noreffer ">DynamicsCon</a></strong>: <a href="https://www.youtube.com/watch?v=VIib-m6Q8LQ" target="_blank" rel="noopener noreffer ">Azure Devops Automation for Finance and Operations Like You’ve Never Seen!</a> And there’s also been some investigation and (a lot of) trial-and-error from my side until everything has been working.</p>
+]]></description></item><item><title>Azure DevTest Labs powered builds for Dynamics 365 FinOps</title><link>https://nuxulu.com/1900-azure-devtest-labs-powered-builds-for-dynamics-365-finops/</link><pubDate>Mon, 03 May 2021 00:00:00 +0000</pubDate><author>false</author><guid>https://nuxulu.com/1900-azure-devtest-labs-powered-builds-for-dynamics-365-finops/</guid><description><![CDATA[<ul>
+<li><a href="#but-first" rel="">But first…</a></li>
+<li><a href="#azure-devtest-labs" rel="">Azure DevTest Labs</a></li>
+<li><a href="#getting-and-preparing-the-vhd" rel="">Getting and preparing the VHD</a></li>
+<li><a href="#create-a-devtest-labs-account" rel="">Create a DevTest Labs account</a></li>
+<li><a href="#creating-the-vm" rel="">Creating the VM</a>
+<ul>
+<li><a href="#51-configure-azure-devops-agent-service" rel="">5.1. Configure Azure DevOps Agent Service</a></li>
+<li><a href="#52-option-a-use-an-artifact" rel="">5.2. Option A: use an artifact</a></li>
+<li><a href="#53-option-b-configure-azure-devops-agent-in-the-vm" rel="">5.3. Option B: Configure Azure DevOps Agent in the VM</a></li>
+<li><a href="#54-arm-template" rel="">5.4. ARM template</a></li>
+</ul>
+</li>
+<li><a href="#preparing-the-vm" rel="">Preparing the VM</a>
+<ul>
+<li><a href="#61-disable-services" rel="">6.1. Disable services</a></li>
+<li><a href="#62-create-a-new-sql-user" rel="">6.2. Create a new SQL user</a></li>
+<li><a href="#63-prepare-ssrs-optional" rel="">6.3. Prepare SSRS (optional)</a></li>
+<li><a href="#64-powershell-scripts" rel="">6.4. PowerShell Scripts</a>
+<ul>
+<li><a href="#641-prepareforbuild" rel="">6.4.1. PrepareForBuild</a></li>
+</ul>
+</li>
+<li>[6.5. <strong>Optional (but recommended)</strong>: install <a href="https://github.com/d365collaborative/d365fo.tools" target="_blank" rel="noopener noreffer ">d365fo.tools</a>](#65-optional-but-recommended-install-d365fotools)</li>
+</ul>
+</li>
+<li><a href="#create-a-new-image" rel="">Create a new image</a></li>
+<li><a href="#azure-devops-pipelines" rel="">Azure DevOps Pipelines</a>
+<ul>
+<li><a href="#81-create-azure-devtest-labs-vm" rel="">8.1. Create Azure DevTest Labs VM</a></li>
+<li><a href="#82-build" rel="">8.2. Build</a>
+<ul>
+<li><a href="#821-optional-use-selectivesync-not-recommended-see-next-option" rel="">8.2.1. Optional: use SelectiveSync (not recommended, see next option)</a></li>
+<li><a href="#822-optional-use-d365fotools-to-sync-your-packagesmodels" rel="">8.2.2. Optional: use d365fo.tools to sync your packages/models</a></li>
+<li><a href="#823-optional-use-d365fotools-to-deploy-ssrs-reports" rel="">8.2.3. Optional: use d365fo.tools to deploy SSRS reports</a></li>
+</ul>
+</li>
+<li><a href="#83-delete-azure-devtest-labs-vm" rel="">8.3. Delete Azure DevTest Labs VM</a></li>
+<li><a href="#84-dependencies-and-conditions" rel="">8.4. Dependencies and conditions</a>
+<ul>
+<li><a href="#841-build" rel="">8.4.1. Build</a></li>
+<li><a href="#842-delete-vm" rel="">8.4.2. Delete VM</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#run-the-build" rel="">Run the build</a></li>
+<li><a href="#times" rel="">Times</a>
+<ul>
+<li><a href="#101-comparison-1" rel="">10.1. Comparison 1</a></li>
+<li><a href="#102-comparison-2" rel="">10.2. Comparison 2</a></li>
+<li><a href="#103-comparison-3" rel="">10.3. Comparison 3</a></li>
+</ul>
+</li>
+<li><a href="#show-me-the-money" rel="">Show me the money!</a></li>
+<li><a href="#some-final-remarks" rel="">Some final remarks</a></li>
+</ul>
+<p><strong>This post has been written thanks to <a href="https://twitter.com/jorisdg" target="_blank" rel="noopener noreffer ">Joris de Gruyter</a>‘s session in the past <a href="https://dynamicscon.com/" target="_blank" rel="noopener noreffer ">DynamicsCon</a></strong>: <a href="https://www.youtube.com/watch?v=VIib-m6Q8LQ" target="_blank" rel="noopener noreffer ">Azure Devops Automation for Finance and Operations Like You’ve Never Seen!</a> And there’s also been some investigation and (a lot of) trial-and-error from my side until everything has been working.</p>
 <p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/01/adtl-1024x1024.png" title="Azure DevTest Labs" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/01/adtl-1024x1024.png" data-sub-html="<h2>Azure DevTest Labs powered builds for Dynamics 365 FnO 1</h2><p>Azure DevTest Labs</p>">
         
     </a><figcaption class="image-caption">Azure DevTest Labs powered builds for Dynamics 365 FnO 1</figcaption>
@@ -1482,7 +1667,15 @@
 <li>The only bad thing to me is that we need to apply the version upgrades manually to the VHDs because they’re published only twice a year.</li>
 <li>As I said at the beginning of the post, it may have worked to me with all these steps, but if you try you maybe need to change some things. But it’s a good way to start.</li>
 </ol>
-]]></description></item><item><title>Develop custom Data Entities for Dual-write</title><link>https://nuxulu.com/notes/2100-01-01-develop-custom-data-entities-for-dual-write/</link><pubDate>Sun, 02 May 2021 00:00:00 +0000</pubDate><author>false</author><guid>https://nuxulu.com/notes/2100-01-01-develop-custom-data-entities-for-dual-write/</guid><description><![CDATA[<p><a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/dual-write/dual-write-home-page?WT.mc_id=BA-MVP-5003976" target="_blank" rel="noopener noreffer ">Dual-write</a> has been around for almost two years now. It’s one of the ways of <strong>integrating Dynamics 365 Finance and Operations and <a href="https://docs.microsoft.com/en-us/powerapps/maker/data-platform?WT.mc_id=BA-MVP-5003976" target="_blank" rel="noopener noreffer ">Dataverse</a></strong> along with <a href="https://ariste.info/en/2020/09/dynamics-365-odata-cds-virtual-entities/" target="_blank" rel="noopener noreffer ">Virtual Entities</a>.</p>
+]]></description></item><item><title>Develop custom Data Entities for Dual-write</title><link>https://nuxulu.com/1900-develop-custom-data-entities-for-dual-write/</link><pubDate>Sun, 02 May 2021 00:00:00 +0000</pubDate><author>false</author><guid>https://nuxulu.com/1900-develop-custom-data-entities-for-dual-write/</guid><description><![CDATA[<ul>
+<li><a href="#dual-write" rel="">Dual-write</a></li>
+<li><a href="#create-the-data-entity" rel="">Create the Data-entity</a></li>
+<li><a href="#create-a-table-in-dataverse" rel="">Create a table in Dataverse</a></li>
+<li><a href="#create-table-map" rel="">Create table map</a></li>
+<li><a href="#integration-key" rel="">Integration key</a></li>
+<li><a href="#action" rel="">Action!</a></li>
+</ul>
+<p><a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/dual-write/dual-write-home-page?WT.mc_id=BA-MVP-5003976" target="_blank" rel="noopener noreffer ">Dual-write</a> has been around for almost two years now. It’s one of the ways of <strong>integrating Dynamics 365 Finance and Operations and <a href="https://docs.microsoft.com/en-us/powerapps/maker/data-platform?WT.mc_id=BA-MVP-5003976" target="_blank" rel="noopener noreffer ">Dataverse</a></strong> along with <a href="https://ariste.info/en/2020/09/dynamics-365-odata-cds-virtual-entities/" target="_blank" rel="noopener noreffer ">Virtual Entities</a>.</p>
 <p>The standard solution comes with many <strong>out-of-the-box entities</strong> available to synchronize. This has been one of the great improvements since Dual-write was made available in preview, when <a href="https://jatomas.com/" target="_blank" rel="noopener noreffer ">Juanan</a> and I <a href="https://www.youtube.com/watch?v=z_dLGDF7Ci0" target="_blank" rel="noopener noreffer ">demoed it in the 2019 Dynamics Saturday in Madrid</a>.</p>
 <p><figure><a class="lightgallery" href="https://static.ariste.info/wp-content/uploads/2021/03/DW-1024x1024.png" title="Dual write" data-thumbnail="https://static.ariste.info/wp-content/uploads/2021/03/DW-1024x1024.png" data-sub-html="<h2>Develop custom Data Entities for Dual-write 1</h2><p>Dual write</p>">
         
@@ -1589,7 +1782,68 @@
     </figure></p>
 <p>This is a really simple example of how we can create a custom table, use it in a data entity and then use this entity in our dual-write setup. It’s something that can be easily done but we need to <strong>remember the “company thing”</strong>, otherwise this will never work!</p>
 <p>Dual-write is even easier to configure nowadays thanks to <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/dual-write/lcs-setup?WT.mc_id=BA-MVP-5003976" target="_blank" rel="noopener noreffer ">LCS allowing us to create and link a new Dataverse environment when we deploy a new Finance and Operations environment</a>.</p>
-]]></description></item><item><title>Dynamics 365 for Finance Operations and Azure DevOps</title><link>https://nuxulu.com/notes/2100-01-01-dynamics-365-for-finance--operations-and-azure-devops/</link><pubDate>Sat, 01 May 2021 00:00:00 +0000</pubDate><author>false</author><guid>https://nuxulu.com/notes/2100-01-01-dynamics-365-for-finance--operations-and-azure-devops/</guid><description><![CDATA[<h2 id="httpsaristeinfoenmsdyn365-azure-devops-almdynamics-365-for-finance-operations-and-azure-devopsdynamics-365-for-finance--operations-and-azure-devops"><a href="https://ariste.info/en/msdyn365-azure-devops-alm/#dynamics-365-for-finance-operations-and-azure-devops" target="_blank" rel="noopener noreffer "></a><strong>Dynamics 365 for Finance &amp; Operations and Azure DevOps</strong></h2>
+]]></description></item><item><title>Dynamics 365 for Finance Operations and Azure DevOps</title><link>https://nuxulu.com/1900-dynamics-365-for-finance--operations-and-azure-devops/</link><pubDate>Sat, 01 May 2021 00:00:00 +0000</pubDate><author>false</author><guid>https://nuxulu.com/1900-dynamics-365-for-finance--operations-and-azure-devops/</guid><description><![CDATA[<ul>
+<li><a href="#more-automation" rel="">More automation!</a>
+<ul>
+<li><a href="#builds" rel="">Builds</a></li>
+<li><a href="#releases" rel="">Releases</a></li>
+<li><a href="#but-i-like-to-add-some-human-touch-to-it" rel="">But I like to add some human touch to it</a></li>
+<li><a href="#extra-bonus" rel="">Extra bonus!</a></li>
+<li><a href="#update-a-variable-in-a-release" rel="">Update a variable in a release</a></li>
+</ul>
+</li>
+<li><a href="#lcs-db-api" rel="">LCS DB API</a>
+<ul>
+<li><a href="#call-the-lcs-database-movement-api-from-your-azure-devops-pipelines" rel="">Call the LCS Database Movement API from your Azure DevOps Pipelines</a>
+<ul>
+<li><a href="#211-what-for" rel="">2.1.1. What for?</a></li>
+<li><a href="#212-calling-the-api" rel="">2.1.2. Calling the API</a>
+<ul>
+<li><a href="#2121-getting-the-token" rel="">2.1.2.1. Getting the token</a></li>
+<li><a href="#2122-requesting-the-db-refresh" rel="">2.1.2.2. Requesting the DB refresh</a></li>
+</ul>
+</li>
+<li><a href="#213-add-it-to-your-pipeline" rel="">2.1.3. Add it to your pipeline</a></li>
+<li><a href="#214-use-d365fotools-in-your-azure-pipeline" rel="">2.1.4. Use d365fo.tools in your Azure Pipeline</a>
+<ul>
+<li><a href="#2141-but-first" rel="">2.1.4.1. But first…</a></li>
+<li><a href="#2142-the-task" rel="">2.1.4.2. The task</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#automating-prod-to-dev-db-copies" rel="">Automating Prod to Dev DB copies</a>
+<ul>
+<li><a href="#221-the-bacpac-issue" rel="">2.2.1. The bacpac issue</a></li>
+<li><a href="#222-save-us-lcs-db-api" rel="">2.2.2. Save us LCS DB API!</a></li>
+<li><a href="#223-my-proposal" rel="">2.2.3. My proposal</a>
+<ul>
+<li><a href="#2231-refresh-database" rel="">2.2.3.1. Refresh database</a></li>
+<li><a href="#2232-export-database" rel="">2.2.3.2. Export database</a></li>
+<li><a href="#2233-restore-bacpac" rel="">2.2.3.3. Restore bacpac</a></li>
+<li><a href="#2234-using-it-in-an-azure-devops-pipeline" rel="">2.2.3.4. Using it in an Azure DevOps pipeline</a></li>
+</ul>
+</li>
+<li><a href="#224-timing" rel="">2.2.4. Timing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#secure-your-azure-pipelines-with-azure-key-vault" rel="">Secure your Azure Pipelines with Azure Key Vault</a></li>
+<li><a href="#azure-key-vault" rel="">Azure Key Vault</a>
+<ul>
+<li><a href="#securing-your-azure-devops-pipelines" rel="">Securing your Azure DevOps Pipelines</a>
+<ul>
+<li><a href="#411-create-a-key-vault" rel="">4.1.1. Create a Key Vault</a></li>
+<li><a href="#412-add-the-task-to-devops" rel="">4.1.2. Add the task to DevOps</a></li>
+<li><a href="#413-setup-and-secret-creation" rel="">4.1.3. Setup and secret creation</a></li>
+<li><a href="#414-using-the-secrets-in-your-pipelines" rel="">4.1.4. Using the secrets in your pipelines</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="httpsaristeinfoenmsdyn365-azure-devops-almdynamics-365-for-finance-operations-and-azure-devopsdynamics-365-for-finance--operations-and-azure-devops"><a href="https://ariste.info/en/msdyn365-azure-devops-alm/#dynamics-365-for-finance-operations-and-azure-devops" target="_blank" rel="noopener noreffer "></a><strong>Dynamics 365 for Finance &amp; Operations and Azure DevOps</strong></h2>
 <h3 id="011-httpsaristeinfoenmsdyn365-azure-devops-almazure-devopsazure-devops">0.1.1. <a href="https://ariste.info/en/msdyn365-azure-devops-alm/#azure-devops" target="_blank" rel="noopener noreffer "></a>Azure DevOps</h3>
 <p><a href="https://dev.azure.com/" target="_blank" rel="noopener noreffer ">Azure DevOps</a> will be the service we will use for source control. Microsoft Dynamics 365 for Finance and Operations supports TFVC out of the box as its version-control system.</p>
 <p>But Azure DevOps does not only offer a source control tool. Of course, developers will be the most benefited of using it, but from project management to the functional team and customers, everybody can be involved in using Azure DevOps. <a href="https://docs.microsoft.com/en-us/dynamics365/unified-operations/dev-itpro/lifecycle-services/bpm-overview?WT.mc_id=BA-MVP-5003976" target="_blank" rel="noopener noreffer ">BPM</a> synchronization and task creation, team planning, source control, automated builds and <a href="https://ariste.info/en/2019/02/setting-up-release-pipeline-in-azure-devops-for-dynamics-365-for-finance-and-operations/" target="_blank" rel="noopener noreffer ">releases</a>, are some of the tools it offers. All these changes will need some learning from the team, but in the short-term all of this will help to better manage implementations.</p>
@@ -4071,7 +4325,15 @@
     </figure></p>
 <p>The ProjectId value <strong>is not printed because it was one of our secret values</strong>!</p>
 <p>And this is how you can add extra security to your Dev ALM!</p>
-]]></description></item><item><title>Automate testing Dynamics 365 Finance &amp; Operations</title><link>https://nuxulu.com/notes/2100-01-01-automate-your-tests-for-dynamics-365-finance/</link><pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate><author>false</author><guid>https://nuxulu.com/notes/2100-01-01-automate-your-tests-for-dynamics-365-finance/</guid><description><![CDATA[<p>A new article for you the community. More specifically, all project managers, functional and technical consultants, as well as customer-side decision-makers on the deployment of Dynamics 365 Finance and Operations.</p>
+]]></description></item><item><title>Automate testing Dynamics 365 Finance &amp; Operations</title><link>https://nuxulu.com/1900-automate-your-tests-for-dynamics-365-finance/</link><pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate><author>false</author><guid>https://nuxulu.com/1900-automate-your-tests-for-dynamics-365-finance/</guid><description><![CDATA[<ul>
+<li><a href="#1-overview" rel="">1. <strong>Overview</strong></a></li>
+<li><a href="#2-1-lcs--bpm--azuredevops-via-task-recorder" rel="">2. <strong>1/ LCS &lt;=&gt; BPM &lt;=&gt; AzureDevOps (via Task Recorder)</strong></a></li>
+<li><a href="#3-2-rsat---regression-suite-automation-tool" rel="">3. <strong>2/ RSAT - Regression Suite Automation Tool</strong></a></li>
+<li><a href="#4-3-systestframework-and-atl--acceptance-test-library" rel="">4. <strong>3/ SysTestFramework and ATL : Acceptance test library</strong></a></li>
+<li><a href="#5-key-concepts" rel="">5. <strong>Key concepts</strong></a></li>
+<li><a href="#6-4-change-your-build--release-pipeline-in-azuredevops" rel="">6. <strong>4/ Change your BUILD &amp; Release pipeline in AzureDevOps</strong></a></li>
+</ul>
+<p>A new article for you the community. More specifically, all project managers, functional and technical consultants, as well as customer-side decision-makers on the deployment of Dynamics 365 Finance and Operations.</p>
 <p>I told myself that it would be important to offer you a global article on all the testing capabilities (manual or automatic) for Dynamics 365 Finance and Operations. It is the result of quite a long work but which I hope will help you to improve your code delivery and upgrade processes.</p>
 <p>As you know, updates to version 10.x are monthly and therefore require operational tests on a regular basis ! I don’t know for you, but for some customers that I know it can take almost 1 week or more for 3 consultants…</p>
 <p>In addition, if you want to be in an agile process of continuous delivery in production, it is often necessary to take time with the Key Users or the IT team to ensure that we do not have a regression in any part of the ERP. The more development you add, the longer and more difficult it will be to test all of your processes: this will therefore lower the quality of your deployments and repetitions of bugs in the chain: which will necessarily have a cost but also psychological in trust of the tool and your team.</p>

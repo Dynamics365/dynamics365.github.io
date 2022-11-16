@@ -1,4 +1,4 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>xpp - series - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://nuxulu.com/series/xpp/</link><description>xpp - series - Dynamics 365 Finance &amp; Operations | nuxulu.com</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Mon, 10 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://nuxulu.com/series/xpp/" rel="self" type="application/rss+xml"/><item><title>How to use query::insert_recordset?</title><link>https://nuxulu.com/xpp/2100-01-01-how-to-use-query-insert_recordset/</link><pubDate>Mon, 10 Oct 2022 00:00:00 +0000</pubDate><author>false</author><guid>https://nuxulu.com/xpp/2100-01-01-how-to-use-query-insert_recordset/</guid><description><![CDATA[<p>How we can use the <code>Insert_RecordSet</code> function with Query, which is one of the batch SQL operations we frequently use in X++.</p>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>xpp - series - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://nuxulu.com/series/xpp/</link><description>xpp - series - Dynamics 365 Finance &amp; Operations | nuxulu.com</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Mon, 10 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://nuxulu.com/series/xpp/" rel="self" type="application/rss+xml"/><item><title>How to use query::insert_recordset?</title><link>https://nuxulu.com/xpp/2100-01-01-using-query-insert_recordset/</link><pubDate>Mon, 10 Oct 2022 00:00:00 +0000</pubDate><author>false</author><guid>https://nuxulu.com/xpp/2100-01-01-using-query-insert_recordset/</guid><description><![CDATA[<p>How we can use the <code>Insert_RecordSet</code> function with Query, which is one of the batch SQL operations we frequently use in X++.</p>
 <p>I want to insert two fields of all records in <code>DmrBillsIncomingHeader</code> table into <code>DmrBillsIncominTest</code> table. I have to create a Query and query the <code>DmrBillsIncomingHeader</code> table.</p>
 <p>Also, which fields I want to insert, I have to mark them using Map. I should have written it with the classical method as follows.</p>
 <div class="highlight"><div class="chroma">
@@ -76,6 +76,30 @@
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"> 
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>]]></description></item><item><title>Date time function Dynamics 365 Finance Operations</title><link>https://nuxulu.com/xpp/2022-10-10-date-time-function/</link><pubDate>Wed, 28 Sep 2022 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/xpp/2022-10-10-date-time-function/</guid><description><![CDATA[<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="p">--</span> <span class="kt">string</span> <span class="n">to</span> <span class="n">date</span> <span class="n">and</span> <span class="n">time</span>
+</span></span><span class="line"><span class="cl"><span class="n">str</span> <span class="n">dateStrYMD</span> <span class="p">=</span> <span class="err">&#39;</span><span class="m">2022</span><span class="p">-</span><span class="m">04</span><span class="p">-</span><span class="m">12</span><span class="n">T13</span><span class="p">:</span><span class="m">34</span><span class="p">:</span><span class="m">30</span><span class="err">&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">UtcDateTime</span> <span class="n">datetime</span> <span class="p">=</span> <span class="n">DateTimeUtil</span><span class="p">::</span><span class="n">anyToDateTime</span><span class="p">(</span><span class="n">dateStrYMD</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">--</span> <span class="n">Year</span> <span class="n">difference</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">timeDiff</span> <span class="p">=</span> <span class="n">Global</span><span class="p">::</span><span class="n">yearDiff</span><span class="p">(</span><span class="n">DateTimeUtil</span><span class="p">::</span><span class="n">getSystemDateTime</span><span class="p">(),</span> <span class="n">DateTimeUtil</span><span class="p">::</span><span class="n">date</span><span class="p">(</span><span class="n">_myTable</span><span class="p">.</span><span class="n">myUTCDateTime</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">--</span> <span class="n">datetime</span> <span class="n">compare</span>
+</span></span><span class="line"><span class="cl"><span class="n">DateTimeUtil</span><span class="p">::</span><span class="n">newDateTime</span><span class="p">(</span><span class="n">today</span><span class="p">()-</span><span class="m">3</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">DateTimeUtil</span><span class="p">::</span><span class="n">getCompanyTimeZone</span><span class="p">())</span> <span class="p">&gt;</span> <span class="n">datetime</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div>]]></description></item></channel></rss>
