@@ -1,4 +1,213 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>xpp - series - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://nuxulu.com/series/xpp/</link><description>xpp - series - Dynamics 365 Finance &amp; Operations | nuxulu.com</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Wed, 16 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://nuxulu.com/series/xpp/" rel="self" type="application/rss+xml"/><item><title>Override Form Control Lookup</title><link>https://nuxulu.com/xpp/2100-01-01-override-form-control-lookup/</link><pubDate>Wed, 16 Nov 2022 00:00:00 +0000</pubDate><author>false</author><guid>https://nuxulu.com/xpp/2100-01-01-override-form-control-lookup/</guid><description><![CDATA[<h2 id="scenario">Scenario</h2>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>xpp - series - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://nuxulu.com/series/xpp/</link><description>xpp - series - Dynamics 365 Finance &amp; Operations | nuxulu.com</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Sat, 19 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://nuxulu.com/series/xpp/" rel="self" type="application/rss+xml"/><item><title>Developing business events with x++ from scratch</title><link>https://nuxulu.com/xpp/2100-01-01-developing-business-events-with-xpp-from-scratch/</link><pubDate>Sat, 19 Nov 2022 00:00:00 +0000</pubDate><author>false</author><guid>https://nuxulu.com/xpp/2100-01-01-developing-business-events-with-xpp-from-scratch/</guid><description><![CDATA[<p>Business events provide a mechanism that allow external system receives notifications from Microsoft Dynamics 365 Finance and operations.
+or example – When you are posting a purchase invoice then you can send notifications/ payload / message to an external system.</p>
+<p>You can use existing standard business events which are available in the D365 FO or you can also develop and customize new business events as per your need.</p>
+<p></p>
+<p>There are 2 ways you can consume business events:</p>
+<ol>
+<li>Power automate (Microsoft Flow)</li>
+<li>Azure messaging services.</li>
+</ol>
+<h2 id="scenario">Scenario</h2>
+<p>In this example, I am going to show you how we can develop a new custom business event from scratch. In my scenario, business event in D365 FO should be triggered when a user is posting purchase invoice in Microsoft dynamics 365 for finance and operations.</p>
+<p>There a 2 standard and base classes which i will use to develop custom business events</p>
+<ul>
+<li><code>BusinessEventsContract</code> ( Use for developing/defining payload message)</li>
+<li><code>BusinessEventsBase</code> ( Use for triggering custom business event)</li>
+</ul>
+<p>Create a <code>PAAPurchInvoiceJournalPostBusinessEventContract</code> class</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="na">[DataContract]</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">PAAPurchInvoiceJournalPostBusinessEventContract</span> <span class="n">extends</span> <span class="n">BusinessEventsContract</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">private</span> <span class="n">VendAccount</span> <span class="n">vendAccount</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">private</span> <span class="n">PurchId</span> <span class="n">purchid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">private</span> <span class="n">InvoiceId</span> <span class="n">invoiceId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">private</span> <span class="k">void</span> <span class="n">initialize</span><span class="p">(</span><span class="n">VendInvoiceJour</span> <span class="n">_vendInvoiceJour</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">vendAccount</span> <span class="p">=</span> <span class="n">_vendInvoiceJour</span><span class="p">.</span><span class="n">OrderAccount</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchid</span> <span class="p">=</span> <span class="n">_vendInvoiceJour</span><span class="p">.</span><span class="n">PurchId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">invoiceId</span> <span class="p">=</span> <span class="n">_vendInvoiceJour</span><span class="p">.</span><span class="n">InvoiceId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="n">PAAPurchInvoiceJournalPostBusinessEventContract</span> <span class="n">newFromVendInvoiceJour</span><span class="p">(</span><span class="n">VendInvoiceJour</span> <span class="n">_vendInvoiceJour</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">PAAPurchInvoiceJournalPostBusinessEventContract</span> <span class="n">contract</span> <span class="p">=</span> <span class="k">new</span> <span class="n">PAAPurchInvoiceJournalPostBusinessEventContract</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">contract</span><span class="p">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">_vendInvoiceJour</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">contract</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">private</span> <span class="k">void</span> <span class="k">new</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="na">
+</span></span></span><span class="line"><span class="cl"><span class="na">    [DataMember(‘VendAccount’), BusinessEventsDataMember(‘VendAccount’)]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">vendAccount</span> <span class="n">parmvendAccount</span><span class="p">(</span><span class="n">vendAccount</span> <span class="n">_vendAccount</span> <span class="p">=</span> <span class="n">vendAccount</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">vendAccount</span> <span class="p">=</span> <span class="n">_vendAccount</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">vendAccount</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="na">
+</span></span></span><span class="line"><span class="cl"><span class="na">    [DataMember(‘PurchId’), BusinessEventsDataMember(“PurchId”)]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">PurchId</span> <span class="n">parmPurchId</span><span class="p">(</span><span class="n">PurchId</span> <span class="n">_purchId</span> <span class="p">=</span> <span class="n">purchId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchId</span> <span class="p">=</span> <span class="n">_purchId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">purchId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="na">
+</span></span></span><span class="line"><span class="cl"><span class="na">    [DataMember(‘InvoiceId’), BusinessEventsDataMember(“InvoiceId”)]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">InvoiceId</span> <span class="n">parmInvoiceId</span><span class="p">(</span><span class="n">InvoiceId</span> <span class="n">_invoiceId</span> <span class="p">=</span> <span class="n">invoiceId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">invoiceId</span> <span class="p">=</span> <span class="n">_invoiceId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">invoiceId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Create a <code>PAAPurchInvoiceJournalPostBusinessEvent</code> class</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="na">[BusinessEvents(classStr(PAAPurchInvoiceJournalPostBusinessEventContract),
+</span></span></span><span class="line"><span class="cl"><span class="na">                &#34;Custom Vendor Invoice Post Business Event&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="na">                &#34;This business event is triggering during the time purchase invoice posting&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="na">                ModuleAxapta::AccountsPayable)]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">PAAPurchInvoiceJournalPostBusinessEvent</span> <span class="n">extends</span> <span class="n">BusinessEventsBase</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">private</span> <span class="n">VendInvoiceJour</span> <span class="n">vendInvoiceJour</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="k">public</span> <span class="n">PAAPurchInvoiceJournalPostBusinessEvent</span> <span class="n">newFromVendInvoiceJour</span><span class="p">(</span><span class="n">VendInvoiceJour</span> <span class="n">_vendInvoiceJour</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">PAAPurchInvoiceJournalPostBusinessEvent</span> <span class="n">businessEvent</span> <span class="p">=</span> <span class="k">new</span> <span class="n">PAAPurchInvoiceJournalPostBusinessEvent</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">businessEvent</span><span class="p">.</span><span class="n">parmVendInvoiceJour</span><span class="p">(</span><span class="n">_vendInvoiceJour</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">businessEvent</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">private</span> <span class="n">VendInvoiceJour</span> <span class="n">parmVendInvoiceJour</span><span class="p">(</span><span class="n">VendInvoiceJour</span> <span class="n">_vendInvoiceJour</span> <span class="p">=</span> <span class="n">vendInvoiceJour</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">vendInvoiceJour</span> <span class="p">=</span> <span class="n">_vendInvoiceJour</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">vendInvoiceJour</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">private</span> <span class="k">void</span> <span class="k">new</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="na">
+</span></span></span><span class="line"><span class="cl"><span class="na">    [Wrappable(true), Replaceable(true)]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">BusinessEventsContract</span> <span class="n">buildContract</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">PAAPurchInvoiceJournalPostBusinessEventContract</span><span class="p">::</span><span class="n">newFromVendInvoiceJour</span><span class="p">(</span><span class="n">vendInvoiceJour</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>You must add below block of code in purchase invoice posting routine class. Also business must be activated or enabled in that company. Business event will trigger when purchase invoice posting will take place.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="n">VendInvoiceJour</span> <span class="n">vendInvoiceJour</span> <span class="p">=</span> <span class="k">this</span><span class="p">;</span> <span class="c1">// vendInvoiceJour buffer</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="n">BusinessEventsConfigurationReader</span><span class="p">::</span><span class="n">isBusinessEventEnabled</span><span class="p">(</span><span class="n">classStr</span><span class="p">(</span><span class="n">PAAPurchInvoiceJournalPostBusinessEvent</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">PAAPurchInvoiceJournalPostBusinessEvent</span><span class="p">::</span><span class="n">newFromVendInvoiceJour</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="n">send</span> <span class="p">()</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Build your project solution and navigate to path <code>[System administration–&gt; Setup –&gt; Business Events –&gt; Business Events Catalog]</code> to see and activate your business event.</p>
+<p></p>
+]]></description></item><item><title>Override Form Control Lookup</title><link>https://nuxulu.com/xpp/2100-01-01-override-form-control-lookup/</link><pubDate>Wed, 16 Nov 2022 00:00:00 +0000</pubDate><author>false</author><guid>https://nuxulu.com/xpp/2100-01-01-override-form-control-lookup/</guid><description><![CDATA[<h2 id="scenario">Scenario</h2>
 <p>In FreeText invoice form, create a lookup invoice list of current customer in the freeText invoice line.</p>
 <h3 id="copy-event-handler-method"><strong>Copy Event Handler method:</strong></h3>
 <p>I created a string control for the new field and want to override <code>OnLookup</code> event.  Under the form control, go to <code>Events &gt; OnLookup &gt; right click &gt; Copy event handler method</code>.</p>
