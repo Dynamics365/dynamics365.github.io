@@ -212,20 +212,20 @@ It is typically used to change the tenant of the environment. You can update the
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="c">#Installation</span>
 </span></span><span class="line"><span class="cl"><span class="nb">Set-ExecutionPolicy</span> <span class="n">-ExecutionPolicy</span> <span class="n">RemoteSigned</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span>
-</span></span><span class="line"><span class="cl"><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">d365fo</span><span class="p">.</span><span class="n">tools</span> <span class="c">#-AllowClobber</span>
-</span></span><span class="line"><span class="cl"><span class="nb">Import-Module</span> <span class="n">-Name</span> <span class="n">d365fo</span><span class="p">.</span><span class="n">tools</span>
-</span></span><span class="line"><span class="cl"><span class="nb">Uninstall-Module</span> <span class="n">-Name</span> <span class="n">d365fo</span><span class="p">.</span><span class="n">tools</span>
-</span></span><span class="line"><span class="cl"><span class="nb">Update-Module</span> <span class="n">-Name</span> <span class="n">d365fo</span><span class="p">.</span><span class="n">tools</span> 
+</span></span><span class="line"><span class="cl"><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">d365fo</span><span class="p">.</span><span class="py">tools</span> <span class="c">#-AllowClobber</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Import-Module</span> <span class="n">-Name</span> <span class="n">d365fo</span><span class="p">.</span><span class="py">tools</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Uninstall-Module</span> <span class="n">-Name</span> <span class="n">d365fo</span><span class="p">.</span><span class="py">tools</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Update-Module</span> <span class="n">-Name</span> <span class="n">d365fo</span><span class="p">.</span><span class="py">tools</span> 
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c">#help</span>
-</span></span><span class="line"><span class="cl"><span class="nb">Get-Command</span> <span class="n">-Module</span> <span class="n">d365fo</span><span class="p">.</span><span class="n">tools</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Get-Command</span> <span class="n">-Module</span> <span class="n">d365fo</span><span class="p">.</span><span class="py">tools</span>
 </span></span><span class="line"><span class="cl"><span class="nb">Get-Help</span> <span class="nb">New-D365Bacpac</span>
 </span></span><span class="line"><span class="cl"><span class="nb">Get-Help</span> <span class="nb">New-D365Bacpac</span> <span class="n">-Full</span>
 </span></span><span class="line"><span class="cl"><span class="nb">Get-Help</span> <span class="nb">New-D365Bacpac</span> <span class="n">-Examples</span> 
 </span></span><span class="line"><span class="cl"><span class="nb">Get-Help</span> <span class="nb">Get-D365AzureDevOpsNuget</span>  <span class="n">-Full</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c">#deploy report</span>
-</span></span><span class="line"><span class="cl"><span class="nb">Publish-D365SsrsReport</span> <span class="n">-Module</span> <span class="n">Kaynecustomization</span> <span class="n">-ReportName</span> <span class="n">KACheque_US</span><span class="p">.</span><span class="n">Report</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Publish-D365SsrsReport</span> <span class="n">-Module</span> <span class="n">Kaynecustomization</span> <span class="n">-ReportName</span> <span class="n">KACheque_US</span><span class="p">.</span><span class="py">Report</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c">#environment</span>
 </span></span><span class="line"><span class="cl"><span class="nb">Get-D365Environment</span> <span class="n">-All</span>
@@ -256,10 +256,10 @@ It is typically used to change the tenant of the environment. You can update the
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">Get-D365LcsApiToken</span> <span class="n">-ClientId</span> <span class="s2">&#34;***&#34;</span> <span class="n">-Username</span> <span class="s2">&#34;&#34;</span> <span class="n">-Password</span> <span class="s2">&#34;&#34;</span> <span class="n">-LcsApiUri</span> <span class="s2">&#34;https://lcsapi.lcs.dynamics.com&#34;</span> <span class="p">|</span> <span class="nb">Set-D365LcsApiConfig</span> <span class="n">-ProjectId</span> <span class="n">000000</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">Get-D365LcsApiToken</span> <span class="n">-ClientId</span> <span class="s2">&#34;***&#34;</span> <span class="n">-Username</span> <span class="s2">&#34;&#34;</span> <span class="n">-Password</span> <span class="s2">&#34;&#34;</span> <span class="n">-LcsApiUri</span> <span class="s2">&#34;https://lcsapi.lcs.dynamics.com&#34;</span> <span class="p">|</span> <span class="nb">Set-D365LcsApiConfig</span> <span class="n">-ProjectId</span> <span class="mf">000000</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">Invoke-D365LcsEnvironmentStart</span> <span class="n">-ProjectId</span> <span class="n">1269585</span> <span class="n">-EnvironmentId</span> <span class="s2">&#34;d5dc45bb-&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nb">Invoke-D365LcsEnvironmentStop</span> <span class="n">-ProjectId</span> <span class="n">1269585</span> <span class="n">-EnvironmentId</span> <span class="s2">&#34;d5dc45bb-&#34;</span> 
+</span></span><span class="line"><span class="cl"><span class="nb">Invoke-D365LcsEnvironmentStart</span> <span class="n">-ProjectId</span> <span class="mf">1269585</span> <span class="n">-EnvironmentId</span> <span class="s2">&#34;d5dc45bb-&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Invoke-D365LcsEnvironmentStop</span> <span class="n">-ProjectId</span> <span class="mf">1269585</span> <span class="n">-EnvironmentId</span> <span class="s2">&#34;d5dc45bb-&#34;</span> 
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="import-a-bacpac-file-into-a-tier1-environment">Import a bacpac file into a Tier1 environment</h2>
@@ -308,7 +308,7 @@ It is typically used to change the tenant of the environment. You can update the
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">Publish-D365SsrsReport</span> <span class="n">-Module</span> <span class="n">GR</span> <span class="n">-ReportName</span> <span class="n">GR_InvSalesVelocityRpt</span><span class="p">.</span><span class="n">AutoDesign1</span>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">Publish-D365SsrsReport</span> <span class="n">-Module</span> <span class="n">GR</span> <span class="n">-ReportName</span> <span class="n">GR_InvSalesVelocityRpt</span><span class="p">.</span><span class="py">AutoDesign1</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div>]]></description></item></channel></rss>
