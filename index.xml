@@ -1334,6 +1334,146 @@ But sometimes you may want to start a set of <code>typeit</code> contents in ord
 <li>Custom field 4</li>
 </ul>
 <p>In the case, you must modify the <code>getExtensionFields()</code> method in the following way.</p>
+]]></description></item><item><title>Metadata search in Visual Studio</title><link>https://nuxulu.com/2023-01-01-metadata-search-in-visual-studio/</link><pubDate>Sun, 13 Nov 2022 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2023-01-01-metadata-search-in-visual-studio/</guid><description><![CDATA[<h1 id="metadata-search-in-visual-studio">Metadata search in Visual Studio</h1>
+<p>This article describes how to use metadata search to search your code and metadata for arbitrary patterns and content.</p>
+<p>Given the large volume of the code base and metadata, it is often necessary to find things in the code that meet a certain criteria. For example, you might not know the name of the metadata element that contains the pattern or meets the criteria. Metadata search is exposed in Visual Studio through two user interfaces: the Metadata Search tool window and the Navigate To window.</p>
+<h2 id="metadata-search-tool-window">Metadata search tool window</h2>
+<p>You can access the Metadata search tool window from the <strong>Dynamics 365 &gt; Metadata Search</strong> menu command. Enter your search query to start the search. Results will start populating in the window asynchronously as you type. You can double-click any result line to navigate to the corresponding X++ code or metadata that matches your search query.</p>
+<p><figure><a class="lightgallery" href="/2023-01-01-metadata-search-in-visual-studio/posted_metasearch.png" title="Metadata search tool window." data-thumbnail="/2023-01-01-metadata-search-in-visual-studio/posted_metasearch.png" data-sub-html="<h2>Metadata search tool window</h2><p>Metadata search tool window.</p>">
+        
+    </a><figcaption class="image-caption">Metadata search tool window</figcaption>
+    </figure></p>
+<p>You can also select one or more results, right-click, and then add these elements to a project. You don’t need to wait for the search to complete before you start interacting with the search results.</p>
+<p><figure><a class="lightgallery" href="/2023-01-01-metadata-search-in-visual-studio/addnewproject_metasearch.png" title="Add to new project from metadata search." data-thumbnail="/2023-01-01-metadata-search-in-visual-studio/addnewproject_metasearch.png" data-sub-html="<h2>Add to new project from metadata search</h2><p>Add to new project from metadata search.</p>">
+        
+    </a><figcaption class="image-caption">Add to new project from metadata search</figcaption>
+    </figure></p>
+<h2 id="navigate-to-window">Navigate To window</h2>
+<p>The <strong>Navigate To</strong> window is invoked using the <strong>Ctrl+‘,’</strong> (the comma character) shortcut keys. Pressing <strong>Ctrl+‘,’</strong> displays the query entry box in top-right corner of the Visual Studio main document window. You can also access the <strong>Navigate To</strong> window from the Visual Studio <strong>Edit</strong> menu. Enter you search query and see the results appear as you type. A progress indicator will stop when the search is complete. You don’t need to wait for the search to complete to start interacting with the results.</p>
+<p><figure><a class="lightgallery" href="/2023-01-01-metadata-search-in-visual-studio/typeform_metasearch.png" title="Navigate To window." data-thumbnail="/2023-01-01-metadata-search-in-visual-studio/typeform_metasearch.png" data-sub-html="<h2>Navigate To window</h2><p>Navigate To window.</p>">
+        
+    </a><figcaption class="image-caption">Navigate To window</figcaption>
+    </figure></p>
+<h2 id="search-query-syntax">Search query syntax</h2>
+<p>This section describes the search query syntax and provides example queries.</p>
+<h3 id="syntax">Syntax</h3>
+<p>The search query is a search string that consists of a set of filters in this general form:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;filter_1&gt;</span>:<span class="nt">&lt;filter_1_value&gt;</span> [<span class="nt">&lt;filter_2&gt;</span>:<span class="nt">&lt;filter_2_value&gt;</span> … [ <span class="nt">&lt;filter_N&gt;</span>:<span class="nt">&lt;filter_N</span><span class="err">\_value</span><span class="nt">&gt;</span>]]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Where <code>&lt;filter_i&gt;</code> is one of the acceptable filter names, and &lt;<code>filter_i_value&gt;</code> are comma separated (and possibly quoted) filtering values.</p>
+<h3 id="filter-names">Filter names</h3>
+<ul>
+<li>
+<p><strong>Name</strong>: Filter by element name. This is the default filter, meaning if you just type a filter value, it is assumed to be an element name. Each comma-separated value is an acceptable element name.</p>
+</li>
+<li>
+<p><strong>Type</strong>: Filter by element type. Each comma-separated value should be the name of an element or subelement type (root type or subtype) (that is, table, class, field). Logic of filtering is:</p>
+<p><code>(roottype_1 OR roottype_2 OR … OR roottype_N) AND (subtype_1 OR subtype_2 OR … OR subtype_N)</code></p>
+</li>
+<li>
+<p><strong>Model</strong>: Filter by model name. Each comma-separated value should be the name of a model in your application.</p>
+</li>
+<li>
+<p><strong>Property</strong>: Apply property filters. Each comma-separated value should be in the form <code>property_name=property_value</code>.</p>
+</li>
+<li>
+<p><strong>Code</strong>: Filter using code snippets, use quotes around code snippets. The matching source code is the elements that contain the specified code snippet.</p>
+</li>
+</ul>
+<p>You can get help about using filter and filter syntax by opening the drop-down menu available in the search box.</p>
+<p><figure><a class="lightgallery" href="/2023-01-01-metadata-search-in-visual-studio/metadatasearchfilter.jpg" title="Metadata search filter button." data-thumbnail="/2023-01-01-metadata-search-in-visual-studio/metadatasearchfilter.jpg" data-sub-html="<h2>Metadata search filter button</h2><p>Metadata search filter button.</p>">
+        
+    </a><figcaption class="image-caption">Metadata search filter button</figcaption>
+    </figure></p>
+<h2 id="examples">Examples</h2>
+<table>
+<thead>
+<tr>
+<th>Query string</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TrvExpTable</code></td>
+<td>If the token is by itself, it is assumed to be the name. So this will find everything in the application that has &ldquo;TrvExpTable&rdquo; in the name.</td>
+</tr>
+<tr>
+<td><code>type:form ccount</code></td>
+<td>Finds all forms that have &ldquo;ccount&rdquo; in their names.</td>
+</tr>
+<tr>
+<td><code>type:form property:formtemplate=listpage</code></td>
+<td>Finds all forms that contain the property &ldquo;FormTemplate&rdquo; equal to ‘ListPage’.</td>
+</tr>
+<tr>
+<td><code>type:table,formDesign property:&quot;WorkflowDataSource=TrvExpTable&quot;</code></td>
+<td>Finds formDesign nodes under tables, nothing would be found.</td>
+</tr>
+<tr>
+<td><code>type:form,formmenufunctionbuttoncontrol property:Text=@SYS311998</code></td>
+<td>Finds all menu function button controls with the Text property equal to (a label) ‘@SYS311998’.</td>
+</tr>
+<tr>
+<td><code>type:table,method name:insert</code></td>
+<td>Finds tables with a method containing &ldquo;insert&rdquo; in the method name.</td>
+</tr>
+<tr>
+<td><code>type:table,tableindex name:Export</code></td>
+<td>Finds tables with an index name containing the word &ldquo;Export&rdquo;.</td>
+</tr>
+<tr>
+<td><code>type:table,tableindexfield name:xpNum</code></td>
+<td>Finds table indexes with &ldquo;xpNum&rdquo; in the index field name.</td>
+</tr>
+<tr>
+<td><code>type:table,tablefieldgroup name:EPNew</code></td>
+<td>Finds FieldGroups (in tables) containing ‘EPNew’ in their names.</td>
+</tr>
+<tr>
+<td><code>type:form,formgridcontrol property:allowedit=no,heightmode=column</code></td>
+<td>Finds form grid controls, with properties <strong>allowedit</strong> equal to &ldquo;no&rdquo; and heightmode equal to &ldquo;column&rdquo;.</td>
+</tr>
+<tr>
+<td><code>type:form,formtabcontrol property:arrangeMethod=Vertical,ViewEditMode=view,WidthMode=Auto</code></td>
+<td>Finds form tab controls, with properties arrangeMethod equal to &ldquo;Vertical&rdquo; and ViewEditMode equal to &ldquo;view&rdquo; and WidthMode equal to &ldquo;Auto&rdquo;.</td>
+</tr>
+<tr>
+<td><code>type:form,formDesign property:&quot;WorkflowDataSource=TrvExpTable&quot;</code></td>
+<td>Finds all forms with the &ldquo;WorkflowDataSource&rdquo; property in the FormDesign node set to the value &ldquo;TrvExpTable&rdquo;.</td>
+</tr>
+<tr>
+<td><code>model:”Application Suite” type:formdesign property:style=simplelistdetail</code></td>
+<td>Find all forms in Application Suite model that has the style property set to simpleListDetail in the FormDesign node.</td>
+</tr>
+<tr>
+<td><code>code:&quot;return null&quot;</code></td>
+<td>Finds all places in the source code that contains &ldquo;return null&rdquo;.</td>
+</tr>
+<tr>
+<td><code>code:&quot;element.lock()&quot; type:form</code></td>
+<td>Finds all places in the forms source code that contain the snippet &ldquo;element.lock()&rdquo;.</td>
+</tr>
+<tr>
+<td><code>code:&quot;insert&quot; type:table,form</code></td>
+<td>Finds all places in the source code of either forms or tables that contain &ldquo;insert&rdquo;.</td>
+</tr>
+<tr>
+<td><code>code:&quot;public display&quot; type:form,method</code></td>
+<td>Finds all form methods that contain the code &ldquo;public display&rdquo;.</td>
+</tr>
+<tr>
+<td><code>type:formbuttoncontrol property:text=</code></td>
+<td>Finds all form Button Controls that have <strong>empty</strong> text properties.</td>
+</tr>
+</tbody>
+</table>
 ]]></description></item><item><title>Reservation and on-hand inventory in warehouse management</title><link>https://nuxulu.com/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/</link><pubDate>Wed, 09 Nov 2022 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2022-11-09-reservation-and-on-hand-inventory-in-warehouse-management/</guid><description><![CDATA[<h2 id="1-inventory-reservation-hierarchy-in-warehouse-management">1. <strong>Inventory reservation hierarchy in Warehouse management</strong></h2>
 <p>The reservation functionality can be used only for items that are enabled for warehouse management processes. However, if an item is itself enabled for <a href="https://learn.microsoft.com/en-us/dynamics365/supply-chain/warehousing/flexible-warehouse-level-dimension-reservation" target="_blank" rel="noopener noreffer ">warehouse management processes</a>, it can be used both in warehouses that are enabled for warehouse management processes and warehouses that are not. The behavior in reservation scenarios is different, depending on the warehouse setup.</p>
 <p>The functionality is built on reservation hierarchies and is intended to support the following:</p>
@@ -2125,65 +2265,4 @@ both WHS-enabled and non-WHS-enabled items, APIs are provided to support the cal
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Once you have the connection string, you can connect it to <a href="https://docs.microsoft.com/en-us/azure/vs-azure-tools-storage-manage-with-storage-explorer?tabs=windows" target="_blank" rel="noopener noreffer ">MS Azure Storage Explorer</a>, Power Automate, or consuming in any framwork/language for integration/backup purposes.</p>
-]]></description></item><item><title>How to remove SSRS reports in FinOps Cloud-Hosted</title><link>https://nuxulu.com/2022-10-20-how-to-remove-ssrs-reports-in-d365/</link><pubDate>Thu, 20 Oct 2022 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2022-10-20-how-to-remove-ssrs-reports-in-d365/</guid><description><![CDATA[<p>There are 2 ways that you can delete SSRS reports in FinOps cloud-Hosted</p>
-<h2 id="1-using-report-server-configuiration-manager-web-portal">1. Using Report server configuiration manager web portal</h2>
-<p>Open Report server configuiration manager from your VM FinOps Cloud-Hosted and active the <strong>Web Portal</strong></p>
-<p><figure><a class="lightgallery" href="/2022-10-20-how-to-remove-ssrs-reports-in-d365/2022-10-20-how-to-remove-ssrs-reports-in-d365-1.png" title="Image" data-thumbnail="/2022-10-20-how-to-remove-ssrs-reports-in-d365/2022-10-20-how-to-remove-ssrs-reports-in-d365-1.png" data-sub-html="<h2>2022-10-20-how-to-remove-ssrs-reports-in-d365-1</h2><p>Image</p>">
-        
-    </a><figcaption class="image-caption">2022-10-20-how-to-remove-ssrs-reports-in-d365-1</figcaption>
-    </figure></p>
-<p>You can delete any report from <code>[Servername]/Reports/browse/Dynamics</code></p>
-<p><figure><a class="lightgallery" href="/2022-10-20-how-to-remove-ssrs-reports-in-d365/2022-10-20-how-to-remove-ssrs-reports-in-d365-3.png" title="Image" data-thumbnail="/2022-10-20-how-to-remove-ssrs-reports-in-d365/2022-10-20-how-to-remove-ssrs-reports-in-d365-3.png" data-sub-html="<h2>2022-10-20-how-to-remove-ssrs-reports-in-d365-3</h2><p>Image</p>">
-        
-    </a><figcaption class="image-caption">2022-10-20-how-to-remove-ssrs-reports-in-d365-3</figcaption>
-    </figure></p>
-<h2 id="2-using-powershell-script">2. Using Powershell script</h2>
-<p>Go to <code>RemoveAllReportsFromSsrs.ps1</code> under <code>K:\AosService\PackagesLocalDirectory\Plugins\AxReportVmRoleStartupTask</code></p>
-<p>Run the script to remove all SSRS report.</p>
-<p>If you want to remove a specific report, you can manipulate the $ReportName</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="c">################################################################################</span>
-</span></span><span class="line"><span class="cl"><span class="c"># This script is used to manually remove reports to SSRS server</span>
-</span></span><span class="line"><span class="cl"><span class="c">################################################################################</span>
-</span></span><span class="line"><span class="cl"><span class="k">param</span>
-</span></span><span class="line"><span class="cl"><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nb">Parameter</span><span class="p">(</span><span class="na">Mandatory</span><span class="p">=</span><span class="vm">$false</span><span class="p">)]</span>
-</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="no">string</span><span class="p">]</span><span class="nv">$LogFilePath</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nb">Alias</span><span class="p">(</span><span class="s2">&#34;ReportServerFqdn&#34;</span><span class="p">,</span> <span class="s2">&#34;ReportServerName&#34;</span><span class="p">)]</span>
-</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nb">Parameter</span><span class="p">(</span><span class="na">Mandatory</span><span class="p">=</span><span class="vm">$false</span><span class="p">)]</span>
-</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="no">string[]</span><span class="p">]</span><span class="nv">$ReportServerIp</span> <span class="p">=</span> <span class="s2">&#34;127.0.0.1&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nb">Parameter</span><span class="p">(</span><span class="na">Mandatory</span><span class="p">=</span><span class="vm">$false</span><span class="p">)]</span>
-</span></span><span class="line"><span class="cl">	<span class="p">[</span><span class="no">string[]</span><span class="p">]</span><span class="nv">$ReportName</span> <span class="p">=</span> <span class="s2">&#34;[report-name].[design-name]&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nb">Parameter</span><span class="p">(</span><span class="na">Mandatory</span><span class="p">=</span><span class="vm">$false</span><span class="p">)]</span>
-</span></span><span class="line"><span class="cl">	<span class="p">[</span><span class="no">switch</span><span class="p">]</span><span class="nv">$UseHttps</span> <span class="p">=</span> <span class="vm">$false</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nb">Parameter</span><span class="p">(</span><span class="na">Mandatory</span><span class="p">=</span><span class="vm">$false</span><span class="p">)]</span>
-</span></span><span class="line"><span class="cl">	<span class="p">[</span><span class="no">int</span><span class="p">]</span><span class="nv">$HttpsPort</span> <span class="p">=</span> <span class="mf">443</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nb">Parameter</span><span class="p">(</span><span class="na">Mandatory</span><span class="p">=</span><span class="vm">$false</span><span class="p">)]</span>
-</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="no">switch</span><span class="p">]</span><span class="nv">$Help</span> <span class="p">=</span> <span class="vm">$false</span>
-</span></span><span class="line"><span class="cl"><span class="p">)</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>Check <a href="/2021-01-27-deploy-ssrs-reports-in-dynamics-365-finance-scm-using-powershell/" rel="">this article</a> for deploy report using PS script.</p>
 ]]></description></item></channel></rss>

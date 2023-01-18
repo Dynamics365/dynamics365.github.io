@@ -4,7 +4,6 @@
 - [1 Headings](#1-headings)
 - [2 Comments](#2-comments)
 - [3 Horizontal Rules](#3-horizontal-rules)
-- [___](#___)
 - [4 Body Copy](#4-body-copy)
 - [5 Inline HTML](#5-inline-html)
 - [6 Emphasis](#6-emphasis)

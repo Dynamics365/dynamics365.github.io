@@ -1,4 +1,144 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Configuration - Category - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://nuxulu.com/categories/configuration/</link><description>Configuration - Category - Dynamics 365 Finance &amp; Operations | nuxulu.com</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Wed, 28 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://nuxulu.com/categories/configuration/" rel="self" type="application/rss+xml"/><item><title>Remove a person from an user Dynamics 365 Finance Operations</title><link>https://nuxulu.com/2022-09-28-remove-person-from-users/</link><pubDate>Wed, 28 Sep 2022 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2022-09-28-remove-person-from-users/</guid><description><![CDATA[<p>Whenever you add a new person to an user in the user <strong>SysUserInfoPage</strong> form, the person field grays out.</p>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Configuration - Category - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://nuxulu.com/categories/configuration/</link><description>Configuration - Category - Dynamics 365 Finance &amp; Operations | nuxulu.com</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Sun, 13 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://nuxulu.com/categories/configuration/" rel="self" type="application/rss+xml"/><item><title>Metadata search in Visual Studio</title><link>https://nuxulu.com/2023-01-01-metadata-search-in-visual-studio/</link><pubDate>Sun, 13 Nov 2022 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2023-01-01-metadata-search-in-visual-studio/</guid><description><![CDATA[<h1 id="metadata-search-in-visual-studio">Metadata search in Visual Studio</h1>
+<p>This article describes how to use metadata search to search your code and metadata for arbitrary patterns and content.</p>
+<p>Given the large volume of the code base and metadata, it is often necessary to find things in the code that meet a certain criteria. For example, you might not know the name of the metadata element that contains the pattern or meets the criteria. Metadata search is exposed in Visual Studio through two user interfaces: the Metadata Search tool window and the Navigate To window.</p>
+<h2 id="metadata-search-tool-window">Metadata search tool window</h2>
+<p>You can access the Metadata search tool window from the <strong>Dynamics 365 &gt; Metadata Search</strong> menu command. Enter your search query to start the search. Results will start populating in the window asynchronously as you type. You can double-click any result line to navigate to the corresponding X++ code or metadata that matches your search query.</p>
+<p><figure><a class="lightgallery" href="/2023-01-01-metadata-search-in-visual-studio/posted_metasearch.png" title="Metadata search tool window." data-thumbnail="/2023-01-01-metadata-search-in-visual-studio/posted_metasearch.png" data-sub-html="<h2>Metadata search tool window</h2><p>Metadata search tool window.</p>">
+        
+    </a><figcaption class="image-caption">Metadata search tool window</figcaption>
+    </figure></p>
+<p>You can also select one or more results, right-click, and then add these elements to a project. You don’t need to wait for the search to complete before you start interacting with the search results.</p>
+<p><figure><a class="lightgallery" href="/2023-01-01-metadata-search-in-visual-studio/addnewproject_metasearch.png" title="Add to new project from metadata search." data-thumbnail="/2023-01-01-metadata-search-in-visual-studio/addnewproject_metasearch.png" data-sub-html="<h2>Add to new project from metadata search</h2><p>Add to new project from metadata search.</p>">
+        
+    </a><figcaption class="image-caption">Add to new project from metadata search</figcaption>
+    </figure></p>
+<h2 id="navigate-to-window">Navigate To window</h2>
+<p>The <strong>Navigate To</strong> window is invoked using the <strong>Ctrl+‘,’</strong> (the comma character) shortcut keys. Pressing <strong>Ctrl+‘,’</strong> displays the query entry box in top-right corner of the Visual Studio main document window. You can also access the <strong>Navigate To</strong> window from the Visual Studio <strong>Edit</strong> menu. Enter you search query and see the results appear as you type. A progress indicator will stop when the search is complete. You don’t need to wait for the search to complete to start interacting with the results.</p>
+<p><figure><a class="lightgallery" href="/2023-01-01-metadata-search-in-visual-studio/typeform_metasearch.png" title="Navigate To window." data-thumbnail="/2023-01-01-metadata-search-in-visual-studio/typeform_metasearch.png" data-sub-html="<h2>Navigate To window</h2><p>Navigate To window.</p>">
+        
+    </a><figcaption class="image-caption">Navigate To window</figcaption>
+    </figure></p>
+<h2 id="search-query-syntax">Search query syntax</h2>
+<p>This section describes the search query syntax and provides example queries.</p>
+<h3 id="syntax">Syntax</h3>
+<p>The search query is a search string that consists of a set of filters in this general form:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;filter_1&gt;</span>:<span class="nt">&lt;filter_1_value&gt;</span> [<span class="nt">&lt;filter_2&gt;</span>:<span class="nt">&lt;filter_2_value&gt;</span> … [ <span class="nt">&lt;filter_N&gt;</span>:<span class="nt">&lt;filter_N</span><span class="err">\_value</span><span class="nt">&gt;</span>]]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Where <code>&lt;filter_i&gt;</code> is one of the acceptable filter names, and &lt;<code>filter_i_value&gt;</code> are comma separated (and possibly quoted) filtering values.</p>
+<h3 id="filter-names">Filter names</h3>
+<ul>
+<li>
+<p><strong>Name</strong>: Filter by element name. This is the default filter, meaning if you just type a filter value, it is assumed to be an element name. Each comma-separated value is an acceptable element name.</p>
+</li>
+<li>
+<p><strong>Type</strong>: Filter by element type. Each comma-separated value should be the name of an element or subelement type (root type or subtype) (that is, table, class, field). Logic of filtering is:</p>
+<p><code>(roottype_1 OR roottype_2 OR … OR roottype_N) AND (subtype_1 OR subtype_2 OR … OR subtype_N)</code></p>
+</li>
+<li>
+<p><strong>Model</strong>: Filter by model name. Each comma-separated value should be the name of a model in your application.</p>
+</li>
+<li>
+<p><strong>Property</strong>: Apply property filters. Each comma-separated value should be in the form <code>property_name=property_value</code>.</p>
+</li>
+<li>
+<p><strong>Code</strong>: Filter using code snippets, use quotes around code snippets. The matching source code is the elements that contain the specified code snippet.</p>
+</li>
+</ul>
+<p>You can get help about using filter and filter syntax by opening the drop-down menu available in the search box.</p>
+<p><figure><a class="lightgallery" href="/2023-01-01-metadata-search-in-visual-studio/metadatasearchfilter.jpg" title="Metadata search filter button." data-thumbnail="/2023-01-01-metadata-search-in-visual-studio/metadatasearchfilter.jpg" data-sub-html="<h2>Metadata search filter button</h2><p>Metadata search filter button.</p>">
+        
+    </a><figcaption class="image-caption">Metadata search filter button</figcaption>
+    </figure></p>
+<h2 id="examples">Examples</h2>
+<table>
+<thead>
+<tr>
+<th>Query string</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TrvExpTable</code></td>
+<td>If the token is by itself, it is assumed to be the name. So this will find everything in the application that has &ldquo;TrvExpTable&rdquo; in the name.</td>
+</tr>
+<tr>
+<td><code>type:form ccount</code></td>
+<td>Finds all forms that have &ldquo;ccount&rdquo; in their names.</td>
+</tr>
+<tr>
+<td><code>type:form property:formtemplate=listpage</code></td>
+<td>Finds all forms that contain the property &ldquo;FormTemplate&rdquo; equal to ‘ListPage’.</td>
+</tr>
+<tr>
+<td><code>type:table,formDesign property:&quot;WorkflowDataSource=TrvExpTable&quot;</code></td>
+<td>Finds formDesign nodes under tables, nothing would be found.</td>
+</tr>
+<tr>
+<td><code>type:form,formmenufunctionbuttoncontrol property:Text=@SYS311998</code></td>
+<td>Finds all menu function button controls with the Text property equal to (a label) ‘@SYS311998’.</td>
+</tr>
+<tr>
+<td><code>type:table,method name:insert</code></td>
+<td>Finds tables with a method containing &ldquo;insert&rdquo; in the method name.</td>
+</tr>
+<tr>
+<td><code>type:table,tableindex name:Export</code></td>
+<td>Finds tables with an index name containing the word &ldquo;Export&rdquo;.</td>
+</tr>
+<tr>
+<td><code>type:table,tableindexfield name:xpNum</code></td>
+<td>Finds table indexes with &ldquo;xpNum&rdquo; in the index field name.</td>
+</tr>
+<tr>
+<td><code>type:table,tablefieldgroup name:EPNew</code></td>
+<td>Finds FieldGroups (in tables) containing ‘EPNew’ in their names.</td>
+</tr>
+<tr>
+<td><code>type:form,formgridcontrol property:allowedit=no,heightmode=column</code></td>
+<td>Finds form grid controls, with properties <strong>allowedit</strong> equal to &ldquo;no&rdquo; and heightmode equal to &ldquo;column&rdquo;.</td>
+</tr>
+<tr>
+<td><code>type:form,formtabcontrol property:arrangeMethod=Vertical,ViewEditMode=view,WidthMode=Auto</code></td>
+<td>Finds form tab controls, with properties arrangeMethod equal to &ldquo;Vertical&rdquo; and ViewEditMode equal to &ldquo;view&rdquo; and WidthMode equal to &ldquo;Auto&rdquo;.</td>
+</tr>
+<tr>
+<td><code>type:form,formDesign property:&quot;WorkflowDataSource=TrvExpTable&quot;</code></td>
+<td>Finds all forms with the &ldquo;WorkflowDataSource&rdquo; property in the FormDesign node set to the value &ldquo;TrvExpTable&rdquo;.</td>
+</tr>
+<tr>
+<td><code>model:”Application Suite” type:formdesign property:style=simplelistdetail</code></td>
+<td>Find all forms in Application Suite model that has the style property set to simpleListDetail in the FormDesign node.</td>
+</tr>
+<tr>
+<td><code>code:&quot;return null&quot;</code></td>
+<td>Finds all places in the source code that contains &ldquo;return null&rdquo;.</td>
+</tr>
+<tr>
+<td><code>code:&quot;element.lock()&quot; type:form</code></td>
+<td>Finds all places in the forms source code that contain the snippet &ldquo;element.lock()&rdquo;.</td>
+</tr>
+<tr>
+<td><code>code:&quot;insert&quot; type:table,form</code></td>
+<td>Finds all places in the source code of either forms or tables that contain &ldquo;insert&rdquo;.</td>
+</tr>
+<tr>
+<td><code>code:&quot;public display&quot; type:form,method</code></td>
+<td>Finds all form methods that contain the code &ldquo;public display&rdquo;.</td>
+</tr>
+<tr>
+<td><code>type:formbuttoncontrol property:text=</code></td>
+<td>Finds all form Button Controls that have <strong>empty</strong> text properties.</td>
+</tr>
+</tbody>
+</table>
+]]></description></item><item><title>Remove a person from an user Dynamics 365 Finance Operations</title><link>https://nuxulu.com/2022-09-28-remove-person-from-users/</link><pubDate>Wed, 28 Sep 2022 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2022-09-28-remove-person-from-users/</guid><description><![CDATA[<p>Whenever you add a new person to an user in the user <strong>SysUserInfoPage</strong> form, the person field grays out.</p>
 <p><figure><a class="lightgallery" href="/2022-09-28-remove-person-from-users/2022-09-28-remove-person-from-users.png" title="Image" data-thumbnail="/2022-09-28-remove-person-from-users/2022-09-28-remove-person-from-users.png" data-sub-html="<h2>userinfo</h2><p>Image</p>">
         
     </a><figcaption class="image-caption">userinfo</figcaption>
