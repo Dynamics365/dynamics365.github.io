@@ -1,1305 +1,4 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://nuxulu.com/</link><description>Dynamics 365 Finance &amp; Operations</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Fri, 20 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://nuxulu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Theme Documentation - mermaid Shortcode</title><link>https://nuxulu.com/theme-documentation-mermaid-shortcode/</link><pubDate>Tue, 03 Mar 2020 15:29:41 +0800</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/theme-documentation-mermaid-shortcode/</guid><description><![CDATA[<a href="https://github.com/dillonzq/LoveIt/releases/tag/v0.2.11" rel="noopener noreffer" target="_blank"></a>
-<p>The <code>mermaid</code> shortcode supports diagrams in Hugo with <a href="https://mermaidjs.github.io/" target="_blank" rel="noopener noreffer ">Mermaid</a> library.</p>
-<p><strong>Mermaid</strong> is a library helping you to generate diagram and flowcharts from text, in a similar manner as Markdown.</p>
-<p>Just insert your mermaid code in the <code>mermaid</code> shortcode and that’s it.</p>
-<h2 id="flowchart">Flowchart</h2>
-<p>Example <strong>flowchart</strong> <code>mermaid</code> input:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}
-</span></span><span class="line"><span class="cl">graph LR;
-</span></span><span class="line"><span class="cl">    A[Hard edge] --&gt;|Link text| B(Round edge)
-</span></span><span class="line"><span class="cl">    B --&gt; C{Decision}
-</span></span><span class="line"><span class="cl">    C --&gt;|One| D[Result one]
-</span></span><span class="line"><span class="cl">    C --&gt;|Two| E[Result two]
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>The rendered output looks like this:</p>
-<div class="mermaid" id="id-1"></div>
-<h2 id="sequence-diagram">Sequence Diagram</h2>
-<p>Example <strong>sequence diagram</strong> <code>mermaid</code> input:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}
-</span></span><span class="line"><span class="cl">sequenceDiagram
-</span></span><span class="line"><span class="cl">    participant Alice
-</span></span><span class="line"><span class="cl">    participant Bob
-</span></span><span class="line"><span class="cl">    Alice-&gt;&gt;John: Hello John, how are you?
-</span></span><span class="line"><span class="cl">    loop Healthcheck
-</span></span><span class="line"><span class="cl">        John-&gt;John: Fight against hypochondria
-</span></span><span class="line"><span class="cl">    end
-</span></span><span class="line"><span class="cl">    Note right of John: Rational thoughts <span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>prevail...
-</span></span><span class="line"><span class="cl">    John--&gt;Alice: Great!
-</span></span><span class="line"><span class="cl">    John-&gt;Bob: How about you?
-</span></span><span class="line"><span class="cl">    Bob--&gt;John: Jolly good!
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>The rendered output looks like this:</p>
-<div class="mermaid" id="id-2"></div>
-<h2 id="gantt">Gantt</h2>
-<p>Example <strong>Gantt</strong> <code>mermaid</code> input:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}
-</span></span><span class="line"><span class="cl">gantt
-</span></span><span class="line"><span class="cl">dateFormat  YYYY-MM-DD
-</span></span><span class="line"><span class="cl">title Adding GANTT diagram to mermaid
-</span></span><span class="line"><span class="cl">excludes weekdays 2014-01-10
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">section A section
-</span></span><span class="line"><span class="cl">Completed task            :done,    des1, 2014-01-06,2014-01-08
-</span></span><span class="line"><span class="cl">Active task               :active,  des2, 2014-01-09, 3d
-</span></span><span class="line"><span class="cl">Future task               :         des3, after des2, 5d
-</span></span><span class="line"><span class="cl">Future task2              :         des4, after des3, 5d
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>The rendered output looks like this:</p>
-<div class="mermaid" id="id-3"></div>
-<h2 id="class-diagram">Class Diagram</h2>
-<p>Example <strong>class diagram</strong> <code>mermaid</code> input:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}
-</span></span><span class="line"><span class="cl">classDiagram
-</span></span><span class="line"><span class="cl">    Animal <span class="err">&lt;</span>|-- Duck
-</span></span><span class="line"><span class="cl">    Animal <span class="err">&lt;</span>|-- Fish
-</span></span><span class="line"><span class="cl">    Animal <span class="err">&lt;</span>|-- Zebra
-</span></span><span class="line"><span class="cl">    Animal : +int age
-</span></span><span class="line"><span class="cl">    Animal : +String gender
-</span></span><span class="line"><span class="cl">    Animal: +isMammal()
-</span></span><span class="line"><span class="cl">    Animal: +mate()
-</span></span><span class="line"><span class="cl">    class Duck{
-</span></span><span class="line"><span class="cl">        +String beakColor
-</span></span><span class="line"><span class="cl">        +swim()
-</span></span><span class="line"><span class="cl">        +quack()
-</span></span><span class="line"><span class="cl">    }
-</span></span><span class="line"><span class="cl">    class Fish{
-</span></span><span class="line"><span class="cl">        -int sizeInFeet
-</span></span><span class="line"><span class="cl">        -canEat()
-</span></span><span class="line"><span class="cl">    }
-</span></span><span class="line"><span class="cl">    class Zebra{
-</span></span><span class="line"><span class="cl">        +bool is_wild
-</span></span><span class="line"><span class="cl">        +run()
-</span></span><span class="line"><span class="cl">    }
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>The rendered output looks like this:</p>
-<div class="mermaid" id="id-4"></div>
-<h2 id="state-diagram">State Diagram</h2>
-<p>Example <strong>state diagram</strong> <code>mermaid</code> input:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}
-</span></span><span class="line"><span class="cl">stateDiagram-v2
-</span></span><span class="line"><span class="cl">    [*] --&gt; Still
-</span></span><span class="line"><span class="cl">    Still --&gt; [*]
-</span></span><span class="line"><span class="cl">    Still --&gt; Moving
-</span></span><span class="line"><span class="cl">    Moving --&gt; Still
-</span></span><span class="line"><span class="cl">    Moving --&gt; Crash
-</span></span><span class="line"><span class="cl">    Crash --&gt; [*]
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>The rendered output looks like this:</p>
-<div class="mermaid" id="id-5"></div>
-<h2 id="git-graph">Git Graph</h2>
-<p>Example <strong>git graph</strong> <code>mermaid</code> input:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}
-</span></span><span class="line"><span class="cl">gitGraph
-</span></span><span class="line"><span class="cl">    commit
-</span></span><span class="line"><span class="cl">    commit
-</span></span><span class="line"><span class="cl">    branch develop
-</span></span><span class="line"><span class="cl">    checkout develop
-</span></span><span class="line"><span class="cl">    commit
-</span></span><span class="line"><span class="cl">    commit
-</span></span><span class="line"><span class="cl">    checkout main
-</span></span><span class="line"><span class="cl">    merge develop
-</span></span><span class="line"><span class="cl">    commit
-</span></span><span class="line"><span class="cl">    commit
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>The rendered output looks like this:</p>
-<div class="mermaid" id="id-6"></div>
-<h2 id="entity-relationship-diagram">Entity Relationship Diagram</h2>
-<p>Example <strong>entity-relationship diagram</strong> <code>mermaid</code> input:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}
-</span></span><span class="line"><span class="cl">erDiagram
-</span></span><span class="line"><span class="cl">    CUSTOMER ||--o{ ORDER : places
-</span></span><span class="line"><span class="cl">    ORDER ||--|{ LINE-ITEM : contains
-</span></span><span class="line"><span class="cl">    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>The rendered output looks like this:</p>
-<div class="mermaid" id="id-7"></div>
-<h2 id="user-journey">User Journey</h2>
-<p>Example <strong>user journey</strong> <code>mermaid</code> input:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}
-</span></span><span class="line"><span class="cl">journey
-</span></span><span class="line"><span class="cl">    title My working day
-</span></span><span class="line"><span class="cl">    section Go to work
-</span></span><span class="line"><span class="cl">      Make tea: 5: Me
-</span></span><span class="line"><span class="cl">      Go upstairs: 3: Me
-</span></span><span class="line"><span class="cl">      Do work: 1: Me, Cat
-</span></span><span class="line"><span class="cl">    section Go home
-</span></span><span class="line"><span class="cl">      Go downstairs: 5: Me
-</span></span><span class="line"><span class="cl">      Sit down: 5: Me
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>The rendered output looks like this:</p>
-<div class="mermaid" id="id-8"></div>
-<h2 id="pie-chart">Pie Chart</h2>
-<p>Example <strong>pie chart</strong> <code>mermaid</code> input:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}
-</span></span><span class="line"><span class="cl">pie
-</span></span><span class="line"><span class="cl">    &#34;Dogs&#34; : 386
-</span></span><span class="line"><span class="cl">    &#34;Cats&#34; : 85
-</span></span><span class="line"><span class="cl">    &#34;Rats&#34; : 15
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>The rendered output looks like this:</p>
-<div class="mermaid" id="id-9"></div>
-<h2 id="requirement-diagram">Requirement Diagram</h2>
-<p>Example <strong>requirement diagram</strong> <code>mermaid</code> input:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mermaid</span> <span class="p">&gt;</span>}}
-</span></span><span class="line"><span class="cl">requirementDiagram
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">requirement test_req {
-</span></span><span class="line"><span class="cl">id: 1
-</span></span><span class="line"><span class="cl">text: the test text.
-</span></span><span class="line"><span class="cl">risk: high
-</span></span><span class="line"><span class="cl">verifymethod: test
-</span></span><span class="line"><span class="cl">}
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">element test_entity {
-</span></span><span class="line"><span class="cl">type: simulation
-</span></span><span class="line"><span class="cl">}
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">test_entity - satisfies -&gt; test_req
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">mermaid</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>The rendered output looks like this:</p>
-<div class="mermaid" id="id-10"></div>]]></description></item><item><title>Theme Documentation - echarts Shortcode</title><link>https://nuxulu.com/theme-documentation-echarts-shortcode/</link><pubDate>Tue, 03 Mar 2020 14:29:41 +0800</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/theme-documentation-echarts-shortcode/</guid><description><![CDATA[<p>The <code>echarts</code> shortcode supports data visualization in Hugo with <a href="https://echarts.apache.org/" target="_blank" rel="noopener noreffer ">ECharts</a> library.</p>
-<p><strong>ECharts</strong> is a library helping you to generate interactive data visualization.</p>
-<p>The basic chart types ECharts supports include <a href="https://echarts.apache.org/en/option.html#series-line" target="_blank" rel="noopener noreffer ">line series</a>, <a href="https://echarts.apache.org/en/option.html#series-line" target="_blank" rel="noopener noreffer ">bar series</a>, <a href="https://echarts.apache.org/en/option.html#series-scatter" target="_blank" rel="noopener noreffer ">scatter series</a>, <a href="https://echarts.apache.org/en/option.html#series-pie" target="_blank" rel="noopener noreffer ">pie charts</a>, <a href="https://echarts.apache.org/en/option.html#series-candlestick" target="_blank" rel="noopener noreffer ">candle-stick series</a>, <a href="https://echarts.apache.org/en/option.html#series-boxplot" target="_blank" rel="noopener noreffer ">boxplot series</a> for statistics, <a href="https://echarts.apache.org/en/option.html#series-map" target="_blank" rel="noopener noreffer ">map series</a>, <a href="https://echarts.apache.org/en/option.html#series-heatmap" target="_blank" rel="noopener noreffer ">heatmap series</a>, <a href="https://echarts.apache.org/en/option.html#series-lines" target="_blank" rel="noopener noreffer ">lines series</a> for directional information, <a href="https://echarts.apache.org/en/option.html#series-graph" target="_blank" rel="noopener noreffer ">graph series</a> for relationships, <a href="https://echarts.apache.org/en/option.html#series-treemap" target="_blank" rel="noopener noreffer ">treemap series</a>, <a href="https://echarts.apache.org/en/option.html#series-sunburst" target="_blank" rel="noopener noreffer ">sunburst series</a>, <a href="https://echarts.apache.org/en/option.html#series-parallel" target="_blank" rel="noopener noreffer ">parallel series</a> for multi-dimensional data, <a href="https://echarts.apache.org/en/option.html#series-funnel" target="_blank" rel="noopener noreffer ">funnel series</a>, <a href="https://echarts.apache.org/en/option.html#series-gauge" target="_blank" rel="noopener noreffer ">gauge series</a>. And it&rsquo;s extremely easy to create a combinition of them with ECharts.</p>
-<p>Just insert your ECharts option in <code>JSON</code>/<code>YAML</code>/<code>TOML</code> format in the <code>echarts</code> shortcode and that’s it.</p>
-<p>Example <code>echarts</code> input in <code>JSON</code> format:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span><span class="lnt">55
-</span><span class="lnt">56
-</span><span class="lnt">57
-</span><span class="lnt">58
-</span><span class="lnt">59
-</span><span class="lnt">60
-</span><span class="lnt">61
-</span><span class="lnt">62
-</span><span class="lnt">63
-</span><span class="lnt">64
-</span><span class="lnt">65
-</span><span class="lnt">66
-</span><span class="lnt">67
-</span><span class="lnt">68
-</span><span class="lnt">69
-</span><span class="lnt">70
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span><span class="err">{&lt;</span> <span class="err">echarts</span> <span class="err">&gt;</span><span class="p">}</span><span class="err">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;text&#34;</span><span class="p">:</span> <span class="s2">&#34;Summary Line Chart&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;top&#34;</span><span class="p">:</span> <span class="s2">&#34;2%&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;left&#34;</span><span class="p">:</span> <span class="s2">&#34;center&#34;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;tooltip&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;trigger&#34;</span><span class="p">:</span> <span class="s2">&#34;axis&#34;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;legend&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;Email Marketing&#34;</span><span class="p">,</span> <span class="s2">&#34;Affiliate Advertising&#34;</span><span class="p">,</span> <span class="s2">&#34;Video Advertising&#34;</span><span class="p">,</span> <span class="s2">&#34;Direct View&#34;</span><span class="p">,</span> <span class="s2">&#34;Search Engine&#34;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;top&#34;</span><span class="p">:</span> <span class="s2">&#34;10%&#34;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;grid&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;left&#34;</span><span class="p">:</span> <span class="s2">&#34;5%&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;right&#34;</span><span class="p">:</span> <span class="s2">&#34;5%&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;bottom&#34;</span><span class="p">:</span> <span class="s2">&#34;5%&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;top&#34;</span><span class="p">:</span> <span class="s2">&#34;20%&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;containLabel&#34;</span><span class="p">:</span> <span class="kc">true</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;toolbox&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;feature&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;saveAsImage&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Save as Image&#34;</span>
-</span></span><span class="line"><span class="cl">      <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;xAxis&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;category&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;boundaryGap&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;Monday&#34;</span><span class="p">,</span> <span class="s2">&#34;Tuesday&#34;</span><span class="p">,</span> <span class="s2">&#34;Wednesday&#34;</span><span class="p">,</span> <span class="s2">&#34;Thursday&#34;</span><span class="p">,</span> <span class="s2">&#34;Friday&#34;</span><span class="p">,</span> <span class="s2">&#34;Saturday&#34;</span><span class="p">,</span> <span class="s2">&#34;Sunday&#34;</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;yAxis&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;value&#34;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;series&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Email Marketing&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;line&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;stack&#34;</span><span class="p">:</span> <span class="s2">&#34;Total&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">120</span><span class="p">,</span> <span class="mi">132</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">134</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">230</span><span class="p">,</span> <span class="mi">210</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">    <span class="p">},</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Affiliate Advertising&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;line&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;stack&#34;</span><span class="p">:</span> <span class="s2">&#34;Total&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">220</span><span class="p">,</span> <span class="mi">182</span><span class="p">,</span> <span class="mi">191</span><span class="p">,</span> <span class="mi">234</span><span class="p">,</span> <span class="mi">290</span><span class="p">,</span> <span class="mi">330</span><span class="p">,</span> <span class="mi">310</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">    <span class="p">},</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Video Advertising&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;line&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;stack&#34;</span><span class="p">:</span> <span class="s2">&#34;Total&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">150</span><span class="p">,</span> <span class="mi">232</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">154</span><span class="p">,</span> <span class="mi">190</span><span class="p">,</span> <span class="mi">330</span><span class="p">,</span> <span class="mi">410</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">    <span class="p">},</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Direct View&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;line&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;stack&#34;</span><span class="p">:</span> <span class="s2">&#34;Total&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">320</span><span class="p">,</span> <span class="mi">332</span><span class="p">,</span> <span class="mi">301</span><span class="p">,</span> <span class="mi">334</span><span class="p">,</span> <span class="mi">390</span><span class="p">,</span> <span class="mi">330</span><span class="p">,</span> <span class="mi">320</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">    <span class="p">},</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Search Engine&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;line&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;stack&#34;</span><span class="p">:</span> <span class="s2">&#34;Total&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">820</span><span class="p">,</span> <span class="mi">932</span><span class="p">,</span> <span class="mi">901</span><span class="p">,</span> <span class="mi">934</span><span class="p">,</span> <span class="mi">1290</span><span class="p">,</span> <span class="mi">1330</span><span class="p">,</span> <span class="mi">1320</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="err">{&lt;</span> <span class="err">/echarts</span> <span class="err">&gt;</span><span class="p">}</span><span class="err">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>The same in <code>YAML</code> format:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span><span class="lnt">55
-</span><span class="lnt">56
-</span><span class="lnt">57
-</span><span class="lnt">58
-</span><span class="lnt">59
-</span><span class="lnt">60
-</span><span class="lnt">61
-</span><span class="lnt">62
-</span><span class="lnt">63
-</span><span class="lnt">64
-</span><span class="lnt">65
-</span><span class="lnt">66
-</span><span class="lnt">67
-</span><span class="lnt">68
-</span><span class="lnt">69
-</span><span class="lnt">70
-</span><span class="lnt">71
-</span><span class="lnt">72
-</span><span class="lnt">73
-</span><span class="lnt">74
-</span><span class="lnt">75
-</span><span class="lnt">76
-</span><span class="lnt">77
-</span><span class="lnt">78
-</span><span class="lnt">79
-</span><span class="lnt">80
-</span><span class="lnt">81
-</span><span class="lnt">82
-</span><span class="lnt">83
-</span><span class="lnt">84
-</span><span class="lnt">85
-</span><span class="lnt">86
-</span><span class="lnt">87
-</span><span class="lnt">88
-</span><span class="lnt">89
-</span><span class="lnt">90
-</span><span class="lnt">91
-</span><span class="lnt">92
-</span><span class="lnt">93
-</span><span class="lnt">94
-</span><span class="lnt">95
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl">{{<span class="l">&lt; echarts &gt;}}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">title</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l">Summary Line Chart</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">top</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="l">%</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">left</span><span class="p">:</span><span class="w"> </span><span class="l">center</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">tooltip</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">trigger</span><span class="p">:</span><span class="w"> </span><span class="l">axis</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">legend</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">data</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Email Marketing</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Affiliate Advertising</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Video Advertising</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Direct View</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Search Engine</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">top</span><span class="p">:</span><span class="w"> </span><span class="m">10</span><span class="l">%</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">grid</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">left</span><span class="p">:</span><span class="w"> </span><span class="m">5</span><span class="l">%</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">right</span><span class="p">:</span><span class="w"> </span><span class="m">5</span><span class="l">%</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">bottom</span><span class="p">:</span><span class="w"> </span><span class="m">5</span><span class="l">%</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">top</span><span class="p">:</span><span class="w"> </span><span class="m">20</span><span class="l">%</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">containLabel</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">toolbox</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">feature</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">saveAsImage</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l">Save as Image</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">xAxis</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">category</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">boundaryGap</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">data</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Monday</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Tuesday</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Wednesday</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Thursday</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Friday</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Saturday</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">Sunday</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">yAxis</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">value</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">series</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Email Marketing</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">line</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">stack</span><span class="p">:</span><span class="w"> </span><span class="l">Total</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">data</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">120</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">132</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">101</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">134</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">90</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">230</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">210</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Affiliate Advertising</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">line</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">stack</span><span class="p">:</span><span class="w"> </span><span class="l">Total</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">data</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">220</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">182</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">191</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">234</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">290</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">330</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">310</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Video Advertising</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">line</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">stack</span><span class="p">:</span><span class="w"> </span><span class="l">Total</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">data</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">150</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">232</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">201</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">154</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">190</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">330</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">410</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Direct View</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">line</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">stack</span><span class="p">:</span><span class="w"> </span><span class="l">Total</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">data</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">320</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">332</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">301</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">334</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">390</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">330</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">320</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Search Engine</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">line</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">stack</span><span class="p">:</span><span class="w"> </span><span class="l">Total</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">data</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">820</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">932</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">901</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">934</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">1290</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">1330</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="m">1320</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>{{<span class="l">&lt; /echarts &gt;}}</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p>The same in <code>TOML</code> format:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">  1
-</span><span class="lnt">  2
-</span><span class="lnt">  3
-</span><span class="lnt">  4
-</span><span class="lnt">  5
-</span><span class="lnt">  6
-</span><span class="lnt">  7
-</span><span class="lnt">  8
-</span><span class="lnt">  9
-</span><span class="lnt"> 10
-</span><span class="lnt"> 11
-</span><span class="lnt"> 12
-</span><span class="lnt"> 13
-</span><span class="lnt"> 14
-</span><span class="lnt"> 15
-</span><span class="lnt"> 16
-</span><span class="lnt"> 17
-</span><span class="lnt"> 18
-</span><span class="lnt"> 19
-</span><span class="lnt"> 20
-</span><span class="lnt"> 21
-</span><span class="lnt"> 22
-</span><span class="lnt"> 23
-</span><span class="lnt"> 24
-</span><span class="lnt"> 25
-</span><span class="lnt"> 26
-</span><span class="lnt"> 27
-</span><span class="lnt"> 28
-</span><span class="lnt"> 29
-</span><span class="lnt"> 30
-</span><span class="lnt"> 31
-</span><span class="lnt"> 32
-</span><span class="lnt"> 33
-</span><span class="lnt"> 34
-</span><span class="lnt"> 35
-</span><span class="lnt"> 36
-</span><span class="lnt"> 37
-</span><span class="lnt"> 38
-</span><span class="lnt"> 39
-</span><span class="lnt"> 40
-</span><span class="lnt"> 41
-</span><span class="lnt"> 42
-</span><span class="lnt"> 43
-</span><span class="lnt"> 44
-</span><span class="lnt"> 45
-</span><span class="lnt"> 46
-</span><span class="lnt"> 47
-</span><span class="lnt"> 48
-</span><span class="lnt"> 49
-</span><span class="lnt"> 50
-</span><span class="lnt"> 51
-</span><span class="lnt"> 52
-</span><span class="lnt"> 53
-</span><span class="lnt"> 54
-</span><span class="lnt"> 55
-</span><span class="lnt"> 56
-</span><span class="lnt"> 57
-</span><span class="lnt"> 58
-</span><span class="lnt"> 59
-</span><span class="lnt"> 60
-</span><span class="lnt"> 61
-</span><span class="lnt"> 62
-</span><span class="lnt"> 63
-</span><span class="lnt"> 64
-</span><span class="lnt"> 65
-</span><span class="lnt"> 66
-</span><span class="lnt"> 67
-</span><span class="lnt"> 68
-</span><span class="lnt"> 69
-</span><span class="lnt"> 70
-</span><span class="lnt"> 71
-</span><span class="lnt"> 72
-</span><span class="lnt"> 73
-</span><span class="lnt"> 74
-</span><span class="lnt"> 75
-</span><span class="lnt"> 76
-</span><span class="lnt"> 77
-</span><span class="lnt"> 78
-</span><span class="lnt"> 79
-</span><span class="lnt"> 80
-</span><span class="lnt"> 81
-</span><span class="lnt"> 82
-</span><span class="lnt"> 83
-</span><span class="lnt"> 84
-</span><span class="lnt"> 85
-</span><span class="lnt"> 86
-</span><span class="lnt"> 87
-</span><span class="lnt"> 88
-</span><span class="lnt"> 89
-</span><span class="lnt"> 90
-</span><span class="lnt"> 91
-</span><span class="lnt"> 92
-</span><span class="lnt"> 93
-</span><span class="lnt"> 94
-</span><span class="lnt"> 95
-</span><span class="lnt"> 96
-</span><span class="lnt"> 97
-</span><span class="lnt"> 98
-</span><span class="lnt"> 99
-</span><span class="lnt">100
-</span><span class="lnt">101
-</span><span class="lnt">102
-</span><span class="lnt">103
-</span><span class="lnt">104
-</span><span class="lnt">105
-</span><span class="lnt">106
-</span><span class="lnt">107
-</span><span class="lnt">108
-</span><span class="lnt">109
-</span><span class="lnt">110
-</span><span class="lnt">111
-</span><span class="lnt">112
-</span><span class="lnt">113
-</span><span class="lnt">114
-</span><span class="lnt">115
-</span><span class="lnt">116
-</span><span class="lnt">117
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">{{</span><span class="err">&lt;</span> <span class="nx">echarts</span> <span class="err">&gt;</span><span class="p">}}</span>
-</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">title</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="nx">text</span> <span class="p">=</span> <span class="s2">&#34;Summary Line Chart&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">top</span> <span class="p">=</span> <span class="s2">&#34;2%&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">left</span> <span class="p">=</span> <span class="s2">&#34;center&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">tooltip</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="nx">trigger</span> <span class="p">=</span> <span class="s2">&#34;axis&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">legend</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="nx">data</span> <span class="p">=</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Email Marketing&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Affiliate Advertising&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Video Advertising&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Direct View&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Search Engine&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="nx">top</span> <span class="p">=</span> <span class="s2">&#34;10%&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">grid</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="nx">left</span> <span class="p">=</span> <span class="s2">&#34;5%&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">right</span> <span class="p">=</span> <span class="s2">&#34;5%&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">bottom</span> <span class="p">=</span> <span class="s2">&#34;5%&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">top</span> <span class="p">=</span> <span class="s2">&#34;20%&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">containLabel</span> <span class="p">=</span> <span class="kc">true</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">toolbox</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">toolbox</span><span class="p">.</span><span class="nx">feature</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">toolbox</span><span class="p">.</span><span class="nx">feature</span><span class="p">.</span><span class="nx">saveAsImage</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;Save as Image&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">xAxis</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;category&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">boundaryGap</span> <span class="p">=</span> <span class="kc">false</span>
-</span></span><span class="line"><span class="cl"><span class="nx">data</span> <span class="p">=</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Monday&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Tuesday&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Wednesday&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Thursday&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Friday&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Saturday&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="s2">&#34;Sunday&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="p">]</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">yAxis</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;value&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">series</span><span class="p">]]</span>
-</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Email Marketing&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;line&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">stack</span> <span class="p">=</span> <span class="s2">&#34;Total&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">data</span> <span class="p">=</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">120.0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">132.0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">101.0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">134.0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">90.0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">230.0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">210.0</span>
-</span></span><span class="line"><span class="cl"><span class="p">]</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">series</span><span class="p">]]</span>
-</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Affiliate Advertising&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;line&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">stack</span> <span class="p">=</span> <span class="s2">&#34;Total&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">data</span> <span class="p">=</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">220.0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">182.0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">191.0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">234.0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">290.0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">330.0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">310.0</span>
-</span></span><span class="line"><span class="cl"><span class="p">]</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">series</span><span class="p">]]</span>
-</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Video Advertising&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;line&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">stack</span> <span class="p">=</span> <span class="s2">&#34;Total&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">data</span> <span class="p">=</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">150.0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">232.0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">201.0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">154.0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">190.0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">330.0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">410.0</span>
-</span></span><span class="line"><span class="cl"><span class="p">]</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">series</span><span class="p">]]</span>
-</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Direct View&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;line&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">stack</span> <span class="p">=</span> <span class="s2">&#34;Total&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">data</span> <span class="p">=</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">320.0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">332.0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">301.0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">334.0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">390.0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">330.0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">320.0</span>
-</span></span><span class="line"><span class="cl"><span class="p">]</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">series</span><span class="p">]]</span>
-</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Search Engine&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;line&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">stack</span> <span class="p">=</span> <span class="s2">&#34;Total&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">data</span> <span class="p">=</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">820.0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">932.0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">901.0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">934.0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">1290.0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">1330.0</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="mf">1320.0</span>
-</span></span><span class="line"><span class="cl"><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="p">{{</span><span class="err">&lt;</span> <span class="err">/</span><span class="nx">echarts</span> <span class="err">&gt;</span><span class="p">}}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>The rendered output looks like this:</p>
-<div class="echarts" id="id-1" style="width: 100%; height: 30rem;"></div>
-<p>The <code>echarts</code> shortcode has also the following named parameters:</p>
-<ul>
-<li>
-<p><strong>width</strong> <em>[optional]</em> (<strong>first</strong> positional parameter)</p>
-<p><a href="https://github.com/dillonzq/LoveIt/releases/tag/v0.2.0" rel="noopener noreffer" target="_blank"></a> Width of the data visualization, default value is <code>100%</code>.</p>
-</li>
-<li>
-<p><strong>height</strong> <em>[optional]</em> (<strong>second</strong> positional parameter)</p>
-<p><a href="https://github.com/dillonzq/LoveIt/releases/tag/v0.2.0" rel="noopener noreffer" target="_blank"></a> Height of the data visualization, default value is <code>30rem</code>.</p>
-</li>
-</ul>
-]]></description></item><item><title>Theme Documentation - mapbox Shortcode</title><link>https://nuxulu.com/theme-documentation-mapbox-shortcode/</link><pubDate>Tue, 03 Mar 2020 13:29:41 +0800</pubDate><author>false</author><guid>https://nuxulu.com/theme-documentation-mapbox-shortcode/</guid><description><![CDATA[<a href="https://github.com/dillonzq/LoveIt/releases/tag/v0.2.0" rel="noopener noreffer" target="_blank"></a>
-<p>The <code>mapbox</code> shortcode supports interactive maps in Hugo with <a href="https://docs.mapbox.com/mapbox-gl-js" target="_blank" rel="noopener noreffer ">Mapbox GL JS</a> library.</p>
-<p><strong>Mapbox GL JS</strong> is a JavaScript library that uses WebGL to render interactive maps from <a href="https://docs.mapbox.com/help/glossary/vector-tiles/" target="_blank" rel="noopener noreffer ">vector tiles</a> and <a href="https://docs.mapbox.com/mapbox-gl-js/style-spec/" target="_blank" rel="noopener noreffer ">Mapbox styles</a>.</p>
-<p>The <code>mapbox</code> shortcode has the following named parameters to use Mapbox GL JS:</p>
-<ul>
-<li>
-<p><strong>lng</strong> <em>[required]</em> (<strong>first</strong> positional parameter)</p>
-<p>Longitude of the inital centerpoint of the map, measured in degrees.</p>
-</li>
-<li>
-<p><strong>lat</strong> <em>[required]</em> (<strong>second</strong> positional parameter)</p>
-<p>Latitude of the inital centerpoint of the map, measured in degrees.</p>
-</li>
-<li>
-<p><strong>zoom</strong> <em>[optional]</em> (<strong>third</strong> positional parameter)</p>
-<p>The initial zoom level of the map, default value is <code>10</code>.</p>
-</li>
-<li>
-<p><strong>marked</strong> <em>[optional]</em> (<strong>fourth</strong> positional parameter)</p>
-<p>Whether to add a marker at the inital centerpoint of the map, default value is <code>true</code>.</p>
-</li>
-<li>
-<p><strong>light-style</strong> <em>[optional]</em> (<strong>fifth</strong> positional parameter)</p>
-<p>Style for the light theme, default value is the value set in the <a href="../theme-documentation-content#front-matter" rel="">front matter</a> or the <a href="../theme-documentation-basics#site-configuration" rel="">site configuration</a>.</p>
-</li>
-<li>
-<p><strong>dark-style</strong> <em>[optional]</em> (<strong>sixth</strong> positional parameter)</p>
-<p>Style for the dark theme, default value is the value set in the <a href="../theme-documentation-content#front-matter" rel="">front matter</a> or the <a href="../theme-documentation-basics#site-configuration" rel="">site configuration</a>.</p>
-</li>
-<li>
-<p><strong>navigation</strong> <em>[optional]</em></p>
-<p>Whether to add <a href="https://docs.mapbox.com/mapbox-gl-js/api#navigationcontrol" target="_blank" rel="noopener noreffer ">NavigationControl</a>, default value is the value set in the <a href="../theme-documentation-content#front-matter" rel="">front matter</a> or the <a href="../theme-documentation-basics#site-configuration" rel="">site configuration</a>.</p>
-</li>
-<li>
-<p><strong>geolocate</strong> <em>[optional]</em></p>
-<p>Whether to add <a href="https://docs.mapbox.com/mapbox-gl-js/api#geolocatecontrol" target="_blank" rel="noopener noreffer ">GeolocateControl</a>, default value is the value set in the <a href="../theme-documentation-content#front-matter" rel="">front matter</a> or the <a href="../theme-documentation-basics#site-configuration" rel="">site configuration</a>.</p>
-</li>
-<li>
-<p><strong>scale</strong> <em>[optional]</em></p>
-<p>Whether to add <a href="https://docs.mapbox.com/mapbox-gl-js/api#scalecontrol" target="_blank" rel="noopener noreffer ">ScaleControl</a>, default value is the value set in the <a href="../theme-documentation-content#front-matter" rel="">front matter</a> or the <a href="../theme-documentation-basics#site-configuration" rel="">site configuration</a>.</p>
-</li>
-<li>
-<p><strong>fullscreen</strong> <em>[optional]</em></p>
-<p>Whether to add <a href="https://docs.mapbox.com/mapbox-gl-js/api#fullscreencontrol" target="_blank" rel="noopener noreffer ">FullscreenControl</a>, default value is the value set in the <a href="../theme-documentation-content#front-matter" rel="">front matter</a> or the <a href="../theme-documentation-basics#site-configuration" rel="">site configuration</a>.</p>
-</li>
-<li>
-<p><strong>width</strong> <em>[optional]</em></p>
-<p>Width of the map, default value is <code>100%</code>.</p>
-</li>
-<li>
-<p><strong>height</strong> <em>[optional]</em></p>
-<p>Height of the map, default value is <code>20rem</code>.</p>
-</li>
-</ul>
-<p>Example simple <code>mapbox</code> input:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mapbox</span> <span class="na">121</span><span class="err">.</span><span class="na">485</span> <span class="na">31</span><span class="err">.</span><span class="na">233</span> <span class="na">12</span> <span class="p">&gt;</span>}}
-</span></span><span class="line"><span class="cl">Or
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mapbox</span> <span class="na">lng</span><span class="o">=</span><span class="s">121.485</span> <span class="na">lat</span><span class="o">=</span><span class="s">31.233</span> <span class="na">zoom</span><span class="o">=</span><span class="s">12</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>The rendered output looks like this:</p>
-<div class="mapbox" id="id-1" style="width: 100%; height: 20rem;"></div>
-<p>Example <code>mapbox</code> input with the custom style:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mapbox</span> <span class="na">-122</span><span class="err">.</span><span class="na">252</span> <span class="na">37</span><span class="err">.</span><span class="na">453</span> <span class="na">10</span> <span class="na">false</span> <span class="err">&#34;</span><span class="na">mapbox:</span><span class="err">//</span><span class="na">styles</span><span class="err">/</span><span class="na">mapbox</span><span class="err">/</span><span class="na">navigation-preview-day-v4</span><span class="err">&#34;</span> <span class="err">&#34;</span><span class="na">mapbox:</span><span class="err">//</span><span class="na">styles</span><span class="err">/</span><span class="na">mapbox</span><span class="err">/</span><span class="na">navigation-preview-night-v4</span><span class="err">&#34;</span> <span class="p">&gt;</span>}}
-</span></span><span class="line"><span class="cl">Or
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">mapbox</span> <span class="na">lng</span><span class="o">=</span><span class="s">-122.252</span> <span class="na">lat</span><span class="o">=</span><span class="s">37.453</span> <span class="na">zoom</span><span class="o">=</span><span class="s">10</span> <span class="na">marked</span><span class="o">=</span><span class="s">false</span> <span class="na">light-style</span><span class="o">=</span><span class="s">&#34;mapbox://styles/mapbox/navigation-preview-day-v4&#34;</span> <span class="na">dark-style</span><span class="o">=</span><span class="s">&#34;mapbox://styles/mapbox/navigation-preview-night-v4&#34;</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>The rendered output looks like this:</p>
-<div class="mapbox" id="id-2" style="width: 100%; height: 20rem;"></div>]]></description></item><item><title>Theme Documentation - music Shortcode</title><link>https://nuxulu.com/theme-documentation-music-shortcode/</link><pubDate>Tue, 03 Mar 2020 12:29:41 +0800</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/theme-documentation-music-shortcode/</guid><description><![CDATA[<p>The <code>music</code> shortcode embeds a responsive music player based on <a href="https://github.com/MoePlayer/APlayer" target="_blank" rel="noopener noreffer ">APlayer</a> and <a href="https://github.com/metowolf/MetingJS" target="_blank" rel="noopener noreffer ">MetingJS</a>.</p>
-<p>There are three ways to use it the <code>music</code> shortcode.</p>
-<h2 id="custom-music-url">1 Custom Music URL</h2>
-<p><a href="https://github.com/dillonzq/LoveIt/releases/tag/v0.2.10" rel="noopener noreffer" target="_blank"></a> The complete usage of <a href="../theme-documentation-content#contents-organization" rel="">local resource references</a> is supported.</p>
-<p>The <code>music</code> shortcode has the following named parameters by custom music URL:</p>
-<ul>
-<li>
-<p><strong>server</strong> <em>[required]</em></p>
-<p>URL of the custom music.</p>
-</li>
-<li>
-<p><strong>name</strong> <em>[optional]</em></p>
-<p>Name of the custom music.</p>
-</li>
-<li>
-<p><strong>artist</strong> <em>[optional]</em></p>
-<p>Artist of the custom music.</p>
-</li>
-<li>
-<p><strong>cover</strong> <em>[required]</em></p>
-<p>URL of the custom music cover.</p>
-</li>
-</ul>
-<p>Example <code>music</code> input by custom music URL:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">music</span> <span class="na">url</span><span class="o">=</span><span class="s">&#34;/music/Wavelength.mp3&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">Wavelength</span> <span class="na">artist</span><span class="o">=</span><span class="s">oldmanyoung</span> <span class="na">cover</span><span class="o">=</span><span class="s">&#34;/images/Wavelength.jpg&#34;</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>The rendered output looks like this:</p>
-<meting-js url="/music/Wavelength.mp3" name="Wavelength" artist="oldmanyoung" cover="/images/Wavelength.jpg" theme="#448aff"></meting-js>
-<h2 id="automatic-identification">2 Music Platform URL Automatic Identification</h2>
-<p>The <code>music</code> shortcode has one named parameter by music platform URL automatic identification:</p>
-<ul>
-<li>
-<p><strong>auto</strong> <em>[required]</em> (<strong>first</strong> positional parameter)</p>
-<p>URL of the music platform URL for automatic identification,
-which supports <code>netease</code>, <code>tencent</code> and <code>xiami</code> music platform.</p>
-</li>
-</ul>
-<p>Example <code>music</code> input by music platform URL automatic identification:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">music</span> <span class="na">auto</span><span class="o">=</span><span class="s">&#34;https://music.163.com/#/playlist?id=60198&#34;</span> <span class="p">&gt;</span>}}
-</span></span><span class="line"><span class="cl">Or
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">music</span> <span class="err">&#34;</span><span class="na">https:</span><span class="err">//</span><span class="na">music</span><span class="err">.</span><span class="na">163</span><span class="err">.</span><span class="na">com</span><span class="err">/#/</span><span class="na">playlist</span><span class="err">?</span><span class="na">id</span><span class="o">=</span><span class="s">60198&#34;</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>The rendered output looks like this:</p>
-<meting-js auto="https://music.163.com/#/playlist?id=60198" theme="#448aff"></meting-js>
-<h2 id="custom-server">3 Custom Server, Type and ID</h2>
-<p>The <code>music</code> shortcode has the following named parameters by custom music platform:</p>
-<ul>
-<li>
-<p><strong>server</strong> <em>[required]</em> (<strong>first</strong> positional parameter)</p>
-<p>[<code>netease</code>, <code>tencent</code>, <code>kugou</code>, <code>xiami</code>, <code>baidu</code>]</p>
-<p>Music platform.</p>
-</li>
-<li>
-<p><strong>type</strong> <em>[required]</em> (<strong>second</strong> positional parameter)</p>
-<p>[<code>song</code>, <code>playlist</code>, <code>album</code>, <code>search</code>, <code>artist</code>]</p>
-<p>Type of the music.</p>
-</li>
-<li>
-<p><strong>id</strong> <em>[required]</em> (<strong>third</strong> positional parameter)</p>
-<p>Song ID, or playlist ID, or album ID, or search keyword, or artist ID.</p>
-</li>
-</ul>
-<p>Example <code>music</code> input by custom music platform:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">music</span> <span class="na">server</span><span class="o">=</span><span class="s">&#34;netease&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;song&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;1868553&#34;</span> <span class="p">&gt;</span>}}
-</span></span><span class="line"><span class="cl">Or
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">music</span> <span class="na">netease</span> <span class="na">song</span> <span class="na">1868553</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>The rendered output looks like this:</p>
-<meting-js server="netease" type="song" id="1868553" theme="#448aff"></meting-js>
-<h2 id="other-parameters">4 Other Parameters</h2>
-<p>The <code>music</code> shortcode has other named parameters applying to the above three ways:</p>
-<ul>
-<li>
-<p><strong>theme</strong> <em>[optional]</em></p>
-<p><a href="https://github.com/dillonzq/LoveIt/releases/tag/v0.2.0" rel="noopener noreffer" target="_blank"></a> Main color of the music player, default value is <code>#448aff</code>.</p>
-</li>
-<li>
-<p><strong>fixed</strong> <em>[optional]</em></p>
-<p>Whether to enable fixed mode, default value is <code>false</code>.</p>
-</li>
-<li>
-<p><strong>mini</strong> <em>[optional]</em></p>
-<p>Whether to enable mini mode, default value is <code>false</code>.</p>
-</li>
-<li>
-<p><strong>autoplay</strong> <em>[optional]</em></p>
-<p>Whether to autoplay music, default value is <code>false</code>.</p>
-</li>
-<li>
-<p><strong>volume</strong> <em>[optional]</em></p>
-<p>Default volume when the player is first opened, which will be remembered in the browser, default value is <code>0.7</code>.</p>
-</li>
-<li>
-<p><strong>mutex</strong> <em>[optional]</em></p>
-<p>Whether to pause other players when this player starts playing, default value is <code>true</code>.</p>
-</li>
-</ul>
-<p>The <code>music</code> shortcode has the following named parameters only applying to the type of music list:</p>
-<ul>
-<li>
-<p><strong>loop</strong> <em>[optional]</em></p>
-<p>[<code>all</code>, <code>one</code>, <code>none</code>]</p>
-<p>Loop mode of the music list, default value is <code>none</code>.</p>
-</li>
-<li>
-<p><strong>order</strong> <em>[optional]</em></p>
-<p>[<code>list</code>, <code>random</code>]</p>
-<p>Play order of the music list, default value is <code>list</code>.</p>
-</li>
-<li>
-<p><strong>list-folded</strong> <em>[optional]</em></p>
-<p>Whether the music list should be folded at first, default value is <code>false</code>.</p>
-</li>
-<li>
-<p><strong>list-max-height</strong> <em>[optional]</em></p>
-<p>Max height of the music list, default value is <code>340px</code>.</p>
-</li>
-</ul>]]></description></item><item><title>Theme Documentation - bilibili Shortcode</title><link>https://nuxulu.com/theme-documentation-bilibili-shortcode/</link><pubDate>Tue, 03 Mar 2020 11:29:41 +0800</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/theme-documentation-bilibili-shortcode/</guid><description><![CDATA[<a href="https://github.com/dillonzq/LoveIt/releases/tag/v0.2.0" rel="noopener noreffer" target="_blank"></a>
-<p>The <code>bilibili</code> shortcode embeds a responsive video player for bilibili videos.</p>
-<p>When the video only has one part, only the BV <code>id</code> of the video is required, e.g.:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">https://www.bilibili.com/video/BV1Sx411T7QQ
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>Example <code>bilibili</code> input:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">bilibili</span> <span class="na">BV1Sx411T7QQ</span> <span class="p">&gt;</span>}}
-</span></span><span class="line"><span class="cl">Or
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">bilibili</span> <span class="na">id</span><span class="o">=</span><span class="s">BV1Sx411T7QQ</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>The rendered output looks like this:</p>
-<div class="bilibili"><iframe src="//player.bilibili.com/player.html?bvid=BV1Sx411T7QQ&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>
-
-<p>When the video has multiple parts, in addition to the BV <code>id</code> of the video,
-<code>p</code> is also required, whose default value is <code>1</code>, e.g.:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">https://www.bilibili.com/video/BV1TJ411C7An?p=3
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>Example <code>bilibili</code> input with <code>p</code>:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">bilibili</span> <span class="na">BV1TJ411C7An</span> <span class="na">3</span> <span class="p">&gt;</span>}}
-</span></span><span class="line"><span class="cl">Or
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">bilibili</span> <span class="na">id</span><span class="o">=</span><span class="s">BV1TJ411C7An</span> <span class="na">p</span><span class="o">=</span><span class="s">3</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>The rendered output looks like this:</p>
-<div class="bilibili"><iframe src="//player.bilibili.com/player.html?bvid=BV1TJ411C7An&page=3" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe></div>]]></description></item><item><title>Theme Documentation - typeit Shortcode</title><link>https://nuxulu.com/theme-documentation-typeit-shortcode/</link><pubDate>Tue, 03 Mar 2020 10:29:41 +0800</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/theme-documentation-typeit-shortcode/</guid><description><![CDATA[<p>The <code>typeit</code> shortcode provides typing animation based on <a href="https://typeitjs.com/" target="_blank" rel="noopener noreffer ">TypeIt</a> library.</p>
-<p>Just insert your content in the <code>typeit</code> shortcode and that’s it.</p>
-<h2 id="simple-content">1 Simple Content</h2>
-<p>Simple content is allowed in <code>Markdown</code> format and <strong>without</strong> rich block content such as images and more&hellip;</p>
-<p>Example <code>typeit</code> input:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">typeit</span> <span class="p">&gt;</span>}}
-</span></span><span class="line"><span class="cl">This is a <span class="ge">*paragraph*</span> with <span class="gs">**typing animation**</span> based on [<span class="nt">TypeIt</span>](<span class="na">https://typeitjs.com/</span>)...
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">typeit</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>The rendered output looks like this:</p>
-<div class="typeit"><div id="id-1"></div></div>
-
-<p>Alternatively, you can use custom <strong>HTML tags</strong>.</p>
-<p>Example <code>typeit</code> input with <code>h4</code> tag:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">typeit</span> <span class="na">tag</span><span class="o">=</span><span class="s">h4</span> <span class="p">&gt;</span>}}
-</span></span><span class="line"><span class="cl">This is a <span class="ge">*paragraph*</span> with <span class="gs">**typing animation**</span> based on [<span class="nt">TypeIt</span>](<span class="na">https://typeitjs.com/</span>)...
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">typeit</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>The rendered output looks like this:</p>
-<div class="typeit"><h4 id="id-2"></h4></div>
-
-<h2 id="code-content">2 Code Content</h2>
-<p>Code content is allowed and will be highlighted by named parameter <code>code</code> for the type of code language.</p>
-<p>Example <code>typeit</code> input with <code>code</code>:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">typeit</span> <span class="na">code</span><span class="o">=</span><span class="s">java</span> <span class="p">&gt;</span>}}
-</span></span><span class="line"><span class="cl">public class HelloWorld {
-</span></span><span class="line"><span class="cl">    public static void main(String []args) {
-</span></span><span class="line"><span class="cl">        System.out.println(&#34;Hello World&#34;);
-</span></span><span class="line"><span class="cl">    }
-</span></span><span class="line"><span class="cl">}
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">typeit</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>The rendered output looks like this:</p>
-<div class="typeit"><div id="id-3" class="highlight"></div></div>
-
-<h2 id="group-content">3 Group Content</h2>
-<p>All typing animations start at the same time by default.
-But sometimes you may want to start a set of <code>typeit</code> contents in order.</p>
-<p>A set of <code>typeit</code> contents with the same value of named parameter <code>group</code> will start typing animation in sequence.</p>
-<p>Example <code>typeit</code> input with <code>group</code>:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">typeit</span> <span class="na">group</span><span class="o">=</span><span class="s">paragraph</span> <span class="p">&gt;</span>}}
-</span></span><span class="line"><span class="cl"><span class="gs">**First**</span> this paragraph begins
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">typeit</span> <span class="p">&gt;</span>}}
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">typeit</span> <span class="na">group</span><span class="o">=</span><span class="s">paragraph</span> <span class="p">&gt;</span>}}
-</span></span><span class="line"><span class="cl"><span class="gs">**Then**</span> this paragraph begins
-</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">typeit</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>The rendered output looks like this:</p>
-<div class="typeit"><div id="id-4"></div></div>
-
-<div class="typeit"><div id="id-5"></div></div>]]></description></item><item><title>Microsoft Dynamics 365 Ecosystem map</title><link>https://nuxulu.com/2023-01-20-microsoft-dynamics-365-ecosystem-map/</link><pubDate>Fri, 20 Jan 2023 00:00:00 +0000</pubDate><author>Vadim</author><guid>https://nuxulu.com/2023-01-20-microsoft-dynamics-365-ecosystem-map/</guid><description><![CDATA[<p><figure><a class="lightgallery" href="/2023-01-20-microsoft-dynamics-365-ecosystem-map/ERP-SOLUTIONS.png" title="ERP SOLUTIONS" data-thumbnail="/2023-01-20-microsoft-dynamics-365-ecosystem-map/ERP-SOLUTIONS.png" data-sub-html="<h2>ERP SOLUTIONS</h2><p>ERP SOLUTIONS</p>">
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://nuxulu.com/</link><description>Dynamics 365 Finance &amp; Operations</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Fri, 20 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://nuxulu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Microsoft Dynamics 365 Ecosystem map</title><link>https://nuxulu.com/2023-01-20-microsoft-dynamics-365-ecosystem-map/</link><pubDate>Fri, 20 Jan 2023 00:00:00 +0000</pubDate><author>Vadim</author><guid>https://nuxulu.com/2023-01-20-microsoft-dynamics-365-ecosystem-map/</guid><description><![CDATA[<p><figure><a class="lightgallery" href="/2023-01-20-microsoft-dynamics-365-ecosystem-map/ERP-SOLUTIONS.png" title="ERP SOLUTIONS" data-thumbnail="/2023-01-20-microsoft-dynamics-365-ecosystem-map/ERP-SOLUTIONS.png" data-sub-html="<h2>ERP SOLUTIONS</h2><p>ERP SOLUTIONS</p>">
         
     </a><figcaption class="image-caption">ERP SOLUTIONS</figcaption>
     </figure></p>
@@ -1323,6 +22,50 @@ But sometimes you may want to start a set of <code>typeit</code> contents in ord
         
     </a><figcaption class="image-caption">POWER PLATFORM</figcaption>
     </figure></p>
+]]></description></item><item><title>A comparison between Dynamics 365 Finance &amp; Supply Chain Management and Dynamics 365 Business Central in terms of features, capabilities and suitability for different types of businesses</title><link>https://nuxulu.com/2023-11-26-comparation-finops-business-central/</link><pubDate>Sat, 26 Nov 2022 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2023-11-26-comparation-finops-business-central/</guid><description><![CDATA[<p>The basic comparation that helps you choose which solution is optimized for your company.</p>
+<table>
+<thead>
+<tr>
+<th>Dynamics 365 Finance Operations</th>
+<th>Dynamics 365 Business Central</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dynamics 365 Finance Operations applications that are specifically designed to connect individuals, procedures, information, and insights across various business areas such as finance, project management, human resources, supply chain, and commerce. It allows for flexible deployment options and the ability to adapt to new business priorities as needed.</td>
+<td>A all-in-one business management tool that assists small and medium-sized businesses in integrating their financial, sales, service, and operations teams through a single user-friendly application that can be implemented quickly. It is distributed, maintained, and expanded by specialized partner channels.</td>
+</tr>
+<tr>
+<td>Mid-market to large enterprises with 50 – 1000+ users</td>
+<td>Small to medium-sized businesses (SMBs) with 3 to 250+ users</td>
+</tr>
+<tr>
+<td>Organizations with in-house IT resources to support go-live and maintenance</td>
+<td>Businesses who need fast deployment and have limited IT resources to support</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Heavily invested in Dynamics AX and looking to move to the cloud</td>
+<td>Heavily invested in Dynamics NAV, GP, or SL and ready to move to the cloud</td>
+</tr>
+<tr>
+<td>Deep industry and vertical capabilities within applications</td>
+<td>Over 2000+ industry and horizontal apps on AppSource optimized for SMBs</td>
+</tr>
+<tr>
+<td>Individually deployable solutions for sales, service, customer insights, finance, projects, HR, supply chain, commerce, and more</td>
+<td>Single solution that supports finance, sales, service, projects, supply chain, warehousing, manufacturing, and more</td>
+</tr>
+<tr>
+<td>Centralized operating models, with a single deployment spanning multiple companies, entities, and/or countries</td>
+<td>Decentralized operating model, with separate deployments for each company, entity, and or country</td>
+</tr>
+</tbody>
+</table>
+<p>There is also an ability to use a hub and spoke model is provided, where Dynamics 365 Finance &amp; Supply Chain is deployed in the main office and Business Central in subsidiary locations.</p>
 ]]></description></item><item><title>Extend on-hand inventory entities FinOps</title><link>https://nuxulu.com/2022-11-13-extend-on-hand-entities-fin-ops/</link><pubDate>Sun, 13 Nov 2022 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2022-11-13-extend-on-hand-entities-fin-ops/</guid><description><![CDATA[<p>There are some entities that you can use to get the on-hand inventory from Dynamics 365 Finance Operations:</p>
 <p><i class="fa-solid fa-shield-check" aria-hidden="true"></i></p>
 <div class="highlight"><div class="chroma">
@@ -2254,4 +997,298 @@ both WHS-enabled and non-WHS-enabled items, APIs are provided to support the cal
 <li><code>getInventDimForReservedTransPhysChange</code></li>
 <li><code>getInventDimForIssueTransFromReceipt</code></li>
 </ul>
+]]></description></item><item><title>How to get FinOps Azure storage blob connection string</title><link>https://nuxulu.com/2022-10-27-how-to-get-d365-azure-blob-storage-str/</link><pubDate>Thu, 27 Oct 2022 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2022-10-27-how-to-get-d365-azure-blob-storage-str/</guid><description><![CDATA[<p>In Dynamics 365 for Finance and Operations Azure storage is used to</p>
+<ul>
+<li>Store files for <a href="https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/fin-ops/organization-administration/configure-document-management" target="_blank" rel="noopener noreffer ">Attachments</a></li>
+<li><a href="https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/data-import-export-job" target="_blank" rel="noopener noreffer ">Data import and export jobs</a></li>
+<li>When FinOps prints a report via <a href="https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/analytics/document-reporting-services?context=%2Fdynamics365%2Fcontext%2Fcommerce" target="_blank" rel="noopener noreffer ">Document Reporting Services</a>, SSRS Reporting Services generates an <a href="https://ax.docentric.com/printing-reports-with-custom-fonts-in-dynamics-365-for-finance-and-operations/" target="_blank" rel="noopener noreffer ">EMF image</a> for each page of the generated document. FinOps then temporarily saves the generated EMF files to Azure Blob storage.</li>
+<li><a href="https://learn.microsoft.com/en-us/dynamicsax-2012/appuser-itpro/print-a-report-from-the-archive" target="_blank" rel="noopener noreffer ">Printing archive</a></li>
+</ul>
+<p>And more!</p>
+<p>If you are using tier 1 Cloud-Hosted environment, you can find the azure storage from the Azure resource group in Azure portal.</p>
+<p>For tier 1, UAT tier 2, and PROD Tier 3, you can create a runnable class and execute to get the Azure storage connection string.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c#" data-lang="c#"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">Microsoft.Dynamics.Clx.ServicesWrapper</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">GetAzureBlob</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">(</span><span class="err">&#39;</span><span class="n">AzureStorageConnectionString</span> <span class="p">=</span> <span class="err">&#39;</span> <span class="p">+</span> <span class="n">CloudInfrastructure</span><span class="p">::</span><span class="n">GetCsuStorageConnectionString</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">(</span><span class="err">&#39;</span><span class="n">ClientCertificateThumbprint</span> <span class="p">=</span> <span class="err">&#39;</span> <span class="p">+</span> <span class="n">CloudInfrastructure</span><span class="p">::</span><span class="n">GetCsuClientCertificateThumbprint</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Once you have the connection string, you can connect it to <a href="https://docs.microsoft.com/en-us/azure/vs-azure-tools-storage-manage-with-storage-explorer?tabs=windows" target="_blank" rel="noopener noreffer ">MS Azure Storage Explorer</a>, Power Automate, or consuming in any framwork/language for integration/backup purposes.</p>
+]]></description></item><item><title>How to remove SSRS reports in FinOps Cloud-Hosted</title><link>https://nuxulu.com/2022-10-20-how-to-remove-ssrs-reports-in-d365/</link><pubDate>Thu, 20 Oct 2022 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2022-10-20-how-to-remove-ssrs-reports-in-d365/</guid><description><![CDATA[<p>There are 2 ways that you can delete SSRS reports in FinOps cloud-Hosted</p>
+<h2 id="1-using-report-server-configuiration-manager-web-portal">1. Using Report server configuiration manager web portal</h2>
+<p>Open Report server configuiration manager from your VM FinOps Cloud-Hosted and active the <strong>Web Portal</strong></p>
+<p><figure><a class="lightgallery" href="/2022-10-20-how-to-remove-ssrs-reports-in-d365/2022-10-20-how-to-remove-ssrs-reports-in-d365-1.png" title="Image" data-thumbnail="/2022-10-20-how-to-remove-ssrs-reports-in-d365/2022-10-20-how-to-remove-ssrs-reports-in-d365-1.png" data-sub-html="<h2>2022-10-20-how-to-remove-ssrs-reports-in-d365-1</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">2022-10-20-how-to-remove-ssrs-reports-in-d365-1</figcaption>
+    </figure></p>
+<p>You can delete any report from <code>[Servername]/Reports/browse/Dynamics</code></p>
+<p><figure><a class="lightgallery" href="/2022-10-20-how-to-remove-ssrs-reports-in-d365/2022-10-20-how-to-remove-ssrs-reports-in-d365-3.png" title="Image" data-thumbnail="/2022-10-20-how-to-remove-ssrs-reports-in-d365/2022-10-20-how-to-remove-ssrs-reports-in-d365-3.png" data-sub-html="<h2>2022-10-20-how-to-remove-ssrs-reports-in-d365-3</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">2022-10-20-how-to-remove-ssrs-reports-in-d365-3</figcaption>
+    </figure></p>
+<h2 id="2-using-powershell-script">2. Using Powershell script</h2>
+<p>Go to <code>RemoveAllReportsFromSsrs.ps1</code> under <code>K:\AosService\PackagesLocalDirectory\Plugins\AxReportVmRoleStartupTask</code></p>
+<p>Run the script to remove all SSRS report.</p>
+<p>If you want to remove a specific report, you can manipulate the $ReportName</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="c">################################################################################</span>
+</span></span><span class="line"><span class="cl"><span class="c"># This script is used to manually remove reports to SSRS server</span>
+</span></span><span class="line"><span class="cl"><span class="c">################################################################################</span>
+</span></span><span class="line"><span class="cl"><span class="k">param</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nb">Parameter</span><span class="p">(</span><span class="na">Mandatory</span><span class="p">=</span><span class="vm">$false</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="no">string</span><span class="p">]</span><span class="nv">$LogFilePath</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nb">Alias</span><span class="p">(</span><span class="s2">&#34;ReportServerFqdn&#34;</span><span class="p">,</span> <span class="s2">&#34;ReportServerName&#34;</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nb">Parameter</span><span class="p">(</span><span class="na">Mandatory</span><span class="p">=</span><span class="vm">$false</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="no">string[]</span><span class="p">]</span><span class="nv">$ReportServerIp</span> <span class="p">=</span> <span class="s2">&#34;127.0.0.1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nb">Parameter</span><span class="p">(</span><span class="na">Mandatory</span><span class="p">=</span><span class="vm">$false</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">	<span class="p">[</span><span class="no">string[]</span><span class="p">]</span><span class="nv">$ReportName</span> <span class="p">=</span> <span class="s2">&#34;[report-name].[design-name]&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nb">Parameter</span><span class="p">(</span><span class="na">Mandatory</span><span class="p">=</span><span class="vm">$false</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">	<span class="p">[</span><span class="no">switch</span><span class="p">]</span><span class="nv">$UseHttps</span> <span class="p">=</span> <span class="vm">$false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nb">Parameter</span><span class="p">(</span><span class="na">Mandatory</span><span class="p">=</span><span class="vm">$false</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">	<span class="p">[</span><span class="no">int</span><span class="p">]</span><span class="nv">$HttpsPort</span> <span class="p">=</span> <span class="mf">443</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nb">Parameter</span><span class="p">(</span><span class="na">Mandatory</span><span class="p">=</span><span class="vm">$false</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="no">switch</span><span class="p">]</span><span class="nv">$Help</span> <span class="p">=</span> <span class="vm">$false</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Check <a href="/2021-01-27-deploy-ssrs-reports-in-dynamics-365-finance-scm-using-powershell/" rel="">this article</a> for deploy report using PS script.</p>
+]]></description></item><item><title>Remove a person from an user Dynamics 365 Finance Operations</title><link>https://nuxulu.com/2022-09-28-remove-person-from-users/</link><pubDate>Wed, 28 Sep 2022 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2022-09-28-remove-person-from-users/</guid><description><![CDATA[<p>Whenever you add a new person to an user in the user <strong>SysUserInfoPage</strong> form, the person field grays out.</p>
+<p><figure><a class="lightgallery" href="/2022-09-28-remove-person-from-users/2022-09-28-remove-person-from-users.png" title="Image" data-thumbnail="/2022-09-28-remove-person-from-users/2022-09-28-remove-person-from-users.png" data-sub-html="<h2>userinfo</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">userinfo</figcaption>
+    </figure></p>
+<p>To remove the person from that user:</p>
+<ul>
+<li>In the user form <code>System administration &gt; Users &gt; Users</code>, go to <code>Maintain versions</code>.</li>
+<li>Delete the person.</li>
+</ul>
+]]></description></item><item><title>Add new fields to data entity or composite entity Dynamics 365</title><link>https://nuxulu.com/2022-09-23-add-custom-fields-to-composite-entity/</link><pubDate>Fri, 23 Sep 2022 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2022-09-23-add-custom-fields-to-composite-entity/</guid><description><![CDATA[<p>Let&rsquo;s take a composite entity <code>SalesOrderV3Entity</code> as an example.</p>
+<h3 id="scenario">Scenario</h3>
+<p>I will need to add new fields to Sales order header that can be used in the composite entity <code>SalesOrderV3Entity</code>.
+the composite entity <code>SalesOrderV3Entity</code> uses a standard data entity <code>SalesOrderHeaderV2Entity</code> for sales order header; so, we need to extend <code>SalesOrderHeaderV2Entity</code>.</p>
+<h3 id="the-steps">The Steps</h3>
+<ol>
+<li>
+<p>Add new fields to Main table <code>SalesTable</code></p>
+</li>
+<li>
+<p>Add new fields to the entity <code>SalesOrderHeaderV2Entity</code></p>
+</li>
+<li>
+<p>Add new fields to the staging table <code>SalesOrderHeaderV2Staging</code></p>
+</li>
+<li>
+<p>Build and sync.</p>
+</li>
+<li>
+<p>Go to Workspaces -&gt; Data Management -&gt; Framework parameters -&gt; Advanced entity configuration settings -&gt; Refresh entity list.</p>
+<p>You can automate the <code>Refresh entity list</code> task <a href="https://d365fostuff.wordpress.com/2021/03/31/d365fo-integrations-auto-refresh-your-data-entity-list/" target="_blank" rel="noopener noreffer ">here</a></p>
+</li>
+<li>
+<p>Go to Workspaces -&gt; Data Management -&gt; Data Entities, find <strong>SALES ORDER HEADERS V2</strong> and <em>Generate mapping</em> for it.
+The new custom fields will be generated for the entity mapping.</p>
+</li>
+</ol>
+]]></description></item><item><title>Admin provisioning tools in Dynamics 365 Finance Operations</title><link>https://nuxulu.com/2022-09-18-admin-provisioning-tools/</link><pubDate>Sun, 18 Sep 2022 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2022-09-18-admin-provisioning-tools/</guid><description><![CDATA[<p>After restoring database backup, you want to be able to login to Dynamics 365 Finance Operations with different ternant, you need to use the admin provisioning tool to assign a new tenant.</p>
+<!--adsense-->
+<h3 id="before-10023-verison">Before 10.0.23 verison</h3>
+<p>The admin provisioning tool can be found at</p>
+<p>VHD: <code>C:\AOSService\PackagesLocalDirectory\bin\AdminUserProvisioning.exe</code></p>
+<p>Cloud- hosted: <code>K:\AOSService\PackagesLocalDirectory\bin\AdminUserProvisioning.exe</code></p>
+<p>After running <code>Provisioning.exe</code> wtih admin right, you will see the update for the admin user in SQL.</p>
+<p><figure><a class="lightgallery" href="/2022-09-18-admin-provisioning-tools/userinfo.png" title="Image" data-thumbnail="/2022-09-18-admin-provisioning-tools/userinfo.png" data-sub-html="<h2>userinfo</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">userinfo</figcaption>
+    </figure></p>
+<p>Some errors you might face:</p>
+<div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Can not stop the DynamicsAXBatch service on computer</div>
+        </div>
+    </div>
+<div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Execution Timeout Expired. The timeout period elapsed prior to completion of the operation or the server is not responding.</div>
+        </div>
+    </div>
+<div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">The remote server returned an error: (500) Internal Server Error.</div>
+        </div>
+    </div>
+<p>Resolution, you can simply stop and start the services manually:</p>
+<ul>
+<li>World Wide Web Publishing Service</li>
+<li>Microsoft Dynamics 365 Unified Operations: Batch Management Service</li>
+</ul>
+<p>Or you can restart VM using LCS or Azure portal.</p>
+<p>If the issue <strong>Can not stop the DynamicsAXBatch service on computer</strong> still persist</p>
+<p>You can kill the batch service using cmd:</p>
+<ol>
+<li>Open CMD</li>
+<li><code>sc queryex DynamicsAxBatch</code></li>
+<li><code>taskkill /f /pid 8064</code></li>
+</ol>
+<p><figure><a class="lightgallery" href="/2022-09-18-admin-provisioning-tools/queryex.png" title="Image" data-thumbnail="/2022-09-18-admin-provisioning-tools/queryex.png" data-sub-html="<h2>queryex</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">queryex</figcaption>
+    </figure></p>
+<p>There is another error about Database</p>
+<div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Cannot open database &ldquo;AxDB&rdquo; requested by the login. The login failed.
+Login failed for user &lsquo;axdbadmin&rsquo;.</div>
+        </div>
+    </div>
+<p>Please this post for getting <a href="/2020-04-06-getting-onebox-vhd-dynamics-365-finance-and-operations-virtual-machine/#2-rename-vm" rel="">VHD Database password</a>.</p>
+<h3 id="from-10023">From 10.0.23</h3>
+<p>From 10.0.23, the Admin user provisioning tool is removed due to security reasons, the reply URL setup for AAD was changed.
+It is typically used to change the tenant of the environment. You can update the sign in information in the database for the Admin user or any other user. You only need the <code>SID</code> and <code>network alias</code> (email address) from a user that can access the environment or another environment on the same tenant.</p>
+<p>To get the SID:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ps" data-lang="ps"><span class="line"><span class="cl"><span class="nf">wmic</span> <span class="nf">useraccount</span> <span class="nf">get</span> <span class="nf">name,sid</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/2022-09-18-admin-provisioning-tools/get-sid-cmd.png" title="Image" data-thumbnail="/2022-09-18-admin-provisioning-tools/get-sid-cmd.png" data-sub-html="<h2>get-sid-cmd</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">get-sid-cmd</figcaption>
+    </figure></p>
+<p>Once you have admin SID, you can update the tenant in SQL by using.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">SID</span><span class="p">,</span><span class="w"> </span><span class="n">NETWORKALIAS</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">USERINFO</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Admin&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">update</span><span class="w"> </span><span class="n">USERINFO</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">SID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;new_SID&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">NETWORKALIAS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;new_NetworkAlias&#39;</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Admin&#39;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>You might also got error</p>
+<div class="details admonition failure open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">AADSTS50011: The reply URL specified in the request does not match the reply URLs configured for the application: &lsquo;00000015-0000-0000-c000-000000000000&rsquo;</div>
+        </div>
+    </div>
+<p>Go to <code>C:\AOSService\webroot\web.config</code>, get <code>Aad.Realm</code>, <code>Aad.TenantDomainGUID</code>, <code>Infrastructure.HostUrl</code></p>
+<p>Run below script to add Dynamics 365  URL to ERP service principle application</p>
+<p><figure><a class="lightgallery" href="/2022-09-18-admin-provisioning-tools/00000015-0000-0000-c000-000000000000.png" title="Image" data-thumbnail="/2022-09-18-admin-provisioning-tools/00000015-0000-0000-c000-000000000000.png" data-sub-html="<h2>00000015-0000-0000-c000-000000000000</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">00000015-0000-0000-c000-000000000000</figcaption>
+    </figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ps" data-lang="ps"><span class="line"><span class="cl"><span class="nf">$AADTenant</span> <span class="nf">=</span> <span class="nf">&#34;xxxxxx-843a-434c-ae23-f8614106ac37&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$EnvironmentUrl</span> <span class="nf">=</span> <span class="nf">&#34;https:</span><span class="err">/</span><span class="nv">/xxxxxxxx.axcloud.dynamics.com&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$AADRealm</span> <span class="nf">=</span> <span class="nf">&#34;00000015-0000-0000-c000-000000000000&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">Connect-AzureAD</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">#</span> <span class="nf">Get</span> <span class="nf">Service</span> <span class="nf">Principal</span> <span class="nf">details</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$SP</span> <span class="nf">=</span> <span class="nf">Get-AzureADServicePrincipal</span> <span class="nf">-Filter</span> <span class="nf">&#34;AppId</span> <span class="nf">eq</span> <span class="nf">&#39;$AADRealm&#39;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">#Add</span> <span class="nf">Reply</span> <span class="nf">URLs</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$SP.ReplyUrls.Add</span><span class="s">(&#34;$EnvironmentUrl&#34;)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">$SP.ReplyUrls.Add</span><span class="s">(&#34;$EnvironmentUrl/oauth&#34;)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">#Set</span><span class="nv">/Update</span> <span class="nf">Reply</span> <span class="nf">URL</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Set-AzureADServicePrincipal</span> <span class="nf">-ObjectId</span> <span class="nf">$SP.ObjectId</span> <span class="nf">-ReplyUrls</span> <span class="nf">$SP.ReplyUrls</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>If you are running VHD for the first time, please do this <a href="/2020-04-06-getting-onebox-vhd-dynamics-365-finance-and-operations-virtual-machine/#61-register-a-new-application-in-azure-active-directory" rel="">task</a></p>
+<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw" aria-hidden="true"></i>Reference<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ol>
+<li>
+<p><a href="https://learn.microsoft.com/en-us/troubleshoot/azure/active-directory/error-code-aadsts50011-reply-url-mismatch" target="_blank" rel="noopener noreffer ">https://learn.microsoft.com/en-us/troubleshoot/azure/active-directory/error-code-aadsts50011-reply-url-mismatch</a></p>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/dev-tools/access-instances#i-have-run-the-admin-user-provisioning-tool-on-my-development-environment-and-now-i-receive-the-following-sign-in-error-error-aadsts50011-the-reply-url-specified-in-the-request-does-not-match-the-reply-urls-configured-for-the-application" target="_blank" rel="noopener noreffer ">https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/dev-tools/access-instances#i-have-run-the-admin-user-provisioning-tool-on-my-development-environment-and-now-i-receive-the-following-sign-in-error-error-aadsts50011-the-reply-url-specified-in-the-request-does-not-match-the-reply-urls-configured-for-the-application</a></p>
+</li>
+</ol>
+</div>
+        </div>
+    </div>
 ]]></description></item></channel></rss>
