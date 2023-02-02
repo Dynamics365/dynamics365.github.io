@@ -22,50 +22,6 @@
         
     </a><figcaption class="image-caption">POWER PLATFORM</figcaption>
     </figure></p>
-]]></description></item><item><title>A comparison between Dynamics 365 Finance &amp; Supply Chain Management and Dynamics 365 Business Central in terms of features, capabilities and suitability for different types of businesses</title><link>https://nuxulu.com/2023-11-26-comparation-finops-business-central/</link><pubDate>Sat, 26 Nov 2022 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2023-11-26-comparation-finops-business-central/</guid><description><![CDATA[<p>The basic comparation that helps you choose which solution is optimized for your company.</p>
-<table>
-<thead>
-<tr>
-<th>Dynamics 365 Finance Operations</th>
-<th>Dynamics 365 Business Central</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Dynamics 365 Finance Operations applications that are specifically designed to connect individuals, procedures, information, and insights across various business areas such as finance, project management, human resources, supply chain, and commerce. It allows for flexible deployment options and the ability to adapt to new business priorities as needed.</td>
-<td>A all-in-one business management tool that assists small and medium-sized businesses in integrating their financial, sales, service, and operations teams through a single user-friendly application that can be implemented quickly. It is distributed, maintained, and expanded by specialized partner channels.</td>
-</tr>
-<tr>
-<td>Mid-market to large enterprises with 50 – 1000+ users</td>
-<td>Small to medium-sized businesses (SMBs) with 3 to 250+ users</td>
-</tr>
-<tr>
-<td>Organizations with in-house IT resources to support go-live and maintenance</td>
-<td>Businesses who need fast deployment and have limited IT resources to support</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>Heavily invested in Dynamics AX and looking to move to the cloud</td>
-<td>Heavily invested in Dynamics NAV, GP, or SL and ready to move to the cloud</td>
-</tr>
-<tr>
-<td>Deep industry and vertical capabilities within applications</td>
-<td>Over 2000+ industry and horizontal apps on AppSource optimized for SMBs</td>
-</tr>
-<tr>
-<td>Individually deployable solutions for sales, service, customer insights, finance, projects, HR, supply chain, commerce, and more</td>
-<td>Single solution that supports finance, sales, service, projects, supply chain, warehousing, manufacturing, and more</td>
-</tr>
-<tr>
-<td>Centralized operating models, with a single deployment spanning multiple companies, entities, and/or countries</td>
-<td>Decentralized operating model, with separate deployments for each company, entity, and or country</td>
-</tr>
-</tbody>
-</table>
-<p>There is also an ability to use a hub and spoke model is provided, where Dynamics 365 Finance &amp; Supply Chain is deployed in the main office and Business Central in subsidiary locations.</p>
 ]]></description></item><item><title>Extend on-hand inventory entities FinOps</title><link>https://nuxulu.com/2022-11-13-extend-on-hand-entities-fin-ops/</link><pubDate>Sun, 13 Nov 2022 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2022-11-13-extend-on-hand-entities-fin-ops/</guid><description><![CDATA[<p>There are some entities that you can use to get the on-hand inventory from Dynamics 365 Finance Operations:</p>
 <p><i class="fa-solid fa-shield-check" aria-hidden="true"></i></p>
 <div class="highlight"><div class="chroma">
@@ -1291,4 +1247,78 @@ It is typically used to change the tenant of the environment. You can update the
 </div>
         </div>
     </div>
+]]></description></item><item><title>Unable to start trace, the required event providers were not found. Contact your system administrator</title><link>https://nuxulu.com/2022-06-20-unable-to-trace-error/</link><pubDate>Mon, 20 Jun 2022 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2022-06-20-unable-to-trace-error/</guid><description><![CDATA[<p>The error pops when you start the trace: <em>Unable to start trace, the required event providers were not found. Contact your system administrator.</em></p>
+<p><figure><a class="lightgallery" href="/2022-06-20-unable-to-trace-error/trace-error.png" title="Image" data-thumbnail="/2022-06-20-unable-to-trace-error/trace-error.png" data-sub-html="<h2>trace-error</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">trace-error</figcaption>
+    </figure></p>
+<p>Cause: Some how you dont have Dynamics in event viewer</p>
+<p><figure><a class="lightgallery" href="/2022-06-20-unable-to-trace-error/no-dynamics.png" title="Image" data-thumbnail="/2022-06-20-unable-to-trace-error/no-dynamics.png" data-sub-html="<h2>no-dynamics</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">no-dynamics</figcaption>
+    </figure></p>
+<p>Resolution: execute the script below under <code>C:\Temp</code> in powershell</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ps" data-lang="ps"><span class="line"><span class="cl"><span class="nf">$AOSSetupETWManifestDir</span> <span class="nf">=</span> <span class="nf">&#34;K:\AosService\WebRoot\Monitoring&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">foreach</span> <span class="s">($manifestFile in Get-ChildItem -Path $AOSSetupETWManifestDir</span><span class="se">\</span><span class="s">*.man | select-object -Property BaseName,Name)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">$dllFile=&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">if</span> <span class="s">((Test-Path &#34;$AOSSetupETWManifestDir</span><span class="se">\</span><span class="s">$($manifestFile.BaseName).Instrumentation.dll&#34;))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">$dllFile</span> <span class="nf">=</span> <span class="nf">&#34;$AOSSetupETWManifestDir\$</span><span class="s">($manifestFile.BaseName)</span><span class="nf">.Instrumentation.dll&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">elseif</span> <span class="s">((Test-Path &#34;$AOSSetupETWManifestDir</span><span class="se">\</span><span class="s">$($manifestFile.BaseName)Resource.dll&#34;))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">$dllFile</span> <span class="nf">=</span> <span class="nf">&#34;$AOSSetupETWManifestDir\$</span><span class="s">($manifestFile.BaseName)</span><span class="nf">Resource.dll&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">elseif</span> <span class="s">((Test-Path &#34;$AOSSetupETWManifestDir</span><span class="se">\</span><span class="s">$($manifestFile.BaseName).dll&#34;))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">$dllFile</span> <span class="nf">=</span> <span class="nf">&#34;$AOSSetupETWManifestDir\$</span><span class="s">($manifestFile.BaseName)</span><span class="nf">.dll&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">else</span> 
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">Write-Host</span> <span class="nf">&#34;Warn</span> <span class="nf">:</span> <span class="nf">Skipping</span> <span class="nf">$AOSSetupETWManifestDir\$</span><span class="s">($manifestFile.Name)</span> <span class="nf">as</span> <span class="nf">DLL</span> <span class="nf">not</span> <span class="nf">found&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">Continue</span>    
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="nf">Write-Host</span> <span class="nf">&#34;Installing</span> <span class="nf">$AOSSetupETWManifestDir\$</span><span class="s">($manifestFile.Name)</span> <span class="nf">using</span> <span class="nf">$dllFile&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">wevtutil.exe</span> <span class="nf">im</span> <span class="nf">&#34;$AOSSetupETWManifestDir\$</span><span class="s">($manifestFile.Name)</span><span class="nf">&#34;</span> <span class="nv">/rf:&#34;$dllFile&#34;</span> <span class="nv">/mf:&#34;$dllFile&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">Write-Host</span> <span class="nf">&#34;Finished</span> <span class="nf">installing</span> <span class="nf">$AOSSetupETWManifestDir\$</span><span class="s">($manifestFile.Name)</span> <span class="nf">`n`n&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Then restart the VM by LCS or Azure portal, you will get the Dynamics back in the event viewer and able to start the trace normally.</p>
+<p><figure><a class="lightgallery" href="/2022-06-20-unable-to-trace-error/dynamics-event.png" title="Image" data-thumbnail="/2022-06-20-unable-to-trace-error/dynamics-event.png" data-sub-html="<h2>dynamics-event</h2><p>Image</p>">
+        
+    </a><figcaption class="image-caption">dynamics-event</figcaption>
+    </figure></p>
 ]]></description></item></channel></rss>
