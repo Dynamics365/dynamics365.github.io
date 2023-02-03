@@ -73,7 +73,7 @@ protected static void startControllerOperation(SrsPrintMgmtFormLetterController 
 }
 ```
 
-Optional method, determine which default design for report
+Optional method, determine which default design for report, some reports don't use `SrsPrintMgmtFormLetterController`, so you can implement this method by your own.
 
 ```C#
 protected void outputReport()
@@ -93,32 +93,45 @@ protected void outputReport()
 
 We have two different ways to Populate the data in the Report handler class:
 
-* Add a temp table Inserting event, row-by-row calculations.
+* Add a temp table Inserting event, row-by-row calculations. Go to `CustAccountStatementExtTmp` in AOT, expand Events node, and *Copy event handler method*.
 
 ```C#
-[DataEventHandlerAttribute(tableStr(CustAccountStatementExtTmp), DataEventType::Inserting)]
-public static void CustAccountStatementExtTmpInsertEvent(Common c, DataEventArgs e)
+class MaxCustAccountStatementExtHandler
 {
-    CustAccountStatementExtTmp    tempTable = c;
-    tempTable.MaxTxT = "Hello world";
+    [DataEventHandlerAttribute(tableStr(CustAccountStatementExtTmp), DataEventType::Inserting)]
+    public static void CustAccountStatementExtTmpInsertEvent(Common c, DataEventArgs e)
+    {
+        CustAccountStatementExtTmp  tempTable = c;
+        CustGroup custGroup;
+        select * from tempTable
+            where tempTable.CustGroup == custGroup.CustGroup;
+
+        tempTable.MaxTxT = custGroup.Description;
+    }
 }
 ```
 
 * Add a data processing post-handler, inserting operations that use a single pass over the result set of the standard solution.
 
 ```C#
-[PostHandlerFor(classStr(CustAccountStatementExtDP), methodstr(CustAccountStatementExtDP, processReport))]
-public static void TmpTablePostHandler(XppPrePostArgs arguments)
+class MaxCustAccountStatementExtHandler
 {
-    CustAccountStatementExtDP dpInstance = arguments.getThis() as CustAccountStatementExtDP;
-    CustAccountStatementExtTmp tmpTable = dpInstance.getCustAccountStatementExtTmp();
-    ttsbegin;
-    while select forUpdate tmpTable
+    [PostHandlerFor(classStr(CustAccountStatementExtDP), methodstr(CustAccountStatementExtDP, processReport))]
+    public static void TmpTablePostHandler(XppPrePostArgs arguments)
     {
-        tmpTable.MaxTxT = "Hello world";
-        tmpTable.update();
+        CustAccountStatementExtDP dpInstance = arguments.getThis() as CustAccountStatementExtDP;
+        CustAccountStatementExtTmp tmpTable = dpInstance.getCustAccountStatementExtTmp();
+        CustGroup custGroup;
+        ttsbegin;
+        while select forUpdate tmpTable
+        {
+            select * from tempTable
+                where tempTable.CustGroup == custGroup.CustGroup;
+            tempTable.MaxTxT = custGroup.Description;
+            tmpTable.update();
+        }
+        ttscommit;
     }
-    ttscommit;
 }
 ```
 

@@ -200,7 +200,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>Optional method, determine which default design for report</p>
+</div><p>Optional method, determine which default design for report, some reports don&rsquo;t use <code>SrsPrintMgmtFormLetterController</code>, so you can implement this method by your own.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -229,23 +229,37 @@
 <p><code>class MaxCustAccountStatementHandler{}</code></p>
 <p>We have two different ways to Populate the data in the Report handler class:</p>
 <ul>
-<li>Add a temp table Inserting event, row-by-row calculations.</li>
+<li>Add a temp table Inserting event, row-by-row calculations. Go to <code>CustAccountStatementExtTmp</code> in AOT, expand Events node, and <em>Copy event handler method</em>.</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="na">[DataEventHandlerAttribute(tableStr(CustAccountStatementExtTmp), DataEventType::Inserting)]</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">CustAccountStatementExtTmpInsertEvent</span><span class="p">(</span><span class="n">Common</span> <span class="n">c</span><span class="p">,</span> <span class="n">DataEventArgs</span> <span class="n">e</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MaxCustAccountStatementExtHandler</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">CustAccountStatementExtTmp</span>    <span class="n">tempTable</span> <span class="p">=</span> <span class="n">c</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">tempTable</span><span class="p">.</span><span class="n">MaxTxT</span> <span class="p">=</span> <span class="s">&#34;Hello world&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="na">    [DataEventHandlerAttribute(tableStr(CustAccountStatementExtTmp), DataEventType::Inserting)]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">CustAccountStatementExtTmpInsertEvent</span><span class="p">(</span><span class="n">Common</span> <span class="n">c</span><span class="p">,</span> <span class="n">DataEventArgs</span> <span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">CustAccountStatementExtTmp</span>  <span class="n">tempTable</span> <span class="p">=</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">CustGroup</span> <span class="n">custGroup</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">select</span> <span class="p">*</span> <span class="k">from</span> <span class="n">tempTable</span>
+</span></span><span class="line"><span class="cl">            <span class="k">where</span> <span class="n">tempTable</span><span class="p">.</span><span class="n">CustGroup</span> <span class="p">==</span> <span class="n">custGroup</span><span class="p">.</span><span class="n">CustGroup</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">tempTable</span><span class="p">.</span><span class="n">MaxTxT</span> <span class="p">=</span> <span class="n">custGroup</span><span class="p">.</span><span class="n">Description</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -267,20 +281,32 @@
 </span><span class="lnt">11
 </span><span class="lnt">12
 </span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="na">[PostHandlerFor(classStr(CustAccountStatementExtDP), methodstr(CustAccountStatementExtDP, processReport))]</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">TmpTablePostHandler</span><span class="p">(</span><span class="n">XppPrePostArgs</span> <span class="n">arguments</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MaxCustAccountStatementExtHandler</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">CustAccountStatementExtDP</span> <span class="n">dpInstance</span> <span class="p">=</span> <span class="n">arguments</span><span class="p">.</span><span class="n">getThis</span><span class="p">()</span> <span class="k">as</span> <span class="n">CustAccountStatementExtDP</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">CustAccountStatementExtTmp</span> <span class="n">tmpTable</span> <span class="p">=</span> <span class="n">dpInstance</span><span class="p">.</span><span class="n">getCustAccountStatementExtTmp</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">    <span class="n">ttsbegin</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="k">select</span> <span class="n">forUpdate</span> <span class="n">tmpTable</span>
+</span></span><span class="line"><span class="cl"><span class="na">    [PostHandlerFor(classStr(CustAccountStatementExtDP), methodstr(CustAccountStatementExtDP, processReport))]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">TmpTablePostHandler</span><span class="p">(</span><span class="n">XppPrePostArgs</span> <span class="n">arguments</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">tmpTable</span><span class="p">.</span><span class="n">MaxTxT</span> <span class="p">=</span> <span class="s">&#34;Hello world&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">tmpTable</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">CustAccountStatementExtDP</span> <span class="n">dpInstance</span> <span class="p">=</span> <span class="n">arguments</span><span class="p">.</span><span class="n">getThis</span><span class="p">()</span> <span class="k">as</span> <span class="n">CustAccountStatementExtDP</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">CustAccountStatementExtTmp</span> <span class="n">tmpTable</span> <span class="p">=</span> <span class="n">dpInstance</span><span class="p">.</span><span class="n">getCustAccountStatementExtTmp</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">CustGroup</span> <span class="n">custGroup</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ttsbegin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="k">select</span> <span class="n">forUpdate</span> <span class="n">tmpTable</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">select</span> <span class="p">*</span> <span class="k">from</span> <span class="n">tempTable</span>
+</span></span><span class="line"><span class="cl">                <span class="k">where</span> <span class="n">tempTable</span><span class="p">.</span><span class="n">CustGroup</span> <span class="p">==</span> <span class="n">custGroup</span><span class="p">.</span><span class="n">CustGroup</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tempTable</span><span class="p">.</span><span class="n">MaxTxT</span> <span class="p">=</span> <span class="n">custGroup</span><span class="p">.</span><span class="n">Description</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tmpTable</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ttscommit</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="n">ttscommit</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
