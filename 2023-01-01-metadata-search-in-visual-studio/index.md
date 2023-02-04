@@ -32,8 +32,10 @@ This section describes the search query syntax and provides example queries.
 The search query is a search string that consists of a set of filters in this general form:
 
 ```xml
-<filter_1>:<filter_1_value> [<filter_2>:<filter_2_value> … [ <filter_N>:<filter_N\_value>]]
+<filter_1>:<filter_1_value> [<filter_2>:<filter_2_value> … [ <filter_N>:<filter_N_value>]]
 ```
+
+![The syntax for searching in the Metadata searc.](syntax.png "The syntax for searching in the Metadata searc")
 
 Where `<filter_i>` is one of the acceptable filter names, and <`filter_i_value>` are comma separated (and possibly quoted) filtering values.
 
