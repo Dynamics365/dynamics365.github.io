@@ -2,6 +2,7 @@
 
 
 **Exam/Learning Path:** https://docs.microsoft.com/certifications/exams/mb-220
+**Documentation** https://learn.microsoft.com/en-us/dynamics365/marketing/overview
 
 Basic: [Learn the fundamentals of Microsoft Dynamics 365 Marketing](https://learn.microsoft.com/en-us/training/paths/learn-fundamentals-of-microsoft-dynamics-365-marketing/)
 
