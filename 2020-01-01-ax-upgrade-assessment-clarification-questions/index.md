@@ -36,3 +36,15 @@
 | 31    | Cloud Usage                                                                  | Do you use Cloud Infrastructure for any of your IT systems?                                                                                                                                                                                                                                                                                 |
 | 32    | Cloud Usage                                                                  | Do you use Microsoft Azure for any application?                                                                                                                                                                                                                                                                                             |
 | 33    | Cloud Usage                                                                  | Do intend to use AX with Azure?                                                                                                                                                                                                                                                                                                             |
+
+
+**List customizations**
+
+| Functional Area | Description of Customization | How is this Customization useful to business | Additional Comments |
+|-----------------|------------------------------|----------------------------------------------|---------------------|
+
+**List integration**
+
+| # | Integration Description | External System | Type | Direction  | AX Module/ Table updated by this integration | Why is this integration useful to business? | Additional Comments from Customer |
+|---|-------------------------|-----------------|------|------------|----------------------------------------------|---------------------------------------------|-----------------------------------|
+| 1 |
