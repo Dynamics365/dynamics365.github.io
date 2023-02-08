@@ -3,6 +3,8 @@
 
 **Exam/Learning Path:** https://docs.microsoft.com/certifications/exams/mb-220
 
+Basic: [Learn the fundamentals of Microsoft Dynamics 365 Marketing](https://learn.microsoft.com/en-us/training/paths/learn-fundamentals-of-microsoft-dynamics-365-marketing/)
+
 | **Learning Path** | **Module** | **Week** |
 |-|-|-|
 |**[Set up Dynamics 365 Marketing and configure advanced settings](https://docs.microsoft.com/learn/paths/get-started-with-marketing/)**| [Set up and manage Dynamics 365 Marketing](https://docs.microsoft.com/learn/modules/get-started-set-up-and-manage/) | **1** 
