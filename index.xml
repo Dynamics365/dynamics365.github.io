@@ -1,4 +1,8 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://nuxulu.com/</link><description>Dynamics 365 Finance &amp; Operations</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Sun, 05 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://nuxulu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>MB-220: Microsoft Dynamics 365 Marketing Functional Consultant</title><link>https://nuxulu.com/2023-02-05-mb-220/</link><pubDate>Sun, 05 Feb 2023 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2023-02-05-mb-220/</guid><description><![CDATA[<p><strong>Documentation</strong> <a href="https://learn.microsoft.com/en-us/dynamics365/marketing/overview" target="_blank" rel="noopener noreffer ">https://learn.microsoft.com/en-us/dynamics365/marketing/overview</a></p>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://nuxulu.com/</link><description>Dynamics 365 Finance &amp; Operations</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Tue, 14 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://nuxulu.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Microsoft ecosystem supporting Dynamics 365 Finance</title><link>https://nuxulu.com/2023-02-14-comparation-finops-business-central-copy/</link><pubDate>Tue, 14 Feb 2023 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2023-02-14-comparation-finops-business-central-copy/</guid><description><![CDATA[<p><figure><a class="lightgallery" href="/2023-02-14-comparation-finops-business-central-copy/microsoft-ecosystem-supporting-dynamics-365-finance.png" title="Microsoft ecosystem supporting Dynamics 365 Finance" data-thumbnail="/2023-02-14-comparation-finops-business-central-copy/microsoft-ecosystem-supporting-dynamics-365-finance.png" data-sub-html="<h2>Microsoft ecosystem supporting Dynamics 365 Finance</h2><p>Microsoft ecosystem supporting Dynamics 365 Finance</p>">
+        
+    </a><figcaption class="image-caption">Microsoft ecosystem supporting Dynamics 365 Finance</figcaption>
+    </figure></p>
+]]></description></item><item><title>MB-220: Microsoft Dynamics 365 Marketing Functional Consultant</title><link>https://nuxulu.com/2023-02-05-mb-220/</link><pubDate>Sun, 05 Feb 2023 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2023-02-05-mb-220/</guid><description><![CDATA[<p><strong>Documentation</strong> <a href="https://learn.microsoft.com/en-us/dynamics365/marketing/overview" target="_blank" rel="noopener noreffer ">https://learn.microsoft.com/en-us/dynamics365/marketing/overview</a></p>
 <p><strong>Basic:</strong> <a href="https://learn.microsoft.com/en-us/training/paths/learn-fundamentals-of-microsoft-dynamics-365-marketing/" target="_blank" rel="noopener noreffer ">Learn the fundamentals of Microsoft Dynamics 365 Marketing</a></p>
 <p><strong>Exam/Learning Path:</strong> <a href="https://docs.microsoft.com/certifications/exams/mb-220" target="_blank" rel="noopener noreffer ">https://docs.microsoft.com/certifications/exams/mb-220</a></p>
 <table>
@@ -1198,39 +1202,4 @@ Some columns in a grid may not be filterable. In these cases, the column header 
 </tr>
 </tbody>
 </table>
-]]></description></item><item><title>Extend on-hand inventory entities FinOps</title><link>https://nuxulu.com/2022-11-13-extend-on-hand-entities-fin-ops/</link><pubDate>Sun, 13 Nov 2022 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2022-11-13-extend-on-hand-entities-fin-ops/</guid><description><![CDATA[<p>There are some entities that you can use to get the on-hand inventory from Dynamics 365 Finance Operations:</p>
-<p><i class="fa-solid fa-shield-check" aria-hidden="true"></i></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="n">InventorySiteOnHandEntity</span>
-</span></span><span class="line"><span class="cl"><span class="n">InventorySiteOnHandV2Entity</span>
-</span></span><span class="line"><span class="cl"><span class="n">InventWarehouseInventoryStatusOnHandEntity</span>
-</span></span><span class="line"><span class="cl"><span class="n">InventWarehouseInventoryStatusOnHandV2Entity</span>
-</span></span><span class="line"><span class="cl"><span class="n">InventWarehouseOnHandEntity</span>
-</span></span><span class="line"><span class="cl"><span class="n">InventWarehouseOnHandV2Entity</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>You can extend the ententies by <a href="/2022-09-23-add-custom-fields-to-composite-entity/" rel="">adding new fields to tables and entities</a>.</p>
-<p>After you add fields to tables that are used by the <code>inventSiteOnHandView</code> view, you must sync the engine so that the extensions are correctly recognized.</p>
-<ol>
-<li>Extend the <code>InventSiteOnHandView</code> view by adding the extension field.</li>
-<li>Extend the <code>InventSiteOnHandAggregatedView</code> view with the extension fields.</li>
-<li>Extend the <code>InventSiteOnHandAggregatedViewBuilder</code> viewBuilder class by modifying the <code>getExtensionFields()</code> method. In this way, you map old view fields to new view fields when viewBuilder synchronization is run.</li>
-</ol>
-<p>For example, you&rsquo;ve added the following four fields to the InventTable table through extension:</p>
-<ul>
-<li>Custom field 1</li>
-<li>Custom field 2</li>
-<li>Custom field 3</li>
-<li>Custom field 4</li>
-</ul>
-<p>In the case, you must modify the <code>getExtensionFields()</code> method in the following way.</p>
 ]]></description></item></channel></rss>
