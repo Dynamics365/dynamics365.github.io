@@ -58,6 +58,11 @@ Timebased activation expiration: 259199 minute(s) (180 day(s))
 
 ## 3. Rename VM
 
+{{< admonition tip Update 2023>}}
+From the VHD 10.0.29 version, the VHD name named with the version of it own, before that the computer name always **MININT-F36S5EH**. So we don't have to remane the VM everytime we deploy a new VHD.
+![VHD 10.0.29](DVHD10029.png "VHD 10.0.29")
+{{< /admonition >}}
+
 * Rename and restart the machine before you start development or connect to Azure DevOps.
 * Update the server name in SQL Server
 
