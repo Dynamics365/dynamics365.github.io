@@ -1515,25 +1515,128 @@ both WHS-enabled and non-WHS-enabled items, APIs are provided to support the cal
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div>]]></description></item><item><title>How to upgrade to Visual Studio 2017, .NET 4.7.2 for PU36/10.0.12 and higher</title><link>https://nuxulu.com/2020-06-30-how-to-upgrade-to-visual-studio-2017-.net-4.7.2/</link><pubDate>Tue, 30 Jun 2020 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2020-06-30-how-to-upgrade-to-visual-studio-2017-.net-4.7.2/</guid><description><![CDATA[<p>For the upcoming Dynamics 365 Finance Updates, Visual Studio 2017 and .NET runtime 4.7.2 required for PU36/10.0.12 or higher; New VMs deployed with PU36/10.0.12 or higher will have Visual Studio 2017 as well as .NET runtime 4.7.2 already installed.</p>
-<p>For your dev/test/build Tier1 VMs, Microsoft recommends just redeploying a new VM, and you will be all set!</p>
-<p>If you cannot deploy new VMs, please follow below steps to update .NET runtime, VS 2017 before installing PU36/10.0.12 or higher, this will be applied for <strong>cloud-hosted environment</strong></p>
-<h3 id="1-download-vs-professional-2017-159-herehttpsdownloadvisualstudiomicrosoftcomdownloadprac05c4f5-0da1-429f-8701-ce509ac699267b51a7b8db36f977745cf3e19ef1e9c62ebf29f704aebafce443626b779cb4f8vs_professionalexe-and-install-it">1. Download VS Professional 2017 15.9 <a href="https://download.visualstudio.microsoft.com/download/pr/ac05c4f5-0da1-429f-8701-ce509ac69926/7b51a7b8db36f977745cf3e19ef1e9c62ebf29f704aebafce443626b779cb4f8/vs_Professional.exe" target="_blank" rel="noopener noreffer ">here</a> and install it</h3>
-<h3 id="2-the-net-runtime-download-is-available-herehttpsdotnetmicrosoftcomdownloaddotnet-frameworknet472-by-clicking-on-the-_download-net-framework-472-runtime_-and-running-the-installation-restart-required">2. The .NET runtime download is available <a href="https://dotnet.microsoft.com/download/dotnet-framework/net472" target="_blank" rel="noopener noreffer ">here</a> by clicking on the <em>Download .NET Framework 4.7.2 Runtime</em> and running the installation, restart required.</h3>
-<h3 id="3-go-to-dynamics-lifecycle-services-and-download-pu3610012-or-any-higher-package-which-is-a-part-of-the-platform-and-application-binary-the-vsix-file-is-located-in-the-_devtoolsservicescripts_-folder">3. Go to Dynamics Lifecycle Services and download PU36/10.0.12 or any higher package which is a part of the Platform and application binary, the VSIX file is located in the <em>DevToolsService\Scripts</em> folder.</h3>
-<p></p>
-<p>You need to <code>install Microsoft.Dynamics.Framework.Tools.Installer</code> and then <code>Microsoft.Dynamics.Framework.Tools.InternalDevTools</code>.
-After the installation, open the VS2017 if you should see <strong>Dynamics 365</strong> menu extension like below</p>
-<p></p>
-<h3 id="4-if-you-try-to-access-the-client-before-applying-the-package-you-will-get-the-error-like-below-in-event-viewer-and-unable-to-access-the-environment-so-you-need-to-apply-an-update-first">4. If you try to access the client before applying the package you will get the error like below in event viewer and unable to access the environment, so you need to apply an update first.</h3>
-<div class="details admonition failure open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">AX is shutting down due to an error. Serialization version mismatch detect, make sure the runtime dlls are in sync with the deployed metadata. Version of file &lsquo;194&rsquo;. Version of dll &lsquo;193&rsquo;.</div>
-        </div>
-    </div>
-<h3 id="5-in-lcs-navigate-to-your-cloud-hosted-environment-and-apply-platform-and-application-binary-package-pu3610012-or-higher-after-completed-upgrading-you-will-be-able-to-access-the-environment-client">5. In LCS, navigate to your cloud-hosted environment, and apply Platform and application binary package PU36/10.0.12 or higher. After completed upgrading, you will be able to access the environment client.</h3>
-<p>Overall, there is no change in the compiler, metadata; this is only an update to the Visual Studio extensions and NET runtime for the tier1 VMs.</p>
+</div>]]></description></item><item><title>A good example of Trace Parser, Visual Studio and Excel</title><link>https://nuxulu.com/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/</link><pubDate>Tue, 30 Jun 2020 00:00:00 +0000</pubDate><author>Kome Hoang</author><guid>https://nuxulu.com/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/</guid><description><![CDATA[<h2 id="prerequisite"><strong>Prerequisite</strong></h2>
+<p>Before analysing a trace file, you might need to create a database for trace data. When you do troubleshooting actions on any VMs lower than D365FO 10.X.X (i.e. AX2012, D365FO 7.X, D365FO 8.X), no database was pre-created for trace&rsquo;s data. You will need to register a new one. Please <a href="/2020-06-30-create-a-new-database-for-trace-parser/" rel="">check here</a>.</p>
+<p>A good tip of using Excel to analyse INSERT INTO statement captured in a Trace file: <a href="/2020-06-30-a-good-tip-of-using-excel-to-analyse-insert-into-statement-captured-in-a-trace-file/" rel="">Check here</a>.</p>
+<p>Now we are good to get ourselves into this beautiful example.</p>
+<h2 id="the-beautiful-example"><strong>The beautiful example</strong></h2>
+<h3 id="the-given-case"><strong>The given case</strong></h3>
+<p>I had a case which was solved by analysing a trace file. That case gave me a huge happiness so I would like to share with you all. This case required some skills of analysing the trace file, understanding the logic of D365 indexes, navigating through Visual Studio, using SSMS queries to find the things we need. So, I believe this is a very nice example yet simple enough for everyone to start learning how to use such tools, especially Trace Parser.</p>
+<h4 id="issue-description"><em>Issue description</em></h4>
+<p>When I tried to authorise some Adjusted <strong>Demand Forecast</strong> records, I failed. System threw one error saying <code>The record already exists</code>.</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-1.png" title="Issue" data-thumbnail="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-1.png" data-sub-html="<h2>Issue</h2><p>Issue</p>">
+        
+    </a><figcaption class="image-caption">Issue</figcaption>
+    </figure></p>
+<figure><figcaption>
+            <h4>Issue</h4>
+        </figcaption>
+</figure>
+
+<h4 id="self-issue-scoping"><em>Self issue-scoping</em></h4>
+<p>The error message was pretty straightforward. It can be understood as: Cannot create a record in table <strong>Demand Forecast</strong> (with its name in <code>[AxDB].[ForecastSales]</code>) because the record already exists in such table.</p>
+<blockquote>
+<p><em><strong>Note</strong></em></p>
+<p>In fact, different records in D365FO can be distinguished by some different key values of them. Such key values are unique for each record. So, for example, 2 records might have exactly similar details of <code>Sales Order</code> or <code>Sales Quantity</code> but they can be deemed different if they have different <code>RecID</code> values.</p>
+</blockquote>
+<p>In this case, due to some reasons, the system was trying to insert a new record into ForecastSales table with some values which are already existing in such table. And, thus, failed.</p>
+<p>We need to find what is/are that duplicated value(s) and try to fix it (them).</p>
+<h3 id="troubleshooting"><strong>Troubleshooting</strong></h3>
+<h4 id="visual-studio-checking-indexes"><em>Visual Studio: Checking indexes</em></h4>
+<p>First and foremost, for any <em><strong>&ldquo;Record has been existed&rdquo;</strong></em> issues, the very first thing that we would need to check is the indices of the tables because the indices are the ones which decide the duplication rule (Allowed or Not allowed).</p>
+<p>I would need to find which values in <code>ForecastSales</code> table do not allow duplicated values. This can be done by check <code>ForecastSales.Indexes</code> using <code>Visual Studio</code>.</p>
+<p>Open <code>Visual Studio</code> and look for <code>forecastsales</code> table in the AOT.</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-2.png" title="Find the table" data-thumbnail="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-2.png" data-sub-html="<h2>Find the table</h2><p>Find the table</p>">
+        
+    </a><figcaption class="image-caption">Find the table</figcaption>
+    </figure></p>
+<p>Right-click on it &gt; <code>Open Designer</code> to open Table designer. Expand <code>Indexes</code> (this is somewhat bugging me for a long time because the plural form of <em>Index</em> should be <em>Indices</em> rather than <em>Indexes</em>, yet never mind).</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-3.png" title="The Index" data-thumbnail="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-3.png" data-sub-html="<h2>The Index</h2><p>The Index</p>">
+        
+    </a><figcaption class="image-caption">The Index</figcaption>
+    </figure></p>
+<p>Choose <code>View</code> (on Menu bar) &gt; <code>Properties Window</code> to open Properties window. Or, we can simply press <code>F4</code>.</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-4.png" title="Properties" data-thumbnail="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-4.png" data-sub-html="<h2>Properties</h2><p>Properties</p>">
+        
+    </a><figcaption class="image-caption">Properties</figcaption>
+    </figure></p>
+<p>Check all indexes to see if any indexes <em><strong>DO NOT</strong></em> allow duplicate. Those should be the indexes that we should tackle.</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-5.png" title="Properties of Indices" data-thumbnail="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-5.png" data-sub-html="<h2>Properties of Indices</h2><p>Properties of Indices</p>">
+        
+    </a><figcaption class="image-caption">Properties of Indices</figcaption>
+    </figure></p>
+<p>After analysing, I found that two indexes which do not allow duplicate. They were <code>ExpandIdx</code> and <code>ForecastEntryNumberIdx</code>. Expand those indexes to find which fields are included. They were (1) the combination of <code>ExpandID</code> and <code>RecID</code> and (2) <code>ForecastEntryNumber</code>.</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-6.png" title="Found the ones" data-thumbnail="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-6.png" data-sub-html="<h2>Found the ones</h2><p>Found the ones</p>">
+        
+    </a><figcaption class="image-caption">Found the ones</figcaption>
+    </figure></p>
+<p>We would need to take note these fields.</p>
+<h4 id="trace-parser-analysing-the-trace-file"><em>Trace parser: Analysing the trace file</em></h4>
+<p>Before analysing any trace files, we would need to have the ID of the session in which we captured the file.</p>
+<p>Go to <code>Question mark</code> on the upper-right corner of your browser &gt; <code>Feedback</code> &gt; Find the session ID.</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-7.png" title="Session ID" data-thumbnail="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-7.png" data-sub-html="<h2>Session ID</h2><p>Session ID</p>">
+        
+    </a><figcaption class="image-caption">Session ID</figcaption>
+    </figure></p>
+<p>Open <code>Trace Parser</code> from Start menu and <code>Import</code> the trace file that we captured.</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-8.png" title="Import trace file" data-thumbnail="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-8.png" data-sub-html="<h2>Import trace file</h2><p>Import trace file</p>">
+        
+    </a><figcaption class="image-caption">Import trace file</figcaption>
+    </figure></p>
+<p>Select grouping with same <code>Session</code> that we just took note.</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-9.png" title="Import trace file" data-thumbnail="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-9.png" data-sub-html="<h2>Import trace file</h2><p>Import trace file</p>">
+        
+    </a><figcaption class="image-caption">Import trace file</figcaption>
+    </figure></p>
+<p>Usually, we will need to analyse Call Tree, X++ and SQL included in the trace file to understand the issue&rsquo;s cause. The approach much depends on the issue. In my case, I would look into SQL queries because I assumed that an <code>INSERT INTO</code> statement was made to the table <code>ForecastSales</code>.</p>
+<p>Switch to SQL tab and search for <em>&ldquo;forecastsales&rdquo;</em> (pay attention to the asterisks). This means we want to search for any queries containing <code>&quot;forecastsales&quot;</code> no matter where the keyword is in the queries.</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-10.png" title="The statement" data-thumbnail="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-10.png" data-sub-html="<h2>statement</h2><p>The statement</p>">
+        
+    </a><figcaption class="image-caption">statement</figcaption>
+    </figure></p>
+<p>Luckily, I found one.</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-11.png" title="The problematic one" data-thumbnail="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-11.png" data-sub-html="<h2>The problematic one</h2><p>The problematic one</p>">
+        
+    </a><figcaption class="image-caption">The problematic one</figcaption>
+    </figure></p>
+<p>By analysing the INSERT INTO statement using Excel, I found the values that system tried inserting into <code>ForecastSales</code> table:</p>
+<ul>
+<li><code>ExpandID</code> = &lsquo;0&rsquo;</li>
+<li><code>RecID</code> = &lsquo;5637233827&rsquo;</li>
+<li><code>ForecastEntryNumber</code> = &lsquo;PAU-000063760&rsquo;</li>
+</ul>
+<p>We would need to memorise these values or write them down somewhere.</p>
+<h4 id="ssms-finding-the-duplicated-values"><em>SSMS: Finding the duplicated values</em></h4>
+<p>Open <code>Microsoft SQL Server Management Studio</code> from Start menu and log in with default Windows Authentication.</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-12.png" title="SSMS" data-thumbnail="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-12.png" data-sub-html="<h2>SSMS</h2><p>SSMS</p>">
+        
+    </a><figcaption class="image-caption">SSMS</figcaption>
+    </figure></p>
+<p>Open a <code>New Query</code> window by choosing <code>Databases</code> &gt; <code>AxDB</code> &gt; <code>New Query</code>.</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-13.png" title="New query" data-thumbnail="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-13.png" data-sub-html="<h2>New query</h2><p>New query</p>">
+        
+    </a><figcaption class="image-caption">New query</figcaption>
+    </figure></p>
+<p>I would execute 3 different queries because I wanted to look for duplicated values in 3 fields:</p>
+<ul>
+<li>ExpandID = &lsquo;0&rsquo;</li>
+<li>RecID = &lsquo;5637233827&rsquo;</li>
+<li>ForecastEntryNumber = &lsquo;PAU-000063760&rsquo;</li>
+</ul>
+<p>Type queries in the window &gt; Press <code>F5</code> or <code>Alt+X</code> or <code>Execute</code> button to execute the queries.</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-14.png" title="Query result" data-thumbnail="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-14.png" data-sub-html="<h2>Query result</h2><p>Query result</p>">
+        
+    </a><figcaption class="image-caption">Query result</figcaption>
+    </figure></p>
+<p>Examination:</p>
+<ul>
+<li><code>ExpandID</code>: Hmm, quite a lot of records having a same value of &lsquo;0&rsquo;, but when involving all these &lsquo;0&rsquo; with the unique <code>RecID</code>, the combination should be different (we can actually double check this one using the query <code>select RECID, count(RECID) as Number from FORECASTSALES group by RECID order by Number desc</code>, any Number &gt;= 2 are the duplicated ones)</li>
+<li><code>RecID</code>: No records were found &ndash;&gt; This means there should be no problem when inserting a new record with RecID = &lsquo;5637233827&rsquo; into this table.</li>
+<li><code>ForecastEntryNumber</code>: One record was found &ndash;&gt; This means the system will throw such error &ldquo;A record is existing in the table&rdquo; when it tries inserting a new record because this field does not allow duplicate.</li>
+</ul>
+<p>We found it.</p>
+<h4 id="d360fo-client--number-sequence"><em>D360FO client &gt; Number Sequence</em></h4>
+<p>The solution for this particular issue should be simple: Find our way to the Number Sequence that is for ForecastEntryNumber and increase the <code>Next</code> value by 1.</p>
+<p>I showed no solution here because the main purpose of this post is to demonstrate the way that we can co-use such available tools to approach an issue. Yet, each issue requires more or less different approaches. I hope that some quick look into these might plant some hints and you all can develop your own way of using them.</p>
+<p>Happy Troubleshooting!</p>
 ]]></description></item></channel></rss>

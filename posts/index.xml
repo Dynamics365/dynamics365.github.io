@@ -5772,6 +5772,213 @@ Like .NET platform or Windows platform or various cloud-based Platform-as-a-serv
 <blockquote>
 <p>You work on a platform. You use a framework.</p>
 </blockquote>
+]]></description></item><item><title>A good example of Trace Parser, Visual Studio and Excel</title><link>https://nuxulu.com/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/</link><pubDate>Tue, 30 Jun 2020 00:00:00 +0000</pubDate><author>Kome Hoang</author><guid>https://nuxulu.com/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/</guid><description><![CDATA[<h2 id="prerequisite"><strong>Prerequisite</strong></h2>
+<p>Before analysing a trace file, you might need to create a database for trace data. When you do troubleshooting actions on any VMs lower than D365FO 10.X.X (i.e. AX2012, D365FO 7.X, D365FO 8.X), no database was pre-created for trace&rsquo;s data. You will need to register a new one. Please <a href="/2020-06-30-create-a-new-database-for-trace-parser/" rel="">check here</a>.</p>
+<p>A good tip of using Excel to analyse INSERT INTO statement captured in a Trace file: <a href="/2020-06-30-a-good-tip-of-using-excel-to-analyse-insert-into-statement-captured-in-a-trace-file/" rel="">Check here</a>.</p>
+<p>Now we are good to get ourselves into this beautiful example.</p>
+<h2 id="the-beautiful-example"><strong>The beautiful example</strong></h2>
+<h3 id="the-given-case"><strong>The given case</strong></h3>
+<p>I had a case which was solved by analysing a trace file. That case gave me a huge happiness so I would like to share with you all. This case required some skills of analysing the trace file, understanding the logic of D365 indexes, navigating through Visual Studio, using SSMS queries to find the things we need. So, I believe this is a very nice example yet simple enough for everyone to start learning how to use such tools, especially Trace Parser.</p>
+<h4 id="issue-description"><em>Issue description</em></h4>
+<p>When I tried to authorise some Adjusted <strong>Demand Forecast</strong> records, I failed. System threw one error saying <code>The record already exists</code>.</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-1.png" title="Issue" data-thumbnail="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-1.png" data-sub-html="<h2>Issue</h2><p>Issue</p>">
+        
+    </a><figcaption class="image-caption">Issue</figcaption>
+    </figure></p>
+<figure><figcaption>
+            <h4>Issue</h4>
+        </figcaption>
+</figure>
+
+<h4 id="self-issue-scoping"><em>Self issue-scoping</em></h4>
+<p>The error message was pretty straightforward. It can be understood as: Cannot create a record in table <strong>Demand Forecast</strong> (with its name in <code>[AxDB].[ForecastSales]</code>) because the record already exists in such table.</p>
+<blockquote>
+<p><em><strong>Note</strong></em></p>
+<p>In fact, different records in D365FO can be distinguished by some different key values of them. Such key values are unique for each record. So, for example, 2 records might have exactly similar details of <code>Sales Order</code> or <code>Sales Quantity</code> but they can be deemed different if they have different <code>RecID</code> values.</p>
+</blockquote>
+<p>In this case, due to some reasons, the system was trying to insert a new record into ForecastSales table with some values which are already existing in such table. And, thus, failed.</p>
+<p>We need to find what is/are that duplicated value(s) and try to fix it (them).</p>
+<h3 id="troubleshooting"><strong>Troubleshooting</strong></h3>
+<h4 id="visual-studio-checking-indexes"><em>Visual Studio: Checking indexes</em></h4>
+<p>First and foremost, for any <em><strong>&ldquo;Record has been existed&rdquo;</strong></em> issues, the very first thing that we would need to check is the indices of the tables because the indices are the ones which decide the duplication rule (Allowed or Not allowed).</p>
+<p>I would need to find which values in <code>ForecastSales</code> table do not allow duplicated values. This can be done by check <code>ForecastSales.Indexes</code> using <code>Visual Studio</code>.</p>
+<p>Open <code>Visual Studio</code> and look for <code>forecastsales</code> table in the AOT.</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-2.png" title="Find the table" data-thumbnail="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-2.png" data-sub-html="<h2>Find the table</h2><p>Find the table</p>">
+        
+    </a><figcaption class="image-caption">Find the table</figcaption>
+    </figure></p>
+<p>Right-click on it &gt; <code>Open Designer</code> to open Table designer. Expand <code>Indexes</code> (this is somewhat bugging me for a long time because the plural form of <em>Index</em> should be <em>Indices</em> rather than <em>Indexes</em>, yet never mind).</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-3.png" title="The Index" data-thumbnail="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-3.png" data-sub-html="<h2>The Index</h2><p>The Index</p>">
+        
+    </a><figcaption class="image-caption">The Index</figcaption>
+    </figure></p>
+<p>Choose <code>View</code> (on Menu bar) &gt; <code>Properties Window</code> to open Properties window. Or, we can simply press <code>F4</code>.</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-4.png" title="Properties" data-thumbnail="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-4.png" data-sub-html="<h2>Properties</h2><p>Properties</p>">
+        
+    </a><figcaption class="image-caption">Properties</figcaption>
+    </figure></p>
+<p>Check all indexes to see if any indexes <em><strong>DO NOT</strong></em> allow duplicate. Those should be the indexes that we should tackle.</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-5.png" title="Properties of Indices" data-thumbnail="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-5.png" data-sub-html="<h2>Properties of Indices</h2><p>Properties of Indices</p>">
+        
+    </a><figcaption class="image-caption">Properties of Indices</figcaption>
+    </figure></p>
+<p>After analysing, I found that two indexes which do not allow duplicate. They were <code>ExpandIdx</code> and <code>ForecastEntryNumberIdx</code>. Expand those indexes to find which fields are included. They were (1) the combination of <code>ExpandID</code> and <code>RecID</code> and (2) <code>ForecastEntryNumber</code>.</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-6.png" title="Found the ones" data-thumbnail="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-6.png" data-sub-html="<h2>Found the ones</h2><p>Found the ones</p>">
+        
+    </a><figcaption class="image-caption">Found the ones</figcaption>
+    </figure></p>
+<p>We would need to take note these fields.</p>
+<h4 id="trace-parser-analysing-the-trace-file"><em>Trace parser: Analysing the trace file</em></h4>
+<p>Before analysing any trace files, we would need to have the ID of the session in which we captured the file.</p>
+<p>Go to <code>Question mark</code> on the upper-right corner of your browser &gt; <code>Feedback</code> &gt; Find the session ID.</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-7.png" title="Session ID" data-thumbnail="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-7.png" data-sub-html="<h2>Session ID</h2><p>Session ID</p>">
+        
+    </a><figcaption class="image-caption">Session ID</figcaption>
+    </figure></p>
+<p>Open <code>Trace Parser</code> from Start menu and <code>Import</code> the trace file that we captured.</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-8.png" title="Import trace file" data-thumbnail="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-8.png" data-sub-html="<h2>Import trace file</h2><p>Import trace file</p>">
+        
+    </a><figcaption class="image-caption">Import trace file</figcaption>
+    </figure></p>
+<p>Select grouping with same <code>Session</code> that we just took note.</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-9.png" title="Import trace file" data-thumbnail="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-9.png" data-sub-html="<h2>Import trace file</h2><p>Import trace file</p>">
+        
+    </a><figcaption class="image-caption">Import trace file</figcaption>
+    </figure></p>
+<p>Usually, we will need to analyse Call Tree, X++ and SQL included in the trace file to understand the issue&rsquo;s cause. The approach much depends on the issue. In my case, I would look into SQL queries because I assumed that an <code>INSERT INTO</code> statement was made to the table <code>ForecastSales</code>.</p>
+<p>Switch to SQL tab and search for <em>&ldquo;forecastsales&rdquo;</em> (pay attention to the asterisks). This means we want to search for any queries containing <code>&quot;forecastsales&quot;</code> no matter where the keyword is in the queries.</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-10.png" title="The statement" data-thumbnail="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-10.png" data-sub-html="<h2>statement</h2><p>The statement</p>">
+        
+    </a><figcaption class="image-caption">statement</figcaption>
+    </figure></p>
+<p>Luckily, I found one.</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-11.png" title="The problematic one" data-thumbnail="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-11.png" data-sub-html="<h2>The problematic one</h2><p>The problematic one</p>">
+        
+    </a><figcaption class="image-caption">The problematic one</figcaption>
+    </figure></p>
+<p>By analysing the INSERT INTO statement using Excel, I found the values that system tried inserting into <code>ForecastSales</code> table:</p>
+<ul>
+<li><code>ExpandID</code> = &lsquo;0&rsquo;</li>
+<li><code>RecID</code> = &lsquo;5637233827&rsquo;</li>
+<li><code>ForecastEntryNumber</code> = &lsquo;PAU-000063760&rsquo;</li>
+</ul>
+<p>We would need to memorise these values or write them down somewhere.</p>
+<h4 id="ssms-finding-the-duplicated-values"><em>SSMS: Finding the duplicated values</em></h4>
+<p>Open <code>Microsoft SQL Server Management Studio</code> from Start menu and log in with default Windows Authentication.</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-12.png" title="SSMS" data-thumbnail="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-12.png" data-sub-html="<h2>SSMS</h2><p>SSMS</p>">
+        
+    </a><figcaption class="image-caption">SSMS</figcaption>
+    </figure></p>
+<p>Open a <code>New Query</code> window by choosing <code>Databases</code> &gt; <code>AxDB</code> &gt; <code>New Query</code>.</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-13.png" title="New query" data-thumbnail="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-13.png" data-sub-html="<h2>New query</h2><p>New query</p>">
+        
+    </a><figcaption class="image-caption">New query</figcaption>
+    </figure></p>
+<p>I would execute 3 different queries because I wanted to look for duplicated values in 3 fields:</p>
+<ul>
+<li>ExpandID = &lsquo;0&rsquo;</li>
+<li>RecID = &lsquo;5637233827&rsquo;</li>
+<li>ForecastEntryNumber = &lsquo;PAU-000063760&rsquo;</li>
+</ul>
+<p>Type queries in the window &gt; Press <code>F5</code> or <code>Alt+X</code> or <code>Execute</code> button to execute the queries.</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-14.png" title="Query result" data-thumbnail="/2020-06-30-a-good-example-of-trace-parser-visual-studio-and-excel/Pic1-14.png" data-sub-html="<h2>Query result</h2><p>Query result</p>">
+        
+    </a><figcaption class="image-caption">Query result</figcaption>
+    </figure></p>
+<p>Examination:</p>
+<ul>
+<li><code>ExpandID</code>: Hmm, quite a lot of records having a same value of &lsquo;0&rsquo;, but when involving all these &lsquo;0&rsquo; with the unique <code>RecID</code>, the combination should be different (we can actually double check this one using the query <code>select RECID, count(RECID) as Number from FORECASTSALES group by RECID order by Number desc</code>, any Number &gt;= 2 are the duplicated ones)</li>
+<li><code>RecID</code>: No records were found &ndash;&gt; This means there should be no problem when inserting a new record with RecID = &lsquo;5637233827&rsquo; into this table.</li>
+<li><code>ForecastEntryNumber</code>: One record was found &ndash;&gt; This means the system will throw such error &ldquo;A record is existing in the table&rdquo; when it tries inserting a new record because this field does not allow duplicate.</li>
+</ul>
+<p>We found it.</p>
+<h4 id="d360fo-client--number-sequence"><em>D360FO client &gt; Number Sequence</em></h4>
+<p>The solution for this particular issue should be simple: Find our way to the Number Sequence that is for ForecastEntryNumber and increase the <code>Next</code> value by 1.</p>
+<p>I showed no solution here because the main purpose of this post is to demonstrate the way that we can co-use such available tools to approach an issue. Yet, each issue requires more or less different approaches. I hope that some quick look into these might plant some hints and you all can develop your own way of using them.</p>
+<p>Happy Troubleshooting!</p>
+]]></description></item><item><title>A good tip of using Excel to analyse INSERT INTO statement captured in a Trace file</title><link>https://nuxulu.com/2020-06-30-a-good-tip-of-using-excel-to-analyse-insert-into-statement-captured-in-a-trace-file/</link><pubDate>Tue, 30 Jun 2020 00:00:00 +0000</pubDate><author>Kome Hoang</author><guid>https://nuxulu.com/2020-06-30-a-good-tip-of-using-excel-to-analyse-insert-into-statement-captured-in-a-trace-file/</guid><description><![CDATA[<p>More than often, you will come across INSERT INTO statements when analysing D365FO trace files.</p>
+<p>Below is a good trick to know which values that the system was trying to insert into the tables.</p>
+<p>First, copy everything from the statement (click on the <code>Code</code> section &gt; <code>Ctrl + A</code> &gt; <code>Ctrl + C</code>).</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-tip-of-using-excel-to-analyse-insert-into-statement-captured-in-a-trace-file/Pic3-1.png" title="Copy the query" data-thumbnail="/2020-06-30-a-good-tip-of-using-excel-to-analyse-insert-into-statement-captured-in-a-trace-file/Pic3-1.png" data-sub-html="<h2>copy the query</h2><p>Copy the query</p>">
+        
+    </a><figcaption class="image-caption">copy the query</figcaption>
+    </figure></p>
+<p>Paste the script into Excel.</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-tip-of-using-excel-to-analyse-insert-into-statement-captured-in-a-trace-file/Pic3-2.png" title="Paste to Excel" data-thumbnail="/2020-06-30-a-good-tip-of-using-excel-to-analyse-insert-into-statement-captured-in-a-trace-file/Pic3-2.png" data-sub-html="<h2>Paste to Excel</h2><p>Paste to Excel</p>">
+        
+    </a><figcaption class="image-caption">Paste to Excel</figcaption>
+    </figure></p>
+<p>Remove any empty rows.</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-tip-of-using-excel-to-analyse-insert-into-statement-captured-in-a-trace-file/Pic3-3.png" title="Remove the empty rows" data-thumbnail="/2020-06-30-a-good-tip-of-using-excel-to-analyse-insert-into-statement-captured-in-a-trace-file/Pic3-3.png" data-sub-html="<h2>Remove the empty rows</h2><p>Remove the empty rows</p>">
+        
+    </a><figcaption class="image-caption">Remove the empty rows</figcaption>
+    </figure></p>
+<p>Find the <code>VALUES</code> keyword (usually after <code>RECID</code>). Insert a new row right below that row you found and cut the VALUES part to it.</p>
+<p><em>Before</em></p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-tip-of-using-excel-to-analyse-insert-into-statement-captured-in-a-trace-file/Pic3-4.png" title="Values part before" data-thumbnail="/2020-06-30-a-good-tip-of-using-excel-to-analyse-insert-into-statement-captured-in-a-trace-file/Pic3-4.png" data-sub-html="<h2>Values part before</h2><p>Values part before</p>">
+        
+    </a><figcaption class="image-caption">Values part before</figcaption>
+    </figure></p>
+<p><em>After</em></p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-tip-of-using-excel-to-analyse-insert-into-statement-captured-in-a-trace-file/Pic3-5.png" title="Values part after" data-thumbnail="/2020-06-30-a-good-tip-of-using-excel-to-analyse-insert-into-statement-captured-in-a-trace-file/Pic3-5.png" data-sub-html="<h2>Values part after</h2><p>Values part after</p>">
+        
+    </a><figcaption class="image-caption">Values part after</figcaption>
+    </figure></p>
+<p>Copy from VALUES to the end of the script (Choose the VALUES cell &gt; <code>Shift + Ctrl + Down Arrow</code>).</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-tip-of-using-excel-to-analyse-insert-into-statement-captured-in-a-trace-file/Pic3-6.png" title="Copy the part" data-thumbnail="/2020-06-30-a-good-tip-of-using-excel-to-analyse-insert-into-statement-captured-in-a-trace-file/Pic3-6.png" data-sub-html="<h2>Copy the part</h2><p>Copy the part</p>">
+        
+    </a><figcaption class="image-caption">Copy the part</figcaption>
+    </figure></p>
+<p>Paste the copied values to any next columns, starting from the row where the very first column of the table appears.</p>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-tip-of-using-excel-to-analyse-insert-into-statement-captured-in-a-trace-file/Pic3-7.png" title="Move the part" data-thumbnail="/2020-06-30-a-good-tip-of-using-excel-to-analyse-insert-into-statement-captured-in-a-trace-file/Pic3-7.png" data-sub-html="<h2>Move the part</h2><p>Move the part</p>">
+        
+    </a><figcaption class="image-caption">Move the part</figcaption>
+    </figure></p>
+<p>There, you can look for the columns with their inserted corresponding values.</p>
+<p>For example:</p>
+<ul>
+<li>ExpandID = &lsquo;0&rsquo;</li>
+</ul>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-tip-of-using-excel-to-analyse-insert-into-statement-captured-in-a-trace-file/Pic3-8.png" title="ExpandID" data-thumbnail="/2020-06-30-a-good-tip-of-using-excel-to-analyse-insert-into-statement-captured-in-a-trace-file/Pic3-8.png" data-sub-html="<h2>ExpandID</h2><p>ExpandID</p>">
+        
+    </a><figcaption class="image-caption">ExpandID</figcaption>
+    </figure></p>
+<ul>
+<li>RecID = &lsquo;5637233827&rsquo;</li>
+</ul>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-tip-of-using-excel-to-analyse-insert-into-statement-captured-in-a-trace-file/Pic3-9.png" title="RecID" data-thumbnail="/2020-06-30-a-good-tip-of-using-excel-to-analyse-insert-into-statement-captured-in-a-trace-file/Pic3-9.png" data-sub-html="<h2>RecID</h2><p>RecID</p>">
+        
+    </a><figcaption class="image-caption">RecID</figcaption>
+    </figure></p>
+<ul>
+<li>ForecastEntryNumber = &lsquo;PAU-000063760&rsquo;</li>
+</ul>
+<p><figure><a class="lightgallery" href="/2020-06-30-a-good-tip-of-using-excel-to-analyse-insert-into-statement-captured-in-a-trace-file/Pic3-10.png" title="ForecastEntryNumber" data-thumbnail="/2020-06-30-a-good-tip-of-using-excel-to-analyse-insert-into-statement-captured-in-a-trace-file/Pic3-10.png" data-sub-html="<h2>ForecastEntryNumber</h2><p>ForecastEntryNumber</p>">
+        
+    </a><figcaption class="image-caption">ForecastEntryNumber</figcaption>
+    </figure></p>
+]]></description></item><item><title>Create a new database for Trace parser</title><link>https://nuxulu.com/2020-06-30-create-a-new-database-for-trace-parser/</link><pubDate>Tue, 30 Jun 2020 00:00:00 +0000</pubDate><author>Kome Hoang</author><guid>https://nuxulu.com/2020-06-30-create-a-new-database-for-trace-parser/</guid><description><![CDATA[<p>When you do troubleshooting actions on any VM lower than D365FO 10.X.X (i.e. AX2012, D365FO 7.X, D365FO 8.X), chance is that no database was pre-created for trace&rsquo;s data. You will need to register a new one.</p>
+<p>Open <code>Trace Parser</code> from Start meu. Choose <code>File</code> &gt; <code>Register</code>.</p>
+<p><figure><a class="lightgallery" href="./Pic2-1.png" title="Open" data-thumbnail="./Pic2-1.png" data-sub-html="<h2>Open</h2><p>Open</p>">
+        
+    </a><figcaption class="image-caption">Open</figcaption>
+    </figure></p>
+<p>Register a new database. <strong>DO NOT</strong> choose any existing database.</p>
+<p><figure><a class="lightgallery" href="./Pic2-2.png" title="New DB" data-thumbnail="./Pic2-2.png" data-sub-html="<h2>New DB</h2><p>New DB</p>">
+        
+    </a><figcaption class="image-caption">New DB</figcaption>
+    </figure></p>
+<p>A new box will appear asking if you want to create it. Choose <code>Yes</code>.</p>
+<p><figure><a class="lightgallery" href="./Pic2-3.png" title="Confirmation" data-thumbnail="./Pic2-3.png" data-sub-html="<h2>Confirmation</h2><p>Confirmation</p>">
+        
+    </a><figcaption class="image-caption">Confirmation</figcaption>
+    </figure></p>
+<p>A new database will be created for you in <code>SSMS</code>.</p>
+<p><figure><a class="lightgallery" href="./Pic2-4.png" title="New DB" data-thumbnail="./Pic2-4.png" data-sub-html="<h2>New DB</h2><p>New DB</p>">
+        
+    </a><figcaption class="image-caption">New DB</figcaption>
+    </figure></p>
+<p>Now, you can start analysing trace files using <code>Trace Parser</code>.</p>
 ]]></description></item><item><title>How to upgrade to Visual Studio 2017, .NET 4.7.2 for PU36/10.0.12 and higher</title><link>https://nuxulu.com/2020-06-30-how-to-upgrade-to-visual-studio-2017-.net-4.7.2/</link><pubDate>Tue, 30 Jun 2020 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2020-06-30-how-to-upgrade-to-visual-studio-2017-.net-4.7.2/</guid><description><![CDATA[<p>For the upcoming Dynamics 365 Finance Updates, Visual Studio 2017 and .NET runtime 4.7.2 required for PU36/10.0.12 or higher; New VMs deployed with PU36/10.0.12 or higher will have Visual Studio 2017 as well as .NET runtime 4.7.2 already installed.</p>
 <p>For your dev/test/build Tier1 VMs, Microsoft recommends just redeploying a new VM, and you will be all set!</p>
 <p>If you cannot deploy new VMs, please follow below steps to update .NET runtime, VS 2017 before installing PU36/10.0.12 or higher, this will be applied for <strong>cloud-hosted environment</strong></p>
@@ -17741,471 +17948,4 @@ Once compile complete, you can import compile log file at <code>C:\Program Files
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div>]]></description></item><item><title>Infographic Tiêu tiền khôn ngoan theo quy tắc 6 chiếc lọ</title><link>https://nuxulu.com/2015-05-08-infographic-tieu-tien-khon-ngoan-theo-quy-tac-6-chiec-lo/</link><pubDate>Fri, 08 May 2015 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2015-05-08-infographic-tieu-tien-khon-ngoan-theo-quy-tac-6-chiec-lo/</guid><description><![CDATA[<p>Hi there,</p>
-<p><figure><a class="lightgallery" href="/2015-05-08-infographic-tieu-tien-khon-ngoan-theo-quy-tac-6-chiec-lo/infographic-tieu-tien-khon-ngoan-theo-quy-tac-6-chiec-lo.png" title="Infographic Tiêu tiền khôn ngoan theo quy tắc 6 chiếc lọ" data-thumbnail="/2015-05-08-infographic-tieu-tien-khon-ngoan-theo-quy-tac-6-chiec-lo/infographic-tieu-tien-khon-ngoan-theo-quy-tac-6-chiec-lo.png" data-sub-html="<h2>Infographic</h2><p>Infographic Tiêu tiền khôn ngoan theo quy tắc 6 chiếc lọ</p>">
-        
-    </a><figcaption class="image-caption">Infographic</figcaption>
-    </figure></p>
-]]></description></item><item><title>X++ Performance tips</title><link>https://nuxulu.com/2015-02-12-x-performance-tips/</link><pubDate>Thu, 12 Feb 2015 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2015-02-12-x-performance-tips/</guid><description><![CDATA[<div class="details admonition warning open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-exclamation-triangle fa-fw" aria-hidden="true"></i>Ref<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">Report from <a href="http://www.artofcreation.be/" target="_blank" rel="noopener noreffer ">http://www.artofcreation.be/</a></div>
-        </div>
-    </div>
-<h3 id="tip-1-measure-execution-time-of-your-code">Tip 1: Measure execution time of your code</h3>
-<p>Measuring is knowing. Before you start changing code, make sure you have a set of data you can keep reusing for your tests. Measure the performance of your code on that data after each change in code so you know the impact of your changes.</p>
-<p>One way to do this is by using the <code>Winapi::getTickCount()</code> or <code>WinApiServer::getTickCount()</code> if your code runs on server method.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">KlForTickCountSample</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">ticks</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// get the tickcount before the process starts</span>
-</span></span><span class="line"><span class="cl">    <span class="n">ticks</span> <span class="p">=</span> <span class="n">winapi</span><span class="p">::</span><span class="n">getTickCount</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="c1">// start the process</span>
-</span></span><span class="line"><span class="cl">    <span class="n">sleep</span><span class="p">(</span><span class="m">2000</span><span class="p">);</span> <span class="c1">// simulate 2 seconds of processing</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="c1">// compare tickcount</span>
-</span></span><span class="line"><span class="cl">    <span class="n">ticks</span> <span class="p">=</span> <span class="n">winapi</span><span class="p">::</span><span class="n">getTickCount</span><span class="p">()</span> <span class="err">–</span> <span class="n">ticks</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="c1">// display result</span>
-</span></span><span class="line"><span class="cl">    <span class="n">info</span><span class="p">(</span><span class="n">strfmt</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Number</span> <span class="n">of</span> <span class="n">ticks</span><span class="p">:</span> <span class="p">%</span><span class="m">1</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">ticks</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="tip-2-limit-the-number-of-loops">Tip 2: limit the number of loops</h3>
-<p>A LOT of time goes into loops. If you have a performance problem, start looking for loops. Code can run really fast, but it can get slow when it is executed too many time, eg, in a loop.</p>
-<h3 id="tip-3-avoid-if-in-while-select">Tip 3: avoid <code>if</code> in <code>while select</code></h3>
-<p>When there is a <code>if</code> in a <code>while select</code>, see if you can rewrite it a a where statement in your select. Don’t be affraid use a join either. Consider the following example:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">KlForIfInLoop</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">VendTable</span> <span class="n">vendTable</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// usually slower</span>
-</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="k">select</span> <span class="n">vendTable</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">vendTable</span><span class="p">.</span><span class="n">VendGroup</span> <span class="p">==</span> <span class="err">&#39;</span><span class="n">VG1</span><span class="err">&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">info</span><span class="p">(</span><span class="n">vendTable</span><span class="p">.</span><span class="n">AccountNum</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// usually faster</span>
-</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="k">select</span> <span class="n">vendTable</span>
-</span></span><span class="line"><span class="cl">    <span class="k">where</span> <span class="n">vendTable</span><span class="p">.</span><span class="n">VendGroup</span> <span class="p">==</span> <span class="err">&#39;</span><span class="n">VG1</span><span class="err">&#39;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">(</span><span class="n">vendTable</span><span class="p">.</span><span class="n">AccountNum</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="tip-4-avoid-double-use-of-table-methods">Tip 4: avoid double use of table methods</h3>
-<p>Using table methods a lot can get really slow if you do it wrong. Consider the following example:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">klForTableMethodsSlow</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">SalesLine</span> <span class="n">salesLine</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">InventDim</span> <span class="n">inventDim</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">;</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="c1">// select a salesline</span>
-</span></span><span class="line"><span class="cl">    <span class="k">select</span> <span class="n">firstonly</span> <span class="n">salesLine</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="n">inventDim</span><span class="p">.</span><span class="n">InventColorId</span> <span class="p">=</span> <span class="n">salesLine</span><span class="p">.</span><span class="n">inventDim</span><span class="p">().</span><span class="n">InventColorId</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">inventDim</span><span class="p">.</span><span class="n">InventSizeId</span>  <span class="p">=</span> <span class="n">salesLine</span><span class="p">.</span><span class="n">inventDim</span><span class="p">().</span><span class="n">InventSizeId</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">inventDim</span><span class="p">.</span><span class="n">inventBatchId</span> <span class="p">=</span> <span class="n">salesLine</span><span class="p">.</span><span class="n">inventDim</span><span class="p">().</span><span class="n">inventBatchId</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>This example code looks nice, but there’s a problem. <code>The salesLine.inventDim()</code> method contains the following:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">InventDim</span> <span class="n">inventDim</span><span class="p">(</span><span class="n">boolean</span>  <span class="n">_forUpdate</span> <span class="p">=</span> <span class="k">false</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">InventDim</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">InventDimId</span><span class="p">,</span> <span class="n">_forUpdate</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>This means that the <code>invendDim</code> record is read three times from the database. It is better to declare the <code>inventDim</code> record locally and only retrieve it once:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">klForTableMethodsFast</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">SalesLine</span> <span class="n">salesLine</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">InventDim</span> <span class="n">inventDim</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">InventDim</span> <span class="n">inventDimLoc</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">;</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="c1">// select a salesline</span>
-</span></span><span class="line"><span class="cl">    <span class="k">select</span> <span class="n">firstonly</span> <span class="n">salesLine</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="n">inventDimLoc</span> <span class="p">=</span> <span class="n">salesLine</span><span class="p">.</span><span class="n">inventDim</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="n">inventDim</span><span class="p">.</span><span class="n">InventColorId</span> <span class="p">=</span> <span class="n">inventDimLoc</span><span class="p">.</span><span class="n">InventColorId</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">inventDim</span><span class="p">.</span><span class="n">InventSizeId</span>  <span class="p">=</span> <span class="n">inventDimLoc</span><span class="p">.</span><span class="n">InventSizeId</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">inventDim</span><span class="p">.</span><span class="n">inventBatchId</span> <span class="p">=</span> <span class="n">inventDimLoc</span><span class="p">.</span><span class="n">inventBatchId</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="tip-5-dont-put-too-much-code-on-tables">Tip 5: Don’t put too much code on tables</h3>
-<p>Code on tables is usually fast, but things can get slow if you use it to much. Say you have a table with an <code>InventDimId</code> field. If you have 5 methods that need the <code>InventDim</code> record, because you don’t have a classDeclaration method on your table, you need to call this function 5 times, once in every method:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">InventDim</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">inventDim</span><span class="p">)</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>When you put these methods on a class, you could optimise it by fetching the record only once and storing it in the <code>classDeclaration</code>, or better, passing it as a parameter to your methods. An other example is fetching parameters from parameter tables, eg <code>InventParameters::find()</code>. On a table, you have to fetch it each time you call a method. In a class, you would probably optimize your code to only fetch the parameter record once.</p>
-<h3 id="tip-6-use-the-fastest-code">Tip 6: Use the fastest code</h3>
-<p>For some tasks, there is <strong>special code</strong> that is faster than the code you would normally write. For example:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="c1">// slower</span>
-</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="k">select</span> <span class="n">forupdate</span> <span class="n">custTable</span>
-</span></span><span class="line"><span class="cl"><span class="k">where</span> <span class="n">custTable</span><span class="p">.</span><span class="n">custGroup</span> <span class="p">==</span> <span class="err">&#39;</span><span class="n">TST</span><span class="err">&#39;</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">custTable</span><span class="p">.</span><span class="n">delete</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// faster</span>
-</span></span><span class="line"><span class="cl"><span class="n">delete_from</span> <span class="n">custTable</span>
-</span></span><span class="line"><span class="cl"><span class="k">where</span> <span class="n">custTable</span><span class="p">.</span><span class="n">custGroup</span> <span class="p">==</span> <span class="err">&#39;</span><span class="n">TST</span><span class="err">&#39;</span><span class="p">;</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>The same applies to update_recordset for updating records. Also, when adding values to the end of a container</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">cont</span> <span class="p">+=</span> <span class="s">&#34;a value&#34;</span><span class="p">;</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>is faster than</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="n">cont</span> <span class="p">=</span> <span class="n">conins</span><span class="p">(</span><span class="n">cont</span><span class="p">,</span> <span class="n">conlen</span><span class="p">(</span><span class="n">cont</span><span class="p">),</span> <span class="s">&#34;a value&#34;</span><span class="p">);</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="tip-7-every-optimization-counts">Tip 7: Every optimization counts</h3>
-<p>Remember that every optimization you do to you code counts, even if it’s a little one. Small performance tweaks can have a huge effect once you process large quantities of data. So don’t be lazy, and optimize.</p>
-]]></description></item><item><title>Create and write to XML file in Dynamics AX</title><link>https://nuxulu.com/2015-02-04-create-and-write-to-xml-file-in-dynamics-ax/</link><pubDate>Wed, 04 Feb 2015 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2015-02-04-create-and-write-to-xml-file-in-dynamics-ax/</guid><description><![CDATA[<p>In this post let&rsquo;s explore creating XML using X++ code in Dynamics AX.</p>
-<p>The following example shows how to create and write data to an XML file by using the <code>XmlDocument</code>, <code>XmlElement</code>, and <code>XmlWriter</code> classes. It loops through all of the records in the <code>CarTable</code> and find all the fields in the table automatically by using the <code>DictTable</code> and <code>DictField</code> classes.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span><span class="lnt">55
-</span><span class="lnt">56
-</span><span class="lnt">57
-</span><span class="lnt">58
-</span><span class="lnt">59
-</span><span class="lnt">60
-</span><span class="lnt">61
-</span><span class="lnt">62
-</span><span class="lnt">63
-</span><span class="lnt">64
-</span><span class="lnt">65
-</span><span class="lnt">66
-</span><span class="lnt">67
-</span><span class="lnt">68
-</span><span class="lnt">69
-</span><span class="lnt">70
-</span><span class="lnt">71
-</span><span class="lnt">72
-</span><span class="lnt">73
-</span><span class="lnt">74
-</span><span class="lnt">75
-</span><span class="lnt">76
-</span><span class="lnt">77
-</span><span class="lnt">78
-</span><span class="lnt">79
-</span><span class="lnt">80
-</span><span class="lnt">81
-</span><span class="lnt">82
-</span><span class="lnt">83
-</span><span class="lnt">84
-</span><span class="lnt">85
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">WriteXml</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">XmlDocument</span> <span class="n">xmlDoc</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">XmlElement</span> <span class="n">xmlRoot</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">XmlElement</span> <span class="n">xmlField</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">XmlElement</span> <span class="n">xmlRecord</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">XMLWriter</span> <span class="n">xmlWriter</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">CarTable</span> <span class="n">carTable</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">DictTable</span> <span class="n">dTable</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DictTable</span><span class="p">(</span><span class="n">tablenum</span><span class="p">(</span><span class="n">CarTable</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">    <span class="n">DictField</span> <span class="n">dField</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">fieldId</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">str</span> <span class="k">value</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">;</span> 
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="err">#</span><span class="n">CarsXmlTags</span> 
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// Create a new object of the XmlDocument class</span>
-</span></span><span class="line"><span class="cl">    <span class="n">xmlDoc</span> <span class="p">=</span> <span class="n">XmlDocument</span><span class="p">::</span><span class="n">newBlank</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// Create the root node</span>
-</span></span><span class="line"><span class="cl">    <span class="n">xmlRoot</span> <span class="p">=</span> <span class="n">xmlDoc</span><span class="p">.</span><span class="n">createElement</span><span class="p">(</span><span class="err">#</span><span class="n">CarRootNode</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// Loop through all the records in the carTable</span>
-</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="k">select</span> <span class="n">carTable</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// Create a XmlElement (record) to hold the</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// contents of the current record.</span>
-</span></span><span class="line"><span class="cl">        <span class="n">xmlRecord</span> <span class="p">=</span> <span class="n">xmlDoc</span><span class="p">.</span><span class="n">createElement</span><span class="p">(</span><span class="err">#</span><span class="n">CarRecords</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// Loop through all the fields in the record</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">=</span><span class="m">1</span><span class="p">;</span> <span class="n">i</span><span class="p">&lt;=</span><span class="n">dTable</span><span class="p">.</span><span class="n">fieldCnt</span><span class="p">();</span> <span class="n">i</span><span class="p">++)</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="c1">// Get the fieldId from the field-count</span>
-</span></span><span class="line"><span class="cl">            <span class="n">fieldId</span> <span class="p">=</span> <span class="n">dTable</span><span class="p">.</span><span class="n">fieldCnt2Id</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">            
-</span></span><span class="line"><span class="cl">            <span class="c1">// Find the DictField object that matches the fieldId</span>
-</span></span><span class="line"><span class="cl">            <span class="n">dField</span> <span class="p">=</span> <span class="n">dTable</span><span class="p">.</span><span class="n">fieldObject</span><span class="p">(</span><span class="n">fieldId</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">            
-</span></span><span class="line"><span class="cl">            <span class="c1">// Skip system fields</span>
-</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">dField</span><span class="p">.</span><span class="n">isSystem</span><span class="p">())</span>
-</span></span><span class="line"><span class="cl">            <span class="k">continue</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">            <span class="c1">// Create a new XmlElement (field) and</span>
-</span></span><span class="line"><span class="cl">            <span class="c1">// have the name equal to the name of the</span>
-</span></span><span class="line"><span class="cl">            <span class="c1">// dictField</span>
-</span></span><span class="line"><span class="cl">            <span class="n">xmlField</span> <span class="p">=</span> <span class="n">xmlDoc</span><span class="p">.</span><span class="n">createElement</span><span class="p">(</span><span class="n">dField</span><span class="p">.</span><span class="n">name</span><span class="p">());</span>
-</span></span><span class="line"><span class="cl">            
-</span></span><span class="line"><span class="cl">            <span class="c1">// Convert values to string. I have just added</span>
-</span></span><span class="line"><span class="cl">            <span class="c1">// a couple of conversion as an example.</span>
-</span></span><span class="line"><span class="cl">            <span class="c1">// Use tableName.(fieldId) instead of fieldname</span>
-</span></span><span class="line"><span class="cl">            <span class="c1">// to get the content of the field.</span>
-</span></span><span class="line"><span class="cl">            <span class="k">switch</span> <span class="p">(</span><span class="n">dField</span><span class="p">.</span><span class="n">baseType</span><span class="p">())</span>
-</span></span><span class="line"><span class="cl">            <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                <span class="k">case</span> <span class="n">Types</span><span class="p">::</span><span class="n">Int64</span> <span class="p">:</span>
-</span></span><span class="line"><span class="cl">                    <span class="k">value</span> <span class="p">=</span> <span class="n">int642str</span><span class="p">(</span><span class="n">carTable</span><span class="p">.(</span><span class="n">fieldId</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">                <span class="k">break</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">                <span class="k">case</span> <span class="n">Types</span><span class="p">::</span><span class="n">Integer</span> <span class="p">:</span>
-</span></span><span class="line"><span class="cl">                    <span class="k">value</span> <span class="p">=</span> <span class="n">int2str</span><span class="p">(</span><span class="n">carTable</span><span class="p">.(</span><span class="n">fieldId</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">                <span class="k">break</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">                <span class="k">default</span> <span class="p">:</span>
-</span></span><span class="line"><span class="cl">                    <span class="k">value</span> <span class="p">=</span> <span class="n">carTable</span><span class="p">.(</span><span class="n">fieldId</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">                <span class="k">break</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">            <span class="c1">// Set the innerText of the XmlElement (field)</span>
-</span></span><span class="line"><span class="cl">            <span class="c1">// to the value from the table</span>
-</span></span><span class="line"><span class="cl">            <span class="n">xmlField</span><span class="p">.</span><span class="n">innerText</span><span class="p">(</span><span class="k">value</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">             
-</span></span><span class="line"><span class="cl">            <span class="c1">// Append the field as a child node to the record</span>
-</span></span><span class="line"><span class="cl">            <span class="n">xmlRecord</span><span class="p">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">xmlField</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">         <span class="c1">// Add the record as a child node to the root</span>
-</span></span><span class="line"><span class="cl">        <span class="n">xmlRoot</span><span class="p">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">xmlRecord</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// Add the root to the XmlDocument</span>
-</span></span><span class="line"><span class="cl">    <span class="n">xmlDoc</span><span class="p">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">xmlRoot</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// Create a new object of the XmlWriter class</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// in order to be able to write the xml to a file</span>
-</span></span><span class="line"><span class="cl">    <span class="n">xmlWriter</span> <span class="p">=</span> <span class="n">XMLWriter</span><span class="p">::</span><span class="n">newFile</span><span class="p">(</span><span class="s">@&#34;c:tempcars.xml&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// Write the content of the XmlDocument to the</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// file as specified by the XmlWriter</span>
-</span></span><span class="line"><span class="cl">    <span class="n">xmlDoc</span><span class="p">.</span><span class="n">writeTo</span><span class="p">(</span><span class="n">xmlWriter</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>The file that is created looks like the one in the following screenshot(only first part of the file is shown):</p>
-<p><figure><a class="lightgallery" href="/2015-02-04-create-and-write-to-xml-file-in-dynamics-ax/create-and-write-to-xml-file-in-dynamics-ax_1.png" title="&amp;ldquo;create-and-write-to-xml&amp;rdquo;" data-thumbnail="/2015-02-04-create-and-write-to-xml-file-in-dynamics-ax/create-and-write-to-xml-file-in-dynamics-ax_1.png" data-sub-html="<h2>create-and-write-to-xml</h2><p>&amp;ldquo;create-and-write-to-xml&amp;rdquo;</p>">
-        
-    </a><figcaption class="image-caption">create-and-write-to-xml</figcaption>
-    </figure></p>
-<p>As you can see, this file is based on a standard XML format with tags and values only. You can, however, use tag attributes as well. To put the values from the table into tag attributes instead of their own tags, simply change the following code snippet in the example above</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="c1">// Set the innerText of the XmlElement (field)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// to the value from the table</span>
-</span></span><span class="line"><span class="cl"><span class="n">xmlField</span><span class="p">.</span><span class="n">innerText</span><span class="p">(</span><span class="k">value</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// Append the field as a child node to the record</span>
-</span></span><span class="line"><span class="cl"><span class="n">xmlRecord</span><span class="p">.</span><span class="n">appendChild</span><span class="p">(</span><span class="n">xmlField</span><span class="p">);</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>With these lines:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="c1">// Add the attribute to the record</span>
-</span></span><span class="line"><span class="cl"><span class="n">xmlRecord</span><span class="p">.</span><span class="n">setAttribute</span><span class="p">(</span><span class="n">dField</span><span class="p">.</span><span class="n">name</span><span class="p">(),</span> <span class="k">value</span><span class="p">);</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>The file that is created now looks like the one in the following screenshot:</p>
-<p><figure><a class="lightgallery" href="/2015-02-04-create-and-write-to-xml-file-in-dynamics-ax/create-and-write-to-xml-file-in-dynamics-ax_2.png" title="&amp;ldquo;create-and-write-to-xml&amp;rdquo;" data-thumbnail="/2015-02-04-create-and-write-to-xml-file-in-dynamics-ax/create-and-write-to-xml-file-in-dynamics-ax_2.png" data-sub-html="<h2>create-and-write-to-xml</h2><p>&amp;ldquo;create-and-write-to-xml&amp;rdquo;</p>">
-        
-    </a><figcaption class="image-caption">create-and-write-to-xml</figcaption>
-    </figure></p>
-]]></description></item></channel></rss>
+</div>]]></description></item></channel></rss>
