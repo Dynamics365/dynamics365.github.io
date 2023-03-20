@@ -21,7 +21,7 @@ When I tried to authorise some Adjusted **Demand Forecast** records, I failed. S
 
 ![Issue](Pic1-1.png "Issue" )
 
-{{< figure src="Pic1-1.png" title="Issue" width="500" height="600" >}}
+<!-- {{< figure src="Pic1-1.png" title="Issue" width="500" height="600" >}} -->
 
 #### *Self issue-scoping*
 
