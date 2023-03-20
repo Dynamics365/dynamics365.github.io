@@ -16,7 +16,8 @@ The functionality is built on reservation hierarchies and is intended to support
 A typical reservation hierarchy for an item that uses the `Site`, `Warehouse`, `Inventory status`, `Location`, and `License plate` dimensions as physical inventory dimensions.
 
 ![Image](Reservation-hierarchies.png "Reservation-hierarchies")
-
+{{< figure src="Reservation-hierarchies.png" title="Issue" width="100px" >}}
+<!-- {{< figure src="Pic1-1.png" title="Issue" width="500" height="600" >}} -->
 The level with the lowest value in the Reservation hierarchy level column is the least-specific level, in the example above this is the site level.
 The higher the value, the more details are required to make a reservation on that level.
 
