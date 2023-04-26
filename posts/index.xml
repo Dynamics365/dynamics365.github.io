@@ -943,6 +943,11 @@
         
     </a><figcaption class="image-caption">toolbars-2</figcaption>
     </figure></p>
+<!-- <figure><figcaption>
+            <p>Lighthouse (<code>image</code>)</p>
+        </figcaption>
+</figure>
+ -->
 <ul>
 <li>Switch to <strong>Commands</strong> tab, Choose <strong>D365</strong> in Toolbar</li>
 </ul>
@@ -11739,6 +11744,8 @@ URL: <code>http://YourServerName/MicrosoftDynamicsAXAif60</code></p>
 <p>Relations represents a <code>foreign key</code>.</p>
 </li>
 </ul>
+<p>The use of surrogate keys has a history that is crucial to comprehend. These keys were initially introduced in AX 2012 to enhance performance and enable features such as the ledger account lookup when inputting general ledger journals. However, their hardcoded nature as RecId led to problems when foreign key relations were added, resulting in an unhelpful 64-bit integer being created in the field. To address this, an alternate key was introduced, which can be set as a property on the index definition to establish a more meaningful relationship for foreign keys. The primary key can only be set on unique indexes that have the Alternate Key property enabled. Another type of key introduced was the replacement key, which enables the display of a meaningful key instead of the numeric RecId-based SurrogateKey. Although SurrogateKey allows the use of RecId as a foreign key, it displays useful information from a field group on the parent table. For example, ReferenceGroup control showing fields from a field group on the related table.</p>
+<p>There are several drawbacks to using surrogate keys, including the inability to use tables without a natural index as a primary key in a data entity, difficulty using tables with the Open in Excel experience, and increased complexity in data transfer, reporting, and business intelligence. Please use natural key for these scenarios.</p>
 <p>Thank you for reading!</p>
 ]]></description></item><item><title>Using Methods in Table Filters &amp; Query Ranges in Dynamics AX 2012</title><link>https://nuxulu.com/2017-01-02-using-methods-in-table-filters-query-ranges-in-dynamics-ax-2012/</link><pubDate>Mon, 02 Jan 2017 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2017-01-02-using-methods-in-table-filters-query-ranges-in-dynamics-ax-2012/</guid><description><![CDATA[<p>In Dynamics AX, there is a class called <code>SysQueryRangeUtil</code> that can be utilized in both query ranges and table filters. Using methods from this class allow you to be very precise about what dates you want to use in reports or for filtering your data.</p>
 <p>Let’s say you have a report that you always want to run to see orders with shipping dates of the next day. It is possible to do so by using one of the methods from the <code>SysQueryRangeUtil</code>. The use of the letter <strong>&rsquo;t&rsquo;</strong> will work for today’s date, but when you try to add days to it, it doesn’t work in reports. Instead, I will use the <code>currentdate()</code> method and add <code>1</code> to it.</p>

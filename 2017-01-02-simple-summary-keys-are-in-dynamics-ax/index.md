@@ -13,5 +13,9 @@
 
 * Relations represents a `foreign key`.
 
+The use of surrogate keys has a history that is crucial to comprehend. These keys were initially introduced in AX 2012 to enhance performance and enable features such as the ledger account lookup when inputting general ledger journals. However, their hardcoded nature as RecId led to problems when foreign key relations were added, resulting in an unhelpful 64-bit integer being created in the field. To address this, an alternate key was introduced, which can be set as a property on the index definition to establish a more meaningful relationship for foreign keys. The primary key can only be set on unique indexes that have the Alternate Key property enabled. Another type of key introduced was the replacement key, which enables the display of a meaningful key instead of the numeric RecId-based SurrogateKey. Although SurrogateKey allows the use of RecId as a foreign key, it displays useful information from a field group on the parent table. For example, ReferenceGroup control showing fields from a field group on the related table. 
+
+There are several drawbacks to using surrogate keys, including the inability to use tables without a natural index as a primary key in a data entity, difficulty using tables with the Open in Excel experience, and increased complexity in data transfer, reporting, and business intelligence. Please use natural key for these scenarios.
+
 Thank you for reading!
 

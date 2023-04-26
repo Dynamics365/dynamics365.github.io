@@ -55,6 +55,8 @@ If you want to lower building time
 
 ![toolbars-2](toolbars-2.png "toolbars-2")
 
+<!-- {{< figure  src="toolbars-2.png" caption="Lighthouse (`image`)" height="10px" width="50" style="float: right;">}} -->
+
 * Switch to **Commands** tab, Choose **D365** in Toolbar
 
 ![toolbars-3](toolbars-3.png "toolbars-3")
