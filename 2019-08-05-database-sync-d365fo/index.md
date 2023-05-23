@@ -28,3 +28,17 @@ metadatadir "K:\AosService\PackagesLocalDirectory"
 ```
 
 AX DB user you can get from LCS, if you want to sync Azure DB please change ```-isazuresql``` to *True*
+
+You can also use [d365fo.tools](https://github.com/d365collaborative/d365fo.tools/blob/development/docs/Invoke-D365DBSync.md) to trigger the DB sync.
+
+Tier 1
+```ps
+Invoke-D365DBSync -Verbose
+```
+
+Tier 2
+```powershell
+Invoke-D365DbSync -DatabaseServer .database.windows.net  -DatabaseName db_d365opsprod -SqlUser JIT-6h8cg -SqlPwd NjT -LogPath "C:\Temp\d365fo.tools\dbsync.log"
+```
+
+
