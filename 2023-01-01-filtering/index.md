@@ -1,7 +1,7 @@
 # Filtering options Dynamics 365 Finance Operations
 
 
->>https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/user-interface/filtering
+>https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/user-interface/filtering
 
 - [1. Introduction](#1-introduction)
 - [2. Filter expressions](#2-filter-expressions)
