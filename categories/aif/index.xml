@@ -1,4 +1,4 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>AIF - Category - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://nuxulu.com/categories/aif/</link><description>AIF - Category - Dynamics 365 Finance &amp; Operations | nuxulu.com</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Thu, 29 Dec 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://nuxulu.com/categories/aif/" rel="self" type="application/rss+xml"/><item><title>CRUD Purchase Requisition using AIF in Dynamics AX 2012 R3</title><link>https://nuxulu.com/2016-12-29-crud-purchase-requisition-using-aif-in-dynamics-ax-2012-r3/</link><pubDate>Thu, 29 Dec 2016 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2016-12-29-crud-purchase-requisition-using-aif-in-dynamics-ax-2012-r3/</guid><description><![CDATA[<p>The workflow process moves purchase requisitions through the review process, from an initial status of <strong>Draft</strong> to a final status of <strong>Approved</strong>. When a purchase requisition is submitted for review, the workflow process is started. After a purchase requisition is approved, a purchase order can be generated for the purchase requisition lines and submitted to the vendor for order fulfillment.</p>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>AIF - Category - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://dynamics365.github.io/categories/aif/</link><description>AIF - Category - Dynamics 365 Finance &amp; Operations | nuxulu.com</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Thu, 29 Dec 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://dynamics365.github.io/categories/aif/" rel="self" type="application/rss+xml"/><item><title>CRUD Purchase Requisition using AIF in Dynamics AX 2012 R3</title><link>https://dynamics365.github.io/2016-12-29-crud-purchase-requisition-using-aif-in-dynamics-ax-2012-r3/</link><pubDate>Thu, 29 Dec 2016 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://dynamics365.github.io/2016-12-29-crud-purchase-requisition-using-aif-in-dynamics-ax-2012-r3/</guid><description><![CDATA[<p>The workflow process moves purchase requisitions through the review process, from an initial status of <strong>Draft</strong> to a final status of <strong>Approved</strong>. When a purchase requisition is submitted for review, the workflow process is started. After a purchase requisition is approved, a purchase order can be generated for the purchase requisition lines and submitted to the vendor for order fulfillment.</p>
 <p>We will use AIF standard service for import PR from outside, service name <code>PurchReqImportService</code>.</p>
 <p>in <code>AxPurchReqTable</code> class and <code>setPurchReqId()</code> method</p>
 <div class="highlight"><div class="chroma">
@@ -54,7 +54,7 @@
 </span><span class="lnt">49
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">protected</span> <span class="k">void</span> <span class="n">setPurchReqId</span><span class="p">()</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kd">protected</span> <span class="k">void</span> <span class="n">setPurchReqId</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">NumberSequenceReference</span> <span class="n">numberSequenceReference</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
@@ -194,9 +194,9 @@
 </span></span><span class="line"><span class="cl">	<span class="n">PurchUnitOfMeasure</span> <span class="p">=</span> <span class="s">&#34;Box&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">CurrencyCode</span> <span class="p">=</span> <span class="s">&#34;KRW&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">PurchQty</span> <span class="p">=</span> <span class="m">100</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">PurchQtySpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">PurchQtySpecified</span> <span class="p">=</span> <span class="kc">true</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">PriceUnit</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">PriceUnitSpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">PriceUnitSpecified</span> <span class="p">=</span> <span class="kc">true</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Create an instance of the document class.</span>
@@ -209,11 +209,11 @@
 </span></span><span class="line"><span class="cl">	<span class="n">AutoSubmitToWorkflowRequired</span> <span class="p">=</span> <span class="n">AxdEnum_NoYes</span><span class="p">.</span><span class="n">No</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">StatusToBeSaved</span> <span class="p">=</span> <span class="n">AxdEnum_PurchReqCreationStatus</span><span class="p">.</span><span class="n">Draft</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">RequisitionStatus</span> <span class="p">=</span> <span class="n">AxdEnum_PurchReqRequisitionStatus</span><span class="p">.</span><span class="n">Draft</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">RequisitionStatusSpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">RequisitionStatusSpecified</span> <span class="p">=</span> <span class="kc">true</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">RequiredDate</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DateTime</span><span class="p">(</span><span class="m">2016</span><span class="p">,</span> <span class="m">12</span><span class="p">,</span> <span class="m">30</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">	<span class="n">RequiredDateSpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">RequiredDateSpecified</span> <span class="p">=</span> <span class="kc">true</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">TransDate</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DateTime</span><span class="p">(</span><span class="m">2016</span><span class="p">,</span> <span class="m">12</span><span class="p">,</span> <span class="m">30</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">	<span class="n">TransDateSpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">TransDateSpecified</span> <span class="p">=</span> <span class="kc">true</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">PurchReqLine</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchReqLine</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">purchReqLine</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
@@ -240,7 +240,7 @@
 <p></p>
 <p>Please prefer previous <a href="/2016-12-28-crud-purchase-order-using-aif-in-dynamics-ax-2012-r3/" rel="">post</a> for another operations.</p>
 <p>Thank you for reading!</p>
-]]></description></item><item><title>CRUD Purchase order using AIF in Dynamics AX 2012 R3</title><link>https://nuxulu.com/2016-12-28-crud-purchase-order-using-aif-in-dynamics-ax-2012-r3/</link><pubDate>Wed, 28 Dec 2016 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2016-12-28-crud-purchase-order-using-aif-in-dynamics-ax-2012-r3/</guid><description><![CDATA[<ul>
+]]></description></item><item><title>CRUD Purchase order using AIF in Dynamics AX 2012 R3</title><link>https://dynamics365.github.io/2016-12-28-crud-purchase-order-using-aif-in-dynamics-ax-2012-r3/</link><pubDate>Wed, 28 Dec 2016 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://dynamics365.github.io/2016-12-28-crud-purchase-order-using-aif-in-dynamics-ax-2012-r3/</guid><description><![CDATA[<ul>
 <li><a href="#1-create-query" rel="">1. Create Query</a></li>
 <li><a href="#2-using-aif-wizards" rel="">2. Using AIF Wizards</a></li>
 <li><a href="#3-create-service-operation-and-axbc-class" rel="">3. Create Service operation and <code>AxBC class</code></a></li>
@@ -302,7 +302,7 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">private</span> <span class="k">static</span> <span class="n">EntityKey</span><span class="p">[]</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="kt">string</span> <span class="n">purchId</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="n">EntityKey</span><span class="p">[]</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="kt">string</span> <span class="n">purchId</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="n">KeyField</span> <span class="n">field</span> <span class="p">=</span> <span class="k">new</span> <span class="n">KeyField</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">	<span class="p">{</span>
@@ -587,7 +587,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>Thank you for reading!</p>]]></description></item><item><title>Insert, update, Delete order line through AIF In AX 2012 R3</title><link>https://nuxulu.com/2016-12-28-insert-update-delete-order-line-through-aif-in-ax-2012-r3/</link><pubDate>Wed, 28 Dec 2016 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2016-12-28-insert-update-delete-order-line-through-aif-in-ax-2012-r3/</guid><description><![CDATA[<p>In previous <a href="/2016-12-28-crud-purchase-order-using-aif-in-dynamics-ax-2012-r3/" rel="">post</a>, I already show how to create purchase order through AIF with <code>NETTCP</code> or <code>HTTP adapter</code>. In this post, we will get little deep more about action on line of order.</p>
+</div><p>Thank you for reading!</p>]]></description></item><item><title>Insert, update, Delete order line through AIF In AX 2012 R3</title><link>https://dynamics365.github.io/2016-12-28-insert-update-delete-order-line-through-aif-in-ax-2012-r3/</link><pubDate>Wed, 28 Dec 2016 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://dynamics365.github.io/2016-12-28-insert-update-delete-order-line-through-aif-in-ax-2012-r3/</guid><description><![CDATA[<p>In previous <a href="/2016-12-28-crud-purchase-order-using-aif-in-dynamics-ax-2012-r3/" rel="">post</a>, I already show how to create purchase order through AIF with <code>NETTCP</code> or <code>HTTP adapter</code>. In this post, we will get little deep more about action on line of order.</p>
 <p>The following code sample shows how to <code>insert</code>, <code>update</code>, <code>delete</code> a line of an existing purchase order through AIF, currently I’m using C#.NET console project for demo.</p>
 <p>As Partial update, we must include just the fields to change and any fields required by the document (you can check <code>Data policies</code> in AIF Service ports form for that).</p>
 <p>Also, notice how action properties are specified – no matter we do with the line, which means updating the order.</p>
@@ -612,7 +612,7 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">private</span> <span class="k">static</span> <span class="n">EntityKey</span><span class="p">[]</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="kt">string</span> <span class="n">purchId</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="n">EntityKey</span><span class="p">[]</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="kt">string</span> <span class="n">purchId</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="n">KeyField</span> <span class="n">field</span> <span class="p">=</span> <span class="k">new</span> <span class="n">KeyField</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">	<span class="p">{</span>
@@ -704,10 +704,10 @@
 </span></span><span class="line"><span class="cl">	<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;110329&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">PurchQty</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">CurrencyCode</span> <span class="p">=</span> <span class="s">&#34;KRW&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">RecIdSpecified</span>      <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">LineNumberSpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">RecIdSpecified</span>      <span class="p">=</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">LineNumberSpecified</span> <span class="p">=</span> <span class="kc">true</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">action</span>              <span class="p">=</span> <span class="n">AxdEnum_AxdEntityAction</span><span class="p">.</span><span class="n">create</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">actionSpecified</span>     <span class="p">=</span> <span class="k">true</span>
+</span></span><span class="line"><span class="cl">	<span class="n">actionSpecified</span>     <span class="p">=</span> <span class="kc">true</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">	<span class="c1">//for delete</span>
 </span></span><span class="line"><span class="cl">	<span class="c1">//RecId               = lastLine.RecId,</span>
@@ -731,7 +731,7 @@
 </span></span><span class="line"><span class="cl">	<span class="n">CurrencyCode</span> <span class="p">=</span> <span class="s">&#34;KRW&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">PurchName</span> <span class="p">=</span> <span class="s">&#34;AIF PO Test&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">action</span> <span class="p">=</span> <span class="n">AxdEnum_AxdEntityAction</span><span class="p">.</span><span class="n">update</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">actionSpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">actionSpecified</span> <span class="p">=</span> <span class="kc">true</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">PurchLine</span> <span class="p">=</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">purchLine</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
@@ -744,7 +744,7 @@
 </span></span><span class="line"><span class="cl"><span class="n">client</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">,</span> <span class="n">purchOrder</span><span class="p">);</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>Thank you for reading!</p>]]></description></item><item><title>CRUD Items, products, products master dimension, variants using AIF in Dynamics AX 2012 R3</title><link>https://nuxulu.com/2016-12-27-crud-items-products-products-master-dimension-variants-using-aif-in-dynamics-ax-2012-r3/</link><pubDate>Tue, 27 Dec 2016 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2016-12-27-crud-items-products-products-master-dimension-variants-using-aif-in-dynamics-ax-2012-r3/</guid><description><![CDATA[<h2 id="scenarios">Scenarios:</h2>
+</div><p>Thank you for reading!</p>]]></description></item><item><title>CRUD Items, products, products master dimension, variants using AIF in Dynamics AX 2012 R3</title><link>https://dynamics365.github.io/2016-12-27-crud-items-products-products-master-dimension-variants-using-aif-in-dynamics-ax-2012-r3/</link><pubDate>Tue, 27 Dec 2016 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://dynamics365.github.io/2016-12-27-crud-items-products-products-master-dimension-variants-using-aif-in-dynamics-ax-2012-r3/</guid><description><![CDATA[<h2 id="scenarios">Scenarios:</h2>
 <p>I&rsquo;m trying to create <strong>product/master product</strong> in Dynamics AX using AIF inbound port, the AIF services consume by C#.NET.</p>
 <p>From AX 2012 R2, Item is replaced with Product. Item master was in Inventory Management Module, now there is a separate module for item/product creation <code>Product information Management</code>.</p>
 <p>Some definitions you should know
@@ -836,7 +836,7 @@ Product dimensions are characteristics that serve to identify a product variant.
 </span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">ItemsMaster.EcoResProductRef</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">ItemsMaster.EcoResProductMasterRef</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">ItemsMaster.InventDimRef</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="n">Program</span> <span class="n">master</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Program</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">	<span class="n">master</span><span class="p">.</span><span class="n">createDistinctProduct</span><span class="p">();</span>
@@ -902,7 +902,7 @@ Product dimensions are characteristics that serve to identify a product variant.
 </span><span class="lnt">53
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">createDistinctProduct</span><span class="p">()</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">void</span> <span class="n">createDistinctProduct</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="n">AxdEntity_Product_EcoResDistinctProduct</span> <span class="n">distinctProduct</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Product_EcoResDistinctProduct</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">	<span class="p">{</span>
@@ -1006,7 +1006,7 @@ Product dimensions are characteristics that serve to identify a product variant.
 </span><span class="lnt">44
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">createMaster</span><span class="p">()</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">void</span> <span class="n">createMaster</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="n">AxdEntity_Product_EcoResProductMaster</span> <span class="n">productMaster</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Product_EcoResProductMaster</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">	<span class="p">{</span>
@@ -1196,7 +1196,7 @@ Product dimensions are characteristics that serve to identify a product variant.
 </span><span class="lnt">44
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">createVariant</span><span class="p">()</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kd">static</span> <span class="k">void</span> <span class="n">createVariant</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="c1">//product variant definition</span>
 </span></span><span class="line"><span class="cl">	<span class="n">AxdEntity_Product_EcoResDistinctProductVariant</span> <span class="n">productVariant</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Product_EcoResDistinctProductVariant</span><span class="p">()</span>
@@ -1303,7 +1303,7 @@ Product dimensions are characteristics that serve to identify a product variant.
 </span><span class="lnt">56
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">releaseProduct</span><span class="p">()</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="k">void</span> <span class="n">releaseProduct</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="kt">var</span> <span class="n">invent</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Invent</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">	<span class="p">{</span>
@@ -1395,7 +1395,7 @@ Product dimensions are characteristics that serve to identify a product variant.
 </span><span class="lnt">29
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">releaseProductVariants</span><span class="p">()</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kd">static</span> <span class="k">void</span> <span class="n">releaseProductVariants</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="n">AxdEntity_InventDimCombination</span> <span class="n">releasedVariant</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_InventDimCombination</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">	<span class="p">{</span>

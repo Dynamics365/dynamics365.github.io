@@ -1,4 +1,4 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Integration - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://nuxulu.com/tags/integration/</link><description>Integration - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Sat, 25 Jan 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/integration/" rel="self" type="application/rss+xml"/><item><title>Create Purchase Orders - Confirm - Product receipt - Post using X++ in Dynamics 365 Finance &amp; Operations</title><link>https://nuxulu.com/2020-01-25-create-po-confirm-receipt-post/</link><pubDate>Sat, 25 Jan 2020 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2020-01-25-create-po-confirm-receipt-post/</guid><description><![CDATA[<blockquote>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Integration - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://dynamics365.github.io/tags/integration/</link><description>Integration - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Sat, 25 Jan 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://dynamics365.github.io/tags/integration/" rel="self" type="application/rss+xml"/><item><title>Create Purchase Orders - Confirm - Product receipt - Post using X++ in Dynamics 365 Finance &amp; Operations</title><link>https://dynamics365.github.io/2020-01-25-create-po-confirm-receipt-post/</link><pubDate>Sat, 25 Jan 2020 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://dynamics365.github.io/2020-01-25-create-po-confirm-receipt-post/</guid><description><![CDATA[<blockquote>
 <p>The script will work for Dynamics 365 Finance &amp; Operations version</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
@@ -176,7 +176,7 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MaxGeneratePO</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="c1">// number of purchase orders</span>
 </span></span><span class="line"><span class="cl">        <span class="n">NumberSeq</span> <span class="n">numberSeq</span><span class="p">;</span>
@@ -209,7 +209,7 @@
 </span></span><span class="line"><span class="cl">            <span class="n">inventDim</span><span class="p">.</span><span class="n">InventSiteId</span> <span class="p">=</span> <span class="s">&#34;1&#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">            <span class="n">inventDim</span><span class="p">.</span><span class="n">InventLocationId</span> <span class="p">=</span> <span class="s">&#34;11&#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">InventDimId</span><span class="p">=</span><span class="n">InventDim</span><span class="p">::</span><span class="n">findOrCreate</span><span class="p">(</span><span class="n">inventDim</span><span class="p">).</span><span class="n">inventDimId</span> <span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">createLine</span><span class="p">(</span><span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">createLine</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchQty</span> <span class="p">=</span> <span class="m">5</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">            <span class="n">purchLine</span><span class="p">.</span><span class="n">PurchUnit</span> <span class="p">=</span> <span class="s">&#34;ea&#34;</span><span class="p">;</span>
@@ -239,15 +239,15 @@
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">boolean</span> <span class="n">proceed</span><span class="p">(</span><span class="n">PurchId</span> <span class="n">_purchId</span><span class="p">,</span> <span class="n">ItemId</span> <span class="n">_itemId</span><span class="p">,</span><span class="n">inventDimId</span> <span class="n">_inventDimId</span><span class="p">,</span> <span class="n">PurchQty</span> <span class="n">_qty</span><span class="p">,</span> <span class="n">PackingSlipId</span> <span class="n">_productReceiptNumber</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">boolean</span> <span class="n">proceed</span><span class="p">(</span><span class="n">PurchId</span> <span class="n">_purchId</span><span class="p">,</span> <span class="n">ItemId</span> <span class="n">_itemId</span><span class="p">,</span><span class="n">inventDimId</span> <span class="n">_inventDimId</span><span class="p">,</span> <span class="n">PurchQty</span> <span class="n">_qty</span><span class="p">,</span> <span class="n">PackingSlipId</span> <span class="n">_productReceiptNumber</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span>
 </span></span><span class="line"><span class="cl">            <span class="k">this</span><span class="p">.</span><span class="n">generateProductReceipt</span><span class="p">(</span><span class="n">_purchId</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">addToPurchLineList</span><span class="p">(</span><span class="n">_purchId</span><span class="p">,</span> <span class="n">_itemId</span><span class="p">,</span> <span class="n">_inventDimId</span><span class="p">,</span> <span class="n">_qty</span><span class="p">),</span> <span class="n">_productReceiptNumber</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">boolean</span> <span class="n">generateProductReceipt</span><span class="p">(</span><span class="n">PurchId</span> <span class="n">_purchId</span><span class="p">,</span> <span class="n">List</span> <span class="n">_purchLineList</span><span class="p">,</span> <span class="n">PackingSlipId</span> <span class="n">_productReceiptNumber</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">boolean</span> <span class="n">generateProductReceipt</span><span class="p">(</span><span class="n">PurchId</span> <span class="n">_purchId</span><span class="p">,</span> <span class="n">List</span> <span class="n">_purchLineList</span><span class="p">,</span> <span class="n">PackingSlipId</span> <span class="n">_productReceiptNumber</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">boolean</span> <span class="n">ret</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">boolean</span> <span class="n">ret</span> <span class="p">=</span> <span class="kc">true</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">PurchFormLetter</span> <span class="n">purchFromLetter</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">PurchTable</span> <span class="n">purchTable</span> <span class="p">=</span> <span class="n">PurchTable</span><span class="p">::</span><span class="n">find</span><span class="p">(</span><span class="n">_purchId</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
@@ -255,7 +255,7 @@
 </span></span><span class="line"><span class="cl">        <span class="p">{</span>
 </span></span><span class="line"><span class="cl">            <span class="n">ttsbegin</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">            <span class="n">purchFromLetter</span> <span class="p">=</span> <span class="n">PurchFormLetter</span><span class="p">::</span><span class="n">construct</span><span class="p">(</span><span class="n">DocumentStatus</span><span class="p">::</span><span class="n">PackingSlip</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">            <span class="n">purchFromLetter</span><span class="p">.</span><span class="n">createFromLines</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">purchFromLetter</span><span class="p">.</span><span class="n">createFromLines</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">            <span class="n">purchFromLetter</span><span class="p">.</span><span class="n">parmLineList</span><span class="p">(</span><span class="n">_purchLineList</span><span class="p">.</span><span class="n">pack</span><span class="p">());</span>
 </span></span><span class="line"><span class="cl">            <span class="n">purchFromLetter</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">purchTable</span><span class="p">,</span> <span class="n">_productReceiptNumber</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">                                <span class="n">DateTimeUtil</span><span class="p">::</span><span class="n">getToday</span><span class="p">(</span><span class="n">DateTimeUtil</span><span class="p">::</span><span class="n">getUserPreferredTimeZone</span><span class="p">()),</span>
@@ -264,12 +264,12 @@
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">        <span class="k">catch</span>
 </span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">ret</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ret</span> <span class="p">=</span> <span class="kc">false</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">List</span> <span class="n">addToPurchLineList</span><span class="p">(</span><span class="n">PurchId</span> <span class="n">_purchId</span><span class="p">,</span> <span class="n">ItemId</span> <span class="n">_itemId</span><span class="p">,</span><span class="n">inventDimId</span> <span class="n">_inventDimId</span><span class="p">,</span> <span class="n">PurchQty</span> <span class="n">_qty</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">List</span> <span class="n">addToPurchLineList</span><span class="p">(</span><span class="n">PurchId</span> <span class="n">_purchId</span><span class="p">,</span> <span class="n">ItemId</span> <span class="n">_itemId</span><span class="p">,</span><span class="n">inventDimId</span> <span class="n">_inventDimId</span><span class="p">,</span> <span class="n">PurchQty</span> <span class="n">_qty</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">List</span> <span class="n">purchLineList</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Record</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="n">PurchLine</span> <span class="n">purchLine</span> <span class="p">=</span> <span class="n">PurchLine</span><span class="p">::</span><span class="n">findItemIdInventDimId</span><span class="p">(</span><span class="n">_purchId</span><span class="p">,</span> <span class="n">_itemId</span><span class="p">,</span> <span class="n">_inventDimId</span><span class="p">);</span>
@@ -283,7 +283,7 @@
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">purchLineList</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">void</span> <span class="n">postPOInvoice</span><span class="p">(</span><span class="n">PurchId</span> <span class="n">purchId</span><span class="p">,</span> <span class="n">PackingSlipId</span> <span class="n">packingSlipId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="k">void</span> <span class="n">postPOInvoice</span><span class="p">(</span><span class="n">PurchId</span> <span class="n">purchId</span><span class="p">,</span> <span class="n">PackingSlipId</span> <span class="n">packingSlipId</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">TmpFrmVirtual</span>               <span class="n">tmpFrmVirtualVend</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">PurchFormLetter_Invoice</span>     <span class="n">purchFormLetter</span><span class="p">;</span>
@@ -308,7 +308,7 @@
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="n">chooseLinesQuery</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SysQueryRun</span><span class="p">(</span><span class="n">queryStr</span><span class="p">(</span><span class="n">PurchUpdate</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">        <span class="n">chooseLinesQuery</span><span class="p">.</span><span class="n">query</span><span class="p">().</span><span class="n">addDataSource</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">VendInvoiceInfoTable</span><span class="p">)).</span><span class="n">enabled</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chooseLinesQuery</span><span class="p">.</span><span class="n">query</span><span class="p">().</span><span class="n">addDataSource</span><span class="p">(</span><span class="n">tableNum</span><span class="p">(</span><span class="n">VendInvoiceInfoTable</span><span class="p">)).</span><span class="n">enabled</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="c1">// chooseLinesPendingInvoiceQuery needs to be initialized, although it will not be used</span>
 </span></span><span class="line"><span class="cl">        <span class="n">chooseLinesPendingInvoiceQuery</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SysQueryRun</span><span class="p">(</span><span class="n">queryStr</span><span class="p">(</span><span class="n">PurchUpdatePendingInvoice</span><span class="p">));</span>
@@ -330,11 +330,11 @@
 </span></span><span class="line"><span class="cl">            <span class="n">conTmpFrmVirtual</span> <span class="p">=</span> <span class="n">selectedList</span><span class="p">.</span><span class="n">pack</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">selectFromJournal</span><span class="p">(</span><span class="n">conTmpFrmVirtual</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">reArrangeNow</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">reArrangeNow</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="n">purchFormLetter</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="kt">int</span> <span class="n">randomAmount</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="n">randomAmount</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">RandomGenerate</span> <span class="n">randomGenerate</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">randomGenerate</span> <span class="p">=</span> <span class="n">RandomGenerate</span><span class="p">::</span><span class="n">construct</span><span class="p">();</span>
@@ -346,7 +346,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Thank you for reading.</p>
-]]></description></item><item><title>Dynamics 365 finance and operations ODATA consuming - Length cannot be less than zero</title><link>https://nuxulu.com/2019-12-17-dynamics-365-finance-and-operations-odata-consuming-length-cannot-be-less-than-zero/</link><pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2019-12-17-dynamics-365-finance-and-operations-odata-consuming-length-cannot-be-less-than-zero/</guid><description><![CDATA[<p>When you consume a custom data entity, you get an error</p>
+]]></description></item><item><title>Dynamics 365 finance and operations ODATA consuming - Length cannot be less than zero</title><link>https://dynamics365.github.io/2019-12-17-dynamics-365-finance-and-operations-odata-consuming-length-cannot-be-less-than-zero/</link><pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://dynamics365.github.io/2019-12-17-dynamics-365-finance-and-operations-odata-consuming-length-cannot-be-less-than-zero/</guid><description><![CDATA[<p>When you consume a custom data entity, you get an error</p>
 <div class="details admonition failure open">
         <div class="details-summary admonition-title">
             <i class="icon fas fa-times-circle fa-fw" aria-hidden="true"></i>Failure<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
@@ -362,7 +362,7 @@
 The resolution here is simply delete it and regenerate metadata again by saving the <strong>ODataClient.tt</strong> file</p>
 <p></p>
 <p>Thank you for reading.</p>
-]]></description></item><item><title>Enable Power BI Embedded in cloud hosted Dynamics 365 finance and operations 8.0 +</title><link>https://nuxulu.com/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/</link><pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/</guid><description><![CDATA[<p>In this article, we will go through how to enable Power BI embedded in Dynamics 365 finance and operations version 10 in a cloud-hosted environment (customer managed). From the previous version of FinOps, Power BI embedded uses workspace collections at Azure to display the report, since the workspace collections have been deprecated, Microsoft also disables power BI embedded in cloud-hosted environments. You can only enable Power BI embedded in multiple boxes environments like UAT and production.</p>
+]]></description></item><item><title>Enable Power BI Embedded in cloud hosted Dynamics 365 finance and operations 8.0 +</title><link>https://dynamics365.github.io/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/</link><pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://dynamics365.github.io/2019-12-18-enable-power-bi-embedded-in-cloud-hosted-dynamics-365-finance-and-operations-8.0-/</guid><description><![CDATA[<p>In this article, we will go through how to enable Power BI embedded in Dynamics 365 finance and operations version 10 in a cloud-hosted environment (customer managed). From the previous version of FinOps, Power BI embedded uses workspace collections at Azure to display the report, since the workspace collections have been deprecated, Microsoft also disables power BI embedded in cloud-hosted environments. You can only enable Power BI embedded in multiple boxes environments like UAT and production.</p>
 <h2 id="1-create-workspace-collections">1. Create workspace collections</h2>
 <p>Although the workspace collections have been deprecated, it does not show in the Azure portal and you could not create it by using the Azure portal, but you can create and manage by using Azure CLI.</p>
 <p>Open PowerShell and run following</p>
@@ -535,7 +535,7 @@ Once you have the Azure SQL Database, we can use SSMS to connect to the database
     </a><figcaption class="image-caption">Enable-Power-BI-Embedded-in-cloud-hosted</figcaption>
     </figure></p>
 <p>Thank you for reading.</p>
-]]></description></item><item><title>Consuming Dynamics 365 Finance and Operations OData services from .NET</title><link>https://nuxulu.com/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/</link><pubDate>Mon, 16 Dec 2019 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/</guid><description><![CDATA[<h2 id="1-authentication">1. Authentication</h2>
+]]></description></item><item><title>Consuming Dynamics 365 Finance and Operations OData services from .NET</title><link>https://dynamics365.github.io/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/</link><pubDate>Mon, 16 Dec 2019 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://dynamics365.github.io/2019-12-16-consuming-dynamics-365-finance-and-operations-odata-services-from-net/</guid><description><![CDATA[<h2 id="1-authentication">1. Authentication</h2>
 <hr>
 <p>We need an authentication to connect Dynamics 365 finance and operations from .Net application by using service principal.</p>
 <p>How to create an app registration in Azure <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/app-registrations-training-guide-for-app-registrations-legacy-users" target="_blank" rel="noopener noreffer ">https://docs.microsoft.com/en-us/azure/active-directory/develop/app-registrations-training-guide-for-app-registrations-legacy-users</a></p>
@@ -669,7 +669,7 @@ If you are testing with a custom data entity and you get this error</p>
 <p><code>System.ArgumentOutOfRangeException : Length cannot be less than zero.</code></p>
 <p>Please check this <a href="/2019-12-17-dynamics-365-finance-and-operations-odata-consuming-length-cannot-be-less-than-zero/" rel="">post</a>.</p>
 <p>Thank you for reading.</p>
-]]></description></item><item><title>Business events and HTTPs endpoint</title><link>https://nuxulu.com/2019-11-05-business-events-and-https-endpoint/</link><pubDate>Tue, 05 Nov 2019 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2019-11-05-business-events-and-https-endpoint/</guid><description><![CDATA[<p>In Dynamics 365 finance and operations, Business events provide a mechanism that lets external systems receive notifications from FinOps applications. In this way, the systems can perform business actions in response to business events.</p>
+]]></description></item><item><title>Business events and HTTPs endpoint</title><link>https://dynamics365.github.io/2019-11-05-business-events-and-https-endpoint/</link><pubDate>Tue, 05 Nov 2019 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://dynamics365.github.io/2019-11-05-business-events-and-https-endpoint/</guid><description><![CDATA[<p>In Dynamics 365 finance and operations, Business events provide a mechanism that lets external systems receive notifications from FinOps applications. In this way, the systems can perform business actions in response to business events.</p>
 <p>There are 3 types of business events: <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/business-events/app-business-events" target="_blank" rel="noopener noreffer ">Application business events</a>, <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/business-events/business-events-workflow" target="_blank" rel="noopener noreffer ">Workflow business events</a>, and <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/business-events/alerts-business-events" target="_blank" rel="noopener noreffer ">Alerts as business events</a>. You can also implement <a href="https://docs.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/business-events/business-events-dev-doc" target="_blank" rel="noopener noreffer ">a new business event</a>.</p>
 <p>Business events can be consumed using Microsoft Flow and Azure messaging services, and we use endpoint to manage the destinations for sending business events to, Microsoft supports many endpoints: Azure Service Bus Queue, Azure Service Bus Topic, Azure Event Grid, Azure Event Hub, HTTPS, Microsoft Flow.
 In this article I will show how to send business event to HTTPs endpoint that leveraging on Azure functions.</p>
@@ -697,7 +697,7 @@ To create Azure function please follow this <a href="https://docs.microsoft.com/
 </span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">Microsoft.AspNetCore.Mvc</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">Microsoft.Extensions.Primitives</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">Newtonsoft.Json</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">IActionResult</span><span class="p">&gt;</span> <span class="n">Run</span><span class="p">(</span><span class="n">HttpRequest</span> <span class="n">req</span><span class="p">,</span> <span class="n">ILogger</span> <span class="n">log</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kd">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">IActionResult</span><span class="p">&gt;</span> <span class="n">Run</span><span class="p">(</span><span class="n">HttpRequest</span> <span class="n">req</span><span class="p">,</span> <span class="n">ILogger</span> <span class="n">log</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="n">log</span><span class="p">.</span><span class="n">LogInformation</span><span class="p">(</span><span class="s">&#34;Dynamics 365 finance and operations notifications&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">  <span class="kt">string</span> <span class="n">requestBody</span> <span class="p">=</span> <span class="k">await</span> <span class="k">new</span> <span class="n">StreamReader</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">Body</span><span class="p">).</span><span class="n">ReadToEndAsync</span><span class="p">();</span>
@@ -796,7 +796,7 @@ That&rsquo;s it, now I will create a free text invoice and post it, this is what
 <p>In <strong>BusinessEventsParameters</strong>, the value will be <code>Enabled = 1 , BatchEnabled = 0</code>.
 If you have just upgraded from PU26 to higher version, the Business events are not getting triggered because the value might not be changed in <strong>BusinessEventsParameters</strong> and there is no batch. You should check this table according to the situation.</p>
 <p>Thank you for reading.</p>
-]]></description></item><item><title>Insert multiple records in single request using Odata from Postman</title><link>https://nuxulu.com/2019-10-15-insert-multiple-records-in-single-request-using-odata-from-postman/</link><pubDate>Tue, 15 Oct 2019 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2019-10-15-insert-multiple-records-in-single-request-using-odata-from-postman/</guid><description><![CDATA[<p>Got inspired by <a href="https://community.dynamics.com/365/financeandoperations/f/dynamics-365-for-finance-and-operations-forum/286810/inserting-multiple-records-via-odata-from-postman" target="_blank" rel="noopener noreffer ">this topic</a>, I&rsquo;d like to write this article to show you how to post multiple records in single request by using Postman.</p>
+]]></description></item><item><title>Insert multiple records in single request using Odata from Postman</title><link>https://dynamics365.github.io/2019-10-15-insert-multiple-records-in-single-request-using-odata-from-postman/</link><pubDate>Tue, 15 Oct 2019 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://dynamics365.github.io/2019-10-15-insert-multiple-records-in-single-request-using-odata-from-postman/</guid><description><![CDATA[<p>Got inspired by <a href="https://community.dynamics.com/365/financeandoperations/f/dynamics-365-for-finance-and-operations-forum/286810/inserting-multiple-records-via-odata-from-postman" target="_blank" rel="noopener noreffer ">this topic</a>, I&rsquo;d like to write this article to show you how to post multiple records in single request by using Postman.</p>
 <p>Generally, batch requests are supported in the <a href="https://docs.oasis-open.org/odata/odata/v4.0/errata02/os/complete/part1-protocol/odata-v4.0-errata02-os-part1-protocol-complete.html#_Toc406398359" target="_blank" rel="noopener noreffer ">OData service</a>, The easiest way is you can use the C# code approach from <a href="https://github.com/Microsoft/Dynamics-AX-Integration/tree/master/ServiceSamples/ODataConsoleApplication" target="_blank" rel="noopener noreffer ">github</a> and the excel add-ins in Dynamics 365 for finance and operations use Odata batch to communicate in a single request but how can we leverage it in Postman.</p>
 <p>Using Excel add-in then add 2 customer groups records and submit to Dynamics 365 for finance and operations, while you are doing that using <a href="https://www.telerik.com/fiddler" target="_blank" rel="noopener noreffer ">fiddler</a> on the same box to see how the odata batch framework works.
 This can be done from POSTMAN too and you need to use header and body as you see in Fiddler.</p>
@@ -1019,7 +1019,7 @@ This can be done from POSTMAN too and you need to use header and body as you see
 <p>Note: refer this article for an C# example:
 <a href="https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/odata#run-multiple-requests-in-a-single-transaction" target="_blank" rel="noopener noreffer ">https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/data-entities/odata#run-multiple-requests-in-a-single-transaction</a></p>
 <p>Thank you for reading.</p>
-]]></description></item><item><title>CRUD Purchase Requisition using AIF in Dynamics AX 2012 R3</title><link>https://nuxulu.com/2016-12-29-crud-purchase-requisition-using-aif-in-dynamics-ax-2012-r3/</link><pubDate>Thu, 29 Dec 2016 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2016-12-29-crud-purchase-requisition-using-aif-in-dynamics-ax-2012-r3/</guid><description><![CDATA[<p>The workflow process moves purchase requisitions through the review process, from an initial status of <strong>Draft</strong> to a final status of <strong>Approved</strong>. When a purchase requisition is submitted for review, the workflow process is started. After a purchase requisition is approved, a purchase order can be generated for the purchase requisition lines and submitted to the vendor for order fulfillment.</p>
+]]></description></item><item><title>CRUD Purchase Requisition using AIF in Dynamics AX 2012 R3</title><link>https://dynamics365.github.io/2016-12-29-crud-purchase-requisition-using-aif-in-dynamics-ax-2012-r3/</link><pubDate>Thu, 29 Dec 2016 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://dynamics365.github.io/2016-12-29-crud-purchase-requisition-using-aif-in-dynamics-ax-2012-r3/</guid><description><![CDATA[<p>The workflow process moves purchase requisitions through the review process, from an initial status of <strong>Draft</strong> to a final status of <strong>Approved</strong>. When a purchase requisition is submitted for review, the workflow process is started. After a purchase requisition is approved, a purchase order can be generated for the purchase requisition lines and submitted to the vendor for order fulfillment.</p>
 <p>We will use AIF standard service for import PR from outside, service name <code>PurchReqImportService</code>.</p>
 <p>in <code>AxPurchReqTable</code> class and <code>setPurchReqId()</code> method</p>
 <div class="highlight"><div class="chroma">
@@ -1075,7 +1075,7 @@ This can be done from POSTMAN too and you need to use header and body as you see
 </span><span class="lnt">49
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">protected</span> <span class="k">void</span> <span class="n">setPurchReqId</span><span class="p">()</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kd">protected</span> <span class="k">void</span> <span class="n">setPurchReqId</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">NumberSequenceReference</span> <span class="n">numberSequenceReference</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
@@ -1215,9 +1215,9 @@ This can be done from POSTMAN too and you need to use header and body as you see
 </span></span><span class="line"><span class="cl">	<span class="n">PurchUnitOfMeasure</span> <span class="p">=</span> <span class="s">&#34;Box&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">CurrencyCode</span> <span class="p">=</span> <span class="s">&#34;KRW&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">PurchQty</span> <span class="p">=</span> <span class="m">100</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">PurchQtySpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">PurchQtySpecified</span> <span class="p">=</span> <span class="kc">true</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">PriceUnit</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">PriceUnitSpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">PriceUnitSpecified</span> <span class="p">=</span> <span class="kc">true</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Create an instance of the document class.</span>
@@ -1230,11 +1230,11 @@ This can be done from POSTMAN too and you need to use header and body as you see
 </span></span><span class="line"><span class="cl">	<span class="n">AutoSubmitToWorkflowRequired</span> <span class="p">=</span> <span class="n">AxdEnum_NoYes</span><span class="p">.</span><span class="n">No</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">StatusToBeSaved</span> <span class="p">=</span> <span class="n">AxdEnum_PurchReqCreationStatus</span><span class="p">.</span><span class="n">Draft</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">RequisitionStatus</span> <span class="p">=</span> <span class="n">AxdEnum_PurchReqRequisitionStatus</span><span class="p">.</span><span class="n">Draft</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">RequisitionStatusSpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">RequisitionStatusSpecified</span> <span class="p">=</span> <span class="kc">true</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">RequiredDate</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DateTime</span><span class="p">(</span><span class="m">2016</span><span class="p">,</span> <span class="m">12</span><span class="p">,</span> <span class="m">30</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">	<span class="n">RequiredDateSpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">RequiredDateSpecified</span> <span class="p">=</span> <span class="kc">true</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">TransDate</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DateTime</span><span class="p">(</span><span class="m">2016</span><span class="p">,</span> <span class="m">12</span><span class="p">,</span> <span class="m">30</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">	<span class="n">TransDateSpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">TransDateSpecified</span> <span class="p">=</span> <span class="kc">true</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">PurchReqLine</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_PurchReqLine</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">{</span> <span class="n">purchReqLine</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
@@ -1261,7 +1261,7 @@ This can be done from POSTMAN too and you need to use header and body as you see
 <p></p>
 <p>Please prefer previous <a href="/2016-12-28-crud-purchase-order-using-aif-in-dynamics-ax-2012-r3/" rel="">post</a> for another operations.</p>
 <p>Thank you for reading!</p>
-]]></description></item><item><title>CRUD Purchase order using AIF in Dynamics AX 2012 R3</title><link>https://nuxulu.com/2016-12-28-crud-purchase-order-using-aif-in-dynamics-ax-2012-r3/</link><pubDate>Wed, 28 Dec 2016 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2016-12-28-crud-purchase-order-using-aif-in-dynamics-ax-2012-r3/</guid><description><![CDATA[<ul>
+]]></description></item><item><title>CRUD Purchase order using AIF in Dynamics AX 2012 R3</title><link>https://dynamics365.github.io/2016-12-28-crud-purchase-order-using-aif-in-dynamics-ax-2012-r3/</link><pubDate>Wed, 28 Dec 2016 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://dynamics365.github.io/2016-12-28-crud-purchase-order-using-aif-in-dynamics-ax-2012-r3/</guid><description><![CDATA[<ul>
 <li><a href="#1-create-query" rel="">1. Create Query</a></li>
 <li><a href="#2-using-aif-wizards" rel="">2. Using AIF Wizards</a></li>
 <li><a href="#3-create-service-operation-and-axbc-class" rel="">3. Create Service operation and <code>AxBC class</code></a></li>
@@ -1323,7 +1323,7 @@ This can be done from POSTMAN too and you need to use header and body as you see
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">private</span> <span class="k">static</span> <span class="n">EntityKey</span><span class="p">[]</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="kt">string</span> <span class="n">purchId</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="n">EntityKey</span><span class="p">[]</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="kt">string</span> <span class="n">purchId</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="n">KeyField</span> <span class="n">field</span> <span class="p">=</span> <span class="k">new</span> <span class="n">KeyField</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">	<span class="p">{</span>
@@ -1608,7 +1608,7 @@ This can be done from POSTMAN too and you need to use header and body as you see
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>Thank you for reading!</p>]]></description></item><item><title>Insert, update, Delete order line through AIF In AX 2012 R3</title><link>https://nuxulu.com/2016-12-28-insert-update-delete-order-line-through-aif-in-ax-2012-r3/</link><pubDate>Wed, 28 Dec 2016 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2016-12-28-insert-update-delete-order-line-through-aif-in-ax-2012-r3/</guid><description><![CDATA[<p>In previous <a href="/2016-12-28-crud-purchase-order-using-aif-in-dynamics-ax-2012-r3/" rel="">post</a>, I already show how to create purchase order through AIF with <code>NETTCP</code> or <code>HTTP adapter</code>. In this post, we will get little deep more about action on line of order.</p>
+</div><p>Thank you for reading!</p>]]></description></item><item><title>Insert, update, Delete order line through AIF In AX 2012 R3</title><link>https://dynamics365.github.io/2016-12-28-insert-update-delete-order-line-through-aif-in-ax-2012-r3/</link><pubDate>Wed, 28 Dec 2016 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://dynamics365.github.io/2016-12-28-insert-update-delete-order-line-through-aif-in-ax-2012-r3/</guid><description><![CDATA[<p>In previous <a href="/2016-12-28-crud-purchase-order-using-aif-in-dynamics-ax-2012-r3/" rel="">post</a>, I already show how to create purchase order through AIF with <code>NETTCP</code> or <code>HTTP adapter</code>. In this post, we will get little deep more about action on line of order.</p>
 <p>The following code sample shows how to <code>insert</code>, <code>update</code>, <code>delete</code> a line of an existing purchase order through AIF, currently I’m using C#.NET console project for demo.</p>
 <p>As Partial update, we must include just the fields to change and any fields required by the document (you can check <code>Data policies</code> in AIF Service ports form for that).</p>
 <p>Also, notice how action properties are specified – no matter we do with the line, which means updating the order.</p>
@@ -1633,7 +1633,7 @@ This can be done from POSTMAN too and you need to use header and body as you see
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">private</span> <span class="k">static</span> <span class="n">EntityKey</span><span class="p">[]</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="kt">string</span> <span class="n">purchId</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="n">EntityKey</span><span class="p">[]</span> <span class="n">EntityForPurchId</span><span class="p">(</span><span class="kt">string</span> <span class="n">purchId</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="n">KeyField</span> <span class="n">field</span> <span class="p">=</span> <span class="k">new</span> <span class="n">KeyField</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">	<span class="p">{</span>
@@ -1725,10 +1725,10 @@ This can be done from POSTMAN too and you need to use header and body as you see
 </span></span><span class="line"><span class="cl">	<span class="n">ItemId</span> <span class="p">=</span> <span class="s">&#34;110329&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">PurchQty</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">CurrencyCode</span> <span class="p">=</span> <span class="s">&#34;KRW&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">RecIdSpecified</span>      <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">LineNumberSpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">RecIdSpecified</span>      <span class="p">=</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">LineNumberSpecified</span> <span class="p">=</span> <span class="kc">true</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">action</span>              <span class="p">=</span> <span class="n">AxdEnum_AxdEntityAction</span><span class="p">.</span><span class="n">create</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">actionSpecified</span>     <span class="p">=</span> <span class="k">true</span>
+</span></span><span class="line"><span class="cl">	<span class="n">actionSpecified</span>     <span class="p">=</span> <span class="kc">true</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">	<span class="c1">//for delete</span>
 </span></span><span class="line"><span class="cl">	<span class="c1">//RecId               = lastLine.RecId,</span>
@@ -1752,7 +1752,7 @@ This can be done from POSTMAN too and you need to use header and body as you see
 </span></span><span class="line"><span class="cl">	<span class="n">CurrencyCode</span> <span class="p">=</span> <span class="s">&#34;KRW&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">PurchName</span> <span class="p">=</span> <span class="s">&#34;AIF PO Test&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">action</span> <span class="p">=</span> <span class="n">AxdEnum_AxdEntityAction</span><span class="p">.</span><span class="n">update</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="n">actionSpecified</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">actionSpecified</span> <span class="p">=</span> <span class="kc">true</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">	<span class="n">PurchLine</span> <span class="p">=</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="n">purchLine</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
@@ -1765,7 +1765,7 @@ This can be done from POSTMAN too and you need to use header and body as you see
 </span></span><span class="line"><span class="cl"><span class="n">client</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">callContext</span><span class="p">,</span> <span class="n">entityKeyList</span><span class="p">,</span> <span class="n">purchOrder</span><span class="p">);</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>Thank you for reading!</p>]]></description></item><item><title>CRUD Items, products, products master dimension, variants using AIF in Dynamics AX 2012 R3</title><link>https://nuxulu.com/2016-12-27-crud-items-products-products-master-dimension-variants-using-aif-in-dynamics-ax-2012-r3/</link><pubDate>Tue, 27 Dec 2016 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2016-12-27-crud-items-products-products-master-dimension-variants-using-aif-in-dynamics-ax-2012-r3/</guid><description><![CDATA[<h2 id="scenarios">Scenarios:</h2>
+</div><p>Thank you for reading!</p>]]></description></item><item><title>CRUD Items, products, products master dimension, variants using AIF in Dynamics AX 2012 R3</title><link>https://dynamics365.github.io/2016-12-27-crud-items-products-products-master-dimension-variants-using-aif-in-dynamics-ax-2012-r3/</link><pubDate>Tue, 27 Dec 2016 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://dynamics365.github.io/2016-12-27-crud-items-products-products-master-dimension-variants-using-aif-in-dynamics-ax-2012-r3/</guid><description><![CDATA[<h2 id="scenarios">Scenarios:</h2>
 <p>I&rsquo;m trying to create <strong>product/master product</strong> in Dynamics AX using AIF inbound port, the AIF services consume by C#.NET.</p>
 <p>From AX 2012 R2, Item is replaced with Product. Item master was in Inventory Management Module, now there is a separate module for item/product creation <code>Product information Management</code>.</p>
 <p>Some definitions you should know
@@ -1857,7 +1857,7 @@ Product dimensions are characteristics that serve to identify a product variant.
 </span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">ItemsMaster.EcoResProductRef</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">ItemsMaster.EcoResProductMasterRef</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">ItemsMaster.InventDimRef</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="n">Program</span> <span class="n">master</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Program</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">	<span class="n">master</span><span class="p">.</span><span class="n">createDistinctProduct</span><span class="p">();</span>
@@ -1923,7 +1923,7 @@ Product dimensions are characteristics that serve to identify a product variant.
 </span><span class="lnt">53
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">createDistinctProduct</span><span class="p">()</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">void</span> <span class="n">createDistinctProduct</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="n">AxdEntity_Product_EcoResDistinctProduct</span> <span class="n">distinctProduct</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Product_EcoResDistinctProduct</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">	<span class="p">{</span>
@@ -2027,7 +2027,7 @@ Product dimensions are characteristics that serve to identify a product variant.
 </span><span class="lnt">44
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">void</span> <span class="n">createMaster</span><span class="p">()</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">void</span> <span class="n">createMaster</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="n">AxdEntity_Product_EcoResProductMaster</span> <span class="n">productMaster</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Product_EcoResProductMaster</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">	<span class="p">{</span>
@@ -2217,7 +2217,7 @@ Product dimensions are characteristics that serve to identify a product variant.
 </span><span class="lnt">44
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">createVariant</span><span class="p">()</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kd">static</span> <span class="k">void</span> <span class="n">createVariant</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="c1">//product variant definition</span>
 </span></span><span class="line"><span class="cl">	<span class="n">AxdEntity_Product_EcoResDistinctProductVariant</span> <span class="n">productVariant</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Product_EcoResDistinctProductVariant</span><span class="p">()</span>
@@ -2324,7 +2324,7 @@ Product dimensions are characteristics that serve to identify a product variant.
 </span><span class="lnt">56
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">releaseProduct</span><span class="p">()</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="k">void</span> <span class="n">releaseProduct</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="kt">var</span> <span class="n">invent</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_Invent</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">	<span class="p">{</span>
@@ -2416,7 +2416,7 @@ Product dimensions are characteristics that serve to identify a product variant.
 </span><span class="lnt">29
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">void</span> <span class="n">releaseProductVariants</span><span class="p">()</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kd">static</span> <span class="k">void</span> <span class="n">releaseProductVariants</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="n">AxdEntity_InventDimCombination</span> <span class="n">releasedVariant</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AxdEntity_InventDimCombination</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">	<span class="p">{</span>

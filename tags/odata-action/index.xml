@@ -1,4 +1,4 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>OData Action - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://nuxulu.com/tags/odata-action/</link><description>OData Action - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Tue, 25 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/odata-action/" rel="self" type="application/rss+xml"/><item><title>All about Odata actions in Dynamics 365 Finance And Operations</title><link>https://nuxulu.com/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/</link><pubDate>Tue, 25 May 2021 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/</guid><description><![CDATA[<p>ODATA actions in Data Entities provide a way to inject behaviors into the data model, or expose custom business logic from Dynamics 365 Finance &amp; Operations.
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>OData Action - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://dynamics365.github.io/tags/odata-action/</link><description>OData Action - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Tue, 25 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://dynamics365.github.io/tags/odata-action/" rel="self" type="application/rss+xml"/><item><title>All about Odata actions in Dynamics 365 Finance And Operations</title><link>https://dynamics365.github.io/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/</link><pubDate>Tue, 25 May 2021 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://dynamics365.github.io/2021-05-25-all-about-odata-actions-in-dynamics-365-finance-and-operations/</guid><description><![CDATA[<p>ODATA actions in Data Entities provide a way to inject behaviors into the data model, or expose custom business logic from Dynamics 365 Finance &amp; Operations.
 You can add actions by adding a method to the data entity and then decorating the method with specific attributes <em>[SysODataActionAttribute]</em></p>
 <p>I use this Odata actions mostly in automation job like after refreshing data from PROD to UAT, we need to enable users, assign company to users, enable batches &hellip;
 Or simply consume it in Power Automate.</p>
@@ -43,11 +43,11 @@ or you can duplicate any standard entity. I created <strong>AutomationDataEntity
 </span><span class="lnt">34
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">AutomationDataEntity</span> <span class="n">extends</span> <span class="n">common</span>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">AutomationDataEntity</span> <span class="n">extends</span> <span class="n">common</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">//1st example</span>
 </span></span><span class="line"><span class="cl"><span class="na">    [SysODataActionAttribute(&#34;assignUserToCompany&#34;, false)]</span>
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">assignUserToCompany</span><span class="p">(</span><span class="n">NetworkAlias</span> <span class="n">_networkAlias</span><span class="p">,</span> <span class="n">DataAreaName</span> <span class="n">_company</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="k">void</span> <span class="n">assignUserToCompany</span><span class="p">(</span><span class="n">NetworkAlias</span> <span class="n">_networkAlias</span><span class="p">,</span> <span class="n">DataAreaName</span> <span class="n">_company</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">UserInfo</span> <span class="n">userInfo</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">ttsbegin</span><span class="p">;</span>
@@ -60,7 +60,7 @@ or you can duplicate any standard entity. I created <strong>AutomationDataEntity
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">//2nd example</span>
 </span></span><span class="line"><span class="cl"><span class="na">    [SysODataActionAttribute(&#34;ReturnRental&#34;, true)]</span>
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">str</span> <span class="n">ReturnRental</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">str</span> <span class="n">ReturnRental</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;Rental was successfully returned. Thanks for your business&#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
@@ -68,7 +68,7 @@ or you can duplicate any standard entity. I created <strong>AutomationDataEntity
 </span></span><span class="line"><span class="cl">    <span class="c1">//following 3rd example of an OData action takes in a parameter and returns a list</span>
 </span></span><span class="line"><span class="cl"><span class="na">    [SysODataActionAttribute(&#34;GetColors&#34;, true),
 </span></span></span><span class="line"><span class="cl"><span class="na">    SysODataCollectionAttribute(&#34;return&#34;, Types::Record, &#34;CarColor&#34;)]</span>
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">List</span> <span class="n">GetColorsByAvailability</span><span class="p">(</span><span class="n">boolean</span> <span class="n">onlyAvailableVehicles</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">List</span> <span class="n">GetColorsByAvailability</span><span class="p">(</span><span class="n">boolean</span> <span class="n">onlyAvailableVehicles</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">List</span> <span class="n">returnList</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Record</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">// do something</span>
@@ -192,7 +192,7 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="na">[SysODataActionAttribute(&#34;GetColors&#34;, true),
 </span></span></span><span class="line"><span class="cl"><span class="na">SysODataCollectionAttribute(&#34;return&#34;, Types::Record, &#34;CarColor&#34;)]</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="n">List</span> <span class="n">GetColorsByAvailability</span><span class="p">(</span><span class="n">boolean</span> <span class="n">onlyAvailableVehicles</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">List</span> <span class="n">GetColorsByAvailability</span><span class="p">(</span><span class="n">boolean</span> <span class="n">onlyAvailableVehicles</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">List</span> <span class="n">returnList</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">Record</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// do something</span>
@@ -223,7 +223,7 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 <pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="na">[SysODataActionAttribute(&#34;GetColorsByAvailability&#34;, false),
 </span></span></span><span class="line"><span class="cl"><span class="na">SysODataCollectionAttribute(&#34;InventSiteIdList&#34;, Types::String),
 </span></span></span><span class="line"><span class="cl"><span class="na">SysODataCollectionAttribute(&#34;return&#34;, Types::String)]</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">str</span> <span class="n">GetColorsByAvailability</span><span class="p">(</span><span class="n">List</span> <span class="n">InventSiteIdList</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="n">str</span> <span class="n">GetColorsByAvailability</span><span class="p">(</span><span class="n">List</span> <span class="n">InventSiteIdList</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">str</span> <span class="n">strCommaSeperated</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">List</span> <span class="n">list</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">(</span><span class="n">Types</span><span class="p">::</span><span class="n">String</span><span class="p">);</span>
@@ -312,7 +312,7 @@ My entity created based on <code>CustGroup</code> table, so to get an instance I
 </span></span><span class="line"><span class="cl"><span class="n">final</span> <span class="k">class</span> <span class="nc">CustCustomerGroupEntity_KA_Extension</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl"><span class="na">    [SysODataActionAttribute(&#34;ReturnRental&#34;, false)]</span>
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="n">str</span> <span class="n">ReturnRental</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="n">str</span> <span class="n">ReturnRental</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;Rental was successfully returned. Thanks for your business&#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>

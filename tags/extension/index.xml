@@ -1,4 +1,4 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Extension - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://nuxulu.com/tags/extension/</link><description>Extension - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Thu, 10 Oct 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://nuxulu.com/tags/extension/" rel="self" type="application/rss+xml"/><item><title>Extend the standard reports in Dynamics 365 finance and operations (CustAccountStatementExt)</title><link>https://nuxulu.com/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/</link><pubDate>Thu, 10 Oct 2019 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://nuxulu.com/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/</guid><description><![CDATA[<ul>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Extension - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</title><link>https://dynamics365.github.io/tags/extension/</link><description>Extension - Tag - Dynamics 365 Finance &amp; Operations | nuxulu.com</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>luan52@outlook.com (Max Nguyen)</managingEditor><webMaster>luan52@outlook.com (Max Nguyen)</webMaster><lastBuildDate>Thu, 10 Oct 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://dynamics365.github.io/tags/extension/" rel="self" type="application/rss+xml"/><item><title>Extend the standard reports in Dynamics 365 finance and operations (CustAccountStatementExt)</title><link>https://dynamics365.github.io/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/</link><pubDate>Thu, 10 Oct 2019 00:00:00 +0000</pubDate><author>Max Nguyen</author><guid>https://dynamics365.github.io/2019-10-10-extend-the-standard-reports-in-dynamics-365-finance-and-operations/</guid><description><![CDATA[<ul>
 <li><a href="#1-adding-a-new-field" rel="">1. Adding a new field</a></li>
 <li><a href="#2-duplicate-the-report" rel="">2. Duplicate the report</a></li>
 <li><a href="#3-modifythe-report-design-right-click-on-report-dataset-and-choose-restore-to-refresh-the-new-field" rel="">3. Modify the report design, right click on report dataset and choose restore to refresh the new field</a></li>
@@ -52,7 +52,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="c1">//Add construct</span>
-</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="n">MaxCustAccountStatementExtController_Ext</span> <span class="n">construct</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="n">MaxCustAccountStatementExtController_Ext</span> <span class="n">construct</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="n">MaxCustAccountStatementExtController_Ext</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
@@ -75,15 +75,15 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="k">void</span> <span class="n">main</span><span class="p">(</span><span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">SrsPrintMgmtFormLetterController</span> <span class="n">controller</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MaxCustAccountStatementExtController_Ext</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="n">controller</span><span class="p">.</span><span class="n">parmReportName</span><span class="p">(</span><span class="n">PrintMgmtDocType</span><span class="p">::</span><span class="n">construct</span><span class="p">(</span><span class="n">PrintMgmtDocumentType</span><span class="p">::</span><span class="n">CustAccountStatement</span><span class="p">).</span><span class="n">getDefaultReportFormat</span><span class="p">());</span>
 </span></span><span class="line"><span class="cl">    <span class="n">controller</span><span class="p">.</span><span class="n">parmArgs</span><span class="p">(</span><span class="n">_args</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">MaxCustAccountStatementExtController_Ext</span><span class="p">::</span><span class="n">startControllerOperation</span><span class="p">(</span><span class="n">controller</span><span class="p">,</span> <span class="n">_args</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="err"> </span>
-</span></span><span class="line"><span class="cl"><span class="k">protected</span> <span class="k">static</span> <span class="k">void</span> <span class="n">startControllerOperation</span><span class="p">(</span><span class="n">SrsPrintMgmtFormLetterController</span> <span class="n">_controller</span><span class="p">,</span> <span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="kd">protected</span> <span class="kd">static</span> <span class="k">void</span> <span class="n">startControllerOperation</span><span class="p">(</span><span class="n">SrsPrintMgmtFormLetterController</span> <span class="n">_controller</span><span class="p">,</span> <span class="n">Args</span> <span class="n">_args</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">_controller</span><span class="p">.</span><span class="n">startOperation</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
@@ -103,7 +103,7 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">protected</span> <span class="k">void</span> <span class="n">outputReport</span><span class="p">()</span>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="kd">protected</span> <span class="k">void</span> <span class="n">outputReport</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">SRSCatalogItemName</span>  <span class="n">reportDesign</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">reportDesign</span> <span class="p">=</span> <span class="n">ssrsReportStr</span><span class="p">(</span><span class="n">MaxCustAccountStatementExt</span><span class="p">,</span><span class="n">Report</span><span class="p">);</span>
@@ -140,7 +140,7 @@
 <pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MaxCustAccountStatementExtHandler</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl"><span class="na">    [DataEventHandlerAttribute(tableStr(CustAccountStatementExtTmp), DataEventType::Inserting)]</span>
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">CustAccountStatementExtTmpInsertEvent</span><span class="p">(</span><span class="n">Common</span> <span class="n">c</span><span class="p">,</span> <span class="n">DataEventArgs</span> <span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="k">void</span> <span class="n">CustAccountStatementExtTmpInsertEvent</span><span class="p">(</span><span class="n">Common</span> <span class="n">c</span><span class="p">,</span> <span class="n">DataEventArgs</span> <span class="n">e</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">CustAccountStatementExtTmp</span>  <span class="n">tempTable</span> <span class="p">=</span> <span class="n">c</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">CustGroup</span> <span class="n">custGroup</span><span class="p">;</span>
@@ -181,7 +181,7 @@
 <pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MaxCustAccountStatementExtHandler</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl"><span class="na">    [PostHandlerFor(classStr(CustAccountStatementExtDP), methodstr(CustAccountStatementExtDP, processReport))]</span>
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">TmpTablePostHandler</span><span class="p">(</span><span class="n">XppPrePostArgs</span> <span class="n">arguments</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="k">void</span> <span class="n">TmpTablePostHandler</span><span class="p">(</span><span class="n">XppPrePostArgs</span> <span class="n">arguments</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">CustAccountStatementExtDP</span> <span class="n">dpInstance</span> <span class="p">=</span> <span class="n">arguments</span><span class="p">.</span><span class="n">getThis</span><span class="p">()</span> <span class="k">as</span> <span class="n">CustAccountStatementExtDP</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">CustAccountStatementExtTmp</span> <span class="n">tmpTable</span> <span class="p">=</span> <span class="n">dpInstance</span><span class="p">.</span><span class="n">getCustAccountStatementExtTmp</span><span class="p">();</span>
@@ -221,7 +221,7 @@
 <pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MaxPrintMgtDocTypeHandlersExt</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl"><span class="na">    [SubscribesTo(classstr(PrintMgmtDocType), delegatestr(PrintMgmtDocType, getDefaultReportFormatDelegate))]</span>
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">getDefaultReportFormatDelegate</span><span class="p">(</span><span class="n">PrintMgmtDocumentType</span> <span class="n">_docType</span><span class="p">,</span> <span class="n">EventHandlerResult</span> <span class="n">_result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="k">void</span> <span class="n">getDefaultReportFormatDelegate</span><span class="p">(</span><span class="n">PrintMgmtDocumentType</span> <span class="n">_docType</span><span class="p">,</span> <span class="n">EventHandlerResult</span> <span class="n">_result</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="k">switch</span> <span class="p">(</span><span class="n">_docType</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="p">{</span>
